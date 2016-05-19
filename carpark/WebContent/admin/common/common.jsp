@@ -7,6 +7,10 @@ String customerpath = adminpath +"/"+"customer";
 String parkingpath = adminpath +"/"+"parking";
 String qnapath = adminpath +"/"+"qna";
 String staticpath = adminpath +"/"+"static";
+String memberpath = root+"/member";
+String infopath = memberpath+"/"+"info";
+String detailInfopath = memberpath+"/"+"detailInfo";
+
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
