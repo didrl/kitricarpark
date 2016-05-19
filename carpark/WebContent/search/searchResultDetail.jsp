@@ -17,15 +17,15 @@
 <link href="/carpark/css/bootstrap.min.css" rel="stylesheet">
 
 <!-- Seclect List CSS -->
-<link rel="stylesheet" type="text/css" href="/carpark/css/selectlist/jquery.selectlist.css">
+<link rel="stylesheet" type="text/css" href="/carpark/css/jquery.selectlist.css">
 
 <!-- Simple Celander -->
-<link rel="stylesheet" href="/carpark/css/celandar/style.css" />
+<link rel="stylesheet" href="/carpark/css/calendar/style.css" />
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script type="text/javascript" src="/carpark/js/calendar/calendar.js"></script>
 <!-- Simple Celander -->
 
-<link href="css/stylish-portfolio.css" rel="stylesheet" />
+<link href="/carpark/css/stylish-portfolio.css" rel="stylesheet" />
 <link href='http://fonts.googleapis.com/css?family=Roboto:400,500'	rel='stylesheet' type='text/css' />
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"	rel="stylesheet" />
 
@@ -39,7 +39,7 @@
 <link href="/carpark/css/shop-item.css" rel="stylesheet">
 
 <!-- Custom Fonts -->
-<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet"
+<link href="/carpark/font-awesome/css/font-awesome.min.css" rel="stylesheet"
 	type="text/css">
 <link
 	href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic"
@@ -250,7 +250,7 @@
 				<!--  Map  -->
 				<div class="panel panel-default">
 			<div class="row" align="left"><h3><b>&nbsp;&nbsp;&nbsp; 주차장 이름</b> 지역명
-			<a href=""><img height="30"  src="./img/heart.jpg"></a></h3>
+			<a href=""><img height="30"  src="/carpark/img/heart.jpg"></a></h3>
 			</div>
 				<div class="panel panel-default" id="divformap">
 				<section id="contact" class="map" >
@@ -282,9 +282,9 @@
 
 				<div class="panel panel-default">
 					<div class="panel-body">
-					<a href="원본사진"><img src="./img/tmpcar/car1.jpg"></a>
-					<a href="원본사진"><img src="./img/tmpcar/car2.jpg"></a>
-					<a href="원본사진"><img src="./img/tmpcar/car3.jpg"></a>
+					<a href="원본사진"><img src="/carpark/img/tmpcar/car1.jpg"></a>
+					<a href="원본사진"><img src="/carpark/img/tmpcar/car2.jpg"></a>
+					<a href="원본사진"><img src="/carpark/img/tmpcar/car3.jpg"></a>
 					</div>
 					<div class="panel-footer">Panel footer</div>
 				</div>
@@ -552,8 +552,7 @@
 				e.stopPropagation();
 				return false;
 			});
-			$('#map_div').css('position', 'relative');
-			$('#map_div').css('z-index', 3000);
+			
 		</script>
 		<script src="/carpark/js/selectlist/jquery.selectlist.js"></script>
 		<script type="text/javascript">

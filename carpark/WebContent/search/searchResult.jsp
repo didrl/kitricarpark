@@ -20,13 +20,13 @@
     <link href="/carpark/css/shop-item.css" rel="stylesheet">
 
 <!-- Simple Celander -->
-<link rel="stylesheet" href="./css/celandar/style.css" />
+<link rel="stylesheet" href="/carpark/css/calendar/style.css" />
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script type="text/javascript" src="/carpark/js/calendar/calendar.js"></script>
 <!-- Simple Celander -->
 
 <!-- Custom Fonts -->
-<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet"
+<link href="/carpark/font-awesome/css/font-awesome.min.css" rel="stylesheet"
 	type="text/css">
 <link
 	href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic"
