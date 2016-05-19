@@ -1,5 +1,0 @@
-package com.parkingshare.member.favorite.action;
-
-public class MemberFavoriteRegisterAction {
-
-}
