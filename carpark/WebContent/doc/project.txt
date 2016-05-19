@@ -1,0 +1,205 @@
+project name : parking
+- src
+	- com.parkingshare.action
+		Action.java (I)
+
+
+	- com.parkingshare.factory
+     	AdminActionFactory.java    //관리자 액션 관리
+      	MemberActionFactory.java   //회원 액션 관리
+
+
+//////관리자
+	- com.parkingshare.admin.controller
+      	AdminParkingController.java		//주자장 관리
+      	AdminEvaluationController.java	//평가목록 관리
+      	AdminPenaltyController.java		//벌점 관리
+      	AdminGradeController.java		//등급 평가기준 관리
+      	
+      	
+	- com.parkingshare.admin.parking.action
+		AdminParkingRegisterAction.java	//주차장 등록
+		AdminParkingModifyAction.java	//주차장 정보 수정
+		AdminParkingSearchAction.java	//등록된 주차장 조회
+		AdminParkingDeleteAction.java	//등록된 주차장 삭제
+		
+		
+	- com.parkingshare.admin.evaluation.action
+		AdminEvaluationRegisterAction.java	//평가목록 등록
+		AdminEvaluationModifyAction.java		//등록된 평가목록 수정
+		AdminEvaluationDeleteAction.java		//등록된 평가목록 삭제
+		AdminEvaluationSearchAction.java		//등록된 평가목록 검색
+		AdminEvaluationListAction.java		//모든 평가목록 검색
+	
+	
+	- com.parkingshare.admin.penalty.action
+		AdminPenaltyRegisterAction.java		//벌점부여
+		AdminPenaltyModifyAction.java		//벌점 차감?
+		AdminpenaltyListAction.java			//벌점내역 조회
+    
+    
+    - com.parkingshare.admin.grade.action
+    	AdminGradeRegisterAction.java		//등급 평가기준 생성
+    	AdminGradeModifyAction.java			//등급 평가기준 수정
+    	AdminGradeDeleteAction.java			//등급 평가기준 삭제
+    	AdminGradeListAction.java			//모든 등급 평가기준 조회
+    
+    
+	- com.parkingshare.admin.model
+      	ParkingDto.java     //주차장 정보
+      	EvaluationDto.java  //평가목록
+      	PenaltyDto.java	 //벌점
+		GradeDto.java		 //등급 평가기준 	
+
+
+	- com.parkingshare.admin.model.service
+		AdminParkingService.java
+		AdminEvaluationService.java
+		AdminPenaltyService.java
+		AdminGradeService.java
+		
+		AdminParkingServiceImpl.java
+		AdminEvaluationServiceImpl.java
+		AdminPenaltyServiceImpl.java
+		AdminGradeServiceImpl.java
+		
+      
+	- com.parkingshare.admin.model.dao
+		AdminParkingDao.java
+		AdminEvaluationDao.java
+		AdminPenaltyDao.java
+		AdminGradeDao.java
+		
+		AdminParkingDaoImpl.java
+		AdminEvaluationDaoImpl.java
+		AdminPenaltyDaoImpl.java
+		AdminGradeDaoImpl.java
+
+
+///////회원
+	- com.parkingshare.member.controller
+      	MemberReviewController.java    (/review)	//후기
+      	MemberFavoriteController.java  (/favorite)	//즐겨찾기
+      	MemberMessageController.java   (/message)	//쪽지
+      	MemberReportController.java    (/report)	//신고
+      	MemberCallController.java      (/call)		//주차장 제보
+      	MemberReservationController.java    (/reservation)	//예약
+      	
+    
+	- com.parkingshare.member.review.action
+		MemberReviewRegisterAction.java	//리뷰 등록
+		MemberReviewDeleteAction.java	//리뷰 삭제
+		MemberReviewModifyAction.java	//리뷰 수정
+		MemberReviewListAction.java		//리뷰 목록
+		//MemberReviewViewAction.java		//리뷰 보기
+		//MemberReviewSearchAction.java	//자신이 등록한 리뷰 조회
+		
+		
+	- com.parkingshare.member.favorite.action
+		MemberFavoriteRegisterAction.java	//즐겨찾기 등록
+		MemberFavoriteDeleteAction.java		//즐겨찾기 삭제
+		MemberFavoriteListAction.java		//즐겨찾기 목록
+		
+		
+	- com.parkingshare.member.message.action
+		MemberMessageRegisterAction.java	//쪽지 보내기
+		MemberMessageListAction.java		//쪽지 내역
+		MemberMessageDeleteAction.java		//쪽지 삭제
+		MemberMessageViewAction.java		//쪽지내용보기 
+		
+		
+	- com.parkingshare.member.report.action
+		MemberReportRegisterAction.java		//신고하기
+		MemberReportListAction.java			//신고내역
+		MemberReportViewAction.java			//신고내용보기
+		//MemberReportDeleteAction.java		//특정 신고내역 삭제
+		
+		
+	- com.parkingshare.member.call.action
+		MemberCallRegisterAction.java		//제보하기
+		MemberCallModifyAction.java			//제보내용수정
+		MemberCallDeleteAction.java			//제보취소
+		MemberCallListAction.java			//제보내역
+		MemberCallViewAction.java			//제보내용보기
+		
+		
+	- com.parkingshare.member.reservation.action
+		MemberReservationRegisterAction.java	//예약하기
+		MemberReservationDeleteAction.java		//예약취소
+		MemberReservationListAction.java	//예약내역
+		MemberReservationViewAction.java	//예약내용보기
+		 
+		      	
+	- com.parkingshare.member.model
+   		MemberDto.java	//회원정보
+   		ReviewDto.java
+   		FavoriteDto.java
+   		MessageDto.java
+   		ReportDto.java
+   		CallDto.java
+   		ReservationDto.java
+   		
+   		
+	- com.parkingshare.member.model.service
+		MemberReviewService.java
+		MemberFavoriteService.java
+		MemberMessageService.java
+		MemberReportService.java
+		MemberCallService.java
+		MemberReservationService.java
+		
+		MemberReviewServiceImpl.java
+		MemberFavoriteServiceImpl.java
+		MemberMessageServiceImpl.java
+		MemberReportServiceImpl.java
+		MemberCallServiceImpl.java
+		MemberReservationServiceImpl.java
+		
+		
+	- com.parkingshare.member.model.dao
+		MemberReviewDao.java
+		MemberFavoriteDao.java
+		MemberMessageDao.java
+		MemberReportDao.java
+		MemberCallDao.java
+		MemberReservationDao.java
+		
+		MemberReviewDaoImpl.java
+		MemberFavoriteDaoImpl.java
+		MemberMessageDaoImpl.java
+		MemberReportDaoImpl.java
+		MemberCallDaoImpl.java
+		MemberReservationDaoImpl.java		
+		
+
+//////공통
+	- com.parkingshare.common.model.service
+	
+	
+	- com.parkingshare.common.model.dao
+      
+
+	- com.parkingshare.util
+      	Encoder.java
+      	StringCheck.java
+      	NumberCheck.java
+      	PageNavigator.java
+      	PageMove.java
+   
+	- com.parkingshare.db
+      	DBConnection.java
+      	DBClose.java
+
+- WebContent
+	- bootstrap
+         
+	- css
+   
+	- js
+      
+	- common
+      
+	- img
+      
+	- index.jsp
+   
