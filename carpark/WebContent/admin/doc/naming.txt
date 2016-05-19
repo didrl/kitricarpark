@@ -1,0 +1,28 @@
+folder: /admin
+header+sidebar: adminside.html
+main: adminindex.html
+String root = "admin/" : ?? String root = request.getContextPath();
+
+<고객관리>
+folder: /customer
+info.jsp :고객정보
+report.jsp: 신고목록
+rate.jsp: 등급관리
+
+<주차장관리>
+folder: /parking
+list.jsp: 주차장 목록
+newparking.jsp: 새로운 주차장 등록
+report.jsp: 주차장 제보 목록
+auth.jsp: 주차장 인증예정목록
+
+<QnA 관리>
+folder: /qna
+faq.jsp: FAQ 관리
+message.jsp: 쪽지 목록
+
+<사이트 통계>
+folder: /static
+static.jsp: 사이트통계
+
+ 
