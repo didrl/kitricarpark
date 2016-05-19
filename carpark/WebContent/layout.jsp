@@ -96,7 +96,7 @@
 				
 		</nav>
 		<!-- 상단 메뉴바 -->
-		kkkkkkkkkkkkkkkkkkkkkk
+		
 		<!-- 본문 -->
 		<div class="row"><!-- 같은 행에 위치해야 하는 것들은 하나의 row안에 위치 -->
 		
