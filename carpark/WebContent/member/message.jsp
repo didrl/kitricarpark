@@ -258,7 +258,8 @@
 						
 					</div>
 					<!-- /.container-fluid -->
-					
+					<button type="submit" class="btn btn-success">쪽지 보내기</button>
+					<button type="submit" class="btn btn-success">쪽지 삭제</button>
 					
 				</div>
 				<!-- /#page-wrapper -->
