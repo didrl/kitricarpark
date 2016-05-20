@@ -2,7 +2,7 @@ package com.carpark.util;
 
 public class NumberCheck {
 	
-	public static int nullToZero(String tmp) {//null이나 숫자로 바꿀 수 없는 값을 0으로 리턴
+	public static int nullToZero(String tmp) {
 		int num = 0;
 		if(isNumber(tmp)) {
 			num = Integer.parseInt(tmp);
@@ -11,7 +11,7 @@ public class NumberCheck {
 		return num;
 	}
 	
-	public static int nullToOne(String tmp) {//null이나 숫자로 바꿀 수 없는 값을 1로 리턴
+	public static int nullToOne(String tmp) {
 		int num = 1;
 		if(isNumber(tmp)) {
 			num = Integer.parseInt(tmp);
@@ -28,7 +28,7 @@ public class NumberCheck {
 				int x = tmp.charAt(i) - 48;
 				if(x < 0 || x > 9) {
 					flag = false;
-					break;//하나라도 숫자가 아닌게 있다면 끝냄
+					break;
 				}
 			}
 		} else {

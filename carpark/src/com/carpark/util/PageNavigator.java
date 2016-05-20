@@ -1,15 +1,15 @@
 package com.carpark.util;
 
-public class PageNavigator {//Dto¿Í ºñ½ÁÇÏÁö¸¸ Á¶±İ ´Ù¸§
+public class PageNavigator {//Dtoì™€ ë¹„ìŠ·í•˜ì§€ë§Œ ì¡°ê¸ˆ ë‹¤ë¦„
 
 	private String root;
-	private boolean nowFirst;//ÇöÀç Ã¹¹øÂ° ¹üÀ§¿¡ ¼ÓÇØÀÖ´ÂÁö?(1~10±îÁö ÀÏ ¶§ 1ÀÎÁö ¾Æ´ÑÁö ±¸ºĞ)
-	private boolean nowEnd;//ÇöÀç ¸¶Áö¸· ¹üÀ§¿¡ ¼ÓÇØÀÖ´ÂÁö?
-	private int totalArticleCount;//ÀüÃ¼ ±Û °¹¼ö
-	private int newArticleCount;//»õ ±Û °¹¼ö
-	private int totalPageCount;//ÀüÃ¼ ÆäÀÌÁö
-	private int pageNo;//ÇöÀç ÆäÀÌÁö
-	private String navigator;//Ã³À½ ÀÌÀü 1 2 3 4 5 6 7 8 9 10 ´ÙÀ½ ³¡
+	private boolean nowFirst;//í˜„ì¬ ì²«ë²ˆì§¸ ë²”ìœ„ì— ì†í•´ìˆëŠ”ì§€?(1~10ê¹Œì§€ ì¼ ë•Œ 1ì¸ì§€ ì•„ë‹Œì§€ êµ¬ë¶„)
+	private boolean nowEnd;//í˜„ì¬ ë§ˆì§€ë§‰ ë²”ìœ„ì— ì†í•´ìˆëŠ”ì§€?
+	private int totalArticleCount;//ì „ì²´ ê¸€ ê°¯ìˆ˜
+	private int newArticleCount;//ìƒˆ ê¸€ ê°¯ìˆ˜
+	private int totalPageCount;//ì „ì²´ í˜ì´ì§€
+	private int pageNo;//í˜„ì¬ í˜ì´ì§€
+	private String navigator;//ì²˜ìŒ ì´ì „ 1 2 3 4 5 6 7 8 9 10 ë‹¤ìŒ ë
 	
 	public String getRoot() {
 		return root;
@@ -80,17 +80,17 @@ public class PageNavigator {//Dto¿Í ºñ½ÁÇÏÁö¸¸ Á¶±İ ´Ù¸§
 
 		tmpNavigator.append("<table cellpadding='0' cellspacing='0' border='0'>\n");
 		tmpNavigator.append(" <tr>\n");
-		if (this.isNowFirst()) {//Ã¹¹øÂ° ¹üÀ§¿¡ ÀÖÀ» ¶§
+		if (this.isNowFirst()) {//ì²«ë²ˆì§¸ ë²”ìœ„ì— ìˆì„ ë•Œ
 			tmpNavigator.append("  <td><font color='#999999'>\n<a href='javascript:firstarticle()'>");
-			tmpNavigator.append("   <img src='" + root + "/img/board/icon_prev02.gif' width='7' height='11' border='0' align='absmiddle' hspace='3'>ÃÖ½Å¸ñ·Ï</a>\n");
+			tmpNavigator.append("   <img src='" + root + "/img/board/icon_prev02.gif' width='7' height='11' border='0' align='absmiddle' hspace='3'>ìµœì‹ ëª©ë¡</a>\n");
 			tmpNavigator.append("   <img src='" + root + "/img/board/icon_prev01_dim.gif' width='3' height='11' border='0' align='absmiddle' hspace='3'>\n");
-			tmpNavigator.append("   ÀÌÀü</font>\n");//ÀÌÀü¿¡ ¸µÅ©°¡ ¾øÀ½
-		} else {//Ã¹¹øÂ° ¹üÀ§¿¡ ¾øÀ» ¶§
+			tmpNavigator.append("   ì´ì „</font>\n");//ì´ì „ì— ë§í¬ê°€ ì—†ìŒ
+		} else {//ì²«ë²ˆì§¸ ë²”ìœ„ì— ì—†ì„ ë•Œ
 			tmpNavigator.append("  <td>\n<a href='javascript:firstarticle()'>");
-			tmpNavigator.append("   <img src='" + root + "/img/board/icon_prev02.gif' width='7' height='11' border='0' align='absmiddle' hspace='3'>ÃÖ½Å¸ñ·Ï </a>\n");
+			tmpNavigator.append("   <img src='" + root + "/img/board/icon_prev02.gif' width='7' height='11' border='0' align='absmiddle' hspace='3'>ìµœì‹ ëª©ë¡ </a>\n");
 			tmpNavigator.append("   <a href='javascript:listarticle(" + prePage + ")'>");
 			tmpNavigator.append("   <img src='" + root + "/img/board/icon_prev01_dim.gif' width='3' height='11' border='0' align='absmiddle' hspace='3'>\n");
-			tmpNavigator.append("   ÀÌÀü</a>");//ÀÌÀü¿¡ ¸µÅ©°¡ ÀÖÀ½
+			tmpNavigator.append("   ì´ì „</a>");//ì´ì „ì— ë§í¬ê°€ ìˆìŒ
 		}
 		tmpNavigator.append("  \n</td>\n");
 		tmpNavigator.append("  <td style='padding: 0 5 0 5'>\n");
@@ -106,11 +106,11 @@ public class PageNavigator {//Dto¿Í ºñ½ÁÇÏÁö¸¸ Á¶±İ ´Ù¸§
 			endPage = totalPageCount;
 		
 		for (int i = startPage; i <= endPage; i++) {
-			if (pageNo == i) {//ÇöÀç ÆäÀÌÁö´Â ¸µÅ©¾ø°í °­Á¶ Ç¥½Ã
+			if (pageNo == i) {//í˜„ì¬ í˜ì´ì§€ëŠ” ë§í¬ì—†ê³  ê°•ì¡° í‘œì‹œ
 				tmpNavigator.append("     <td style='padding:0 7 0 7;' nowrap><font class='text_acc_02'><b>" + i + "</b></font></td>\n");
 				tmpNavigator.append("     <td width='1' nowrap><img src='" + root + "/img/board/n_tab.gif' width='1'");
 				tmpNavigator.append(" height='11' border='0' align='absmiddle'><br>\n");
-			} else {//ÇöÀç ÆäÀÌÁö°¡ ¾Æ´Ñ°ÍÀº ¸µÅ©°¡ ÀÖ°í °­Á¶ Ç¥½Ã ¾øÀ½
+			} else {//í˜„ì¬ í˜ì´ì§€ê°€ ì•„ë‹Œê²ƒì€ ë§í¬ê°€ ìˆê³  ê°•ì¡° í‘œì‹œ ì—†ìŒ
 				tmpNavigator.append("     <td style='padding:0 7 0 7;' nowrap><a href='javascript:listarticle(" + i + ")'>" + i + "</td>\n");
 				tmpNavigator.append("     <td width='1' nowrap><img src='" + root + "/img/board/n_tab.gif' width='1'");
 				tmpNavigator.append(" height='11' border='0' align='absmiddle'><br>\n");
@@ -123,16 +123,16 @@ public class PageNavigator {//Dto¿Í ºñ½ÁÇÏÁö¸¸ Á¶±İ ´Ù¸§
 		tmpNavigator.append("  <td>\n");
 		
 		if (this.isNowEnd()) {
-			tmpNavigator.append("   <font color='#999999'>´ÙÀ½<img");
+			tmpNavigator.append("   <font color='#999999'>ë‹¤ìŒ<img");
 			tmpNavigator.append("   src='" + root + "/img/board/icon_next01_dim.gif' width='3' height='11'");
 			tmpNavigator.append(" border='0' align='absmiddle' hspace='3'> \n");
-			tmpNavigator.append("   ³¡¸ñ·Ï<img src='" + root + "/img/board/icon_next02_dim.gif' width='7' height='11'");
+			tmpNavigator.append("   ëëª©ë¡<img src='" + root + "/img/board/icon_next02_dim.gif' width='7' height='11'");
 			tmpNavigator.append(" border='0' align='absmiddle' hspace='3'></font>\n");
 		} else {
-			tmpNavigator.append("   <a href='javascript:listarticle(" + (endPage + 1) + ")'>´ÙÀ½<img");
+			tmpNavigator.append("   <a href='javascript:listarticle(" + (endPage + 1) + ")'>ë‹¤ìŒ<img");
 			tmpNavigator.append(" src='" + root + "/img/board/icon_next01_dim.gif' width='3' height='11'");
 			tmpNavigator.append(" border='0' align='absmiddle' hspace='3'></a>\n");
-			tmpNavigator.append("   <a href='javascript:listarticle(" + totalPageCount + ")'>³¡¸ñ·Ï<img src='" + root + "/img/board/icon_next02_dim.gif' width='7' height='11'");
+			tmpNavigator.append("   <a href='javascript:listarticle(" + totalPageCount + ")'>ëëª©ë¡<img src='" + root + "/img/board/icon_next02_dim.gif' width='7' height='11'");
 			tmpNavigator.append(" border='0' align='absmiddle' hspace='3'>\n");
 		}
 

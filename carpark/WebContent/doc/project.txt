@@ -5,51 +5,51 @@ project name : parking
 
 
 	- com.parkingshare.factory
-     	AdminActionFactory.java    //°ü¸®ÀÚ ¾×¼Ç °ü¸®
-      	MemberActionFactory.java   //È¸¿ø ¾×¼Ç °ü¸®
+     	AdminActionFactory.java    //ê´€ë¦¬ì ì•¡ì…˜ ê´€ë¦¬
+      	MemberActionFactory.java   //íšŒì› ì•¡ì…˜ ê´€ë¦¬
 
 
-//////°ü¸®ÀÚ
+//////ê´€ë¦¬ì
 	- com.parkingshare.admin.controller
-      	AdminParkingController.java		//ÁÖÀÚÀå °ü¸®
-      	AdminEvaluationController.java	//Æò°¡¸ñ·Ï °ü¸®
-      	AdminPenaltyController.java		//¹úÁ¡ °ü¸®
-      	AdminGradeController.java		//µî±Ş Æò°¡±âÁØ °ü¸®
+      	AdminParkingController.java		//ì£¼ìì¥ ê´€ë¦¬
+      	AdminEvaluationController.java	//í‰ê°€ëª©ë¡ ê´€ë¦¬
+      	AdminPenaltyController.java		//ë²Œì  ê´€ë¦¬
+      	AdminGradeController.java		//ë“±ê¸‰ í‰ê°€ê¸°ì¤€ ê´€ë¦¬
       	
       	
 	- com.parkingshare.admin.parking.action
-		AdminParkingRegisterAction.java	//ÁÖÂ÷Àå µî·Ï
-		AdminParkingModifyAction.java	//ÁÖÂ÷Àå Á¤º¸ ¼öÁ¤
-		AdminParkingSearchAction.java	//µî·ÏµÈ ÁÖÂ÷Àå Á¶È¸
-		AdminParkingDeleteAction.java	//µî·ÏµÈ ÁÖÂ÷Àå »èÁ¦
+		AdminParkingRegisterAction.java	//ì£¼ì°¨ì¥ ë“±ë¡
+		AdminParkingModifyAction.java	//ì£¼ì°¨ì¥ ì •ë³´ ìˆ˜ì •
+		AdminParkingSearchAction.java	//ë“±ë¡ëœ ì£¼ì°¨ì¥ ì¡°íšŒ
+		AdminParkingDeleteAction.java	//ë“±ë¡ëœ ì£¼ì°¨ì¥ ì‚­ì œ
 		
 		
 	- com.parkingshare.admin.evaluation.action
-		AdminEvaluationRegisterAction.java	//Æò°¡¸ñ·Ï µî·Ï
-		AdminEvaluationModifyAction.java		//µî·ÏµÈ Æò°¡¸ñ·Ï ¼öÁ¤
-		AdminEvaluationDeleteAction.java		//µî·ÏµÈ Æò°¡¸ñ·Ï »èÁ¦
-		AdminEvaluationSearchAction.java		//µî·ÏµÈ Æò°¡¸ñ·Ï °Ë»ö
-		AdminEvaluationListAction.java		//¸ğµç Æò°¡¸ñ·Ï °Ë»ö
+		AdminEvaluationRegisterAction.java	//í‰ê°€ëª©ë¡ ë“±ë¡
+		AdminEvaluationModifyAction.java		//ë“±ë¡ëœ í‰ê°€ëª©ë¡ ìˆ˜ì •
+		AdminEvaluationDeleteAction.java		//ë“±ë¡ëœ í‰ê°€ëª©ë¡ ì‚­ì œ
+		AdminEvaluationSearchAction.java		//ë“±ë¡ëœ í‰ê°€ëª©ë¡ ê²€ìƒ‰
+		AdminEvaluationListAction.java		//ëª¨ë“  í‰ê°€ëª©ë¡ ê²€ìƒ‰
 	
 	
 	- com.parkingshare.admin.penalty.action
-		AdminPenaltyRegisterAction.java		//¹úÁ¡ºÎ¿©
-		AdminPenaltyModifyAction.java		//¹úÁ¡ Â÷°¨?
-		AdminpenaltyListAction.java			//¹úÁ¡³»¿ª Á¶È¸
+		AdminPenaltyRegisterAction.java		//ë²Œì ë¶€ì—¬
+		AdminPenaltyModifyAction.java		//ë²Œì  ì°¨ê°?
+		AdminpenaltyListAction.java			//ë²Œì ë‚´ì—­ ì¡°íšŒ
     
     
     - com.parkingshare.admin.grade.action
-    	AdminGradeRegisterAction.java		//µî±Ş Æò°¡±âÁØ »ı¼º
-    	AdminGradeModifyAction.java			//µî±Ş Æò°¡±âÁØ ¼öÁ¤
-    	AdminGradeDeleteAction.java			//µî±Ş Æò°¡±âÁØ »èÁ¦
-    	AdminGradeListAction.java			//¸ğµç µî±Ş Æò°¡±âÁØ Á¶È¸
+    	AdminGradeRegisterAction.java		//ë“±ê¸‰ í‰ê°€ê¸°ì¤€ ìƒì„±
+    	AdminGradeModifyAction.java			//ë“±ê¸‰ í‰ê°€ê¸°ì¤€ ìˆ˜ì •
+    	AdminGradeDeleteAction.java			//ë“±ê¸‰ í‰ê°€ê¸°ì¤€ ì‚­ì œ
+    	AdminGradeListAction.java			//ëª¨ë“  ë“±ê¸‰ í‰ê°€ê¸°ì¤€ ì¡°íšŒ
     
     
 	- com.parkingshare.admin.model
-      	ParkingDto.java     //ÁÖÂ÷Àå Á¤º¸
-      	EvaluationDto.java  //Æò°¡¸ñ·Ï
-      	PenaltyDto.java	 //¹úÁ¡
-		GradeDto.java		 //µî±Ş Æò°¡±âÁØ 	
+      	ParkingDto.java     //ì£¼ì°¨ì¥ ì •ë³´
+      	EvaluationDto.java  //í‰ê°€ëª©ë¡
+      	PenaltyDto.java	 //ë²Œì 
+		GradeDto.java		 //ë“±ê¸‰ í‰ê°€ê¸°ì¤€ 	
 
 
 	- com.parkingshare.admin.model.service
@@ -76,62 +76,62 @@ project name : parking
 		AdminGradeDaoImpl.java
 
 
-///////È¸¿ø
+///////íšŒì›
 	- com.parkingshare.member.controller
-      	MemberReviewController.java    (/review)	//ÈÄ±â
-      	MemberFavoriteController.java  (/favorite)	//Áñ°ÜÃ£±â
-      	MemberMessageController.java   (/message)	//ÂÊÁö
-      	MemberReportController.java    (/report)	//½Å°í
-      	MemberCallController.java      (/call)		//ÁÖÂ÷Àå Á¦º¸
-      	MemberReservationController.java    (/reservation)	//¿¹¾à
+      	MemberReviewController.java    (/review)	//í›„ê¸°
+      	MemberFavoriteController.java  (/favorite)	//ì¦ê²¨ì°¾ê¸°
+      	MemberMessageController.java   (/message)	//ìª½ì§€
+      	MemberReportController.java    (/report)	//ì‹ ê³ 
+      	MemberCallController.java      (/call)		//ì£¼ì°¨ì¥ ì œë³´
+      	MemberReservationController.java    (/reservation)	//ì˜ˆì•½
       	
     
 	- com.parkingshare.member.review.action
-		MemberReviewRegisterAction.java	//¸®ºä µî·Ï
-		MemberReviewDeleteAction.java	//¸®ºä »èÁ¦
-		MemberReviewModifyAction.java	//¸®ºä ¼öÁ¤
-		MemberReviewListAction.java		//¸®ºä ¸ñ·Ï
-		//MemberReviewViewAction.java		//¸®ºä º¸±â
-		//MemberReviewSearchAction.java	//ÀÚ½ÅÀÌ µî·ÏÇÑ ¸®ºä Á¶È¸
+		MemberReviewRegisterAction.java	//ë¦¬ë·° ë“±ë¡
+		MemberReviewDeleteAction.java	//ë¦¬ë·° ì‚­ì œ
+		MemberReviewModifyAction.java	//ë¦¬ë·° ìˆ˜ì •
+		MemberReviewListAction.java		//ë¦¬ë·° ëª©ë¡
+		//MemberReviewViewAction.java		//ë¦¬ë·° ë³´ê¸°
+		//MemberReviewSearchAction.java	//ìì‹ ì´ ë“±ë¡í•œ ë¦¬ë·° ì¡°íšŒ
 		
 		
 	- com.parkingshare.member.favorite.action
-		MemberFavoriteRegisterAction.java	//Áñ°ÜÃ£±â µî·Ï
-		MemberFavoriteDeleteAction.java		//Áñ°ÜÃ£±â »èÁ¦
-		MemberFavoriteListAction.java		//Áñ°ÜÃ£±â ¸ñ·Ï
+		MemberFavoriteRegisterAction.java	//ì¦ê²¨ì°¾ê¸° ë“±ë¡
+		MemberFavoriteDeleteAction.java		//ì¦ê²¨ì°¾ê¸° ì‚­ì œ
+		MemberFavoriteListAction.java		//ì¦ê²¨ì°¾ê¸° ëª©ë¡
 		
 		
 	- com.parkingshare.member.message.action
-		MemberMessageRegisterAction.java	//ÂÊÁö º¸³»±â
-		MemberMessageListAction.java		//ÂÊÁö ³»¿ª
-		MemberMessageDeleteAction.java		//ÂÊÁö »èÁ¦
-		MemberMessageViewAction.java		//ÂÊÁö³»¿ëº¸±â 
+		MemberMessageRegisterAction.java	//ìª½ì§€ ë³´ë‚´ê¸°
+		MemberMessageListAction.java		//ìª½ì§€ ë‚´ì—­
+		MemberMessageDeleteAction.java		//ìª½ì§€ ì‚­ì œ
+		MemberMessageViewAction.java		//ìª½ì§€ë‚´ìš©ë³´ê¸° 
 		
 		
 	- com.parkingshare.member.report.action
-		MemberReportRegisterAction.java		//½Å°íÇÏ±â
-		MemberReportListAction.java			//½Å°í³»¿ª
-		MemberReportViewAction.java			//½Å°í³»¿ëº¸±â
-		//MemberReportDeleteAction.java		//Æ¯Á¤ ½Å°í³»¿ª »èÁ¦
+		MemberReportRegisterAction.java		//ì‹ ê³ í•˜ê¸°
+		MemberReportListAction.java			//ì‹ ê³ ë‚´ì—­
+		MemberReportViewAction.java			//ì‹ ê³ ë‚´ìš©ë³´ê¸°
+		//MemberReportDeleteAction.java		//íŠ¹ì • ì‹ ê³ ë‚´ì—­ ì‚­ì œ
 		
 		
 	- com.parkingshare.member.call.action
-		MemberCallRegisterAction.java		//Á¦º¸ÇÏ±â
-		MemberCallModifyAction.java			//Á¦º¸³»¿ë¼öÁ¤
-		MemberCallDeleteAction.java			//Á¦º¸Ãë¼Ò
-		MemberCallListAction.java			//Á¦º¸³»¿ª
-		MemberCallViewAction.java			//Á¦º¸³»¿ëº¸±â
+		MemberCallRegisterAction.java		//ì œë³´í•˜ê¸°
+		MemberCallModifyAction.java			//ì œë³´ë‚´ìš©ìˆ˜ì •
+		MemberCallDeleteAction.java			//ì œë³´ì·¨ì†Œ
+		MemberCallListAction.java			//ì œë³´ë‚´ì—­
+		MemberCallViewAction.java			//ì œë³´ë‚´ìš©ë³´ê¸°
 		
 		
 	- com.parkingshare.member.reservation.action
-		MemberReservationRegisterAction.java	//¿¹¾àÇÏ±â
-		MemberReservationDeleteAction.java		//¿¹¾àÃë¼Ò
-		MemberReservationListAction.java	//¿¹¾à³»¿ª
-		MemberReservationViewAction.java	//¿¹¾à³»¿ëº¸±â
+		MemberReservationRegisterAction.java	//ì˜ˆì•½í•˜ê¸°
+		MemberReservationDeleteAction.java		//ì˜ˆì•½ì·¨ì†Œ
+		MemberReservationListAction.java	//ì˜ˆì•½ë‚´ì—­
+		MemberReservationViewAction.java	//ì˜ˆì•½ë‚´ìš©ë³´ê¸°
 		 
 		      	
 	- com.parkingshare.member.model
-   		MemberDto.java	//È¸¿øÁ¤º¸
+   		MemberDto.java	//íšŒì›ì •ë³´
    		ReviewDto.java
    		FavoriteDto.java
    		MessageDto.java
@@ -172,7 +172,7 @@ project name : parking
 		MemberReservationDaoImpl.java		
 		
 
-//////°øÅë
+//////ê³µí†µ
 	- com.parkingshare.common.model.service
 	
 	

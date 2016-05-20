@@ -4,27 +4,27 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
 public class Encoder {
-	public static String isoToEuc(String tmp) {
-		String euc = "";
+	public static String isoToUtf(String tmp) {
+		String utf = "";
 		try {
 			if(tmp != null)
-				euc = new String(tmp.getBytes("iso-8859-1"), "euc-kr");
+				utf = new String(tmp.getBytes("iso-8859-1"), "utf-8");
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
-		return euc;
+		return utf;
 	}
 	
 	public static String eucUrl(String tmp) {
-		String euc = "";
+		String utf = "";
 		try {
 			if(tmp != null)
-				euc = URLEncoder.encode(tmp, "euc-kr");
+				utf = URLEncoder.encode(tmp, "utf-8");
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
 		
-		return euc;
+		return utf;
 	}
 	
 }

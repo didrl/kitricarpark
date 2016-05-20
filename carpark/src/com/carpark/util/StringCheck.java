@@ -3,7 +3,7 @@ package com.carpark.util;
 public class StringCheck {
 
 	public static String nullToBlank(String tmp) {
-		return tmp == null ? "" : tmp;//tmp°¡ nullÀÌ¸é ºñ¾îÀÖ´Â ¹®ÀÚ¿­À» ¸®ÅÏ
+		return tmp == null ? "" : tmp;//tmpê°€ nullì´ë©´ ë¹„ì–´ìˆëŠ” ë¬¸ìì—´ì„ ë¦¬í„´
 	}
 	
 }
