@@ -171,9 +171,6 @@
 				</div>
 				<!-- /.row -->
 
-
-
-
 				<!-- table create -->
 				<div class="row">
 					<div class="col-md-10">
@@ -236,8 +233,8 @@
 					<!-- message button -->
 					<div class="row col-md-10 ">
 						<div id="content" class="text-center">
-							<button type="button" class="btn btn-success btn-lg">보내기</button>
-							<button type="button" class="btn btn-success btn-lg">삭제</button>
+							<button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#myMessage">쪽지 보내기</button>
+							<button type="button" class="btn btn-success btn-lg">쪽지 삭제</button>
 						</div>
 					</div>
 				</div>
@@ -247,45 +244,46 @@
 
 		</div>
 
-		<!-- Footer -->
-		<footer>
-		<div class="container-fluid-footer">
-				<div class="row">
-				<!--<div class="col-lg-10 col-lg-offset-1 text-center">  -->
-				<div class="col-lg-12">
-					<h4>
-						<strong>Start Bootstrap</strong>
-					</h4>
-					<p>
-						3481 Melrose Place<br>Beverly Hills, CA 90210
-					</p>
-					<ul class="list-unstyled">
-						<li><i class="fa fa-phone fa-fw"></i> (123) 456-7890</li>
-						<li><i class="fa fa-envelope-o fa-fw"></i> <a
-							href="mailto:name@example.com">name@example.com</a></li>
-					</ul>
-					<br>
-					<ul class="list-inline">
-						<li><a href="#"><i class="fa fa-facebook fa-fw fa-3x"></i></a>
-						</li>
-						<li><a href="#"><i class="fa fa-twitter fa-fw fa-3x"></i></a>
-						</li>
-						<li><a href="#"><i class="fa fa-dribbble fa-fw fa-3x"></i></a>
-						</li>
-					</ul>
-					<hr class="small">
-					<p class="text-muted">Copyright &copy; Your Website 2014</p>
+		<!-- message modal popup -->
+	
+		<div class="modal fade" id="myMessage" tabindex="-1" role="dialog"
+			aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">
+							<span aria-hidden="true">×</span><span class="sr-only">Close</span>
+						</button>
+						<h4 class="modal-title" id="myModalLabel">쪽지 보내기(이름)</h4>
+					</div>
+					<div class="modal-body">
+	
+						<form class="form-horizontal">
+							
+							<div class="row">
+								<div class="col-md-2">
+									<b>설명</b><br>
+								</div>
+								<div class="col-md-10">
+									<textarea class="form-control" rows="5"></textarea>						
+								</div>
+							</div><hr>
+										
+							<div class="form-group">
+								<div class="col-sm-offset-2 col-sm-10">
+									<button type="submit" class="btn btn-default">Sign in</button>
+								</div>
+							</div>
+						</form>
+					</div>
 				</div>
 			</div>
 		</div>
-		</footer>
 
+	<!-- Footer -->
+	<%@include file="/common/footer.jsp" %>
+  	<!-- /Footer -->
 
-		<!-- jQuery -->
-		<script src="/carpark/js/jquery.js"></script>
-
-		<!-- Bootstrap Core JavaScript -->
-		<script src="/carpark/js/bootstrap.min.js"></script>
 </body>
 
 </html>

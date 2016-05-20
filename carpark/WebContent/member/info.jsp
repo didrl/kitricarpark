@@ -182,8 +182,7 @@
 							
 								<img src="<%=root%>/img/bg.jpg" class="img-circle" width="200" height="200" border="5">
 							</div>
-							<div class="form-group">
-                             	
+							<div class="form-group">        	
                              	<img src="<%=root%>/img/car.png" width="25" height="25">
                                 	<label for="disabledSelect">
                                 		<h4>Bookings Made : </h4>
@@ -193,6 +192,16 @@
                                 	<label for="disabledSelect">
                                 		<h4>Bookings Received : </h4>
                                 	</label><br>    
+                                	
+                                <img src="<%=root%>/img/coin.png" width="25" height="25">
+                                	<label for="disabledSelect">
+                                		<h4>My coin : </h4>
+                                	</label><br>
+                                	
+                                <img src="<%=root%>/img/star.png" width="25" height="25">
+                                	<label for="disabledSelect">
+                                		<h4>My grade : </h4>
+                                	</label><br>        
                             </div>
 						</form>
 					</div>
@@ -215,13 +224,26 @@
 							<div class="form-group">
                                     <label for="disabledSelect">회사이름</label>
                                     <input class="form-control" id="disabledInput" type="text" placeholder="회사이름" disabled>
-                            </div>
                             
-                            <div class="form-group">
-                                <label>생년월일</label>
-                                <input class="form-control" id="disabledInput" type="text" placeholder="Disabled input" disabled>
-                                <p class="help-block">Example block-level help text here.</p>
                             </div>
+                       
+                            <div class="form-group">
+								<div class="row">
+									<div class="col-xs-4">
+										<label>년도</label> <input type="text" class="form-control"
+											placeholder="year" disabled>
+									</div>
+									<div class="col-xs-3">
+										<label>월</label> <input type="text" class="form-control"
+											placeholder="month" disabled>
+									</div>
+									<div class="col-xs-3">
+										<label>일</label> <input type="text" class="form-control"
+											placeholder="day" disabled>
+									</div>
+								</div>
+							</div>
+                            
 
 						</form>
 					</div>
@@ -231,7 +253,6 @@
 				<!-- /.row -->
 				<!-- /.form container -->
 						
-
 			</div>
 			<!-- /.container-fluid -->
 
@@ -242,45 +263,8 @@
 	<!-- /#wrapper -->
 	
 	<!-- Footer -->
-	
-	<footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-10 col-lg-offset-1 text-center">
-                    <h4><strong>Start Bootstrap</strong>
-                    </h4>
-                    <p>3481 Melrose Place<br>Beverly Hills, CA 90210</p>
-                    <ul class="list-unstyled">
-                        <li><i class="fa fa-phone fa-fw"></i> (123) 456-7890</li>
-                        <li><i class="fa fa-envelope-o fa-fw"></i>  <a href="mailto:name@example.com">name@example.com</a>
-                        </li>
-                    </ul>
-                    <br>
-                    <ul class="list-inline">
-                        <li>
-                            <a href="#"><i class="fa fa-facebook fa-fw fa-3x"></i></a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-twitter fa-fw fa-3x"></i></a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-dribbble fa-fw fa-3x"></i></a>
-                        </li>
-                    </ul>
-                    <hr class="small">
-                    <p class="text-muted">Copyright &copy; Your Website 2014</p>
-                </div>
-            </div>
-        </div>
-    </footer>
-  <!-- /Footer -->
-
-	<!-- jQuery -->
-	<script src="/carpark/js/jquery.js"></script>
-
-	<!-- Bootstrap Core JavaScript -->
-	<script src="/carpark/js/bootstrap.min.js"></script>
+	<%@include file="/common/footer.jsp" %>
+   <!-- /Footer -->
 
 </body>
-
 </html>
