@@ -169,7 +169,7 @@
 					</form>
 				</div>
 				<!-- /input-group -->
-				<!-- /.col-sm-6 -->
+				<!-- /.col-sm-6 ____-->
 
 			</div>
 		</div>
