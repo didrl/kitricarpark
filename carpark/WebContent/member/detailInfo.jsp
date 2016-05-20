@@ -211,16 +211,16 @@
 							<div class="form-group">
 								<div class="row">
 									<div class="col-xs-4">
-										<label>년도</label>
-										<input type="text" class="form-control" placeholder="year">
+										<label>년도</label> <input type="text" class="form-control"
+											placeholder="year">
 									</div>
 									<div class="col-xs-3">
-										<label>월</label>
-										<input type="text" class="form-control" placeholder="month">
+										<label>월</label> <input type="text" class="form-control"
+											placeholder="month">
 									</div>
 									<div class="col-xs-3">
-										<label>일</label>
-										<input type="text" class="form-control" placeholder="day">
+										<label>일</label> <input type="text" class="form-control"
+											placeholder="day">
 									</div>
 								</div>
 							</div>
@@ -252,26 +252,25 @@
 								<label>Company Name</label> <input class="form-control">
 								<p class="help-block">Example block-level help text here.</p>
 							</div>
-
-							<div class="form-group">
-								<label class="checkbox-inline"> <input type="checkbox">사업자등록번호체크
-
-								</label>
-							</div>
-
-							<div class="form-group">
-								<label>프로필 사진 선택</label> <input type="file">
-							</div>
 					</div>
 					<!-- /.col-lg-6 -->
 
 					<div class="col-lg-6">
 
 						<div class="form-group">
+							<label class="checkbox-inline"> <input type="checkbox">사업자등록번호체크
+
+							</label>
+						</div>
+
+						<div class="form-group">
+							<label>프로필 사진 선택</label> <input type="file">
+						</div>
+
+						<div class="form-group">
 							<label>소개글</label>
 							<textarea class="form-control" rows="3"></textarea>
 						</div>
-
 
 						<div class="form-group">
 							<label>Checkboxes</label>
@@ -292,7 +291,6 @@
 							</div>
 						</div>
 
-
 						<div class="form-group">
 							<label>Inline Radio Buttons</label> <label class="radio-inline">
 								<input type="radio" name="optionsRadiosInline"
@@ -305,17 +303,15 @@
 								value="option3">3
 							</label>
 						</div>
-						
-						
-						
+
 						<div class="form-group">
 							<button type="submit" class="btn btn-default">수정</button>
 							<button type="reset" class="btn btn-default">취소</button>
 						</div>
-						
-						
-						</form>
+
 					</div>
+					</form>
+
 					<!-- /.col-lg-6 -->
 				</div>
 				<!-- /.row -->

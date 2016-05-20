@@ -189,16 +189,19 @@
 				<!-- Page Heading -->
 				<div class="row">
 					<div class="col-lg-12">
-						<h1 class="page-header">Profile</h1>
+						<h1 class="page-header">Message</h1>
 						<ol class="breadcrumb">
 							<li><i class="fa fa-dashboard"></i> <a href="index.html">Dashboard</a>
 							</li>
-							<li class="active"><i class="fa fa-edit"></i> Profile</li>
+							<li class="active"><i class="fa fa-edit"></i> Message</li>
 						</ol>
 					</div>
 				</div>
 				<!-- /.row -->
-				
+
+
+
+
 				<!-- table create -->
 				<div class="row">
 					<div class="col-md-10">
@@ -252,60 +255,64 @@
 								</tbody>
 							</table>
 							<!-- 주차장 추가 버튼 -->
-							
+
 						</div>
 						<!-- /.table create -->
-						
+
 					</div>
 					<!-- /.container-fluid -->
-					<button type="submit" class="btn btn-success">쪽지 보내기</button>
-					<button type="submit" class="btn btn-success">쪽지 삭제</button>
-					
+					<!-- message button -->
+					<div class="row col-md-10 ">
+						<div id="content" class="text-center">
+							<button type="button" class="btn btn-success btn-lg">보내기</button>
+							<button type="button" class="btn btn-success btn-lg">삭제</button>
+						</div>
+					</div>
 				</div>
 				<!-- /#page-wrapper -->
 
 			</div>
-			
+
 		</div>
 
 		<!-- Footer -->
-			<footer>
-				<div class="container">
-					<div class="row">
-						<div class="col-lg-10 col-lg-offset-1 text-center">
-							<h4>
-								<strong>Start Bootstrap</strong>
-							</h4>
-							<p>
-								3481 Melrose Place<br>Beverly Hills, CA 90210
-							</p>
-							<ul class="list-unstyled">
-								<li><i class="fa fa-phone fa-fw"></i> (123) 456-7890</li>
-								<li><i class="fa fa-envelope-o fa-fw"></i> <a
-									href="mailto:name@example.com">name@example.com</a></li>
-							</ul>
-							<br>
-							<ul class="list-inline">
-								<li><a href="#"><i class="fa fa-facebook fa-fw fa-3x"></i></a>
-								</li>
-								<li><a href="#"><i class="fa fa-twitter fa-fw fa-3x"></i></a>
-								</li>
-								<li><a href="#"><i class="fa fa-dribbble fa-fw fa-3x"></i></a>
-								</li>
-							</ul>
-							<hr class="small">
-							<p class="text-muted">Copyright &copy; Your Website 2014</p>
-						</div>
-					</div>
+		<footer>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-10 col-lg-offset-1 text-center">
+					<h4>
+						<strong>Start Bootstrap</strong>
+					</h4>
+					<p>
+						3481 Melrose Place<br>Beverly Hills, CA 90210
+					</p>
+					<ul class="list-unstyled">
+						<li><i class="fa fa-phone fa-fw"></i> (123) 456-7890</li>
+						<li><i class="fa fa-envelope-o fa-fw"></i> <a
+							href="mailto:name@example.com">name@example.com</a></li>
+					</ul>
+					<br>
+					<ul class="list-inline">
+						<li><a href="#"><i class="fa fa-facebook fa-fw fa-3x"></i></a>
+						</li>
+						<li><a href="#"><i class="fa fa-twitter fa-fw fa-3x"></i></a>
+						</li>
+						<li><a href="#"><i class="fa fa-dribbble fa-fw fa-3x"></i></a>
+						</li>
+					</ul>
+					<hr class="small">
+					<p class="text-muted">Copyright &copy; Your Website 2014</p>
 				</div>
-			</footer>
-				
-				
-				<!-- jQuery -->
-				<script src="/project/js/jquery.js"></script>
+			</div>
+		</div>
+		</footer>
 
-				<!-- Bootstrap Core JavaScript -->
-				<script src="/project/js/bootstrap.min.js"></script>
+
+		<!-- jQuery -->
+		<script src="/project/js/jquery.js"></script>
+
+		<!-- Bootstrap Core JavaScript -->
+		<script src="/project/js/bootstrap.min.js"></script>
 </body>
 
 </html>
