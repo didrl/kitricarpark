@@ -7,6 +7,7 @@ String customerpath = adminpath +"/"+"customer";
 String parkingpath = adminpath +"/"+"parking";
 String qnapath = adminpath +"/"+"qna";
 String staticpath = adminpath +"/"+"static";
+
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -18,6 +19,7 @@ String staticpath = adminpath +"/"+"static";
 
     <link href="<%=root %>/css/bootstrap.min.css" rel="stylesheet">
     <link href="<%=root %>/css/sb-admin.css" rel="stylesheet">
+    <link href="<%=root %>/css/stylish-portfolio.css" rel="stylesheet">
     <link href="<%=root %>/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 	<link href="<%=root %>/css/custom_kitri.css" rel="stylesheet">
 
