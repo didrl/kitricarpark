@@ -249,9 +249,10 @@
 
 		<!-- Footer -->
 		<footer>
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-10 col-lg-offset-1 text-center">
+		<div class="container-fluid-footer">
+				<div class="row">
+				<!--<div class="col-lg-10 col-lg-offset-1 text-center">  -->
+				<div class="col-lg-12">
 					<h4>
 						<strong>Start Bootstrap</strong>
 					</h4>
