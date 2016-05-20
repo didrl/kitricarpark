@@ -265,10 +265,6 @@
         </iframe>
     </section>
     
-
-    
-	
-	
 	
 	<!-- login modal popup -->
 			      	<div class="modal fade" id="myLogin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

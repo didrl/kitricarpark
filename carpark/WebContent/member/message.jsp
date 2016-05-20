@@ -171,9 +171,6 @@
 				</div>
 				<!-- /.row -->
 
-
-
-
 				<!-- table create -->
 				<div class="row">
 					<div class="col-md-10">
@@ -236,7 +233,7 @@
 					<!-- message button -->
 					<div class="row col-md-10 ">
 						<div id="content" class="text-center">
-							<button type="button" class="btn btn-success btn-lg">쪽지 보내기</button>
+							<button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#myMessage">쪽지 보내기</button>
 							<button type="button" class="btn btn-success btn-lg">쪽지 삭제</button>
 						</div>
 					</div>
@@ -245,6 +242,42 @@
 
 			</div>
 
+		</div>
+
+		<!-- message modal popup -->
+	
+		<div class="modal fade" id="myMessage" tabindex="-1" role="dialog"
+			aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">
+							<span aria-hidden="true">×</span><span class="sr-only">Close</span>
+						</button>
+						<h4 class="modal-title" id="myModalLabel">쪽지 보내기(이름)</h4>
+					</div>
+					<div class="modal-body">
+	
+						<form class="form-horizontal">
+							
+							<div class="row">
+								<div class="col-md-2">
+									<b>설명</b><br>
+								</div>
+								<div class="col-md-10">
+									<textarea class="form-control" rows="5"></textarea>						
+								</div>
+							</div><hr>
+										
+							<div class="form-group">
+								<div class="col-sm-offset-2 col-sm-10">
+									<button type="submit" class="btn btn-default">Sign in</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
 		</div>
 
 	<!-- Footer -->
