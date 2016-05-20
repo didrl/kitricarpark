@@ -10,14 +10,14 @@ String root = request.getContextPath();
 <title>SB Admin - Bootstrap Admin Template</title>
 
 <!-- Bootstrap Core CSS -->
-<link href="/project/css/bootstrap.min.css" rel="stylesheet">
+<link href="/carpark/css/bootstrap.min.css" rel="stylesheet">
 
 <!-- Custom CSS -->
-<link href="/project/css/sb-admin.css" rel="stylesheet">
-<link href="/project/css/stylish-portfolio.css" rel="stylesheet">
+<link href="/carpark/css/sb-admin.css" rel="stylesheet">
+<link href="/carpark/css/stylish-portfolio.css" rel="stylesheet">
 
 <!-- Custom Fonts -->
-<link href="/project/font-awesome/css/font-awesome.min.css"
+<link href="/carpark/font-awesome/css/font-awesome.min.css"
 	rel="stylesheet" type="text/css">
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -304,10 +304,10 @@ String root = request.getContextPath();
   <!-- /Footer -->
 
 	<!-- jQuery -->
-	<script src="/project/js/jquery.js"></script>
+	<script src="/carpark/js/jquery.js"></script>
 
 	<!-- Bootstrap Core JavaScript -->
-	<script src="/project/js/bootstrap.min.js"></script>
+	<script src="/carpark/js/bootstrap.min.js"></script>
 
 </body>
 

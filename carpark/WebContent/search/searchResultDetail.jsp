@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -57,13 +57,13 @@
 </script>
 <script type="text/javascript">
 	var map;
-	var mapW, mapH; // ÁöµµÀÇ °¡·Î, ¼¼·Î Å©±â(Pixel´ÜÀ§) ¸¦ ÁöÁ¤ ÇÕ´Ï´Ù. 
-	var cLonLat, zoom; //Áß½É ÁÂÇ¥¿Í Áöµµ·¹º§À» Á¤ÀÇ ÇÕ´Ï´Ù. 
+	var mapW, mapH; // ì§€ë„ì˜ ê°€ë¡œ, ì„¸ë¡œ í¬ê¸°(Pixelë‹¨ìœ„) ë¥¼ ì§€ì • í•©ë‹ˆë‹¤. 
+	var cLonLat, zoom; //ì¤‘ì‹¬ ì¢Œí‘œì™€ ì§€ë„ë ˆë²¨ì„ ì •ì˜ í•©ë‹ˆë‹¤. 
 	var latitude, longitude;
-	//pr_3857 ÀÎ½ºÅº½º »ı¼º.
+	//pr_3857 ì¸ìŠ¤íƒ„ìŠ¤ ìƒì„±.
 	var pr_3857 = new Tmap.Projection("EPSG:3857");
 
-	//pr_4326 ÀÎ½ºÅº½º »ı¼º.
+	//pr_4326 ì¸ìŠ¤íƒ„ìŠ¤ ìƒì„±.
 	var pr_4326 = new Tmap.Projection("EPSG:4326");
 
 	function get3857LonLat(coordX, coordY) {
@@ -78,13 +78,16 @@
 		cLonLat = new Tmap.LonLat(longitude, latitude).transform(pr_4326,
 				pr_3857);
 		//              cLonLat = new Tmap.LonLat(longitude,latitude).transform(pr_3857, pr_4326);
-		//Áß½ÉÁ¡ ÁÂÇ¥ ÀÔ´Ï´Ù. EPSG3857 ÁÂÇ¥°è Çü½Ä ÀÔ´Ï´Ù. 
+		//ì¤‘ì‹¬ì  ì¢Œí‘œ ì…ë‹ˆë‹¤. EPSG3857 ì¢Œí‘œê³„ í˜•ì‹ ì…ë‹ˆë‹¤. 
 
-		zoom = 16; // zoom levelÀÔ´Ï´Ù.  0~19 ·¹º§À» ¼­ºñ½º ÇÏ°í ÀÖ½À´Ï´Ù. 
-//		mapW = window.outerWidth /2; // ÁöµµÀÇ °¡·Î Å©±â ÀÔ´Ï´Ù. 
-//		mapH = window.outerHeight/2; // ÁöµµÀÇ °¡·Î Å©±â ÀÔ´Ï´Ù.
+		zoom = 16; // zoom levelì…ë‹ˆë‹¤.  0~19 ë ˆë²¨ì„ ì„œë¹„ìŠ¤ í•˜ê³  ìˆìŠµë‹ˆë‹¤. 
+//		mapW = window.outerWidth /2; // ì§€ë„ì˜ ê°€ë¡œ í¬ê¸° ì…ë‹ˆë‹¤. 
+//		mapH = window.outerHeight/2; // ì§€ë„ì˜ ê°€ë¡œ í¬ê¸° ì…ë‹ˆë‹¤.
+		 window.oncontextmenu= function(){
+	         ï»¿           return false; 
+	         }
 		var div = $("#divformap");
-		mapW =   div.innerWidth();			//jquery¸¦ ÀÌ¿ëÇØ¼­ width¾ò±â
+		mapW =   div.innerWidth();			//jqueryë¥¼ ì´ìš©í•´ì„œ widthì–»ê¸°
 		if(div.innerHeight() != 0)
 			mapH = div.innerHeight();
 		else
@@ -113,14 +116,14 @@
 					var icon = new Tmap.Icon(
 							'https://developers.skplanetx.com/upload/tmap/marker/pin_b_m_a.png',
 							size, offset);
-					var label = new Tmap.Label("´ç½ÅÀÇ ÇöÀç À§Ä¡!")
+					var label = new Tmap.Label("ë‹¹ì‹ ì˜ í˜„ì¬ ìœ„ì¹˜!")
 
 					var markers = new Tmap.Markers(cLonLat, icon, label);
 					markerLayer.addMarker(markers);
 					markers.popup.show()
 
 				});
-		// div : Áöµµ°¡ »ı¼ºµÉ divÀÇ id°ª°ú °°Àº °ªÀ» ¿É¼ÇÀ¸·Î Á¤ÀÇ ÇÕ´Ï´Ù.
+		// div : ì§€ë„ê°€ ìƒì„±ë  divì˜ idê°’ê³¼ ê°™ì€ ê°’ì„ ì˜µì…˜ìœ¼ë¡œ ì •ì˜ í•©ë‹ˆë‹¤.
 	}
 	function goSearch() {
 		document.searchForm.action = "./seachResult.html";
@@ -134,7 +137,7 @@
 <body onload="init()">
 
 	<!-- Navigation Start-->
-	<!-- »ó´Ü ¸Ş´º¹Ù -->
+	<!-- ìƒë‹¨ ë©”ë‰´ë°” -->
       <nav class="navbar navbar-inverse">
          <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -145,24 +148,24 @@
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
                </button>
-               <a class="navbar-brand" href="#">È¨</a>
+               <a class="navbar-brand" href="#">í™ˆ</a>
             </div>
             
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
             
-               <!-- ·Î±×ÀÎ ¹öÆ° -->
+               <!-- ë¡œê·¸ì¸ ë²„íŠ¼ -->
                <button type="button" class="btn btn-default navbar-btn" data-toggle="modal" data-target="#myLogin">
                   Sign in
                </button>
                   
-                  <!-- ·Î±×ÀÎ¸ğ´Ş ÆË¾÷ -->
+                  <!-- ë¡œê·¸ì¸ëª¨ë‹¬ íŒì—… -->
                   <div class="modal fade" id="myLogin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                               <div class="modal-header">
                                  <button type="button" class="close" data-dismiss="modal">
-                                    <span aria-hidden="true">¡¿</span><span class="sr-only">Close</span>
+                                    <span aria-hidden="true">Ã—</span><span class="sr-only">Close</span>
                                  </button>
                                  <h4 class="modal-title" id="myModalLabel">Modal title</h4>
                               </div>
@@ -213,7 +216,7 @@
          </div>
             
       </nav>
-      <!-- »ó´Ü ¸Ş´º¹Ù -->
+      <!-- ìƒë‹¨ ë©”ë‰´ë°” -->
 	
 
 	<!-- Page Content -->
@@ -249,7 +252,7 @@
 			<div class="col-md-7 col-lg-7 col-sm-7">
 				<!--  Map  -->
 				<div class="panel panel-default">
-			<div class="row" align="left"><h3><b>&nbsp;&nbsp;&nbsp; ÁÖÂ÷Àå ÀÌ¸§</b> Áö¿ª¸í
+			<div class="row" align="left"><h3><b>&nbsp;&nbsp;&nbsp; ì£¼ì°¨ì¥ ì´ë¦„</b> ì§€ì—­ëª…
 			<a href=""><img height="30"  src="/carpark/img/heart.jpg"></a></h3>
 			</div>
 				<div class="panel panel-default" id="divformap">
@@ -257,19 +260,19 @@
 					<div id="map_div"></div><br>
 				</section>
 				</div>
-				<div>	<h3>»ó¼¼ Á¤º¸¸¦ ÀÔ·ÂÇÏ½Ã¸é ¿¹¾àÀÌ ´õ¿í ½¬¿öÁı´Ï´Ù!</h3></div>
+				<div>	<h3>ìƒì„¸ ì •ë³´ë¥¼ ì…ë ¥í•˜ì‹œë©´ ì˜ˆì•½ì´ ë”ìš± ì‰¬ì›Œì§‘ë‹ˆë‹¤!</h3></div>
 				</div>
 				<div class="panel panel-default">
-					<div class="panel-heading">ÁÖº¯ Á¤º¸</div>
+					<div class="panel-heading">ì£¼ë³€ ì •ë³´</div>
 					<div class="panel-body">
-					¤±¤¤¤·¤±¤¤¤·¤±¤¤¤·<br>
-					¤±¤¤¤·¤±¤¤¤·¤±¤¤¤·<br>
-						<div class="panel-footer">Æ¯Â¡</div>
+					ã…ã„´ã…‡ã…ã„´ã…‡ã…ã„´ã…‡<br>
+					ã…ã„´ã…‡ã…ã„´ã…‡ã…ã„´ã…‡<br>
+						<div class="panel-footer">íŠ¹ì§•</div>
 					</div>
 				</div>
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<h3 class="panel-title">»ó¼¼ Á¤º¸</h3>
+						<h3 class="panel-title">ìƒì„¸ ì •ë³´</h3>
 					</div>
 					<div class="panel-body">
 						<!-- Street View start -->
@@ -282,9 +285,9 @@
 
 				<div class="panel panel-default">
 					<div class="panel-body">
-					<a href="¿øº»»çÁø"><img src="/carpark/img/tmpcar/car1.jpg"></a>
-					<a href="¿øº»»çÁø"><img src="/carpark/img/tmpcar/car2.jpg"></a>
-					<a href="¿øº»»çÁø"><img src="/carpark/img/tmpcar/car3.jpg"></a>
+					<a href="ì›ë³¸ì‚¬ì§„"><img src="/carpark/img/tmpcar/car1.jpg"></a>
+					<a href="ì›ë³¸ì‚¬ì§„"><img src="/carpark/img/tmpcar/car2.jpg"></a>
+					<a href="ì›ë³¸ì‚¬ì§„"><img src="/carpark/img/tmpcar/car3.jpg"></a>
 					</div>
 					<div class="panel-footer">Panel footer</div>
 				</div>
@@ -388,9 +391,9 @@
 								</div>
 					</div>	<!-- To Choice End --><br>
 								<button type="button" class="btn btn-success"  data-toggle="modal" data-target="#msgToHost">
-                  				 ¿¹¾àÇÏ±â 
+                  				 ì˜ˆì•½í•˜ê¸° 
                				</button>
-					</div> <!--  radio button¿¡ ÀÇÇÑ Multi reservation End-->
+					</div> <!--  radio buttonì— ì˜í•œ Multi reservation End-->
 					</div>
 					<!-- Date Picker panel End -->
 					<div class="panel panel-default">
@@ -400,39 +403,39 @@
 					</div>
 					<!-- img panel End -->
 					<div class="well">
-						<div class="panel-body">È£½ºÆ® Á¤º¸</div>
+						<div class="panel-body">í˜¸ìŠ¤íŠ¸ ì •ë³´</div>
 						<div class="text-center">
 							 <button type="button" class="btn btn-success"  data-toggle="modal" data-target="#msgToHost">
                   				Send Message
                				</button>
-               				                 <!-- msg¸ğ´Ş ÆË¾÷ -->
+               				                 <!-- msgëª¨ë‹¬ íŒì—… -->
                   <div class="modal fade" id="msgToHost" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                               <div class="modal-header">
                                  <button type="button" class="close" data-dismiss="modal">
-                                    <span aria-hidden="true">¡¿</span><span class="sr-only">Close</span>
+                                    <span aria-hidden="true">Ã—</span><span class="sr-only">Close</span>
                                  </button>
-                                 <h4 class="msgToHost" id="msgToHostModal">ÂÊÁö º¸³»±â</h4>
+                                 <h4 class="msgToHost" id="msgToHostModal">ìª½ì§€ ë³´ë‚´ê¸°</h4>
                               </div>
                             <div class="modal-body">
                             
                                <form class="form-horizontal">
                               <div class="form-group">
-                                 <label for="inputMsgSubject" class="col-sm-2 control-label">Á¦¸ñ</label>
+                                 <label for="inputMsgSubject" class="col-sm-2 control-label">ì œëª©</label>
                                   <div class="col-sm-10">
                                        <input type="text" class="form-control" id="inputMsgSubject" placeholder="MsgSubject">
                                   </div>
                                 </div>
                               <div class="form-group">
-                                  <label for="inputMsgContent" class="col-sm-2 control-label">³»¿ë</label>
+                                  <label for="inputMsgContent" class="col-sm-2 control-label">ë‚´ìš©</label>
                                   <div class="col-sm-10">
                                     <input type="text" class="form-control" id="inputMsgContent" placeholder="MsgContent">
                                   </div>
                               </div>
                               <div class="form-group">
                                   <div class="col-sm-offset-2 col-sm-10">
-                                     <button type="sendMsg" class="btn btn-default">º¸³»±â</button>
+                                     <button type="sendMsg" class="btn btn-default">ë³´ë‚´ê¸°</button>
                                   </div>
                               </div>
                            </form>
@@ -441,7 +444,7 @@
                         </div>
                      </div>
                 </div>
-                <!-- msg¸ğ´Ş ÆË¾÷ -->
+                <!-- msgëª¨ë‹¬ íŒì—… -->
 							<br>
 						</div>
 						</div>
@@ -449,11 +452,11 @@
 					<div class="panel panel-default">
 						<div class="panel-body">
 							<div id="c">
-							<h3>»ç¿ë °¡´É ÀÏ</h3>
+							<h3>ì‚¬ìš© ê°€ëŠ¥ ì¼</h3>
 								<div id="disp">
-									<div id="prev" class="nav">¡ç</div>
+									<div id="prev" class="nav">â†</div>
 									<div id="month"></div>
-									<div id="next" class="nav">¡æ</div>
+									<div id="next" class="nav">â†’</div>
 								</div>
 								<div id="cal"></div>
 							</div>
@@ -546,7 +549,7 @@
 									}
 								});
 			});
-			// ¸Ê À§¿¡¼­ ¸¶¿ì½º ÈÙ, Å°º¸µå ¹æÇâÅ°°¡ µ¿ÀÛÇÏÁö ¾Êµµ·Ï ¸·À½
+			// ë§µ ìœ„ì—ì„œ ë§ˆìš°ìŠ¤ íœ , í‚¤ë³´ë“œ ë°©í–¥í‚¤ê°€ ë™ì‘í•˜ì§€ ì•Šë„ë¡ ë§‰ìŒ
 			$('#map_div').on('scroll touchmove mousewheel', function(e){
 				e.preventDefault();
 				e.stopPropagation();
