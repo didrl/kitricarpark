@@ -236,8 +236,8 @@
 					<!-- message button -->
 					<div class="row col-md-10 ">
 						<div id="content" class="text-center">
-							<button type="button" class="btn btn-success btn-lg">보내기</button>
-							<button type="button" class="btn btn-success btn-lg">삭제</button>
+							<button type="button" class="btn btn-success btn-lg">쪽지 보내기</button>
+							<button type="button" class="btn btn-success btn-lg">쪽지 삭제</button>
 						</div>
 					</div>
 				</div>
@@ -247,45 +247,10 @@
 
 		</div>
 
-		<!-- Footer -->
-		<footer>
-		<div class="container-fluid-footer">
-				<div class="row">
-				<!--<div class="col-lg-10 col-lg-offset-1 text-center">  -->
-				<div class="col-lg-12">
-					<h4>
-						<strong>Start Bootstrap</strong>
-					</h4>
-					<p>
-						3481 Melrose Place<br>Beverly Hills, CA 90210
-					</p>
-					<ul class="list-unstyled">
-						<li><i class="fa fa-phone fa-fw"></i> (123) 456-7890</li>
-						<li><i class="fa fa-envelope-o fa-fw"></i> <a
-							href="mailto:name@example.com">name@example.com</a></li>
-					</ul>
-					<br>
-					<ul class="list-inline">
-						<li><a href="#"><i class="fa fa-facebook fa-fw fa-3x"></i></a>
-						</li>
-						<li><a href="#"><i class="fa fa-twitter fa-fw fa-3x"></i></a>
-						</li>
-						<li><a href="#"><i class="fa fa-dribbble fa-fw fa-3x"></i></a>
-						</li>
-					</ul>
-					<hr class="small">
-					<p class="text-muted">Copyright &copy; Your Website 2014</p>
-				</div>
-			</div>
-		</div>
-		</footer>
+	<!-- Footer -->
+	<%@include file="/common/footer.jsp" %>
+  	<!-- /Footer -->
 
-
-		<!-- jQuery -->
-		<script src="/carpark/js/jquery.js"></script>
-
-		<!-- Bootstrap Core JavaScript -->
-		<script src="/carpark/js/bootstrap.min.js"></script>
 </body>
 
 </html>
