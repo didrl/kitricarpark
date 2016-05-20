@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <%@include file="/common/common.jsp"%>
 
 
@@ -108,7 +108,7 @@
                     </ul>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> ¿Ã∏ß <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Ïù¥Î¶Ñ <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
                             <a href="#"><i class="fa fa-fw fa-user"></i> profile</a>
@@ -276,7 +276,7 @@
 			            	<div class="modal-content">
 			               		<div class="modal-header">
 			                  		<button type="button" class="close" data-dismiss="modal">
-			                     		<span aria-hidden="true">°ø</span><span class="sr-only">Close</span>
+			                     		<span aria-hidden="true">√ó</span><span class="sr-only">Close</span>
 			                  		</button>
 			                  		<h4 class="modal-title" id="myModalLabel">Modal title</h4>
 			               		</div>
@@ -325,9 +325,9 @@
 						<div class="modal-content">
 							<div class="modal-header">
 								<button type="button" class="close" data-dismiss="modal">
-									<span aria-hidden="true">°ø</span><span class="sr-only">Close</span>
+									<span aria-hidden="true">√ó</span><span class="sr-only">Close</span>
 								</button>
-								<h2 class="modal-title" id="myModalLabel">»∏ø¯∞°¿‘</h2>
+								<h2 class="modal-title" id="myModalLabel">ÌöåÏõêÍ∞ÄÏûÖ</h2>
 							</div>
 							<div class="modal-body">
 

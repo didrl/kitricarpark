@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <%@ include file="/admin/common/common.jsp" %>
 
     <div id="wrapper">
@@ -14,7 +14,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="<%=root %>/adminindex.html">°ü¸®ÀÚ</a>
+                <a class="navbar-brand" href="<%=root %>/adminindex.html">ê´€ë¦¬ìž</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
@@ -127,56 +127,56 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                    <li class="active">
-                        <a href="<%=root%>/adminindex.jsp"><i class="fa fa-fw fa-file"></i> °ü¸®ÀÚ È­¸é</a>
+                        <a href="<%=root%>/adminindex.jsp"><i class="fa fa-fw fa-file"></i> ê´€ë¦¬ìž í™”ë©´</a>
                     </li>
               
                     <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#customer"><i class="fa fa-fw fa-arrows-v"></i> °í°´°ü¸® <i class="fa fa-fw fa-caret-down"></i></a>       
+                        <a href="javascript:;" data-toggle="collapse" data-target="#customer"><i class="fa fa-fw fa-arrows-v"></i> ê³ ê°ê´€ë¦¬ <i class="fa fa-fw fa-caret-down"></i></a>       
                         <ul id="customer" class="collapse">
                             <li>
-                                <a href="<%=customerpath%>/info.jsp">ÀüÃ¼ °í°´ Á¤º¸</a>
+                                <a href="<%=customerpath%>/info.jsp">ì „ì²´ ê³ ê° ì •ë³´</a>
                             </li>
                             <li>
-                                <a href="<%=customerpath%>/rate.jsp">½Å°í³»¿ª</a>
+                                <a href="<%=customerpath%>/rate.jsp">ì‹ ê³ ë‚´ì—­</a>
                             </li>
                             <li>
-                                <a href="<%=customerpath%>/report.jsp">µî±Þ ¹× ÇýÅÃ ¼³Á¤</a>
+                                <a href="<%=customerpath%>/report.jsp">ë“±ê¸‰ ë° í˜œíƒ ì„¤ì •</a>
                             </li>
                         </ul>
                     </li>
                     
                     <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#parking"><i class="fa fa-fw fa-arrows-v"></i> ÁÖÂ÷Àå °ü¸® <i class="fa fa-fw fa-caret-down"></i></a>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#parking"><i class="fa fa-fw fa-arrows-v"></i> ì£¼ì°¨ìž¥ ê´€ë¦¬ <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="parking" class="collapse">
                             <li>
-                                <a href="<%=parkingpath%>/list.jsp">ÁÖÂ÷Àå ¸ñ·Ï</a>
+                                <a href="<%=parkingpath%>/list.jsp">ì£¼ì°¨ìž¥ ëª©ë¡</a>
                             </li>
                             <li>
-                                <a href="<%=parkingpath%>/newparking.jsp">»õ·Î¿î ÁÖÂ÷Àå µî·Ï</a>
+                                <a href="<%=parkingpath%>/newparking.jsp">ìƒˆë¡œìš´ ì£¼ì°¨ìž¥ ë“±ë¡</a>
                             </li>
                             <li>
-                                <a href="<%=parkingpath%>/report.jsp">ÁÖÂ÷Àå Á¦º¸ ¸ñ·Ï</a>
+                                <a href="<%=parkingpath%>/report.jsp">ì£¼ì°¨ìž¥ ì œë³´ ëª©ë¡</a>
                             </li>
                             <li>
-                                <a href="<%=parkingpath%>/auth.jsp">ÁÖÂ÷Àå ÀÎÁõ¿¹Á¤¸ñ·Ï</a>
+                                <a href="<%=parkingpath%>/auth.jsp">ì£¼ì°¨ìž¥ ì¸ì¦ì˜ˆì •ëª©ë¡</a>
                             </li>
                         </ul>
                     </li>
                     
                     <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#qna"><i class="fa fa-fw fa-arrows-v"></i>QnA°ü¸® <i class="fa fa-fw fa-caret-down"></i></a>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#qna"><i class="fa fa-fw fa-arrows-v"></i>QnAê´€ë¦¬ <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="qna" class="collapse">
                             <li>
-                                <a href="<%=qnapath%>/faq.jsp">FAQ °ü¸®</a>
+                                <a href="<%=qnapath%>/faq.jsp">FAQ ê´€ë¦¬</a>
                             </li>
                             <li>
-                                <a href="<%=qnapath%>/message.jsp">ÂÊÁö ¸ñ·Ï</a>
+                                <a href="<%=qnapath%>/message.jsp">ìª½ì§€ ëª©ë¡</a>
                             </li>
                        
                         </ul>
                     </li>
                 <li>
-                        <a href="<%=staticpath%>/static.jsp"><i class="fa fa-fw fa-bar-chart-o"></i> »çÀÌÆ® Åë°è </a>
+                        <a href="<%=staticpath%>/static.jsp"><i class="fa fa-fw fa-bar-chart-o"></i> ì‚¬ì´íŠ¸ í†µê³„ </a>
                 </li>
                 </ul>
                 
@@ -193,15 +193,15 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            °ü¸®ÀÚ È­¸é
-                            <small>°ü¸®Á¤º¸</small>
+                            ê´€ë¦¬ìž í™”ë©´
+                            <small>ê´€ë¦¬ì •ë³´</small>
                         </h1>
                         <ol class="breadcrumb">
                             <li>
-                                <i class="fa fa-dashboard"></i>  <a href="<%=adminpath%>/adminindex.jsp">°ü¸®ÀÚ È­¸é</a>
+                                <i class="fa fa-dashboard"></i>  <a href="<%=adminpath%>/adminindex.jsp">ê´€ë¦¬ìž í™”ë©´</a>
                             </li>
                             <li class="active">
-                                <i class="fa fa-file"></i> °ü¸®ÀÚ È­¸é
+                                <i class="fa fa-file"></i> ê´€ë¦¬ìž í™”ë©´
                             </li>
                         </ol>
                     </div>

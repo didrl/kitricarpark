@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
 <%@include file="/common/common.jsp"%>
 
 	<div id="wrapper">
@@ -114,42 +114,42 @@
 						Dashboard</a></li>
 
 				<li><a href="javascript:;" data-toggle="collapse"
-					data-target="#profile"><i class="fa fa-fw fa-arrows-v"></i> ÇÁ·ÎÇÊ
+					data-target="#profile"><i class="fa fa-fw fa-arrows-v"></i> í”„ë¡œí•„
 						<i class="fa fa-fw fa-caret-down"></i></a>
 					<ul id="profile" class="collapse">
-						<li><a href="#">ÇÁ·ÎÇÊ¼öÁ¤</a></li>
+						<li><a href="#">í”„ë¡œí•„ìˆ˜ì •</a></li>
 						<li><a href="#">feedback</a></li>
-						<li><a href="#">ÀÚµ¿Â÷Á¤º¸</a></li>
+						<li><a href="#">ìžë™ì°¨ì •ë³´</a></li>
 					</ul></li>
 
 				<li><a href="javascript:;" data-toggle="collapse"
 					data-target="#reservation"><i class="fa fa-fw fa-arrows-v"></i>
-						¿¹¾à <i class="fa fa-fw fa-caret-down"></i></a>
+						ì˜ˆì•½ <i class="fa fa-fw fa-caret-down"></i></a>
 					<ul id="reservation" class="collapse">
-						<li><a href="#">¿¹¾àÇÏ±â</a></li>
-						<li><a href="#">¿¹¾à¹Þ±â</a></li>
+						<li><a href="#">ì˜ˆì•½í•˜ê¸°</a></li>
+						<li><a href="#">ì˜ˆì•½ë°›ê¸°</a></li>
 					</ul></li>
 
 				<li><a href="javascript:;" data-toggle="collapse"
-					data-target="#message"><i class="fa fa-fw fa-arrows-v"></i> ¸Þ¼¼Áö
+					data-target="#message"><i class="fa fa-fw fa-arrows-v"></i> ë©”ì„¸ì§€
 						<i class="fa fa-fw fa-caret-down"></i></a>
 					<ul id="message" class="collapse">
-						<li><a href="#">º¸³½¸Þ¼¼Áö</a></li>
-						<li><a href="#">¹ÞÀº¸Þ¼¼Áö</a></li>
+						<li><a href="#">ë³´ë‚¸ë©”ì„¸ì§€</a></li>
+						<li><a href="#">ë°›ì€ë©”ì„¸ì§€</a></li>
 					</ul></li>
 
 				<li><a href="javascript:;" data-toggle="collapse"
-					data-target="#parking"><i class="fa fa-fw fa-arrows-v"></i> ÁÖÂ÷Àå
+					data-target="#parking"><i class="fa fa-fw fa-arrows-v"></i> ì£¼ì°¨ìž¥
 						<i class="fa fa-fw fa-caret-down"></i></a>
 					<ul id="parking" class="collapse">
-						<li><a href="#">ÁÖÂ÷Àå µî·Ï</a></li>
-						<li><a href="#">³» ÁÖÂ÷Àå</a></li>
+						<li><a href="#">ì£¼ì°¨ìž¥ ë“±ë¡</a></li>
+						<li><a href="#">ë‚´ ì£¼ì°¨ìž¥</a></li>
 					</ul></li>
 
 				<li><a href="blank-page.html"><i class="fa fa-fw fa-file"></i>
 						My Coin</a></li>
 				<li><a href="index-rtl.html"><i
-						class="fa fa-fw fa-dashboard"></i> Ä£±¸ÃÊ´ë</a></li>
+						class="fa fa-fw fa-dashboard"></i> ì¹œêµ¬ì´ˆëŒ€</a></li>
 			</ul>
 		</div>
 		<!-- /.navbar-collapse --> </nav>
@@ -159,7 +159,7 @@
 				<!-- Page Heading -->
 				<div class="row">
 					<div class="col-lg-12">
-						<h1 class="page-header">»ó¼¼ÇÁ·ÎÇÊ</h1>
+						<h1 class="page-header">ìƒì„¸í”„ë¡œí•„</h1>
 						<ol class="breadcrumb">
 							<li><i class="fa fa-dashboard"></i> <a href="index.html">Dashboard</a>
 							</li>
@@ -182,15 +182,15 @@
 							<div class="form-group">
 								<div class="row">
 									<div class="col-xs-4">
-										<label>³âµµ</label> <input type="text" class="form-control"
+										<label>ë…„ë„</label> <input type="text" class="form-control"
 											placeholder="year">
 									</div>
 									<div class="col-xs-3">
-										<label>¿ù</label> <input type="text" class="form-control"
+										<label>ì›”</label> <input type="text" class="form-control"
 											placeholder="month">
 									</div>
 									<div class="col-xs-3">
-										<label>ÀÏ</label> <input type="text" class="form-control"
+										<label>ì¼</label> <input type="text" class="form-control"
 											placeholder="day">
 									</div>
 								</div>
@@ -198,16 +198,16 @@
 
 
 							<div class="form-group">
-								<label>ºñ¹Ð¹øÈ£</label> <input class="form-control">
+								<label>ë¹„ë°€ë²ˆí˜¸</label> <input class="form-control">
 							</div>
 
 							<div class="form-group">
-								<label>ºñ¹Ð¹øÈ£È®ÀÎ</label> <input class="form-control">
+								<label>ë¹„ë°€ë²ˆí˜¸í™•ì¸</label> <input class="form-control">
 							</div>
 
 
 							<div class="form-group">
-								<label for="exampleInputName2">ÀüÈ­¹øÈ£</label> <input type="text"
+								<label for="exampleInputName2">ì „í™”ë²ˆí˜¸</label> <input type="text"
 									class="form-control" id="exampleInputName2"
 									placeholder="Jane Doe">
 							</div>
@@ -229,17 +229,17 @@
 					<div class="col-lg-6">
 
 						<div class="form-group">
-							<label class="checkbox-inline"> <input type="checkbox">»ç¾÷ÀÚµî·Ï¹øÈ£Ã¼Å©
+							<label class="checkbox-inline"> <input type="checkbox">ì‚¬ì—…ìžë“±ë¡ë²ˆí˜¸ì²´í¬
 
 							</label>
 						</div>
 
 						<div class="form-group">
-							<label>ÇÁ·ÎÇÊ »çÁø ¼±ÅÃ</label> <input type="file">
+							<label>í”„ë¡œí•„ ì‚¬ì§„ ì„ íƒ</label> <input type="file">
 						</div>
 
 						<div class="form-group">
-							<label>¼Ò°³±Û</label>
+							<label>ì†Œê°œê¸€</label>
 							<textarea class="form-control" rows="3"></textarea>
 						</div>
 
@@ -276,8 +276,8 @@
 						</div>
 
 						<div class="form-group">
-							<button type="submit" class="btn btn-default">¼öÁ¤</button>
-							<button type="reset" class="btn btn-default">Ãë¼Ò</button>
+							<button type="submit" class="btn btn-default">ìˆ˜ì •</button>
+							<button type="reset" class="btn btn-default">ì·¨ì†Œ</button>
 						</div>
 
 					</div>

@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
 <%@include file="/common/common.jsp"%>
 
 
@@ -117,41 +117,41 @@
 						
 				<li><a href="javascript:;" data-toggle="collapse"
 					data-target="#profile"><i class="fa fa-fw fa-arrows-v"></i>
-						ÇÁ·ÎÇÊ <i class="fa fa-fw fa-caret-down"></i></a>
+						í”„ë¡œí•„ <i class="fa fa-fw fa-caret-down"></i></a>
 					<ul id="profile" class="collapse">
-						<li><a href="#">ÇÁ·ÎÇÊ¼öÁ¤</a></li>
+						<li><a href="#">í”„ë¡œí•„ìˆ˜ì •</a></li>
 						<li><a href="#">feedback</a></li>
-						<li><a href="#">ÀÚµ¿Â÷Á¤º¸</a></li>
+						<li><a href="#">ìžë™ì°¨ì •ë³´</a></li>
 					</ul></li>
 					
 				<li><a href="javascript:;" data-toggle="collapse"
 					data-target="#reservation"><i class="fa fa-fw fa-arrows-v"></i>
-						¿¹¾à <i class="fa fa-fw fa-caret-down"></i></a>
+						ì˜ˆì•½ <i class="fa fa-fw fa-caret-down"></i></a>
 					<ul id="reservation" class="collapse">
-						<li><a href="#">¿¹¾àÇÏ±â</a></li>
-						<li><a href="#">¿¹¾à¹Þ±â</a></li>
+						<li><a href="#">ì˜ˆì•½í•˜ê¸°</a></li>
+						<li><a href="#">ì˜ˆì•½ë°›ê¸°</a></li>
 					</ul></li>
 					
 				<li><a href="javascript:;" data-toggle="collapse"
 					data-target="#message"><i class="fa fa-fw fa-arrows-v"></i>
-						¸Þ¼¼Áö <i class="fa fa-fw fa-caret-down"></i></a>
+						ë©”ì„¸ì§€ <i class="fa fa-fw fa-caret-down"></i></a>
 					<ul id="message" class="collapse">
-						<li><a href="#">º¸³½¸Þ¼¼Áö</a></li>
-						<li><a href="#">¹ÞÀº¸Þ¼¼Áö</a></li>
+						<li><a href="#">ë³´ë‚¸ë©”ì„¸ì§€</a></li>
+						<li><a href="#">ë°›ì€ë©”ì„¸ì§€</a></li>
 					</ul></li>
 					
 				<li><a href="javascript:;" data-toggle="collapse"
 					data-target="#parking"><i class="fa fa-fw fa-arrows-v"></i>
-						ÁÖÂ÷Àå <i class="fa fa-fw fa-caret-down"></i></a>
+						ì£¼ì°¨ìž¥ <i class="fa fa-fw fa-caret-down"></i></a>
 					<ul id="parking" class="collapse">
-						<li><a href="#">ÁÖÂ÷Àå µî·Ï</a></li>
-						<li><a href="#">³» ÁÖÂ÷Àå</a></li>
+						<li><a href="#">ì£¼ì°¨ìž¥ ë“±ë¡</a></li>
+						<li><a href="#">ë‚´ ì£¼ì°¨ìž¥</a></li>
 					</ul></li>
 					
 				<li><a href="blank-page.html"><i class="fa fa-fw fa-file"></i>
 						My Coin</a></li>
 				<li><a href="index-rtl.html"><i
-						class="fa fa-fw fa-dashboard"></i> Ä£±¸ÃÊ´ë</a></li>
+						class="fa fa-fw fa-dashboard"></i> ì¹œêµ¬ì´ˆëŒ€</a></li>
 			</ul>
 		</div>
 		<!-- /.navbar-collapse --> </nav>
@@ -178,7 +178,7 @@
 						<form role="form">
 							<div class="form-group">
 								
-								<label ><h3>³» »çÁø</h3></label><br> 
+								<label ><h3>ë‚´ ì‚¬ì§„</h3></label><br> 
 							
 								<img src="<%=root%>/img/bg.jpg" class="img-circle" width="200" height="200" border="5">
 							</div>
@@ -203,22 +203,22 @@
 
 
 							<div class="form-group">
-                                    <label for="disabledSelect">ÀÌ¸§</label>
-                                    <input class="form-control" id="disabledInput" type="text" placeholder="ÀÌ¸§" disabled>
+                                    <label for="disabledSelect">ì´ë¦„</label>
+                                    <input class="form-control" id="disabledInput" type="text" placeholder="ì´ë¦„" disabled>
                             </div>
 
 							<div class="form-group">
-                                    <label for="disabledSelect">´Ð³×ÀÓ</label>
-                                    <input class="form-control" id="disabledInput" type="text" placeholder="´Ð³×ÀÓ" disabled>
+                                    <label for="disabledSelect">ë‹‰ë„¤ìž„</label>
+                                    <input class="form-control" id="disabledInput" type="text" placeholder="ë‹‰ë„¤ìž„" disabled>
                             </div>
 
 							<div class="form-group">
-                                    <label for="disabledSelect">È¸»çÀÌ¸§</label>
-                                    <input class="form-control" id="disabledInput" type="text" placeholder="È¸»çÀÌ¸§" disabled>
+                                    <label for="disabledSelect">íšŒì‚¬ì´ë¦„</label>
+                                    <input class="form-control" id="disabledInput" type="text" placeholder="íšŒì‚¬ì´ë¦„" disabled>
                             </div>
                             
                             <div class="form-group">
-                                <label>»ý³â¿ùÀÏ</label>
+                                <label>ìƒë…„ì›”ì¼</label>
                                 <input class="form-control" id="disabledInput" type="text" placeholder="Disabled input" disabled>
                                 <p class="help-block">Example block-level help text here.</p>
                             </div>

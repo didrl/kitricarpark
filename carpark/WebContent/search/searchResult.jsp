@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -44,13 +44,13 @@
 	src="https://apis.skplanetx.com/tmap/js?version=1&format=javascript&appKey=a4ea8cc9-e49c-308f-99de-3aadb0c70298"></script>
 <script type="text/javascript">
 	var map;
-	var mapW, mapH; // ÁöµµÀÇ °¡·Î, ¼¼·Î Å©±â(Pixel´ÜÀ§) ¸¦ ÁöÁ¤ ÇÕ´Ï´Ù. 
-	var cLonLat, zoom; //Áß½É ÁÂÇ¥¿Í Áöµµ·¹º§À» Á¤ÀÇ ÇÕ´Ï´Ù. 
+	var mapW, mapH; // ì§€ë„ì˜ ê°€ë¡œ, ì„¸ë¡œ í¬ê¸°(Pixelë‹¨ìœ„) ë¥¼ ì§€ì • í•©ë‹ˆë‹¤. 
+	var cLonLat, zoom; //ì¤‘ì‹¬ ì¢Œí‘œì™€ ì§€ë„ë ˆë²¨ì„ ì •ì˜ í•©ë‹ˆë‹¤. 
 	var latitude, longitude;
-	//pr_3857 ÀÎ½ºÅº½º »ı¼º.
+	//pr_3857 ì¸ìŠ¤íƒ„ìŠ¤ ìƒì„±.
 	var pr_3857 = new Tmap.Projection("EPSG:3857");
 
-	//pr_4326 ÀÎ½ºÅº½º »ı¼º.
+	//pr_4326 ì¸ìŠ¤íƒ„ìŠ¤ ìƒì„±.
 	var pr_4326 = new Tmap.Projection("EPSG:4326");
 
 	function get3857LonLat(coordX, coordY) {
@@ -65,13 +65,13 @@
 		cLonLat = new Tmap.LonLat(longitude, latitude).transform(pr_4326,
 				pr_3857);
 		//              cLonLat = new Tmap.LonLat(longitude,latitude).transform(pr_3857, pr_4326);
-		//Áß½ÉÁ¡ ÁÂÇ¥ ÀÔ´Ï´Ù. EPSG3857 ÁÂÇ¥°è Çü½Ä ÀÔ´Ï´Ù. 
+		//ì¤‘ì‹¬ì  ì¢Œí‘œ ì…ë‹ˆë‹¤. EPSG3857 ì¢Œí‘œê³„ í˜•ì‹ ì…ë‹ˆë‹¤. 
 
-		zoom = 16; // zoom levelÀÔ´Ï´Ù.  0~19 ·¹º§À» ¼­ºñ½º ÇÏ°í ÀÖ½À´Ï´Ù. 
-//		mapW = window.outerWidth / 2; // ÁöµµÀÇ °¡·Î Å©±â ÀÔ´Ï´Ù. 
-//		mapH = window.outerHeight / 2; // ÁöµµÀÇ ¼¼·Î Å©±â ÀÔ´Ï´Ù. 
+		zoom = 16; // zoom levelì…ë‹ˆë‹¤.  0~19 ë ˆë²¨ì„ ì„œë¹„ìŠ¤ í•˜ê³  ìˆìŠµë‹ˆë‹¤. 
+//		mapW = window.outerWidth / 2; // ì§€ë„ì˜ ê°€ë¡œ í¬ê¸° ì…ë‹ˆë‹¤. 
+//		mapH = window.outerHeight / 2; // ì§€ë„ì˜ ì„¸ë¡œ í¬ê¸° ì…ë‹ˆë‹¤. 
 		var div = $("#divformap");
-		mapW =   div.innerWidth();			//jquery¸¦ ÀÌ¿ëÇØ¼­ width¾ò±â
+		mapW =   div.innerWidth();			//jqueryë¥¼ ì´ìš©í•´ì„œ widthì–»ê¸°
 		if(div.innerHeight() != 0)
 			mapH = div.innerHeight();
 		else
@@ -101,14 +101,14 @@
 					var icon = new Tmap.Icon(
 							'https://developers.skplanetx.com/upload/tmap/marker/pin_b_m_a.png',
 							size, offset);
-					var label = new Tmap.Label("´ç½ÅÀÇ ÇöÀç À§Ä¡!")
+					var label = new Tmap.Label("ë‹¹ì‹ ì˜ í˜„ì¬ ìœ„ì¹˜!")
 
 					var markers = new Tmap.Markers(cLonLat, icon, label);
 					markerLayer.addMarker(markers);
 					markers.popup.show()
 
 				});
-		// div : Áöµµ°¡ »ı¼ºµÉ divÀÇ id°ª°ú °°Àº °ªÀ» ¿É¼ÇÀ¸·Î Á¤ÀÇ ÇÕ´Ï´Ù.
+		// div : ì§€ë„ê°€ ìƒì„±ë  divì˜ idê°’ê³¼ ê°™ì€ ê°’ì„ ì˜µì…˜ìœ¼ë¡œ ì •ì˜ í•©ë‹ˆë‹¤.
 	}
 	function goSearch() {
 		document.searchForm.action = "/carpark/search/seachResult.html";
@@ -121,10 +121,10 @@
 <body onload="init()">
 
     <!-- Navigation Start-->
-    <!-- ±âÁ¸°ÍÀ¸·Î ÇÏ¸é À§¿¡ °ø¹é 
+    <!-- ê¸°ì¡´ê²ƒìœ¼ë¡œ í•˜ë©´ ìœ„ì— ê³µë°± 
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">	
     -->
-    <!-- »ó´Ü ¸Ş´º¹Ù -->
+    <!-- ìƒë‹¨ ë©”ë‰´ë°” -->
       <nav class="navbar navbar-inverse">
          <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -135,24 +135,24 @@
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
                </button>
-               <a class="navbar-brand" href="#">È¨</a>
+               <a class="navbar-brand" href="#">í™ˆ</a>
             </div>
             
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
             
-               <!-- ·Î±×ÀÎ ¹öÆ° -->
+               <!-- ë¡œê·¸ì¸ ë²„íŠ¼ -->
                <button type="button" class="btn btn-default navbar-btn" data-toggle="modal" data-target="#myLogin">
                   Sign in
                </button>
                   
-                  <!-- ·Î±×ÀÎ¸ğ´Ş ÆË¾÷ -->
+                  <!-- ë¡œê·¸ì¸ëª¨ë‹¬ íŒì—… -->
                   <div class="modal fade" id="myLogin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                               <div class="modal-header">
                                  <button type="button" class="close" data-dismiss="modal">
-                                    <span aria-hidden="true">¡¿</span><span class="sr-only">Close</span>
+                                    <span aria-hidden="true">Ã—</span><span class="sr-only">Close</span>
                                  </button>
                                  <h4 class="modal-title" id="myModalLabel">Modal title</h4>
                               </div>
@@ -203,7 +203,7 @@
          </div>
             
       </nav>
-      <!-- »ó´Ü ¸Ş´º¹Ù -->
+      <!-- ìƒë‹¨ ë©”ë‰´ë°” -->
 	
     <!-- Page Content -->
 	<div class="container" style="text-align:center">
@@ -235,10 +235,10 @@
 				<!--  search bar end-->
 		<!-- Left List Group Strat -->		
    		<div class="col-md-4">
-				<h3><b>µµ½ÃÀÌ¸§ </b>&nbsp;&nbsp;°Ë»ö °á°ú</h3>
+				<h3><b>ë„ì‹œì´ë¦„ </b>&nbsp;&nbsp;ê²€ìƒ‰ ê²°ê³¼</h3>
 				<ul class="list-group">
 					<a href="#" class="list-group-item">
-						<h4 class="list-group-item-heading">Kitri ÁöÇÏÁÖÂ÷Àå</h4>
+						<h4 class="list-group-item-heading">Kitri ì§€í•˜ì£¼ì°¨ì¥</h4>
 						<div class="ratings">
                         <p class="pull-right">
                             <span class="glyphicon glyphicon-star"></span>
@@ -246,13 +246,13 @@
                             <span class="glyphicon glyphicon-star"></span>
                             <span class="glyphicon glyphicon-star"></span>
                             <span class="glyphicon glyphicon-star-empty"></span>
-                            (4Á¡)
+                            (4ì )
                         </p>
                     </div>
-						<p class="list-group-item-text">¿ª¿¡¼­ µµº¸·Î 3ºĞ ´Ù¾çÇÑ È¸»çµé ¹ĞÁı</p>
+						<p class="list-group-item-text">ì—­ì—ì„œ ë„ë³´ë¡œ 3ë¶„ ë‹¤ì–‘í•œ íšŒì‚¬ë“¤ ë°€ì§‘</p>
 					</a>
 					<a href="#" class="list-group-item">
-						<h4 class="list-group-item-heading">´ë¸¢Æ÷½ºÆ® 2Â÷</h4>
+						<h4 class="list-group-item-heading">ëŒ€ë¥­í¬ìŠ¤íŠ¸ 2ì°¨</h4>
 						<div class="ratings">
                         <p class="pull-right">
                             <span class="glyphicon glyphicon-star"></span>
@@ -260,13 +260,13 @@
                             <span class="glyphicon glyphicon-star"></span>
                             <span class="glyphicon glyphicon-star"></span>
                             <span class="glyphicon glyphicon-star-empty"></span>
-                            (4Á¡)
+                            (4ì )
                         </p>
                     </div>
-						<p class="list-group-item-text">ÁÖº¯¿¡ Ä¿ÇÇÁıÀÌ ¸¹°í Å°Æ®¸® ¿·Áı</p>
+						<p class="list-group-item-text">ì£¼ë³€ì— ì»¤í”¼ì§‘ì´ ë§ê³  í‚¤íŠ¸ë¦¬ ì˜†ì§‘</p>
 					</a>
 					<a href="#" class="list-group-item">
-						<h4 class="list-group-item-heading">ÂøÇÑÄ¿ÇÇ °Ç¹°</h4>
+						<h4 class="list-group-item-heading">ì°©í•œì»¤í”¼ ê±´ë¬¼</h4>
 						<div class="ratings">
                         <p class="pull-right">
                             <span class="glyphicon glyphicon-star"></span>
@@ -274,10 +274,10 @@
                             <span class="glyphicon glyphicon-star"></span>
                             <span class="glyphicon glyphicon-star"></span>
                             <span class="glyphicon glyphicon-star-empty"></span>
-                            (4Á¡)
+                            (4ì )
                         </p>
                     </div>
-						<p class="list-group-item-text">Ä¿ÇÇ 1000¿ø</p>
+						<p class="list-group-item-text">ì»¤í”¼ 1000ì›</p>
 					</a>
 				</ul>
 			</div>
@@ -454,7 +454,7 @@
 								}
 							});
 		});
-		// ¸Ê À§¿¡¼­ ¸¶¿ì½º ÈÙ, Å°º¸µå ¹æÇâÅ°°¡ µ¿ÀÛÇÏÁö ¾Êµµ·Ï ¸·À½
+		// ë§µ ìœ„ì—ì„œ ë§ˆìš°ìŠ¤ íœ , í‚¤ë³´ë“œ ë°©í–¥í‚¤ê°€ ë™ì‘í•˜ì§€ ì•Šë„ë¡ ë§‰ìŒ
 		$('#map_div').on('scroll touchmove mousewheel', function(e){
 			e.preventDefault();
 			e.stopPropagation();

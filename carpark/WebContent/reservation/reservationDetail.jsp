@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -56,7 +56,7 @@
 
 <body>
 	<!-- Navigation Start-->
-	<!-- »ó´Ü ¸Þ´º¹Ù -->
+	<!-- ìƒë‹¨ ë©”ë‰´ë°” -->
       <nav class="navbar navbar-inverse">
          <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -67,24 +67,24 @@
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
                </button>
-               <a class="navbar-brand" href="#">È¨</a>
+               <a class="navbar-brand" href="#">í™ˆ</a>
             </div>
             
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
             
-               <!-- ·Î±×ÀÎ ¹öÆ° -->
+               <!-- ë¡œê·¸ì¸ ë²„íŠ¼ -->
                <button type="button" class="btn btn-default navbar-btn" data-toggle="modal" data-target="#myLogin">
                   Sign in
                </button>
                   
-                  <!-- ·Î±×ÀÎ¸ð´Þ ÆË¾÷ -->
+                  <!-- ë¡œê·¸ì¸ëª¨ë‹¬ íŒì—… -->
                   <div class="modal fade" id="myLogin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                               <div class="modal-header">
                                  <button type="button" class="close" data-dismiss="modal">
-                                    <span aria-hidden="true">¡¿</span><span class="sr-only">Close</span>
+                                    <span aria-hidden="true">Ã—</span><span class="sr-only">Close</span>
                                  </button>
                                  <h4 class="modal-title" id="myModalLabel">Modal title</h4>
                               </div>
@@ -135,7 +135,7 @@
          </div>
             
       </nav>
-      <!-- »ó´Ü ¸Þ´º¹Ù -->
+      <!-- ìƒë‹¨ ë©”ë‰´ë°” -->
 	<br>
 	<!-- Page Content -->
 	<div class="container" style="text-align:center">
@@ -146,18 +146,18 @@
 			<div class="col-md-7 col-lg-7 col-sm-7">
 				<div class="panel panel-default"> <!--  Left panel div Start -->
 				<div class="panel-body"> <!--  Left panel body Start -->
-				<div>	<h3><a href="" > ¼±ÅÃÇÑ ÁÖÂ÷Àå ÀÌ¸§</a></h3></div>
-				<div>ÁÖÂ÷Àå ³»¿ëµé</div><br><br>
-				<div><h3>¾ðÁ¦ ÁÖÂ÷¸¦ ÇÏ±æ ¿øÇÏ½Ê´Ï±î?</h3></div><br>
+				<div>	<h3><a href="" > ì„ íƒí•œ ì£¼ì°¨ìž¥ ì´ë¦„</a></h3></div>
+				<div>ì£¼ì°¨ìž¥ ë‚´ìš©ë“¤</div><br><br>
+				<div><h3>ì–¸ì œ ì£¼ì°¨ë¥¼ í•˜ê¸¸ ì›í•˜ì‹­ë‹ˆê¹Œ?</h3></div><br>
 				<div class="row"><!-- From Choice Start -->
 					<div class="col-md-3 col-lg-3 col-sm-3">
-						<div class="pull-right">¿¹¾à ±¸ºÐ : </div>
+						<div class="pull-right">ì˜ˆì•½ êµ¬ë¶„ : </div>
 					</div>
 					<div class="col-md-8 col-lg-8 col-sm-8" >
-					¿¬¼Ó ¿¹¾à <input type="radio" name="resercheck" value="multireservation"> ÇÏ·ç ¿¹¾à <input type="radio" name="resercheck" value="singlereservation">
+					ì—°ì† ì˜ˆì•½ <input type="radio" name="resercheck" value="multireservation"> í•˜ë£¨ ì˜ˆì•½ <input type="radio" name="resercheck" value="singlereservation">
 					</div>
 				</div><br>
-				<!--  radio button¿¡ ÀÇÇÑ Multi reservation Start-->
+				<!--  radio buttonì— ì˜í•œ Multi reservation Start-->
 				<div id="multireservation">	
 				<div class="row"><!-- From Choice Start -->
 					<div class="col-md-3 col-lg-3 col-sm-3">
@@ -195,9 +195,9 @@
 								</select>
 								</div>
 					</div>	<!-- To Choice End -->	
-					</div> <!--  radio button¿¡ ÀÇÇÑ Multi reservation End-->
+					</div> <!--  radio buttonì— ì˜í•œ Multi reservation End-->
 					
-					<div class="row" id="singlereservation"> <!--  radio button¿¡ ÀÇÇÑ Single reservation Start-->
+					<div class="row" id="singlereservation"> <!--  radio buttonì— ì˜í•œ Single reservation Start-->
 					<div class="col-md-3 col-lg-3 col-sm-3">
 								<div class="pull-right">Date : </div>
 						</div>
@@ -214,38 +214,38 @@
 								  <option value="21">21:00</option><option value="22">22:00</option><option value="23">23:00</option>
 								</select>
 							</div>
-					</div><!--  radio button¿¡ ÀÇÇÑ Single reservation End--> <br>
-					<div><h3>¾î¶² Â÷·®À» ÁÖÂ÷ ÇÏ±æ ¿øÇÏ½Ê´Ï±î?</h3></div><br>
+					</div><!--  radio buttonì— ì˜í•œ Single reservation End--> <br>
+					<div><h3>ì–´ë–¤ ì°¨ëŸ‰ì„ ì£¼ì°¨ í•˜ê¸¸ ì›í•˜ì‹­ë‹ˆê¹Œ?</h3></div><br>
 					<div class="row" > <!-- Select Car div Start-->
 					<div class="col-md-3 col-lg-3 col-sm-3">
-								<div class="pull-right">µî·Ï Â÷·® </div>
+								<div class="pull-right">ë“±ë¡ ì°¨ëŸ‰ </div>
 						</div>
 						<div class="col-md-8 col-lg-8 col-sm-8" >		
 								<selectlong  id="mycarlist" name="mycarlist" >
-								  <option value="µî·ÏÂ÷·®1">·¹ÀÎÁö ·Î¹ö</option>
-								  <option value="µî·ÏÂ÷·®2">Àü±âÂ÷</option>
+								  <option value="ë“±ë¡ì°¨ëŸ‰1">ë ˆì¸ì§€ ë¡œë²„</option>
+								  <option value="ë“±ë¡ì°¨ëŸ‰2">ì „ê¸°ì°¨</option>
 								</selectlong>
 								<button type="button" class="btn btn-success"  data-toggle="modal" data-target="#msgToHost">
-                  				 + Â÷·® µî·Ï 
+                  				 + ì°¨ëŸ‰ ë“±ë¡ 
                				</button>
 							</div>
 					</div><!-- Select Reason div End--> <br>
-						<div><h3>ÀÌ¿ë ¸ñÀûÀÌ ¹«¾ùÀÔ´Ï±î?</h3></div><br>
+						<div><h3>ì´ìš© ëª©ì ì´ ë¬´ì—‡ìž…ë‹ˆê¹Œ?</h3></div><br>
 					<div class="row" > <!-- Select Car div Start-->
 					<div class="col-md-3 col-lg-3 col-sm-3">
-								<div class="pull-right">ÀÌ¿ë ¸ñÀû</div>
+								<div class="pull-right">ì´ìš© ëª©ì </div>
 						</div>
 						<div class="col-md-8 col-lg-8 col-sm-8" >		
 								<selectlong  id="reasonlist" name="reasonlist" >
-								  <option value="ÀÌÀ¯1">¾÷¹«</option>
-								  <option value="ÀÌÀ¯2">¿©Çà</option>
-								  <option value="ÀÌÀ¯3">±âÅ¸</option>
+								  <option value="ì´ìœ 1">ì—…ë¬´</option>
+								  <option value="ì´ìœ 2">ì—¬í–‰</option>
+								  <option value="ì´ìœ 3">ê¸°íƒ€</option>
 								</selectlong>
 							</div>
 					</div><!-- Select Reason div End--> <br>
 					</div><!--  Left panel body End -->
 							<button type="button" class="btn btn-success"  data-toggle="modal" data-target="#msgToHost">
-                  				 °áÁ¦ÇÏ±â 
+                  				 ê²°ì œí•˜ê¸° 
                				</button>
 				</div><!--  Left panel div End -->
 			</div> 
@@ -256,44 +256,44 @@
 				<div class="row">
 					<div class="well">
 						<div class="panel-body">
-						<b>°í°´ À¯ÀÇ»çÇ×</b><br>
-						ÇöÀç º¸°íÀÖ´Â ÁÖÂ÷Àå ÀÌ¿ë ½Ã<br>
-						¹ß»ýÇÒ ¼ö ÀÖ´Â ¹ýÀû Ã¥ÀÓÀº<br>
-						¼­ºñ½º¸¦ Á¦°øÇÏ´Â CarPark°¡ ¾Æ´Ñ<br>
-						ÁÖÂ÷ÀåÀ» Á¦°øÇÏ´Â<br>
-						Á¦°øÀÚ¿Í ÇØ´ç ÁÖÂ÷ÀåÀ» ÀÌ¿ëÇÏ´Â<br>
-						º»ÀÎ¿¡°Ô ÀÖ½À´Ï´Ù.<br>
+						<b>ê³ ê° ìœ ì˜ì‚¬í•­</b><br>
+						í˜„ìž¬ ë³´ê³ ìžˆëŠ” ì£¼ì°¨ìž¥ ì´ìš© ì‹œ<br>
+						ë°œìƒí•  ìˆ˜ ìžˆëŠ” ë²•ì  ì±…ìž„ì€<br>
+						ì„œë¹„ìŠ¤ë¥¼ ì œê³µí•˜ëŠ” CarParkê°€ ì•„ë‹Œ<br>
+						ì£¼ì°¨ìž¥ì„ ì œê³µí•˜ëŠ”<br>
+						ì œê³µìžì™€ í•´ë‹¹ ì£¼ì°¨ìž¥ì„ ì´ìš©í•˜ëŠ”<br>
+						ë³¸ì¸ì—ê²Œ ìžˆìŠµë‹ˆë‹¤.<br>
 						</div>
 						<div class="text-center">
 					
-               				                 <!-- msg¸ð´Þ ÆË¾÷ -->
+               				                 <!-- msgëª¨ë‹¬ íŒì—… -->
                   <div class="modal fade" id="msgToHost" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                               <div class="modal-header">
                                  <button type="button" class="close" data-dismiss="modal">
-                                    <span aria-hidden="true">¡¿</span><span class="sr-only">Close</span>
+                                    <span aria-hidden="true">Ã—</span><span class="sr-only">Close</span>
                                  </button>
-                                 <h4 class="msgToHost" id="msgToHostModal">ÂÊÁö º¸³»±â</h4>
+                                 <h4 class="msgToHost" id="msgToHostModal">ìª½ì§€ ë³´ë‚´ê¸°</h4>
                               </div>
                             <div class="modal-body">
                             
                                <form class="form-horizontal">
                               <div class="form-group">
-                                 <label for="inputMsgSubject" class="col-sm-2 control-label">Á¦¸ñ</label>
+                                 <label for="inputMsgSubject" class="col-sm-2 control-label">ì œëª©</label>
                                   <div class="col-sm-10">
                                        <input type="text" class="form-control" id="inputMsgSubject" placeholder="MsgSubject">
                                   </div>
                                 </div>
                               <div class="form-group">
-                                  <label for="inputMsgContent" class="col-sm-2 control-label">³»¿ë</label>
+                                  <label for="inputMsgContent" class="col-sm-2 control-label">ë‚´ìš©</label>
                                   <div class="col-sm-10">
                                     <input type="text" class="form-control" id="inputMsgContent" placeholder="MsgContent">
                                   </div>
                               </div>
                               <div class="form-group">
                                   <div class="col-sm-offset-2 col-sm-10">
-                                     <button type="sendMsg" class="btn btn-default">º¸³»±â</button>
+                                     <button type="sendMsg" class="btn btn-default">ë³´ë‚´ê¸°</button>
                                   </div>
                               </div>
                            </form>
@@ -302,19 +302,19 @@
                         </div>
                      </div>
                 </div>
-                <!-- msg¸ð´Þ ÆË¾÷ -->
+                <!-- msgëª¨ë‹¬ íŒì—… -->
 							<br>
 						</div>
 						</div>
 					<!-- host info panel End -->
 					<div class="panel panel-default">
 						<div class="panel-body">
-						<h3>»ç¿ë °¡´É ÀÏ</h3>
+						<h3>ì‚¬ìš© ê°€ëŠ¥ ì¼</h3>
 							<div id="c">
 								<div id="disp">
-									<div id="prev" class="nav">¡ç</div>
+									<div id="prev" class="nav">â†</div>
 									<div id="month"></div>
-									<div id="next" class="nav">¡æ</div>
+									<div id="next" class="nav">â†’</div>
 								</div>
 								<div id="cal"></div>
 							</div>

@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
@@ -16,7 +16,7 @@
 	<div>sfesfse</div>
 	<div class="container">
 	
-		<!-- »ó´Ü ¸Þ´º¹Ù -->
+		<!-- ìƒë‹¨ ë©”ë‰´ë°” -->
 		<nav class="navbar navbar-inverse">
 			<div class="container-fluid">
 				<!-- Brand and toggle get grouped for better mobile display -->
@@ -27,24 +27,24 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="#">È¨</a>
+					<a class="navbar-brand" href="#">í™ˆ</a>
 				</div>
 				
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
 				
-					<!-- ·Î±×ÀÎ ¹öÆ° -->
+					<!-- ë¡œê·¸ì¸ ë²„íŠ¼ -->
 					<button type="button" class="btn btn-default navbar-btn" data-toggle="modal" data-target="#myLogin">
 						Sign in
 					</button>
 	         		
-	         		<!-- ·Î±×ÀÎ¸ð´Þ ÆË¾÷ -->
+	         		<!-- ë¡œê·¸ì¸ëª¨ë‹¬ íŒì—… -->
 			      	<div class="modal fade" id="myLogin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			        	<div class="modal-dialog">
 			            	<div class="modal-content">
 			               		<div class="modal-header">
 			                  		<button type="button" class="close" data-dismiss="modal">
-			                     		<span aria-hidden="true">¡¿</span><span class="sr-only">Close</span>
+			                     		<span aria-hidden="true">Ã—</span><span class="sr-only">Close</span>
 			                  		</button>
 			                  		<h4 class="modal-title" id="myModalLabel">Modal title</h4>
 			               		</div>
@@ -95,26 +95,26 @@
 			</div>
 				
 		</nav>
-		<!-- »ó´Ü ¸Þ´º¹Ù -->
+		<!-- ìƒë‹¨ ë©”ë‰´ë°” -->
 		
-		<!-- º»¹® -->
+		<!-- ë³¸ë¬¸ -->
 		<div class="row">
 		
-			<!-- ÁÂÃø¸Þ´º -->
+			<!-- ì¢Œì¸¡ë©”ë‰´ -->
 			<div class="col-md-2">
-				ÁÂÃø¸Þ´º
+				ì¢Œì¸¡ë©”ë‰´
 				<ul class="nav nav-pills nav-stacked">
-					<li><a href="">¸Þ´º</a></li>
-					<li><a href="">¸Þ´º</a></li>
-					<li><a href="">¸Þ´º</a></li>
-					<li><a href="">¸Þ´º</a></li>
-					<li><a href="">¸Þ´º</a></li>
-					<li><a href="">¸Þ´º</a></li>
+					<li><a href="">ë©”ë‰´</a></li>
+					<li><a href="">ë©”ë‰´</a></li>
+					<li><a href="">ë©”ë‰´</a></li>
+					<li><a href="">ë©”ë‰´</a></li>
+					<li><a href="">ë©”ë‰´</a></li>
+					<li><a href="">ë©”ë‰´</a></li>
 				</ul>
 			</div>
-			<!-- ÁÂÃø¸Þ´º -->
+			<!-- ì¢Œì¸¡ë©”ë‰´ -->
 		
-			<!-- º»¹®³»¿ë -->		
+			<!-- ë³¸ë¬¸ë‚´ìš© -->		
 			<div class="col-md-10">
 			
 			
@@ -123,11 +123,11 @@
 			<div class="row">
 			    <div class="input-group">
 			      	<div class="input-group-btn">
-			        	<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Á¦¸ñ<span class="caret"></span></button>
+			        	<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ì œëª©<span class="caret"></span></button>
 			        	<ul class="dropdown-menu">
-			          		<li><a href="#">Á¦¸ñ</a></li>
-			          		<li><a href="#">³»¿ë</a></li>
-			          		<li><a href="#">Á¦¸ñ+³»¿ë</a></li>
+			          		<li><a href="#">ì œëª©</a></li>
+			          		<li><a href="#">ë‚´ìš©</a></li>
+			          		<li><a href="#">ì œëª©+ë‚´ìš©</a></li>
 			       		 </ul>
 			      	</div><!-- /btn-group -->
 			      	<input type="text" class="form-control" aria-label="...">
@@ -170,23 +170,23 @@
 			</div>
 			
 			
-			<!-- ¹®ÀÇÇÏ±â -->
+			<!-- ë¬¸ì˜í•˜ê¸° -->
 			<div class="row">
 					<button type="button" class="btn btn-default" data-toggle="modal" data-target="#qna">
-						¹®ÀÇÇÏ±â
+						ë¬¸ì˜í•˜ê¸°
 					</button>
 			</div><br>
 	         		
-	        <!-- ¹®ÀÇ¸ð´Þ ÆË¾÷ -->
+	        <!-- ë¬¸ì˜ëª¨ë‹¬ íŒì—… -->
 			<div class="modal fade" id="qna" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			    <div class="modal-dialog">
 			        <div class="modal-content">
 			           	<div class="modal-header">
 			               	<button type="button" class="close" data-dismiss="modal">
-			                    <span aria-hidden="true">¡¿</span><span class="sr-only">Close</span>
+			                    <span aria-hidden="true">Ã—</span><span class="sr-only">Close</span>
 			                </button>
 			                <center>
-				                <h4 class="modal-title" id="myModalLabel">¹®ÀÇÇÏ±â</h4>
+				                <h4 class="modal-title" id="myModalLabel">ë¬¸ì˜í•˜ê¸°</h4>
 			                </center>
 			            </div>
 			               	
@@ -194,59 +194,59 @@
 							<div class="row">
 								<div class="form-group">
 									<div class="col-md-2">
-										<b>¹®ÀÇÀ¯Çü</b>
+										<b>ë¬¸ì˜ìœ í˜•</b>
 									</div>
 									<div class="col-md-10">
 										<!-- Split button -->
 										<div class="btn-group">
 											<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-												¹®ÀÇÀ¯Çü1 <span class="caret"></span>
+												ë¬¸ì˜ìœ í˜•1 <span class="caret"></span>
 											</button>
 											<ul class="dropdown-menu">
-												<li><a href="#">¹®ÀÇÀ¯Çü1-1</a></li>
-												<li><a href="#">¹®ÀÇÀ¯Çü1-2</a></li>
-												<li><a href="#">¹®ÀÇÀ¯Çü1-3</a></li>
+												<li><a href="#">ë¬¸ì˜ìœ í˜•1-1</a></li>
+												<li><a href="#">ë¬¸ì˜ìœ í˜•1-2</a></li>
+												<li><a href="#">ë¬¸ì˜ìœ í˜•1-3</a></li>
 												<li role="separator" class="divider"></li>
-												<li><a href="#">±âÅ¸</a></li>
+												<li><a href="#">ê¸°íƒ€</a></li>
 											</ul>
 										</div>
 										
 										<div class="btn-group">
 											<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-												¹®ÀÇÀ¯Çü2 <span class="caret"></span>
+												ë¬¸ì˜ìœ í˜•2 <span class="caret"></span>
 											</button>
 											<ul class="dropdown-menu">
-												<li><a href="#">¹®ÀÇÀ¯Çü2-1</a></li>
-												<li><a href="#">¹®ÀÇÀ¯Çü2-2</a></li>
-												<li><a href="#">¹®ÀÇÀ¯Çü2-3</a></li>
+												<li><a href="#">ë¬¸ì˜ìœ í˜•2-1</a></li>
+												<li><a href="#">ë¬¸ì˜ìœ í˜•2-2</a></li>
+												<li><a href="#">ë¬¸ì˜ìœ í˜•2-3</a></li>
 												<li role="separator" class="divider"></li>
-												<li><a href="#">±âÅ¸</a></li>
+												<li><a href="#">ê¸°íƒ€</a></li>
 											</ul>
 										</div>
 										
 										<div class="btn-group">
 											<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-												¹®ÀÇÀ¯Çü3 <span class="caret"></span>
+												ë¬¸ì˜ìœ í˜•3 <span class="caret"></span>
 											</button>
 											<ul class="dropdown-menu">
-												<li><a href="#">¹®ÀÇÀ¯Çü3-1</a></li>
-												<li><a href="#">¹®ÀÇÀ¯Çü3-2</a></li>
-												<li><a href="#">¹®ÀÇÀ¯Çü3-3</a></li>
+												<li><a href="#">ë¬¸ì˜ìœ í˜•3-1</a></li>
+												<li><a href="#">ë¬¸ì˜ìœ í˜•3-2</a></li>
+												<li><a href="#">ë¬¸ì˜ìœ í˜•3-3</a></li>
 												<li role="separator" class="divider"></li>
-												<li><a href="#">±âÅ¸</a></li>
+												<li><a href="#">ê¸°íƒ€</a></li>
 											</ul>
 										</div>
 										
 										<div class="btn-group">
 											<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-												¹®ÀÇÀ¯Çü4 <span class="caret"></span>
+												ë¬¸ì˜ìœ í˜•4 <span class="caret"></span>
 											</button>
 											<ul class="dropdown-menu">
-												<li><a href="#">¹®ÀÇÀ¯Çü4-1</a></li>
-												<li><a href="#">¹®ÀÇÀ¯Çü4-2</a></li>
-												<li><a href="#">¹®ÀÇÀ¯Çü4-3</a></li>
+												<li><a href="#">ë¬¸ì˜ìœ í˜•4-1</a></li>
+												<li><a href="#">ë¬¸ì˜ìœ í˜•4-2</a></li>
+												<li><a href="#">ë¬¸ì˜ìœ í˜•4-3</a></li>
 												<li role="separator" class="divider"></li>
-												<li><a href="#">±âÅ¸</a></li>
+												<li><a href="#">ê¸°íƒ€</a></li>
 											</ul>
 										</div>
 									</div>
@@ -256,10 +256,10 @@
 							<div class="row">
 								<div class="form-group">
 									<div class="col-md-2">
-										<label for="form-title">Á¦¸ñ</label>
+										<label for="form-title">ì œëª©</label>
 									</div>
 									<div class="col-md-10">
-										<input type="text" class="form-control" name="title" id="form-title" placeholder="Á¦¸ñÀ» Àû¾îÁÖ¼¼¿ä.">
+										<input type="text" class="form-control" name="title" id="form-title" placeholder="ì œëª©ì„ ì ì–´ì£¼ì„¸ìš”.">
 									</div>
 								</div>
 							</div><hr>
@@ -267,10 +267,10 @@
 							<div class="row">
 								<div class="form-group">
 									<div class="col-md-2">
-										<b>³»¿ë</b>
+										<b>ë‚´ìš©</b>
 									</div>
 									<div class="col-md-10">
-										<textarea class="form-control" rows="10" name="description"  id="form-author" placeholder="º»¹®À» Àû¾îÁÖ¼¼¿ä."></textarea>
+										<textarea class="form-control" rows="10" name="description"  id="form-author" placeholder="ë³¸ë¬¸ì„ ì ì–´ì£¼ì„¸ìš”."></textarea>
 									</div>
 								</div>
 							</div><hr>	
@@ -278,7 +278,7 @@
 							<div class="row">
 								<div class="form-group">
 									<div class="col-md-2">
-			    						<b>ÆÄÀÏÃ·ºÎ</b>
+			    						<b>íŒŒì¼ì²¨ë¶€</b>
 			  						</div>
 								<div class="col-md-10">
 			    					<input type="file" id="exampleInputFile">
@@ -302,7 +302,7 @@
 							<div class="row">
 								<center>
 									<p>
-					  					<button type="button" class="btn btn-primary btn-lg">¹®ÀÇÇÏ±â</button>
+					  					<button type="button" class="btn btn-primary btn-lg">ë¬¸ì˜í•˜ê¸°</button>
 									</p>
 								</center>
 							</div>	
@@ -312,29 +312,29 @@
 					</div>
 				</div>
 			</div>
-			<!-- ¹®ÀÇÇÏ±â -->
+			<!-- ë¬¸ì˜í•˜ê¸° -->
 			
 			
 			
 				
 			</div><hr>
-			<!-- º»¹®³»¿ë -->
+			<!-- ë³¸ë¬¸ë‚´ìš© -->
 			
 		</div><hr>
-		<!-- º»¹® -->
+		<!-- ë³¸ë¬¸ -->
 			
 		
-		<!-- ÇÏ´Ü -->
+		<!-- í•˜ë‹¨ -->
 		<div class="row">
-			<div class="text-center">ÇÏ´Ü</div>
+			<div class="text-center">í•˜ë‹¨</div>
 		</div>
-		<!-- ÇÏ´Ü -->
+		<!-- í•˜ë‹¨ -->
 		
 	</div>
 	
 	
 
-	<!-- body°¡ ³¡³ª´Â ºÎºÐ¿¡ ÀÖ¾î¾ß ÇÔ -->
+	<!-- bodyê°€ ëë‚˜ëŠ” ë¶€ë¶„ì— ìžˆì–´ì•¼ í•¨ -->
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->

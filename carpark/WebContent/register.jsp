@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
@@ -16,7 +16,7 @@
 	
 	<div class="container">
 	
-		<!-- ªÛ¥‹ ∏ﬁ¥∫πŸ -->
+		<!-- ÏÉÅÎã® Î©îÎâ¥Î∞î -->
 		<nav class="navbar navbar-inverse">
 			<div class="container-fluid">
 				<!-- Brand and toggle get grouped for better mobile display -->
@@ -27,24 +27,24 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="#">»®</a>
+					<a class="navbar-brand" href="#">Ìôà</a>
 				</div>
 				
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
 				
-					<!-- ∑Œ±◊¿Œ πˆ∆∞ -->
+					<!-- Î°úÍ∑∏Ïù∏ Î≤ÑÌäº -->
 					<button type="button" class="btn btn-default navbar-btn" data-toggle="modal" data-target="#myLogin">
 						Sign in
 					</button>
 	         		
-	         		<!-- ∑Œ±◊¿Œ∏¥ﬁ ∆Àæ˜ -->
+	         		<!-- Î°úÍ∑∏Ïù∏Î™®Îã¨ ÌåùÏóÖ -->
 			      	<div class="modal fade" id="myLogin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			        	<div class="modal-dialog">
 			            	<div class="modal-content">
 			               		<div class="modal-header">
 			                  		<button type="button" class="close" data-dismiss="modal">
-			                     		<span aria-hidden="true">°ø</span><span class="sr-only">Close</span>
+			                     		<span aria-hidden="true">√ó</span><span class="sr-only">Close</span>
 			                  		</button>
 			                  		<h4 class="modal-title" id="myModalLabel">Modal title</h4>
 			               		</div>
@@ -95,40 +95,40 @@
 			</div>
 				
 		</nav>
-		<!-- ªÛ¥‹ ∏ﬁ¥∫πŸ -->
+		<!-- ÏÉÅÎã® Î©îÎâ¥Î∞î -->
 
-		<!-- ∫ªπÆ -->		
+		<!-- Î≥∏Î¨∏ -->		
 		<div class="row">
-		<!-- ∞∞¿∫ «‡ø° ¿ßƒ°«ÿæﬂ «œ¥¬ ∞ÕµÈ¿∫ «œ≥™¿« rowæ»ø° ¿ßƒ° -->
+		<!-- Í∞ôÏùÄ ÌñâÏóê ÏúÑÏπòÌï¥Ïïº ÌïòÎäî Í≤ÉÎì§ÏùÄ ÌïòÎÇòÏùò rowÏïàÏóê ÏúÑÏπò -->
 		
-			<!-- ¡¬√¯∏ﬁ¥∫ -->
-			<div class="col-md-2"><!-- ø≠¿∫ col-md-1~12±Ó¡ˆ -->
+			<!-- Ï¢åÏ∏°Î©îÎâ¥ -->
+			<div class="col-md-2"><!-- Ïó¥ÏùÄ col-md-1~12ÍπåÏßÄ -->
 				<ul class="nav nav-pills nav-stacked">
-					<li><a href="">∏ﬁ¥∫</a></li>
-					<li><a href="">∏ﬁ¥∫</a></li>
-					<li><a href="">∏ﬁ¥∫</a></li>
-					<li><a href="">∏ﬁ¥∫</a></li>
-					<li><a href="">∏ﬁ¥∫</a></li>
-					<li><a href="">∏ﬁ¥∫</a></li>
+					<li><a href="">Î©îÎâ¥</a></li>
+					<li><a href="">Î©îÎâ¥</a></li>
+					<li><a href="">Î©îÎâ¥</a></li>
+					<li><a href="">Î©îÎâ¥</a></li>
+					<li><a href="">Î©îÎâ¥</a></li>
+					<li><a href="">Î©îÎâ¥</a></li>
 				</ul>
 			</div>
-			<!-- ¡¬√¯∏ﬁ¥∫ -->
+			<!-- Ï¢åÏ∏°Î©îÎâ¥ -->
 			
 			
-			<!-- ∫ªπÆ≥ªøÎ -->
-			<div class="col-md-10"><!-- 12ƒ≠ ¡ﬂ ¡¬√¯∏ﬁ¥∫ 2ƒ≠ ¡¶ø‹«— ≥™∏”¡ˆ -->
+			<!-- Î≥∏Î¨∏ÎÇ¥Ïö© -->
+			<div class="col-md-10"><!-- 12Ïπ∏ Ï§ë Ï¢åÏ∏°Î©îÎâ¥ 2Ïπ∏ Ï†úÏô∏Ìïú ÎÇòÎ®∏ÏßÄ -->
 			<form>
 				<div class="row">
 					<div class="col-md-2">
-						<b>¡÷¬˜¿Â ±∏∫–</b><br>
+						<b>Ï£ºÏ∞®Ïû• Íµ¨Î∂Ñ</b><br>
 					</div>
 					<div class="col-md-10">
 						<div class="btn-group btn-group-justified" role="group" aria-label="...">
 				  			<div class="btn-group" role="group">
-								<button type="button" class="btn btn-default">¡÷¬˜¿Â±∏∫–</button>
+								<button type="button" class="btn btn-default">Ï£ºÏ∞®Ïû•Íµ¨Î∂Ñ</button>
 							</div>
 							<div class="btn-group" role="group">
-								<button type="button" class="btn btn-default">¡÷¬˜¿Â±∏∫–</button>
+								<button type="button" class="btn btn-default">Ï£ºÏ∞®Ïû•Íµ¨Î∂Ñ</button>
 							</div>
 						</div>
 					</div>
@@ -136,15 +136,15 @@
 				
 				<div class="row">
 					<div class="col-md-2">
-						<b>»£Ω∫∆Æ±∏∫–</b><br>
+						<b>Ìò∏Ïä§Ìä∏Íµ¨Î∂Ñ</b><br>
 					</div>
 					<div class="col-md-10">
 						<div class="btn-group btn-group-justified" role="group" aria-label="...">
 				  			<div class="btn-group" role="group">
-								<button type="button" class="btn btn-default">∞≥¿Œ</button>
+								<button type="button" class="btn btn-default">Í∞úÏù∏</button>
 							</div>
 							<div class="btn-group" role="group">
-								<button type="button" class="btn btn-default">ªÁæ˜¿⁄</button>
+								<button type="button" class="btn btn-default">ÏÇ¨ÏóÖÏûê</button>
 							</div>
 						</div>
 					</div>
@@ -152,7 +152,7 @@
 				
 				<div class="row">
 					<div class="col-md-2">
-						<b>∆Ø¬°</b><br>
+						<b>ÌäπÏßï</b><br>
 					</div>
 					<div class="col-md-10">
 						<div class="btn-group btn-group-justified" role="group" aria-label="...">
@@ -160,7 +160,7 @@
 								<button type="button" class="btn btn-default">CCTV</button>
 							</div>
 							<div class="btn-group" role="group">
-								<button type="button" class="btn btn-default">π´¿Œ</button>
+								<button type="button" class="btn btn-default">Î¨¥Ïù∏</button>
 							</div>
 						</div>
 					</div>
@@ -168,19 +168,19 @@
 				
 				<div class="row">
 					<div class="col-md-2">
-						<b>¿ßƒ°</b><br>
+						<b>ÏúÑÏπò</b><br>
 					</div>
 					<div class="col-md-10">
 						<div class="form-group">
 							<input type="text" class="form-control" placeholder="Search">
 						</div>
-							<button type="submit" class="btn btn-default">∞Àªˆ</button>
+							<button type="submit" class="btn btn-default">Í≤ÄÏÉâ</button>
 					</div>
 				</div><hr>
 
 				<div class="row">
 					<div class="col-md-2">
-						<b>º≥∏Ì</b><br>
+						<b>ÏÑ§Î™Ö</b><br>
 					</div>
 					<div class="col-md-10">
 						<textarea class="form-control" rows="3"></textarea>						
@@ -189,20 +189,20 @@
 				
 				<div class="row">
 					<div class="col-md-2">
-						<b>√ﬂ∞°¡§∫∏</b><br>
+						<b>Ï∂îÍ∞ÄÏ†ïÎ≥¥</b><br>
 					</div>
 					<div class="col-md-10">
 						
 							<div class="form-group">
-								<b>¿Ã∏ß</b>
+								<b>Ïù¥Î¶Ñ</b>
 								<input type="text" class="form-control" id="exampleInputName2" placeholder="Jane Doe">
 							</div><br>
 							<div class="form-group">
-								<b>¿Ã∏ﬁ¿œ</b>
+								<b>Ïù¥Î©îÏùº</b>
 								<input type="email" class="form-control" id="exampleInputEmail2" placeholder="jane.doe@example.com">
 							</div><br>
 							<div class="form-group">
-								<b>¿¸»≠π¯»£</b>
+								<b>Ï†ÑÌôîÎ≤àÌò∏</b>
 								<input type="text" class="form-control" placeholder="Text input">
 							</div>
 						
@@ -211,12 +211,12 @@
 				
 				<div class="row">
 					<div class="col-md-2">
-						<b>∞°∞›</b>
+						<b>Í∞ÄÍ≤©</b>
 					</div>
 					<div class="col-md-10">
 						<form>
 							<div class="form-group">
-								<input type="text" class="form-control" placeholder="ø¯">
+								<input type="text" class="form-control" placeholder="Ïõê">
 							</div>
 						</form>
 					</div>
@@ -227,28 +227,28 @@
 				<div class="row">
 					<center>
 						<p>
-		  					<button type="button" class="btn btn-primary btn-lg">µÓ∑œ</button>
-		  					<button type="button" class="btn btn-default btn-lg">√Îº“</button>
+		  					<button type="button" class="btn btn-primary btn-lg">Îì±Î°ù</button>
+		  					<button type="button" class="btn btn-default btn-lg">Ï∑®ÏÜå</button>
 						</p>
 					</center>
 				</div>
 				
 			</div><hr>
-			<!-- ∫ªπÆ≥ªøÎ -->
+			<!-- Î≥∏Î¨∏ÎÇ¥Ïö© -->
 			
 		</div><hr>
-		<!-- ∫ªπÆ -->
+		<!-- Î≥∏Î¨∏ -->
 	
 			
-		<!-- «œ¥‹ -->
+		<!-- ÌïòÎã® -->
 		<div class="row">
-			<div class="col-md-12 text-center">«œ¥‹</div>
+			<div class="col-md-12 text-center">ÌïòÎã®</div>
 		</div>
-		<!-- «œ¥‹ -->
+		<!-- ÌïòÎã® -->
 		
 	</div>
 
-	<!-- body∞° ≥°≥™¥¬ ∫Œ∫–ø° ¿÷æÓæﬂ «‘ -->
+	<!-- bodyÍ∞Ä ÎÅùÎÇòÎäî Î∂ÄÎ∂ÑÏóê ÏûàÏñ¥Ïïº Ìï® -->
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->

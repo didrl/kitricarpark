@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -44,18 +44,18 @@
             <ul class="nav navbar-right top-nav">
             
             
-                <!-- ∞Àªˆ -->
+                <!-- Í≤ÄÏÉâ -->
                 <form class="navbar-form navbar-left" role="search">
         			<div class="form-group">
           				<input type="text" class="form-control" placeholder="Search">
         			</div>
-        			<button type="submit" class="btn btn-default">∞Àªˆ</button>
+        			<button type="submit" class="btn btn-default">Í≤ÄÏÉâ</button>
       			</form>
-                <!-- ∞Àªˆ -->
+                <!-- Í≤ÄÏÉâ -->
             
             
             
-                <!-- ∏ﬁºº¡ˆ -->
+                <!-- Î©îÏÑ∏ÏßÄ -->
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
                     <ul class="dropdown-menu message-dropdown">
@@ -67,10 +67,10 @@
                                     </span>
                                     <div class="media-body">
                                         <h5 class="media-heading">
-                                            <strong>∏ﬁºº¡ˆ1</strong>
+                                            <strong>Î©îÏÑ∏ÏßÄ1</strong>
                                         </h5>
-                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> ∏ﬁºº¡ˆ Ω√∞£</p>
-                                        <p>∏ﬁºº¡ˆ ≥ªøÎ</p>
+                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Î©îÏÑ∏ÏßÄ ÏãúÍ∞Ñ</p>
+                                        <p>Î©îÏÑ∏ÏßÄ ÎÇ¥Ïö©</p>
                                     </div>
                                 </div>
                             </a>
@@ -83,10 +83,10 @@
                                     </span>
                                     <div class="media-body">
                                         <h5 class="media-heading">
-                                            <strong>∏ﬁºº¡ˆ2</strong>
+                                            <strong>Î©îÏÑ∏ÏßÄ2</strong>
                                         </h5>
-                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> ∏ﬁºº¡ˆ Ω√∞£</p>
-                                        <p>∏ﬁºº¡ˆ ≥ªøÎ</p>
+                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Î©îÏÑ∏ÏßÄ ÏãúÍ∞Ñ</p>
+                                        <p>Î©îÏÑ∏ÏßÄ ÎÇ¥Ïö©</p>
                                     </div>
                                 </div>
                             </a>
@@ -99,24 +99,24 @@
                                     </span>
                                     <div class="media-body">
                                         <h5 class="media-heading">
-                                            <strong>∏ﬁºº¡ˆ3</strong>
+                                            <strong>Î©îÏÑ∏ÏßÄ3</strong>
                                         </h5>
-                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> ∏ﬁºº¡ˆ Ω√∞£</p>
-                                        <p>∏ﬁºº¡ˆ ≥ªøÎ</p>
+                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Î©îÏÑ∏ÏßÄ ÏãúÍ∞Ñ</p>
+                                        <p>Î©îÏÑ∏ÏßÄ ÎÇ¥Ïö©</p>
                                     </div>
                                 </div>
                             </a>
                         </li>
                         <li class="message-footer">
-                            <a href="#">¬ ¡ˆ∏Ò∑œ</a>
+                            <a href="#">Ï™ΩÏßÄÎ™©Î°ù</a>
                         </li>
                     </ul>
                 </li>
-                <!-- ∏ﬁºº¡ˆ -->
+                <!-- Î©îÏÑ∏ÏßÄ -->
                 
 
                 
-                <!-- ∞≥¿Œ∏ﬁ¥∫ -->
+                <!-- Í∞úÏù∏Î©îÎâ¥ -->
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> John Smith <b class="caret"></b></a>
                     <ul class="dropdown-menu">
@@ -135,82 +135,82 @@
                         </li>
                     </ul>
                 </li>
-                <!-- ∞≥¿Œ∏ﬁ¥∫ -->
+                <!-- Í∞úÏù∏Î©îÎâ¥ -->
             </ul>
             
-            <!-- ªÁ¿ÃµÂπŸ -->
+            <!-- ÏÇ¨Ïù¥ÎìúÎ∞î -->
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                     <li>
-                        <a href=""><i class="fa fa-fw"></i> ∞≥¿Œ¡§∫∏</a>
+                        <a href=""><i class="fa fa-fw"></i> Í∞úÏù∏Ï†ïÎ≥¥</a>
                     </li>
                     <li>
-                        <a href=""><i class="fa fa-fw"></i> ¡Ò∞‹√£±‚</a>
+                        <a href=""><i class="fa fa-fw"></i> Ï¶êÍ≤®Ï∞æÍ∏∞</a>
                     </li>
                     <li>
-                        <a href=""><i class="fa fa-fw"></i> øπæ‡≥ªø™</a>
+                        <a href=""><i class="fa fa-fw"></i> ÏòàÏïΩÎÇ¥Ïó≠</a>
                     </li>
                     <li>
-                        <a href=""><i class="fa fa-fw"></i> ¬ ¡ˆ»Æ¿Œ</a>
+                        <a href=""><i class="fa fa-fw"></i> Ï™ΩÏßÄÌôïÏù∏</a>
                     </li>
                     <li>
-                        <a href=""><i class="fa fa-fw"></i> πÆ¿««œ±‚</a>
+                        <a href=""><i class="fa fa-fw"></i> Î¨∏ÏùòÌïòÍ∏∞</a>
                     </li>
                     <li>
-                        <a href=""><i class="fa fa-fw"></i> Ω≈∞Ì«œ±‚</a>
+                        <a href=""><i class="fa fa-fw"></i> Ïã†Í≥†ÌïòÍ∏∞</a>
                     </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
-            <!-- ªÁ¿ÃµÂπŸ -->
+            <!-- ÏÇ¨Ïù¥ÎìúÎ∞î -->
         </nav>
 
 
-		<!-- ∏ﬁ¿Œ -->
+		<!-- Î©îÏù∏ -->
         <div id="page-wrapper">
         
         
  
 
-			<!-- Ω≈∞Ì∏ÆΩ∫∆Æ -->
+			<!-- Ïã†Í≥†Î¶¨Ïä§Ìä∏ -->
             <div class="container-fluid">
 
                 <!-- Page Heading -->
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Ω≈∞Ì≥ªø™
+                            Ïã†Í≥†ÎÇ¥Ïó≠
                         </h1>
                     
                     </div>
                 </div>
                 
                 
-	            <!-- Ω≈∞Ì«œ±‚ -->
+	            <!-- Ïã†Í≥†ÌïòÍ∏∞ -->
 	            <p>
 				<button type="button" class="btn btn-default" data-toggle="modal" data-target="#report">
-					Ω≈∞Ì
+					Ïã†Í≥†
 				</button>
 				</p>
 		         		
-		        <!-- Ω≈∞Ì ∏¥ﬁ -->
+		        <!-- Ïã†Í≥† Î™®Îã¨ -->
 				<div class="modal fade" id="report" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 				    <div class="modal-dialog">
 				        <div class="modal-content">
 				           	<div class="modal-header">
 				               	<button type="button" class="close" data-dismiss="modal">
-				                    <span aria-hidden="true">°ø</span><span class="sr-only">Close</span>
+				                    <span aria-hidden="true">√ó</span><span class="sr-only">Close</span>
 				                </button>
 				                <center>
-					                <h4 class="modal-title" id="myModalLabel">Ω≈∞Ì«œ±‚</h4>
+					                <h4 class="modal-title" id="myModalLabel">Ïã†Í≥†ÌïòÍ∏∞</h4>
 				                </center>
 				            </div>
 				               	
 					        <div class="modal-body">
 							    <div class="row">
 									<div class="col-md-2">
-										<b>Ω≈∞Ì∏Ò∑œ</b>
+										<b>Ïã†Í≥†Î™©Î°ù</b>
 									</div>
 			                        <div class="form-group">
 			                        	<label>Selects</label>
@@ -227,10 +227,10 @@
 								<div class="row">
 									<div class="form-group">
 										<div class="col-md-2">
-											<label for="form-title">¡¶∏Ò</label>
+											<label for="form-title">Ï†úÎ™©</label>
 										</div>
 										<div class="col-md-10">
-											<input type="text" class="form-control" name="title" id="form-title" placeholder="¡¶∏Ò¿ª ¿˚æÓ¡÷ººø‰.">
+											<input type="text" class="form-control" name="title" id="form-title" placeholder="Ï†úÎ™©ÏùÑ Ï†ÅÏñ¥Ï£ºÏÑ∏Ïöî.">
 										</div>
 									</div>
 								</div><hr>
@@ -238,10 +238,10 @@
 								<div class="row">
 									<div class="form-group">
 										<div class="col-md-2">
-											<label for="form-author">≥ªøÎ</label>
+											<label for="form-author">ÎÇ¥Ïö©</label>
 										</div>
 										<div class="col-md-10">
-											<textarea class="form-control" rows="10" name="description"  id="form-author" placeholder="∫ªπÆ¿ª ¿˚æÓ¡÷ººø‰."></textarea>
+											<textarea class="form-control" rows="10" name="description"  id="form-author" placeholder="Î≥∏Î¨∏ÏùÑ Ï†ÅÏñ¥Ï£ºÏÑ∏Ïöî."></textarea>
 										</div>
 									</div>
 								</div><hr>	
@@ -249,7 +249,7 @@
 								<div class="row">
 									<center>
 										<p>
-						  					<button type="button" class="btn btn-primary btn-lg">µÓ∑œ</button>
+						  					<button type="button" class="btn btn-primary btn-lg">Îì±Î°ù</button>
 										</p>
 									</center>
 								</div>	
@@ -258,29 +258,29 @@
 						</div>
 					</div>
 				</div>
-				<!-- Ω≈∞Ì ∏¥ﬁ -->
+				<!-- Ïã†Í≥† Î™®Îã¨ -->
 
                 <div class="list-group">
-				  <a href="#" class="list-group-item">Ω≈∞Ì1</a>
-				  <a href="#" class="list-group-item">Ω≈∞Ì2</a>
-				  <a href="#" class="list-group-item">Ω≈∞Ì3</a>
-				  <a href="#" class="list-group-item">Ω≈∞Ì4</a>
-				  <a href="#" class="list-group-item">Ω≈∞Ì5</a>
-				  <a href="#" class="list-group-item">Ω≈∞Ì6</a>
-				  <a href="#" class="list-group-item">Ω≈∞Ì7</a>
-				  <a href="#" class="list-group-item">Ω≈∞Ì8</a>
-				  <a href="#" class="list-group-item">Ω≈∞Ì9</a>
+				  <a href="#" class="list-group-item">Ïã†Í≥†1</a>
+				  <a href="#" class="list-group-item">Ïã†Í≥†2</a>
+				  <a href="#" class="list-group-item">Ïã†Í≥†3</a>
+				  <a href="#" class="list-group-item">Ïã†Í≥†4</a>
+				  <a href="#" class="list-group-item">Ïã†Í≥†5</a>
+				  <a href="#" class="list-group-item">Ïã†Í≥†6</a>
+				  <a href="#" class="list-group-item">Ïã†Í≥†7</a>
+				  <a href="#" class="list-group-item">Ïã†Í≥†8</a>
+				  <a href="#" class="list-group-item">Ïã†Í≥†9</a>
 				</div>
                 
             </div>
             <!-- /.container-fluid -->
-            <!-- Ω≈∞Ì∏ÆΩ∫∆Æ -->
+            <!-- Ïã†Í≥†Î¶¨Ïä§Ìä∏ -->
 
             
 
         </div>
         <!-- /#page-wrapper -->
-		<!-- ∏ﬁ¿Œ -->
+		<!-- Î©îÏù∏ -->
 
     </div>
     <!-- /#wrapper -->

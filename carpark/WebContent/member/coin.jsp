@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <%@ include file="/admin/common/common.jsp" %>
 
     <div id="wrapper">
@@ -19,7 +19,7 @@
                 <div class="row">
 					<div class="col-lg-12">
 						<h1 class="page-header">
-							ÄÚÀÎ ÃæÀü <small>Subheading</small>
+							ì½”ì¸ ì¶©ì „ <small>Subheading</small>
 						</h1>
 
 					</div>
@@ -33,12 +33,12 @@
 							<div class="form-group">
 
 								<div class="col-lg-4">
-									<label>³» ÄÚÀÎ</label>
+									<label>ë‚´ ì½”ì¸</label>
 								</div>
 								<div class="col-lg-6">
-									<p class="breadcrumb">º¸À¯ ÄÚÀÎ</p>
-									<p class="form-control-static">datainput ÄÚÀÎ</p>
-									<p class="help-block">ÄÚÀÎ »ç¿ë ¾È³»</p>
+									<p class="breadcrumb">ë³´ìœ  ì½”ì¸</p>
+									<p class="form-control-static">datainput ì½”ì¸</p>
+									<p class="help-block">ì½”ì¸ ì‚¬ìš© ì•ˆë‚´</p>
 								</div>
 							</div>
 							<!-- p1: my coin end-->
@@ -46,29 +46,29 @@
 							<!-- p2: coin charge-->
 							<div class="form-group">
 								<div class="col-lg-4">
-									<label> ÄÚÀÎÃæÀü </label>
+									<label> ì½”ì¸ì¶©ì „ </label>
 								</div>
 								<!-- select coin -->
 
 								<div class="col-lg-6">
 									<p>
 									<ol class="breadcrumb">
-										<li>ÄÚÀÎ »óÇ° ¼±ÅÃ</li>
+										<li>ì½”ì¸ ìƒí’ˆ ì„ íƒ</li>
 									</ol>
 									<div class="radio">
 										<label> <input type="radio" name="optionsRadios"
-											id="optionsRadios1" value="option1" checked>21ÄÚÀÎ
-											3900¿ø
+											id="optionsRadios1" value="option1" checked>21ì½”ì¸
+											3900ì›
 										</label>
 									</div>
 									<div class="radio">
 										<label> <input type="radio" name="optionsRadios"
-											id="optionsRadios2" value="option2">61ÄÚÀÎ 8900¿ø
+											id="optionsRadios2" value="option2">61ì½”ì¸ 8900ì›
 										</label>
 									</div>
 									<div class="radio">
 										<label> <input type="radio" name="optionsRadios"
-											id="optionsRadios3" value="option3">100ÄÚÀÎ 15000¿ø
+											id="optionsRadios3" value="option3">100ì½”ì¸ 15000ì›
 										</label>
 									</div>
 									</p>
@@ -76,23 +76,23 @@
 									<!-- coin charge method-->
 									<p>
 									<ol class="breadcrumb">
-										<li>°áÁ¦ ¼ö´Ü ¼±ÅÃ</li>
+										<li>ê²°ì œ ìˆ˜ë‹¨ ì„ íƒ</li>
 									</ol>
 
 									<label class="radio-inline"> <input type="radio"
 										name="optionsRadiosInline" id="optionsRadiosInline1"
-										value="option1" checked> ½Å¿ëÄ«µå
+										value="option1" checked> ì‹ ìš©ì¹´ë“œ
 									</label> <label class="radio-inline"> <input type="radio"
 										name="optionsRadiosInline" id="optionsRadiosInline2"
-										value="option2"> ÈÞ´ëÆù °áÁ¦
+										value="option2"> íœ´ëŒ€í° ê²°ì œ
 									</label> <label class="radio-inline"> <input type="radio"
 										name="optionsRadiosInline" id="optionsRadiosInline3"
-										value="option3"> °èÁÂÀÌÃ¼
+										value="option3"> ê³„ì¢Œì´ì²´
 									</label>
 									</p>
 									<p>
-										<button type="submit" class="btn btn-default">°áÁ¦¿äÃ»</button>
-										<button type="reset" class="btn btn-default">Ãë¼Ò</button>
+										<button type="submit" class="btn btn-default">ê²°ì œìš”ì²­</button>
+										<button type="reset" class="btn btn-default">ì·¨ì†Œ</button>
 									</p>
 								</div>
 							</div>

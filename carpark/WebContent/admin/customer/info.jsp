@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <%@ include file="/admin/common/common.jsp" %>
 
     <div id="wrapper">
@@ -21,15 +21,15 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            ∞Ì∞¥∞¸∏Æ
-                            <small>∞Ì∞¥¡§∫∏</small>
+                            Í≥†Í∞ùÍ¥ÄÎ¶¨
+                            <small>Í≥†Í∞ùÏ†ïÎ≥¥</small>
                         </h1>
                         <ol class="breadcrumb">
                             <li>
-                                <i class="fa fa-dashboard"></i>  <a href="<%=adminpath%>/adminindex.jsp">∞Ì∞¥ »≠∏È</a>
+                                <i class="fa fa-dashboard"></i>  <a href="<%=adminpath%>/adminindex.jsp">Í≥†Í∞ù ÌôîÎ©¥</a>
                             </li>
                             <li class="active">
-                                <i class="fa fa-file"></i> ∞Ì∞¥ »≠∏È_sub
+                                <i class="fa fa-file"></i> Í≥†Í∞ù ÌôîÎ©¥_sub
                             </li>
                         </ol>
                     </div>

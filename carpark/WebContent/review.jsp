@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
@@ -16,7 +16,7 @@
 	
 	<div class="container">
 	
-		<!-- ªÛ¥‹ ∏ﬁ¥∫πŸ -->
+		<!-- ÏÉÅÎã® Î©îÎâ¥Î∞î -->
 		<nav class="navbar-inverse">
 			<div class="container-fluid">
 				<!-- Brand and toggle get grouped for better mobile display -->
@@ -27,24 +27,24 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="#">»®</a>
+					<a class="navbar-brand" href="#">Ìôà</a>
 				</div>
 				
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
 				
-					<!-- ∑Œ±◊¿Œ πˆ∆∞ -->
+					<!-- Î°úÍ∑∏Ïù∏ Î≤ÑÌäº -->
 					<button type="button" class="btn btn-default navbar-btn" data-toggle="modal" data-target="#myLogin">
 						Sign in
 					</button>
 	         		
-	         		<!-- ∑Œ±◊¿Œ∏¥ﬁ ∆Àæ˜ -->
+	         		<!-- Î°úÍ∑∏Ïù∏Î™®Îã¨ ÌåùÏóÖ -->
 			      	<div class="modal fade" id="myLogin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			        	<div class="modal-dialog">
 			            	<div class="modal-content">
 			               		<div class="modal-header">
 			                  		<button type="button" class="close" data-dismiss="modal">
-			                     		<span aria-hidden="true">°ø</span><span class="sr-only">Close</span>
+			                     		<span aria-hidden="true">√ó</span><span class="sr-only">Close</span>
 			                  		</button>
 			                  		<h4 class="modal-title" id="myModalLabel">Modal title</h4>
 			               		</div>
@@ -95,53 +95,53 @@
 			</div>
 				
 		</nav>
-		<!-- ªÛ¥‹ ∏ﬁ¥∫πŸ -->
+		<!-- ÏÉÅÎã® Î©îÎâ¥Î∞î -->
 		
-		<!-- ∫ªπÆ -->
+		<!-- Î≥∏Î¨∏ -->
 		<div class="row">
 		
-			<!-- ¡¬√¯∏ﬁ¥∫ -->
+			<!-- Ï¢åÏ∏°Î©îÎâ¥ -->
 			<div class="col-md-2">
-				¡¬√¯∏ﬁ¥∫
+				Ï¢åÏ∏°Î©îÎâ¥
 				<ul class="nav nav-pills nav-stacked">
-					<li><a href="">∏ﬁ¥∫</a></li>
-					<li><a href="">∏ﬁ¥∫</a></li>
-					<li><a href="">∏ﬁ¥∫</a></li>
-					<li><a href="">∏ﬁ¥∫</a></li>
-					<li><a href="">∏ﬁ¥∫</a></li>
-					<li><a href="">∏ﬁ¥∫</a></li>
+					<li><a href="">Î©îÎâ¥</a></li>
+					<li><a href="">Î©îÎâ¥</a></li>
+					<li><a href="">Î©îÎâ¥</a></li>
+					<li><a href="">Î©îÎâ¥</a></li>
+					<li><a href="">Î©îÎâ¥</a></li>
+					<li><a href="">Î©îÎâ¥</a></li>
 				</ul>
 			</div>
-			<!-- ¡¬√¯∏ﬁ¥∫ -->
+			<!-- Ï¢åÏ∏°Î©îÎâ¥ -->
 		
-			<!-- ∫ªπÆ≥ªøÎ -->		
+			<!-- Î≥∏Î¨∏ÎÇ¥Ïö© -->		
 			<div class="col-md-10">
 			
 			
-			<!-- ∏Æ∫‰ µÓ∑œ -->
+			<!-- Î¶¨Î∑∞ Îì±Î°ù -->
 			<div class="row">
 				<button type="button" class="btn btn-default" data-toggle="modal" data-target="#review">
-					∏Æ∫‰µÓ∑œ
+					Î¶¨Î∑∞Îì±Î°ù
 				</button>
 			</div>
 	         		
-	        <!-- ∏Æ∫‰∏¥ﬁ ∆Àæ˜ -->
+	        <!-- Î¶¨Î∑∞Î™®Îã¨ ÌåùÏóÖ -->
 			<div class="modal fade" id="review" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			    <div class="modal-dialog">
 			        <div class="modal-content">
 			           	<div class="modal-header">
 			               	<button type="button" class="close" data-dismiss="modal">
-			                    <span aria-hidden="true">°ø</span><span class="sr-only">Close</span>
+			                    <span aria-hidden="true">√ó</span><span class="sr-only">Close</span>
 			                </button>
 			                <center>
-				                <h4 class="modal-title" id="myModalLabel">∏Æ∫‰ µÓ∑œ</h4>
+				                <h4 class="modal-title" id="myModalLabel">Î¶¨Î∑∞ Îì±Î°ù</h4>
 			                </center>
 			            </div>
 			               	
 				        <div class="modal-body">
 						    <div class="row">
 								<div class="col-md-2">
-									<b>∫∞¡°</b>
+									<b>Î≥ÑÏ†ê</b>
 								</div>
 								<div class="col-md-10">
 									<label class="radio-inline">
@@ -165,10 +165,10 @@
 							<div class="row">
 								<div class="form-group">
 									<div class="col-md-2">
-										<label for="form-title">¡¶∏Ò</label>
+										<label for="form-title">Ï†úÎ™©</label>
 									</div>
 									<div class="col-md-10">
-										<input type="text" class="form-control" name="title" id="form-title" placeholder="¡¶∏Ò¿ª ¿˚æÓ¡÷ººø‰.">
+										<input type="text" class="form-control" name="title" id="form-title" placeholder="Ï†úÎ™©ÏùÑ Ï†ÅÏñ¥Ï£ºÏÑ∏Ïöî.">
 									</div>
 								</div>
 							</div><hr>
@@ -176,10 +176,10 @@
 							<div class="row">
 								<div class="form-group">
 									<div class="col-md-2">
-										<label for="form-author">≥ªøÎ</label>
+										<label for="form-author">ÎÇ¥Ïö©</label>
 									</div>
 									<div class="col-md-10">
-										<textarea class="form-control" rows="10" name="description"  id="form-author" placeholder="∫ªπÆ¿ª ¿˚æÓ¡÷ººø‰."></textarea>
+										<textarea class="form-control" rows="10" name="description"  id="form-author" placeholder="Î≥∏Î¨∏ÏùÑ Ï†ÅÏñ¥Ï£ºÏÑ∏Ïöî."></textarea>
 									</div>
 								</div>
 							</div><hr>	
@@ -187,7 +187,7 @@
 							<div class="row">
 								<center>
 									<p>
-					  					<button type="button" class="btn btn-primary btn-lg">µÓ∑œ</button>
+					  					<button type="button" class="btn btn-primary btn-lg">Îì±Î°ù</button>
 									</p>
 								</center>
 							</div>	
@@ -196,30 +196,30 @@
 					</div>
 				</div>
 			</div>
-			<!-- ∏Æ∫‰ ∏¥ﬁ -->
+			<!-- Î¶¨Î∑∞ Î™®Îã¨ -->
 			
-			<!-- ∏Æ∫‰ ∏Ò∑œ -->
+			<!-- Î¶¨Î∑∞ Î™©Î°ù -->
 			
 			
 				
 			</div><hr>
-			<!-- ∫ªπÆ≥ªøÎ -->
+			<!-- Î≥∏Î¨∏ÎÇ¥Ïö© -->
 			
 		</div><hr>
-		<!-- ∫ªπÆ -->
+		<!-- Î≥∏Î¨∏ -->
 			
 		
-		<!-- «œ¥‹ -->
+		<!-- ÌïòÎã® -->
 		<div class="row">
-			<div class="text-center">«œ¥‹</div>
+			<div class="text-center">ÌïòÎã®</div>
 		</div>
-		<!-- «œ¥‹ -->
+		<!-- ÌïòÎã® -->
 		
 	</div>
 	
 	
 
-	<!-- body∞° ≥°≥™¥¬ ∫Œ∫–ø° ¿÷æÓæﬂ «‘ -->
+	<!-- bodyÍ∞Ä ÎÅùÎÇòÎäî Î∂ÄÎ∂ÑÏóê ÏûàÏñ¥Ïïº Ìï® -->
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->

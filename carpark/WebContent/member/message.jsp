@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
 <%@include file="/common/common.jsp"%>
 
 
@@ -116,42 +116,42 @@
 						Dashboard</a></li>
 
 				<li><a href="javascript:;" data-toggle="collapse"
-					data-target="#profile"><i class="fa fa-fw fa-arrows-v"></i> ÇÁ·ÎÇÊ
+					data-target="#profile"><i class="fa fa-fw fa-arrows-v"></i> í”„ë¡œí•„
 						<i class="fa fa-fw fa-caret-down"></i></a>
 					<ul id="profile" class="collapse">
-						<li><a href="#">ÇÁ·ÎÇÊ¼öÁ¤</a></li>
+						<li><a href="#">í”„ë¡œí•„ìˆ˜ì •</a></li>
 						<li><a href="#">feedback</a></li>
-						<li><a href="#">ÀÚµ¿Â÷Á¤º¸</a></li>
+						<li><a href="#">ìžë™ì°¨ì •ë³´</a></li>
 					</ul></li>
 
 				<li><a href="javascript:;" data-toggle="collapse"
 					data-target="#reservation"><i class="fa fa-fw fa-arrows-v"></i>
-						¿¹¾à <i class="fa fa-fw fa-caret-down"></i></a>
+						ì˜ˆì•½ <i class="fa fa-fw fa-caret-down"></i></a>
 					<ul id="reservation" class="collapse">
-						<li><a href="#">¿¹¾àÇÏ±â</a></li>
-						<li><a href="#">¿¹¾à¹Þ±â</a></li>
+						<li><a href="#">ì˜ˆì•½í•˜ê¸°</a></li>
+						<li><a href="#">ì˜ˆì•½ë°›ê¸°</a></li>
 					</ul></li>
 
 				<li><a href="javascript:;" data-toggle="collapse"
-					data-target="#message"><i class="fa fa-fw fa-arrows-v"></i> ¸Þ¼¼Áö
+					data-target="#message"><i class="fa fa-fw fa-arrows-v"></i> ë©”ì„¸ì§€
 						<i class="fa fa-fw fa-caret-down"></i></a>
 					<ul id="message" class="collapse">
-						<li><a href="#">º¸³½¸Þ¼¼Áö</a></li>
-						<li><a href="#">¹ÞÀº¸Þ¼¼Áö</a></li>
+						<li><a href="#">ë³´ë‚¸ë©”ì„¸ì§€</a></li>
+						<li><a href="#">ë°›ì€ë©”ì„¸ì§€</a></li>
 					</ul></li>
 
 				<li><a href="javascript:;" data-toggle="collapse"
-					data-target="#parking"><i class="fa fa-fw fa-arrows-v"></i> ÁÖÂ÷Àå
+					data-target="#parking"><i class="fa fa-fw fa-arrows-v"></i> ì£¼ì°¨ìž¥
 						<i class="fa fa-fw fa-caret-down"></i></a>
 					<ul id="parking" class="collapse">
-						<li><a href="#">ÁÖÂ÷Àå µî·Ï</a></li>
-						<li><a href="#">³» ÁÖÂ÷Àå</a></li>
+						<li><a href="#">ì£¼ì°¨ìž¥ ë“±ë¡</a></li>
+						<li><a href="#">ë‚´ ì£¼ì°¨ìž¥</a></li>
 					</ul></li>
 
 				<li><a href="blank-page.html"><i class="fa fa-fw fa-file"></i>
 						My Coin</a></li>
 				<li><a href="index-rtl.html"><i
-						class="fa fa-fw fa-dashboard"></i> Ä£±¸ÃÊ´ë</a></li>
+						class="fa fa-fw fa-dashboard"></i> ì¹œêµ¬ì´ˆëŒ€</a></li>
 			</ul>
 		</div>
 		<!-- /.navbar-collapse --> </nav>
@@ -196,10 +196,10 @@
 								<thead>
 									<tr>
 										<th>#</th>
-										<th>»óÅÂ</th>
-										<th>º¸³½ »ç¶÷</th>
-										<th>ÁÖÂ÷ ½ÃÀÛ ³¯Â¥</th>
-										<th>º¸³½ ½Ã°£</th>
+										<th>ìƒíƒœ</th>
+										<th>ë³´ë‚¸ ì‚¬ëžŒ</th>
+										<th>ì£¼ì°¨ ì‹œìž‘ ë‚ ì§œ</th>
+										<th>ë³´ë‚¸ ì‹œê°„</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -226,7 +226,7 @@
 									</tr>
 								</tbody>
 							</table>
-							<!-- ÁÖÂ÷Àå Ãß°¡ ¹öÆ° -->
+							<!-- ì£¼ì°¨ìž¥ ì¶”ê°€ ë²„íŠ¼ -->
 
 						</div>
 						<!-- /.table create -->
@@ -236,8 +236,8 @@
 					<!-- message button -->
 					<div class="row col-md-10 ">
 						<div id="content" class="text-center">
-							<button type="button" class="btn btn-success btn-lg">º¸³»±â</button>
-							<button type="button" class="btn btn-success btn-lg">»èÁ¦</button>
+							<button type="button" class="btn btn-success btn-lg">ë³´ë‚´ê¸°</button>
+							<button type="button" class="btn btn-success btn-lg">ì‚­ì œ</button>
 						</div>
 					</div>
 				</div>

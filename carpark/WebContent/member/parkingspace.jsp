@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
 <%@include file="/common/common.jsp"%>
 
 	
@@ -116,7 +116,7 @@
 				<!-- Page Heading -->
 				<div class="row">
 					<div class="col-lg-12">
-						<h1 class="page-header">ÁÖÂ÷Àå ¿¹¾à</h1>
+						<h1 class="page-header">ì£¼ì°¨ìž¥ ì˜ˆì•½</h1>
 						<ol class="breadcrumb">
 							<li><i class="fa fa-dashboard"></i> <a href="index.html">Dashboard</a>
 							</li>
@@ -137,18 +137,18 @@
 							</div>
 
 							<div class="form-group">
-								<label>¿¹¾à³¯Â¥ </label>
+								<label>ì˜ˆì•½ë‚ ì§œ </label>
 								<div class="row">
 									<div class="col-xs-4">
-										<label>³âµµ</label> <input type="text" class="form-control"
+										<label>ë…„ë„</label> <input type="text" class="form-control"
 											placeholder="year">
 									</div>
 									<div class="col-xs-3">
-										<label>¿ù</label> <input type="text" class="form-control"
+										<label>ì›”</label> <input type="text" class="form-control"
 											placeholder="month">
 									</div>
 									<div class="col-xs-3">
-										<label>ÀÏ</label> <input type="text" class="form-control"
+										<label>ì¼</label> <input type="text" class="form-control"
 											placeholder="day">
 									</div>
 								</div>
@@ -156,12 +156,12 @@
 
 
 							<div class="form-group">
-								<label>¹æ¹®¸ñÀû</label> <input class="form-control">
+								<label>ë°©ë¬¸ëª©ì </label> <input class="form-control">
 							</div>
 
 
 							<div class="form-group">
-								<label for="exampleInputName2">ÀüÈ­¹øÈ£</label> <input type="text"
+								<label for="exampleInputName2">ì „í™”ë²ˆí˜¸</label> <input type="text"
 									class="form-control" id="exampleInputName2"
 									placeholder="Jane Doe">
 							</div>
@@ -178,7 +178,7 @@
 						<!-- .col-lg-6 -->	
 						<div class="col-lg-6">
 							<div class="form-group">
-								<label>È£½ºÆ®¿¡°Ô ³²±æ ¸Þ¼¼Áö</label>
+								<label>í˜¸ìŠ¤íŠ¸ì—ê²Œ ë‚¨ê¸¸ ë©”ì„¸ì§€</label>
 							</div>
 
 							<div class="form-group">
@@ -188,7 +188,7 @@
 
 							<div class="form-group">
 								<div class="checkbox">
-									<label> <input type="checkbox" value="">ÆäÀÌ½ººÏ¿¡ °øÀ¯
+									<label> <input type="checkbox" value="">íŽ˜ì´ìŠ¤ë¶ì— ê³µìœ 
 									</label>
 								</div>
 							</div>
@@ -208,8 +208,8 @@
 							</div>
 
 							<div class="form-group">
-								<button type="submit" class="btn btn-default">¿¹¾à</button>
-								<button type="reset" class="btn btn-default">Ãë¼Ò</button>
+								<button type="submit" class="btn btn-default">ì˜ˆì•½</button>
+								<button type="reset" class="btn btn-default">ì·¨ì†Œ</button>
 							</div>
 
 							</div>
