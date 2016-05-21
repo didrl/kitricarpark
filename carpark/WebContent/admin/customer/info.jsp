@@ -1,17 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
-<%@ include file="/admin/common/common.jsp" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ include file="/admin/common/sidebar.jsp" %>
+
+
 
     <div id="wrapper">
-        <!-- Navigation -->
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <!-- Brand and toggle get grouped for better mobile display -->
-        	<%@ include file="/admin/common/header.jsp" %>    
-            
-            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
-           <%@ include file="/admin/common/sidebar.jsp" %>
-                    <!-- /.navbar-collapse -->
-        </nav>
 
         <div id="page-wrapper">
 
