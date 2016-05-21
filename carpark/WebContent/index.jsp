@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@include file="/common/header.jsp"%>
-		 
-    <!-- Header -->
-	<header id="top" class="header">
+<%@include file= "/common/common.jsp" %>
+
+<!-- header init(not login) -->
+<%@include file= "/common/header/init.jsp" %>
+
+    <header id="top" class="header">
 		<div class="text-vertical-center">
 			<div class="center-block">
 			<h1>CPark</h1>
@@ -44,7 +46,6 @@
 			</div>
 		</div>
 	</header>
-
 
     <!-- Services -->
     <!-- The circle icons use Font Awesome's stacked icon classes. For more information, visit http://fontawesome.io/examples/ -->
