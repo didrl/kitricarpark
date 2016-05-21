@@ -300,7 +300,3 @@
   <%@include file="/common/footer.jsp" %>
   <!-- /Footer -->
 	
-
-</body>
-
-</html>

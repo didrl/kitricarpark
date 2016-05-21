@@ -8,7 +8,7 @@ public class Encoder {
 		String utf = "";
 		try {
 			if(tmp != null)
-				utf = new String(tmp.getBytes("iso-8859-1"), "utf-8");
+				utf = new String(tmp.getBytes("ISO-8859-1"), "UTF-8");
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
@@ -19,11 +19,10 @@ public class Encoder {
 		String utf = "";
 		try {
 			if(tmp != null)
-				utf = URLEncoder.encode(tmp, "utf-8");
-		} catch (UnsupportedEncodingException e) {
+				utf = URLEncoder.encode(tmp, "UTF-8");
+		} catch (UnsupportedEncodingException e){
 			e.printStackTrace();
-		}
-		
+		}	
 		return utf;
 	}
 	
