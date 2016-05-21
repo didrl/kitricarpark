@@ -15,7 +15,7 @@ public class DBConnection {
 		try {
 			Context context = new InitialContext();
 			Context root = (Context) context.lookup("java:comp/env");
-			DataSource dataSource = (DataSource) root.lookup("jdbc/board");
+			DataSource dataSource = (DataSource) root.lookup("jdbc/carpark");
 			conn = dataSource.getConnection();
 		} catch (NamingException e) {
 			e.printStackTrace();
