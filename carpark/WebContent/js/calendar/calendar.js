@@ -26,7 +26,7 @@
 	$.fn.calendar = function (options) {
 		var _this = this;
 		var opts = $.extend({}, $.fn.calendar.defaults, options);
-		var week = ['ÀÏ', '¿ù', 'È­', '¼ö', '¸ñ', '±İ', 'Åä'];
+		var week = ['ì¼', 'ì›”', 'í™”', 'ìˆ˜', 'ëª©', 'ê¸ˆ', 'í† '];
 		var tHead = week.map(function (day) {
 			return "<th>" + day + "</th>";
 		}).join("");
