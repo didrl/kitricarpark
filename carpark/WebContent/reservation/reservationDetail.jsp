@@ -1,5 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+    <!-- For sendMsg Modal -->
+   <%@include file="/reservation/sendMessageModal.jsp"%>
+   <!-- For sendMsg Modal -->
+   <!-- For addCar Modal -->
+   <%@include file="/reservation/addMyOwnCarModal.jsp"%>
+   <!-- For addCar Modal -->
+   <!-- For addCar Modal -->
+   <%@include file="/reservation/payment.jsp"%>
+   <!-- For addCar Modal -->
+    
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,7 +31,7 @@
 <link rel="stylesheet" type="text/css" href="/carpark/css/jquery.selectlist.css">
 
 <!-- Simple Celander -->
-<link rel="stylesheet" href="/carpark/css/celandar/style.css" />
+<link rel="stylesheet" href="/carpark/css/calendar/style.css" />
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script type="text/javascript" src="/carpark/js/calendar/calendar.js"></script>
 <!-- Simple Celander -->
@@ -39,7 +50,7 @@
 <link href="/carpark/css/shop-item.css" rel="stylesheet">
 
 <!-- Custom Fonts -->
-<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet"
+<link href="/carpark/font-awesome/css/font-awesome.min.css" rel="stylesheet"
 	type="text/css">
 <link
 	href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic"
@@ -225,7 +236,7 @@
 								  <option value="등록차량1">레인지 로버</option>
 								  <option value="등록차량2">전기차</option>
 								</selectlong>
-								<button type="button" class="btn btn-success"  data-toggle="modal" data-target="#msgToHost">
+								<button type="button" class="btn btn-success"  data-toggle="modal" data-target="#addCar">
                   				 + 차량 등록 
                				</button>
 							</div>
@@ -244,7 +255,7 @@
 							</div>
 					</div><!-- Select Reason div End--> <br>
 					</div><!--  Left panel body End -->
-							<button type="button" class="btn btn-success"  data-toggle="modal" data-target="#msgToHost">
+							<button type="button" class="btn btn-success"  data-toggle="modal" data-target="#payment">
                   				 결제하기 
                				</button>
 				</div><!--  Left panel div End -->
