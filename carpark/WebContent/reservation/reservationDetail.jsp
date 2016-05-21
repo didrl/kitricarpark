@@ -248,9 +248,10 @@
 						</div>
 						<div class="col-md-8 col-lg-8 col-sm-8" >		
 								<selectlong  id="reasonlist" name="reasonlist" >
-								  <option value="이유1">업무</option>
-								  <option value="이유2">여행</option>
-								  <option value="이유3">기타</option>
+								  <option value="business">업무</option>
+								  <option value="trip">여행</option>
+								  <option value="visit">방문</option>
+								  <option value="ext">기타</option>
 								</selectlong>
 							</div>
 					</div><!-- Select Reason div End--> <br>
