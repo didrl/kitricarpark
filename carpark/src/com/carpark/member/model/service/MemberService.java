@@ -10,5 +10,5 @@ public interface MemberService {
 	MemberDto getMember(String id);
 	int modify(MemberDto memberDto);
 	int delete(String id);
-	MemberDto login(Map<String ,String> map);	
+	MemberDto login(String id ,String pass);	
 }
