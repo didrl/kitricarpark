@@ -110,10 +110,27 @@
 				});
 		// div : 지도가 생성될 div의 id값과 같은 값을 옵션으로 정의 합니다.
 	}
-	function goSearch() {
-		document.searchForm.action = "/carpark/search/seachResult.html";
+	// document.searchForm.action = "root%>/seachResult.html";
+	function goSearchResult() {
+		if(document.getElementById("citysearch").value  == "") {
+			alert("검색하실 도시의 이름을 입력해주세요.");
+			return;
+		} else if(document.getElementById("fromdatesearch").value  == "") {
+			alert("시작일을 입력해주세요.");
+			return;
+		}else if(document.getElementById("todatesearch").value  == "") {
+			alert("종료일을 입력해주세요.");
+			return;
+		}else{
+		document.searchForm.action = "/carpark/member";
 		document.searchForm.submit();
+		}
 	}
+	function goResultDetail() {
+		document.parkListFrom.action = "/carpark/member";
+		document.parkListFrom.submit();
+	}
+	
 </script>
 
 </head>
@@ -207,28 +224,27 @@
 	
     <!-- Page Content -->
 	<div class="container" style="text-align:center">
-			<!--  search bar start -->
+						<!--  search bar start -->
 			<div class="col-sm-13">
 					<!-- /input-group -->
-					<form id="searchForm" class="form-inline" role="form" >
-					<div class="input-group">
-						<input type="text" class="form-control"
-							placeholder="Search for..."> <span
-							class="input-group-btn">
-							<button class="btn btn-default" type="button">Go!</button>
-						</span>
-					</div>
-					<div class="input-group">
-							<input class="date-picker" id="fromdate" type="text"  />
-					</div>
-
-					<div class="input-group">
-							<input class="date-picker" id="fromdate" type="text"  />
-					</div>
-					<div class="input-group">
-						<button class="btn btn-success" type="button">Search</button>
-					</div>
-
+					<form id="searchForm" class="form-inline" role="form" method="post" >
+						<input type="hidden"  name="act" value="mvSearchResult">
+						<div class="input-group">
+							<input type="text" class="form-control" id="citysearch"	placeholder="Search for..."> 
+							<span	class="input-group-btn">
+								<button class="btn btn-default" type="button">Go!</button>
+							</span>
+						</div>
+						<div class="input-group">
+								<input class="date-picker" id="fromdatesearch" type="text"  />
+						</div>
+	
+						<div class="input-group">
+								<input class="date-picker" id="todatesearch" type="text"  />
+						</div>
+						<div class="input-group">
+							<button class="btn btn-success" type="button" onclick="javascript:goSearchResult();">Search</button>
+						</div>
 					</form>
 				</div>
 				<br><br>
@@ -237,7 +253,10 @@
    		<div class="col-md-4">
 				<h3><b>도시이름 </b>&nbsp;&nbsp;검색 결과</h3>
 				<ul class="list-group">
-					<a href="#" class="list-group-item">
+				<!--  for-->
+				<form id="parkListFrom" class="form-inline" role="form" method="post" >
+					<input type="hidden" name="act" value="mvSearchResultDetail">
+					<a href="javascript:goResultDetail();" class="list-group-item">
 						<h4 class="list-group-item-heading">Kitri 지하주차장</h4>
 						<div class="ratings">
                         <p class="pull-right">
@@ -251,6 +270,7 @@
                     </div>
 						<p class="list-group-item-text">역에서 도보로 3분 다양한 회사들 밀집</p>
 					</a>
+					</form>
 					<a href="#" class="list-group-item">
 						<h4 class="list-group-item-heading">대륭포스트 2차</h4>
 						<div class="ratings">

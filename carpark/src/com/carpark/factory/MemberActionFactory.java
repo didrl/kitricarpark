@@ -1,6 +1,11 @@
 package com.carpark.factory;
 
 import com.carpark.action.Action;
+import com.carpark.member.action.MemberDeleteAction;
+import com.carpark.member.action.MemberInfoAction;
+import com.carpark.member.action.MemberLoginAction;
+import com.carpark.member.action.MemberModifyAction;
+import com.carpark.member.action.MemberRegisterAction;
 import com.carpark.member.call.action.MemberCallDeleteAction;
 import com.carpark.member.call.action.MemberCallListAction;
 import com.carpark.member.call.action.MemberCallModifyAction;
@@ -26,6 +31,12 @@ import com.carpark.member.review.action.MemberReviewModifyAction;
 import com.carpark.member.review.action.MemberReviewRegisterAction;
 
 public class MemberActionFactory {
+	
+	private static Action memberDeleteAction;
+	private static Action memberInfoAction;
+	private static Action memberLoginAction;
+	private static Action memberModifyAction;
+	private static Action memberRegisterAction;
 
 	private static Action memberCallDeleteAction;
 	private static Action memberCallListAction;
@@ -57,6 +68,13 @@ public class MemberActionFactory {
 	private static Action memberReviewRegisterAction;
 	
 	static {
+		memberDeleteAction = new MemberDeleteAction();
+		memberInfoAction = new MemberInfoAction();
+		memberLoginAction = new MemberLoginAction();
+		memberModifyAction = new MemberModifyAction();
+		memberRegisterAction = new MemberRegisterAction();
+		
+		
 		memberCallDeleteAction = new MemberCallDeleteAction();
 		memberCallListAction = new MemberCallListAction();
 		memberCallModifyAction = new MemberCallModifyAction();
@@ -85,6 +103,29 @@ public class MemberActionFactory {
 		memberReviewListAction = new MemberReviewListAction();
 		memberReviewModifyAction = new MemberReviewModifyAction();
 		memberReviewRegisterAction = new MemberReviewRegisterAction();
+	}
+
+	public static Action getMemberDeleteAction() {
+		return memberDeleteAction;
+	}
+
+	
+
+	public static Action getMemberInfoAction() {
+		return memberInfoAction;
+	}
+
+
+	public static Action getMemberLoginAction() {
+		return memberLoginAction;
+	}
+
+	public static Action getMemberModifyAction() {
+		return memberModifyAction;
+	}
+
+	public static Action getMemberRegisterAction() {
+		return memberRegisterAction;
 	}
 
 	public static Action getMemberCallDeleteAction() {

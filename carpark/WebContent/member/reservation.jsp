@@ -2,5 +2,4 @@
     pageEncoding="UTF-8"%>
 <%@include file="/common/common.jsp" %>
 <div></div>
-</body>
-</html>
+<%@include file="/common/footer.jsp" %>

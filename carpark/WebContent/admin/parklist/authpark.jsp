@@ -3,8 +3,12 @@
 <%@ include file="/common/common.jsp" %>
 <%@ include file="/admin/common/header.jsp" %>
 <%@ include file="/admin/common/sidebar.jsp" %>
-<!--t_toggle -->
-<!--사용자 문의사항-->
-QnA = 사용자 -> 관리자 쪽지리스트와 동일
+<!--t_list -->
+<!--인증필요목록_방문예정 -->
+주차장관리_인증할 주차장 목록 / 클릭시 상세 조회 
+
+</body>
+</html>
+
 </body>
 </html>

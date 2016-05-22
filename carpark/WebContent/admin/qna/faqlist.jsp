@@ -3,8 +3,9 @@
 <%@ include file="/common/common.jsp" %>
 <%@ include file="/admin/common/header.jsp" %>
 <%@ include file="/admin/common/sidebar.jsp" %>
-<!--t_toggle -->
-<!--사용자 문의사항-->
-QnA = 사용자 -> 관리자 쪽지리스트와 동일
+<!--t_list -->
+<!--FAQ 등록/수정/삭제-->
+FAQ 등록/수정/삭제
+
 </body>
 </html>

@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-FAQ
+로그인성공
 </body>
 </html>

@@ -200,7 +200,7 @@ var monthArr = [
 	
 /* INIT */
 var date = new Date();
-var month = date.getMonth(),
+var month = date.getMonth()+1,
 		year = date.getFullYear();
 
 getMonth(month, year);

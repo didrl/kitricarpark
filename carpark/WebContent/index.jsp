@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@include file= "/common/common.jsp" %>
 
-<!-- header init(not login) -->
 <%@include file= "/common/header/init.jsp" %>
 
     <header id="top" class="header">
@@ -140,8 +139,6 @@
 		<!-- Footer -->
 		<%@include file="/common/footer.jsp" %>
  		<!-- /Footer -->
-
-
 
     <!-- Custom Theme JavaScript -->
     <script>
