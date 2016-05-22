@@ -20,6 +20,7 @@ public class MemberLoginAction implements Action{
 			throws IOException, ServletException {
 	
 		HttpSession session = request.getSession();
+<<<<<<< HEAD
 		
 		MemberDto memberDto = new MemberDto();
 		String id = request.getParameter("id");
@@ -31,6 +32,18 @@ public class MemberLoginAction implements Action{
 		session.setAttribute("memberInfo",memberDto);
 		
 		return memberDto==null ? "/member/loginOk.jsp":"/member/loginFail.jsp";
+=======
+	
+		String id = request.getParameter("id");
+		String pass = request.getParameter("pass");
+		MemberDto memberDto = MemberServiceImpl.getMemberService().login(id,pass);
+		
+		if(memberDto !=null){
+			session.setAttribute("memberInfo",memberDto);
+			return "/member/loginOk.jsp";
+		}else
+			return "/member/loginFail.jsp";
+>>>>>>> 0b7271da2013bb240a81f07d16cf97e2fb563860
 	}
 
 }
