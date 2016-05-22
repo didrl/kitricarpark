@@ -7,9 +7,9 @@
    <!-- For addCar Modal -->
    <%@include file="/reservation/addMyOwnCarModal.jsp"%>
    <!-- For addCar Modal -->
-   <!-- For addCar Modal -->
+   <!-- For payment Modal -->
    <%@include file="/reservation/payment.jsp"%>
-   <!-- For addCar Modal -->
+   <!-- For payment Modal -->
     
 <!DOCTYPE html>
 <html lang="en">
