@@ -27,8 +27,28 @@ public class MemberDaoImpl implements MemberDao {
 
 	@Override
 	public int register(MemberDto memberDto) {
-		// TODO Auto-generated method stub
-		return 0;
+		int count=0;
+		Connection conn=null;
+		PreparedStatement pstmt =null;
+		try {
+			conn=DBConnection.makeConnection();
+			String sql="";
+			sql += "insert into member(user_id,user_pass,carinfo) \n";
+			sql += "values(?,?,?)";//치환변수 
+			pstmt = conn.prepareStatement(sql);//미리 sql 문장을 가져가서 검사하고 틀린게 없을 때 실행
+			int idx =1;//중간에 없어지거나 추가될때 필요
+			pstmt.setString(idx++, memberDto.getUser_id());
+			pstmt.setString(idx++, memberDto.getUser_pass());
+			pstmt.setString(idx++, memberDto.getCarInfo());
+			conn.prepareStatement(sql);
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}finally{
+			DBClose.close(conn, pstmt);
+		}	
+		return count;
 	}
 
 	@Override
@@ -65,9 +85,9 @@ public class MemberDaoImpl implements MemberDao {
 		try {
 			conn=DBConnection.makeConnection();
 			String sql="";
-			sql+="select user_id, name,email1,email2 \n";
+			sql+="select user_id, user_avgpoint \n"; 
 			sql+="from member \n";
-			sql+="where id=? and pass=? \n";
+			sql+="where user_id=? and user_pass=? \n";
 			
 			pstmt =conn.prepareStatement(sql);
 			pstmt.setString(1,map.get("userid"));

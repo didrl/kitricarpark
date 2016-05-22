@@ -23,8 +23,7 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public int register(MemberDto memberDto) {
-		// TODO Auto-generated method stub
-		return 0;
+		return MemberDaoImpl.getMemberDao().register(memberDto);
 	}
 
 	@Override
