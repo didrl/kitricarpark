@@ -63,6 +63,10 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+<style>
+.hidden{display:none;}
+</style>
+
 </head>
 
 <body>
@@ -165,11 +169,11 @@
 						<div class="pull-right">예약 구분 : </div>
 					</div>
 					<div class="col-md-8 col-lg-8 col-sm-8" >
-					연속 예약 <input type="radio" name="resercheck" value="multireservation"> 하루 예약 <input type="radio" name="resercheck" value="singlereservation">
+					연속 예약 <input type="radio" name="resercheck" id="multireservation"  checked="checked"> 하루 예약 <input type="radio" name="resercheck" id="singlereservation">
 					</div>
 				</div><br>
 				<!--  radio button에 의한 Multi reservation Start-->
-				<div id="multireservation">	
+				<div id="multiReservationDiv" class='formultidiv'>	
 				<div class="row"><!-- From Choice Start -->
 					<div class="col-md-3 col-lg-3 col-sm-3">
 								<div class="pull-right">From : </div>
@@ -208,7 +212,7 @@
 					</div>	<!-- To Choice End -->	
 					</div> <!--  radio button에 의한 Multi reservation End-->
 					
-					<div class="row" id="singlereservation"> <!--  radio button에 의한 Single reservation Start-->
+					<div class="row" id="singleReservationDiv" class='forsinglediv'> <!--  radio button에 의한 Single reservation Start-->
 					<div class="col-md-3 col-lg-3 col-sm-3">
 								<div class="pull-right">Date : </div>
 						</div>
@@ -433,6 +437,23 @@
 					height: 30
 				});		
 			})
+			
+			// Radio Control div Show or Hide 
+			$(function(){
+				$("#singleReservationDiv").addClass("hidden");
+				$("#multireservation").on("click",function(){
+					if(this.checked){
+						$("#multiReservationDiv").removeClass("hidden");
+						$("#singleReservationDiv").addClass("hidden");
+					}
+				});
+				$("#singlereservation").on("click",function(){
+					if(this.checked){
+						$("#multiReservationDiv").addClass("hidden");
+						$("#singleReservationDiv").removeClass("hidden");
+					}
+				});
+			});
 			
 		</script>
 		<script src="/carpark/js/selectlist/jquery.selectlist.js"></script>
