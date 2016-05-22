@@ -27,6 +27,10 @@ public class MemberDaoImpl implements MemberDao {
 
 	@Override
 	public int register(MemberDto memberDto) {
+<<<<<<< HEAD
+		// TODO Auto-generated method stub
+		return 0;
+=======
 		int count=0;
 		Connection conn=null;
 		PreparedStatement pstmt =null;
@@ -53,6 +57,7 @@ public class MemberDaoImpl implements MemberDao {
 			DBClose.close(conn, pstmt);
 		}	
 		return count;
+>>>>>>> 0b7271da2013bb240a81f07d16cf97e2fb563860
 	}
 
 	@Override
@@ -89,9 +94,15 @@ public class MemberDaoImpl implements MemberDao {
 		try {
 			conn=DBConnection.makeConnection();
 			String sql="";
+<<<<<<< HEAD
+			sql+="select user_id, name,email1,email2 \n";
+			sql+="from member \n";
+			sql+="where id=? and pass=? \n";
+=======
 			sql+="select user_id, user_avgpoint \n"; 
 			sql+="from member \n";
 			sql+="where user_id=? and user_pass=? \n";
+>>>>>>> 0b7271da2013bb240a81f07d16cf97e2fb563860
 			
 			pstmt =conn.prepareStatement(sql);
 			pstmt.setString(1,map.get("userid"));
