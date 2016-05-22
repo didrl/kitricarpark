@@ -27,17 +27,11 @@ String staticpath = adminpath +"/"+"static";
     <link href="<%=root %>/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 	<link href="<%=root %>/css/custom_kitri.css" rel="stylesheet">
 	<!-- login -->
-<<<<<<< HEAD
 	<script type="text/javascript" src="<%=root%>/js/member/login.js"></script>
 	<script type="text/javascript">
 	var root = "<%=root%>";
 	</script>
-=======
-	<script type="text/javascript">
-	var root = "<%=root%>";
-	</script>
-	<script type="text/javascript" src="<%=root%>/js/member/login.js"></script>
->>>>>>> 0b7271da2013bb240a81f07d16cf97e2fb563860
+
 	
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
