@@ -23,7 +23,12 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public int register(MemberDto memberDto) {
+<<<<<<< HEAD
+		// TODO Auto-generated method stub
+		return 0;
+=======
 		return MemberDaoImpl.getMemberDao().register(memberDto);
+>>>>>>> 0b7271da2013bb240a81f07d16cf97e2fb563860
 	}
 
 	@Override
