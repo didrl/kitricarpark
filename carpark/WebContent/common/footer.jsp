@@ -29,6 +29,7 @@
             </div>
         </div>
     </footer>
+<<<<<<< HEAD
    
     <!-- jQuery -->
     <script src="/carpark/js/jquery.js"></script>
@@ -45,3 +46,8 @@
 
 </html> 
 
+=======
+
+</body>
+</html>
+>>>>>>> e09053c533dd111e197543ca9dd5db96d3cd7e13

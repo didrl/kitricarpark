@@ -1,11 +1,10 @@
+<%@page import="com.carpark.member.model.MemberDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	MemberDto memberDto = (MemberDto)session.getAttribute("memberInfo");
+%>
 
-<!-- header: init(not login) -->
-
-</head>
-
-<body>
 
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -148,17 +147,18 @@
 			        </div>
 					<div class="modal-body">
 				                
-					<form class="form-horizontal">
+					<form name="loginForm" class="form-horizontal" id="login" method="post" action="">
+					<input type="hidden" name="act" value="mvlogin">
 						<div class="form-group">
-							<label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+							<label for="inputEmail3" class="col-sm-2 control-label">ID</label>
 							<div class="col-sm-10">
-								<input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+								<input type="text" class="form-control" name="id" value="" id="id" placeholder="id">
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="inputPassword3" class="col-sm-2 control-label">Password</label>
 							<div class="col-sm-10">
-								<input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+								<input type="password" class="form-control" name="pass" id="pass" placeholder="Password">
 							</div>
 						</div>
 						<div class="form-group">
@@ -172,7 +172,7 @@
 						</div>
 						<div class="form-group">
 							<div class="col-sm-offset-2 col-sm-10">
-								<button type="submit" class="btn btn-default">Sign in</button>
+								<button type="button" class="btn btn-default" onclick="javascript:mvlogin();">Sign in</button>
 							</div>
 						</div>
 					</form>  
@@ -230,4 +230,4 @@
 				</div>
 			</div>
 		</div>
-	
+
