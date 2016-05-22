@@ -7,13 +7,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.carpark.action.Action;
+import com.carpark.util.NumberCheck;
+import com.carpark.util.StringCheck;
 
 public class MemberMessageListAction implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-		// TODO Auto-generated method stub
+		
+		int bcode = NumberCheck.nullToZero(request.getParameter("bcode"));
+		int pg = NumberCheck.nullToOne(request.getParameter("pg"));
+		String key = StringCheck.nullToBlank(request.getParameter("key"));
+		String word = StringCheck.nullToBlank(request.getParameter("word"));
+		
+		
+		
 		return null;
 	}
 

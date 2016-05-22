@@ -9,10 +9,7 @@ import com.carpark.member.call.action.MemberCallViewAction;
 import com.carpark.member.favorite.action.MemberFavoriteDeleteAction;
 import com.carpark.member.favorite.action.MemberFavoriteListAction;
 import com.carpark.member.favorite.action.MemberFavoriteRegisterAction;
-import com.carpark.member.message.action.MemberMessageDeleteAction;
-import com.carpark.member.message.action.MemberMessageListAction;
-import com.carpark.member.message.action.MemberMessageRegisterAction;
-import com.carpark.member.message.action.MemberMessageViewAction;
+import com.carpark.member.message.action.*;
 import com.carpark.member.report.action.MemberReportListAction;
 import com.carpark.member.report.action.MemberReportRegisterAction;
 import com.carpark.member.report.action.MemberReportViewAction;
@@ -69,8 +66,8 @@ public class MemberActionFactory {
 		
 		memberMessageDeleteAction = new MemberMessageDeleteAction();
 		memberMessageListAction = new MemberMessageListAction();
-		memberMessageRegisterAction = new MemberMessageRegisterAction();;
-		memberMessageViewAction = new MemberMessageViewAction();;
+		memberMessageRegisterAction = new MemberMessageRegisterAction();
+		memberMessageViewAction = new MemberMessageViewAction();
 		
 		memberReportListAction = new MemberReportListAction();
 		memberReportRegisterAction = new MemberReportRegisterAction();
@@ -86,6 +83,7 @@ public class MemberActionFactory {
 		memberReviewModifyAction = new MemberReviewModifyAction();
 		memberReviewRegisterAction = new MemberReviewRegisterAction();
 	}
+
 
 	public static Action getMemberCallDeleteAction() {
 		return memberCallDeleteAction;
@@ -134,7 +132,7 @@ public class MemberActionFactory {
 	public static Action getMemberMessageViewAction() {
 		return memberMessageViewAction;
 	}
-
+	
 	public static Action getMemberReportListAction() {
 		return memberReportListAction;
 	}
