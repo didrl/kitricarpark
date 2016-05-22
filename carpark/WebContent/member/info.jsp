@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="/common/common.jsp"%>
-
-
+<% 
+MemberDto memberDto = (MemberDto)request.getAttribute("memberInfo");
+int count = (Integer)request.getAttribute("count");
+%>
 	<div id="wrapper">
 
 		<!-- Navigation -->
@@ -195,12 +197,12 @@
                                 	
                                 <img src="<%=root%>/img/coin.png" width="25" height="25">
                                 	<label for="disabledSelect">
-                                		<h4>My coin : </h4>
+                                		<h4>My coin :<%=memberDto.getCoin() %> </h4>
                                 	</label><br>
                                 	
                                 <img src="<%=root%>/img/star.png" width="25" height="25">
                                 	<label for="disabledSelect">
-                                		<h4>My grade : </h4>
+                                		<h4>My grade :<%=memberDto.getGrade_id()%> 등급</h4>
                                 	</label><br>        
                             </div>
 						</form>
@@ -217,13 +219,13 @@
                             </div>
 
 							<div class="form-group">
-                                    <label for="disabledSelect">닉네임</label>
-                                    <input class="form-control" id="disabledInput" type="text" placeholder="닉네임" disabled>
+                                    <label for="disabledSelect">아이디</label>
+                                    <input class="form-control" id="disabledInput" type="text" placeholder="<%=memberDto.getUser_id() %>" disabled>
                             </div>
 
 							<div class="form-group">
-                                    <label for="disabledSelect">회사이름</label>
-                                    <input class="form-control" id="disabledInput" type="text" placeholder="회사이름" disabled>
+                                    <label for="disabledSelect">자동차번호</label>
+                                    <input class="form-control" id="disabledInput" type="text" placeholder="<%=memberDto.getCarInfo() %>" disabled>
                             
                             </div>
                        

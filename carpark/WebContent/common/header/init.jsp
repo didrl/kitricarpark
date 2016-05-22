@@ -1,10 +1,6 @@
 <%@page import="com.carpark.member.model.MemberDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
-	MemberDto memberDto = (MemberDto)session.getAttribute("memberInfo");
-%>
-
 
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -147,10 +143,7 @@
 			        </div>
 					<div class="modal-body">
 				                
-					<form name="loginForm" class="form-horizontal" id="login" method="post" action="">
-
 					<form name="loginForm" class="form-horizontal" id="loginForm" method="post" action="">
-
 					<input type="hidden" name="act" value="mvlogin">
 						<div class="form-group">
 							<label for="inputEmail3" class="col-sm-2 control-label">ID</label>
@@ -194,7 +187,7 @@
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal">
-							<span aria-hidden="true">×</span><span class="sr-only">Close</span>
+							<span aria-hidden="true">x</span><span class="sr-only">Close</span>
 						</button>
 						<h2 class="modal-title" id="myModalLabel">회원가입</h2>
 					</div>

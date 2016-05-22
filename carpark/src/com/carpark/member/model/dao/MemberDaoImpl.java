@@ -92,9 +92,9 @@ public class MemberDaoImpl implements MemberDao {
 			conn=DBConnection.makeConnection();
 			String sql="";
 
-			sql+="select user_id, name,email1,email2 \n";
+			sql+="select user_id,coin,grade_id \n";
 			sql+="from member \n";
-			sql+="where id=? and pass=? \n";
+			sql+="where user_id=? and user_pass=? \n";
 		
 			pstmt =conn.prepareStatement(sql);
 			pstmt.setString(1,map.get("userid"));
@@ -104,8 +104,10 @@ public class MemberDaoImpl implements MemberDao {
 				//이름,이메일,보유코인 필요
 				memberDto =new MemberDto();				
 				memberDto.setUser_id(rs.getString("user_id"));
-				memberDto.setUser_avgPoint(rs.getInt("user_avgpoint"));
+				memberDto.setCoin(rs.getInt("coin"));
+				memberDto.setGrade_id(rs.getInt("grade_id"));
 			}
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally{

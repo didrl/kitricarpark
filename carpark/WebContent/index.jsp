@@ -135,11 +135,6 @@
         </iframe>
     </section>
     
-
-		<!-- Footer -->
-		<%@include file="/common/footer.jsp" %>
- 		<!-- /Footer -->
-
     <!-- Custom Theme JavaScript -->
     <script>
     // Closes the sidebar menu
@@ -172,7 +167,9 @@
     });
     </script>
 
-</body>
 
-</html>
+<!-- Footer -->
+<%@include file="/common/footer.jsp" %>
+<!-- /Footer -->
+
     
