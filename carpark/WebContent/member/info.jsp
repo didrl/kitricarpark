@@ -262,9 +262,6 @@
 	</div>
 	<!-- /#wrapper -->
 	
-	<!-- Footer -->
-	<%@include file="/common/footer.jsp" %>
-   <!-- /Footer -->
-
-</body>
-</html>
+<!-- Footer -->
+<%@include file="/common/footer.jsp" %>
+<!-- /Footer -->

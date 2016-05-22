@@ -4945,3 +4945,144 @@ values(2,'message');
 
 insert into boardtype
 values(3,'report');
+
+
+------------------------------------------
+--  Reservation Table Dummy Create SQL --
+-----------------------------------------
+
+insert into reservation
+values(111804,'IUGuest',concat(to_char(systimestamp, 'yyyymmddhh24missFF3')-20,'111804'),sysdate-20,sysdate-19);
+
+insert into reservation
+values(111804,'IUGuest',concat(to_char(systimestamp, 'yyyymmddhh24missFF3')-10,'111804'),sysdate-10,sysdate-9);
+
+insert into reservation
+values(111804,'IUGuest',concat(to_char(systimestamp, 'yyyymmddhh24missFF3')-15,'111804'),sysdate-15,sysdate-14);
+
+insert into reservation
+values(111804,'IUGuest',concat(to_char(systimestamp, 'yyyymmddhh24missFF3')-20,'111804'),sysdate-18,sysdate-17);
+
+insert into reservation
+values(112411,'IUGuest',concat(to_char(systimestamp, 'yyyymmddhh24missFF3')-11,'112411'),sysdate-11,sysdate-9);
+
+insert into reservation
+values(112411,'IUGuest',concat(to_char(systimestamp, 'yyyymmddhh24missFF3')-5,'112411'),sysdate-5,sysdate-2);
+
+insert into reservation
+values(111283,'IUGuest',concat(to_char(systimestamp, 'yyyymmddhh24missFF3')-24,'111283'),sysdate-24,sysdate-22);
+
+insert into reservation
+values(111283,'IUGuest',concat(to_char(systimestamp, 'yyyymmddhh24missFF3')-30,'111283'),sysdate-30,sysdate-26);
+
+insert into reservation
+values(111283,'IUGuest',concat(to_char(systimestamp, 'yyyymmddhh24missFF3')-22,'111283'),sysdate-22,sysdate-21);
+
+insert into reservation
+values(172607,'SZGuest',concat(to_char(systimestamp, 'yyyymmddhh24missFF3')-20,'172607'),sysdate-20,sysdate-19);
+
+insert into reservation
+values(172607,'SZGuest',concat(to_char(systimestamp, 'yyyymmddhh24missFF3')-10,'172607'),sysdate-10,sysdate-9);
+
+insert into reservation
+values(172634,'SZGuest',concat(to_char(systimestamp, 'yyyymmddhh24missFF3')-15,'172634'),sysdate-15,sysdate-14);
+
+insert into reservation
+values(172634,'SZGuest',concat(to_char(systimestamp, 'yyyymmddhh24missFF3')-3,'172634'),sysdate-3,sysdate-1);
+
+insert into reservation
+values(172634,'SZGuest',concat(to_char(systimestamp, 'yyyymmddhh24missFF3')-8,'172634'),sysdate-8,sysdate-6);
+
+insert into reservation
+values(172904,'SZGuest',concat(to_char(systimestamp, 'yyyymmddhh24missFF3')-12,'172904'),sysdate-12,sysdate-11);
+
+insert into reservation
+values(172904,'SZGuest',concat(to_char(systimestamp, 'yyyymmddhh24missFF3')-24,'172904'),sysdate-24,sysdate-23);
+
+insert into reservation
+values(127356,'SZGuest',concat(to_char(systimestamp, 'yyyymmddhh24missFF3')-32,'127356'),sysdate-32,sysdate-30);
+
+insert into reservation
+values(127356,'SZGuest',concat(to_char(systimestamp, 'yyyymmddhh24missFF3')-27,'127356'),sysdate-27,sysdate-26);
+
+insert into reservation
+values(172580,'GdGuest',concat(to_char(systimestamp, 'yyyymmddhh24missFF3')-20,'111804'),sysdate-20,sysdate-19);
+
+insert into reservation
+values(172580,'GdGuest',concat(to_char(systimestamp, 'yyyymmddhh24missFF3')-10,'111804'),sysdate-10,sysdate-9);
+
+insert into reservation
+values(172647,'GdGuest',concat(to_char(systimestamp, 'yyyymmddhh24missFF3')-15,'111804'),sysdate-15,sysdate-14);
+
+insert into reservation
+values(172647,'GdGuest',concat(to_char(systimestamp, 'yyyymmddhh24missFF3')-20,'111804'),sysdate-18,sysdate-17);
+
+insert into reservation
+values(172647,'GdGuest',concat(to_char(systimestamp, 'yyyymmddhh24missFF3')-11,'112411'),sysdate-11,sysdate-9);
+
+insert into reservation
+values(124830,'GdGuest',concat(to_char(systimestamp, 'yyyymmddhh24missFF3')-5,'112411'),sysdate-5,sysdate-2);
+
+insert into reservation
+values(124830,'GdGuest',concat(to_char(systimestamp, 'yyyymmddhh24missFF3')-24,'111283'),sysdate-24,sysdate-22);
+
+insert into reservation
+values(126607,'GdGuest',concat(to_char(systimestamp, 'yyyymmddhh24missFF3')-30,'111283'),sysdate-30,sysdate-26);
+
+insert into reservation
+values(126607,'GdGuest',concat(to_char(systimestamp, 'yyyymmddhh24missFF3')-22,'111283'),sysdate-22,sysdate-21);
+
+insert into reservation
+values(171721,'TopGuest',concat(to_char(systimestamp, 'yyyymmddhh24missFF3')-20,'172607'),sysdate-20,sysdate-19);
+
+insert into reservation
+values(171721,'TopGuest',concat(to_char(systimestamp, 'yyyymmddhh24missFF3')-10,'172607'),sysdate-10,sysdate-9);
+
+insert into reservation
+values(171721,'TopGuest',concat(to_char(systimestamp, 'yyyymmddhh24missFF3')-15,'172634'),sysdate-15,sysdate-14);
+
+insert into reservation
+values(171721,'TopGuest',concat(to_char(systimestamp, 'yyyymmddhh24missFF3')-3,'172634'),sysdate-3,sysdate-1);
+
+insert into reservation
+values(167964,'TopGuest',concat(to_char(systimestamp, 'yyyymmddhh24missFF3')-8,'172634'),sysdate-8,sysdate-6);
+
+insert into reservation
+values(167964,'TopGuest',concat(to_char(systimestamp, 'yyyymmddhh24missFF3')-12,'172904'),sysdate-12,sysdate-11);
+
+insert into reservation
+values(167964,'TopGuest',concat(to_char(systimestamp, 'yyyymmddhh24missFF3')-24,'172904'),sysdate-24,sysdate-23);
+
+insert into reservation
+values(167964,'TopGuest',concat(to_char(systimestamp, 'yyyymmddhh24missFF3')-32,'127356'),sysdate-32,sysdate-30);
+
+insert into reservation
+values(144474,'TopGuest',concat(to_char(systimestamp, 'yyyymmddhh24missFF3')-27,'127356'),sysdate-27,sysdate-26);
+
+------------------------------------------
+--  Favorite Table Dummy Create SQL --
+-----------------------------------------
+
+insert into favorite
+values(111804,'IUGuest','영등포구','여의도동');
+
+insert into favorite
+values(111283,'IUGuest','영등포구','여의도동');
+
+insert into favorite
+values(172607,'SZGuest','노원구','월계동');
+
+insert into favorite
+values(172634,'SZGuest','노원구','상계동');
+
+insert into favorite
+values(171721,'TopGuest','종로구','세종로');
+
+insert into favorite
+values(167964,'TopGuest','강북구','수유동');
+
+insert into favorite
+values(124830,'GdGuest','강남구','청담동');
+
+insert into favorite
+values(172647,'GdGuest','도붕구','창동');

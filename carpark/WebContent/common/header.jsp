@@ -146,11 +146,12 @@
 			        </div>
 					<div class="modal-body">
 				                
-					<form class="form-horizontal">
+					<form name="login"  method="post" action=""  class="form-horizontal">
+					<input type="hidden" name="act" value="mvlogin">
 						<div class="form-group">
 							<label for="inputEmail3" class="col-sm-2 control-label">Email</label>
 							<div class="col-sm-10">
-								<input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+								<input type="email" class="form-control" id="email" placeholder="Email">
 							</div>
 						</div>
 						<div class="form-group">
@@ -170,7 +171,7 @@
 						</div>
 						<div class="form-group">
 							<div class="col-sm-offset-2 col-sm-10">
-								<button type="submit" class="btn btn-default">Sign in</button>
+								<button type="submit" class="btn btn-default" id="login" onclick="javascript:login();">Sign in</button>
 							</div>
 						</div>
 					</form>  
@@ -194,6 +195,7 @@
 				<div class="modal-body">
 
 					<form role="form" name="signup" method="post" action="">
+					<input type="hidden" id=join name=act value="mvjoin">
 						<div class="form-group">
 							<label for="name">name</label> 
 							<input type="text" class="form-control" id="name" placeholder="name">
@@ -222,7 +224,7 @@
 
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary">Register</button>
+					<button type="submit" class="btn btn-primary" onclick="javascript:memberjoin();">Register</button>
 					<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
 				</div>
 				</div>

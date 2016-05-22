@@ -24,11 +24,11 @@ String staticpath = adminpath +"/"+"static";
     <link href="<%=root %>/css/stylish-portfolio.css" rel="stylesheet">
     <link href="<%=root %>/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 	<link href="<%=root %>/css/custom_kitri.css" rel="stylesheet">
-	<!-- Simple Celander -->
-	<link rel="stylesheet" href="/carpark/css/celandar/style.css" />
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-	<script type="text/javascript" src="/carpark/js/calendar/calendar.js"></script>
-	<!-- Simple Celander -->
+	<!-- login -->
+	<script type="text/javascript" src="<%=root%>/js/member/login.js"></script>
+	<script type="text/javascript">
+	var root = "<%=root%>";
+	</script>
 	
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
