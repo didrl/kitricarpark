@@ -14,10 +14,7 @@ import com.carpark.member.call.action.MemberCallViewAction;
 import com.carpark.member.favorite.action.MemberFavoriteDeleteAction;
 import com.carpark.member.favorite.action.MemberFavoriteListAction;
 import com.carpark.member.favorite.action.MemberFavoriteRegisterAction;
-import com.carpark.member.message.action.MemberMessageDeleteAction;
-import com.carpark.member.message.action.MemberMessageListAction;
-import com.carpark.member.message.action.MemberMessageRegisterAction;
-import com.carpark.member.message.action.MemberMessageViewAction;
+import com.carpark.member.message.action.*;
 import com.carpark.member.report.action.MemberReportListAction;
 import com.carpark.member.report.action.MemberReportRegisterAction;
 import com.carpark.member.report.action.MemberReportViewAction;
@@ -52,6 +49,7 @@ public class MemberActionFactory {
 	private static Action memberMessageListAction;
 	private static Action memberMessageRegisterAction;
 	private static Action memberMessageViewAction;
+	private static Action memberMessageWriteAction;
 	
 	private static Action memberReportListAction;
 	private static Action memberReportRegisterAction;
@@ -87,8 +85,9 @@ public class MemberActionFactory {
 		
 		memberMessageDeleteAction = new MemberMessageDeleteAction();
 		memberMessageListAction = new MemberMessageListAction();
-		memberMessageRegisterAction = new MemberMessageRegisterAction();;
-		memberMessageViewAction = new MemberMessageViewAction();;
+		memberMessageRegisterAction = new MemberMessageRegisterAction();
+		memberMessageViewAction = new MemberMessageViewAction();
+		memberMessageWriteAction = new MemberMessageWriteAction();
 		
 		memberReportListAction = new MemberReportListAction();
 		memberReportRegisterAction = new MemberReportRegisterAction();
@@ -105,11 +104,10 @@ public class MemberActionFactory {
 		memberReviewRegisterAction = new MemberReviewRegisterAction();
 	}
 
+
 	public static Action getMemberDeleteAction() {
 		return memberDeleteAction;
 	}
-
-	
 
 	public static Action getMemberInfoAction() {
 		return memberInfoAction;
@@ -175,7 +173,11 @@ public class MemberActionFactory {
 	public static Action getMemberMessageViewAction() {
 		return memberMessageViewAction;
 	}
-
+	
+	public static Action getMemberMessageWriteAction() {
+		return memberMessageWriteAction;
+	}
+	
 	public static Action getMemberReportListAction() {
 		return memberReportListAction;
 	}
