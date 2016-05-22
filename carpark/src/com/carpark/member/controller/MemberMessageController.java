@@ -29,11 +29,17 @@ public class MemberMessageController extends HttpServlet {
 			path = MemberActionFactory.getMemberMessageListAction().execute(request, response);
 			PageMove.forward(request, response, path + queryString);
 			
-		} else if("".equals(act)) {
+		} else if("messageWrite".equals(act)) {
+			path = MemberActionFactory.getMemberMessageWriteAction().execute(request, response);
+			PageMove.forward(request, response, path + queryString);
 			
-		} else if("".equals(act)) {
+		} else if("messageView".equals(act)) {
+			path = MemberActionFactory.getMemberMessageViewAction().execute(request, response);
+			PageMove.forward(request, response, path + queryString);
 			
-		} else if("".equals(act)) {
+		} else if("messageDelete".equals(act)) {
+			path = MemberActionFactory.getMemberMessageDeleteAction().execute(request, response);
+			PageMove.forward(request, response, path + queryString);
 			
 		} else if("".equals(act)) {
 			

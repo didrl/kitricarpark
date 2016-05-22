@@ -1,14 +1,16 @@
 package com.carpark.member.message.action;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.carpark.action.Action;
-import com.carpark.util.NumberCheck;
-import com.carpark.util.StringCheck;
+import com.carpark.member.model.MessageDto;
+import com.carpark.member.model.service.MemberMessageServiceImpl;
+import com.carpark.util.*;
 
 public class MemberMessageListAction implements Action {
 
@@ -21,9 +23,11 @@ public class MemberMessageListAction implements Action {
 		String key = StringCheck.nullToBlank(request.getParameter("key"));
 		String word = StringCheck.nullToBlank(request.getParameter("word"));
 		
+		//List<MessageDto> list = MemberMessageServiceImpl.getMemberMessageService().listArticle(bcode, pg, key, word);
+		List<MessageDto> list = null;
+		request.setAttribute("messageList", list);
 		
-		
-		return null;
+		return "/message/list.jsp";
 	}
 
 }

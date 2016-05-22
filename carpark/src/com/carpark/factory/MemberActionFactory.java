@@ -49,6 +49,7 @@ public class MemberActionFactory {
 	private static Action memberMessageListAction;
 	private static Action memberMessageRegisterAction;
 	private static Action memberMessageViewAction;
+	private static Action memberMessageWriteAction;
 	
 	private static Action memberReportListAction;
 	private static Action memberReportRegisterAction;
@@ -86,6 +87,7 @@ public class MemberActionFactory {
 		memberMessageListAction = new MemberMessageListAction();
 		memberMessageRegisterAction = new MemberMessageRegisterAction();
 		memberMessageViewAction = new MemberMessageViewAction();
+		memberMessageWriteAction = new MemberMessageWriteAction();
 		
 		memberReportListAction = new MemberReportListAction();
 		memberReportRegisterAction = new MemberReportRegisterAction();
@@ -102,13 +104,10 @@ public class MemberActionFactory {
 		memberReviewRegisterAction = new MemberReviewRegisterAction();
 	}
 
-<<<<<<< HEAD
-=======
+
 	public static Action getMemberDeleteAction() {
 		return memberDeleteAction;
 	}
-
-	
 
 	public static Action getMemberInfoAction() {
 		return memberInfoAction;
@@ -126,7 +125,6 @@ public class MemberActionFactory {
 	public static Action getMemberRegisterAction() {
 		return memberRegisterAction;
 	}
->>>>>>> e09053c533dd111e197543ca9dd5db96d3cd7e13
 
 	public static Action getMemberCallDeleteAction() {
 		return memberCallDeleteAction;
@@ -174,6 +172,10 @@ public class MemberActionFactory {
 
 	public static Action getMemberMessageViewAction() {
 		return memberMessageViewAction;
+	}
+	
+	public static Action getMemberMessageWriteAction() {
+		return memberMessageWriteAction;
 	}
 	
 	public static Action getMemberReportListAction() {

@@ -1,25 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.carpark.member.model.*,java.util.List"%>
+<%
+String root = request.getContextPath();
+List<MessageDto> list = (List<MessageDto>) request.getAttribute("messageList");
+%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <!-- Bootstrap Core CSS -->
-    <link href="/carpark/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="/carpark/css/sb-admin.css" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="/carpark/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-    
 <!-- ********************************** javascript ******************************************************** -->
 <script type="text/javascript">
 function messageSearch() {
@@ -31,7 +19,31 @@ function messageSearch() {
 		document.messageForm.submit();
 	}
 }
+
+function messageView(seq) {
+	document.getElementById("act").value = "messageView";
+	document.getElementById("seq").value = seq;
+		
+	document.common.action = "/carpark/message";
+	document.common.submit();
+	
+}
 </script>
+    <!-- Bootstrap Core CSS -->
+    <link href="<%=root %>/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="<%=root %>/css/sb-admin.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="<%=root %>/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]--> 
 </head>
 <div id="wrapper">
 
@@ -316,13 +328,13 @@ function messageSearch() {
 		        	<a href="javascript:;" data-toggle="collapse" data-target="#message"><i class="fa fa-fw fa-arrows-v"></i> 쪽지함 <i class="fa fa-fw fa-caret-down"></i></a>
 		            <ul id="message" class="collapse">
 		            	<li>
-		                	<a href=""> 받은쪽지함 </a>
+		                	<a href="<%=root%>/message/list.jsp"> 받은쪽지함 </a>
 		                </li>
 		                <li>
 		                	<a href=""> 보낸쪽지함 </a>
 		                </li>       
 		                <li>
-		                	<a href=""> 쪽지보내기 </a>
+		                	<a href="<%=root%>/message/write.jsp"> 쪽지보내기 </a>
 		                </li>       
 		                <li>
 		                	<a href=""> 보관한쪽지함 </a>
@@ -380,58 +392,76 @@ function messageSearch() {
 		</div>
 
 <!-- ****************************************************************************************************************** -->
+<form name="common" method="get" action="">
+	<input type="hidden" name="act" id="act" value="">
+	<input type="hidden" name="bcode" id="bcode" value="1">
+	<input type="hidden" name="pg" id="pg" value="1">
+	<input type="hidden" name="key" id="key" value="">
+	<input type="hidden" name="word" id="word" value="">
+	<input type="hidden" name="seq" id="seq" value="">
+</form>
+
+
+
 		<!-- main -->
 		<div id="page-wrapper">
 			<div class="container-fluid">
 				<!-- 받은쪽지함 -->
 				<h3>받은 쪽지함</h3><br>
 				
+				<div class="form-group">
 				<form name="messageForm" method="get" action="">
 				<input type="hidden" name="act" id="act" value="messageSearch">
 				<input type="hidden" name="bcode" id="bcode" value="1">
 				<input type="hidden" name="pg" id="pg" value="1">
-				<div class="form-group" name="key">
-					<select>
-						<option> 제목 </option>
-						<option> 내용 </option>
-						<option> 제목+내용 </option>
-						<option> 작성자 </option>
+					<select name="key">
+						<option value="subject">제목</option>
+						<option value="content">내용</option>
+						<option value="user_id">작성자</option>
 					</select>
 					<input type="text" name="word">
 					<input type="button" value="검색" onclick="javascript:messageSearch();">
-				</div>
 				</form>
+				</div>
   				
 				
-				<div class="list-group">
-				  <a href="#" class="list-group-item disabled">
-				  	<div class="col-md-8">제목</div>
-				  	<div class="col-md-2">작성자</div>
-				  	<div class="col-me-2">시간</div>
-				  </a>
-				  <a href="#" class="list-group-item">
-				  	<div class="col-md-8">제목</div>
-				  	<div class="col-md-2">작성자</div>
-				  	<div class="col-me-2">시간</div>
-				  </a>
-				  <a href="#" class="list-group-item">
-				  	<div class="col-md-8">제목</div>
-				  	<div class="col-md-2">작성자</div>
-				  	<div class="col-me-2">시간</div>
-				  </a>
-				  <a href="#" class="list-group-item">
-				  	<div class="col-md-8">제목</div>
-				  	<div class="col-md-2">작성자</div>
-				  	<div class="col-me-2">시간</div>
-				  </a>
+				<div class="table-responsive">
+				  <table class="table table-hover">
+				  	<tr>
+				  		<th width="100">보낸사람</th>
+				  		<th>제목</th>
+				  		<th width="100">보낸시간</th>
+				  		<th width="50">확인</th>
+				  	</tr>
+
+				
+<%
+if(list != null) {
+	for(MessageDto messageDto : list) {
+%>
+					<tr >
+						<td width="100"><a href="javascript:messageView('<%=messageDto.getSeq() %>');"><%=messageDto.getReceiverId() %></a></td>
+						<td><a href="javascript:messageView('<%=messageDto.getSeq() %>');"><%=messageDto.getSubject() %></a></td>
+						<td width="100"><%=messageDto.getLogtime() %></td>						
+						<td width="50"><%=(messageDto.getMsgFlag() == 0) ? "X" : "O" %></td>
+					</tr>
+<%
+	}	
+}
+%>	
+					<tr>
+				  		<td width="100"><a href="javascript:messageView('10');">test</a></td>
+				  		<td><a href="javascript:messageView('10');">test</a></td>
+				  		<td width="100">test</td>
+				  		<td width="50">test</td>
+				  	</tr>
+				  
+				  </table>
 				</div>
-								
 				
 			
-			</div>
 		</div>
-		
-	
+
 <!-- ****************************************************************************************************************** -->	
 	
 	
@@ -441,10 +471,10 @@ function messageSearch() {
 
 
     <!-- jQuery -->
-    <script src="/carpark/js/jquery.js"></script>
+    <script src="<%=root %>/js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="/carpark/js/bootstrap.min.js"></script>
+    <script src="<%=root %>/js/bootstrap.min.js"></script>
 
 </body>
 
