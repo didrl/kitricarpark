@@ -130,10 +130,27 @@
 				});
 		// div : 지도가 생성될 div의 id값과 같은 값을 옵션으로 정의 합니다.
 	}
-	function goSearch() {
-		document.searchForm.action = "./seachResult.html";
-		document.searchForm.submit();
+	// document.searchForm.action = "root%>/seachResult.html";
+	function goSearchResult() {
+		if(document.getElementById("citysearch").value  == "") {
+			alert("검색하실 도시의 이름을 입력해주세요.");
+			return;
+		} else if(document.getElementById("fromdatesearch").value  == "") {
+			alert("시작일을 입력해주세요.");
+			return;
+		}else if(document.getElementById("todatesearch").value  == "") {
+			alert("종료일을 입력해주세요.");
+			return;
+		}else{
+			document.searchForm.action = "/carpark/member";
+			document.searchForm.submit();
+		}
 	}
+	function goReservation() {
+		document.selectdateForm.action = "/carpark/member";
+		document.selectdateForm.submit();
+	}
+	
 </script>
 
 
@@ -229,25 +246,25 @@
 			<!--  search bar start -->
 			<div class="col-sm-13">
 					<!-- /input-group -->
-					<form id="searchForm" class="form-inline" role="form" >
-					<div class="input-group">
-						<input type="text" class="form-control"
-							placeholder="Search for..."> <span
-							class="input-group-btn">
-							<button class="btn btn-default" type="button">Go!</button>
-						</span>
-					</div>
-					<div class="input-group">
-							<input class="date-picker" id="fromdate" type="text"  />
-					</div>
-
-					<div class="input-group">
-							<input class="date-picker" id="fromdate" type="text"  />
-					</div>
-					<div class="input-group">
-						<button class="btn btn-success" type="button">Search</button>
-					</div>
-
+					<form id="searchForm" class="form-inline" role="form" method="post" >
+						<input type="hidden"  name="act" value="mvSearchResult">
+						<div class="input-group">
+							<input type="text" class="form-control"
+								placeholder="Search for..."> <span
+								class="input-group-btn">
+								<button class="btn btn-default" type="button">Go!</button>
+							</span>
+						</div>
+						<div class="input-group">
+								<input class="date-picker" id="fromdatesearch" type="text"  />
+						</div>
+	
+						<div class="input-group">
+								<input class="date-picker" id="todatesearch" type="text"  />
+						</div>
+						<div class="input-group">
+							<button class="btn btn-success" type="button" onclick="javascript:goSearchResult();">Search</button>
+						</div>
 					</form>
 				</div>
 				<br><br>
@@ -358,6 +375,8 @@
 				<div class="row">
 					<!-- Date Picker panel Start -->
 					<div class="panel panel-default">
+					<form id="selectdateForm" class="form-inline" role="form" method="post" >
+					<input type="hidden"  name="act" value="mvReservation">
 						<div class="panel-body">	
 				<div class="row"><!-- From Choice Start -->
 					<div class="col-md-3 col-lg-3 col-sm-3">
@@ -395,10 +414,11 @@
 								</select>
 								</div>
 					</div>	<!-- To Choice End --><br>
-								<button type="button" class="btn btn-success"  data-toggle="modal" data-target="#msgToHost">
+								<button type="button" class="btn btn-success" onclick="javascript:goReservation();">
                   				 예약하기 
                				</button>
 					</div> <!--  radio button에 의한 Multi reservation End-->
+					</form>
 					</div>
 					<!-- Date Picker panel End -->
 					<div class="panel panel-default">

@@ -29,25 +29,6 @@
             </div>
         </div>
     </footer>
-<<<<<<< HEAD
-   
-    <!-- jQuery -->
-    <script src="/carpark/js/jquery.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="/carpark/js/bootstrap.min.js"></script>
-
-    <!-- Morris Charts JavaScript -->
-    <script src="/carpark/js/plugins/morris/raphael.min.js"></script>
-    <script src="/carpark/js/plugins/morris/morris.min.js"></script>
-    <script src="/carpark/js/plugins/morris/morris-data.js"></script>
-
-</body>
-
-</html> 
-
-=======
 
 </body>
 </html>
->>>>>>> e09053c533dd111e197543ca9dd5db96d3cd7e13

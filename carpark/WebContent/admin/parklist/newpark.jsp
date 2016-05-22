@@ -3,8 +3,9 @@
 <%@ include file="/common/common.jsp" %>
 <%@ include file="/admin/common/header.jsp" %>
 <%@ include file="/admin/common/sidebar.jsp" %>
-<!--t_toggle -->
-<!--사용자 문의사항-->
-QnA = 사용자 -> 관리자 쪽지리스트와 동일
+<!--t_foam_p -->
+<!--새로운 주차장 등록-->
+새로운 주차장 등록 / 회원정보 주차장등록하기 동일
+
 </body>
 </html>

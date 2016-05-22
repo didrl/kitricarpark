@@ -7,9 +7,9 @@
    <!-- For addCar Modal -->
    <%@include file="/reservation/addMyOwnCarModal.jsp"%>
    <!-- For addCar Modal -->
-   <!-- For addCar Modal -->
+   <!-- For payment Modal -->
    <%@include file="/reservation/payment.jsp"%>
-   <!-- For addCar Modal -->
+   <!-- For payment Modal -->
     
 <!DOCTYPE html>
 <html lang="en">
@@ -62,6 +62,11 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+<!-- for hid or show div -->
+<style>
+.hidden{display:none;}
+</style>
 
 </head>
 
@@ -165,11 +170,11 @@
 						<div class="pull-right">예약 구분 : </div>
 					</div>
 					<div class="col-md-8 col-lg-8 col-sm-8" >
-					연속 예약 <input type="radio" name="resercheck" value="multireservation"> 하루 예약 <input type="radio" name="resercheck" value="singlereservation">
+					연속 예약 <input type="radio" name="resercheck" id="multireservation"  checked="checked"> 하루 예약 <input type="radio" name="resercheck" id="singlereservation">
 					</div>
 				</div><br>
 				<!--  radio button에 의한 Multi reservation Start-->
-				<div id="multireservation">	
+				<div id="multiReservationDiv" class='formultidiv'>	
 				<div class="row"><!-- From Choice Start -->
 					<div class="col-md-3 col-lg-3 col-sm-3">
 								<div class="pull-right">From : </div>
@@ -208,7 +213,7 @@
 					</div>	<!-- To Choice End -->	
 					</div> <!--  radio button에 의한 Multi reservation End-->
 					
-					<div class="row" id="singlereservation"> <!--  radio button에 의한 Single reservation Start-->
+					<div class="row" id="singleReservationDiv" class='forsinglediv'> <!--  radio button에 의한 Single reservation Start-->
 					<div class="col-md-3 col-lg-3 col-sm-3">
 								<div class="pull-right">Date : </div>
 						</div>
@@ -248,9 +253,10 @@
 						</div>
 						<div class="col-md-8 col-lg-8 col-sm-8" >		
 								<selectlong  id="reasonlist" name="reasonlist" >
-								  <option value="이유1">업무</option>
-								  <option value="이유2">여행</option>
-								  <option value="이유3">기타</option>
+								  <option value="business">업무</option>
+								  <option value="trip">여행</option>
+								  <option value="visit">방문</option>
+								  <option value="ext">기타</option>
 								</selectlong>
 							</div>
 					</div><!-- Select Reason div End--> <br>
@@ -276,45 +282,7 @@
 						본인에게 있습니다.<br>
 						</div>
 						<div class="text-center">
-					
-               				                 <!-- msg모달 팝업 -->
-                  <div class="modal fade" id="msgToHost" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                              <div class="modal-header">
-                                 <button type="button" class="close" data-dismiss="modal">
-                                    <span aria-hidden="true">×</span><span class="sr-only">Close</span>
-                                 </button>
-                                 <h4 class="msgToHost" id="msgToHostModal">쪽지 보내기</h4>
-                              </div>
-                            <div class="modal-body">
-                            
-                               <form class="form-horizontal">
-                              <div class="form-group">
-                                 <label for="inputMsgSubject" class="col-sm-2 control-label">제목</label>
-                                  <div class="col-sm-10">
-                                       <input type="text" class="form-control" id="inputMsgSubject" placeholder="MsgSubject">
-                                  </div>
-                                </div>
-                              <div class="form-group">
-                                  <label for="inputMsgContent" class="col-sm-2 control-label">내용</label>
-                                  <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="inputMsgContent" placeholder="MsgContent">
-                                  </div>
-                              </div>
-                              <div class="form-group">
-                                  <div class="col-sm-offset-2 col-sm-10">
-                                     <button type="sendMsg" class="btn btn-default">보내기</button>
-                                  </div>
-                              </div>
-                           </form>
-                            
-                              </div>
-                        </div>
-                     </div>
-                </div>
-                <!-- msg모달 팝업 -->
-							<br>
+						<br>
 						</div>
 						</div>
 					<!-- host info panel End -->
@@ -432,6 +400,23 @@
 					height: 30
 				});		
 			})
+			
+			// Radio Control div Show or Hide 
+			$(function(){
+				$("#singleReservationDiv").addClass("hidden");
+				$("#multireservation").on("click",function(){
+					if(this.checked){
+						$("#multiReservationDiv").removeClass("hidden");
+						$("#singleReservationDiv").addClass("hidden");
+					}
+				});
+				$("#singlereservation").on("click",function(){
+					if(this.checked){
+						$("#multiReservationDiv").addClass("hidden");
+						$("#singleReservationDiv").removeClass("hidden");
+					}
+				});
+			});
 			
 		</script>
 		<script src="/carpark/js/selectlist/jquery.selectlist.js"></script>
