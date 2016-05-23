@@ -12,7 +12,7 @@
 <!-- Simple Celander -->
 <script
 	src="https://apis.skplanetx.com/tmap/js?version=1&format=javascript&appKey=a4ea8cc9-e49c-308f-99de-3aadb0c70298">
-<<<<<<< HEAD
+
 	
 </script>
 <script type="text/javascript">
@@ -114,8 +114,6 @@
 			document.searchForm.submit();
 		}
 	}
-=======
->>>>>>> a3e3f2b538350b920516bcf06dccf7060d290293
 </script>
 <script type="text/javascript" src="/carpark/js/search/mapsearch.js"></script>
 
