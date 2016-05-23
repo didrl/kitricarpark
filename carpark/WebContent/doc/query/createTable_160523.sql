@@ -1,5 +1,7 @@
 --------------------------------------------------------
---  File created - ≈‰ø‰¿œ-5ø˘-21-2016   
+--  File created - ÌÜ†ÏöîÏùº-5Ïõî-21-2016 
+--  File changed - ÏùºÏöîÏùº-5Ïõî-22-2016 
+--  File changed - ÏõîÏöîÏùº-5Ïõî-23-2016 
 --------------------------------------------------------
   DROP TABLE "AVGPOINT" cascade constraints;
   DROP TABLE "BOARD" cascade constraints;
@@ -16,6 +18,8 @@
   DROP TABLE "REPORT" cascade constraints;
   DROP TABLE "RESERVATION" cascade constraints;
   DROP TABLE "REVIEW" cascade constraints;
+  DROP TABLE "EMD" cascade constraints;
+  DROP TABLE "SGG" cascade constraints;
   
   drop sequence board_num_seq;
   drop sequence message_num_mseq;
@@ -23,11 +27,11 @@
   drop sequence review_num_rseq;
   drop sequence call_num_pcseq;
 --------------------------------------------------------
---  SEQUENCE created - ≈‰ø‰¿œ-5ø˘-21-2016   
+--  SEQUENCE created - ÌÜ†ÏöîÏùº-5Ïõî-21-2016  
 --------------------------------------------------------
   create sequence board_num_seq
   start with 1 increment by 1;
-  
+ 
   create sequence message_num_mseq
   start with 1 increment by 1;
 
@@ -44,184 +48,212 @@
 --  DDL for Table AVGPOINT
 --------------------------------------------------------
 
-  CREATE TABLE "AVGPOINT" 
-   (	"RSEQ" NUMBER, 
-	"SEQ" NUMBER, 
-	"BCODE" NUMBER, 
-	"PARK_ID" NUMBER(10,0), 
-	"AVGPOINT" NUMBER
+  CREATE TABLE "AVGPOINT"
+   ( "RSEQ" NUMBER,
+ "SEQ" NUMBER,
+ "BCODE" NUMBER,
+ "PARK_ID" NUMBER(10,0),
+ "AVGPOINT" NUMBER
    ) ;
 --------------------------------------------------------
 --  DDL for Table BOARD
 --------------------------------------------------------
 
-  CREATE TABLE "BOARD" 
-   (	"SEQ" NUMBER, 
-	"BCODE" NUMBER, 
-	"USER_ID" VARCHAR2(16), 
-	"SUBJECT" VARCHAR2(50), 
-	"CONTENT" VARCHAR2(100), 
-	"LOGTIME" DATE
+  CREATE TABLE "BOARD"
+   ( "SEQ" NUMBER,
+ "BCODE" NUMBER,
+ "USER_ID" VARCHAR2(16),
+ "SUBJECT" VARCHAR2(50),
+ "CONTENT" CLOB,
+ "board" BLOB,
+ "PHOTO_AWS" VARCHAR2(1000),
+ "LOGTIME" DATE
    ) ;
 --------------------------------------------------------
 --  DDL for Table BOARDTYPE
 --------------------------------------------------------
 
-  CREATE TABLE "BOARDTYPE" 
-   (	"BCODE" NUMBER, 
-	"BNAME" VARCHAR2(20)
+  CREATE TABLE "BOARDTYPE"
+   ( "BCODE" NUMBER,
+ "BNAME" VARCHAR2(20)
    ) ;
 --------------------------------------------------------
 --  DDL for Table CALL
 --------------------------------------------------------
 
-  CREATE TABLE "CALL" 
-   (	"PCALL_ID" NUMBER, 
-	"PCSEQ" NUMBER, 
-	"BCODE" NUMBER, 
-	"PCALL_ADDR" VARCHAR2(100), 
-	"PCALL_IMG" VARCHAR2(100), 
-	"PCALL_FLAG" NUMBER, 
-	"PCALL_NUM" NUMBER, 
-	"PCALL_OK" NUMBER DEFAULT 0
+  CREATE TABLE "CALL"
+   ( "PCALL_ID" NUMBER,
+ "PCSEQ" NUMBER,
+ "BCODE" NUMBER,
+ "PCALL_ADDR" VARCHAR2(100),
+ "PCALL_IMG" VARCHAR2(100),
+ "PCALL_FLAG" NUMBER,
+ "PCALL_NUM" NUMBER,
+ "PCALL_OK" NUMBER DEFAULT 0
    ) ;
 --------------------------------------------------------
 --  DDL for Table EVALUATION
 --------------------------------------------------------
 
-  CREATE TABLE "EVALUATION" 
-   (	"PENAL_CODE" NUMBER, 
-	"PANEL_NAME" VARCHAR2(100), 
-	"PANEL_CONTENT" VARCHAR2(100), 
-	"PANEL_POINT" NUMBER DEFAULT 0
+  CREATE TABLE "EVALUATION"
+   ( "PENAL_CODE" NUMBER,
+ "PANEL_NAME" VARCHAR2(200),
+ "PANEL_CONTENT" VARCHAR2(1000),
+ "PANEL_POINT" NUMBER DEFAULT 0
    ) ;
 --------------------------------------------------------
 --  DDL for Table FAVORITE
 --------------------------------------------------------
 
-  CREATE TABLE "FAVORITE" 
-   (	"PARK_ID" NUMBER(10,0), 
-	"USER_ID" VARCHAR2(16), 
-	"GU_NAME" VARCHAR2(20), 
-	"DONG_NAME" VARCHAR2(20)
+  CREATE TABLE "FAVORITE"
+   ( "PARK_ID" NUMBER(10,0),
+ "USER_ID" VARCHAR2(16),
+ "GU_NAME" VARCHAR2(20),
+ "DONG_NAME" VARCHAR2(20)
    ) ;
 --------------------------------------------------------
 --  DDL for Table GRADE
 --------------------------------------------------------
 
-  CREATE TABLE "GRADE" 
-   (	"GRADE_ID" NUMBER, 
-	"GRADE_NAME" VARCHAR2(20), 
-	"AVGPOINT" NUMBER DEFAULT 0, 
-	"BENEFIT" NUMBER DEFAULT 0, 
-	"PENALTY" NUMBER DEFAULT 0
+  CREATE TABLE "GRADE"
+   ( "GRADE_ID" NUMBER,
+ "GRADE_NAME" VARCHAR2(20),
+ "AVGPOINT" NUMBER DEFAULT 0,
+ "BENEFIT" NUMBER DEFAULT 0,
+ "PENALTY" NUMBER DEFAULT 0
    ) ;
 --------------------------------------------------------
+
+  CREATE TABLE "SGG" ("SGG_CODE" NUMBER, "SGG_NAME" VARCHAR2(20), "LAT" NUMBER, "LNG" NUMBER);
+
+  --------------------------------------------------------
+--  DDL for Table EMD
+--------------------------------------------------------
+
+  CREATE TABLE "EMD" ("SGG_CODE" NUMBER, "EMD_CODE" NUMBER, "EMD_NAME" VARCHAR2(20), "LAT" NUMBER, "LNG" NUMBER);
+
+  --------------------------------------------------------
 --  DDL for Table MEMBER
 --------------------------------------------------------
 
-  CREATE TABLE "MEMBER" 
-   (	"USER_ID" VARCHAR2(16), 
-	"GRADE_ID" NUMBER, 
-	"USER_PASS" VARCHAR2(20), 
-	"LOGIN_KEY" VARCHAR2(50), 
-	"HOST_FLAG" NUMBER DEFAULT 0, 
-	"CARINFO" VARCHAR2(20), 
-	"COIN" NUMBER DEFAULT 0, 
-	"USER_AVGPOINT" NUMBER DEFAULT 0, 
-	"PENALTY" NUMBER DEFAULT 0, 
-	"USER_FLAG" NUMBER DEFAULT 0
+  CREATE TABLE "MEMBER"
+   ( "USER_ID" VARCHAR2(16),
+ "GRADE_ID" NUMBER,
+ "USER_PASS" VARCHAR2(20),
+ "LOGIN_KEY" VARCHAR2(50),
+ "HOST_FLAG" NUMBER DEFAULT 0,
+ "CARINFO" VARCHAR2(20),
+ "COIN" NUMBER DEFAULT 0,
+ "USER_AVGPOINT" NUMBER DEFAULT 0,
+ "PENALTY" NUMBER DEFAULT 0,
+ "USER_FLAG" NUMBER DEFAULT 0
    ) ;
 --------------------------------------------------------
 --  DDL for Table MESSAGE
 --------------------------------------------------------
 
-  CREATE TABLE "MESSAGE" 
-   (	"MSEQ" NUMBER, 
-	"SEQ" NUMBER, 
-	"BCODE" NUMBER, 
-	"RECEIVER_ID" VARCHAR2(16), 
-	"MSG_FLAG" NUMBER DEFAULT 0
+  CREATE TABLE "MESSAGE"
+   ( "MSEQ" NUMBER,
+ "SEQ" NUMBER,
+ "BCODE" NUMBER,
+ "RECEIVER_ID" VARCHAR2(16),
+ "MSG_FLAG" NUMBER DEFAULT 0
    ) ;
 --------------------------------------------------------
 --  DDL for Table PARKING
 --------------------------------------------------------
 
-  CREATE TABLE "PARKING" 
-   (	"PARK_ID" NUMBER(10,0), 
-	"PARK_NAME" VARCHAR2(100), 
-	"LOCATION" VARCHAR2(200), 
-	"PARK_CAPACITY" NUMBER(5,0), 
-	"OWNER_ID" VARCHAR2(16), 
-	"LATITUDE" NUMBER(12,9), 
-	"LONGITUDE" NUMBER(12,9), 
-	"PARK_TYPE" VARCHAR2(6)
+  CREATE TABLE "PARKING"
+   ( "PARK_ID" NUMBER(10,0),
+ "PARK_NAME" VARCHAR2(100),
+ "LOCATION" VARCHAR2(200),
+ "PARK_CAPACITY" NUMBER(5,0),
+ "OWNER_ID" VARCHAR2(16),
+ "LATITUDE" NUMBER(12,9),
+ "LONGITUDE" NUMBER(12,9),
+ "PARK_TYPE" VARCHAR2(6)
    ) ;
 --------------------------------------------------------
 --  DDL for Table PARKING_DETAIL
 --------------------------------------------------------
 
-  CREATE TABLE "PARKING_DETAIL" 
-   (	"PARK_ID" NUMBER(10,0), 
-	"PARK_FLAG" NUMBER(2,0) DEFAULT 1, 
-	"PARK_AVGPOINT" NUMBER(4,2) DEFAULT 0, 
-	"GET_STATUS" NUMBER(2,0), 
-	"CUR_PARKING" NUMBER(5,0), 
-	"PAY_YN" VARCHAR2(2), 
-	"SATUR_PAY_YN" VARCHAR2(2), 
-	"HOLI_PAY_YN" VARCHAR2(2), 
-	"FULLTIME_MONTHLY_PAY" NUMBER(10,0), 
-	"PARK_RATE" NUMBER(10,0), 
-	"ADD_PARK_RATE" NUMBER(5,0), 
-	"DAY_MAX_PAY" NUMBER(10,0), 
-	"PARK_TIME_RATE" NUMBER
+  CREATE TABLE "PARKING_DETAIL"
+   ( "PARK_ID" NUMBER(10,0),
+ "PARK_FLAG" NUMBER(2,0) DEFAULT 1,
+ "PARK_AVGPOINT" NUMBER(4,2) DEFAULT 0,
+ "GET_STATUS" NUMBER(2,0),
+ "CUR_PARKING" NUMBER(5,0),
+ "PAY_YN" VARCHAR2(2),
+ "SATUR_PAY_YN" VARCHAR2(2),
+ "HOLI_PAY_YN" VARCHAR2(2),
+ "FULLTIME_MONTHLY_PAY" NUMBER(10,0),
+ "PARK_RATE" NUMBER(10,0),
+ "ADD_PARK_RATE" NUMBER(5,0),
+ "DAY_MAX_PAY" NUMBER(10,0),
+ "PARK_TIME_RATE" NUMBER
    ) ;
 --------------------------------------------------------
 --  DDL for Table PENALTY
 --------------------------------------------------------
 
-  CREATE TABLE "PENALTY" 
-   (	"PANEL_NUM" NUMBER, 
-	"USER_ID" VARCHAR2(16), 
-	"PANEL_CODE" NUMBER, 
-	"PANEL_DATE" DATE, 
-	"PANEL_CONTENT" VARCHAR2(100)
+  CREATE TABLE "PENALTY"
+   ( "PANEL_NUM" NUMBER,
+ "USER_ID" VARCHAR2(16),
+ "PANEL_CODE" NUMBER,
+ "PANEL_DATE" DATE,
+ "PANEL_CONTENT" VARCHAR2(1000)
    ) ;
 --------------------------------------------------------
 --  DDL for Table REPORT
 --------------------------------------------------------
 
-  CREATE TABLE "REPORT" 
-   (	"SEQ" NUMBER, 
-	"CSEQ" NUMBER, 
-	"PARK_ID" NUMBER(10,0), 
-	"BCODE" NUMBER, 
-	"USER_ID" VARCHAR2(16)
+  CREATE TABLE "REPORT"
+   ( "SEQ" NUMBER,
+ "CSEQ" NUMBER,
+ "PARK_ID" NUMBER(10,0),
+ "BCODE" NUMBER,
+ "USER_ID" VARCHAR2(16)
    ) ;
 --------------------------------------------------------
 --  DDL for Table RESERVATION
 --------------------------------------------------------
 
-  CREATE TABLE "RESERVATION" 
-   (	"PARK_ID" NUMBER(10,0), 
-	"USER_ID" VARCHAR2(16), 
-	"RESER_ID" NUMBER, 
-	"START_DATE" DATE, 
-	"END_DATE" DATE
+  CREATE TABLE "RESERVATION"
+   ( "PARK_ID" NUMBER(10,0),
+ "USER_ID" VARCHAR2(16),
+ "RESER_ID" NUMBER,
+ "START_DATE" DATE,
+ "END_DATE" DATE
    ) ;
 --------------------------------------------------------
 --  DDL for Table REVIEW
 --------------------------------------------------------
 
-  CREATE TABLE "REVIEW" 
-   (	"RSEQ" NUMBER, 
-	"SEQ" NUMBER, 
-	"BCODE" NUMBER, 
-	"AVAL_CODE" NUMBER, 
-	"GET_POINT" NUMBER, 
-	"AVALED_ID" VARCHAR2(16), 
-	"HOST_FLAG" NUMBER DEFAULT 0
+  CREATE TABLE "REVIEW"
+   ( "RSEQ" NUMBER,
+ "SEQ" NUMBER,
+ "BCODE" NUMBER,
+ "AVAL_CODE" NUMBER,
+ "GET_POINT" NUMBER,
+ "AVALED_ID" VARCHAR2(16),
+ "HOST_FLAG" NUMBER DEFAULT 0
    ) ;
+   
+--------------------------------------------------------
+--  Constraints for Table EMD
+--------------------------------------------------------
+
+  ALTER TABLE "EMD" MODIFY ("EMD_CODE" NOT NULL ENABLE);
+--------------------------------------------------------
+--  Constraints for Table SGG
+--------------------------------------------------------
+
+  ALTER TABLE "SGG" ADD CONSTRAINT "PK_SSG" PRIMARY KEY ("SGG_CODE") ENABLE;
+--------------------------------------------------------
+--  Ref Constraints for Table EMD
+--------------------------------------------------------
+
+  ALTER TABLE "EMD" ADD CONSTRAINT "EMD_SGG_FK" FOREIGN KEY ("SGG_CODE") REFERENCES "SGG" ("SGG_CODE") ENABLE;
 
 --------------------------------------------------------
 --  Constraints for Table AVGPOINT
@@ -357,94 +389,104 @@
 --------------------------------------------------------
 
   ALTER TABLE "AVGPOINT" ADD CONSTRAINT "FK_PARKING_TO_AVGPOINT" FOREIGN KEY ("PARK_ID")
-	  REFERENCES "PARKING" ("PARK_ID") ENABLE;
+   REFERENCES "PARKING" ("PARK_ID") ENABLE;
  
   ALTER TABLE "AVGPOINT" ADD CONSTRAINT "FK_REVIEW_TO_AVGPOINT" FOREIGN KEY ("RSEQ")
-	  REFERENCES "REVIEW" ("RSEQ") ENABLE;
+   REFERENCES "REVIEW" ("RSEQ") ENABLE;
 --------------------------------------------------------
 --  Ref Constraints for Table BOARD
 --------------------------------------------------------
 
   ALTER TABLE "BOARD" ADD CONSTRAINT "FK_BOARDTYPE_TO_BOARD" FOREIGN KEY ("BCODE")
-	  REFERENCES "BOARDTYPE" ("BCODE") ENABLE;
+   REFERENCES "BOARDTYPE" ("BCODE") ENABLE;
  
   ALTER TABLE "BOARD" ADD CONSTRAINT "FK_MEMBER_TO_BOARD" FOREIGN KEY ("USER_ID")
-	  REFERENCES "MEMBER" ("USER_ID") ENABLE;
+   REFERENCES "MEMBER" ("USER_ID") ENABLE;
 
 --------------------------------------------------------
 --  Ref Constraints for Table CALL
 --------------------------------------------------------
 
   ALTER TABLE "CALL" ADD CONSTRAINT "FK_BOARD_TO_CALL" FOREIGN KEY ("PCALL_ID")
-	  REFERENCES "BOARD" ("SEQ") ENABLE;
+   REFERENCES "BOARD" ("SEQ") ENABLE;
 
 --------------------------------------------------------
 --  Ref Constraints for Table FAVORITE
 --------------------------------------------------------
 
   ALTER TABLE "FAVORITE" ADD CONSTRAINT "FK_MEMBER_TO_FAVORITE" FOREIGN KEY ("USER_ID")
-	  REFERENCES "MEMBER" ("USER_ID") ENABLE;
+   REFERENCES "MEMBER" ("USER_ID") ENABLE;
  
   ALTER TABLE "FAVORITE" ADD CONSTRAINT "FK_PARKING_TO_FAVORITE" FOREIGN KEY ("PARK_ID")
-	  REFERENCES "PARKING" ("PARK_ID") ENABLE;
+   REFERENCES "PARKING" ("PARK_ID") ENABLE;
 
 --------------------------------------------------------
 --  Ref Constraints for Table MEMBER
 --------------------------------------------------------
 
   ALTER TABLE "MEMBER" ADD CONSTRAINT "FK_GRADE_TO_MEMBER" FOREIGN KEY ("GRADE_ID")
-	  REFERENCES "GRADE" ("GRADE_ID") ENABLE;
+   REFERENCES "GRADE" ("GRADE_ID") ENABLE;
 --------------------------------------------------------
 --  Ref Constraints for Table MESSAGE
 --------------------------------------------------------
 
   ALTER TABLE "MESSAGE" ADD CONSTRAINT "FK_BOARD_TO_MESSAGE" FOREIGN KEY ("SEQ")
-	  REFERENCES "BOARD" ("SEQ") ENABLE;
+   REFERENCES "BOARD" ("SEQ") ENABLE;
  
   ALTER TABLE "MESSAGE" ADD CONSTRAINT "FK_MEMBER_TO_MESSAGE" FOREIGN KEY ("RECEIVER_ID")
-	  REFERENCES "MEMBER" ("USER_ID") ENABLE;
+   REFERENCES "MEMBER" ("USER_ID") ENABLE;
 --------------------------------------------------------
 --  Ref Constraints for Table PARKING
 --------------------------------------------------------
 
   ALTER TABLE "PARKING" ADD CONSTRAINT "FK_MEMBER_TO_PARKING" FOREIGN KEY ("OWNER_ID")
-	  REFERENCES "MEMBER" ("USER_ID") ENABLE;
+   REFERENCES "MEMBER" ("USER_ID") ENABLE;
 --------------------------------------------------------
 --  Ref Constraints for Table PARKING_DETAIL
 --------------------------------------------------------
 
   ALTER TABLE "PARKING_DETAIL" ADD CONSTRAINT "FK_PARKING_TO_PARKING_DETAIL" FOREIGN KEY ("PARK_ID")
-	  REFERENCES "PARKING" ("PARK_ID") ENABLE;
+   REFERENCES "PARKING" ("PARK_ID") ENABLE;
+   ALTER TABLE "PARKING_DETAIL" DROP CONSTRAINT "FK_PARKING_TO_PARKING_DETAIL"; 
 --------------------------------------------------------
 --  Ref Constraints for Table PENALTY
 --------------------------------------------------------
 
   ALTER TABLE "PENALTY" ADD CONSTRAINT "FK_EVALUATION_TO_PENALTY" FOREIGN KEY ("PANEL_CODE")
-	  REFERENCES "EVALUATION" ("PENAL_CODE") ENABLE;
+   REFERENCES "EVALUATION" ("PENAL_CODE") ENABLE;
  
   ALTER TABLE "PENALTY" ADD CONSTRAINT "FK_MEMBER_TO_PENALTY" FOREIGN KEY ("USER_ID")
-	  REFERENCES "MEMBER" ("USER_ID") ENABLE;
+   REFERENCES "MEMBER" ("USER_ID") ENABLE;
 --------------------------------------------------------
 --  Ref Constraints for Table REPORT
 --------------------------------------------------------
 
   ALTER TABLE "REPORT" ADD CONSTRAINT "FK_BOARD_TO_REPORT" FOREIGN KEY ("SEQ")
-	  REFERENCES "BOARD" ("SEQ") ENABLE;
+   REFERENCES "BOARD" ("SEQ") ENABLE;
  
   ALTER TABLE "REPORT" ADD CONSTRAINT "FK_PARKING_TO_REPORT" FOREIGN KEY ("PARK_ID")
-	  REFERENCES "PARKING" ("PARK_ID") ENABLE;
+   REFERENCES "PARKING" ("PARK_ID") ENABLE;
 --------------------------------------------------------
 --  Ref Constraints for Table RESERVATION
 --------------------------------------------------------
 
   ALTER TABLE "RESERVATION" ADD CONSTRAINT "FK_MEMBER_TO_RESERVATION" FOREIGN KEY ("USER_ID")
-	  REFERENCES "MEMBER" ("USER_ID") ENABLE;
+   REFERENCES "MEMBER" ("USER_ID") ENABLE;
  
   ALTER TABLE "RESERVATION" ADD CONSTRAINT "FK_PARKING_TO_RESERVATION" FOREIGN KEY ("PARK_ID")
-	  REFERENCES "PARKING" ("PARK_ID") ENABLE;
+   REFERENCES "PARKING" ("PARK_ID") ENABLE;
 --------------------------------------------------------
 --  Ref Constraints for Table REVIEW
 --------------------------------------------------------
 
   ALTER TABLE "REVIEW" ADD CONSTRAINT "FK_BOARD_TO_REVIEW" FOREIGN KEY ("SEQ")
-	  REFERENCES "BOARD" ("SEQ") ENABLE;
+   REFERENCES "BOARD" ("SEQ") ENABLE;
+
+--------------------------------------------------------
+--  DROP BCODE
+--------------------------------------------------------
+ALTER TABLE MESSAGE DROP COLUMN BCODE;
+ALTER TABLE CALL DROP COLUMN BCODE;
+ALTER TABLE REVIEW DROP COLUMN BCODE;
+ALTER TABLE REPORT DROP COLUMN BCODE;
+ALTER TABLE AVGPOINT DROP COLUMN BCODE;
