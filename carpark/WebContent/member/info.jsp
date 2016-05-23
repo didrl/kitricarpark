@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@include file="/common/common.jsp"%>
 <% 
-MemberDto memberDto = (MemberDto)request.getAttribute("memberInfo");
+MemberDto memberDto = (MemberDto)request.getAttribute("Info");
 int count = (Integer)request.getAttribute("count");
 %>
 	<div id="wrapper">

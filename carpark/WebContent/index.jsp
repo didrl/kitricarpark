@@ -151,7 +151,6 @@
 			<br>
 			<!--  search bar end-->
 			<!-- /.col-sm-6 ____-->
-
 		</div>
 	</div>
 </header>

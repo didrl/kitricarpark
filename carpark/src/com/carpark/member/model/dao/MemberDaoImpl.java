@@ -36,12 +36,15 @@ public class MemberDaoImpl implements MemberDao {
 		try {
 			conn=DBConnection.makeConnection();
 			String sql="";
-			sql += "insert into member(user_id,user_pass,carinfo,grade_id) \n";
-			sql += "values(?,?,?,3)";//치환변수 
+			sql += "insert into member(user_name,user_id,user_pass,email,tel,carinfo,grade_id) \n";
+			sql += "values(?,?,?,?,?,?,3)";//치환변수 
 			pstmt = conn.prepareStatement(sql);//미리 sql 문장을 가져가서 검사하고 틀린게 없을 때 실행
 			int idx =1;//중간에 없어지거나 추가될때 필요
+			pstmt.setString(idx++, memberDto.getUser_name());
 			pstmt.setString(idx++, memberDto.getUser_id());
+			pstmt.setString(idx++, memberDto.getEmail());
 			pstmt.setString(idx++, memberDto.getUser_pass());
+			pstmt.setString(idx++, memberDto.getTel());
 			pstmt.setString(idx++, memberDto.getCarInfo());
 			System.out.println("id"+memberDto.getUser_id());
 			System.out.println("pass"+memberDto.getUser_pass());
@@ -50,7 +53,6 @@ public class MemberDaoImpl implements MemberDao {
 			count=pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
-			
 			e.printStackTrace();
 		}finally{
 			DBClose.close(conn, pstmt);
@@ -67,8 +69,41 @@ public class MemberDaoImpl implements MemberDao {
 
 	@Override
 	public MemberDto getMember(String id) {
-		// TODO Auto-generated method stub
-		return null;
+		MemberDto memberDto = null;
+		Connection conn =null;
+		PreparedStatement pstmt =null;
+		ResultSet rs =null;
+		
+		try {
+			conn=DBConnection.makeConnection();
+			String sql="";
+
+			sql+="select user_id,carinfo,coin,user_avgpoint,penalty,user_name,email,tel \n";
+			sql+="from member \n";
+			sql+="where user_id=? \n";
+		
+			pstmt =conn.prepareStatement(sql);
+			pstmt.setString(1,id);
+			rs=pstmt.executeQuery();
+			if(rs.next()){
+				//이름,이메일,보유코인 필요
+				memberDto =new MemberDto();				
+				memberDto.setUser_id(rs.getString("user_id"));
+				memberDto.setCoin(rs.getInt("coin"));
+				memberDto.setGrade_id(rs.getInt("grade_id"));
+				memberDto.setUser_avgPoint(rs.getInt("user_avgpoint"));
+				memberDto.setPenalty(rs.getInt("penalty"));
+				memberDto.setUser_name(rs.getString("user_name"));
+				memberDto.setEmail(rs.getString("email"));
+				memberDto.setTel(rs.getString("tel"));
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			DBClose.close(conn, pstmt, rs);
+		}
+		return memberDto;
 	}
 
 	@Override
@@ -121,7 +156,7 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public List<ParkingDto> list(Map<String, String> map) {
 		
-		List<Map<String,String>> list=new ArrayList<Map<String,String>>();
+		List<ParkingDto> list=new ArrayList<ParkingDto>();
 		Map<String,String> maps =null;
 		Connection conn =null;
 		PreparedStatement pstmt =null;
@@ -143,11 +178,11 @@ public class MemberDaoImpl implements MemberDao {
 			while(rs.next()){
 				maps = new HashMap<String, String>();
 						
-				memberDto.setUser_id(rs.getString("user_id"));
-				memberDto.setCoin(rs.getInt("coin"));
-				memberDto.setGrade_id(rs.getInt("grade_id"));
+//				memberDto.setUser_id(rs.getString("user_id"));
+//				memberDto.setCoin(rs.getInt("coin"));
+//				memberDto.setGrade_id(rs.getInt("grade_id"));
 				
-				list.add(maps);
+				
 			}
 
 		} catch (SQLException e) {
