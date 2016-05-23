@@ -1,7 +1,9 @@
 package com.carpark.member.model.service;
 
+import java.util.List;
 import java.util.Map;
 
+import com.carpark.admin.model.ParkingDto;
 import com.carpark.member.model.MemberDto;
 
 public interface MemberService {
@@ -11,4 +13,5 @@ public interface MemberService {
 	int modify(MemberDto memberDto);
 	int delete(String id);
 	MemberDto login(String id ,String pass);	
+	List<ParkingDto>list(Map<String,String> map);
 }

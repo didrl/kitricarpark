@@ -12,6 +12,7 @@
 <!-- Simple Celander -->
 <script
 	src="https://apis.skplanetx.com/tmap/js?version=1&format=javascript&appKey=a4ea8cc9-e49c-308f-99de-3aadb0c70298">
+<<<<<<< HEAD
 	
 </script>
 <script type="text/javascript">
@@ -109,11 +110,14 @@
 			alert("종료일을 입력해주세요.");
 			return;
 		} else {
-			document.searchForm.action = "/carpark/member";
+			document.searchForm.action = "carpark/member";
 			document.searchForm.submit();
 		}
 	}
+=======
+>>>>>>> a3e3f2b538350b920516bcf06dccf7060d290293
 </script>
+<script type="text/javascript" src="/carpark/js/search/mapsearch.js"></script>
 
 <header id="top" class="header">
 	<div class="text-vertical-center">
@@ -127,17 +131,17 @@
 				<form id="searchForm" class="form-inline" role="form" method="post">
 					<input type="hidden" name="act" value="mvSearchResult">
 					<div class="input-group">
-						<input type="text" class="form-control" id="citysearch" placeholder="Search for..."> <span
+						<input type="text" class="form-control" id="citysearch" name="city" placeholder="Search for..."> <span
 							class="input-group-btn">
-							<button class="btn btn-default" type="button">Go!</button>
+							<button class="btn btn-default" type="button" onclick="javascript:goSearchResult();">Go!</button>
 						</span>
 					</div>
 					<div class="input-group">
-						<input class="date-picker" id="fromdatesearch" type="text" />
+						<input class="date-picker" id="fromdatesearch" name="from" type="text" />
 					</div>
 
 					<div class="input-group">
-						<input class="date-picker" id="todatesearch" type="text" />
+						<input class="date-picker" id="todatesearch" type="text" name="to"/>
 					</div>
 					<div class="input-group">
 						<button class="btn btn-success" type="button"
