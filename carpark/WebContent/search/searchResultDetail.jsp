@@ -151,6 +151,23 @@
 		document.selectdateForm.submit();
 	}
 	
+	//쪽지보내기
+	function messageWrite() {
+		if(document.messageForm.receiver.value == ""){
+			alert("대상을 입력하세요");
+			return;
+		} else if(document.messageForm.subject.value == "") {
+			alert("제목을 입력하세요");
+			return;	
+		} else if(document.messageForm.content.value == "") {
+			alert("내용을 입력하세요");
+			return;
+		} else{
+			document.messageForm.action = "/carpark/message";
+			document.messageForm.submit();
+		}
+	}
+	
 </script>
 
 
@@ -249,9 +266,8 @@
 					<form id="searchForm" class="form-inline" role="form" method="post" >
 						<input type="hidden"  name="act" value="mvSearchResult">
 						<div class="input-group">
-							<input type="text" class="form-control"
-								placeholder="Search for..."> <span
-								class="input-group-btn">
+							<input type="text" class="form-control" id="citysearch" placeholder="Search for..."> 
+							<span 	class="input-group-btn">
 								<button class="btn btn-default" type="button">Go!</button>
 							</span>
 						</div>

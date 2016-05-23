@@ -1,8 +1,10 @@
 package com.carpark.member.model.service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import com.carpark.admin.model.ParkingDto;
 import com.carpark.member.model.MemberDto;
 import com.carpark.member.model.dao.MemberDaoImpl;
 
@@ -23,12 +25,8 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public int register(MemberDto memberDto) {
-<<<<<<< HEAD
-		// TODO Auto-generated method stub
-		return 0;
-=======
+
 		return MemberDaoImpl.getMemberDao().register(memberDto);
->>>>>>> 0b7271da2013bb240a81f07d16cf97e2fb563860
 	}
 
 	@Override
@@ -62,6 +60,12 @@ public class MemberServiceImpl implements MemberService {
 			map.put("userpwd", pass);		
 			
 		return MemberDaoImpl.getMemberDao().login(map);
+	}
+
+	@Override
+	public List<ParkingDto> list(Map<String, String> map) {
+		
+		return MemberDaoImpl.getMemberDao().list(map);
 	}
 
 }

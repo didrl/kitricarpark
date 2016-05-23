@@ -6,6 +6,7 @@ import com.carpark.member.action.MemberInfoAction;
 import com.carpark.member.action.MemberLoginAction;
 import com.carpark.member.action.MemberModifyAction;
 import com.carpark.member.action.MemberRegisterAction;
+import com.carpark.member.action.MemberSearchAction;
 import com.carpark.member.call.action.MemberCallDeleteAction;
 import com.carpark.member.call.action.MemberCallListAction;
 import com.carpark.member.call.action.MemberCallModifyAction;
@@ -14,10 +15,7 @@ import com.carpark.member.call.action.MemberCallViewAction;
 import com.carpark.member.favorite.action.MemberFavoriteDeleteAction;
 import com.carpark.member.favorite.action.MemberFavoriteListAction;
 import com.carpark.member.favorite.action.MemberFavoriteRegisterAction;
-import com.carpark.member.message.action.MemberMessageDeleteAction;
-import com.carpark.member.message.action.MemberMessageListAction;
-import com.carpark.member.message.action.MemberMessageRegisterAction;
-import com.carpark.member.message.action.MemberMessageViewAction;
+import com.carpark.member.message.action.*;
 import com.carpark.member.report.action.MemberReportListAction;
 import com.carpark.member.report.action.MemberReportRegisterAction;
 import com.carpark.member.report.action.MemberReportViewAction;
@@ -37,6 +35,8 @@ public class MemberActionFactory {
 	private static Action memberLoginAction;
 	private static Action memberModifyAction;
 	private static Action memberRegisterAction;
+	
+	private static Action memberSearchAction;
 
 	private static Action memberCallDeleteAction;
 	private static Action memberCallListAction;
@@ -52,6 +52,7 @@ public class MemberActionFactory {
 	private static Action memberMessageListAction;
 	private static Action memberMessageRegisterAction;
 	private static Action memberMessageViewAction;
+	private static Action memberMessageWriteAction;
 	
 	private static Action memberReportListAction;
 	private static Action memberReportRegisterAction;
@@ -75,6 +76,9 @@ public class MemberActionFactory {
 		memberRegisterAction = new MemberRegisterAction();
 		
 		
+		memberSearchAction = new MemberSearchAction();
+		
+		
 		memberCallDeleteAction = new MemberCallDeleteAction();
 		memberCallListAction = new MemberCallListAction();
 		memberCallModifyAction = new MemberCallModifyAction();
@@ -87,8 +91,9 @@ public class MemberActionFactory {
 		
 		memberMessageDeleteAction = new MemberMessageDeleteAction();
 		memberMessageListAction = new MemberMessageListAction();
-		memberMessageRegisterAction = new MemberMessageRegisterAction();;
-		memberMessageViewAction = new MemberMessageViewAction();;
+		memberMessageRegisterAction = new MemberMessageRegisterAction();
+		memberMessageViewAction = new MemberMessageViewAction();
+		memberMessageWriteAction = new MemberMessageWriteAction();
 		
 		memberReportListAction = new MemberReportListAction();
 		memberReportRegisterAction = new MemberReportRegisterAction();
@@ -105,11 +110,14 @@ public class MemberActionFactory {
 		memberReviewRegisterAction = new MemberReviewRegisterAction();
 	}
 
+
+	public static Action getMemberSearchAction() {
+		return memberSearchAction;
+	}
+
 	public static Action getMemberDeleteAction() {
 		return memberDeleteAction;
 	}
-
-	
 
 	public static Action getMemberInfoAction() {
 		return memberInfoAction;
@@ -175,7 +183,11 @@ public class MemberActionFactory {
 	public static Action getMemberMessageViewAction() {
 		return memberMessageViewAction;
 	}
-
+	
+	public static Action getMemberMessageWriteAction() {
+		return memberMessageWriteAction;
+	}
+	
 	public static Action getMemberReportListAction() {
 		return memberReportListAction;
 	}

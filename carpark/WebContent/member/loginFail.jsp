@@ -1,24 +1,8 @@
-<<<<<<< HEAD
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>Insert title here</title>
-</head>
-<body>
-·Î±×ÀÎ ½ÇÆĞ
-</body>
-</html>
-=======
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
+
 <%@include file="/common/common.jsp"%>
 <%@include file="/common/header/init.jsp"%>
-
-ë¡œê·¸ì¸ ì‹¤íŒ¨ ì•„ì´ë”” ì°¾ê¸°
-
 
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -68,4 +52,4 @@
 	</div>
 
 <%@include file="/common/footer.jsp"%>
->>>>>>> 0b7271da2013bb240a81f07d16cf97e2fb563860
+
