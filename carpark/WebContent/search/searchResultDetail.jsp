@@ -151,6 +151,23 @@
 		document.selectdateForm.submit();
 	}
 	
+	//쪽지보내기
+	function messageWrite() {
+		if(document.messageForm.receiver.value == ""){
+			alert("대상을 입력하세요");
+			return;
+		} else if(document.messageForm.subject.value == "") {
+			alert("제목을 입력하세요");
+			return;	
+		} else if(document.messageForm.content.value == "") {
+			alert("내용을 입력하세요");
+			return;
+		} else{
+			document.messageForm.action = "/carpark/message";
+			document.messageForm.submit();
+		}
+	}
+	
 </script>
 
 

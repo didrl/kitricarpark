@@ -15,7 +15,7 @@ public class Encoder {
 		return utf;
 	}
 	
-	public static String eucUrl(String tmp) {
+	public static String utfUrl(String tmp) {
 		String utf = "";
 		try {
 			if(tmp != null)
