@@ -12,6 +12,7 @@
 <script
 	src="https://apis.skplanetx.com/tmap/js?version=1&format=javascript&appKey=a4ea8cc9-e49c-308f-99de-3aadb0c70298">
 </script>
+
 <script type="text/javascript" src="/carpark/js/search/mapsearch.js"></script>
 
 <header id="top" class="header">
@@ -48,7 +49,6 @@
 			<br>
 			<!--  search bar end-->
 			<!-- /.col-sm-6 ____-->
-
 		</div>
 	</div>
 </header>

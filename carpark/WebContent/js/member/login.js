@@ -22,10 +22,17 @@ function mvsignup(){
 	}else if(document.getElementById("signuppass").value!=document.getElementById("signuppasswordcheck").value){
 		alert("password가 다릅니다.");
 		return;
+	}else if(document.getElementById("signupemail").value==""){
+		alert("이메일을 입력해주세요!!");
+		return;
+	}else if(document.getElementById("signupphone").value==""){
+		alert("핸드폰번호를 입력해주세요!!");
+		return;
 	}else if(document.getElementById("signupcarInfo").value==""){
 		alert("자동차번호를 입력해주세요!!");
 		return;
-	}else {
+	}
+	else {
 		document.signUpForm.action=root+"/member";
 		document.signUpForm.submit();
 	}

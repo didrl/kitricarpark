@@ -1,6 +1,9 @@
 package com.carpark.member.model;
 
 public class MemberDto {
+	private String user_name;
+	private String email;
+	private String tel;
 	private String user_id;
 	private int grade_id;
 	private String user_pass;
@@ -12,6 +15,24 @@ public class MemberDto {
 	private int penalty;
 	private int user_flag;
 	
+	public String getUser_name() {
+		return user_name;
+	}
+	public void setUser_name(String user_name) {
+		this.user_name = user_name;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getTel() {
+		return tel;
+	}
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
 	public String getUser_id() {
 		return user_id;
 	}
