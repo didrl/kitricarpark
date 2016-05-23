@@ -19,7 +19,7 @@ public class MemberInfoAction implements Action {
 		HttpSession session = request.getSession();
 		MemberDto memberDto = (MemberDto)session.getAttribute("memberInfo");
 		memberDto = MemberServiceImpl.getMemberService().getMember(memberDto.getUser_id());
-		request.setAttribute("Info", memberDto);
+		request.setAttribute("memberInfo", memberDto);
 		return "/member/info.jsp";
 	}
 }
