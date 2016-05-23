@@ -109,7 +109,7 @@
 			alert("종료일을 입력해주세요.");
 			return;
 		} else {
-			document.searchForm.action = "/carpark/member";
+			document.searchForm.action = "carpark/member";
 			document.searchForm.submit();
 		}
 	}
