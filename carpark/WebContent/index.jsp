@@ -127,8 +127,7 @@
 				<form id="searchForm" class="form-inline" role="form" method="post">
 					<input type="hidden" name="act" value="mvSearchResult">
 					<div class="input-group">
-						<input type="text" class="form-control"
-							placeholder="Search for..."> <span
+						<input type="text" class="form-control" id="citysearch" placeholder="Search for..."> <span
 							class="input-group-btn">
 							<button class="btn btn-default" type="button">Go!</button>
 						</span>
