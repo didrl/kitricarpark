@@ -31,6 +31,9 @@ function mvsignup(){
 	}
 }
 
+
+
+
 function formclear(){
 	document.signUpForm.reset();
 }

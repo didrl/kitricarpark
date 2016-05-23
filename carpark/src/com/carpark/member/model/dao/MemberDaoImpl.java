@@ -5,9 +5,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.carpark.admin.model.ParkingDto;
 import com.carpark.db.DBClose;
 import com.carpark.db.DBConnection;
 import com.carpark.member.model.MemberDto;
@@ -114,5 +116,46 @@ public class MemberDaoImpl implements MemberDao {
 			DBClose.close(conn, pstmt, rs);
 		}
 		return memberDto;
+	}
+
+	@Override
+	public List<ParkingDto> list(Map<String, String> map) {
+		
+		List<Map<String,String>> list=new ArrayList<Map<String,String>>();
+		Map<String,String> maps =null;
+		Connection conn =null;
+		PreparedStatement pstmt =null;
+		ResultSet rs =null;
+		
+		try {
+			conn=DBConnection.makeConnection();
+			String sql="";
+
+			sql+="select user_id,coin,grade_id \n";
+			sql+="from member \n";
+			sql+="where user_id=? and user_pass=? \n";
+			int idx=1;
+			pstmt =conn.prepareStatement(sql);
+			pstmt.setString(idx++,map.get(""));
+			pstmt.setString(idx++,map.get(""));
+			pstmt.setString(idx++,map.get(""));
+			rs=pstmt.executeQuery();
+			while(rs.next()){
+				maps = new HashMap<String, String>();
+						
+				memberDto.setUser_id(rs.getString("user_id"));
+				memberDto.setCoin(rs.getInt("coin"));
+				memberDto.setGrade_id(rs.getInt("grade_id"));
+				
+				list.add(maps);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			DBClose.close(conn, pstmt, rs);
+		}
+		
+		return list;
 	}
 }
