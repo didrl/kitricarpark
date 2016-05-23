@@ -82,6 +82,7 @@
 				});
 		// div : 지도가 생성될 div의 id값과 같은 값을 옵션으로 정의 합니다.
 	}
+	// body에 onload를 할 수 없어서 임시로 붙여놓은 함수
     function addLoadEvent(func){
         var oldonload = window.onload;
         if(typeof window.onload != 'function'){
