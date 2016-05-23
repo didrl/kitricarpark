@@ -13,25 +13,40 @@
                               </div>
                             <div class="modal-body">
                             
-                               <form class="form-horizontal">
-                              <div class="form-group">
-                                 <label for="inputMsgSubject" class="col-sm-2 control-label">제목</label>
-                                  <div class="col-sm-10">
-                                       <input type="text" class="form-control" id="inputMsgSubject" placeholder="MsgSubject">
-                                  </div>
-                                </div>
-                              <div class="form-group">
-                                  <label for="inputMsgContent" class="col-sm-2 control-label">내용</label>
-                                  <div class="col-sm-10">
-                                    <textarea class="form-control" id="inputMsgContent" placeholder="MsgContent" row="10"></textarea>
-                                  </div>
-                              </div>
-                              <div class="form-group">
-                                  <div class="col-sm-offset-2 col-sm-10">
-                                     <button type="sendMsg" class="btn btn-default">보내기</button>
-                                  </div>
-                              </div>
-                           </form>
+                              <!-- main -->
+		<div id="page-wrapper">
+			<div class="container-fluid">
+			<!-- 쪽지보내기 -->
+			<div class="form-group">
+				<form class="form-horizontal" name="messageForm" method="post" action="">
+				<input type="hidden" name="act" value="messageWrite">
+				<input type="hidden" name="bcode" value="1">
+				<input type="hidden" name="pg" value="1">
+				<input type="hidden" name="key" value="">
+				<input type="hidden" name="word" value="">
+			
+				  <div class="form-group">
+				    <label for="receiver">받는사람</label>
+				    <input type="text" class="form-control" id="receiver" placeholder="받는사람" name="name">
+				  </div>
+				  <div class="form-group">
+				    <label for="subject">제목</label>
+				    <input type="text" class="form-control" id="subject" placeholder="제목" name="content">
+				  </div>
+				  <div class="form-group">
+				    <label for="content">내용</label>
+				    <textarea class="form-control" rows="10" id="content" name="content"></textarea>
+				  </div>
+				  
+				  <div class="form-group text-center">
+					<input class="btn btn-default" type="button" value="보내기" onclick="javascript:messageWrite();">
+					<input class="btn btn-default" type="reset" value="취소">
+				  </div>
+			
+				</form>
+			</div>					
+			</div>
+		</div>
                             
                               </div>
                         </div>
