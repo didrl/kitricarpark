@@ -261,7 +261,7 @@
 							</div>
 					</div><!-- Select Reason div End--> <br>
 					</div><!--  Left panel body End -->
-							<button type="button" class="btn btn-success"  data-toggle="modal" data-target="#payment">
+							<button type="button" class="btn btn-success"  id="mvpaymodalbtn" data-toggle="modal" data-target="#payment">
                   				 결제하기 
                				</button>
 				</div><!--  Left panel div End -->
@@ -386,6 +386,7 @@
 									}
 								});
 			});
+			
 			$(function(){
 				$('select').selectlist({
 					zIndex: 10,
