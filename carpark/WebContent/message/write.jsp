@@ -27,18 +27,18 @@ List<MessageDto> list = (List<MessageDto>) request.getAttribute("messageList");
 <!-- ********************************** javascript ******************************************************** -->
 <script type="text/javascript">
 function messageWrite() {
-	if(document.messageForm.receiver.value == ""){
+	if(document.writeForm.receiver.value == ""){
 		alert("대상을 입력하세요");
 		return;
-	} else if(document.messageForm.subject.value == "") {
+	} else if(document.writeForm.subject.value == "") {
 		alert("제목을 입력하세요");
 		return;	
-	} else if(document.messageForm.content.value == "") {
+	} else if(document.writeForm.content.value == "") {
 		alert("내용을 입력하세요");
 		return;
 	} else{
-		document.messageForm.action = "/carpark/message";
-		document.messageForm.submit();
+		document.writeForm.action = "/carpark/message";
+		document.writeForm.submit();
 	}
 }
 </script>
@@ -396,7 +396,7 @@ function messageWrite() {
 			<!-- 쪽지보내기 -->
 			<h3>쪽지보내기</h3><br>
 			<div class="form-group">
-				<form class="form-horizontal" name="messageForm" method="post" action="">
+				<form class="form-horizontal" name="writeForm" method="post" action="">
 				<input type="hidden" name="act" value="messageWrite">
 				<input type="hidden" name="bcode" value="1">
 				<input type="hidden" name="pg" value="1">

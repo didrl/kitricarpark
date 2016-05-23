@@ -11,12 +11,12 @@ MessageDto messageDto = (MessageDto) request.getAttribute("messageView");
 <!-- ********************************** javascript ******************************************************** -->
 <script type="text/javascript">
 function messageSearch() {
-	if(document.messageForm.word.value == ""){
+	if(document.searchForm.word.value == ""){
 		alert("내용을 입력하세요");
 		return;
 	} else{
-		document.messageForm.action = "/carpark/message";
-		document.messageForm.submit();
+		document.searchForm.action = "/carpark/message";
+		document.searchForm.submit();
 	}
 }
 
@@ -425,7 +425,7 @@ function messageList() {
 				<!-- 쪽지내용 -->
 				
 				<div class="form-group">
-				<form name="messageForm" method="get" action="">
+				<form name="searchForm" method="get" action="">
 				<input type="hidden" name="act" id="act" value="messageSearch">
 				<input type="hidden" name="bcode" id="bcode" value="1">
 				<input type="hidden" name="pg" id="pg" value="1">

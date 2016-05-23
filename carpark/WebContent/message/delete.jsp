@@ -11,12 +11,12 @@ MessageDto messageDto = (MessageDto) request.getAttribute("messageView");
 <!-- ********************************** javascript ******************************************************** -->
 <script type="text/javascript">
 function messageSearch() {
-	if(document.messageForm.word.value == ""){
+	if(document.searchForm.word.value == ""){
 		alert("내용을 입력하세요");
 		return;
 	} else{
-		document.messageForm.action = "/carpark/message";
-		document.messageForm.submit();
+		document.searchForm.action = "/carpark/message";
+		document.searchForm.submit();
 	}
 }
 
