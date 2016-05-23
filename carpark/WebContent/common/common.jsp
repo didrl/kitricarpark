@@ -1,6 +1,6 @@
-<%@page import="com.carpark.member.model.MemberDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="com.carpark.member.model.MemberDto"%>
 <%
 String root = request.getContextPath();
 String commonpath = root + "/common";
@@ -50,4 +50,7 @@ String staticpath = adminpath +"/"+"static";
     <script src="<%=root %>/js/plugins/morris/raphael.min.js"></script>
     <script src="<%=root %>/js/plugins/morris/morris.min.js"></script>
     <script src="<%=root %>/js/plugins/morris/morris-data.js"></script>
+   <!-- bootbox(modal) JavaScript -->
+   <script src="<%=root %>/js/bootbox.min.js"></script>
+   
    
