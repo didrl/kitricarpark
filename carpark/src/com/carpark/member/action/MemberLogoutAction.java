@@ -9,17 +9,14 @@ import javax.servlet.http.HttpSession;
 
 import com.carpark.action.Action;
 import com.carpark.member.model.MemberDto;
-import com.carpark.member.model.service.MemberServiceImpl;
 
-public class MemberInfoAction implements Action {
+public class MemberLogoutAction implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 		HttpSession session = request.getSession();
-		MemberDto memberDto = (MemberDto)session.getAttribute("memberInfo");
-		memberDto = MemberServiceImpl.getMemberService().getMember(memberDto.getUser_id());
-		request.setAttribute("memberInfo", memberDto);
-		return "/member/info.jsp";
+		session.removeAttribute("memberInfo");
+		return "/index.jsp";
 	}
 }

@@ -31,15 +31,16 @@ public class MemberMessageDaoImpl implements MemberMessageDao {
 			conn = DBConnection.makeConnection();
 			String sql = "";
 			sql += "insert all \n";
-			sql += "into board (seq, user_id, subject, content, bcode, logtime) \n";
+			sql += "into board (seq, user_id, pass, subject, content, bcode, logtime) \n";
 			sql += "values (?, ?, ?, ?, ?, ?, sysdate) \n";
-			sql += "into album (mseq, seq, receiver_id, msg_flag) \n";
+			sql += "into message (mseq, seq, receiver_id, msg_flag) \n";
 			sql += "values (msg_mseq.nextval, ?, ?, ?) \n";
 			sql += "select * from dual";
 			pstmt = conn.prepareStatement(sql);
+			System.out.println(sql);
 			int idx = 0;
 			pstmt.setInt(++idx, messageDto.getSeq());
-			//pstmt.setString(++idx, messageDto.getUser_id());session 정보 가져와야함
+			pstmt.setString(++idx, messageDto.getUserID());
 			pstmt.setString(++idx, messageDto.getSubject());
 			pstmt.setString(++idx, messageDto.getContent());
 			pstmt.setInt(++idx, messageDto.getBcode());

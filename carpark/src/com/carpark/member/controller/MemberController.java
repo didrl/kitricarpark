@@ -12,7 +12,7 @@ import com.carpark.util.Encoder;
 import com.carpark.util.NumberCheck;
 import com.carpark.util.PageMove;
 import com.carpark.util.StringCheck;
-import com.sun.xml.internal.bind.v2.runtime.output.Encoded;
+
 
 @WebServlet("/member")
 public class MemberController extends HttpServlet {
@@ -29,6 +29,7 @@ public class MemberController extends HttpServlet {
 			PageMove.forward(request, response, path);
 		}else if("mvSearchResult".equals(act)){
 			path = MemberActionFactory.getMemberSearchAction().execute(request, response);
+			PageMove.forward(request, response, path);
 		}else if("mvReservation".equals(act)){
 			
 		}else if("mvSearchResultDetail".equals(act)){
@@ -39,8 +40,9 @@ public class MemberController extends HttpServlet {
 		}else if("mvprofile".equals(act)){
 			path= MemberActionFactory.getMemberInfoAction().execute(request, response);
 			PageMove.redirect(response, root+path);
-		}else if("".equals(act)){
-			
+		}else if("mvlogout".equals(act)){
+			path= MemberActionFactory.getMemberLogoutAction().execute(request, response);
+			PageMove.redirect(response, root+path);
 		}else if("".equals(act)){
 			
 		}else if("".equals(act)){
