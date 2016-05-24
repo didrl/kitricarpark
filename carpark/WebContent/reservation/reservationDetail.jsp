@@ -410,7 +410,8 @@
 						$("#singleReservationDiv").addClass("hidden");
 					}
 				});
-				$("#singlereservation").on("click",function(){
+				//data passing to modal
+				$("#payment").on("click",function(){
 					if(this.checked){
 						$("#multiReservationDiv").addClass("hidden");
 						$("#singleReservationDiv").removeClass("hidden");
