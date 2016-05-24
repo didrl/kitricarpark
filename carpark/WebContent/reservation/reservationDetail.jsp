@@ -350,6 +350,7 @@
 		<script src="/carpark/js/bootstrap.min.js"></script>
 
 		<!-- Custom Theme JavaScript -->
+		<script src="/carpark/js/selectlist/jquery.selectlist.js"></script>
 		<script>
 			// Closes the sidebar menu
 			$("#menu-close").click(function(e) {
@@ -410,8 +411,7 @@
 						$("#singleReservationDiv").addClass("hidden");
 					}
 				});
-				//data passing to modal
-				$("#payment").on("click",function(){
+				$("#singleReservationDiv").on("click",function(){
 					if(this.checked){
 						$("#multiReservationDiv").addClass("hidden");
 						$("#singleReservationDiv").removeClass("hidden");
@@ -419,8 +419,40 @@
 				});
 			});
 			
+			$('#payment').on('show.bs.modal', function (event) {
+				  var button = $(event.relatedTarget) // Button that triggered the modal
+				 
+					  console.log("Here!!!");
+				  $.ajax({
+			            cache: false,
+			            type: 'POST',
+			            url: 'payment.jsp',
+			            data: '',
+			            success: function(data) 
+			            {
+			            	// Clean text in modal label
+			            	$("#selectedfromdate").empty();
+			            	$("#selectedtodate").empty();
+			            	$("#selectedid").empty();
+			            	$("#selectedgrade").empty();
+			            	$("#selectedcarinfo").empty();
+			            	$("#selectedcoin").empty();
+			            	$("#selectedprice").empty();
+			            	// Clean text in modal label
+			            	
+			            	$("#selectedfromdate").append($('#fromdate').val());
+			            	$("#selectedtodate").append($('#todate').val());
+			                $('#payment').show();
+			            }
+			        });
+				  
+				  
+				  //var modal = $(this)
+				  //modal.find('.modal-title').text('New message to ' + recipient)
+				  //modal.find('.modal-body input').val(recipient)
+				})
+				
 		</script>
-		<script src="/carpark/js/selectlist/jquery.selectlist.js"></script>
-</body>
+	
 </body>
 </html>

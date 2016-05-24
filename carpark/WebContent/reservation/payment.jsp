@@ -22,15 +22,15 @@
                               <div class="form-group" align ="center">
                                   <label for="inputMsgContent" id="selectedid" class="col-sm-3 control-label">아이디</label>
                                   <label for="inputMsgContent" id="selectedgrade" class="col-sm-3 control-label">등급</label>
-                                  <label for="inputMsgSubject" id="selectedcarinfo"class="col-sm-3 control-label">차량정보</label>
+                                  <label for="inputMsgSubject" id="selectedcarinfo" class="col-sm-3 control-label">차량정보</label>
                               </div>
                                <div class="form-group" align ="center">
                                   <label for="inputMsgContent" class="col-sm-5 control-label">보유 코인</label>
-                                  <label for="inputMsgContent"  id="selectedcoin" class="col-sm-5 control-label">보유중코인</label>
+                                  <label for="inputMsgContent"  id="selectedcoin"  class="col-sm-5 control-label">보유중코인</label>
                               </div>
 							 <div class="form-group" align ="center">
                                   <label for="inputMsgContent" class="col-sm-5 control-label">이용 가격</label>
-                                  <label for="inputMsgContent" id="selectedprice" class="col-sm-5 control-label">가격</label>
+                                  <label for="inputMsgContent" id="selectedprice"   class="col-sm-5 control-label">가격</label>
                               </div>
                               <div class="form-group" align ="center">
                                   <div >
