@@ -101,7 +101,7 @@
 			data-toggle="dropdown"><i class="fa fa-user"></i> 이름 <b
 				class="caret"></b></a>
 			<ul class="dropdown-menu">
-				<li><a href="#"><i class="fa fa-fw fa-user"></i> profile</a></li>
+				<li><a href="/member?act=mvprofile"><i class="fa fa-fw fa-user"></i> profile</a></li>
 				<li><a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
 				</li>
 				<li><a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a></li>
@@ -189,6 +189,15 @@
 
 					<div class="form-group">
 						<div class="controls">
+						<label for="inputid">name</label> <input type="text"
+							class="form-control" id="signupname" name="name" value=""
+							placeholder="name">
+						</div>
+					</div>
+					
+					
+					<div class="form-group">
+						<div class="controls">
 						<label for="inputid">id</label> <input type="text"
 							class="form-control" id="signupid" name="id" value=""
 							placeholder="id">
@@ -205,6 +214,26 @@
 							type="password" class="form-control" id="signuppasswordcheck"
 							name="passwordcheck" value="" placeholder="passwordcheck">
 					</div>
+					
+					
+					<div class="form-group">
+						<div class="controls">
+						<label for="inputid">email</label> <input type="text"
+							class="form-control" id="signupemail" name="email" value=""
+							placeholder="email">
+						</div>
+					</div>
+					
+					
+					<div class="form-group">
+						<div class="controls">
+						<label for="inputid">전화번호</label> <input type="text"
+							class="form-control" id="signupphone" name="phone" value=""
+							placeholder="tel">
+						</div>
+					</div>
+					
+					
 					<div class="form-group">
 						<label for="inputCarInfo">CarInfo</label> <input type="text"
 							class="form-control" id="signupcarInfo" name=carInfo value=""

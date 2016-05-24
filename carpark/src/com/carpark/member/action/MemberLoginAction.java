@@ -26,7 +26,7 @@ public class MemberLoginAction implements Action{
 		MemberDto memberDto = MemberServiceImpl.getMemberService().login(id,pass);
 		session.setAttribute("memberInfo",memberDto);
 			
-		return memberDto==null ? "/member/loginFail.jsp":"/member/loginOk.jsp";
+		return memberDto==null ? "/member/loginFail.jsp":"/index.jsp";
 	}
 
 }
