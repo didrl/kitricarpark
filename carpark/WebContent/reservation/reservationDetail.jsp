@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
+<%@include file="/common/common.jsp" %>
+<%@include file="/common/header.jsp" %> 
+
+    
     <!-- For sendMsg Modal -->
    <%@include file="/reservation/sendMessageModal.jsp"%>
    <!-- For sendMsg Modal -->
@@ -11,21 +15,9 @@
    <%@include file="/reservation/payment.jsp"%>
    <!-- For payment Modal -->
     
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
 
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="">
-<meta name="author" content="">
 
-<title>Car Park</title>
-
-<!-- Bootstrap Core CSS -->
-<link href="/carpark/css/bootstrap.min.css" rel="stylesheet">
 
 <!-- Seclect List CSS -->
 <link rel="stylesheet" type="text/css" href="/carpark/css/jquery.selectlist.css">
@@ -36,9 +28,6 @@
 <script type="text/javascript" src="/carpark/js/calendar/calendar.js"></script>
 <!-- Simple Celander -->
 
-<link href="/carpark/css/stylish-portfolio.css" rel="stylesheet" />
-<link href='http://fonts.googleapis.com/css?family=Roboto:400,500'	rel='stylesheet' type='text/css' />
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons"	rel="stylesheet" />
 
 <link rel="stylesheet" href="/carpark/css/normalize.css">
 <link rel="stylesheet" href="/carpark/css/style.css">
@@ -50,8 +39,7 @@
 <link href="/carpark/css/shop-item.css" rel="stylesheet">
 
 <!-- Custom Fonts -->
-<link href="/carpark/font-awesome/css/font-awesome.min.css" rel="stylesheet"
-	type="text/css">
+
 <link
 	href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic"
 	rel="stylesheet" type="text/css">
@@ -71,88 +59,8 @@
 </head>
 
 <body>
-	<!-- Navigation Start-->
-	<!-- 상단 메뉴바 -->
-      <nav class="navbar navbar-inverse">
-         <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-               <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                  <span class="sr-only">Toggle navigation</span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-               </button>
-               <a class="navbar-brand" href="#">홈</a>
-            </div>
-            
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
-            
-               <!-- 로그인 버튼 -->
-               <button type="button" class="btn btn-default navbar-btn" data-toggle="modal" data-target="#myLogin">
-                  Sign in
-               </button>
-                  
-                  <!-- 로그인모달 팝업 -->
-                  <div class="modal fade" id="myLogin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                              <div class="modal-header">
-                                 <button type="button" class="close" data-dismiss="modal">
-                                    <span aria-hidden="true">×</span><span class="sr-only">Close</span>
-                                 </button>
-                                 <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-                              </div>
-                            <div class="modal-body">
-                            
-                               <form class="form-horizontal">
-                              <div class="form-group">
-                                 <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
-                                  <div class="col-sm-10">
-                                       <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
-                                  </div>
-                                </div>
-                              <div class="form-group">
-                                  <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
-                                  <div class="col-sm-10">
-                                    <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
-                                  </div>
-                              </div>
-                              <div class="form-group">
-                                  <div class="col-sm-offset-2 col-sm-10">
-                                     <div class="checkbox">
-                                         <label>
-                                              <input type="checkbox"> Remember me
-                                         </label>
-                                  </div>
-                                  </div>
-                              </div>
-                              <div class="form-group">
-                                  <div class="col-sm-offset-2 col-sm-10">
-                                     <button type="submit" class="btn btn-default">Sign in</button>
-                                  </div>
-                              </div>
-                           </form>
-                            
-                              </div>
-                        </div>
-                     </div>
-                </div>
-            
-               <form class="navbar-form navbar-right" role="search">
-                  <div class="form-group">
-                     <input type="text" class="form-control" placeholder="Search">
-                  </div>
-                  <button type="submit" class="btn btn-default">Submit</button>
-               </form>
-            </div><!-- /.container-fluid -->
-            
-         </div>
-            
-      </nav>
-      <!-- 상단 메뉴바 -->
-	<br>
+
+
 	<!-- Page Content -->
 	<div class="container" style="text-align:center">
 
@@ -311,44 +219,8 @@
 
 		<hr>
 
-		<!-- Footer -->
-		<footer>
-			<div class="container" >
-				<div class="row">
-					<div class="col-lg-10 col-lg-offset-1 text-center">
-						<h4>
-							<strong>Start Bootstrap</strong>
-						</h4>
-						<p>
-							3481 Melrose Place<br>Beverly Hills, CA 90210
-						</p>
-						<ul class="list-unstyled">
-							<li><i class="fa fa-phone fa-fw"></i> (123) 456-7890</li>
-							<li><i class="fa fa-envelope-o fa-fw"></i> <a
-								href="mailto:name@example.com">name@example.com</a></li>
-						</ul>
-						<br>
-						<ul class="list-inline">
-							<li><a href="#"><i class="fa fa-facebook fa-fw fa-3x"></i></a>
-							</li>
-							<li><a href="#"><i class="fa fa-twitter fa-fw fa-3x"></i></a>
-							</li>
-							<li><a href="#"><i class="fa fa-dribbble fa-fw fa-3x"></i></a>
-							</li>
-						</ul>
-						<hr class="small">
-						<p class="text-muted">Copyright &copy; Your Website 2014</p>
-					</div>
-				</div>
-			</div>
-		</footer>
+	
 </div>
-		<!-- jQuery -->
-		<script src="/carpark/js/jquery.js"></script>
-
-		<!-- Bootstrap Core JavaScript -->
-		<script src="/carpark/js/bootstrap.min.js"></script>
-
 		<!-- Custom Theme JavaScript -->
 		<script src="/carpark/js/selectlist/jquery.selectlist.js"></script>
 		<script>
@@ -453,6 +325,14 @@
 				})
 				
 		</script>
-	
-</body>
-</html>
+
+		<script src="/carpark/js/selectlist/jquery.selectlist.js"></script>
+
+		
+		
+
+<!-- ****************************************************************************************************************** -->			
+
+
+<%@ include file="/common/footer.jsp" %>		
+		
