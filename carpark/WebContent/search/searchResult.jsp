@@ -73,17 +73,17 @@ List<ParkingDto> list = (List<ParkingDto>)request.getAttribute("searchlist");
    		<div class="col-md-4">
 				<h3><b>도시이름 </b>&nbsp;&nbsp;검색 결과</h3>
 				<ul class="list-group">
-				<!--  for-->
-				
+<!--  for-->				
 <%
 for(ParkingDto parkingDto :list){
-%>
-				<form id="parkListFrom" class="form-inline" role="form" method="post" >
-					<input type="hidden" name="act" value="mvSearchResultDetail">
-					<a href="javascript:goResultDetail();" class="list-group-item">
-						<h4 class="list-group-item-heading">Kitri 지하주차장</h4>
+%>							
+					<a href="<%=root %>/member?act=mvsearchResultDeail&id=<%=parkingDto.getPark_id()%>
+					&name=<%=parkingDto.getPark_name()%>" class="list-group-item">
+						<h4 class="list-group-item-heading"><%=parkingDto.getPark_name() %></h4>
 						<div class="ratings">
                         <p class="pull-right">
+                            <label><%=parkingDto.getPark_type() %></label><br>
+                            <label>위치:<%=parkingDto.getLocation() %></label>   
                             <span class="glyphicon glyphicon-star"></span>
                             <span class="glyphicon glyphicon-star"></span>
                             <span class="glyphicon glyphicon-star"></span>
@@ -92,41 +92,13 @@ for(ParkingDto parkingDto :list){
                             (4점)
                         </p>
                     </div>
-						<p class="list-group-item-text">역에서 도보로 3분 다양한 회사들 밀집</p>
+						<p class="list-group-item-text"><%=parkingDto.getPark_capacity() %></p>
 					</a>
-				</form>
+					
 <%
 }
-%>			
-					
-					<a href="#" class="list-group-item">
-						<h4 class="list-group-item-heading">대륭포스트 2차</h4>
-						<div class="ratings">
-                        <p class="pull-right">
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                            (4점)
-                        </p>
-                    </div>
-						<p class="list-group-item-text">주변에 커피집이 많고 키트리 옆집</p>
-					</a>
-					<a href="#" class="list-group-item">
-						<h4 class="list-group-item-heading">착한커피 건물</h4>
-						<div class="ratings">
-                        <p class="pull-right">
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                            (4점)
-                        </p>
-                    </div>
-						<p class="list-group-item-text">커피 1000원</p>
-					</a>
+%>
+		
 				</ul>
 			</div>
 			<!-- Left List Group End -->

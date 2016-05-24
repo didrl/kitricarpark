@@ -1,9 +1,6 @@
 <%@page import="com.carpark.member.model.MemberDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="com.carpark.member.model.*"%>
-<% 
-MemberDto memberDto = (MemberDto)session.getAttribute("memberInfo"); 
-%>
 
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 	<!-- Brand and toggle get grouped for better mobile display -->
@@ -17,6 +14,9 @@ MemberDto memberDto = (MemberDto)session.getAttribute("memberInfo");
 	</div>
 	<!-- Top Menu Items -->
 	<ul class="nav navbar-right top-nav">
+<% 
+if(memberDto ==null){
+%>
 		<li>
 			<button type="button" class="btn btn-default navbar-btn"
 				data-toggle="modal" data-target="#myLogin">Login</button>
@@ -26,6 +26,10 @@ MemberDto memberDto = (MemberDto)session.getAttribute("memberInfo");
 			<button type="button" class="btn btn-default navbar-btn"
 				data-toggle="modal" data-target="#mySignUp">SignUp</button>
 		</li>
+<%
+}
+%>		
+	
 		<li class="dropdown"><a href="#" class="dropdown-toggle"
 			data-toggle="dropdown"><i class="fa fa-envelope"></i> <b
 				class="caret"></b></a>

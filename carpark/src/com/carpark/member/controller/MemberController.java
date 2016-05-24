@@ -6,6 +6,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.tomcat.util.buf.Utf8Decoder;
+
 import com.carpark.factory.MemberActionFactory;
 import com.carpark.util.PageMove;
 import com.carpark.util.Encoder;
@@ -20,7 +23,8 @@ public class MemberController extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String root = request.getContextPath();
-		String act = request.getParameter("act");
+		String search = Encoder.utfUrl(request.getParameter("search"));
+		String act = Encoder.utfUrl(request.getParameter("act"));
 		System.out.println("act>>>>>>>>>>>>>"+act);
 		String path ="/index.jsp";
 		
@@ -33,6 +37,7 @@ public class MemberController extends HttpServlet {
 		}else if("mvReservation".equals(act)){
 			
 		}else if("mvSearchResultDetail".equals(act)){
+			path = MemberActionFactory.getMemberSearchDetailAction().execute(request, response);
 			
 		}else if("mvsignup".equals(act)){
 			path = MemberActionFactory.getMemberRegisterAction().execute(request, response);

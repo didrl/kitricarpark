@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="/common/common.jsp"%>
-
 <%@include file="/common/header/init.jsp"%>
+
 <!-- Tmap -->
 <!-- Simple Celander -->
 <link rel="stylesheet" href="/carpark/css/calendar/style.css" />
@@ -110,7 +110,7 @@
 			alert("종료일을 입력해주세요.");
 			return;
 		} else {
-			document.searchForm.action = "carpark/member";
+			document.searchForm.action = "/carpark/member";
 			document.searchForm.submit();
 		}
 	}
@@ -128,6 +128,9 @@
 				<!-- /input-group -->
 				<form id="searchForm" name="searchForm" class="form-inline" role="form" method="post">
 					<input type="hidden" name="act" value="mvSearchResult">
+					<input type="hidden" name="search" value="">
+					
+					
 					<div class="input-group">
 						<input type="text" class="form-control" id="citysearch" name="city" placeholder="Search for..."> <span
 							class="input-group-btn">

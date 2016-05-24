@@ -34,6 +34,7 @@ function mvsignup(){
 		return;
 	}
 	else {
+		alert("회원가입을 축하드립니다!~ 필요한 정보를 더채워넣어보세요~");
 		document.signUpForm.action=root+"/member";
 		document.signUpForm.submit();
 	}
@@ -51,6 +52,6 @@ function mvtrylogin(){
 }
 
 
-function formclear(){
+function confirm(){
 	document.signUpForm.reset();
 }

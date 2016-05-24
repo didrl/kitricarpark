@@ -6,7 +6,7 @@
 <%@include file="/common/side.jsp" %>
 
 <% 
-MemberDto memberDto = (MemberDto)request.getAttribute("Info");
+MemberDto registerInfo = (MemberDto)request.getAttribute("registerInfo");
 int count = (Integer)request.getAttribute("count");
 %>
 
@@ -43,19 +43,19 @@ int count = (Integer)request.getAttribute("count");
 							<div class="form-group">        	
                              	<img src="<%=root%>/img/car.png" width="25" height="25">
                                 	<label for="disabledSelect">
-                                		<h4>Bookings Made : </h4>
+                                		<h4>Bookings Made : 0 </h4>
                                 	</label><br>
                                
                                 <img src="<%=root%>/img/home.png" width="25" height="25">
                                 	<label for="disabledSelect">
-                                		<h4>Bookings Received : </h4>
+                                		<h4>Bookings Received : 0 </h4>
                                 	</label><br>    
                                 	
                               
                                 	
                                 <img src="<%=root%>/img/star.png" width="25" height="25">
                                 	<label for="disabledSelect">
-                                		<h4>My grade :<%=memberDto.getGrade_id()%> 등급</h4>
+                                		<h4>My grade :<%=registerInfo.getGrade_id()%> 등급</h4>
                                 	</label><br>        
                             </div>
 						</form>
@@ -65,35 +65,28 @@ int count = (Integer)request.getAttribute("count");
 						<form role="form">
 							<div class="form-group">
                                     <label for="disabledSelect">이름</label>
-                                    <input class="form-control" id="disabledInput" type="text" placeholder="이름" disabled>
+                                    <input class="form-control" id="disabledInput" type="text" placeholder="<%=registerInfo.getUser_name() %>" disabled>
                             </div>
 
 							<div class="form-group">
                                     <label for="disabledSelect">아이디</label>
-                                    <input class="form-control" id="disabledInput" type="text" placeholder="<%=memberDto.getUser_id() %>" disabled>
+                                    <input class="form-control" id="disabledInput" type="text" placeholder="<%=registerInfo.getUser_id() %>" disabled>
                             </div>
 
 							<div class="form-group">
                                     <label for="disabledSelect">자동차번호</label>
-                                    <input class="form-control" id="disabledInput" type="text" placeholder="<%=memberDto.getCarInfo() %>" disabled>
+                                    <input class="form-control" id="disabledInput" type="text" placeholder="<%=registerInfo.getCarInfo() %>" disabled>
                             </div>
-                       
+                            
                             <div class="form-group">
-								<div class="row">
-									<div class="col-xs-4">
-										<label>년도</label> <input type="text" class="form-control"
-											placeholder="year" disabled>
-									</div>
-									<div class="col-xs-3">
-										<label>월</label> <input type="text" class="form-control"
-											placeholder="month" disabled>
-									</div>
-									<div class="col-xs-3">
-										<label>일</label> <input type="text" class="form-control"
-											placeholder="day" disabled>
-									</div>
-								</div>
-							</div> 
+                                    <label for="disabledSelect">이메일</label>
+                                    <input class="form-control" id="disabledInput" type="text" placeholder="<%=registerInfo.getEmail() %>" disabled>
+                            </div>
+                            
+                        	
+                            <button type="button" class="btn btn-default" onclick="">확인</button>
+                            <button type="button" class="btn btn-default">상세정보</button>
+                  
 						</form>
 					</div>
 
