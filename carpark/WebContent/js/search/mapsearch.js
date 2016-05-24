@@ -17,8 +17,7 @@ var map;
 	}
 
 	function setVariables() {
-		cLonLat = new Tmap.LonLat(longitude, latitude).transform(pr_4326,
-				pr_3857);
+		cLonLat = new Tmap.LonLat(longitude, latitude).transform(pr_4326,	pr_3857);
 		//              cLonLat = new Tmap.LonLat(longitude,latitude).transform(pr_3857, pr_4326);
 		//중심점 좌표 입니다. EPSG3857 좌표계 형식 입니다. 
 
@@ -31,6 +30,7 @@ var map;
 			mapH = div.innerHeight();
 		else
 			mapH = window.outerHeight / 2;
+		console.log("W :" + mapW+"  H : "+mapH);
 		
 	}
 
@@ -69,6 +69,7 @@ var map;
 	
 	   // body에 onload를 할 수 없어서 임시로 붙여놓은 함수
 	   function addLoadEvent(func) {
+		   console.log("In the onload js");
 	      var oldonload = window.onload;
 	      if (typeof window.onload != 'function') {
 	         window.onload = func;
