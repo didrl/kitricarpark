@@ -1,6 +1,8 @@
 package com.carpark.member.reservation.action;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -10,6 +12,8 @@ import javax.servlet.http.HttpSession;
 import com.carpark.action.Action;
 import com.carpark.admin.model.ParkingDto;
 import com.carpark.member.model.ReservationDto;
+import com.carpark.member.model.service.MemberReservationServiceImpl;
+import com.carpark.member.model.service.MemberServiceImpl;
 
 public class MemberReservationMoveAction implements Action {
 
@@ -28,8 +32,11 @@ public class MemberReservationMoveAction implements Action {
 		//todate, totime
 		HttpSession session = request.getSession();
 		ReservationDto reservationDto = new ReservationDto();
-
-		reservationDto.setUser_id(request.getParameter("id"));
+		Map<String,String> map;
+		String user_id = request.getParameter("id");
+		
+		reservationDto.setUser_id(user_id);
+		//ArrayList<Map<String,String>> carinfo=MemberReservationServiceImpl.getMemberReservationService().getCarInfo(user_id);
 		reservationDto.setFromdate(request.getParameter("fromdate"));
 		reservationDto.setTodate(request.getParameter("todate"));
 		reservationDto.setFromtime(Integer.parseInt(request.getParameter("fromTime")));

@@ -1,5 +1,8 @@
 package com.carpark.member.model;
 
+import java.util.ArrayList;
+import java.util.Map;
+
 public class ReservationDto {
 	private String fromdate;
 	private String todate;
@@ -10,6 +13,16 @@ public class ReservationDto {
 	private String host_id;
 	private String park_name;
 	private int emd_code;
+	private ArrayList<Map<String,String>> carinfo;
+	
+	
+
+	public ArrayList<Map<String, String>> getCarinfo() {
+		return carinfo;
+	}
+	public void setCarinfo(ArrayList<Map<String, String>> carinfo) {
+		this.carinfo = carinfo;
+	}
 	public String getFromdate() {
 		return fromdate;
 	}
