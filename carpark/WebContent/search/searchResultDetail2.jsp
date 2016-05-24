@@ -290,9 +290,7 @@
 			<div class="col-md-7 col-lg-7 col-sm-7">
 				<!--  Map  -->
 				<div class="panel panel-default">
-			<div class="row" align="left"><h3><b>&nbsp;&nbsp;&nbsp; 잠실민영주차장&nbsp;&nbsp;&nbsp; 
-			<i class = glyphicon glyphicon-star></i><i class = glyphicon glyphicon-star></i><i class = glyphicon glyphicon-star> </i><i class = glyphicon glyphicon-star></i><i class = glyphicon glyphicon-star-empty></i></b> 
-			서울특별시 송파구 잠실1동
+			<div class="row" align="left"><h3><b>&nbsp;&nbsp;&nbsp; 잠실민영주차장</b> 지역명
 			<a href=""><img height="30"  src="/carpark/img/heart.jpg"></a></h3>
 			</div>
 				<div class="panel panel-default" id="divformap">
@@ -305,10 +303,10 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">주변 정보</div>
 					<div class="panel-body">
-					<span i= glyphicon glyphicon-tag></span>잠실역 <br>
-					<span i= glyphicon glyphicon-tag></span>잠실포차 <br>
-					<span i= glyphicon glyphicon-tag></span>잠실 호수공원<br> 
-					<span i= glyphicon glyphicon-tag></span>잠실야구장<br> 
+					잠실역 <br>
+					잠실포차 <br>
+					잠실 호수공원<br> 
+					잠실야구장<br> 
 					
 						<div class="panel-footer">특징</div>
 						두산팬클럽 회원의 경우,주차요금 10% 할인해 드립니다.<br>
@@ -318,7 +316,7 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h3 class="panel-title">상세 정보</h3>
-						<span i= glyphicon glyphicon-tag>주차장대수많음</span>, 역과 가까움, 정기권 판매, 할인혜택 제공, 카드 가능  
+						주차장대수많음, 역과 가까움, 정기권 판매, 할인혜택 제공, 카드 가능  
 					</div>
 					<div class="panel-body">
 						<!-- Street View start -->

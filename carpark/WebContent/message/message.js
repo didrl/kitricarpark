@@ -1,10 +1,10 @@
 function messageSearch() {
-	if(document.searchForm.word.value == ""){
+	if(document.messageForm.word.value == ""){
 		alert("내용을 입력하세요");
 		return;
 	} else{
-		document.searchForm.action = "/carpark/message";
-		document.searchForm.submit();
+		document.messageForm.action = "/carpark/message";
+		document.messageForm.submit();
 	}
 }
 
@@ -33,17 +33,17 @@ function messageList() {
 }
 
 function messageWrite() {
-	if(document.writeForm.receiver.value == ""){
+	if(document.messageForm.receiver.value == ""){
 		alert("대상을 입력하세요");
 		return;
-	} else if(document.writeForm.subject.value == "") {
+	} else if(document.messageForm.subject.value == "") {
 		alert("제목을 입력하세요");
 		return;	
-	} else if(document.writeForm.content.value == "") {
+	} else if(document.messageForm.content.value == "") {
 		alert("내용을 입력하세요");
 		return;
 	} else{
-		document.writeForm.action = "/carpark/message";
-		document.writeForm.submit();
+		document.messageForm.action = "/carpark/message";
+		document.messageForm.submit();
 	}
 }

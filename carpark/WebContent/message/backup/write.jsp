@@ -1,49 +1,47 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.carpark.member.model.*"%>
+    pageEncoding="UTF-8" import="com.carpark.member.model.*,java.util.List"%>
 <%
 String root = request.getContextPath();
-MessageDto messageDto = (MessageDto) request.getAttribute("messageView");
+List<MessageDto> list = (List<MessageDto>) request.getAttribute("messageList");
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<!-- ********************************** javascript ******************************************************** -->
-<script type="text/javascript">
-function messageSearch() {
-	if(document.searchForm.word.value == ""){
-		alert("내용을 입력하세요");
-		return;
-	} else{
-		document.searchForm.action = "/carpark/message";
-		document.searchForm.submit();
-	}
-}
-
-function messageView(seq) {
-	document.getElementById("act").value = "messageView";
-	document.getElementById("seq").value = seq;
-		
-	document.common.action = "/carpark/message";
-	document.common.submit();
-	
-}
-</script>
     <!-- Bootstrap Core CSS -->
-    <link href="<%=root %>/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/carpark/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="<%=root %>/css/sb-admin.css" rel="stylesheet">
+    <link href="/carpark/css/sb-admin.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="<%=root %>/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="/carpark/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]--> 
+    <![endif]-->
+    
+<!-- ********************************** javascript ******************************************************** -->
+<script type="text/javascript">
+function messageWrite() {
+	if(document.writeForm.receiver.value == ""){
+		alert("대상을 입력하세요");
+		return;
+	} else if(document.writeForm.subject.value == "") {
+		alert("제목을 입력하세요");
+		return;	
+	} else if(document.writeForm.content.value == "") {
+		alert("내용을 입력하세요");
+		return;
+	} else{
+		document.writeForm.action = "/carpark/message";
+		document.writeForm.submit();
+	}
+}
+</script>
 </head>
 <div id="wrapper">
 
@@ -392,41 +390,39 @@ function messageView(seq) {
 		</div>
 
 <!-- ****************************************************************************************************************** -->
-<form name="common" method="get" action="">
-	<input type="hidden" name="act" id="act" value="">
-	<input type="hidden" name="bcode" id="bcode" value="1">
-	<input type="hidden" name="pg" id="pg" value="1">
-	<input type="hidden" name="key" id="key" value="">
-	<input type="hidden" name="word" id="word" value="">
-	<input type="hidden" name="seq" id="seq" value="">
-</form>
-
-
-
 		<!-- main -->
 		<div id="page-wrapper">
 			<div class="container-fluid">
-				<!-- 쪽지내용 -->
-				
-				<div class="form-group">
-				<form name="messageForm" method="get" action="">
-				<input type="hidden" name="act" id="act" value="messageSearch">
-				<input type="hidden" name="bcode" id="bcode" value="1">
-				<input type="hidden" name="pg" id="pg" value="1">
-					<select name="key">
-						<option value="subject">제목</option>
-						<option value="content">내용</option>
-						<option value="user_id">작성자</option>
-					</select>
-					<input type="text" name="word">
-					<input type="button" value="검색" onclick="javascript:messageSearch();">
+			<!-- 쪽지보내기 -->
+			<h3>쪽지보내기</h3><br>
+			<div class="form-group">
+				<form class="form-horizontal" name="writeForm" method="post" action="">
+				<input type="hidden" name="act" value="messageWrite">
+				<input type="hidden" name="bcode" value="1">
+				<input type="hidden" name="pg" value="1">
+				<input type="hidden" name="key" value="">
+				<input type="hidden" name="word" value="">
+			
+				  <div class="form-group">
+				    <label for="receiver">받는사람</label>
+				    <input type="text" class="form-control" id="receiver" placeholder="받는사람" name="name">
+				  </div>
+				  <div class="form-group">
+				    <label for="subject">제목</label>
+				    <input type="text" class="form-control" id="subject" placeholder="제목" name="content">
+				  </div>
+				  <div class="form-group">
+				    <label for="content">내용</label>
+				    <textarea class="form-control" rows="10" id="content" name="content"></textarea>
+				  </div>
+				  
+				  <div class="form-group text-center">
+					<input class="btn btn-default" type="button" value="보내기" onclick="javascript:messageWrite();">
+					<input class="btn btn-default" type="reset" value="취소">
+				  </div>
+			
 				</form>
-				</div>
-
-<center>
-<h3>글이 삭제되었습니다</h3>
-</center>
-				
+			</div>					
 			</div>
 		</div>
 
@@ -439,10 +435,10 @@ function messageView(seq) {
 
 
     <!-- jQuery -->
-    <script src="<%=root %>/js/jquery.js"></script>
+    <script src="/carpark/js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="<%=root %>/js/bootstrap.min.js"></script>
+    <script src="/carpark/js/bootstrap.min.js"></script>
 
 </body>
 
