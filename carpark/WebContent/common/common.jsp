@@ -52,5 +52,10 @@ String staticpath = adminpath +"/"+"static";
     <script src="<%=root %>/js/plugins/morris/morris-data.js"></script>
    <!-- bootbox(modal) JavaScript -->
    <script src="<%=root %>/js/bootbox.min.js"></script>
-   
+   <!-- Fuel UX CDN -->
+   <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="//www.fuelcdn.com/fuelux/3.13.0/css/fuelux.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="//www.fuelcdn.com/fuelux/3.13.0/js/fuelux.min.js"></script>
    
