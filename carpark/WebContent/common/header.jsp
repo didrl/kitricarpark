@@ -1,10 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-</head>
-
-<body>
-
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -131,7 +127,7 @@
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
            
             <!-- /.navbar-collapse -->
-        </nav>
+</nav>
         
         
         <!-- login modal popup -->
@@ -230,4 +226,5 @@
 				</div>
 			</div>
 		</div>
+
 	
