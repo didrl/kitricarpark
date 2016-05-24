@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.*,com.carpark.admin.model.*"%>
+<%
+List<ParkingDto> list = (List<ParkingDto>)request.getAttribute("searchlist");
+%>    
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,6 +28,7 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script type="text/javascript" src="/carpark/js/calendar/calendar.js"></script>
 <!-- Simple Celander -->
+
 
 
 
@@ -170,6 +175,10 @@
 				<h3><b>도시이름 </b>&nbsp;&nbsp;검색 결과</h3>
 				<ul class="list-group">
 				<!--  for-->
+				
+<%
+for(ParkingDto parkingDto :list){
+%>
 				<form id="parkListFrom" class="form-inline" role="form" method="post" >
 					<input type="hidden" name="act" value="mvSearchResultDetail">
 					<a href="javascript:goResultDetail();" class="list-group-item">
@@ -186,7 +195,11 @@
                     </div>
 						<p class="list-group-item-text">역에서 도보로 3분 다양한 회사들 밀집</p>
 					</a>
-					</form>
+				</form>
+<%
+}
+%>			
+					
 					<a href="#" class="list-group-item">
 						<h4 class="list-group-item-heading">대륭포스트 2차</h4>
 						<div class="ratings">

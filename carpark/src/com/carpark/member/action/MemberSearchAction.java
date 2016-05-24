@@ -30,7 +30,7 @@ public class MemberSearchAction implements Action {
 		List<ParkingDto> list = MemberServiceImpl.getMemberService().list(map);
 		request.setAttribute("searchlist", list);
 		
-		return list==null ? "":"/carpark/search/searchResult.jsp";
+		return list==null ? "":"/search/searchResult.jsp";
 	}
 
 }
