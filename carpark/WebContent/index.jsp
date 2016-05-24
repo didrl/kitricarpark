@@ -12,9 +12,8 @@
 <!-- Simple Celander -->
 <script
 	src="https://apis.skplanetx.com/tmap/js?version=1&format=javascript&appKey=a4ea8cc9-e49c-308f-99de-3aadb0c70298">
-
-	
 </script>
+<script type="text/javascript" src="/carpark/js/search/mapsearch.js"></script>
 <script type="text/javascript">
 	var map;
 	var mapW, mapH; // 지도의 가로, 세로 크기(Pixel단위) 를 지정 합니다. 
@@ -83,6 +82,7 @@
 				});
 		// div : 지도가 생성될 div의 id값과 같은 값을 옵션으로 정의 합니다.
 	}
+	
 	// body에 onload를 할 수 없어서 임시로 붙여놓은 함수
 	function addLoadEvent(func) {
 		var oldonload = window.onload;
@@ -126,7 +126,7 @@
 			<!--  search bar start -->
 			<div class="col-sm-13">
 				<!-- /input-group -->
-				<form id="searchForm" class="form-inline" role="form" method="post">
+				<form id="searchForm" name="searchForm" class="form-inline" role="form" method="post">
 					<input type="hidden" name="act" value="mvSearchResult">
 					<div class="input-group">
 						<input type="text" class="form-control" id="citysearch" name="city" placeholder="Search for..."> <span

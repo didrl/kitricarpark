@@ -85,11 +85,7 @@
 			<artifactId>fuelux</artifactId>
 			<version>3.3.1</version>
 		</dependency>
-
-
-
-
-
+		
 	</dependencies>
 >>>>>>> master
 </project>

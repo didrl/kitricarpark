@@ -9,6 +9,7 @@
 MemberDto memberDto = (MemberDto)request.getAttribute("Info");
 int count = (Integer)request.getAttribute("count");
 %>
+
 	<div id="wrapper">
 
 <!-- ****************************************************************************************************************** -->	
@@ -50,10 +51,7 @@ int count = (Integer)request.getAttribute("count");
                                 		<h4>Bookings Received : </h4>
                                 	</label><br>    
                                 	
-                                <img src="<%=root%>/img/coin.png" width="25" height="25">
-                                	<label for="disabledSelect">
-                                		<h4>My coin :<%=memberDto.getCoin() %> </h4>
-                                	</label><br>
+                              
                                 	
                                 <img src="<%=root%>/img/star.png" width="25" height="25">
                                 	<label for="disabledSelect">
@@ -64,10 +62,7 @@ int count = (Integer)request.getAttribute("count");
 					</div>
 
 					<div class="col-lg-4">
-
 						<form role="form">
-
-
 							<div class="form-group">
                                     <label for="disabledSelect">이름</label>
                                     <input class="form-control" id="disabledInput" type="text" placeholder="이름" disabled>
@@ -81,7 +76,6 @@ int count = (Integer)request.getAttribute("count");
 							<div class="form-group">
                                     <label for="disabledSelect">자동차번호</label>
                                     <input class="form-control" id="disabledInput" type="text" placeholder="<%=memberDto.getCarInfo() %>" disabled>
-                            
                             </div>
                        
                             <div class="form-group">
@@ -99,9 +93,7 @@ int count = (Integer)request.getAttribute("count");
 											placeholder="day" disabled>
 									</div>
 								</div>
-							</div>
-                            
-
+							</div> 
 						</form>
 					</div>
 
