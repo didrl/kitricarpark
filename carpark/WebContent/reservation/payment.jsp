@@ -16,7 +16,7 @@
                                <form class="form-horizontal" >
                               <div class="form-group" align ="center">
                                  <label for="inputMsgSubject" class="col-sm-3 control-label">선택한 날짜 :</label>
-                                 <label for="inputMsgSubject"  id="selectedfromdate" class="col-sm-4 control-label">2016-08-16 18:00</label> To &nbsp;
+                                 <label for="inputMsgSubject"  id="selectedfromdate" class="col-sm-4 control-label"> 2016-08-16 18:00</label>
                                  <label for="inputMsgSubject" id="selectedtodate" class="col-sm-3 control-label"> 08-17 21:00</label>
                                </div>
                               <div class="form-group" align ="center">

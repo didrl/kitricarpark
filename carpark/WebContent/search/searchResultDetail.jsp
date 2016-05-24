@@ -137,7 +137,7 @@
 		}
 	}
 	function goReservation() {
-		document.selectdateForm.action = "/carpark/member";
+		document.selectdateForm.action = "/carpark/reservation";
 		document.selectdateForm.submit();
 	}
 	

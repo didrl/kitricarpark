@@ -9,6 +9,8 @@ public class ParkingDto {
 	private int latitude;
 	private int longitude;
 	private String park_type;
+	
+	
 	public int getPark_id() {
 		return park_id;
 	}

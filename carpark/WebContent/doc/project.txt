@@ -128,6 +128,7 @@ project name : parking
 		MemberReservationDeleteAction.java		//예약취소
 		MemberReservationListAction.java	//예약내역
 		MemberReservationViewAction.java	//예약내용보기
+		MemberReservationMoveAction.java
 		 
 		      	
 	- com.parkingshare.member.model

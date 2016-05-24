@@ -1,10 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"
+    import="com.carpark.member.model.ReservationDto"
+    %>
     
 <%@include file="/common/common.jsp" %>
 <%@include file="/common/header.jsp" %> 
 
-    
+<%
+ReservationDto reservationDto = (ReservationDto)request.getAttribute("reservationDto");
+	
+//if(reservationDto != null){
+%>
     <!-- For sendMsg Modal -->
    <%@include file="/reservation/sendMessageModal.jsp"%>
    <!-- For sendMsg Modal -->
@@ -14,10 +20,6 @@
    <!-- For payment Modal -->
    <%@include file="/reservation/payment.jsp"%>
    <!-- For payment Modal -->
-    
-
-
-
 
 <!-- Seclect List CSS -->
 <link rel="stylesheet" type="text/css" href="/carpark/css/jquery.selectlist.css">
@@ -70,8 +72,8 @@
 			<div class="col-md-7 col-lg-7 col-sm-7">
 				<div class="panel panel-default"> <!--  Left panel div Start -->
 				<div class="panel-body"> <!--  Left panel body Start -->
-				<div>	<h3><a href="" > 선택한 주차장 이름</a></h3></div>
-				<div>주차장 내용들</div><br><br>
+				<div>	<h3><a href="" > <%=reservationDto.getPark_name() %></a></h3></div>
+				<div>주차장 내용들</div><br><br><br><br>
 				<div><h3>언제 주차를 하길 원하십니까?</h3></div><br>
 				<div class="row"><!-- From Choice Start -->
 					<div class="col-md-3 col-lg-3 col-sm-3">
@@ -126,7 +128,7 @@
 								<div class="pull-right">Date : </div>
 						</div>
 						<div class="col-md-8 col-lg-8 col-sm-8" >		
-								<input class="date-picker" id="fromdate" type="text"  />
+								<input class="date-picker" id="singedate" type="text"  />
 								<select id="dateTime" name="dateTime">
 								  <option value="0">00:00</option><option value="1">01:00</option><option value="2">02:00</option>
 								  <option value="3">03:00</option> <option value="4">04:00</option><option value="5">05:00</option>
@@ -275,26 +277,7 @@
 				});		
 			})
 			
-			$('#payment').on('show.bs.modal', function (event) {
-				  var button = $(event.relatedTarget) // Button that triggered the modal
-				  //var recipient = button.data('whatever') // Extract info from data-* attributes
-				  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-				  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-				  
-				  $.ajax({
-					    type: 'POST',
-					    cache: false,
-			            url: 'payment.jsp',
-			            data: 'EID=' + essayId,
-			            success: function(data) {
-			                $modal.find('.edit-content').html(data);
-			            }
-				  });
-				  
-				  var modal = $(this)
-				  modal.find('.modal-title').text('New message to ' + recipient)
-				  modal.find('.modal-body input').val(recipient)
-			})
+
 			// Radio Control div Show or Hide 
 			$(function(){
 				$("#singleReservationDiv").addClass("hidden");
@@ -314,46 +297,32 @@
 			
 			$('#payment').on('show.bs.modal', function (event) {
 				  var button = $(event.relatedTarget) // Button that triggered the modal
+				  var fdate =$('#fromdate');
+				  var tdate =$('#todate');
+				  var ddate =$('#singledate');
+			            	console.log("fd : "+fdate.val()+"  td : "+tdate.val())
 				 
-					  console.log("Here!!!");
-				  $.ajax({
-			            cache: false,
-			            type: 'POST',
-			            url: 'payment.jsp',
-			            data: '',
-			            success: function(data) 
-			            {
-			            	// Clean text in modal label
-			            	$("#selectedfromdate").empty();
-			            	$("#selectedtodate").empty();
-			            	$("#selectedid").empty();
-			            	$("#selectedgrade").empty();
-			            	$("#selectedcarinfo").empty();
-			            	$("#selectedcoin").empty();
-			            	$("#selectedprice").empty();
-			            	// Clean text in modal label
-			            	
-			            	$("#selectedfromdate").append($('#fromdate').val());
-			            	$("#selectedtodate").append($('#todate').val());
-			                $('#payment').show();
-			            }
-			        });
 				  
 				  
-				  //var modal = $(this)
-				  //modal.find('.modal-title').text('New message to ' + recipient)
+				  var modal = $(this)
+				  //modal.find('.modal-title').text(')
 				  //modal.find('.modal-body input').val(recipient)
 				})
 				
 		</script>
-
-		<script src="/carpark/js/selectlist/jquery.selectlist.js"></script>
-
-		
-		
-
 <!-- ****************************************************************************************************************** -->			
 
 
 <%@ include file="/common/footer.jsp" %>		
-		
+		<!-- 
+<%
+//}else{
+%>
+<script type="text/javascript">
+alert("잘못된 접근입니다. 다시 시도해주세요.");
+document.location.href = "<%=root%>/index.jsp";
+</script>
+<%
+//}
+%>
+ -->

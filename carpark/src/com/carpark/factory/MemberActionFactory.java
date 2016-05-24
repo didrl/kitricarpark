@@ -22,6 +22,7 @@ import com.carpark.member.report.action.MemberReportRegisterAction;
 import com.carpark.member.report.action.MemberReportViewAction;
 import com.carpark.member.reservation.action.MemberReservationDeleteAction;
 import com.carpark.member.reservation.action.MemberReservationListAction;
+import com.carpark.member.reservation.action.MemberReservationMoveAction;
 import com.carpark.member.reservation.action.MemberReservationRegisterAction;
 import com.carpark.member.reservation.action.MemberReservationViewAction;
 import com.carpark.member.review.action.MemberReviewDeleteAction;
@@ -65,6 +66,7 @@ public class MemberActionFactory {
 	private static Action memberReservationListAction;
 	private static Action memberReservationRegisterAction;
 	private static Action memberReservationViewAction;
+	private static Action memberReservationMoveAction;
 	
 	private static Action memberReviewDeleteAction;
 	private static Action memberReviewListAction;
@@ -106,6 +108,7 @@ public class MemberActionFactory {
 		memberReservationListAction = new MemberReservationListAction();
 		memberReservationRegisterAction = new MemberReservationRegisterAction();
 		memberReservationViewAction = new MemberReservationViewAction();
+		memberReservationMoveAction= new MemberReservationMoveAction();
 		
 		memberReviewDeleteAction = new MemberReviewDeleteAction();
 		memberReviewListAction = new MemberReviewListAction();
@@ -113,6 +116,10 @@ public class MemberActionFactory {
 		memberReviewRegisterAction = new MemberReviewRegisterAction();
 	}
 
+
+	public static Action getMemberReservationMoveAction() {
+		return memberReservationMoveAction;
+	}
 
 	public static Action getMemberLogoutAction() {
 		return memberLogoutAction;
