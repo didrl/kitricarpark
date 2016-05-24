@@ -31,7 +31,7 @@ String staticpath = adminpath +"/"+"static";
 	<script type="text/javascript">
 	var root = "<%=root%>";
 	</script>
-
+	
 	
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -52,5 +52,10 @@ String staticpath = adminpath +"/"+"static";
     <script src="<%=root %>/js/plugins/morris/morris-data.js"></script>
    <!-- bootbox(modal) JavaScript -->
    <script src="<%=root %>/js/bootbox.min.js"></script>
-   
+   <!-- Fuel UX CDN -->
+   <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="//www.fuelcdn.com/fuelux/3.13.0/css/fuelux.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="//www.fuelcdn.com/fuelux/3.13.0/js/fuelux.min.js"></script>
    

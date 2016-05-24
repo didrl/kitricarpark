@@ -1,11 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.carpark.member.model.*"%>
 <%
 MessageDto messageDto = (MessageDto) request.getAttribute("messageView");
 %>
-<%@ include file="./common.jsp" %>
-<%@ include file="./side.jsp" %>
 
+<%@ include file="/common/common.jsp" %>
+<%@ include file="/common/header.jsp" %>
+<%@ include file="/common/side.jsp" %>
+
+<div id="wrapper">
+
+<!-- ****************************************************************************************************************** -->
 <form name="common" method="get" action="">
 	<input type="hidden" name="act" id="act" value="">
 	<input type="hidden" name="bcode" id="bcode" value="1">
@@ -44,4 +49,8 @@ MessageDto messageDto = (MessageDto) request.getAttribute("messageView");
 			</div>
 		</div>
 
-<%@ include file="/message/footer.jsp" %>	
+<!-- ****************************************************************************************************************** -->	
+
+</div>
+
+<%@ include file="/common/footer.jsp" %>

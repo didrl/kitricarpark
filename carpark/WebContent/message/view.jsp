@@ -1,13 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>    
+    pageEncoding="UTF-8" import="com.carpark.member.model.*"%>
 <%
 MessageDto messageDto = (MessageDto) request.getAttribute("messageView");
 %>
 
-<%@ include file="./common.jsp" %>
-<%@ include file="./side.jsp" %>
+<%@ include file="/common/common.jsp" %>
+<%@ include file="/common/side.jsp" %>
 
-
+<div id="wrapper">
+<!-- ****************************************************************************************************************** -->
 <form name="common" method="get" action="">
 	<input type="hidden" name="act" id="act" value="">
 	<input type="hidden" name="bcode" id="bcode" value="1">
@@ -60,6 +61,19 @@ if(messageDto != null) {
 %>
 <center>
 	<h3>글이 없습니다</h3>
+				<div class="table-responsive">
+				  <table class="table table-hover">
+				  <tr>
+				  	<th width="100">보낸사람</th><td>test</td>
+				  </tr>
+				  <tr>
+				  	<th width="100">보낸시간</th><td>test</td>
+				  </tr>
+				  <tr>
+				  	<th colspan="2"><p>test</p></td>
+				  </tr>
+				  </table>
+				</div>
 </center>
 <%
 }
@@ -70,4 +84,9 @@ if(messageDto != null) {
 			</div>
 		</div>
 
-<%@ include file="/message/footer.jsp" %>	
+<!-- ****************************************************************************************************************** -->	
+		
+</div>
+
+<%@ include file="/common/footer.jsp" %>
+

@@ -21,6 +21,7 @@ public class MemberRegisterAction implements Action{
 		memberDto.setUser_name(request.getParameter("name"));
 		memberDto.setEmail(request.getParameter("pass"));
 		memberDto.setTel(request.getParameter("tel"));
+		
 		memberDto.setCarInfo(request.getParameter("carInfo"));
 		int count=MemberServiceImpl.getMemberService().register(memberDto);
 		System.out.println("Dao에서 service 들어옴>>>>>"+count);

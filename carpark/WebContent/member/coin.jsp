@@ -1,16 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="/admin/common/common.jsp" %>
+    
+<%@include file="/common/common.jsp" %>
+<%@include file="/common/header.jsp" %> 
+<%@include file="/common/side.jsp" %>
 
-    <div id="wrapper">
-        <!-- Navigation -->
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <!-- Brand and toggle get grouped for better mobile display -->
-        	    
-            
-                    <!-- /.navbar-collapse -->
-        </nav>
+<div id="wrapper">
 
+<!-- ****************************************************************************************************************** -->	
+       
         <div id="page-wrapper">
 
             <div class="container-fluid">
@@ -110,10 +108,11 @@
 		</div>
         <!-- /#page-wrapper -->
 
+  
+  <!-- ****************************************************************************************************************** -->	
     </div>
     <!-- /#wrapper -->
-  
-  
+
   <!-- Footer -->
   <%@include file="/common/footer.jsp" %>
   <!-- /Footer -->

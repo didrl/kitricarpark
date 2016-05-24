@@ -13,21 +13,21 @@
 				<h4 class="modal-title" id="myModalLabel">Try Login Again</h4>
 			</div>
 			<div class="modal-body">
-
-				<form name="loginForm" class="form-horizontal" id="login"
+				
+				<form name="loginForm" class="form-horizontal" id="tryLoginForm"
 					method="post" action="">
 					<input type="hidden" name="act" value="mvlogin">
 					<div class="form-group">
 						<label for="inputEmail3" class="col-sm-2 control-label">ID</label>
 						<div class="col-sm-10">
 							<input type="text" class="form-control" name="id" value=""
-								id="id" placeholder="id">
+								id="tryid" placeholder="id">
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="inputPassword3" class="col-sm-2 control-label">Password</label>
 						<div class="col-sm-10">
-							<input type="password" class="form-control" name="pass" id="pass"
+							<input type="password" class="form-control" name="pass" id="trypass"
 								placeholder="Password">
 						</div>
 					</div>

@@ -1,11 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.*,com.carpark.member.model.*"%>
+    
+<%@include file="/common/common.jsp" %>
+<%@include file="/common/header.jsp" %> 
+<%@include file="/common/side.jsp" %>
+<script type="text/javascript" src="./message.js"></script>  
+    
 <%
 List<MessageDto> list = (List<MessageDto>) request.getAttribute("messageList");
-%>    
-    
-<%@ include file="./common.jsp" %>
-<%@ include file="./side.jsp" %>
+%>
+
+<div id="wrapper">
+<!-- ****************************************************************************************************************** -->	
 
 <form name="common" method="get" action="">
 	<input type="hidden" name="act" id="act" value="">
@@ -139,6 +145,8 @@ if(list != null) {
 			<!-- 쪽지보내기 모달 -->		
 					
 		</div>
-		</div>
+	</div>
+<!-- ****************************************************************************************************************** -->	
+</div>
 
-<%@ include file="/message/footer.jsp" %>	
+<%@include file="/common/footer.jsp"%>

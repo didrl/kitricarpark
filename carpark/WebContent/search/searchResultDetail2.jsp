@@ -1,12 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
-<%@include file="/common/common.jsp" %>
-<%@include file="/common/header.jsp" %> 
-
-<!-- ****************************************************************************************************************** -->	
-
-  
+    
+  <%@ include file="/common/common.jsp" %>
+  <%@ include file="/common/header.jsp" %>
+    
     <!-- For sendMsg Modal -->
    <%@include file="/reservation/sendMessageModal.jsp"%>
    <!-- For sendMsg Modal -->
@@ -22,7 +19,6 @@
 <script type="text/javascript" src="/carpark/js/calendar/calendar.js"></script>
 <!-- Simple Celander -->
 
-<link href="/carpark/css/stylish-portfolio.css" rel="stylesheet" />
 <link href='http://fonts.googleapis.com/css?family=Roboto:400,500'	rel='stylesheet' type='text/css' />
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"	rel="stylesheet" />
 
@@ -165,13 +161,9 @@
 
 <body onload="init()">
 
+<br><br><br>
 
-<!-- ****************************************************************************************************************** -->	
-
-<br><br><br><br>
-
-
-		<!-- row -->
+	<!-- Page Content -->
 	<div class="container" style="text-align:center">
 			<!--  search bar start -->
 			<div class="col-sm-13">
@@ -200,12 +192,10 @@
 				<!--  search bar end-->
 		<div class="row">
 			<!-- Left Section Start -->
-			<div class="col-md-7">
+			<div class="col-md-7 col-lg-7 col-sm-7">
 				<!--  Map  -->
 				<div class="panel panel-default">
-			<div class="row" align="left"><h3><b>&nbsp;&nbsp;&nbsp; 잠실민영주차장&nbsp;&nbsp;&nbsp; 
-			<i class = glyphicon glyphicon-star></i><i class = glyphicon glyphicon-star></i><i class = glyphicon glyphicon-star> </i><i class = glyphicon glyphicon-star></i><i class = glyphicon glyphicon-star-empty></i></b> 
-			서울특별시 송파구 잠실1동
+			<div class="row" align="left"><h3><b>&nbsp;&nbsp;&nbsp; 잠실민영주차장</b> 지역명
 			<a href=""><img height="30"  src="/carpark/img/heart.jpg"></a></h3>
 			</div>
 				<div class="panel panel-default" id="divformap">
@@ -218,10 +208,10 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">주변 정보</div>
 					<div class="panel-body">
-					<span i= glyphicon glyphicon-tag></span>잠실역 <br>
-					<span i= glyphicon glyphicon-tag></span>잠실포차 <br>
-					<span i= glyphicon glyphicon-tag></span>잠실 호수공원<br> 
-					<span i= glyphicon glyphicon-tag></span>잠실야구장<br> 
+					잠실역 <br>
+					잠실포차 <br>
+					잠실 호수공원<br> 
+					잠실야구장<br> 
 					
 						<div class="panel-footer">특징</div>
 						두산팬클럽 회원의 경우,주차요금 10% 할인해 드립니다.<br>
@@ -231,7 +221,7 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h3 class="panel-title">상세 정보</h3>
-						<span i= glyphicon glyphicon-tag>주차장대수많음</span>, 역과 가까움, 정기권 판매, 할인혜택 제공, 카드 가능  
+						주차장대수많음, 역과 가까움, 정기권 판매, 할인혜택 제공, 카드 가능  
 					</div>
 					<div class="panel-body">
 						<!-- Street View start -->
@@ -308,7 +298,7 @@
 			<!-- Left Section End -->
 
 			<!-- Right Section Start -->
-			<div class="col-md-5">
+			<div class="col-md-5 col-lg-5 col-sm-5">
 				<div class="row">
 					<!-- Date Picker panel Start -->
 					<div class="panel panel-default">
@@ -316,10 +306,10 @@
 					<input type="hidden"  name="act" value="mvReservation">
 						<div class="panel-body">	
 				<div class="row"><!-- From Choice Start -->
-					<div class="col-md-3">
+					<div class="col-md-3 col-lg-3 col-sm-3">
 								<div class="pull-right">From : </div>
 						</div>
-						<div class="col-md-9" >		
+						<div class="col-md-9 col-lg-9 col-sm-9" >		
 								<input class="date-picker" id="fromdate" type="text" />
 								<select id="fromTime" name="fromTime">
 								  <option value="0">00:00</option><option value="1">01:00</option><option value="2">02:00</option>
@@ -334,10 +324,10 @@
 							</div>
 					</div><!-- From Choice End -->
 					<div class="row"><!-- To Choice Start -->
-							<div class="col-md-3">
+							<div class="col-md-3 col-lg-3 col-sm-3">
 								<div class="pull-right">T o :</div> 
 								</div>
-								<div class="col-md-9" >
+								<div class="col-md-9 col-lg-9 col-sm-9" >
 								<input class="date-picker" id="todate" type="text" />
 								<select id="toTime" name="toTime">
 								  <option value="0">00:00</option><option value="1">01:00</option><option value="2">02:00</option>
@@ -400,11 +390,8 @@
 
 		<hr>
 
+
 </div>
-
-
-
-
 
 
 		<!-- Custom Theme JavaScript -->
@@ -464,8 +451,6 @@
 </script>
 
 
+<!-- ************************************************************ -->
 
-
-<!-- ****************************************************************************************************************** -->
-
-<%@ include file="/common/footer.jsp" %>	
+<%@ include file="/common/footer.jsp" %>
