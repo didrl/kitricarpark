@@ -24,36 +24,35 @@ public class MemberMessageController extends HttpServlet {
 		String word = StringCheck.nullToBlank(request.getParameter("word"));
 		String path = "/index.jsp";
 		String queryString = "?bcode=" + bcode + "&pg=" + pg + "&key=" + key + "&word=" + Encoder.isoToUtf(word);
-		System.out.println("확인");
 		
-//		if("messageSearch".equals(act)) {
-//			System.out.println("ghkrdls");
-//			path = MemberActionFactory.getMemberMessageListAction().execute(request, response);
-//			PageMove.forward(request, response, path + queryString);
-//			
-//		} else if("messageWrite".equals(act)) {
-//			path = MemberActionFactory.getMemberMessageWriteAction().execute(request, response);
-//			PageMove.forward(request, response, path + queryString);
-//			
-//		} else if("messageView".equals(act)) {
-//			path = MemberActionFactory.getMemberMessageViewAction().execute(request, response);
-//			PageMove.forward(request, response, path + queryString);
-//			
-//		} else if("messageDelete".equals(act)) {
-//			path = MemberActionFactory.getMemberMessageDeleteAction().execute(request, response);
-//			PageMove.forward(request, response, path + queryString);
-//			
-//		} else if("".equals(act)) {
-//			
-//		} else if("".equals(act)) {
-//			
-//		} else if("".equals(act)) {
-//			
-//		} else if("".equals(act)) {
-//			
-//		}
-//		
-//	}
+		if("messageSearch".equals(act)) {
+			System.out.println("ghkrdls");
+			path = MemberActionFactory.getMemberMessageListAction().execute(request, response);
+			PageMove.forward(request, response, path + queryString);
+			
+		} else if("messageWrite".equals(act)) {
+			path = MemberActionFactory.getMemberMessageWriteAction().execute(request, response);
+			PageMove.forward(request, response, path + queryString);
+			
+		} else if("messageView".equals(act)) {
+			path = MemberActionFactory.getMemberMessageViewAction().execute(request, response);
+			PageMove.forward(request, response, path + queryString);
+			
+		} else if("messageDelete".equals(act)) {
+			path = MemberActionFactory.getMemberMessageDeleteAction().execute(request, response);
+			PageMove.forward(request, response, path + queryString);
+			
+		} else if("".equals(act)) {
+			
+		} else if("".equals(act)) {
+			
+		} else if("".equals(act)) {
+			
+		} else if("".equals(act)) {
+			
+		}
+		
+	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding(BoardConstance.DEFAULT_CHARSET);
