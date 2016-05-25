@@ -24,19 +24,19 @@ public class MemberMessageWriteAction implements Action {
 		
 		MessageDto messageDto = new MessageDto();
 		messageDto.setSeq(seq);
-		//messageDto.setUser_id(memberDto.getUser_id())session에서 데이터 가져와야함
+		messageDto.setUserID("kangnam17");
 		messageDto.setSubject(request.getParameter("subject"));
 		messageDto.setContent(request.getParameter("content"));
 		messageDto.setBcode(NumberCheck.nullToZero(request.getParameter("bcode")));
 		messageDto.setMseq(seq);
-		messageDto.setReceiverId(request.getParameter("receiver_id"));
+		messageDto.setReceiverId(request.getParameter("receiver"));
 		messageDto.setMsgFlag(0);
 		
 		seq = MemberMessageServiceImpl.getMemberMessageService().writeArticle(messageDto);
 		
 		request.setAttribute("seq", seq);
 		
-		return seq == 0 ? "/message/writeFail.jsp" : "/message/writeOk.jsp";
+		return "/message/list.jsp";
 	}
 
 }

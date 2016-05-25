@@ -63,7 +63,6 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public List<ParkingDto> list(Map<String, String> map) {
-		
 		return MemberDaoImpl.getMemberDao().list(map);
 	}
 

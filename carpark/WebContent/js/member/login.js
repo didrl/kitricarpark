@@ -1,3 +1,4 @@
+
 function mvlogin() {
 	if(document.getElementById("id").value=="")
 		alert("id를 입력해주세요!!");
@@ -33,14 +34,24 @@ function mvsignup(){
 		return;
 	}
 	else {
+		alert("회원가입을 축하드립니다!~ 필요한 정보를 더채워넣어보세요~");
 		document.signUpForm.action=root+"/member";
 		document.signUpForm.submit();
 	}
 }
 
+function mvtrylogin(){
+	if(document.getElementById("tryid").value=="")
+		alert("id를 입력해주세요!!");
+	else if(document.getElementById("trypass").value=="")
+		alert("password를 입력해주세요!!");
+	else{
+		document.tryLoginForm.action=root+"/member";
+		document.tryLoginForm.submit();
+	}
+}
 
 
-
-function formclear(){
+function confirm(){
 	document.signUpForm.reset();
 }

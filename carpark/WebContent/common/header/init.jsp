@@ -1,6 +1,6 @@
 <%@page import="com.carpark.member.model.MemberDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" import="com.carpark.member.model.*"%>
 
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 	<!-- Brand and toggle get grouped for better mobile display -->
@@ -14,6 +14,9 @@
 	</div>
 	<!-- Top Menu Items -->
 	<ul class="nav navbar-right top-nav">
+<% 
+if(memberDto ==null){
+%>
 		<li>
 			<button type="button" class="btn btn-default navbar-btn"
 				data-toggle="modal" data-target="#myLogin">Login</button>
@@ -23,6 +26,10 @@
 			<button type="button" class="btn btn-default navbar-btn"
 				data-toggle="modal" data-target="#mySignUp">SignUp</button>
 		</li>
+<%
+}
+%>		
+	
 		<li class="dropdown"><a href="#" class="dropdown-toggle"
 			data-toggle="dropdown"><i class="fa fa-envelope"></i> <b
 				class="caret"></b></a>
@@ -97,18 +104,42 @@
 				<li class="divider"></li>
 				<li><a href="#">View All</a></li>
 			</ul></li>
+<%
+if(memberDto!=null){
+%>
 		<li class="dropdown"><a href="#" class="dropdown-toggle"
-			data-toggle="dropdown"><i class="fa fa-user"></i> 이름 <b
+			data-toggle="dropdown"><i class="fa fa-user"></i> <%=memberDto.getUser_id() %> <b
 				class="caret"></b></a>
 			<ul class="dropdown-menu">
-				<li><a href="/member?act=mvprofile"><i class="fa fa-fw fa-user"></i> profile</a></li>
+				<li><a href="<%=root%>/member?act=mvprofile"><i class="fa fa-fw fa-user"></i> profile</a></li>
 				<li><a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
 				</li>
 				<li><a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a></li>
 				<li class="divider"></li>
-				<li><a href="#"><i class="fa fa-fw fa-power-off"></i> Log
+				<li><a href="<%=root%>/member?act=mvlogout"><i class="fa fa-fw fa-power-off"></i> Log
 						Out</a></li>
 			</ul></li>
+			
+			
+<%
+}else{
+%>
+		<li class="dropdown"><a href="#" class="dropdown-toggle"
+			data-toggle="dropdown"><i class="fa fa-user"></i> 아이디 <b
+				class="caret"></b></a>
+			<ul class="dropdown-menu">
+				<li><a href="<%=root%>/member?act=mvprofile"><i class="fa fa-fw fa-user"></i> profile</a></li>
+				<li><a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
+				</li>
+				<li><a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a></li>
+				<li class="divider"></li>
+				<li><a href="<%=root%>/member?act=mvlogin"><i class="fa fa-fw fa-power-off"></i> Log
+						in</a></li>
+			</ul></li>
+<%
+}
+%>	
+		
 	</ul>
 	<!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
 
@@ -192,6 +223,7 @@
 						<label for="inputid">name</label> <input type="text"
 							class="form-control" id="signupname" name="name" value=""
 							placeholder="name">
+							
 						</div>
 					</div>
 					
@@ -207,12 +239,13 @@
 					<div class="form-group">
 						<label for="inputPassword">Password</label> <input type="password"
 							class="form-control" id="signuppass" name="pass" value=""
-							placeholder="password">
+							placeholder="password" required>
 					</div>
 					<div class="form-group">
 						<label for="inputPasswordCheck">PasswordCheck</label> <input
 							type="password" class="form-control" id="signuppasswordcheck"
-							name="passwordcheck" value="" placeholder="passwordcheck">
+							name="passwordcheck" value="" placeholder="passwordcheck"
+							>
 					</div>
 					
 					

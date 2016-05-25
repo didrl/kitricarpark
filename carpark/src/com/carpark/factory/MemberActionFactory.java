@@ -4,9 +4,11 @@ import com.carpark.action.Action;
 import com.carpark.member.action.MemberDeleteAction;
 import com.carpark.member.action.MemberInfoAction;
 import com.carpark.member.action.MemberLoginAction;
+import com.carpark.member.action.MemberLogoutAction;
 import com.carpark.member.action.MemberModifyAction;
 import com.carpark.member.action.MemberRegisterAction;
 import com.carpark.member.action.MemberSearchAction;
+import com.carpark.member.action.MemberSearchDetailAction;
 import com.carpark.member.call.action.MemberCallDeleteAction;
 import com.carpark.member.call.action.MemberCallListAction;
 import com.carpark.member.call.action.MemberCallModifyAction;
@@ -37,7 +39,10 @@ public class MemberActionFactory {
 	private static Action memberRegisterAction;
 	
 	private static Action memberSearchAction;
-
+	private static Action memberSearchDetailAction;
+	private static Action memberLogoutAction;
+	
+	
 	private static Action memberCallDeleteAction;
 	private static Action memberCallListAction;
 	private static Action memberCallModifyAction;
@@ -77,7 +82,8 @@ public class MemberActionFactory {
 		
 		
 		memberSearchAction = new MemberSearchAction();
-		
+		memberSearchDetailAction = new MemberSearchDetailAction();
+		memberLogoutAction = new MemberLogoutAction();
 		
 		memberCallDeleteAction = new MemberCallDeleteAction();
 		memberCallListAction = new MemberCallListAction();
@@ -110,6 +116,14 @@ public class MemberActionFactory {
 		memberReviewRegisterAction = new MemberReviewRegisterAction();
 	}
 
+
+	public static Action getMemberSearchDetailAction() {
+		return memberSearchDetailAction;
+	}
+
+	public static Action getMemberLogoutAction() {
+		return memberLogoutAction;
+	}
 
 	public static Action getMemberSearchAction() {
 		return memberSearchAction;
