@@ -12,6 +12,8 @@ String parkingpath = adminpath +"/"+"parking";
 String qnapath = adminpath +"/"+"qna";
 String staticpath = adminpath +"/"+"static";
 
+MemberDto memberDto = (MemberDto)session.getAttribute("memberInfo"); 
+
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -31,7 +33,7 @@ String staticpath = adminpath +"/"+"static";
 	<script type="text/javascript">
 	var root = "<%=root%>";
 	</script>
-
+	
 	
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

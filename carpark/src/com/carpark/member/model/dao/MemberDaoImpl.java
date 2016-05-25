@@ -36,8 +36,8 @@ public class MemberDaoImpl implements MemberDao {
 		try {
 			conn=DBConnection.makeConnection();
 			String sql="";
-			sql += "insert into member(user_name,user_id,user_pass,email,tel,carinfo,grade_id) \n";
-			sql += "values(?,?,?,?,?,?,3)";//치환변수 
+			sql += "insert into member(user_name,user_id,user_pass,email,tel,carinfo,grade_id,user_avgpoint,coin,host_flag,login_key) \n";
+			sql += "values(?,?,?,?,?,?,3,0,0,0,null)";//치환변수 
 			pstmt = conn.prepareStatement(sql);//미리 sql 문장을 가져가서 검사하고 틀린게 없을 때 실행
 			int idx =1;//중간에 없어지거나 추가될때 필요
 			pstmt.setString(idx++, memberDto.getUser_name());
@@ -155,34 +155,35 @@ public class MemberDaoImpl implements MemberDao {
 
 	@Override
 	public List<ParkingDto> list(Map<String, String> map) {
-		
+		//지역정보,시작일,종료일 map에 담아옴
 		List<ParkingDto> list=new ArrayList<ParkingDto>();
-		Map<String,String> maps =null;
+		ParkingDto parkingDto=null;
 		Connection conn =null;
 		PreparedStatement pstmt =null;
 		ResultSet rs =null;
-		
+	
 		try {
 			conn=DBConnection.makeConnection();
 			String sql="";
-
-			sql+="select user_id,coin,grade_id \n";
-			sql+="from member \n";
-			sql+="where user_id=? and user_pass=? \n";
+			
+			sql+="select p.park_name,c.sgg_name ||' '|| c.emd_name as city, pd.park_avgPoint,p.park_capacity \n";
+			sql+="from parking p , cities c, parking_detail pd \n";
+			sql+="where p.emd_code = c.emd_code \n";
+			sql+="and p.park_id = pd.park_id \n";
+			sql+="and c.sgg_name=? ";
 			int idx=1;
 			pstmt =conn.prepareStatement(sql);
-			pstmt.setString(idx++,map.get(""));
-			pstmt.setString(idx++,map.get(""));
-			pstmt.setString(idx++,map.get(""));
+			pstmt.setString(idx++,map.get("city"));
+//			pstmt.setString(idx++,map.get("from"));
+//			pstmt.setString(idx++,map.get("to"));
+
 			rs=pstmt.executeQuery();
 			while(rs.next()){
-				maps = new HashMap<String, String>();
-						
-//				memberDto.setUser_id(rs.getString("user_id"));
-//				memberDto.setCoin(rs.getInt("coin"));
-//				memberDto.setGrade_id(rs.getInt("grade_id"));
-				
-				
+				parkingDto = new ParkingDto();
+				parkingDto.setPark_name(rs.getString("park_name"));
+				parkingDto.setLocation(rs.getString("city")); 		
+				parkingDto.setPark_capacity(rs.getInt("park_capacity"));
+				list.add(parkingDto);	
 			}
 
 		} catch (SQLException e) {
@@ -190,7 +191,6 @@ public class MemberDaoImpl implements MemberDao {
 		}finally{
 			DBClose.close(conn, pstmt, rs);
 		}
-		
 		return list;
 	}
 }
