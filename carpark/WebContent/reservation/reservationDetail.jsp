@@ -283,7 +283,7 @@
 						$("#singleReservationDiv").addClass("hidden");
 					}
 				});
-				$("#singleReservationDiv").on("click",function(){
+				$("#singleReservation").on("click",function(){
 					if(this.checked){
 						$("#multiReservationDiv").addClass("hidden");
 						$("#singleReservationDiv").removeClass("hidden");
