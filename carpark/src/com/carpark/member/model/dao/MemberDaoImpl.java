@@ -78,7 +78,7 @@ public class MemberDaoImpl implements MemberDao {
 			conn=DBConnection.makeConnection();
 			String sql="";
 
-			sql+="select user_id,carinfo,coin,user_avgpoint,penalty,user_name,email,tel \n";
+			sql+="select user_name,user_id,carinfo,coin,user_avgpoint,penalty,user_name,email,tel,grade_id \n";
 			sql+="from member \n";
 			sql+="where user_id=? \n";
 		
@@ -87,7 +87,8 @@ public class MemberDaoImpl implements MemberDao {
 			rs=pstmt.executeQuery();
 			if(rs.next()){
 				//이름,이메일,보유코인 필요
-				memberDto =new MemberDto();				
+				memberDto =new MemberDto();		
+				memberDto.setUser_name(rs.getString("user_name"));
 				memberDto.setUser_id(rs.getString("user_id"));
 				memberDto.setCoin(rs.getInt("coin"));
 				memberDto.setGrade_id(rs.getInt("grade_id"));
@@ -129,7 +130,7 @@ public class MemberDaoImpl implements MemberDao {
 			conn=DBConnection.makeConnection();
 			String sql="";
 
-			sql+="select user_id,coin,grade_id \n";
+			sql+="select user_id,coin,grade_id,user_name,carinfo,user_avgpoint,email,tel \n";
 			sql+="from member \n";
 			sql+="where user_id=? and user_pass=? \n";
 		
@@ -143,6 +144,11 @@ public class MemberDaoImpl implements MemberDao {
 				memberDto.setUser_id(rs.getString("user_id"));
 				memberDto.setCoin(rs.getInt("coin"));
 				memberDto.setGrade_id(rs.getInt("grade_id"));
+				memberDto.setUser_name(rs.getString("user_name"));
+				memberDto.setCarInfo(rs.getString("carinfo"));
+				memberDto.setUser_avgPoint(rs.getInt("user_avgpoint"));
+				memberDto.setEmail(rs.getString("email"));
+				memberDto.setTel(rs.getString("tel"));
 			}
 
 		} catch (SQLException e) {
@@ -165,7 +171,6 @@ public class MemberDaoImpl implements MemberDao {
 		try {
 			conn=DBConnection.makeConnection();
 			String sql="";
-			
 			sql+="select p.park_id, p.park_name,c.sgg_name ||' '|| c.emd_name as city, pd.park_avgPoint,p.park_capacity \n";
 			sql+="from parking p , cities c, parking_detail pd \n";
 			sql+="where p.emd_code = c.emd_code \n";
