@@ -8,7 +8,7 @@ List<ParkingDto> list = (List<ParkingDto>)request.getAttribute("searchlist");
 <html lang="en">
 
 <%@include file="/common/common.jsp" %>
-<%@include file="/common/header.jsp" %> 
+<%@include file="/common/header/init.jsp" %> 
 
 <!-- Simple Celander -->
 <link rel="stylesheet" href="/carpark/css/calendar/style.css" />
@@ -32,6 +32,24 @@ List<ParkingDto> list = (List<ParkingDto>)request.getAttribute("searchlist");
 <script
 	src="https://apis.skplanetx.com/tmap/js?version=1&format=javascript&appKey=a4ea8cc9-e49c-308f-99de-3aadb0c70298"></script>
 <script type="text/javascript" src="/carpark/js/search/mapsearch.js"></script>
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+<script>
+$(document).ready(function() {
+     jQuery.ajax({
+           type:"GET",
+           url:"/member",
+           dataType:"JSON", // 옵션이므로 JSON으로 받을게 아니면 안써도 됨
+           success : function(data) {
+                 // 통신이 성공적으로 이루어졌을 때 이 함수를 타게 된다.
+                 // TODO
+           },
+           error : function(xhr, status, error) {
+                 alert("에러발생");
+           }
+     });
+});
+</script>
 
 <br><br><br><br>
 	
@@ -65,18 +83,26 @@ List<ParkingDto> list = (List<ParkingDto>)request.getAttribute("searchlist");
 		
 		
 		
-		<!-- Left List Group Strat -->		
-   		<div class="col-md-4">
-				<h3><b>도시이름 </b>&nbsp;&nbsp;검색 결과</h3>
+		<!-- Left List Group Strat -->
+		
+		<h3><b>도시이름 </b>&nbsp;&nbsp;검색 결과</h3>
+				
+   		<div class="col-md-4" style="overflow:scroll ; height: 600px;">
 				<ul class="list-group">
 				<!--  for-->
-				
+			
 <%
 for(ParkingDto parkingDto :list){
 %>
-				<form id="parkListFrom" class="form-inline" role="form" method="post" >
+				<form id="parkListForm" name="parkListForm" class="form-inline" 
+				role="form" method="post">
 					<input type="hidden" name="act" value="mvSearchResultDetail">
-					<a href="javascript:goResultDetail();" class="list-group-item">
+					<input type="hidden" name="id" value="<%=parkingDto.getPark_id()%>">
+					<input type="hidden" name="name" value="<%=parkingDto.getPark_name()%>">
+					<input type="hidden" name="latitude" value="<%=parkingDto.getLatitude()%>">
+					<input type="hidden" name="longitude" value="<%=parkingDto.getLongitude()%>">
+					
+					<a href="javascript:goResultDetail();" class="list-group-item">					
 						<h4 class="list-group-item-heading"><%=parkingDto.getPark_name() %></h4>
 						<div class="ratings">
                         <p class="pull-right">

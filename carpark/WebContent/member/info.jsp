@@ -2,15 +2,16 @@
 	pageEncoding="UTF-8"%>
 	
 <%@include file="/common/common.jsp" %>
-<%@include file="/common/header.jsp" %> 
+<%@include file="/common/header/init.jsp" %> 
 <%@include file="/common/side.jsp" %>
 
 <% 
-MemberDto registerInfo = (MemberDto)request.getAttribute("registerInfo");
 int count = (Integer)request.getAttribute("count");
 %>
-
-	<div id="wrapper">
+<div id="wrapper">
+<%
+if(memberDto!=null){ 
+%>
 
 <!-- ****************************************************************************************************************** -->	
 
@@ -55,7 +56,7 @@ int count = (Integer)request.getAttribute("count");
                                 	
                                 <img src="<%=root%>/img/star.png" width="25" height="25">
                                 	<label for="disabledSelect">
-                                		<h4>My grade :<%=registerInfo.getGrade_id()%> 등급</h4>
+                                		
                                 	</label><br>        
                             </div>
 						</form>
@@ -65,22 +66,22 @@ int count = (Integer)request.getAttribute("count");
 						<form role="form">
 							<div class="form-group">
                                     <label for="disabledSelect">이름</label>
-                                    <input class="form-control" id="disabledInput" type="text" placeholder="<%=registerInfo.getUser_name() %>" disabled>
+                                    <input class="form-control" id="disabledInput" type="text" placeholder="<%=memberDto.getUser_name() %>" disabled>
                             </div>
 
 							<div class="form-group">
                                     <label for="disabledSelect">아이디</label>
-                                    <input class="form-control" id="disabledInput" type="text" placeholder="<%=registerInfo.getUser_id() %>" disabled>
+                                    <input class="form-control" id="disabledInput" type="text" placeholder="<%=memberDto.getUser_id() %>" disabled>
                             </div>
 
 							<div class="form-group">
                                     <label for="disabledSelect">자동차번호</label>
-                                    <input class="form-control" id="disabledInput" type="text" placeholder="<%=registerInfo.getCarInfo() %>" disabled>
+                                    <input class="form-control" id="disabledInput" type="text" placeholder="<%=memberDto.getCarInfo() %>" disabled>
                             </div>
                             
                             <div class="form-group">
                                     <label for="disabledSelect">이메일</label>
-                                    <input class="form-control" id="disabledInput" type="text" placeholder="<%=registerInfo.getEmail() %>" disabled>
+                                    <input class="form-control" id="disabledInput" type="text" placeholder="<%=memberDto.getEmail() %>" disabled>
                             </div>
                             
                         	
@@ -101,14 +102,22 @@ int count = (Integer)request.getAttribute("count");
 		</div>
 		<!-- /#page-wrapper -->
 
-
+	
 
 
 <!-- ****************************************************************************************************************** -->	
 
+<%
+}else{
+%>
+<script type="text/javascript">
+document.location.href="<%=root%>/member";
+</script>
+<%
+}
+%>
 	</div>
 	<!-- /#wrapper -->
-	
 <!-- Footer -->
 <%@include file="/common/footer.jsp" %>
 <!-- /Footer -->
