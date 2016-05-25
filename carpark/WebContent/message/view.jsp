@@ -25,6 +25,14 @@ function messageList() {
 	document.common.action = "/carpark/message";
 	document.common.submit();
 }
+
+function messageDelete(seq) {
+	document.getElementById("act").value = "messageDelete";
+	document.getElementById("seq").value = seq;
+		
+	document.common.action = "/carpark/message";
+	document.common.submit();
+}
 </script>
 
 		<!-- main -->
