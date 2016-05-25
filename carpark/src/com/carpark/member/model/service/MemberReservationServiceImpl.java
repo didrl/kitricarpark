@@ -1,5 +1,10 @@
 package com.carpark.member.model.service;
 
+import java.util.ArrayList;
+import java.util.Map;
+
+import com.carpark.member.model.dao.MemberReservationDaoImpl;
+
 public class MemberReservationServiceImpl implements MemberReservationService {
 
 	private static MemberReservationService memberReservationService;
@@ -12,6 +17,16 @@ public class MemberReservationServiceImpl implements MemberReservationService {
 
 	public static MemberReservationService getMemberReservationService() {
 		return memberReservationService;
+	}
+
+	@Override
+	public ArrayList<Map<String,String>> getCarInfo(String user_id) {
+		return MemberReservationDaoImpl.getMemberReservationDao().getCarInfo(user_id);
+	}
+
+	@Override
+	public ArrayList<String> getAvailDate(int park_id) {
+		return MemberReservationDaoImpl.getMemberReservationDao().getUsingDate(park_id);
 	}
 	
 	

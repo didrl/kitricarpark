@@ -120,13 +120,11 @@ public class MemberActionFactory {
 	}
 
 
-<<<<<<< HEAD
 	public static Action getMemberSearchDetailAction() {
 		return memberSearchDetailAction;
-=======
+	}
 	public static Action getMemberReservationMoveAction() {
 		return memberReservationMoveAction;
->>>>>>> tmp_myown
 	}
 
 	public static Action getMemberLogoutAction() {

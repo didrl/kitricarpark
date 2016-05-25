@@ -1,21 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
-    import="com.carpark.member.model.ReservationDto"
+    import="com.carpark.member.model.ReservationDto, java.util.*"
     %>
     
 <%@include file="/common/common.jsp" %>
 <%@include file="/common/header.jsp" %> 
-<<<<<<< HEAD
-<% %>
-    
-=======
 
 <%
 ReservationDto reservationDto = (ReservationDto)request.getAttribute("reservationDto");
-	
+ArrayList<Map<String,String>> carInfo = (ArrayList<Map<String,String>>) request.getAttribute("carinfo"); 
+ArrayList<String> availdate = (ArrayList<String>) request.getAttribute("availalbledate");
 //if(reservationDto != null){
 %>
->>>>>>> tmp_myown
     <!-- For sendMsg Modal -->
    <%@include file="/reservation/sendMessageModal.jsp"%>
    <!-- For sendMsg Modal -->
@@ -77,7 +73,7 @@ ReservationDto reservationDto = (ReservationDto)request.getAttribute("reservatio
 			<div class="col-md-7 col-lg-7 col-sm-7">
 				<div class="panel panel-default"> <!--  Left panel div Start -->
 				<div class="panel-body"> <!--  Left panel body Start -->
-				<div>	<h3><a href="" > <%=reservationDto.getPark_name() %></a></h3></div>
+				<div>	<h3><a href="" >주차장이름</a></h3></div>
 				<div>주차장 내용들</div><br><br><br><br>
 				<div><h3>언제 주차를 하길 원하십니까?</h3></div><br>
 				<div class="row"><!-- From Choice Start -->
@@ -307,9 +303,6 @@ ReservationDto reservationDto = (ReservationDto)request.getAttribute("reservatio
 				  var tdate =$('#todate');
 				  var ddate =$('#singledate');
 			            	console.log("fd : "+fdate.val()+"  td : "+tdate.val())
-				 
-<<<<<<< HEAD
-					  console.log("Here!!!");
 				  $.ajax({
 			            cache: false,
 			            type: 'POST',
@@ -332,9 +325,6 @@ ReservationDto reservationDto = (ReservationDto)request.getAttribute("reservatio
 			                $('#payment').show();
 			            }
 			        });
-=======
->>>>>>> tmp_myown
-				  
 				  
 				  var modal = $(this)
 				  //modal.find('.modal-title').text(')
@@ -342,15 +332,12 @@ ReservationDto reservationDto = (ReservationDto)request.getAttribute("reservatio
 				})
 				
 		</script>
-<<<<<<< HEAD
 
 
 
 		
 		
 
-=======
->>>>>>> tmp_myown
 <!-- ****************************************************************************************************************** -->			
 
 
