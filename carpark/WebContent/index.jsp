@@ -2,8 +2,11 @@
 	pageEncoding="UTF-8"%>
 <%@include file="/common/common.jsp"%>
 <%@include file="/common/header/init.jsp"%>
+<<<<<<< HEAD
 
 <!-- Tmap -->
+=======
+>>>>>>> tmp_myown
 <!-- Simple Celander -->
 <link rel="stylesheet" href="/carpark/css/calendar/style.css" />
 <script
@@ -14,6 +17,7 @@
 	src="https://apis.skplanetx.com/tmap/js?version=1&format=javascript&appKey=a4ea8cc9-e49c-308f-99de-3aadb0c70298">
 </script>
 <script type="text/javascript" src="/carpark/js/search/mapsearch.js"></script>
+<<<<<<< HEAD
 <script type="text/javascript">
 	var map;
 	var mapW, mapH; // 지도의 가로, 세로 크기(Pixel단위) 를 지정 합니다. 
@@ -116,6 +120,8 @@
 	}
 </script>
 <script type="text/javascript" src="/carpark/js/search/mapsearch.js"></script>
+=======
+>>>>>>> tmp_myown
 
 <header id="top" class="header">
 	<div class="text-vertical-center">
@@ -134,7 +140,7 @@
 					<div class="input-group">
 						<input type="text" class="form-control" id="citysearch" name="city" placeholder="Search for..."> <span
 							class="input-group-btn">
-							<button class="btn btn-default" type="button" onclick="javascript:goSearchResult();">Go!</button>
+							<button class="btn btn-default" type="button" onclick="javascript:goSearchResult();">검색</button>
 						</span>
 					</div>
 					<div class="input-group">
