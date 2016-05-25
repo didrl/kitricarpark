@@ -166,7 +166,7 @@ public class MemberDaoImpl implements MemberDao {
 			conn=DBConnection.makeConnection();
 			String sql="";
 			
-			sql+="select p.park_name,c.sgg_name ||' '|| c.emd_name as city, pd.park_avgPoint,p.park_capacity \n";
+			sql+="select p.park_id, p.park_name,c.sgg_name ||' '|| c.emd_name as city, pd.park_avgPoint,p.park_capacity \n";
 			sql+="from parking p , cities c, parking_detail pd \n";
 			sql+="where p.emd_code = c.emd_code \n";
 			sql+="and p.park_id = pd.park_id \n";
@@ -180,6 +180,7 @@ public class MemberDaoImpl implements MemberDao {
 			rs=pstmt.executeQuery();
 			while(rs.next()){
 				parkingDto = new ParkingDto();
+				parkingDto.setPark_id(rs.getInt("park_id"));
 				parkingDto.setPark_name(rs.getString("park_name"));
 				parkingDto.setLocation(rs.getString("city")); 		
 				parkingDto.setPark_capacity(rs.getInt("park_capacity"));
