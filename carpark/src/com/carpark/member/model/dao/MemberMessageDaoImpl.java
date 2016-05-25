@@ -38,13 +38,6 @@ public class MemberMessageDaoImpl implements MemberMessageDao {
 			sql += "select * from dual";
 			pstmt = conn.prepareStatement(sql);
 			int idx = 0;
-			System.out.println(messageDto.getSeq());
-			System.out.println(messageDto.getUserID());
-			System.out.println(messageDto.getSubject());
-			System.out.println(messageDto.getContent());
-			System.out.println(messageDto.getBcode());
-			System.out.println(messageDto.getReceiverId());
-			System.out.println(messageDto.getMsgFlag());
 			pstmt.setInt(++idx, messageDto.getSeq());
 			pstmt.setString(++idx, messageDto.getUserID());
 			pstmt.setString(++idx, messageDto.getSubject());
@@ -76,7 +69,7 @@ public class MemberMessageDaoImpl implements MemberMessageDao {
 			conn = DBConnection.makeConnection();
 			String sql = "";
 			sql += "select b.seq, b.subject, b.content b.user_id, b.logtime, b.bcode, \n";
-			sql += "m.mseq, m.receive_id \n";
+			sql += "m.mseq, m.receiver_id \n";
 			sql += "from board b, message m \n";
 			sql += "where b.seq = m.seq \n";
 			sql += "and b.seq = ?";

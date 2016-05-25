@@ -23,7 +23,7 @@ public class MemberMessageViewAction implements Action {
 			MessageDto messageDto = MemberMessageServiceImpl.getMemberMessageService().viewArticle(seq);
 			request.setAttribute("messageView", messageDto);
 		}
-		return "/message/list.jsp";
+		return "/message/view.jsp";
 	}
 
 }
