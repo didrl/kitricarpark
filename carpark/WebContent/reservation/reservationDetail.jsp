@@ -149,7 +149,7 @@
 								  <option value="등록차량1">레인지 로버</option>
 								  <option value="등록차량2">전기차</option>
 								</selectlong>
-								<button type="button" class="btn btn-success"  data-toggle="modal" data-target="#addCar">
+								<button type="button" class="btn btn-success"  id="addmycarbt" data-toggle="modal" data-target="#addCar">
                   				 + 차량 등록 
                				</button>
 							</div>
@@ -297,6 +297,11 @@
 						$("#singleReservationDiv").removeClass("hidden");
 					}
 				});
+			
+				
+		//	$("#addmycarbt").on('clikc',function(e){
+		//		 $('#addcar').show();
+		//	});
 			
 			$('#mvpaymodalbtn').on('click', function (event) {
 				  var button = $(event.relatedTarget) // Button that triggered the modal

@@ -46,8 +46,8 @@ public class MemberController extends HttpServlet {
 		}else if("mvlogout".equals(act)){
 			path= MemberActionFactory.getMemberLogoutAction().execute(request, response);
 			PageMove.redirect(response, root+path);
-		}else if("".equals(act)){
-			
+		}else if("addcarok".equals(act)){
+			//in reservationDetail, '차량등록' will send this act
 		}else if("".equals(act)){
 			
 		}else if("".equals(act)){
