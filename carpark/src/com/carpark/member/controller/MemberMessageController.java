@@ -26,8 +26,7 @@ public class MemberMessageController extends HttpServlet {
 		String queryString = "?bcode=" + bcode + "&pg=" + pg + "&key=" + key + "&word=" + Encoder.isoToUtf(word);
 		
 		if("messageSearch".equals(act)) {
-			path = MemberActionFactory.getMemberMessageListAction().execute(request, response);
-			PageMove.forward(request, response, path + queryString);
+			
 			
 		} else if("messageWrite".equals(act)) {
 			path = MemberActionFactory.getMemberMessageWriteAction().execute(request, response);
@@ -41,10 +40,13 @@ public class MemberMessageController extends HttpServlet {
 			path = MemberActionFactory.getMemberMessageDeleteAction().execute(request, response);
 			PageMove.forward(request, response, path + queryString);
 			
-		} else if("messageList".equals(act)) {
-			System.out.println("연결확인");
+		} else if("messageSendList".equals(act)) {
+			path = MemberActionFactory.getMemberMessageSendListAction().execute(request, response);
+			PageMove.forward(request, response, path);
 			
-		} else if("".equals(act)) {
+		} else if("messageReceiveList".equals(act)) {
+			path = MemberActionFactory.getMemberMessageReceiveListAction().execute(request, response);
+			PageMove.forward(request, response, path);
 			
 		} else if("".equals(act)) {
 			

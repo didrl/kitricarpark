@@ -28,7 +28,7 @@ List<MessageDto> list = (List<MessageDto>) request.getAttribute("messageList");
 		<div id="page-wrapper">
 			<div class="container-fluid">
 				<!-- 받은쪽지함 -->
-				<h3>받은 쪽지함</h3><br>
+				<br><h3>받은 쪽지함</h3><br>
 				
 				<div class="form-group">
 				<form name="searchForm" method="get" action="">
@@ -46,13 +46,13 @@ List<MessageDto> list = (List<MessageDto>) request.getAttribute("messageList");
 				</div>
   				
 				
-				<div class="table-responsive">
-				  <table class="table table-hover">
+				<div class="table">
+				  <table class="table table-hover" style="text-align:center">
 				  	<tr>
-				  		<th width="100">보낸사람</th>
-				  		<th>제목</th>
-				  		<th width="100">보낸시간</th>
-				  		<th width="50">확인</th>
+				  		<td width="150"><b>보낸사람</b></td>
+				  		<td><b>제목</b></td>
+				  		<td width="150"><b>보낸시간</b></td>
+				  		<td width="50"><b>확인</b></td>
 				  	</tr>
 
 				
@@ -61,9 +61,9 @@ if(list != null) {
 	for(MessageDto messageDto : list) {
 %>
 					<tr >
-						<td width="100"><a href="javascript:messageView('<%=messageDto.getSeq() %>');"><%=messageDto.getReceiverId() %></a></td>
+						<td width="150"><a href="javascript:messageView('<%=messageDto.getSeq() %>');"><%=messageDto.getReceiverId() %></a></td>
 						<td><a href="javascript:messageView('<%=messageDto.getSeq() %>');"><%=messageDto.getSubject() %></a></td>
-						<td width="100"><%=messageDto.getLogtime() %></td>						
+						<td width="150"><%=messageDto.getLogtime() %></td>						
 						<td width="50"><%=(messageDto.getMsgFlag() == 0) ? "X" : "O" %></td>
 					</tr>
 <%
@@ -71,9 +71,9 @@ if(list != null) {
 }
 %>	
 					<tr>
-				  		<td width="100"><a href="javascript:messageView('10');">test</a></td>
+				  		<td width="150"><a href="javascript:messageView('10');">test</a></td>
 				  		<td><a href="javascript:messageView('10');">test</a></td>
-				  		<td width="100">test</td>
+				  		<td width="150">test</td>
 				  		<td width="50">test</td>
 				  	</tr>
 				  

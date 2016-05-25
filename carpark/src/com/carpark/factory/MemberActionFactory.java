@@ -55,7 +55,9 @@ public class MemberActionFactory {
 	private static Action memberFavoriteRegisterAction;
 	
 	private static Action memberMessageDeleteAction;
-	private static Action memberMessageListAction;
+	private static Action memberMessageSearchListAction;
+	private static Action memberMessageSendListAction;
+	private static Action memberMessageReceiveListAction;	
 	private static Action memberMessageRegisterAction;
 	private static Action memberMessageViewAction;
 	private static Action memberMessageWriteAction;
@@ -98,7 +100,10 @@ public class MemberActionFactory {
 		memberFavoriteRegisterAction = new MemberFavoriteRegisterAction();
 		
 		memberMessageDeleteAction = new MemberMessageDeleteAction();
-		memberMessageListAction = new MemberMessageListAction();
+		memberMessageSearchListAction = new MemberMessageSearchListAction();
+		memberMessageSendListAction = new MemberMessageSendListAction();
+		memberMessageReceiveListAction = new MemberMessageReceiveListAction();
+		
 		memberMessageRegisterAction = new MemberMessageRegisterAction();
 		memberMessageViewAction = new MemberMessageViewAction();
 		memberMessageWriteAction = new MemberMessageWriteAction();
@@ -192,10 +197,18 @@ public class MemberActionFactory {
 		return memberMessageDeleteAction;
 	}
 
-	public static Action getMemberMessageListAction() {
-		return memberMessageListAction;
+	public static Action getMemberMessageSearchListAction() {
+		return memberMessageSearchListAction;
 	}
-
+	
+	public static Action getMemberMessageSendListAction() {
+		return memberMessageSendListAction;
+	}
+	
+	public static Action getMemberMessageReceiveListAction() {
+		return memberMessageReceiveListAction;
+	}
+	
 	public static Action getMemberMessageRegisterAction() {
 		return memberMessageRegisterAction;
 	}
