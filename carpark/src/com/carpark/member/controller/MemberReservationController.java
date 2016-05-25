@@ -1,6 +1,7 @@
 package com.carpark.member.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.carpark.factory.MemberActionFactory;
-import com.carpark.util.BoardConstance;
 import com.carpark.util.PageMove;
 
 @WebServlet("/reservation")

@@ -1,8 +1,6 @@
 package com.carpark.member.reservation.action;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
