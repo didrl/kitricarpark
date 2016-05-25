@@ -34,10 +34,11 @@ public class MemberMessageDaoImpl implements MemberMessageDao {
 			sql += "into board (seq, user_id, subject, content, bcode, logtime) \n";
 			sql += "values (?, ?, ?, ?, ?, sysdate) \n";
 			sql += "into message (mseq, seq, receiver_id, msg_flag) \n";
-			sql += "values (msg_mseq.nextval, ?, ?, ?) \n";
+			sql += "values (message_num_mseq.nextval, ?, ?, ?) \n";
 			sql += "select * from dual";
 			pstmt = conn.prepareStatement(sql);
 			System.out.println(sql);
+			System.out.println(messageDto.getSeq());
 			int idx = 0;
 			pstmt.setInt(++idx, messageDto.getSeq());
 			pstmt.setString(++idx, messageDto.getUserID());
