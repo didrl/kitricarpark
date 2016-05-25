@@ -4,12 +4,17 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 import com.carpark.db.DBClose;
 import com.carpark.db.DBConnection;
+import com.carpark.member.model.ReservationDto;
 
 public class MemberReservationDaoImpl implements MemberReservationDao {
 	
@@ -64,17 +69,20 @@ public class MemberReservationDaoImpl implements MemberReservationDao {
 	}
 
 	@Override
-	public ArrayList<String> getUsingDate(int park_id) {
+	public ArrayList<Map<String,String>> getUsingDate(int park_id) {
 		Connection conn=null;
 		PreparedStatement pstmt =null;
 		ResultSet rs = null;
-		ArrayList<String> list = new ArrayList<String>();
+		
+		Map<String, String> map = null;
+		ArrayList<Map<String,String>> list = new ArrayList<Map<String,String>>();
 		
 		try {
 			conn=DBConnection.makeConnection();
 			String sql="";
 //			sql += "select start_date, end_date \n";
-			sql += "select to_char(start_date,'yyyymmdd) start_date, to_char(end_date,'yyyymmdd) end_date\n";
+			sql += "select to_char(start_date,'yyyy.mm.dd) start_date, to_char(end_date,'yyyy.mm.dd) end_date, \n";
+			sql += "end_date-start_date betweendate, \n";
 			sql += "from reservation \n"; 
 			sql += "where park_id =? \n"; 
 			pstmt = conn.prepareStatement(sql);//미리 sql 문장을 가져가서 검사하고 틀린게 없을 때 실행
@@ -88,8 +96,10 @@ public class MemberReservationDaoImpl implements MemberReservationDao {
 			System.out.println(sql);
 
 			while(rs.next()){
-				list.add(rs.getString("start_date"));
-				list.add(rs.getString("end_date"));
+				map = new HashMap<String, String>();
+				map.put("startdate", rs.getString("startdate"));
+				map.put("betweendate", rs.getString("betweendate"));		// end_date - start_date
+				list.add(map);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -97,6 +107,33 @@ public class MemberReservationDaoImpl implements MemberReservationDao {
 			DBClose.close(conn, pstmt, rs);
 		}	
 		return list;
+	}
+
+	@Override
+	public void registerReservation(ReservationDto reservationDto) {
+		Connection conn=null;
+		PreparedStatement pstmt =null;
+		
+		try {
+			conn=DBConnection.makeConnection();
+			String sql="";
+			sql += "insert into reservation (reser_id, park_id, user_id, start_date, end_date \n";
+			sql += "values(concat(to_char(systimestamp, 'yyyymmddhh24missFF3'),?),?,?,?,?)\n"; 
+			pstmt = conn.prepareStatement(sql);//미리 sql 문장을 가져가서 검사하고 틀린게 없을 때 실행
+			int idx =1;//중간에 없어지거나 추가될때 필요
+			pstmt.setInt(idx++, reservationDto.getPark_id());
+			pstmt.setInt(idx++, reservationDto.getPark_id());
+			pstmt.setString(idx++, reservationDto.getUser_id());
+			pstmt.setString(idx++, reservationDto.getFromdate());
+			pstmt.setString(idx++, reservationDto.getTodate());
+
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			DBClose.close(conn, pstmt);
+		}	
+
 	}
 	
 	

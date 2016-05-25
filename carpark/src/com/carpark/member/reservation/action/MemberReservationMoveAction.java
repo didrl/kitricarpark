@@ -38,7 +38,7 @@ public class MemberReservationMoveAction implements Action {
 		
 		reservationDto.setUser_id(user_id);
 		ArrayList<Map<String,String>> carinfo=MemberReservationServiceImpl.getMemberReservationService().getCarInfo(user_id);
-		ArrayList<String> availabledate =MemberReservationServiceImpl.getMemberReservationService().getAvailDate(park_id);
+		ArrayList<Map<String,String>> availabledate =MemberReservationServiceImpl.getMemberReservationService().getAvailDate(park_id);
 		reservationDto.setFromdate(request.getParameter("fromdate"));
 		reservationDto.setTodate(request.getParameter("todate"));
 		reservationDto.setFromtime(Integer.parseInt(request.getParameter("fromTime")));
