@@ -3,7 +3,7 @@
     
 <%@include file="/common/common.jsp" %>
 <%@include file="/common/header.jsp" %> 
-
+<% %>
     
     <!-- For sendMsg Modal -->
    <%@include file="/reservation/sendMessageModal.jsp"%>
@@ -223,6 +223,7 @@
 </div>
 		<!-- Custom Theme JavaScript -->
 		<script src="/carpark/js/selectlist/jquery.selectlist.js"></script>
+
 		<script>
 			// Closes the sidebar menu
 			$("#menu-close").click(function(e) {
@@ -305,11 +306,11 @@
 			            	// Clean text in modal label
 			            	$("#selectedfromdate").empty();
 			            	$("#selectedtodate").empty();
-			            	$("#selectedid").empty();
-			            	$("#selectedgrade").empty();
-			            	$("#selectedcarinfo").empty();
-			            	$("#selectedcoin").empty();
-			            	$("#selectedprice").empty();
+			            	//$("#selectedid").empty();
+			            	//$("#selectedgrade").empty();
+			            	//$("#selectedcarinfo").empty();
+			            	//$("#selectedcoin").empty();
+			            	//$("#selectedprice").empty();
 			            	// Clean text in modal label
 			            	
 			            	$("#selectedfromdate").append($('#fromdate').val());
@@ -326,7 +327,7 @@
 				
 		</script>
 
-		<script src="/carpark/js/selectlist/jquery.selectlist.js"></script>
+
 
 		
 		
