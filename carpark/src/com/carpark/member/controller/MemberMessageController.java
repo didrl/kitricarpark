@@ -26,7 +26,6 @@ public class MemberMessageController extends HttpServlet {
 		String queryString = "?bcode=" + bcode + "&pg=" + pg + "&key=" + key + "&word=" + Encoder.isoToUtf(word);
 		
 		if("messageSearch".equals(act)) {
-			System.out.println("ghkrdls");
 			path = MemberActionFactory.getMemberMessageListAction().execute(request, response);
 			PageMove.forward(request, response, path + queryString);
 			
