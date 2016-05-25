@@ -158,16 +158,18 @@ if(memberDto!=null){
 				</button>
 				<h4 class="modal-title" id="myModalLabel">Modal title</h4>
 			</div>
-			<div class="modal-body">
-
+			
+			
 				<form name="loginForm" class="form-horizontal" id="loginForm"
-					method="post" action="">
+					method="post" action="<%=root%>/member">
 					<input type="hidden" name="act" value="mvlogin">
+					<div class="modal-body">
+
 					<div class="form-group">
 						<label for="inputEmail3" class="col-sm-2 control-label">ID</label>
 						<div class="col-sm-10">
 							<input type="text" class="form-control" name="id" value=""
-								id="id" placeholder="id">
+								id="id" placeholder="id" required="required">
 						</div>
 					</div>
 					<div class="form-group">
@@ -175,7 +177,7 @@ if(memberDto!=null){
 						<div class="col-sm-10">
 
 							<input type="password" class="form-control" name="pass" value=""
-								id="pass" placeholder="Password">
+								id="pass" placeholder="Password" required="required">
 
 						</div>
 					</div>
@@ -189,13 +191,11 @@ if(memberDto!=null){
 					</div>
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
-							<button type="button" class="btn btn-default"
-								onclick="javascript:mvlogin();">Sign in</button>
+							<button type="submit" class="btn btn-default">Sign in</button>
 						</div>
 					</div>
-				</form>
-
-			</div>
+				</div>
+			</form>
 		</div>
 	</div>
 </div>
@@ -213,16 +213,18 @@ if(memberDto!=null){
 				<h2 class="modal-title" id="myModalLabel">회원가입</h2>
 			</div>
 
+			<form class="form-signin" role="form" name="signUpForm" id="signUpForm" method="post"
+					action="<%=root%>/member">
+			<input type="hidden" name="act" value="mvsignup">
 			<div class="modal-body">
-				<form role="form" name="signUpForm" id="signUpForm" method="post"
-					action="">
-					<input type="hidden" name="act" value="mvsignup">
+					<fieldset>
+					<input type="hidden" name="act" value="mvsignup" required="required">
 
 					<div class="form-group">
 						<div class="controls">
 						<label for="inputid">name</label> <input type="text"
 							class="form-control" id="signupname" name="name" value=""
-							placeholder="name">
+							placeholder="name" required="required" >
 							
 						</div>
 					</div>
@@ -232,20 +234,20 @@ if(memberDto!=null){
 						<div class="controls">
 						<label for="inputid">id</label> <input type="text"
 							class="form-control" id="signupid" name="id" value=""
-							placeholder="id">
+							placeholder="id" required="required">
 						</div>
 					</div>
 
 					<div class="form-group">
 						<label for="inputPassword">Password</label> <input type="password"
 							class="form-control" id="signuppass" name="pass" value=""
-							placeholder="password" required>
+							placeholder="password" required="required">
 					</div>
 					<div class="form-group">
 						<label for="inputPasswordCheck">PasswordCheck</label> <input
 							type="password" class="form-control" id="signuppasswordcheck"
 							name="passwordcheck" value="" placeholder="passwordcheck"
-							>
+							required="required">
 					</div>
 					
 					
@@ -253,7 +255,7 @@ if(memberDto!=null){
 						<div class="controls">
 						<label for="inputid">email</label> <input type="text"
 							class="form-control" id="signupemail" name="email" value=""
-							placeholder="email">
+							placeholder="email" required="required">
 						</div>
 					</div>
 					
@@ -262,7 +264,7 @@ if(memberDto!=null){
 						<div class="controls">
 						<label for="inputid">전화번호</label> <input type="text"
 							class="form-control" id="signupphone" name="phone" value=""
-							placeholder="tel">
+							placeholder="tel" required="required">
 						</div>
 					</div>
 					
@@ -270,17 +272,18 @@ if(memberDto!=null){
 					<div class="form-group">
 						<label for="inputCarInfo">CarInfo</label> <input type="text"
 							class="form-control" id="signupcarInfo" name=carInfo value=""
-							placeholder="carInfo">
+							placeholder="carInfo" required="required">
 					</div>
-				</form>
+					</fieldset>
 
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default"
-					onclick="javascript:mvsignup();">Register</button>
+				<button type="submit" class="btn btn-default"
+				>Register</button>
 				<button type="button" class="btn btn-default" data-dismiss="modal"
 					onclick="javascript:formclear();">Cancel</button>
 			</div>
+				</form>
 		</div>
 	</div>
 </div>

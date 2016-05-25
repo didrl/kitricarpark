@@ -73,10 +73,12 @@ List<ParkingDto> list = (List<ParkingDto>)request.getAttribute("searchlist");
    		<div class="col-md-4">
 				<h3><b>도시이름 </b>&nbsp;&nbsp;검색 결과</h3>
 				<ul class="list-group">
+		
+		<div style="overflow:scroll; width:300px; height:700px;">
 <!--  for-->				
 <%
 for(ParkingDto parkingDto :list){
-%>							
+%>					
 					<a href="<%=root %>/member?act=mvsearchResultDeail&id=<%=parkingDto.getPark_id()%>
 					&name=<%=parkingDto.getPark_name()%>" class="list-group-item">
 						<h4 class="list-group-item-heading"><%=parkingDto.getPark_name() %></h4>
@@ -98,7 +100,7 @@ for(ParkingDto parkingDto :list){
 <%
 }
 %>
-		
+				</div>
 				</ul>
 			</div>
 			<!-- Left List Group End -->
