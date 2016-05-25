@@ -18,7 +18,14 @@ MessageDto messageDto = (MessageDto) request.getAttribute("messageView");
 	<input type="hidden" name="seq" id="seq" value="">
 </form>
 
-
+<script type="text/javascript">
+function messageList() {
+	document.getElementById("act").value = "messageList";
+		
+	document.common.action = "/carpark/message";
+	document.common.submit();
+}
+</script>
 
 		<!-- main -->
 		<div id="page-wrapper">
