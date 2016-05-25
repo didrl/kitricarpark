@@ -33,10 +33,6 @@ List<ParkingDto> list = (List<ParkingDto>)request.getAttribute("searchlist");
 	src="https://apis.skplanetx.com/tmap/js?version=1&format=javascript&appKey=a4ea8cc9-e49c-308f-99de-3aadb0c70298"></script>
 <script type="text/javascript" src="/carpark/js/search/mapsearch.js"></script>
 
-</head>
-
-<body onload="init()">
-
 <br><br><br><br>
 	
     <!-- Page Content -->
@@ -81,7 +77,7 @@ for(ParkingDto parkingDto :list){
 				<form id="parkListFrom" class="form-inline" role="form" method="post" >
 					<input type="hidden" name="act" value="mvSearchResultDetail">
 					<a href="javascript:goResultDetail();" class="list-group-item">
-						<h4 class="list-group-item-heading">Kitri 지하주차장</h4>
+						<h4 class="list-group-item-heading"><%=parkingDto.getPark_name() %></h4>
 						<div class="ratings">
                         <p class="pull-right">
                             <span class="glyphicon glyphicon-star"></span>
@@ -98,35 +94,6 @@ for(ParkingDto parkingDto :list){
 <%
 }
 %>			
-					
-					<a href="#" class="list-group-item">
-						<h4 class="list-group-item-heading">대륭포스트 2차</h4>
-						<div class="ratings">
-                        <p class="pull-right">
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                            (4점)
-                        </p>
-                    </div>
-						<p class="list-group-item-text">주변에 커피집이 많고 키트리 옆집</p>
-					</a>
-					<a href="#" class="list-group-item">
-						<h4 class="list-group-item-heading">착한커피 건물</h4>
-						<div class="ratings">
-                        <p class="pull-right">
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                            (4점)
-                        </p>
-                    </div>
-						<p class="list-group-item-text">커피 1000원</p>
-					</a>
 				</ul>
 			</div>
 			<!-- Left List Group End -->

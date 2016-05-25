@@ -2,11 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@include file="/common/common.jsp"%>
 <%@include file="/common/header/init.jsp"%>
-<<<<<<< HEAD
 
 <!-- Tmap -->
-=======
->>>>>>> tmp_myown
 <!-- Simple Celander -->
 <link rel="stylesheet" href="/carpark/css/calendar/style.css" />
 <script
