@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-	 <!-- Msg Modal Start -->
+	 <!-- Payment Modal Start -->
                   <div class="modal fade" id="payment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -34,7 +34,7 @@
                               </div>
                               <div class="form-group" align ="center">
                                   <div >
-                                     <button type="sendMsg" class="btn btn-default">결제하기</button>
+                                     <button type="sendMsg" class="btn btn-default" onclick="javascript:reservationok();">결제하기</button>
                                   </div>
                               </div>
                            </form>
