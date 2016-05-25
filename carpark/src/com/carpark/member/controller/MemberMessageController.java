@@ -41,7 +41,8 @@ public class MemberMessageController extends HttpServlet {
 			path = MemberActionFactory.getMemberMessageDeleteAction().execute(request, response);
 			PageMove.forward(request, response, path + queryString);
 			
-		} else if("".equals(act)) {
+		} else if("messageList".equals(act)) {
+			System.out.println("연결확인");
 			
 		} else if("".equals(act)) {
 			

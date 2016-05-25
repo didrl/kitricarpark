@@ -29,8 +29,8 @@
 					data-target="#message"><i class="fa fa-fw fa-arrows-v"></i>
 						메세지 <i class="fa fa-fw fa-caret-down"></i></a>
 					<ul id="message" class="collapse">
-						<li><a href="#">보낸메세지</a></li>
 						<li><a href="#">받은메세지</a></li>
+						<li><a href="javascript:messageList();">보낸메세지</a></li>
 					</ul></li>
 					
 				<li><a href="javascript:;" data-toggle="collapse"
