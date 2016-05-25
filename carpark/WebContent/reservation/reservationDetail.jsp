@@ -7,9 +7,9 @@
 <%@include file="/common/header.jsp" %> 
 
 <%
-ReservationDto reservationDto = (ReservationDto)request.getAttribute("reservationDto");
-ArrayList<Map<String,String>> carInfo = (ArrayList<Map<String,String>>) request.getAttribute("carinfo"); 
-ArrayList<String> availdate = (ArrayList<String>) request.getAttribute("availalbledate");
+//ReservationDto reservationDto = (ReservationDto)request.getAttribute("reservationDto");
+//ArrayList<Map<String,String>> carInfo = (ArrayList<Map<String,String>>) request.getAttribute("carinfo"); 
+//ArrayList<String> availdate = (ArrayList<String>) request.getAttribute("availalbledate");
 //if(reservationDto != null){
 %>
     <!-- For sendMsg Modal -->
@@ -59,10 +59,6 @@ ArrayList<String> availdate = (ArrayList<String>) request.getAttribute("availalb
 .hidden{display:none;}
 </style>
 
-</head>
-
-<body>
-
 
 	<!-- Page Content -->
 	<div class="container" style="text-align:center">
@@ -81,7 +77,8 @@ ArrayList<String> availdate = (ArrayList<String>) request.getAttribute("availalb
 						<div class="pull-right">예약 구분 : </div>
 					</div>
 					<div class="col-md-8 col-lg-8 col-sm-8" >
-					연속 예약 <input type="radio" name="resercheck" id="multireservation"  checked="checked"> 하루 예약 <input type="radio" name="resercheck" id="singlereservation">
+					연속 예약 <input type="radio" name="resercheck" id="multireservation" > 하루 예약 
+					<input type="radio" name="resercheck" id="singlereservation">
 					</div>
 				</div><br>
 				<!--  radio button에 의한 Multi reservation Start-->
@@ -91,7 +88,7 @@ ArrayList<String> availdate = (ArrayList<String>) request.getAttribute("availalb
 								<div class="pull-right">From : </div>
 						</div>
 						<div class="col-md-8 col-lg-8 col-sm-8" >		
-								<input class="date-picker" id="fromdate" type="text"  />
+								<input class="date-picker" id="fromdate" name="fromdate" type="text"  />
 								<select id="fromTime" name="fromTime">
 								  <option value="0">00:00</option><option value="1">01:00</option><option value="2">02:00</option>
 								  <option value="3">03:00</option> <option value="4">04:00</option><option value="5">05:00</option>
@@ -109,7 +106,7 @@ ArrayList<String> availdate = (ArrayList<String>) request.getAttribute("availalb
 								<div class="pull-right">T o :</div> 
 								</div>
 								<div class="col-md-8 col-lg-8 col-sm-8" >
-								<input class="date-picker" id="todate" type="text" />
+								<input class="date-picker" id="todate" name="todate" type="text" />
 								<select id="toTime" name="toTime">
 								  <option value="0">00:00</option><option value="1">01:00</option><option value="2">02:00</option>
 								  <option value="3">03:00</option> <option value="4">04:00</option><option value="5">05:00</option>
@@ -129,7 +126,7 @@ ArrayList<String> availdate = (ArrayList<String>) request.getAttribute("availalb
 								<div class="pull-right">Date : </div>
 						</div>
 						<div class="col-md-8 col-lg-8 col-sm-8" >		
-								<input class="date-picker" id="singedate" type="text"  />
+								<input class="date-picker" id="singedate"  name="singedate"  type="text"  />
 								<select id="dateTime" name="dateTime">
 								  <option value="0">00:00</option><option value="1">01:00</option><option value="2">02:00</option>
 								  <option value="3">03:00</option> <option value="4">04:00</option><option value="5">05:00</option>
@@ -152,7 +149,7 @@ ArrayList<String> availdate = (ArrayList<String>) request.getAttribute("availalb
 								  <option value="등록차량1">레인지 로버</option>
 								  <option value="등록차량2">전기차</option>
 								</selectlong>
-								<button type="button" class="btn btn-success"  data-toggle="modal" data-target="#addCar">
+								<button type="button" class="btn btn-success"  id="addmycarbt" data-toggle="modal" data-target="#addCar">
                   				 + 차량 등록 
                				</button>
 							</div>
@@ -280,57 +277,59 @@ ArrayList<String> availdate = (ArrayList<String>) request.getAttribute("availalb
 			})
 			
 
-			// Radio Control div Show or Hide 
-			$(function(){
+		$(document).ready(function () {
+				$("#multireservation").attr("checked", true);
 				$("#singleReservationDiv").addClass("hidden");
+		});
+			// Radio Control div Show or Hide 
 				$("#multireservation").on("click",function(){
 					if(this.checked){
+						console.log(this+"   func");
 						$("#multiReservationDiv").removeClass("hidden");
 						$("#singleReservationDiv").addClass("hidden");
 					}
 				});
-				$("#singleReservation").on("click",function(){
+				
+				$("#singlereservation").on("click",function(){
 					if(this.checked){
+						console.log(this+"   func");
 						$("#multiReservationDiv").addClass("hidden");
 						$("#singleReservationDiv").removeClass("hidden");
 					}
 				});
-			});
 			
-			$('#payment').on('show.bs.modal', function (event) {
+				
+		//	$("#addmycarbt").on('clikc',function(e){
+		//		 $('#addcar').show();
+		//	});
+			
+			$('#mvpaymodalbtn').on('click', function (event) {
 				  var button = $(event.relatedTarget) // Button that triggered the modal
 				  var fdate =$('#fromdate');
 				  var tdate =$('#todate');
 				  var ddate =$('#singledate');
-			            	console.log("fd : "+fdate.val()+"  td : "+tdate.val())
-				  $.ajax({
-			            cache: false,
-			            type: 'POST',
-			            url: 'payment.jsp',
-			            data: '',
-			            success: function(data) 
-			            {
-			            	// Clean text in modal label
-			            	$("#selectedfromdate").empty();
-			            	$("#selectedtodate").empty();
-			            	//$("#selectedid").empty();
-			            	//$("#selectedgrade").empty();
-			            	//$("#selectedcarinfo").empty();
-			            	//$("#selectedcoin").empty();
-			            	//$("#selectedprice").empty();
-			            	// Clean text in modal label
+			      console.log("fd : "+fdate.val()+"  td : "+tdate.val()+"  dd :"+ddate.val());
+	
+         			// Clean text in modal label
+			        $("#selectedfromdate").empty();
+			        $("#selectedtodate").empty();
+			        $("#selectedid").empty();
+			        $("#selectedgrade").empty();
+			        $("#selectedcarinfo").empty();
+			        $("#selectedcoin").empty();
+			        $("#selectedprice").empty();
+			        // Clean text in modal label
 			            	
-			            	$("#selectedfromdate").append($('#fromdate').val());
-			            	$("#selectedtodate").append($('#todate').val());
-			                $('#payment').show();
-			            }
-			        });
-				  
-				  var modal = $(this)
-				  //modal.find('.modal-title').text(')
-				  //modal.find('.modal-body input').val(recipient)
+			        $("#selectedfromdate").append($('#fromdate').val());
+			        $("#selectedtodate").append($('#todate').val());
+			        $("#selectedid").append("Hello");
+			        $("#selectedgrade").append();
+			        $("#selectedcarinfo").append();
+			        $("#selectedcoin").append();
+			        $("#selectedprice").append();
+			        
+			        $('#payment').show();
 				})
-				
 		</script>
 
 

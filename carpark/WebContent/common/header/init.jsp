@@ -1,6 +1,6 @@
 <%@page import="com.carpark.member.model.MemberDto"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="com.carpark.member.model.*"%>
+<%@page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8" %>
 
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 	<!-- Brand and toggle get grouped for better mobile display -->
@@ -14,22 +14,11 @@
 	</div>
 	<!-- Top Menu Items -->
 	<ul class="nav navbar-right top-nav">
-<% 
-if(memberDto ==null){
-%>
-		<li>
-			<button type="button" class="btn btn-default navbar-btn"
-				data-toggle="modal" data-target="#myLogin">Login</button>
-			&nbsp;&nbsp;
-		</li>
-		<li>
-			<button type="button" class="btn btn-default navbar-btn"
-				data-toggle="modal" data-target="#mySignUp">SignUp</button>
-		</li>
+
+		
 <%
-}
-%>		
-	
+if(memberDto!=null){
+%>
 		<li class="dropdown"><a href="#" class="dropdown-toggle"
 			data-toggle="dropdown"><i class="fa fa-envelope"></i> <b
 				class="caret"></b></a>
@@ -104,9 +93,6 @@ if(memberDto ==null){
 				<li class="divider"></li>
 				<li><a href="#">View All</a></li>
 			</ul></li>
-<%
-if(memberDto!=null){
-%>
 		<li class="dropdown"><a href="#" class="dropdown-toggle"
 			data-toggle="dropdown"><i class="fa fa-user"></i> <%=memberDto.getUser_id() %> <b
 				class="caret"></b></a>
@@ -118,12 +104,19 @@ if(memberDto!=null){
 				<li class="divider"></li>
 				<li><a href="<%=root%>/member?act=mvlogout"><i class="fa fa-fw fa-power-off"></i> Log
 						Out</a></li>
-			</ul></li>
-			
-			
+			</ul></li>		
 <%
 }else{
 %>
+		<li>
+			<button type="button" class="btn btn-default navbar-btn"
+				data-toggle="modal" data-target="#myLogin">Login</button>
+			&nbsp;&nbsp;
+		</li>
+		<li>
+			<button type="button" class="btn btn-default navbar-btn"
+				data-toggle="modal" data-target="#mySignUp">SignUp</button>
+		</li>
 		<li class="dropdown"><a href="#" class="dropdown-toggle"
 			data-toggle="dropdown"><i class="fa fa-user"></i> 아이디 <b
 				class="caret"></b></a>
@@ -215,10 +208,9 @@ if(memberDto!=null){
 
 			<form class="form-signin" role="form" name="signUpForm" id="signUpForm" method="post"
 					action="<%=root%>/member">
-			<input type="hidden" name="act" value="mvsignup">
+			<input type="hidden" name="act" value="mvsignup"  required="required">
 			<div class="modal-body">
 					<fieldset>
-					<input type="hidden" name="act" value="mvsignup" required="required">
 
 					<div class="form-group">
 						<div class="controls">

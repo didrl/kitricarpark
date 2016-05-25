@@ -102,7 +102,7 @@ var map;
 	}
 	
 	function goResultDetail() {
-		document.parkListFrom.action = "/carpark/member";
-		document.parkListFrom.submit();
+		document.parkListForm.action = "/carpark/member";
+		document.parkListForm.submit();
 	}
 	

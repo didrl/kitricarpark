@@ -7,5 +7,6 @@ import com.carpark.member.model.ReservationDto;
 
 public interface MemberReservationService {
 	ArrayList<Map<String,String>> getCarInfo(String user_id);
-	ArrayList<String> getAvailDate(int park_id);
+	ArrayList<Map<String, String>> getAvailDate(int park_id);
+	void registerReservation(ReservationDto reservationDto);
 }

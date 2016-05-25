@@ -1,55 +1,72 @@
-﻿/* 주차장정보 */
-DROP TABLE parking CASCADE CONSTRAINTS;
+/* 주차장 정보 */
+DROP TABLE PARKING_INFO
+	CASCADE CONSTRAINTS;
+	
+/* 주차장정보 */
+DROP TABLE parking 
+	CASCADE CONSTRAINTS;
 
 /* 예약정보 */
-DROP TABLE reservation CASCADE CONSTRAINTS;
+DROP TABLE reservation 
+	CASCADE CONSTRAINTS;
 
 /* 쪽지 */
-DROP TABLE message CASCADE CONSTRAINTS;
+DROP TABLE message 
+	CASCADE CONSTRAINTS;
 
 /* 후기 */
-DROP TABLE review CASCADE CONSTRAINTS;
+DROP TABLE review 
+	CASCADE CONSTRAINTS;
 
 /* 등급 평가기준 */
-DROP TABLE grade CASCADE CONSTRAINTS;
+DROP TABLE grade 
+	CASCADE CONSTRAINTS;
 
 /* 회원정보 */
-DROP TABLE member CASCADE CONSTRAINTS;
+DROP TABLE member 
+	CASCADE CONSTRAINTS;
 
 /* 신고 게시판 */
-DROP TABLE report CASCADE CONSTRAINTS;
+DROP TABLE report 
+	CASCADE CONSTRAINTS;
 
 /* 벌점 내역 */
-DROP TABLE penalty CASCADE CONSTRAINTS;
+DROP TABLE penalty 
+	CASCADE CONSTRAINTS;
 
 /* 벌점 평가 리스트 */
-DROP TABLE evaluation CASCADE CONSTRAINTS;
+DROP TABLE evaluation 
+	CASCADE CONSTRAINTS;
 
 /* 주차장 제보 목록 */
-DROP TABLE call CASCADE CONSTRAINTS;
+DROP TABLE call 
+	CASCADE CONSTRAINTS;
 
 /* 즐겨찾기 */
-DROP TABLE favorite CASCADE CONSTRAINTS;
+DROP TABLE favorite 
+	CASCADE CONSTRAINTS;
 
 /* 평점 내역_주차장 */
-DROP TABLE avgpoint CASCADE CONSTRAINTS;
+DROP TABLE avgpoint 
+	CASCADE CONSTRAINTS;
 
 /* 게시판 */
-DROP TABLE board CASCADE CONSTRAINTS;
+DROP TABLE board 
+	CASCADE CONSTRAINTS;
 
 /* 게시판 형식 */
-DROP TABLE boardtype CASCADE CONSTRAINTS;
+DROP TABLE boardtype 
+	CASCADE CONSTRAINTS;
 
 /* 주차장 상세 */
-DROP TABLE parking_detail CASCADE CONSTRAINTS;
+DROP TABLE parking_detail 
+	CASCADE CONSTRAINTS;
 
 /* 도시 */
-DROP TABLE cities CASCADE CONSTRAINTS;
+DROP TABLE cities 
+	CASCADE CONSTRAINTS;
 
-/* 자주묻는 질문 */
-DROP TABLE faq CASCADE CONSTRAINTS;
-
-	 drop sequence board_num_seq;
+  drop sequence board_num_seq;
   drop sequence message_num_mseq;
   drop sequence report_num_cseq;
   drop sequence review_num_rseq;
@@ -72,50 +89,74 @@ DROP TABLE faq CASCADE CONSTRAINTS;
   create sequence call_num_pcseq
   start with 1 increment by 1;
 
-  /* 자주묻는 질문 */
-CREATE TABLE faq (
-	fseq NUMBER NOT NULL, /* 일련번호 */
-	subject VARCHAR2(100), /* 제목 */
-	contet clob /* 내용 */
-);
-
-ALTER TABLE parking	ADD	CONSTRAINT PK_parking PRIMARY KEY (	park_id	);
-
 	
 /* 주차장정보 */
 CREATE TABLE parking (
 	park_id NUMBER NOT NULL, /* 주차장아이디 */
 	park_name VARCHAR2(100), /* 주차장이름 */
 	park_capacity NUMBER, /* 총 주차면 수 */
-	owner_id VARCHAR2(16), /* 소유주아이디 */
+	owner_id VARCHAR2(20), /* 소유주아이디 */
 	latitude NUMBER, /* 주차장 위도 */
 	longitude NUMBER, /* 주차장 경도 */
 	park_type VARCHAR2(6), /* 주차장 종류 */
 	emd_code NUMBER /* 읍면동 코드 */
 );
 
-ALTER TABLE parking	ADD	CONSTRAINT PK_parking PRIMARY KEY (	park_id	);
+ALTER TABLE parking
+	ADD
+		CONSTRAINT PK_parking
+		PRIMARY KEY (
+			park_id
+		);
 
+		
+CREATE TABLE PARKING_INFO ( 
+   PARK_ID NUMBER, 
+   DETAIL_INFO VARCHAR2(1000), 
+   PHOTO_aws VARCHAR2(100), 
+   FEATURE VARCHAR2(100)
+ ) ;
+  
+ ALTER TABLE PARKING_INFO
+	ADD
+		CONSTRAINT FK_PARKING_INFO_TO_parking
+		FOREIGN KEY (
+			PARK_id
+		)
+		REFERENCES PARKING (
+			PARK_id
+		);
+		
 /* 예약정보 */
 CREATE TABLE reservation (
 	reser_id varchar2(50) NOT NULL, /* 예약 번호 */
 	park_id NUMBER NOT NULL, /* 주차장아이디 */
-	user_id varchar2(20) NOT NULL, /* 회원아이디(예약자) */
+	user_id VARCHAR2(20) NOT NULL, /* 회원아이디(예약자) */
 	start_date DATE, /* 예약시작일 */
 	end_date DATE /* 예약종료일 */
 );
 
-ALTER TABLE reservation	ADD	CONSTRAINT PK_reservation PRIMARY KEY (reser_id);
+ALTER TABLE reservation
+	ADD
+		CONSTRAINT PK_reservation
+		PRIMARY KEY (
+			reser_id
+		);
 
 /* 쪽지 */
 CREATE TABLE message (
 	mseq NUMBER NOT NULL, /* 쪽지글번호 */
 	seq NUMBER NOT NULL, /* 글번호 */
-	receiver_id VARCHAR2(16), /* 받는사람 아이디 */
+	receiver_id VARCHAR2(20), /* 받는사람 아이디 */
 	msg_flag NUMBER DEFAULT 0 /* 확인여부 */
 );
 
-ALTER TABLE message ADD	CONSTRAINT PK_message PRIMARY KEY (mseq);
+ALTER TABLE message
+	ADD
+		CONSTRAINT PK_message
+		PRIMARY KEY (
+			mseq
+		);
 
 /* 후기 */
 CREATE TABLE review (
@@ -123,11 +164,16 @@ CREATE TABLE review (
 	seq NUMBER NOT NULL, /* 글번호 */
 	aval_code NUMBER, /* 평가 코드 */
 	get_point NUMBER, /* 등록한 평점 */
-	avaled_id VARCHAR2(16), /* 평가대상 아이디 */
+	avaled_id VARCHAR2(20), /* 평가대상 아이디 */
 	host_flag NUMBER DEFAULT 0 /* 게스트호스트 플래그 */
 );
 
-ALTER TABLE review ADD	CONSTRAINT PK_review PRIMARY KEY (rseq);
+ALTER TABLE review
+	ADD
+		CONSTRAINT PK_review
+		PRIMARY KEY (
+			rseq
+		);
 
 
 /* 등급 평가기준 */
@@ -139,11 +185,16 @@ CREATE TABLE grade (
 	penalty NUMBER DEFAULT 0 /* 패널티 */
 );
 
-ALTER TABLE grade ADD CONSTRAINT PK_grade PRIMARY KEY (grade_id);
+ALTER TABLE grade
+	ADD
+		CONSTRAINT PK_grade
+		PRIMARY KEY (
+			grade_id
+		);
 
 /* 회원정보 */
 CREATE TABLE member (
-	user_id varchar2(20) NOT NULL, /* 아이디 */
+	user_id VARCHAR2(20) NOT NULL, /* 아이디 */
 	grade_id NUMBER NOT NULL, /* 등급번호 */
 	user_pass VARCHAR2(20) NOT NULL, /* 패스워드 */
 	login_key VARCHAR2(50), /* 간편로그인키 */
@@ -153,33 +204,48 @@ CREATE TABLE member (
 	user_avgPoint NUMBER DEFAULT 0, /* 평점 */
 	penalty NUMBER DEFAULT 0, /* 누적 벌점 */
 	user_flag NUMBER DEFAULT 0, /* 회원종류(개인/기업) */
-	user_name VARCHAR2(100), /* 이름 */
+	user_name VARCHAR2(16), /* 이름 */
 	email VARCHAR2(100), /* 이메일 */
 	tel varchar2(20) /* 전화번호 */
 );
 
-ALTER TABLE member ADD CONSTRAINT PK_member	PRIMARY KEY (user_id);
+ALTER TABLE member
+	ADD
+		CONSTRAINT PK_member
+		PRIMARY KEY (
+			user_id
+		);
 
 /* 신고 게시판 */
 CREATE TABLE report (
 	seq NUMBER NOT NULL, /* 글번호 */
 	cseq NUMBER NOT NULL, /* 신고글번호 */
 	park_id NUMBER NOT NULL, /* 신고받은 주차장 아이디 */
-	user_id varchar2(20) /* 신고받은 아이디 */
+	user_id VARCHAR2(20) /* 신고받은 아이디 */
 );
 
-ALTER TABLE report ADD CONSTRAINT PK_report PRIMARY KEY (cseq);
+ALTER TABLE report
+	ADD
+		CONSTRAINT PK_report
+		PRIMARY KEY (
+			cseq
+		);
 
 /* 벌점 내역 */
 CREATE TABLE penalty (
 	panel_num NUMBER NOT NULL, /* 벌점 번호 */
-	user_id varchar2(20) NOT NULL, /* 아이디 */
+	user_id VARCHAR2(20) NOT NULL, /* 아이디 */
 	panel_code NUMBER NOT NULL, /* 벌점코드 */
 	panel_date DATE, /* 벌점 받은 날짜 */
 	panel_content VARCHAR2(100) /* 벌점내역 */
 );
 
-ALTER TABLE penalty ADD	CONSTRAINT PK_penalty PRIMARY KEY (panel_num);
+ALTER TABLE penalty
+	ADD
+		CONSTRAINT PK_penalty
+		PRIMARY KEY (
+			panel_num
+		);
 
 /* 벌점 평가 리스트 */
 CREATE TABLE evaluation (
@@ -189,7 +255,12 @@ CREATE TABLE evaluation (
 	panel_point NUMBER DEFAULT 0 /* 벌점 점수 */
 );
 
-ALTER TABLE evaluation ADD CONSTRAINT PK_evaluation	PRIMARY KEY (penal_code);
+ALTER TABLE evaluation
+	ADD
+		CONSTRAINT PK_evaluation
+		PRIMARY KEY (
+			penal_code
+		);
 
 /* 주차장 제보 목록 */
 CREATE TABLE call (
@@ -202,12 +273,17 @@ CREATE TABLE call (
 	pcall_ok NUMBER DEFAULT 0 /* 방문예정 여부 */
 );
 
-ALTER TABLE call ADD CONSTRAINT PK_call	PRIMARY KEY (pcseq);
+ALTER TABLE call
+	ADD
+		CONSTRAINT PK_call
+		PRIMARY KEY (
+			pcseq
+		);
 
 /* 즐겨찾기 */
 CREATE TABLE favorite (
 	park_id NUMBER NOT NULL, /* 주차장 아이디 */
-	user_id varchar2(20) NOT NULL /* 아이디 */
+	user_id VARCHAR2(20) NOT NULL /* 아이디 */
 );
 
 /* 평점 내역_주차장 */
@@ -218,21 +294,30 @@ CREATE TABLE avgpoint (
 	avgPoint NUMBER /* 평점 */
 );
 
-ALTER TABLE avgpoint ADD CONSTRAINT PK_avgpoint	PRIMARY KEY (rseq);
+ALTER TABLE avgpoint
+	ADD
+		CONSTRAINT PK_avgpoint
+		PRIMARY KEY (
+			rseq
+		);
 
 /* 게시판 */
 CREATE TABLE board (
 	seq NUMBER NOT NULL, /* 글번호 */
 	bcode NUMBER NOT NULL, /* 게시판 형식 번호 */
-	user_id varchar2(20), /* 작성자 */
+	user_id VARCHAR2(20), /* 작성자 */
 	subject VARCHAR2(50), /* 제목 */
-	content clob, /* 내용 */
+	content varchar2(1000), /* 내용 */
 	logtime DATE, /* 작성일 */
-	photo blob,
 	photo_aws varchar2(1000)
 );
 
-ALTER TABLE board ADD CONSTRAINT PK_board PRIMARY KEY (seq);
+ALTER TABLE board
+	ADD
+		CONSTRAINT PK_board
+		PRIMARY KEY (
+			seq
+		);
 
 /* 게시판 형식 */
 CREATE TABLE boardtype (
@@ -240,7 +325,12 @@ CREATE TABLE boardtype (
 	bname VARCHAR2(20) /* 게시판 형식 이름 */
 );
 
-ALTER TABLE boardtype ADD CONSTRAINT PK_boardtype PRIMARY KEY (bcode);
+ALTER TABLE boardtype
+	ADD
+		CONSTRAINT PK_boardtype
+		PRIMARY KEY (
+			bcode
+		);
 
 /* 주차장 상세 */
 CREATE TABLE parking_detail (
@@ -269,17 +359,62 @@ CREATE TABLE cities (
 	lng NUMBER /* 경도 */
 );
 
-ALTER TABLE cities ADD CONSTRAINT PK_cities	PRIMARY KEY (emd_code);
+ALTER TABLE cities
+	ADD
+		CONSTRAINT PK_cities
+		PRIMARY KEY (
+			emd_code
+		);
 
-ALTER TABLE parking ADD	CONSTRAINT FK_member_TO_parking	FOREIGN KEY (owner_id) REFERENCES member (user_id);
+ALTER TABLE parking
+	ADD
+		CONSTRAINT FK_member_TO_parking
+		FOREIGN KEY (
+			owner_id
+		)
+		REFERENCES member (
+			user_id
+		);
 
-ALTER TABLE parking ADD	CONSTRAINT FK_cities_TO_parking	FOREIGN KEY (emd_code)	REFERENCES cities (emd_code);
+ALTER TABLE parking
+	ADD
+		CONSTRAINT FK_cities_TO_parking
+		FOREIGN KEY (
+			emd_code
+		)
+		REFERENCES cities (
+			emd_code
+		);
 
-ALTER TABLE reservation ADD	CONSTRAINT FK_member_TO_reservation	FOREIGN KEY (user_id) REFERENCES member (user_id);
+ALTER TABLE reservation
+	ADD
+		CONSTRAINT FK_member_TO_reservation
+		FOREIGN KEY (
+			user_id
+		)
+		REFERENCES member (
+			user_id
+		);
 
-ALTER TABLE reservation ADD	CONSTRAINT FK_parking_TO_reservation FOREIGN KEY (park_id)	REFERENCES parking (park_id);
+ALTER TABLE reservation
+	ADD
+		CONSTRAINT FK_parking_TO_reservation
+		FOREIGN KEY (
+			park_id
+		)
+		REFERENCES parking (
+			park_id
+		);
 
-ALTER TABLE message	ADD	CONSTRAINT FK_board_TO_message	FOREIGN KEY (seq)	REFERENCES board (seq);
+ALTER TABLE message
+	ADD
+		CONSTRAINT FK_board_TO_message
+		FOREIGN KEY (
+			seq
+		)
+		REFERENCES board (
+			seq
+		);
 
 ALTER TABLE message
 	ADD
