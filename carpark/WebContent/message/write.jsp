@@ -20,23 +20,22 @@
 
 								<!-- 쪽지보내기 -->
 								<div class="form-group">
-									<form class="form-horizontal" name="writeForm" method="post"
-										action="">
+									<form class="form-horizontal" name="writeForm" method="post" action="">
 										<input type="hidden" name="act" value="messageWrite">
-										<input type="hidden" name="bcode" value="1"> <input
-											type="hidden" name="pg" value="1"> <input
-											type="hidden" name="key" value=""> <input
-											type="hidden" name="word" value="">
+										<input type="hidden" name="bcode" value="2"> 
+										<input type="hidden" name="pg" value="1"> 
+										<input type="hidden" name="key" value=""> 
+										<input type="hidden" name="word" value="">
 
 										<div class="form-group">
 											<label for="receiver">받는사람</label> <input type="text"
 												class="form-control" id="receiver" placeholder="받는사람"
-												name="name">
+												name="receiver">
 										</div>
 										<div class="form-group">
 											<label for="subject">제목</label> <input type="text"
 												class="form-control" id="subject" placeholder="제목"
-												name="content">
+												name="subject">
 										</div>
 										<div class="form-group">
 											<label for="content">내용</label>

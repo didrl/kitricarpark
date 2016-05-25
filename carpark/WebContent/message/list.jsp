@@ -15,7 +15,7 @@ List<MessageDto> list = (List<MessageDto>) request.getAttribute("messageList");
 
 <form name="common" method="get" action="">
 	<input type="hidden" name="act" id="act" value="">
-	<input type="hidden" name="bcode" id="bcode" value="1">
+	<input type="hidden" name="bcode" id="bcode" value="2">
 	<input type="hidden" name="pg" id="pg" value="1">
 	<input type="hidden" name="key" id="key" value="">
 	<input type="hidden" name="word" id="word" value="">

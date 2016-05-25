@@ -17,6 +17,8 @@ public class MemberMessageWriteAction implements Action {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
+		
+		String root = request.getContextPath();
 		HttpSession session = request.getSession();
 		MemberDto memberDto = (MemberDto) session.getAttribute("userInfo");
 		
@@ -32,9 +34,9 @@ public class MemberMessageWriteAction implements Action {
 		messageDto.setReceiverId(request.getParameter("receiver"));
 		messageDto.setMsgFlag(0);
 		
-		seq = MemberMessageServiceImpl.getMemberMessageService().writeArticle(messageDto);
+		MemberMessageServiceImpl.getMemberMessageService().writeArticle(messageDto);
+		MemberMessageServiceImpl.getMemberMessageService().sendListArticle("kangnam17");
 		
-		request.setAttribute("seq", seq);
 		
 		return "/message/list.jsp";
 	}

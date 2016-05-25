@@ -37,9 +37,14 @@ public class MemberMessageDaoImpl implements MemberMessageDao {
 			sql += "values (message_num_mseq.nextval, ?, ?, ?) \n";
 			sql += "select * from dual";
 			pstmt = conn.prepareStatement(sql);
-			System.out.println(sql);
-			System.out.println(messageDto.getSeq());
 			int idx = 0;
+			System.out.println(messageDto.getSeq());
+			System.out.println(messageDto.getUserID());
+			System.out.println(messageDto.getSubject());
+			System.out.println(messageDto.getContent());
+			System.out.println(messageDto.getBcode());
+			System.out.println(messageDto.getReceiverId());
+			System.out.println(messageDto.getMsgFlag());
 			pstmt.setInt(++idx, messageDto.getSeq());
 			pstmt.setString(++idx, messageDto.getUserID());
 			pstmt.setString(++idx, messageDto.getSubject());
