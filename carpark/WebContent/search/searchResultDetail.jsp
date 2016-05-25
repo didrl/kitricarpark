@@ -132,12 +132,12 @@
 			alert("종료일을 입력해주세요.");
 			return;
 		}else{
-			document.searchForm.action = "/carpark/member";
+			document.searchForm.action = "<%=root%>/member";
 			document.searchForm.submit();
 		}
 	}
 	function goReservation() {
-		document.selectdateForm.action = "/carpark/reservation";
+		document.selectdateForm.action = "<%=root%>/reservation";
 		document.selectdateForm.submit();
 	}
 	
@@ -176,7 +176,7 @@
 			<!--  search bar start -->
 			<div class="col-sm-13">
 					<!-- /input-group -->
-					<form id="searchForm" class="form-inline" role="form" method="post" >
+					<form id="searchForm" name="searchForm" class="form-inline" role="form" method="post" >
 						<input type="hidden"  name="act" value="mvSearchResult">
 						<div class="input-group">
 							<input type="text" class="form-control" id="citysearch" placeholder="Search for..."> 
@@ -312,7 +312,7 @@
 				<div class="row">
 					<!-- Date Picker panel Start -->
 					<div class="panel panel-default">
-					<form id="selectdateForm" class="form-inline" role="form" method="post" >
+					<form id="selectdateForm" name="selectdateForm" class="form-inline" role="form" method="post" >
 					<input type="hidden"  name="act" value="mvReservation">
 						<div class="panel-body">	
 				<div class="row"><!-- From Choice Start -->

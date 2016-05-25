@@ -44,7 +44,7 @@ List<ParkingDto> list = (List<ParkingDto>)request.getAttribute("searchlist");
 						<!--  search bar start -->
 			<div class="col-sm-13">
 					<!-- /input-group -->
-					<form id="searchForm" class="form-inline" role="form" method="post" >
+					<form id="searchForm" name="searchForm" class="form-inline" role="form" method="post" >
 						<input type="hidden"  name="act" value="mvSearchResult">
 						<div class="input-group">
 							<input type="text" class="form-control" id="citysearch"	placeholder="Search for..."> 
