@@ -44,15 +44,20 @@ if(messageDto != null) {
 %> 				
 				
 				<div class="table-responsive">
-				  <table class="table table-hover">
+				  <table class="table" border="1">
 				  <tr>
-				  	<th width="100">보낸사람</th><td><%=messageDto.getUserID() %></td>
+				  	<td width="100">보낸사람</td>
+				  	<td><%=messageDto.getUserID() %></td>
+				  	<td width="100">보낸시간</td>
+				  	<td width="100"><%=messageDto.getLogtime() %></td>
 				  </tr>
 				  <tr>
-				  	<th width="100">보낸시간</th><td><%=messageDto.getLogtime() %></td>
+				  	<td width="100">제목</td>
+				  	<td colspan="3"><%=messageDto.getSubject() %></td>
 				  </tr>
 				  <tr>
-				  	<th colspan="2"><p><%=messageDto.getContent() %></p></td>
+				  	<td width="100">내용</td>
+				  	<td colspan="3"><p><%=messageDto.getContent() %></p></td>
 				  </tr>
 				  </table>
 				</div>
@@ -60,20 +65,7 @@ if(messageDto != null) {
 } else {
 %>
 <center>
-	<h3>글이 없습니다</h3>
-				<div class="table-responsive">
-				  <table class="table table-hover">
-				  <tr>
-				  	<th width="100">보낸사람</th><td>test</td>
-				  </tr>
-				  <tr>
-				  	<th width="100">보낸시간</th><td>test</td>
-				  </tr>
-				  <tr>
-				  	<th colspan="2"><p>test</p></td>
-				  </tr>
-				  </table>
-				</div>
+	<h3>삭제된 쪽지입니다</h3>
 </center>
 <%
 }

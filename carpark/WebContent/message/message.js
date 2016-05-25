@@ -9,6 +9,7 @@ function messageSearch() {
 }
 
 function messageView(seq) {
+	alert("sefsef???")
 	document.getElementById("act").value = "messageView";
 	document.getElementById("seq").value = seq;
 		

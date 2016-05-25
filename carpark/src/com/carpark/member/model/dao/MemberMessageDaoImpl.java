@@ -68,8 +68,8 @@ public class MemberMessageDaoImpl implements MemberMessageDao {
 		try {
 			conn = DBConnection.makeConnection();
 			String sql = "";
-			sql += "select b.seq, b.subject, b.content b.user_id, b.logtime, b.bcode, \n";
-			sql += "m.mseq, m.receiver_id \n";
+			sql += "select b.seq, bcode, user_id, subject, content, logtime, \n";
+			sql += "mseq, receiver_id, msg_flag \n";
 			sql += "from board b, message m \n";
 			sql += "where b.seq = m.seq \n";
 			sql += "and b.seq = ?";
@@ -84,7 +84,7 @@ public class MemberMessageDaoImpl implements MemberMessageDao {
 				messageDto.setLogtime(rs.getString("logtime"));
 				messageDto.setBcode(rs.getInt("bcode"));
 				messageDto.setMseq(rs.getInt("mseq"));
-				messageDto.setReceiverId(rs.getString("receive_id"));
+				messageDto.setReceiverId(rs.getString("receiver_id"));
 				messageDto.setMsgFlag(1);
 			}
 		} catch (SQLException e) {

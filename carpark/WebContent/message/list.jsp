@@ -54,7 +54,7 @@ List<MessageDto> list = (List<MessageDto>) request.getAttribute("messageList");
 				  		<td width="150"><b>보낸시간</b></td>
 				  		<td width="50"><b>확인</b></td>
 				  	</tr>
-
+<a href="javascript:messageView('10');">sefsefsef</a>
 				
 <%
 if(list != null) {
@@ -70,12 +70,6 @@ if(list != null) {
 	}	
 }
 %>	
-					<tr>
-				  		<td width="150"><a href="javascript:messageView('10');">test</a></td>
-				  		<td><a href="javascript:messageView('10');">test</a></td>
-				  		<td width="150">test</td>
-				  		<td width="50">test</td>
-				  	</tr>
 				  
 				  </table>
 				</div>
