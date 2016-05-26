@@ -12,7 +12,7 @@
 					data-target="#profile"><i class="fa fa-fw fa-arrows-v"></i>
 						프로필 <i class="fa fa-fw fa-caret-down"></i></a>
 					<ul id="profile" class="collapse">
-						<li><a href="#">프로필수정</a></li>
+						<li><a href="javascript:detailprofile();">프로필수정</a></li>
 						<li><a href="#">feedback</a></li>
 						<li><a href="#">자동차정보</a></li>
 					</ul></li>
