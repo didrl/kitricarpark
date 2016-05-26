@@ -32,8 +32,7 @@ List<ParkingDto> list = (List<ParkingDto>)request.getAttribute("searchlist");
 <script
 	src="https://apis.skplanetx.com/tmap/js?version=1&format=javascript&appKey=a4ea8cc9-e49c-308f-99de-3aadb0c70298"></script>
 <script type="text/javascript" src="/carpark/js/search/mapsearch.js"></script>
-<<<<<<< HEAD
-=======
+
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 
 <script>
@@ -56,7 +55,6 @@ $(document).ready(function() {
 });
 </script>
 
->>>>>>> minseok
 <br><br><br><br>
 	
     <!-- Page Content -->
@@ -102,15 +100,15 @@ $(document).ready(function() {
 <%
 for(ParkingDto parkingDto :list){
 %>
-<<<<<<< HEAD
+
 				<form id="parkListForm" name="parkListForm" class="form-inline"  role="form" method="post">
-=======
+
 				<a href="<%=root%>/member?act=mvSearchResultDetail&parkingid=<%=parkingDto.getPark_id()%> 
 				&parkingname=<%=parkingDto.getPark_name()%>&latitude=<%=parkingDto.getLatitude()%>
 				&longitude=<%=parkingDto.getLongitude()%>" class="list-group-item">					
 				<form id="parkListForm" name="parkListForm" class="form-inline" 
 				role="form" method="post">
->>>>>>> minseok
+
 					<input type="hidden" name="act" value="mvSearchResultDetail">
 					<input type="hidden" name="id" value="<%=parkingDto.getPark_id()%>">
 					<input type="hidden" name="name" value="<%=parkingDto.getPark_name()%>">
