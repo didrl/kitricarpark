@@ -20,8 +20,6 @@ function messageView(seq) {
 function messageDelete(seq) {
 	document.getElementById("act").value = "messageDelete";
 	document.getElementById("seq").value = seq;
-	
-	alert("글이 삭제되었습니다")
 		
 	document.common.action = "/carpark/message";
 	document.common.submit();

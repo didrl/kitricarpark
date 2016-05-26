@@ -5,11 +5,9 @@
     pageEncoding="UTF-8"%>
 
 <%@include file="/common/common.jsp" %>
-<<<<<<< HEAD
+
 <%@include file="/common/header/init.jsp"%>
-=======
-<%@include file="/common/header/init.jsp"%> 
->>>>>>> 6d4c884232e5c6c7d601d52d3a4a406f67f35bb9
+
 <%
 ParkingDto parkingDetail = (ParkingDto)request.getAttribute("parkingDetail");
 ArrayList<ReviewDto> reviewlist = (ArrayList<ReviewDto>)request.getAttribute("reviewlist");

@@ -31,7 +31,7 @@ public class MemberMessageDaoImpl implements MemberMessageDao {
 			conn = DBConnection.makeConnection();
 			String sql = "";
 			sql += "insert all \n";
-			sql += "into board (seq, user_id, subject, content, bcode, logtime) \n";
+			sql += "into board (seq, user_id, subjects, content, bcode, logtime) \n";
 			sql += "values (?, ?, ?, ?, ?, sysdate) \n";
 			sql += "into message (mseq, seq, receiver_id, msg_flag) \n";
 			sql += "values (message_num_mseq.nextval, ?, ?, ?) \n";
@@ -68,7 +68,10 @@ public class MemberMessageDaoImpl implements MemberMessageDao {
 		try {
 			conn = DBConnection.makeConnection();
 			String sql = "";
-			sql += "select b.seq, bcode, user_id, subject, content, logtime, \n";
+			sql += "select b.seq, bcode, user_id, subject, contents, \n";
+			sql += "		decode(to_char(logtime, 'yymmdd'), \n";
+			sql += "				to_char(sysdate, 'yymmdd'), to_char(b.logtime, 'hh24:mi:ss'), \n";
+			sql += "				to_char(b.logtime, 'yy.mm.dd')) logtime, \n";
 			sql += "mseq, receiver_id, msg_flag \n";
 			sql += "from board b, message m \n";
 			sql += "where b.seq = m.seq \n";
@@ -79,7 +82,7 @@ public class MemberMessageDaoImpl implements MemberMessageDao {
 			if(rs.next()) {
 				messageDto.setSeq(seq);
 				messageDto.setSubject(rs.getString("subject"));
-				messageDto.setContent(rs.getString("content"));
+				messageDto.setContent(rs.getString("contents"));
 				messageDto.setUserID(rs.getString("user_id"));
 				messageDto.setLogtime(rs.getString("logtime"));
 				messageDto.setBcode(rs.getInt("bcode"));
@@ -94,83 +97,6 @@ public class MemberMessageDaoImpl implements MemberMessageDao {
 		}
 		
 		return messageDto;
-	}
-
-	@Override
-	public List<MessageDto> searchArticle(Map<String, String> map) {
-		List<MessageDto> list = new ArrayList<MessageDto>();
-		
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		
-		String key = map.get("key");
-		String word = map.get("word");
-		
-		try {
-			conn = DBConnection.makeConnection();
-			StringBuffer sb = new StringBuffer();
-			sb.append("select b.* \n");
-			sb.append("from ( \n");
-			sb.append("	select rownum rn, a.* \n");
-			sb.append("	from ( \n");
-			sb.append("		select b.seq, b.user_id, b.subject, b.content, b.hit, b.bcode, \n");
-			sb.append("		       decode(to_char(b.logtime, 'yymmdd'), \n");
-			sb.append("			      to_char(sysdate, 'yymmdd'), to_char(b.logtime, 'hh24:mi:ss'), \n");
-			sb.append("							  to_char(b.logtime, 'yy.mm.dd')) logtime, \n");
-			sb.append("		       m.mseq, m.receiver_id, m.msg_flag \n");
-			sb.append("		from board b, message m \n");
-			sb.append("		where b.seq = m.seq \n");
-			sb.append("		and b.bcode = ? \n");
-			if(key != null && !key.isEmpty()) {
-				if(word != null && !word.isEmpty()) {
-					if("subject".equals(key))
-						sb.append("		and b.subject like '%'||?||'%' \n");
-					else if("content".equals(key))
-						sb.append("		and b.content like '%'||?||'%' \n");
-					else
-						sb.append("		and b." + key + " = ? \n");						
-				}
-			}
-			sb.append("		order by b.seq desc \n");
-			sb.append("	      ) a \n");
-			sb.append("	where rownum <= ? \n");
-			sb.append("      ) b \n");
-			sb.append("where b.rn > ? ");
-			pstmt = conn.prepareStatement(sb.toString());
-			int idx = 0;
-			pstmt.setString(++idx, map.get("bcode"));
-			if(key != null && !key.isEmpty()) {
-				if(word != null && !word.isEmpty()) {
-					pstmt.setString(++idx, map.get("word"));				
-				}
-			}
-			pstmt.setString(++idx, map.get("end"));
-			pstmt.setString(++idx, map.get("start"));
-			rs = pstmt.executeQuery();
-			
-			while(rs.next()) {
-				MessageDto messageDto = new MessageDto();
-				messageDto.setSeq(rs.getInt("seq"));
-				messageDto.setSubject(rs.getString("subject"));
-				messageDto.setContent(rs.getString("content"));
-				messageDto.setUserID(rs.getString("user_id"));
-				messageDto.setLogtime(rs.getString("logtime"));
-				messageDto.setBcode(rs.getInt("bcode"));
-				messageDto.setMseq(rs.getInt("mseq"));
-				messageDto.setReceiverId(rs.getString("receiver_id"));
-				messageDto.setMsgFlag(rs.getInt("msg_flag"));
-				
-				list.add(messageDto);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			DBClose.close(conn, pstmt, rs);
-		}
-		
-		return list;
-		
 	}
 
 	@Override
@@ -213,12 +139,16 @@ public class MemberMessageDaoImpl implements MemberMessageDao {
 		try {
 			conn = DBConnection.makeConnection();
 			String sql = "";
-			sql += "select b.seq, bcode, user_id, subject, content, logtime, \n";
+			sql += "select b.seq, bcode, user_id, subject, contents, \n";
+			sql += "		decode(to_char(logtime, 'yymmdd'), \n";
+			sql += "				to_char(sysdate, 'yymmdd'), to_char(b.logtime, 'hh24:mi:ss'), \n";
+			sql += "				to_char(b.logtime, 'yy.mm.dd')) logtime, \n";
 			sql += "mseq, receiver_id, msg_flag \n";
 			sql += "from board b, message m \n";
 			sql += "where b.seq = m.seq \n";
 			sql += "and user_id = ? \n";
 			sql += "order by logtime desc";
+			//정렬 수정해야함(rownum) 
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, userId);
 			rs = pstmt.executeQuery();
@@ -228,7 +158,7 @@ public class MemberMessageDaoImpl implements MemberMessageDao {
 				messageDto.setBcode(rs.getInt("bcode"));
 				messageDto.setUserID(rs.getString("user_id"));
 				messageDto.setSubject(rs.getString("subject"));
-				messageDto.setContent(rs.getString("content"));
+				messageDto.setContent(rs.getString("contents"));
 				messageDto.setLogtime(rs.getString("logtime"));
 				messageDto.setMseq(rs.getInt("mseq"));
 				messageDto.setReceiverId(rs.getString("receiver_id"));
@@ -255,12 +185,16 @@ public class MemberMessageDaoImpl implements MemberMessageDao {
 		try {
 			conn = DBConnection.makeConnection();
 			String sql = "";
-			sql += "select b.seq, bcode, user_id, subject, content, logtime, \n";
+			sql += "select b.seq, bcode, user_id, subject, contents, \n";
+			sql += "		decode(to_char(logtime, 'yymmdd'), \n";
+			sql += "				to_char(sysdate, 'yymmdd'), to_char(b.logtime, 'hh24:mi:ss'), \n";
+			sql += "				to_char(b.logtime, 'yy.mm.dd')) logtime, \n";
 			sql += "mseq, receiver_id, msg_flag \n";
 			sql += "from board b, message m \n";
 			sql += "where b.seq = m.seq \n";
 			sql += "and receiver_id = ? \n";
 			sql += "order by logtime desc";
+			//정렬 수정 필요(rownum)
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, receiveId);
 			rs = pstmt.executeQuery();
@@ -270,7 +204,7 @@ public class MemberMessageDaoImpl implements MemberMessageDao {
 				messageDto.setBcode(rs.getInt("bcode"));
 				messageDto.setUserID(rs.getString("user_id"));
 				messageDto.setSubject(rs.getString("subject"));
-				messageDto.setContent(rs.getString("content"));
+				messageDto.setContent(rs.getString("contents"));
 				messageDto.setLogtime(rs.getString("logtime"));
 				messageDto.setMseq(rs.getInt("mseq"));
 				messageDto.setReceiverId(rs.getString("receiver_id"));

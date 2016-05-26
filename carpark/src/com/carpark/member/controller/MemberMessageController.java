@@ -24,8 +24,7 @@ public class MemberMessageController extends HttpServlet {
 		String path = "/index.jsp";
 		String queryString = "?bcode=" + bcode + "&pg=" + pg + "&key=" + key + "&word=" + Encoder.isoToUtf(word);
 		
-		if("messageSearch".equals(act)) {
-			
+		if("".equals(act)) {
 			
 		} else if("messageWrite".equals(act)) {
 			path = MemberActionFactory.getMemberMessageWriteAction().execute(request, response);
