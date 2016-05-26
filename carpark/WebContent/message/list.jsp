@@ -54,14 +54,23 @@ List<MessageDto> list = (List<MessageDto>) request.getAttribute("messageList");
 				  		<td width="150"><b>보낸시간</b></td>
 				  		<td width="50"><b>확인</b></td>
 				  	</tr>
-<a href="javascript:messageView('10');">sefsefsef</a>
-				
+
+<script tyep="text/javascript">
+function messageView(seq) {
+	document.getElementById("act").value = "messageView";
+	document.getElementById("seq").value = seq;
+		
+	document.common.action = "/carpark/message";
+	document.common.submit();
+	
+}
+</script>				
 <%
 if(list != null) {
 	for(MessageDto messageDto : list) {
 %>
 					<tr >
-						<td width="150"><a href="javascript:messageView('<%=messageDto.getSeq() %>');"><%=messageDto.getReceiverId() %></a></td>
+						<td width="150"><a href="javascript:messageView('<%=messageDto.getSeq()%>');"><%=messageDto.getReceiverId() %></a></td>
 						<td><a href="javascript:messageView('<%=messageDto.getSeq() %>');"><%=messageDto.getSubject() %></a></td>
 						<td width="150"><%=messageDto.getLogtime() %></td>						
 						<td width="50"><%=(messageDto.getMsgFlag() == 0) ? "X" : "O" %></td>
