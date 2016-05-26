@@ -71,7 +71,7 @@ if(memberDto!=null){
 							</div>
 						</div>
 				</a></li>
-				<li class="message-footer"><a href="#">Read All New
+				<li class="message-footer"><a href="javascript:messageReceiveList();">Read All New
 						Messages</a></li>
 			</ul></li>
 		<li class="dropdown"><a href="#" class="dropdown-toggle"

@@ -5,7 +5,7 @@ MessageDto messageDto = (MessageDto) request.getAttribute("messageView");
 %>
 
 <%@ include file="/common/common.jsp" %>
-<%@ include file="/common/header.jsp" %>
+<%@ include file="/common/header/init.jsp" %>
 <%@ include file="/common/side.jsp" %>
 
 <div id="wrapper">
@@ -36,7 +36,7 @@ MessageDto messageDto = (MessageDto) request.getAttribute("messageView");
 <h3>글이 삭제되었습니다</h3>
 </center>
 
-<input type="button" value="목록" onclick="javascript:messageList();">
+<input type="button" value="목록" onclick="javascript:messageReceiveList();">
 				
 			</div>
 		</div>

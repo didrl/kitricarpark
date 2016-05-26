@@ -60,7 +60,7 @@ if(messageDto != null) {
 <%
 }
 %>
-				<input type="button" value="목록" onclick="javascript:messageList();">
+				<input type="button" value="목록" onclick="javascript:messageReceiveList();">
 				<input type="button" value="삭제" onclick="javascript:messageDelete('<%=messageDto.getSeq()%>');">
 				
 			</div>
