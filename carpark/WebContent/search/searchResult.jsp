@@ -32,11 +32,7 @@ List<ParkingDto> list = (List<ParkingDto>)request.getAttribute("searchlist");
 <script
 	src="https://apis.skplanetx.com/tmap/js?version=1&format=javascript&appKey=a4ea8cc9-e49c-308f-99de-3aadb0c70298"></script>
 <script type="text/javascript" src="/carpark/js/search/mapsearch.js"></script>
-<<<<<<< HEAD
-=======
 
-<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
->>>>>>> e0ba124163fdc5c73f9611007bbf567c376fde21
 
 
 <br><br><br><br>
