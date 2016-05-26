@@ -1,11 +1,13 @@
 <%@page import="com.carpark.member.model.ReviewDto"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.carpark.admin.model.ParkingDto"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
 <%@include file="/common/common.jsp" %>
-<%@include file="/common/header.jsp" %> 
+
+<%@include file="/common/header/init.jsp"%>
+
 <%
 ParkingDto parkingDetail = (ParkingDto)request.getAttribute("parkingDetail");
 ArrayList<ReviewDto> reviewlist = (ArrayList<ReviewDto>)request.getAttribute("reviewlist");
@@ -14,7 +16,7 @@ ArrayList<ReviewDto> reviewlist = (ArrayList<ReviewDto>)request.getAttribute("re
 <!-- ****************************************************************************************************************** -->	
 
   
-    <!-- For sendMsg Modal -->
+   <!-- For sendMsg Modal -->
    <%@include file="/reservation/sendMessageModal.jsp"%>
    <!-- For sendMsg Modal -->
    
@@ -73,6 +75,18 @@ function messageWrite() {
 	} else{
 		document.messageForm.action = "/carpark/message";
 		document.messageForm.submit();
+	}
+}
+function goReservation() {
+	if(document.selectdateForm.fromdate.value == ""){
+		alert("대상을 입력하세요");
+		return;
+	} else if(document.selectdateForm.todate.value == "") {
+		alert("제목을 입력하세요");
+		return;	
+	} else{
+		document.selectdateForm.action = "/carpark/reservation";
+		document.selectdateForm.submit();
 	}
 }
 
@@ -220,7 +234,7 @@ for(ReviewDto reviewDto : reviewlist){
 								<div class="pull-right">From : </div>
 						</div>
 						<div class="col-md-9" >		
-								<input class="date-picker" id="fromdate" type="text" />
+								<input class="date-picker" id="fromdate" name="fromdate" type="text" />
 								<select id="fromTime" name="fromTime">
 								  <option value="0">00:00</option><option value="1">01:00</option><option value="2">02:00</option>
 								  <option value="3">03:00</option> <option value="4">04:00</option><option value="5">05:00</option>
@@ -238,7 +252,7 @@ for(ReviewDto reviewDto : reviewlist){
 								<div class="pull-right">T o :</div> 
 								</div>
 								<div class="col-md-9" >
-								<input class="date-picker" id="todate" type="text" />
+								<input class="date-picker" id="todate"   name="todate" type="text" />
 								<select id="toTime" name="toTime">
 								  <option value="0">00:00</option><option value="1">01:00</option><option value="2">02:00</option>
 								  <option value="3">03:00</option> <option value="4">04:00</option><option value="5">05:00</option>
@@ -267,7 +281,7 @@ for(ReviewDto reviewDto : reviewlist){
 					<div class="well">
 						<div class="panel-body">호스트 : <%=parkingDetail.getOwner_id() %></div>
 						<div class="text-center">
-							 <button type="button" class="btn btn-success"  data-toggle="modal" data-target="#msgToHost">
+							 <button type="button" class="btn btn-success"  id="sendMsgToHost "data-toggle="modal" data-target="#msgToHost">
                   				Send Message
                				</button>
                
@@ -350,6 +364,14 @@ for(ReviewDto reviewDto : reviewlist){
 				e.stopPropagation();
 				return false;
 			});
+			
+			//review
+			$('#sendMsgToHost').on('click', function (event) {
+				  var button = $(event.relatedTarget) // Button that triggered the modal
+			      console.log("Here!");
+			        $("#receiver").append(<%=parkingDetail.getOwner_id() %>);
+			        $('#msgToHost').show();
+				})
 			
 		</script>
 		<script src="/carpark/js/selectlist/jquery.selectlist.js"></script>

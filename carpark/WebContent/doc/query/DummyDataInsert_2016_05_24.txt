@@ -27,48 +27,48 @@ values(5,'최우수고객',5,30,0);
 -------------------------------------
 --  Member Table Dummy Create SQL --
 -------------------------------------
-insert into member
-values('PublicPark',0,0,'',0,'',0,0,0,2,'공영주차장','','');
+insert into member(user_id,grade_id ,user_pass ,login_key ,host_flag ,coin ,user_avgPoint,penalty,user_flag,user_name,email,tel)
+values('PublicPark',0,'ppark','',0,0,0,0,2,'공영주차장','','');
 
-insert into member
-values('SemsungPark',1,'spark','',0,'',0,0,0,1,'샘성주차장','','');
+insert into member(user_id,grade_id ,user_pass ,login_key ,host_flag ,coin ,user_avgPoint,penalty,user_flag,user_name,email,tel)     
+values('SemsungPark',1,'spark','',0,0,0,0,1,'샘성주차장','','');
 
 
-insert into member
-values('RgPark',1,'rgpark','',0,'',0,0,0,1,'알지주차장','rgpark@rg.park','022224444');
+insert into member(user_id,grade_id ,user_pass ,login_key ,host_flag ,coin ,user_avgPoint,penalty,user_flag,user_name,email,tel)     
+values('RgPark',1,'rgpark','',0,0,0,0,1,'알지주차장','rgpark@rg.park','022224444');
 
-insert into member
-values('RottePark',1,'rotpark','',0,'',0,0,0,1,'럿데주차장','rottepark@rotte.park','021116312');
+insert into member(user_id,grade_id ,user_pass ,login_key ,host_flag ,coin ,user_avgPoint,penalty,user_flag,user_name,email,tel)     
+values('RottePark',1,'rotpark','',0,0,0,0,1,'럿데주차장','rottepark@rotte.park','021116312');
 
 ---
 
-insert into member
-values('GdHost',4,'ghost','',1,'경기가5959',1500,4.2,0,0,'주인지용','hostgd@host.gd','01022223333');
+insert into member(user_id,grade_id ,user_pass ,login_key ,host_flag ,coin ,user_avgPoint,penalty,user_flag,user_name,email,tel)     
+values('GdHost',4,'ghost','',1,1500,4.2,0,0,'주인지용','hostgd@host.gd','01022223333');
 
-insert into member
-values('TopHost',2,'thost','',1,'경기너4444',100,2.2,4,0,'주인탑','hosttop@host.top','01032141234');
+insert into member(user_id,grade_id ,user_pass ,login_key ,host_flag ,coin ,user_avgPoint,penalty,user_flag,user_name,email,tel)     
+values('TopHost',2,'thost','',1,100,2.2,4,0,'주인탑','hosttop@host.top','01032141234');
 
-insert into member
-values('IUHost',4,'iuhost','',1,'서울너5959',700,4.3,0,0,'주인아이유','hostiu@host.iu','01025869874');
+insert into member(user_id,grade_id ,user_pass ,login_key ,host_flag ,coin ,user_avgPoint,penalty,user_flag,user_name,email,tel)     
+values('IUHost',4,'iuhost','',1,700,4.3,0,0,'주인아이유','hostiu@host.iu','01025869874');
 
-insert into member
-values('SZHost',3,'szhost','',1,'서울너7777',500,3.2,1,0,'주인수지','hostsz@host.sz','01022228789');
+insert into member(user_id,grade_id ,user_pass ,login_key ,host_flag ,coin ,user_avgPoint,penalty,user_flag,user_name,email,tel)     
+values('SZHost',3,'szhost','',1,500,3.2,1,0,'주인수지','hostsz@host.sz','01022228789');
 
 -----
 
-insert into member
-values('GdGuest',3,'gguest','',0,'경기가8282',300,3.4,1,0,'손님지용','guestgd@guest.gd','01055653321');
+insert into member(user_id,grade_id ,user_pass ,login_key ,host_flag ,coin ,user_avgPoint,penalty,user_flag,user_name,email,tel)     
+values('GdGuest',3,'gguest','',0,300,3.4,1,0,'손님지용','guestgd@guest.gd','01055653321');
 
-insert into member
-values('TopGuest',3,'tguest','',0,'경기너4949',100,3.2,1,0,'손님탑','guesttop@guest.top','0102221133');
+insert into member(user_id,grade_id ,user_pass ,login_key ,host_flag ,coin ,user_avgPoint,penalty,user_flag,user_name,email,tel)     
+values('TopGuest',3,'tguest','',0,100,3.2,1,0,'손님탑','guesttop@guest.top','0102221133');
 
-insert into member
-values('IUGuest',5,'iuguest','',0,'경기너5959',300,5,0,0,'손님아이유','guestiu@guest.iu','01011444411');
+insert into member(user_id,grade_id ,user_pass ,login_key ,host_flag ,coin ,user_avgPoint,penalty,user_flag,user_name,email,tel)     
+values('IUGuest',5,'iuguest','',0,300,5,0,0,'손님아이유','guestiu@guest.iu','01011444411');
 
-insert into member
-values('SZGuest',2,'szguest','',0,'경기너7777',100,2.5,3,0,'손님수지','guestsz@guest.sz','0108798789');
+insert into member(user_id,grade_id ,user_pass ,login_key ,host_flag ,coin ,user_avgPoint,penalty,user_flag,user_name,email,tel)     
+values('SZGuest',2,'szguest','',0,100,2.5,3,0,'손님수지','guestsz@guest.sz','0108798789');
 
-Insert into member(user_id,grade_id,user_pass,host_flag,User_avgpoint,user_flag,user_name,email,tel)			
+insert into member(user_id,grade_id ,user_pass ,login_key ,host_flag ,coin ,user_avgPoint,penalty,user_flag,user_name,email,tel)     (user_id,grade_id,user_pass,host_flag,User_avgpoint,user_flag,user_name,email,tel)			
 values ('kangnam17',1,'kangnam17',1,4.8,1,'강남_민자_대치','kangnam12@kangnam.com',029802345);
 
 -------------------------------------

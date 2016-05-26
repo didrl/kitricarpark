@@ -27,11 +27,11 @@
 			
 				  <div class="form-group">
 				    <label for="receiver">받는사람</label>
-				    <input type="text" class="form-control" id="receiver" placeholder="받는사람" name="name">
+				    <input type="text" class="form-control" id="receiver" placeholder="받는사람" name="receiver">
 				  </div>
 				  <div class="form-group">
 				    <label for="subject">제목</label>
-				    <input type="text" class="form-control" id="subject" placeholder="제목" name="content">
+				    <input type="text" class="form-control" id="subject" placeholder="제목" name="subject">
 				  </div>
 				  <div class="form-group">
 				    <label for="content">내용</label>

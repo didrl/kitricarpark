@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-	
+	pageEncoding="UTF-8"%>	
 <%@include file="/common/common.jsp" %>
 <%@include file="/common/header/init.jsp" %> 
 <%@include file="/common/side.jsp" %>
@@ -56,7 +55,7 @@ if(memberDto!=null){
                                 	
                                 <img src="<%=root%>/img/star.png" width="25" height="25">
                                 	<label for="disabledSelect">
-                                		
+                                		<h4>등급 : <%=memberDto.getGrade_id() %> 등급 </h4>
                                 	</label><br>        
                             </div>
 						</form>
@@ -74,10 +73,6 @@ if(memberDto!=null){
                                     <input class="form-control" id="disabledInput" type="text" placeholder="<%=memberDto.getUser_id() %>" disabled>
                             </div>
 
-							<div class="form-group">
-                                    <label for="disabledSelect">자동차번호</label>
-                                    <input class="form-control" id="disabledInput" type="text" placeholder="<%=memberDto.getCarInfo() %>" disabled>
-                            </div>
                             
                             <div class="form-group">
                                     <label for="disabledSelect">이메일</label>
