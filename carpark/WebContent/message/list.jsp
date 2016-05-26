@@ -47,7 +47,8 @@ List<MessageDto> list = (List<MessageDto>) request.getAttribute("messageList");
 				  	</tr>
 				
 <%
-if(list != null) {
+int size = list.size();
+if(size > 0) {
 	for(MessageDto messageDto : list) {
 %>
 					<tr >
