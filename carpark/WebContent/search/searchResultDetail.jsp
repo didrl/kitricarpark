@@ -1,9 +1,9 @@
 <%@page import="com.carpark.admin.model.ParkingDto"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
 <%@include file="/common/common.jsp" %>
-<%@include file="/common/header.jsp" %> 
+<%@include file="/common/header/init.jsp"%> 
 <%
 ParkingDto parkingDetail = (ParkingDto)request.getAttribute("parkingDetail");
 %>
@@ -11,7 +11,7 @@ ParkingDto parkingDetail = (ParkingDto)request.getAttribute("parkingDetail");
 <!-- ****************************************************************************************************************** -->	
 
   
-    <!-- For sendMsg Modal -->
+   <!-- For sendMsg Modal -->
    <%@include file="/reservation/sendMessageModal.jsp"%>
    <!-- For sendMsg Modal -->
    
