@@ -5,22 +5,12 @@ MessageDto messageDto = (MessageDto) request.getAttribute("messageView");
 %>
 
 <%@ include file="/common/common.jsp" %>
-<%@ include file="/common/header.jsp" %>
+<%@ include file="/common/header/init.jsp" %>
 <%@ include file="/common/side.jsp" %>
 
 <div id="wrapper">
 
 <!-- ****************************************************************************************************************** -->
-<form name="common" method="get" action="">
-	<input type="hidden" name="act" id="act" value="">
-	<input type="hidden" name="bcode" id="bcode" value="1">
-	<input type="hidden" name="pg" id="pg" value="1">
-	<input type="hidden" name="key" id="key" value="">
-	<input type="hidden" name="word" id="word" value="">
-	<input type="hidden" name="seq" id="seq" value="">
-</form>
-
-
 
 		<!-- main -->
 		<div id="page-wrapper">
@@ -30,7 +20,7 @@ MessageDto messageDto = (MessageDto) request.getAttribute("messageView");
 				<div class="form-group">
 				<form name="messageForm" method="get" action="">
 				<input type="hidden" name="act" id="act" value="messageSearch">
-				<input type="hidden" name="bcode" id="bcode" value="1">
+				<input type="hidden" name="bcode" id="bcode" value="2">
 				<input type="hidden" name="pg" id="pg" value="1">
 					<select name="key">
 						<option value="subject">제목</option>
@@ -45,6 +35,8 @@ MessageDto messageDto = (MessageDto) request.getAttribute("messageView");
 <center>
 <h3>글이 삭제되었습니다</h3>
 </center>
+
+<input type="button" value="목록" onclick="javascript:messageReceiveList();">
 				
 			</div>
 		</div>

@@ -31,7 +31,7 @@ public class MemberMessageServiceImpl implements MemberMessageService {
 	}
 
 	@Override
-	public List<MessageDto> listArticle(int bcode, int pg, String key, String word) {
+	public List<MessageDto> searchArticle(int bcode, int pg, String key, String word) {
 		Map<String, String> map = new HashMap<String, String>();
 		
 		int end = BoardConstance.BOARD_LIST_SIZE * pg;
@@ -51,6 +51,16 @@ public class MemberMessageServiceImpl implements MemberMessageService {
 	public void deleteArticle(int seq) {
 		MemberMessageDaoImpl.getMemberMessageDao().deleteArticle(seq);
 		
+	}
+
+	@Override
+	public List<MessageDto> sendListArticle(String userId) {
+		return MemberMessageDaoImpl.getMemberMessageDao().sendListArticle(userId);
+	}
+
+	@Override
+	public List<MessageDto> receiveListArticle(String receiveId) {
+		return MemberMessageDaoImpl.getMemberMessageDao().receiveListArticle(receiveId);
 	}
 	
 	

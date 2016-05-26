@@ -8,7 +8,9 @@ public interface MemberMessageService {
 
 	int writeArticle(MessageDto messageDto);
 	MessageDto viewArticle(int seq);
-	List<MessageDto> listArticle(int bcode, int pg, String key, String word);
+	List<MessageDto> searchArticle(int bcode, int pg, String key, String word);
+	List<MessageDto> sendListArticle(String userId);
+	List<MessageDto> receiveListArticle(String receiveId);	
 	void deleteArticle(int seq);
 	
 }

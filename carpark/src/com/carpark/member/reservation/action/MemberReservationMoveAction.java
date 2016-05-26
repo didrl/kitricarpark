@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.carpark.action.Action;
+import com.carpark.member.model.MemberDto;
 import com.carpark.member.model.ReservationDto;
 import com.carpark.member.model.service.MemberReservationServiceImpl;
 
@@ -29,6 +30,7 @@ public class MemberReservationMoveAction implements Action {
 		//fromdate, fromtime
 		//todate, totime
 		HttpSession session = request.getSession();
+		MemberDto memberDto = (MemberDto)session.getAttribute("memberInfo");
 		ReservationDto reservationDto = new ReservationDto();
 		Map<String,String> map;
 		String user_id = request.getParameter("id");

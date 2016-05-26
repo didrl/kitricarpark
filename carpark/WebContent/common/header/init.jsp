@@ -10,7 +10,7 @@
 			<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span>
 			<span class="icon-bar"></span> <span class="icon-bar"></span>
 		</button>
-		<a class="navbar-brand" href="index.html">SB Admin</a>
+		<a class="navbar-brand" href="index.jsp">Car Park</a>
 	</div>
 	<!-- Top Menu Items -->
 	<ul class="nav navbar-right top-nav">
@@ -71,7 +71,7 @@ if(memberDto!=null){
 							</div>
 						</div>
 				</a></li>
-				<li class="message-footer"><a href="#">Read All New
+				<li class="message-footer"><a href="javascript:messageReceiveList();">Read All New
 						Messages</a></li>
 			</ul></li>
 		<li class="dropdown"><a href="#" class="dropdown-toggle"

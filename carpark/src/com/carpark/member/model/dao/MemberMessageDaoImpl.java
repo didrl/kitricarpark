@@ -31,13 +31,12 @@ public class MemberMessageDaoImpl implements MemberMessageDao {
 			conn = DBConnection.makeConnection();
 			String sql = "";
 			sql += "insert all \n";
-			sql += "into board (seq, user_id, pass, subject, content, bcode, logtime) \n";
-			sql += "values (?, ?, ?, ?, ?, ?, sysdate) \n";
+			sql += "into board (seq, user_id, subject, content, bcode, logtime) \n";
+			sql += "values (?, ?, ?, ?, ?, sysdate) \n";
 			sql += "into message (mseq, seq, receiver_id, msg_flag) \n";
-			sql += "values (msg_mseq.nextval, ?, ?, ?) \n";
+			sql += "values (message_num_mseq.nextval, ?, ?, ?) \n";
 			sql += "select * from dual";
 			pstmt = conn.prepareStatement(sql);
-			System.out.println(sql);
 			int idx = 0;
 			pstmt.setInt(++idx, messageDto.getSeq());
 			pstmt.setString(++idx, messageDto.getUserID());
@@ -69,8 +68,8 @@ public class MemberMessageDaoImpl implements MemberMessageDao {
 		try {
 			conn = DBConnection.makeConnection();
 			String sql = "";
-			sql += "select b.seq, b.subject, b.content b.user_id, b.logtime, b.bcode, \n";
-			sql += "m.mseq, m.receive_id \n";
+			sql += "select b.seq, bcode, user_id, subject, content, logtime, \n";
+			sql += "mseq, receiver_id, msg_flag \n";
 			sql += "from board b, message m \n";
 			sql += "where b.seq = m.seq \n";
 			sql += "and b.seq = ?";
@@ -85,7 +84,7 @@ public class MemberMessageDaoImpl implements MemberMessageDao {
 				messageDto.setLogtime(rs.getString("logtime"));
 				messageDto.setBcode(rs.getInt("bcode"));
 				messageDto.setMseq(rs.getInt("mseq"));
-				messageDto.setReceiverId(rs.getString("receive_id"));
+				messageDto.setReceiverId(rs.getString("receiver_id"));
 				messageDto.setMsgFlag(1);
 			}
 		} catch (SQLException e) {
@@ -98,7 +97,7 @@ public class MemberMessageDaoImpl implements MemberMessageDao {
 	}
 
 	@Override
-	public List<MessageDto> listArticle(Map<String, String> map) {
+	public List<MessageDto> searchArticle(Map<String, String> map) {
 		List<MessageDto> list = new ArrayList<MessageDto>();
 		
 		Connection conn = null;
@@ -202,6 +201,90 @@ public class MemberMessageDaoImpl implements MemberMessageDao {
 			DBClose.close(conn, pstmt);
 		}
 		
+	}
+
+	@Override
+	public List<MessageDto> sendListArticle(String userId) {
+		List<MessageDto> sendList = new ArrayList<MessageDto>();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = DBConnection.makeConnection();
+			String sql = "";
+			sql += "select b.seq, bcode, user_id, subject, content, logtime, \n";
+			sql += "mseq, receiver_id, msg_flag \n";
+			sql += "from board b, message m \n";
+			sql += "where b.seq = m.seq \n";
+			sql += "and user_id = ? \n";
+			sql += "order by logtime desc";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userId);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				MessageDto messageDto = new MessageDto();
+				messageDto.setSeq(rs.getInt("seq"));
+				messageDto.setBcode(rs.getInt("bcode"));
+				messageDto.setUserID(rs.getString("user_id"));
+				messageDto.setSubject(rs.getString("subject"));
+				messageDto.setContent(rs.getString("content"));
+				messageDto.setLogtime(rs.getString("logtime"));
+				messageDto.setMseq(rs.getInt("mseq"));
+				messageDto.setReceiverId(rs.getString("receiver_id"));
+				messageDto.setMsgFlag(rs.getInt("msg_flag"));
+				
+				sendList.add(messageDto);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose.close(conn, pstmt, rs);
+		}
+
+		return sendList;
+	}
+
+	@Override
+	public List<MessageDto> receiveListArticle(String receiveId) {
+		List<MessageDto> receiveList = new ArrayList<MessageDto>();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = DBConnection.makeConnection();
+			String sql = "";
+			sql += "select b.seq, bcode, user_id, subject, content, logtime, \n";
+			sql += "mseq, receiver_id, msg_flag \n";
+			sql += "from board b, message m \n";
+			sql += "where b.seq = m.seq \n";
+			sql += "and receiver_id = ? \n";
+			sql += "order by logtime desc";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, receiveId);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				MessageDto messageDto = new MessageDto();
+				messageDto.setSeq(rs.getInt("seq"));
+				messageDto.setBcode(rs.getInt("bcode"));
+				messageDto.setUserID(rs.getString("user_id"));
+				messageDto.setSubject(rs.getString("subject"));
+				messageDto.setContent(rs.getString("content"));
+				messageDto.setLogtime(rs.getString("logtime"));
+				messageDto.setMseq(rs.getInt("mseq"));
+				messageDto.setReceiverId(rs.getString("receiver_id"));
+				messageDto.setMsgFlag(rs.getInt("msg_flag"));
+				
+				receiveList.add(messageDto);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose.close(conn, pstmt, rs);
+		}
+
+		return receiveList;
 	}
 	
 	

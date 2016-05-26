@@ -1,13 +1,24 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@page import="com.carpark.member.model.ReviewDto"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.carpark.admin.model.ParkingDto"%>
+<%@page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
 <%@include file="/common/common.jsp" %>
-<%@include file="/common/header.jsp" %> 
+<<<<<<< HEAD
+<%@include file="/common/header/init.jsp"%>
+=======
+<%@include file="/common/header/init.jsp"%> 
+>>>>>>> 6d4c884232e5c6c7d601d52d3a4a406f67f35bb9
+<%
+ParkingDto parkingDetail = (ParkingDto)request.getAttribute("parkingDetail");
+ArrayList<ReviewDto> reviewlist = (ArrayList<ReviewDto>)request.getAttribute("reviewlist");
+%>
 
 <!-- ****************************************************************************************************************** -->	
 
   
-    <!-- For sendMsg Modal -->
+   <!-- For sendMsg Modal -->
    <%@include file="/reservation/sendMessageModal.jsp"%>
    <!-- For sendMsg Modal -->
    
@@ -68,6 +79,18 @@ function messageWrite() {
 		document.messageForm.submit();
 	}
 }
+function goReservation() {
+	if(document.selectdateForm.fromdate.value == ""){
+		alert("대상을 입력하세요");
+		return;
+	} else if(document.selectdateForm.todate.value == "") {
+		alert("제목을 입력하세요");
+		return;	
+	} else{
+		document.selectdateForm.action = "/carpark/reservation";
+		document.selectdateForm.submit();
+	}
+}
 
 </script>
 
@@ -81,37 +104,39 @@ function messageWrite() {
 	<div class="container" style="text-align:center">
 			<!--  search bar start -->
 			<div class="col-sm-13">
-					<!-- /input-group -->
-					<form id="searchForm" name="searchForm" class="form-inline" role="form" method="post" >
-						<input type="hidden"  name="act" value="mvSearchResult">
-						<div class="input-group">
-							<input type="text" class="form-control" id="citysearch" placeholder="Search for..."> 
-							<span 	class="input-group-btn">
-								<button class="btn btn-default" type="button">Go!</button>
-							</span>
-						</div>
-						<div class="input-group">
-								<input class="date-picker" id="fromdatesearch" type="text"  />
-						</div>
-	
-						<div class="input-group">
-								<input class="date-picker" id="todatesearch" type="text"  />
-						</div>
-						<div class="input-group">
-							<button class="btn btn-success" type="button" onclick="javascript:goSearchResult();">Search</button>
-						</div>
-					</form>
-				</div>
-				<br><br>
-				<!--  search bar end-->
+				<!-- /input-group -->
+				<form id="searchForm" name="searchForm" class="form-inline" role="form" method="post">
+					<input type="hidden" name="act" value="mvSearchResult">
+					<input type="hidden" name="search" value="">
+					
+					
+					<div class="input-group">
+						<input type="text" class="form-control" id="citysearch" name="city" placeholder="Search for..."> 
+					</div>
+					<div class="input-group">
+						<input class="date-picker" id="fromdatesearch" name="from" type="text" />
+					</div>
+
+					<div class="input-group">
+						<input class="date-picker" id="todatesearch" type="text" name="to"/>
+					</div>
+					<div class="input-group">
+						<button class="btn btn-success" type="button"
+							onclick="javascript:goSearchResult();">Search</button>
+					</div>
+				</form>
+			</div>
+			<br>
+			<br>
+			<!--  search bar end-->
 		<div class="row">
 			<!-- Left Section Start -->
 			<div class="col-md-7">
 				<!--  Map  -->
 				<div class="panel panel-default">
-			<div class="row" align="left"><h3><b>&nbsp;&nbsp;&nbsp; 잠실민영주차장&nbsp;&nbsp;&nbsp; 
+			<div class="row" align="left"><h3><b>&nbsp;&nbsp;&nbsp; <%=parkingDetail.getPark_name() %>  &nbsp;&nbsp;&nbsp; 
 			<i class = glyphicon glyphicon-star></i><i class = glyphicon glyphicon-star></i><i class = glyphicon glyphicon-star> </i><i class = glyphicon glyphicon-star></i><i class = glyphicon glyphicon-star-empty></i></b> 
-			서울특별시 송파구 잠실1동
+			<%=parkingDetail.getLocation() %>
 			<a href=""><img height="30"  src="/carpark/img/heart.jpg"></a></h3>
 			</div>
 				<div class="panel panel-default" id="divformap">
@@ -137,7 +162,7 @@ function messageWrite() {
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h3 class="panel-title">상세 정보</h3>
-						<span i= glyphicon glyphicon-tag>주차장대수많음</span>, 역과 가까움, 정기권 판매, 할인혜택 제공, 카드 가능  
+						<span i= glyphicon glyphicon-tag>주차장대수:<%=parkingDetail.getPark_capacity() %></span>, 역과 가까움, 정기권 판매, 할인혜택 제공, 카드 가능  
 					</div>
 					<div class="panel-body">
 						<!-- Street View start -->
@@ -166,48 +191,33 @@ function messageWrite() {
 						</div>
 
 						<hr>
-
+<%
+for(ReviewDto reviewDto : reviewlist){
+	int avgpoint = (int) reviewDto.getAvgPoint();
+%>
 						<div class="row">
 							<div class="col-md-12">
-								<span class="glyphicon glyphicon-star"></span> <span
-									class="glyphicon glyphicon-star"></span> <span
-									class="glyphicon glyphicon-star"></span> <span
-									class="glyphicon glyphicon-star"></span> <span
-									class="glyphicon glyphicon-star-empty"></span> Anonymous <span
-									class="pull-right">10 days ago</span>
-								<p>This product was great in terms of quality. I would
-									definitely buy another!</p>
+<% 
+	for(int i = 0;i<avgpoint;++i){
+%>
+								<span class="glyphicon glyphicon-star"></span>
+<% 
+	}
+	for(int i = 0;i<5-avgpoint;++i){
+%>
+								<span class="glyphicon glyphicon-star-empty"></span>
+<% 
+	}
+%> 
+								<%=reviewDto.getUser_id() %> <span class="pull-right">작성일 : <%=reviewDto.getLogtime() %></span>
+								<p><%=reviewDto.getSubject()%></p>
+								<p><%=reviewDto.getContent()%></p>
 							</div>
 						</div>
+<%
+}
+%>
 
-						<hr>
-
-						<div class="row">
-							<div class="col-md-12">
-								<span class="glyphicon glyphicon-star"></span> <span
-									class="glyphicon glyphicon-star"></span> <span
-									class="glyphicon glyphicon-star"></span> <span
-									class="glyphicon glyphicon-star"></span> <span
-									class="glyphicon glyphicon-star-empty"></span> Anonymous <span
-									class="pull-right">12 days ago</span>
-								<p>I've alredy ordered another one!</p>
-							</div>
-						</div>
-
-						<hr>
-
-						<div class="row">
-							<div class="col-md-12">
-								<span class="glyphicon glyphicon-star"></span> <span
-									class="glyphicon glyphicon-star"></span> <span
-									class="glyphicon glyphicon-star"></span> <span
-									class="glyphicon glyphicon-star"></span> <span
-									class="glyphicon glyphicon-star-empty"></span> Anonymous <span
-									class="pull-right">15 days ago</span>
-								<p>I've seen some better than this, but not at this price. I
-									definitely recommend this item.</p>
-							</div>
-						</div>
 					</div>
 					<!-- Review End-->
 			</div>
@@ -226,7 +236,7 @@ function messageWrite() {
 								<div class="pull-right">From : </div>
 						</div>
 						<div class="col-md-9" >		
-								<input class="date-picker" id="fromdate" type="text" />
+								<input class="date-picker" id="fromdate" name="fromdate" type="text" />
 								<select id="fromTime" name="fromTime">
 								  <option value="0">00:00</option><option value="1">01:00</option><option value="2">02:00</option>
 								  <option value="3">03:00</option> <option value="4">04:00</option><option value="5">05:00</option>
@@ -244,7 +254,7 @@ function messageWrite() {
 								<div class="pull-right">T o :</div> 
 								</div>
 								<div class="col-md-9" >
-								<input class="date-picker" id="todate" type="text" />
+								<input class="date-picker" id="todate"   name="todate" type="text" />
 								<select id="toTime" name="toTime">
 								  <option value="0">00:00</option><option value="1">01:00</option><option value="2">02:00</option>
 								  <option value="3">03:00</option> <option value="4">04:00</option><option value="5">05:00</option>
@@ -271,9 +281,9 @@ function messageWrite() {
 					</div>
 					<!-- img panel End -->
 					<div class="well">
-						<div class="panel-body">호스트 정보</div>
+						<div class="panel-body">호스트 : <%=parkingDetail.getOwner_id() %></div>
 						<div class="text-center">
-							 <button type="button" class="btn btn-success"  data-toggle="modal" data-target="#msgToHost">
+							 <button type="button" class="btn btn-success"  id="sendMsgToHost "data-toggle="modal" data-target="#msgToHost">
                   				Send Message
                				</button>
                
@@ -356,6 +366,14 @@ function messageWrite() {
 				e.stopPropagation();
 				return false;
 			});
+			
+			//review
+			$('#sendMsgToHost').on('click', function (event) {
+				  var button = $(event.relatedTarget) // Button that triggered the modal
+			      console.log("Here!");
+			        $("#receiver").append(<%=parkingDetail.getOwner_id() %>);
+			        $('#msgToHost').show();
+				})
 			
 		</script>
 		<script src="/carpark/js/selectlist/jquery.selectlist.js"></script>

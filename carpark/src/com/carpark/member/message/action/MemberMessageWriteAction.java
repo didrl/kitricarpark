@@ -1,6 +1,7 @@
 package com.carpark.member.message.action;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
@@ -17,14 +18,16 @@ public class MemberMessageWriteAction implements Action {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
+		
+		String root = request.getContextPath();
 		HttpSession session = request.getSession();
-		MemberDto memberDto = (MemberDto) session.getAttribute("userInfo");
+		MemberDto memberDto = (MemberDto) session.getAttribute("memberInfo");
 		
 		int seq = CommonServiceImpl.getCommonService().getNextSeq();
 		
 		MessageDto messageDto = new MessageDto();
 		messageDto.setSeq(seq);
-		messageDto.setUserID("kangnam17");
+		messageDto.setUserID(memberDto.getUser_id());
 		messageDto.setSubject(request.getParameter("subject"));
 		messageDto.setContent(request.getParameter("content"));
 		messageDto.setBcode(NumberCheck.nullToZero(request.getParameter("bcode")));
@@ -32,9 +35,10 @@ public class MemberMessageWriteAction implements Action {
 		messageDto.setReceiverId(request.getParameter("receiver"));
 		messageDto.setMsgFlag(0);
 		
-		seq = MemberMessageServiceImpl.getMemberMessageService().writeArticle(messageDto);
+		MemberMessageServiceImpl.getMemberMessageService().writeArticle(messageDto);
+		List<MessageDto> list = MemberMessageServiceImpl.getMemberMessageService().sendListArticle(memberDto.getUser_id());
+		request.setAttribute("messageList", list);
 		
-		request.setAttribute("seq", seq);
 		
 		return "/message/list.jsp";
 	}

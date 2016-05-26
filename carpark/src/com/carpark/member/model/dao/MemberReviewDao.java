@@ -1,5 +1,9 @@
 package com.carpark.member.model.dao;
 
-public interface MemberReviewDao {
+import java.util.ArrayList;
 
+import com.carpark.member.model.ReviewDto;
+
+public interface MemberReviewDao {
+	ArrayList<ReviewDto> getReview(String park_id);
 }

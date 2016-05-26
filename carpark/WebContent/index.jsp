@@ -30,10 +30,7 @@
 					
 					
 					<div class="input-group">
-						<input type="text" class="form-control" id="citysearch" name="city" placeholder="Search for..."> <span
-							class="input-group-btn">
-							<button class="btn btn-default" type="button" onclick="javascript:goSearchResult();">검색</button>
-						</span>
+						<input type="text" class="form-control" id="citysearch" name="city" placeholder="Search for...">
 					</div>
 					<div class="input-group">
 						<input class="date-picker" id="fromdatesearch" name="from" type="text" />

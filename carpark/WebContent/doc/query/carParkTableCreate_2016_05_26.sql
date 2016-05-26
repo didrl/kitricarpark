@@ -1,7 +1,3 @@
-/* 주차장 정보 */
-DROP TABLE PARKING_INFO
-	CASCADE CONSTRAINTS;
-	
 /* 주차장정보 */
 DROP TABLE parking 
 	CASCADE CONSTRAINTS;
@@ -66,6 +62,26 @@ DROP TABLE parking_detail
 DROP TABLE cities 
 	CASCADE CONSTRAINTS;
 
+/* 주차장 시설정보 */
+DROP TABLE parking_facility 
+	CASCADE CONSTRAINTS;
+
+/* 회원차량정보 */
+DROP TABLE member_car 
+	CASCADE CONSTRAINTS;
+
+/* 차종정보 */
+DROP TABLE car_info 
+	CASCADE CONSTRAINTS;
+
+/* 게시판_사진 */
+DROP TABLE board_img 
+	CASCADE CONSTRAINTS;
+
+/* 주차장_사진 */
+DROP TABLE parking_img 
+	CASCADE CONSTRAINTS;
+
   drop sequence board_num_seq;
   drop sequence message_num_mseq;
   drop sequence report_num_cseq;
@@ -89,17 +105,18 @@ DROP TABLE cities
   create sequence call_num_pcseq
   start with 1 increment by 1;
 
-	
+
 /* 주차장정보 */
 CREATE TABLE parking (
 	park_id NUMBER NOT NULL, /* 주차장아이디 */
 	park_name VARCHAR2(100), /* 주차장이름 */
 	park_capacity NUMBER, /* 총 주차면 수 */
-	owner_id VARCHAR2(20), /* 소유주아이디 */
+	owner_id VARCHAR2(16), /* 소유주아이디 */
 	latitude NUMBER, /* 주차장 위도 */
 	longitude NUMBER, /* 주차장 경도 */
 	park_type VARCHAR2(6), /* 주차장 종류 */
-	emd_code NUMBER /* 읍면동 코드 */
+	emd_code NUMBER, /* 읍면동 코드 */
+	content VARCHAR2(400) /* 상세정보 */
 );
 
 ALTER TABLE parking
@@ -109,29 +126,11 @@ ALTER TABLE parking
 			park_id
 		);
 
-		
-CREATE TABLE PARKING_INFO ( 
-   PARK_ID NUMBER, 
-   DETAIL_INFO VARCHAR2(1000), 
-   PHOTO_aws VARCHAR2(100), 
-   FEATURE VARCHAR2(100)
- ) ;
-  
- ALTER TABLE PARKING_INFO
-	ADD
-		CONSTRAINT FK_PARKING_INFO_TO_parking
-		FOREIGN KEY (
-			PARK_id
-		)
-		REFERENCES PARKING (
-			PARK_id
-		);
-		
 /* 예약정보 */
 CREATE TABLE reservation (
-	reser_id varchar2(50) NOT NULL, /* 예약 번호 */
+	reser_id NUMBER NOT NULL, /* 예약 번호 */
 	park_id NUMBER NOT NULL, /* 주차장아이디 */
-	user_id VARCHAR2(20) NOT NULL, /* 회원아이디(예약자) */
+	user_id VARCHAR2(16) NOT NULL, /* 회원아이디(예약자) */
 	start_date DATE, /* 예약시작일 */
 	end_date DATE /* 예약종료일 */
 );
@@ -147,7 +146,7 @@ ALTER TABLE reservation
 CREATE TABLE message (
 	mseq NUMBER NOT NULL, /* 쪽지글번호 */
 	seq NUMBER NOT NULL, /* 글번호 */
-	receiver_id VARCHAR2(20), /* 받는사람 아이디 */
+	receiver_id VARCHAR2(16), /* 받는사람 아이디 */
 	msg_flag NUMBER DEFAULT 0 /* 확인여부 */
 );
 
@@ -164,7 +163,7 @@ CREATE TABLE review (
 	seq NUMBER NOT NULL, /* 글번호 */
 	aval_code NUMBER, /* 평가 코드 */
 	get_point NUMBER, /* 등록한 평점 */
-	avaled_id VARCHAR2(20), /* 평가대상 아이디 */
+	avaled_id VARCHAR2(16), /* 평가대상 아이디 */
 	host_flag NUMBER DEFAULT 0 /* 게스트호스트 플래그 */
 );
 
@@ -174,7 +173,6 @@ ALTER TABLE review
 		PRIMARY KEY (
 			rseq
 		);
-
 
 /* 등급 평가기준 */
 CREATE TABLE grade (
@@ -194,19 +192,19 @@ ALTER TABLE grade
 
 /* 회원정보 */
 CREATE TABLE member (
-	user_id VARCHAR2(20) NOT NULL, /* 아이디 */
-	grade_id NUMBER NOT NULL, /* 등급번호 */
+	user_id VARCHAR2(16) NOT NULL, /* 아이디 */
 	user_pass VARCHAR2(20) NOT NULL, /* 패스워드 */
+	grade_id NUMBER NOT NULL, /* 등급번호 */
 	login_key VARCHAR2(50), /* 간편로그인키 */
 	host_flag NUMBER DEFAULT 0, /* 호스트여부 */
-	carInfo VARCHAR2(20), /* 차량정보 */
 	coin NUMBER DEFAULT 0, /* 보유한코인 */
 	user_avgPoint NUMBER DEFAULT 0, /* 평점 */
 	penalty NUMBER DEFAULT 0, /* 누적 벌점 */
 	user_flag NUMBER DEFAULT 0, /* 회원종류(개인/기업) */
 	user_name VARCHAR2(16), /* 이름 */
 	email VARCHAR2(100), /* 이메일 */
-	tel varchar2(20) /* 전화번호 */
+	tel NUMBER, /* 전화번호 */
+	profile_image VARCHAR2(100) /* 프로필이미지 */
 );
 
 ALTER TABLE member
@@ -221,7 +219,7 @@ CREATE TABLE report (
 	seq NUMBER NOT NULL, /* 글번호 */
 	cseq NUMBER NOT NULL, /* 신고글번호 */
 	park_id NUMBER NOT NULL, /* 신고받은 주차장 아이디 */
-	user_id VARCHAR2(20) /* 신고받은 아이디 */
+	user_id VARCHAR2(16) /* 신고받은 아이디 */
 );
 
 ALTER TABLE report
@@ -234,7 +232,7 @@ ALTER TABLE report
 /* 벌점 내역 */
 CREATE TABLE penalty (
 	panel_num NUMBER NOT NULL, /* 벌점 번호 */
-	user_id VARCHAR2(20) NOT NULL, /* 아이디 */
+	user_id VARCHAR2(16) NOT NULL, /* 아이디 */
 	panel_code NUMBER NOT NULL, /* 벌점코드 */
 	panel_date DATE, /* 벌점 받은 날짜 */
 	panel_content VARCHAR2(100) /* 벌점내역 */
@@ -283,7 +281,7 @@ ALTER TABLE call
 /* 즐겨찾기 */
 CREATE TABLE favorite (
 	park_id NUMBER NOT NULL, /* 주차장 아이디 */
-	user_id VARCHAR2(20) NOT NULL /* 아이디 */
+	user_id VARCHAR2(16) NOT NULL /* 아이디 */
 );
 
 /* 평점 내역_주차장 */
@@ -305,11 +303,11 @@ ALTER TABLE avgpoint
 CREATE TABLE board (
 	seq NUMBER NOT NULL, /* 글번호 */
 	bcode NUMBER NOT NULL, /* 게시판 형식 번호 */
-	user_id VARCHAR2(20), /* 작성자 */
+	user_id VARCHAR2(16), /* 작성자 */
 	subject VARCHAR2(50), /* 제목 */
-	content varchar2(1000), /* 내용 */
+	contents VARCHAR2(100), /* 내용 */
 	logtime DATE, /* 작성일 */
-	photo_aws varchar2(1000)
+	photo_key VARCHAR2(100) /* 사진 */
 );
 
 ALTER TABLE board
@@ -365,6 +363,51 @@ ALTER TABLE cities
 		PRIMARY KEY (
 			emd_code
 		);
+
+/* 주차장 시설정보 */
+CREATE TABLE parking_facility (
+	park_id NUMBER, /* 주차장 아이디 */
+	facility VARCHAR2(40), /* 보유시설 */
+	feature VARCHAR2(100) /* 보유시설특징 */
+);
+
+/* 회원차량정보 */
+CREATE TABLE member_car (
+	category VARCHAR2(10), /* 차카테고리 */
+	reg_num VARCHAR2(10), /* 차량번호 */
+	car_id varchar2(20), /* 차모델아이디 */
+	user_id VARCHAR2(16) /* 회원아이디 */
+);
+
+/* 차종정보 */
+CREATE TABLE car_info (
+	car_id varchar2(20) NOT NULL, /* 차종모델아이디 */
+	maker varchar2(20), /* 제조사 */
+	 model varchar2(20) /* 모델 */
+);
+
+ALTER TABLE car_info
+	ADD
+		CONSTRAINT PK_car_info
+		PRIMARY KEY (
+			car_id
+		);
+
+/* 게시판_사진 */
+CREATE TABLE board_img (
+	seq NUMBER, /* 게시글번호 */
+	file_name VARCHAR2(40), /* 파일명 */
+	file_path VARCHAR2(100), /* 파일위치 */
+	file_num number /* 게시글번호당파일수 */
+);
+
+/* 주차장_사진 */
+CREATE TABLE parking_img (
+	park_id NUMBER, /* 주차장번호 */
+	file_name VARCHAR2(40), /* 파일명 */
+	file_path VARCHAR2(100), /* 파일위치 */
+	file_num number /* 게시글번호당파일수 */
+);
 
 ALTER TABLE parking
 	ADD
@@ -559,6 +602,56 @@ ALTER TABLE board
 ALTER TABLE parking_detail
 	ADD
 		CONSTRAINT FK_parking_TO_parking_detail
+		FOREIGN KEY (
+			park_id
+		)
+		REFERENCES parking (
+			park_id
+		);
+
+ALTER TABLE parking_facility
+	ADD
+		CONSTRAINT FK_parking_TO_parking_facility
+		FOREIGN KEY (
+			park_id
+		)
+		REFERENCES parking (
+			park_id
+		);
+
+ALTER TABLE member_car
+	ADD
+		CONSTRAINT FK_member_TO_member_car
+		FOREIGN KEY (
+			user_id
+		)
+		REFERENCES member (
+			user_id
+		);
+
+ALTER TABLE member_car
+	ADD
+		CONSTRAINT FK_car_info_TO_member_car
+		FOREIGN KEY (
+			car_id
+		)
+		REFERENCES car_info (
+			car_id
+		);
+
+ALTER TABLE board_img
+	ADD
+		CONSTRAINT FK_board_TO_board_img
+		FOREIGN KEY (
+			seq
+		)
+		REFERENCES board (
+			seq
+		);
+
+ALTER TABLE parking_img
+	ADD
+		CONSTRAINT FK_parking_TO_parking_img
 		FOREIGN KEY (
 			park_id
 		)

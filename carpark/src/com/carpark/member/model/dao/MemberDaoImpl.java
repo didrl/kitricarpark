@@ -150,7 +150,6 @@ public class MemberDaoImpl implements MemberDao {
 				memberDto.setEmail(rs.getString("email"));
 				memberDto.setTel(rs.getString("tel"));
 			}
-
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally{
@@ -171,14 +170,17 @@ public class MemberDaoImpl implements MemberDao {
 		try {
 			conn=DBConnection.makeConnection();
 			String sql="";
-			sql+="select p.park_id, p.park_name,c.sgg_name ||' '|| c.emd_name as city, pd.park_avgPoint,p.park_capacity \n";
-			sql+="from parking p , cities c, parking_detail pd \n";
-			sql+="where p.emd_code = c.emd_code \n";
-			sql+="and p.park_id = pd.park_id \n";
-			sql+="and c.sgg_name=? ";
+			sql +="select a.park_id, a.park_name,a.city, a.park_avgPoint, a.park_capacity, a.latitude, a.longitude\n";
+			sql +="from (select p.park_id, p.park_name,c.sgg_name ||' '|| c.emd_name as city, pd.park_avgPoint,p.park_capacity,p.latitude,p.longitude\n";
+			sql +="			from parking p , cities c, parking_detail pd\n";
+			sql +="			where p.emd_code = c.emd_code\n";
+			sql +="					and p.park_id = pd.park_id) a\n";
+			sql +="where a.city like '%'||?||'%'\n";
+
+
 			int idx=1;
 			pstmt =conn.prepareStatement(sql);
-			pstmt.setString(idx++,map.get("city"));
+			pstmt.setString(idx++,map.get("city").trim());
 //			pstmt.setString(idx++,map.get("from"));
 //			pstmt.setString(idx++,map.get("to"));
 
@@ -189,6 +191,8 @@ public class MemberDaoImpl implements MemberDao {
 				parkingDto.setPark_name(rs.getString("park_name"));
 				parkingDto.setLocation(rs.getString("city")); 		
 				parkingDto.setPark_capacity(rs.getInt("park_capacity"));
+				parkingDto.setLongitude(rs.getInt("longitude"));
+				parkingDto.setLatitude(rs.getInt("latitude"));
 				list.add(parkingDto);	
 			}
 
@@ -199,4 +203,50 @@ public class MemberDaoImpl implements MemberDao {
 		}
 		return list;
 	}
+
+	@Override
+	public ParkingDto parkingDetail(String parkingId) {
+		ParkingDto parkingDto=null;
+		Connection conn =null;
+		PreparedStatement pstmt =null;
+		ResultSet rs =null;
+	
+		try {
+			conn=DBConnection.makeConnection();
+			String sql="";
+			sql+="select p.park_id, p.park_name,c.sgg_name ||' '|| c.emd_name as city, pd.park_avgPoint,p.park_capacity, \n";
+			sql+="p.latitude,p.longitude,p.owner_id \n";
+			sql+="from parking p , cities c, parking_detail pd \n";
+			sql+="where p.emd_code = c.emd_code \n";
+			sql+="and p.park_id = pd.park_id \n";
+			sql+="and p.park_id=? ";
+			int idx=1;
+			pstmt =conn.prepareStatement(sql);
+			pstmt.setString(idx++,parkingId);
+//			pstmt.setString(idx++,map.get("from"));
+//			pstmt.setString(idx++,map.get("to"));
+
+			rs=pstmt.executeQuery();
+			while(rs.next()){
+				parkingDto = new ParkingDto();
+				parkingDto.setPark_id(rs.getInt("park_id"));
+				parkingDto.setPark_name(rs.getString("park_name"));
+				parkingDto.setLocation(rs.getString("city")); 		
+				parkingDto.setPark_capacity(rs.getInt("park_capacity"));
+				parkingDto.setLongitude(rs.getInt("longitude"));
+				parkingDto.setLatitude(rs.getInt("latitude"));
+				parkingDto.setOwner_id(rs.getString("owner_id"));
+				
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			DBClose.close(conn, pstmt, rs);
+		}
+		
+		return parkingDto;
+	}
+
+	
 }

@@ -15,7 +15,6 @@ public class MemberMessageController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		String root = request.getContextPath();
 		String act = request.getParameter("act");
 		int bcode = NumberCheck.nullToZero(request.getParameter("bcode"));
@@ -26,9 +25,7 @@ public class MemberMessageController extends HttpServlet {
 		String queryString = "?bcode=" + bcode + "&pg=" + pg + "&key=" + key + "&word=" + Encoder.isoToUtf(word);
 		
 		if("messageSearch".equals(act)) {
-			System.out.println("ghkrdls");
-			path = MemberActionFactory.getMemberMessageListAction().execute(request, response);
-			PageMove.forward(request, response, path + queryString);
+			
 			
 		} else if("messageWrite".equals(act)) {
 			path = MemberActionFactory.getMemberMessageWriteAction().execute(request, response);
@@ -42,9 +39,13 @@ public class MemberMessageController extends HttpServlet {
 			path = MemberActionFactory.getMemberMessageDeleteAction().execute(request, response);
 			PageMove.forward(request, response, path + queryString);
 			
-		} else if("".equals(act)) {
+		} else if("messageSendList".equals(act)) {
+			path = MemberActionFactory.getMemberMessageSendListAction().execute(request, response);
+			PageMove.forward(request, response, path);
 			
-		} else if("".equals(act)) {
+		} else if("messageReceiveList".equals(act)) {
+			path = MemberActionFactory.getMemberMessageReceiveListAction().execute(request, response);
+			PageMove.forward(request, response, path);
 			
 		} else if("".equals(act)) {
 			
