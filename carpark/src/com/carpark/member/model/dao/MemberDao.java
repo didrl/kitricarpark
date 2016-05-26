@@ -14,4 +14,5 @@ public interface MemberDao {
 	int delete(String id);
 	MemberDto login(Map<String ,String> map);
 	List<ParkingDto>list(Map<String,String> map);
+	ParkingDto parkingDetail(String parkingId);
 }

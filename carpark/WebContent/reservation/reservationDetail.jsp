@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
-    import="com.carpark.member.model.ReservationDto, java.util.*"
+    import="com.carpark.member.model.ReservationDto, java.util.*, com.carpark.member.model.MemberDto"
     %>
     
 <%@include file="/common/common.jsp" %>
@@ -10,6 +10,7 @@
 //ReservationDto reservationDto = (ReservationDto)request.getAttribute("reservationDto");
 //ArrayList<Map<String,String>> carInfo = (ArrayList<Map<String,String>>) request.getAttribute("carinfo"); 
 //ArrayList<String> availdate = (ArrayList<String>) request.getAttribute("availalbledate");
+//MemberDto memberDto = (MemberDto) sess
 //if(reservationDto != null){
 %>
     <!-- For sendMsg Modal -->

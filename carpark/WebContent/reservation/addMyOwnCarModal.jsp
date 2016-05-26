@@ -9,7 +9,7 @@ function addNewCar(){
 	} else if(document.addcarForm.inputCarName.value == "") {
 		alert("차량 종류를 입력하세요");
 		return;	
-	
+	}
 	document.addcarForm.action = "/carpark/member";
 	document.addcarForm.submit();
 }

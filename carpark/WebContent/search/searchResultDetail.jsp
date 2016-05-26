@@ -1,8 +1,12 @@
+<%@page import="com.carpark.admin.model.ParkingDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
 <%@include file="/common/common.jsp" %>
 <%@include file="/common/header.jsp" %> 
+<%
+ParkingDto parkingDetail = (ParkingDto)request.getAttribute("parkingDetail");
+%>
 
 <!-- ****************************************************************************************************************** -->	
 
@@ -81,37 +85,39 @@ function messageWrite() {
 	<div class="container" style="text-align:center">
 			<!--  search bar start -->
 			<div class="col-sm-13">
-					<!-- /input-group -->
-					<form id="searchForm" name="searchForm" class="form-inline" role="form" method="post" >
-						<input type="hidden"  name="act" value="mvSearchResult">
-						<div class="input-group">
-							<input type="text" class="form-control" id="citysearch" placeholder="Search for..."> 
-							<span 	class="input-group-btn">
-								<button class="btn btn-default" type="button">Go!</button>
-							</span>
-						</div>
-						<div class="input-group">
-								<input class="date-picker" id="fromdatesearch" type="text"  />
-						</div>
-	
-						<div class="input-group">
-								<input class="date-picker" id="todatesearch" type="text"  />
-						</div>
-						<div class="input-group">
-							<button class="btn btn-success" type="button" onclick="javascript:goSearchResult();">Search</button>
-						</div>
-					</form>
-				</div>
-				<br><br>
-				<!--  search bar end-->
+				<!-- /input-group -->
+				<form id="searchForm" name="searchForm" class="form-inline" role="form" method="post">
+					<input type="hidden" name="act" value="mvSearchResult">
+					<input type="hidden" name="search" value="">
+					
+					
+					<div class="input-group">
+						<input type="text" class="form-control" id="citysearch" name="city" placeholder="Search for..."> 
+					</div>
+					<div class="input-group">
+						<input class="date-picker" id="fromdatesearch" name="from" type="text" />
+					</div>
+
+					<div class="input-group">
+						<input class="date-picker" id="todatesearch" type="text" name="to"/>
+					</div>
+					<div class="input-group">
+						<button class="btn btn-success" type="button"
+							onclick="javascript:goSearchResult();">Search</button>
+					</div>
+				</form>
+			</div>
+			<br>
+			<br>
+			<!--  search bar end-->
 		<div class="row">
 			<!-- Left Section Start -->
 			<div class="col-md-7">
 				<!--  Map  -->
 				<div class="panel panel-default">
-			<div class="row" align="left"><h3><b>&nbsp;&nbsp;&nbsp; 잠실민영주차장&nbsp;&nbsp;&nbsp; 
+			<div class="row" align="left"><h3><b>&nbsp;&nbsp;&nbsp; <%=parkingDetail.getPark_name() %>  &nbsp;&nbsp;&nbsp; 
 			<i class = glyphicon glyphicon-star></i><i class = glyphicon glyphicon-star></i><i class = glyphicon glyphicon-star> </i><i class = glyphicon glyphicon-star></i><i class = glyphicon glyphicon-star-empty></i></b> 
-			서울특별시 송파구 잠실1동
+			<%=parkingDetail.getLocation() %>
 			<a href=""><img height="30"  src="/carpark/img/heart.jpg"></a></h3>
 			</div>
 				<div class="panel panel-default" id="divformap">
@@ -137,7 +143,7 @@ function messageWrite() {
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h3 class="panel-title">상세 정보</h3>
-						<span i= glyphicon glyphicon-tag>주차장대수많음</span>, 역과 가까움, 정기권 판매, 할인혜택 제공, 카드 가능  
+						<span i= glyphicon glyphicon-tag>주차장대수:<%=parkingDetail.getPark_capacity() %></span>, 역과 가까움, 정기권 판매, 할인혜택 제공, 카드 가능  
 					</div>
 					<div class="panel-body">
 						<!-- Street View start -->
