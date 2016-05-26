@@ -5,7 +5,7 @@ MessageDto messageDto = (MessageDto) request.getAttribute("messageView");
 %>
 
     <!-- 쪽지보기모달 -->
-	<div class="modal fade" id="msgToHost" tabindex="-1" role="dialog"
+	<div class="modal fade" id="sendMessage" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -13,7 +13,7 @@ MessageDto messageDto = (MessageDto) request.getAttribute("messageView");
 					<button type="button" class="close" data-dismiss="modal">
 						<span aria-hidden="true">×</span><span class="sr-only">Close</span>
 					</button>
-					<h4 class="msgToHost" id="msgToHostModal">쪽지 보내기</h4>
+					<h4 class="sendMessage" id="msgToHostModal">쪽지 보내기</h4>
 				</div>
 				<div class="modal-body">
 

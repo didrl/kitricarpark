@@ -55,10 +55,8 @@ public class MemberActionFactory {
 	private static Action memberFavoriteRegisterAction;
 	
 	private static Action memberMessageDeleteAction;
-	private static Action memberMessageSearchListAction;
 	private static Action memberMessageSendListAction;
 	private static Action memberMessageReceiveListAction;	
-	private static Action memberMessageRegisterAction;
 	private static Action memberMessageViewAction;
 	private static Action memberMessageWriteAction;
 	
@@ -100,11 +98,8 @@ public class MemberActionFactory {
 		memberFavoriteRegisterAction = new MemberFavoriteRegisterAction();
 		
 		memberMessageDeleteAction = new MemberMessageDeleteAction();
-		memberMessageSearchListAction = new MemberMessageSearchListAction();
 		memberMessageSendListAction = new MemberMessageSendListAction();
 		memberMessageReceiveListAction = new MemberMessageReceiveListAction();
-		
-		memberMessageRegisterAction = new MemberMessageRegisterAction();
 		memberMessageViewAction = new MemberMessageViewAction();
 		memberMessageWriteAction = new MemberMessageWriteAction();
 		
@@ -196,10 +191,6 @@ public class MemberActionFactory {
 	public static Action getMemberMessageDeleteAction() {
 		return memberMessageDeleteAction;
 	}
-
-	public static Action getMemberMessageSearchListAction() {
-		return memberMessageSearchListAction;
-	}
 	
 	public static Action getMemberMessageSendListAction() {
 		return memberMessageSendListAction;
@@ -207,10 +198,6 @@ public class MemberActionFactory {
 	
 	public static Action getMemberMessageReceiveListAction() {
 		return memberMessageReceiveListAction;
-	}
-	
-	public static Action getMemberMessageRegisterAction() {
-		return memberMessageRegisterAction;
 	}
 
 	public static Action getMemberMessageViewAction() {
