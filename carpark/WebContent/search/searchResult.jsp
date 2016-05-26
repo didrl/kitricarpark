@@ -36,27 +36,7 @@ List<ParkingDto> list = (List<ParkingDto>)request.getAttribute("searchlist");
 =======
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 
-<script>
-$(document).ready(function() {
-	var key = document.getElementById("key");
-	var word = document.getElementById("word");
-     jQuery.ajax({
-           type:"GET",
-           url:"/carpark/member",
-           dataType:"JSON", // 옵션이므로 JSON으로 받을게 아니면 안써도 됨
-           data:"",
-           success : function(data) {
-                 // 통신이 성공적으로 이루어졌을 때 이 함수를 타게 된다.
-                 // TODO
-           },
-           error : function(xhr, status, error) {
-                 alert("에러발생");
-           }
-     });
-});
-</script>
 
->>>>>>> minseok
 <br><br><br><br>
 	
     <!-- Page Content -->
@@ -102,15 +82,10 @@ $(document).ready(function() {
 <%
 for(ParkingDto parkingDto :list){
 %>
-<<<<<<< HEAD
-				<form id="parkListForm" name="parkListForm" class="form-inline"  role="form" method="post">
-=======
 				<a href="<%=root%>/member?act=mvSearchResultDetail&parkingid=<%=parkingDto.getPark_id()%> 
 				&parkingname=<%=parkingDto.getPark_name()%>&latitude=<%=parkingDto.getLatitude()%>
 				&longitude=<%=parkingDto.getLongitude()%>" class="list-group-item">					
-				<form id="parkListForm" name="parkListForm" class="form-inline" 
-				role="form" method="post">
->>>>>>> minseok
+				<form id="parkListForm" name="parkListForm" class="form-inline" 	role="form" method="post">
 					<input type="hidden" name="act" value="mvSearchResultDetail">
 					<input type="hidden" name="id" value="<%=parkingDto.getPark_id()%>">
 					<input type="hidden" name="name" value="<%=parkingDto.getPark_name()%>">
