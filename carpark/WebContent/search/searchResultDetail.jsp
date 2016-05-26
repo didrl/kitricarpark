@@ -1,8 +1,12 @@
+<%@page import="com.carpark.admin.model.ParkingDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
 <%@include file="/common/common.jsp" %>
 <%@include file="/common/header.jsp" %> 
+<%
+ParkingDto parkingDetail = (ParkingDto)request.getAttribute("parkingDetail");
+%>
 
 <!-- ****************************************************************************************************************** -->	
 
@@ -111,9 +115,9 @@ function messageWrite() {
 			<div class="col-md-7">
 				<!--  Map  -->
 				<div class="panel panel-default">
-			<div class="row" align="left"><h3><b>&nbsp;&nbsp;&nbsp; 잠실민영주차장&nbsp;&nbsp;&nbsp; 
+			<div class="row" align="left"><h3><b>&nbsp;&nbsp;&nbsp; <%=parkingDetail.getPark_name() %>  &nbsp;&nbsp;&nbsp; 
 			<i class = glyphicon glyphicon-star></i><i class = glyphicon glyphicon-star></i><i class = glyphicon glyphicon-star> </i><i class = glyphicon glyphicon-star></i><i class = glyphicon glyphicon-star-empty></i></b> 
-			서울특별시 송파구 잠실1동
+			<%=parkingDetail.getLocation() %>
 			<a href=""><img height="30"  src="/carpark/img/heart.jpg"></a></h3>
 			</div>
 				<div class="panel panel-default" id="divformap">
@@ -139,7 +143,7 @@ function messageWrite() {
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h3 class="panel-title">상세 정보</h3>
-						<span i= glyphicon glyphicon-tag>주차장대수많음</span>, 역과 가까움, 정기권 판매, 할인혜택 제공, 카드 가능  
+						<span i= glyphicon glyphicon-tag>주차장대수:<%=parkingDetail.getPark_capacity() %></span>, 역과 가까움, 정기권 판매, 할인혜택 제공, 카드 가능  
 					</div>
 					<div class="panel-body">
 						<!-- Street View start -->

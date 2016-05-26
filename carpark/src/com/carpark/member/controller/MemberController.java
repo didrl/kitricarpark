@@ -36,7 +36,7 @@ public class MemberController extends HttpServlet {
 			PageMove.forward(request, response, path);
 		}else if("mvSearchResultDetail".equals(act)){
 			path = MemberActionFactory.getMemberSearchDetailAction().execute(request, response);
-			
+			PageMove.forward(request, response, path);
 		}else if("mvsignup".equals(act)){
 			path = MemberActionFactory.getMemberRegisterAction().execute(request, response);
 			PageMove.forward(request, response, path);
