@@ -26,7 +26,7 @@ List<MessageDto> list = (List<MessageDto>) request.getAttribute("messageList");
 	  				<button type="button" class="btn btn-default" onclick="javascript:messageSendList();">
 	  					보낸쪽지함
 	  				</button>	
-					<button type="button" class="btn btn-default"  data-toggle="modal" data-target="#msgToHost">
+					<button type="button" class="btn btn-default"  data-toggle="modal" data-target="#sendMessage">
                 		쪽지보내기
                		</button>
 				</div>
@@ -51,6 +51,7 @@ int size = list.size();
 if(size > 0) {
 	for(MessageDto messageDto : list) {
 %>
+					<!-- 모달로 연결해야함 -->
 					<tr >
 						<td><a href="javascript:messageView('<%=messageDto.getSeq()%>');"><%=messageDto.getReceiverId() %></a></td>
 						<td><a href="javascript:messageView('<%=messageDto.getSeq() %>');"><%=messageDto.getSubject() %></a></td>
