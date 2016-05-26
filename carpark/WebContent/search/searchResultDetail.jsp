@@ -267,7 +267,7 @@ for(ReviewDto reviewDto : reviewlist){
 					<div class="well">
 						<div class="panel-body">호스트 : <%=parkingDetail.getOwner_id() %></div>
 						<div class="text-center">
-							 <button type="button" class="btn btn-success"  data-toggle="modal" data-target="#msgToHost">
+							 <button type="button" class="btn btn-success"  id="sendMsgToHost "data-toggle="modal" data-target="#msgToHost">
                   				Send Message
                				</button>
                
@@ -350,6 +350,14 @@ for(ReviewDto reviewDto : reviewlist){
 				e.stopPropagation();
 				return false;
 			});
+			
+			//review
+			$('#sendMsgToHost').on('click', function (event) {
+				  var button = $(event.relatedTarget) // Button that triggered the modal
+			      console.log("Here!");
+			        $("#receiver").append(<%=parkingDetail.getOwner_id() %>);
+			        $('#msgToHost').show();
+				})
 			
 		</script>
 		<script src="/carpark/js/selectlist/jquery.selectlist.js"></script>
