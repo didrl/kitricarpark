@@ -11,6 +11,8 @@
 <%
 ParkingDto parkingDetail = (ParkingDto)request.getAttribute("parkingDetail");
 ArrayList<ReviewDto> reviewlist = (ArrayList<ReviewDto>)request.getAttribute("reviewlist");
+
+System.out.println("<><><><><><><><"+parkingDetail.getPark_id()	);
 %>
 
 <!-- ****************************************************************************************************************** -->	
@@ -265,7 +267,7 @@ for(ReviewDto reviewDto : reviewlist){
 								</select>
 								</div>
 					</div>	<!-- To Choice End --><br>
-								<button type="button" class="btn btn-success" onclick="javascript:goReservation();">
+								<button type="button" class="btn btn-success" id="goreser" name="goreser" ">
                   				 예약하기 
                				</button>
 					</div> <!--  radio button에 의한 Multi reservation End-->
@@ -281,7 +283,7 @@ for(ReviewDto reviewDto : reviewlist){
 					<div class="well">
 						<div class="panel-body">호스트 : <%=parkingDetail.getOwner_id() %></div>
 						<div class="text-center">
-							 <button type="button" class="btn btn-success"  id="sendMsgToHost "data-toggle="modal" data-target="#msgToHost">
+							 <button type="button" class="btn btn-success"  id="sendMsgToHost" name="sendMsgToHost" data-toggle="modal" data-target="#msgToHost">
                   				Send Message
                				</button>
                
@@ -358,6 +360,26 @@ for(ReviewDto reviewDto : reviewlist){
 									}
 								});
 			});
+			
+			$('#goreser').on('click', function (event) {
+				  var button = $(event.relatedTarget) // Button that triggered the modal
+				
+				  $.ajax({
+ //			            url:'/carpark/reservation?act=mvReservation&park_id=<%=parkingDetail.getPark_id()%>',
+						url:'/carpark/reservation',
+			            data:{
+			            	act : "mvReservation",
+			            	park_id : "<%=parkingDetail.getPark_id()%>",
+			            	fromTime : $("#fromTime").val(),
+			            	toTime : $("#toTime").val()
+										            	
+			            },
+			            success:function(data){
+			            }
+			        })
+
+				})
+			
 			// 맵 위에서 마우스 휠, 키보드 방향키가 동작하지 않도록 막음
 			$('#map_div').on('scroll touchmove mousewheel', function(e){
 				e.preventDefault();
@@ -369,7 +391,8 @@ for(ReviewDto reviewDto : reviewlist){
 			$('#sendMsgToHost').on('click', function (event) {
 				  var button = $(event.relatedTarget) // Button that triggered the modal
 			      console.log("Here!");
-			        $("#receiver").append(<%=parkingDetail.getOwner_id() %>);
+			        $("#receiver").text("<%=parkingDetail.getOwner_id() %>");
+			        $("#receiver").attr("disabled");
 			        $('#msgToHost').show();
 				})
 			

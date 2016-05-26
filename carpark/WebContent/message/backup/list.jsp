@@ -7,14 +7,13 @@
   
     
 <%
-if(memberDto != null) {
 List<MessageDto> list = (List<MessageDto>) request.getAttribute("messageList");
 %>
 
 <div id="wrapper">
 <!-- ****************************************************************************************************************** -->	
 
-		<!-- main -->
+			<!-- main -->
 		<div id="page-wrapper">
 			<div class="container-fluid">
 				<br><h3>쪽지함</h3><br>
@@ -26,7 +25,7 @@ List<MessageDto> list = (List<MessageDto>) request.getAttribute("messageList");
 	  				<button type="button" class="btn btn-default" onclick="javascript:messageSendList();">
 	  					보낸쪽지함
 	  				</button>	
-					<button type="button" class="btn btn-default"  data-toggle="modal" data-target="#sendMessage">
+					<button type="button" class="btn btn-default"  data-toggle="modal" data-target="#msgToHost">
                 		쪽지보내기
                		</button>
 				</div>
@@ -47,11 +46,9 @@ List<MessageDto> list = (List<MessageDto>) request.getAttribute("messageList");
 				  	</tr>
 				
 <%
-int size = list.size();
-if(size > 0) {
+if(list != null) {
 	for(MessageDto messageDto : list) {
 %>
-					<!-- 모달로 연결해야함 -->
 					<tr >
 						<td><a href="javascript:messageView('<%=messageDto.getSeq()%>');"><%=messageDto.getReceiverId() %></a></td>
 						<td><a href="javascript:messageView('<%=messageDto.getSeq() %>');"><%=messageDto.getSubject() %></a></td>
@@ -60,18 +57,10 @@ if(size > 0) {
 					</tr>
 <%
 	}	
-} else {
-%>
-<center><h3>메세지가 없습니다</h3></center>	  
-<%
 }
-%>
+%>	  
 				  </table>
 				</div>
-				
-			<!-- 메세지보기 모달창 -->	
-			<%@include file="/message/view.jsp" %>
-
 
 			<!-- 페이지 네비게이션/검색 -->
 			<nav align="center">
@@ -114,12 +103,5 @@ if(size > 0) {
 	</div>
 <!-- ****************************************************************************************************************** -->	
 </div>
-<%
-} else {
-%>
-<center><h3>로그인 후 이용해주세요</h3></center>
-<%
-}
-%>
 
 <%@include file="/common/footer.jsp"%>

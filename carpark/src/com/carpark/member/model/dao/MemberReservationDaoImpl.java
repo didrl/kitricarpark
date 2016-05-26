@@ -14,6 +14,7 @@ import java.util.Map;
 
 import com.carpark.db.DBClose;
 import com.carpark.db.DBConnection;
+import com.carpark.member.model.MemberCarDto;
 import com.carpark.member.model.ReservationDto;
 
 public class MemberReservationDaoImpl implements MemberReservationDao {
@@ -31,19 +32,20 @@ public class MemberReservationDaoImpl implements MemberReservationDao {
 	}
 
 	@Override
-	public ArrayList<Map<String, String>> getCarInfo(String user_id) {
+	public ArrayList<MemberCarDto> getCarInfo(String user_id) {
 		Connection conn=null;
 		PreparedStatement pstmt =null;
 		ResultSet rs = null;
-		Map<String, String> map = null;
-		ArrayList<Map<String, String>> list = new ArrayList<Map<String, String>>();
+		MemberCarDto memberCarDto;
+		ArrayList<MemberCarDto> list = new ArrayList<MemberCarDto>();
 		
 		try {
 			conn=DBConnection.makeConnection();
 			String sql="";
-			sql += "select carinfor \n";
-			sql += "from member \n"; 
-			sql += "where user_id =? \n"; 
+			sql += "select ci.car_id, ci.maker, ci.model, mc.category, mc.reg_num \n";
+			sql += "from car_info ci, member_car mc \n"; 
+			sql += "where ci.car_id = mc.car_id\n";
+			sql += "and mc.user_id=?";
 			pstmt = conn.prepareStatement(sql);//미리 sql 문장을 가져가서 검사하고 틀린게 없을 때 실행
 			int idx =1;//중간에 없어지거나 추가될때 필요
 			pstmt.setString(idx++, user_id);
@@ -51,14 +53,18 @@ public class MemberReservationDaoImpl implements MemberReservationDao {
 			rs=pstmt.executeQuery();
 			
 			System.out.println("id"+user_id);
-			System.out.println("carinfo"+rs.getString("carinfo"));
 			System.out.println(sql);
 
 			while(rs.next()){
-				map = new HashMap<String, String>();
-				map.put("carinfo", rs.getString("carinfo"));
+				memberCarDto = new MemberCarDto();
 				
-				list.add(map);
+				memberCarDto.setCar_id(rs.getString("car_id"));
+				memberCarDto.setMaker(rs.getString("maker"));
+				memberCarDto.setModel(rs.getString("model"));
+				memberCarDto.setCategory(rs.getString("category"));
+				memberCarDto.setReg_num(rs.getString("reg_num"));
+				
+				list.add(memberCarDto);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -81,18 +87,17 @@ public class MemberReservationDaoImpl implements MemberReservationDao {
 			conn=DBConnection.makeConnection();
 			String sql="";
 //			sql += "select start_date, end_date \n";
-			sql += "select to_char(start_date,'yyyy.mm.dd) start_date, to_char(end_date,'yyyy.mm.dd) end_date, \n";
-			sql += "end_date-start_date betweendate, \n";
+			sql += "select to_char(start_date,'yyyy.mm.dd') start_date, to_char(end_date,'yyyy.mm.dd') end_date, \n";
+			sql += "end_date-start_date betweendate \n";
 			sql += "from reservation \n"; 
 			sql += "where park_id =? \n"; 
 			pstmt = conn.prepareStatement(sql);//미리 sql 문장을 가져가서 검사하고 틀린게 없을 때 실행
 			int idx =1;//중간에 없어지거나 추가될때 필요
+	
 			pstmt.setInt(idx++, park_id);
-
 			rs=pstmt.executeQuery();
 			
 			System.out.println("id"+park_id);
-			System.out.println("startdate"+rs.getString("start_date")+"    enddate"+rs.getString("end_date"));
 			System.out.println(sql);
 
 			while(rs.next()){

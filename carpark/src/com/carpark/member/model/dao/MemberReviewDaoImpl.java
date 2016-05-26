@@ -37,7 +37,7 @@ public class MemberReviewDaoImpl implements MemberReviewDao {
 			conn=DBConnection.makeConnection();
 			String sql="";
 
-			sql +="select b.content, b.subject,b.user_id,a.park_id,a.avgpoint, b.logtime \n";
+			sql +="select b.contents, b.subject,b.user_id,a.park_id,a.avgpoint, b.logtime \n";
 			sql +="from review r, board b, avgpoint a, parking p\n";
 			sql +="where r.seq=b.seq\n";
 			sql +="			and r.rseq=a.rseq\n";
@@ -50,7 +50,7 @@ public class MemberReviewDaoImpl implements MemberReviewDao {
 			if(rs.next()){
 				//이름,이메일,보유코인 필요
 				reviewDto =new ReviewDto();		
-				reviewDto.setContent(rs.getString("content"));
+				reviewDto.setContent(rs.getString("contents"));
 				reviewDto.setUser_id(rs.getString("user_id"));
 				reviewDto.setSubject(rs.getString("subject"));
 				reviewDto.setLogtime(rs.getString("logtime"));

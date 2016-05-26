@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.carpark.action.Action;
+import com.carpark.member.model.MemberCarDto;
 import com.carpark.member.model.MemberDto;
 import com.carpark.member.model.ReservationDto;
 import com.carpark.member.model.service.MemberReservationServiceImpl;
@@ -32,12 +33,11 @@ public class MemberReservationMoveAction implements Action {
 		HttpSession session = request.getSession();
 		MemberDto memberDto = (MemberDto)session.getAttribute("memberInfo");
 		ReservationDto reservationDto = new ReservationDto();
-		Map<String,String> map;
-		String user_id = request.getParameter("id");
+		String user_id = memberDto.getUser_id();
 		int park_id = Integer.parseInt(request.getParameter("park_id"));
 		
 		reservationDto.setUser_id(user_id);
-		ArrayList<Map<String,String>> carinfo=MemberReservationServiceImpl.getMemberReservationService().getCarInfo(user_id);
+		ArrayList<MemberCarDto> carinfo=MemberReservationServiceImpl.getMemberReservationService().getCarInfo(user_id);
 		ArrayList<Map<String,String>> availabledate =MemberReservationServiceImpl.getMemberReservationService().getAvailDate(park_id);
 		reservationDto.setFromdate(request.getParameter("fromdate"));
 		reservationDto.setTodate(request.getParameter("todate"));
