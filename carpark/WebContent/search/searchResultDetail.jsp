@@ -1,11 +1,11 @@
 <%@page import="com.carpark.member.model.ReviewDto"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.carpark.admin.model.ParkingDto"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
 <%@include file="/common/common.jsp" %>
-<%@include file="/common/header.jsp" %> 
+<%@include file="/common/header/init.jsp"%> 
 <%
 ParkingDto parkingDetail = (ParkingDto)request.getAttribute("parkingDetail");
 ArrayList<ReviewDto> reviewlist = (ArrayList<ReviewDto>)request.getAttribute("reviewlist");
@@ -14,7 +14,7 @@ ArrayList<ReviewDto> reviewlist = (ArrayList<ReviewDto>)request.getAttribute("re
 <!-- ****************************************************************************************************************** -->	
 
   
-    <!-- For sendMsg Modal -->
+   <!-- For sendMsg Modal -->
    <%@include file="/reservation/sendMessageModal.jsp"%>
    <!-- For sendMsg Modal -->
    
