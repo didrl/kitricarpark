@@ -215,7 +215,7 @@ public class MemberDaoImpl implements MemberDao {
 			conn=DBConnection.makeConnection();
 			String sql="";
 			sql+="select p.park_id, p.park_name,c.sgg_name ||' '|| c.emd_name as city, pd.park_avgPoint,p.park_capacity, \n";
-			sql+="p.latitude,p.longitude \n";
+			sql+="p.latitude,p.longitude,p.owner_id \n";
 			sql+="from parking p , cities c, parking_detail pd \n";
 			sql+="where p.emd_code = c.emd_code \n";
 			sql+="and p.park_id = pd.park_id \n";
@@ -235,6 +235,8 @@ public class MemberDaoImpl implements MemberDao {
 				parkingDto.setPark_capacity(rs.getInt("park_capacity"));
 				parkingDto.setLongitude(rs.getInt("longitude"));
 				parkingDto.setLatitude(rs.getInt("latitude"));
+				parkingDto.setOwner_id(rs.getString("owner_id"));
+				
 			}
 
 		} catch (SQLException e) {

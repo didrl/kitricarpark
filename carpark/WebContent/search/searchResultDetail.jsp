@@ -1,3 +1,5 @@
+<%@page import="com.carpark.member.model.ReviewDto"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="com.carpark.admin.model.ParkingDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -6,6 +8,7 @@
 <%@include file="/common/header.jsp" %> 
 <%
 ParkingDto parkingDetail = (ParkingDto)request.getAttribute("parkingDetail");
+ArrayList<ReviewDto> reviewlist = (ArrayList<ReviewDto>)request.getAttribute("reviewlist");
 %>
 
 <!-- ****************************************************************************************************************** -->	
@@ -172,48 +175,33 @@ function messageWrite() {
 						</div>
 
 						<hr>
-
+<%
+for(ReviewDto reviewDto : reviewlist){
+	int avgpoint = (int) reviewDto.getAvgPoint();
+%>
 						<div class="row">
 							<div class="col-md-12">
-								<span class="glyphicon glyphicon-star"></span> <span
-									class="glyphicon glyphicon-star"></span> <span
-									class="glyphicon glyphicon-star"></span> <span
-									class="glyphicon glyphicon-star"></span> <span
-									class="glyphicon glyphicon-star-empty"></span> Anonymous <span
-									class="pull-right">10 days ago</span>
-								<p>This product was great in terms of quality. I would
-									definitely buy another!</p>
+<% 
+	for(int i = 0;i<avgpoint;++i){
+%>
+								<span class="glyphicon glyphicon-star"></span>
+<% 
+	}
+	for(int i = 0;i<5-avgpoint;++i){
+%>
+								<span class="glyphicon glyphicon-star-empty"></span>
+<% 
+	}
+%> 
+								<%=reviewDto.getUser_id() %> <span class="pull-right">작성일 : <%=reviewDto.getLogtime() %></span>
+								<p><%=reviewDto.getSubject()%></p>
+								<p><%=reviewDto.getContent()%></p>
 							</div>
 						</div>
+<%
+}
+%>
 
-						<hr>
-
-						<div class="row">
-							<div class="col-md-12">
-								<span class="glyphicon glyphicon-star"></span> <span
-									class="glyphicon glyphicon-star"></span> <span
-									class="glyphicon glyphicon-star"></span> <span
-									class="glyphicon glyphicon-star"></span> <span
-									class="glyphicon glyphicon-star-empty"></span> Anonymous <span
-									class="pull-right">12 days ago</span>
-								<p>I've alredy ordered another one!</p>
-							</div>
-						</div>
-
-						<hr>
-
-						<div class="row">
-							<div class="col-md-12">
-								<span class="glyphicon glyphicon-star"></span> <span
-									class="glyphicon glyphicon-star"></span> <span
-									class="glyphicon glyphicon-star"></span> <span
-									class="glyphicon glyphicon-star"></span> <span
-									class="glyphicon glyphicon-star-empty"></span> Anonymous <span
-									class="pull-right">15 days ago</span>
-								<p>I've seen some better than this, but not at this price. I
-									definitely recommend this item.</p>
-							</div>
-						</div>
 					</div>
 					<!-- Review End-->
 			</div>
@@ -277,7 +265,7 @@ function messageWrite() {
 					</div>
 					<!-- img panel End -->
 					<div class="well">
-						<div class="panel-body">호스트 정보</div>
+						<div class="panel-body">호스트 : <%=parkingDetail.getOwner_id() %></div>
 						<div class="text-center">
 							 <button type="button" class="btn btn-success"  data-toggle="modal" data-target="#msgToHost">
                   				Send Message
