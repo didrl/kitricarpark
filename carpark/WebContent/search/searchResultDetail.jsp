@@ -81,29 +81,31 @@ function messageWrite() {
 	<div class="container" style="text-align:center">
 			<!--  search bar start -->
 			<div class="col-sm-13">
-					<!-- /input-group -->
-					<form id="searchForm" name="searchForm" class="form-inline" role="form" method="post" >
-						<input type="hidden"  name="act" value="mvSearchResult">
-						<div class="input-group">
-							<input type="text" class="form-control" id="citysearch" placeholder="Search for..."> 
-							<span 	class="input-group-btn">
-								<button class="btn btn-default" type="button">Go!</button>
-							</span>
-						</div>
-						<div class="input-group">
-								<input class="date-picker" id="fromdatesearch" type="text"  />
-						</div>
-	
-						<div class="input-group">
-								<input class="date-picker" id="todatesearch" type="text"  />
-						</div>
-						<div class="input-group">
-							<button class="btn btn-success" type="button" onclick="javascript:goSearchResult();">Search</button>
-						</div>
-					</form>
-				</div>
-				<br><br>
-				<!--  search bar end-->
+				<!-- /input-group -->
+				<form id="searchForm" name="searchForm" class="form-inline" role="form" method="post">
+					<input type="hidden" name="act" value="mvSearchResult">
+					<input type="hidden" name="search" value="">
+					
+					
+					<div class="input-group">
+						<input type="text" class="form-control" id="citysearch" name="city" placeholder="Search for..."> 
+					</div>
+					<div class="input-group">
+						<input class="date-picker" id="fromdatesearch" name="from" type="text" />
+					</div>
+
+					<div class="input-group">
+						<input class="date-picker" id="todatesearch" type="text" name="to"/>
+					</div>
+					<div class="input-group">
+						<button class="btn btn-success" type="button"
+							onclick="javascript:goSearchResult();">Search</button>
+					</div>
+				</form>
+			</div>
+			<br>
+			<br>
+			<!--  search bar end-->
 		<div class="row">
 			<!-- Left Section Start -->
 			<div class="col-md-7">

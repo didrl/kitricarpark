@@ -175,10 +175,10 @@ public class MemberDaoImpl implements MemberDao {
 			sql+="from parking p , cities c, parking_detail pd \n";
 			sql+="where p.emd_code = c.emd_code \n";
 			sql+="and p.park_id = pd.park_id \n";
-			sql+="and c.sgg_name=? ";
+			sql+="and c.sgg_name like '%'||?||'%' ";
 			int idx=1;
 			pstmt =conn.prepareStatement(sql);
-			pstmt.setString(idx++,map.get("city"));
+			pstmt.setString(idx++,map.get("city").trim());
 //			pstmt.setString(idx++,map.get("from"));
 //			pstmt.setString(idx++,map.get("to"));
 
