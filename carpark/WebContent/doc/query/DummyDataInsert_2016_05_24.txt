@@ -5771,3 +5771,105 @@ insert into favorite values(167964,'TopGuest');
 insert into favorite values(124830,'GdGuest');
 
 insert into favorite values(172647,'GdGuest');
+
+
+------------------------------------------
+--  CAR_INFO Table Dummy Create SQL --
+-----------------------------------------
+
+insert into car_info(car_id, maker, model)
+values('sm_001','현대자동차','엑센트');
+
+insert into car_info(car_id, maker, model)
+values('sm_002','쉐보레','트랙스');
+
+insert into car_info(car_id, maker, model)
+values('sm_003','쉐보레','스파크');
+
+---
+insert into car_info(car_id, maker, model)
+values('md_001','현대자동차','쏘나타');
+
+insert into car_info(car_id, maker, model)
+values('md_002','현대자동차','투싼');
+
+insert into car_info(car_id, maker, model)
+values('md_003','현대자동차','아반떼');
+
+insert into car_info(car_id, maker, model)
+values('md_004','쉐보레','말리부');
+
+---
+insert into car_info(car_id, maker, model)
+values('bg_001','현대자동차','그랜저');
+
+insert into car_info(car_id, maker, model)
+values('bg_002','현대자동차','제네시스');
+
+insert into car_info(car_id, maker, model)
+values('bg_003','JEEP','레니게이드');
+
+insert into car_info(car_id, maker, model)
+values('bg_004','JEEP','컴패스');
+
+---
+insert into car_info(car_id, maker, model)
+values('sp_001','현대자동차','레토나');
+
+insert into car_info(car_id, maker, model)
+values('sp_002','현대자동차','닷지');
+
+insert into car_info(car_id, maker, model)
+values('sp_003','현대자동차','육공');
+
+---
+insert into car_info(car_id, maker, model)
+values('tr_001','현대자동차','쏠라티');
+
+insert into car_info(car_id, maker, model)
+values('tr_002','현대자동차','포터2');
+
+insert into car_info(car_id, maker, model)
+values('tr_003','현대자동차','봉고3');
+
+insert into car_info(car_id, maker, model)
+values('tr_004','현대자동차','엑시언트');
+
+------------------------------------------
+--  MEMBER_CAR Table Dummy Create SQL --
+-----------------------------------------
+
+insert into member_car(car_id, category, reg_num, user_id)
+values('sm_001','소형','44너4444','IUGuest');
+
+insert into member_car(car_id, category, reg_num, user_id)
+values('md_004','중형','88나8888','IUGuest');
+
+insert into member_car(car_id, category, reg_num, user_id)
+values('bg_003','대형','55구5959','SZGuest');
+
+insert into member_car(car_id, category, reg_num, user_id)
+values('tr_004','화물','88바2288','SZGuest');
+
+insert into member_car(car_id, category, reg_num, user_id)
+values('bg_003','대형','94너4944','GdGuest');
+
+insert into member_car(car_id, category, reg_num, user_id)
+values('bg_004','대형','11일8888','GdGuest');
+
+insert into member_car(car_id, category, reg_num, user_id)
+values('sm_003','소형','77오5559','TopGuest');
+
+insert into member_car(car_id, category, reg_num, user_id)
+values('sp_001','특수','88군2988','TopGuest');
+
+---
+
+insert all
+into board(seq, bcode, user_id, subject, contents, logtime, photo_key)
+values(board_num_seq.nextval,0,'IUGuest','계속 이용해 오던 곳인데...','점점 더 좋아지는 것 같아요! 앞으로도 계속 이용하겠습니다!',sysdate-20,'')
+into review(seq, rseq, aval_code, get_point, avaled_id, host_flag) 
+values(board_num_seq,review_num_rseq.nextval,0,4,'PublicPark',0)
+into avgpoint(board_num-seq,review_num_rseq,'111804',4)
+SELECT * FROM dual
+
