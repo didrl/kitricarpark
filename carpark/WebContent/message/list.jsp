@@ -2,9 +2,9 @@
     pageEncoding="UTF-8" import="java.util.*,com.carpark.member.model.*"%>
     
 <%@include file="/common/common.jsp" %>
-<%@include file="/common/header.jsp" %> 
+<%@include file="/common/header/init.jsp" %> 
 <%@include file="/common/side.jsp" %>
-<script type="text/javascript" src="./message.js"></script>  
+  
     
 <%
 List<MessageDto> list = (List<MessageDto>) request.getAttribute("messageList");
@@ -12,17 +12,6 @@ List<MessageDto> list = (List<MessageDto>) request.getAttribute("messageList");
 
 <div id="wrapper">
 <!-- ****************************************************************************************************************** -->	
-
-<form name="common" method="get" action="">
-	<input type="hidden" name="act" id="act" value="">
-	<input type="hidden" name="bcode" id="bcode" value="2">
-	<input type="hidden" name="pg" id="pg" value="1">
-	<input type="hidden" name="key" id="key" value="">
-	<input type="hidden" name="word" id="word" value="">
-	<input type="hidden" name="seq" id="seq" value="">
-</form>
-
-
 
 			<!-- main -->
 		<div id="page-wrapper">
@@ -54,17 +43,7 @@ List<MessageDto> list = (List<MessageDto>) request.getAttribute("messageList");
 				  		<td width="150"><b>보낸시간</b></td>
 				  		<td width="50"><b>확인</b></td>
 				  	</tr>
-
-<script tyep="text/javascript">
-function messageView(seq) {
-	document.getElementById("act").value = "messageView";
-	document.getElementById("seq").value = seq;
-		
-	document.common.action = "/carpark/message";
-	document.common.submit();
-	
-}
-</script>				
+				
 <%
 if(list != null) {
 	for(MessageDto messageDto : list) {

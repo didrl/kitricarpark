@@ -18,9 +18,9 @@ public class MemberMessageSendListAction implements Action {
 			throws IOException, ServletException {
 		
 		HttpSession session = request.getSession();
-		MemberDto memberDto = (MemberDto) session.getAttribute("userInfo");
+		MemberDto memberDto = (MemberDto) session.getAttribute("memberInfo");
 		
-		String userId = "kangnam17";
+		String userId = memberDto.getUser_id();
 		List<MessageDto> sendList = MemberMessageServiceImpl.getMemberMessageService().sendListArticle(userId);
 		request.setAttribute("messageList", sendList);
 		

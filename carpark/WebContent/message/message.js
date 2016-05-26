@@ -9,7 +9,6 @@ function messageSearch() {
 }
 
 function messageView(seq) {
-	alert("sefsef???")
 	document.getElementById("act").value = "messageView";
 	document.getElementById("seq").value = seq;
 		
@@ -26,8 +25,15 @@ function messageDelete(seq) {
 	document.common.submit();
 }
 
-function messageList() {
-	document.getElementById("act").value = "messageList";
+function messageSendList() {
+	document.getElementById("act").value = "messageSendList";
+		
+	document.common.action = "/carpark/message";
+	document.common.submit();
+}
+
+function messageReceiveList() {
+	document.getElementById("act").value = "messageReceiveList";
 		
 	document.common.action = "/carpark/message";
 	document.common.submit();

@@ -18,7 +18,6 @@ public class MemberMessageViewAction implements Action {
 			throws IOException, ServletException {
 		
 		int seq = NumberCheck.nullToZero(request.getParameter("seq"));
-		System.out.println(seq);
 		if(seq != 0) {
 			MessageDto messageDto = MemberMessageServiceImpl.getMemberMessageService().viewArticle(seq);
 			request.setAttribute("messageView", messageDto);

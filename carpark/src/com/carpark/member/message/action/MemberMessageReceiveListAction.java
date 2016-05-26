@@ -19,10 +19,9 @@ public class MemberMessageReceiveListAction implements Action {
 			throws IOException, ServletException {
 		
 		HttpSession session = request.getSession();
-		MemberDto memberDto = (MemberDto) session.getAttribute("userInfo");
+		MemberDto memberDto = (MemberDto) session.getAttribute("memberInfo");
 		
-		//String receiveId = memberDto.getUser_id();
-		String receiveId = "kangnam17";
+		String receiveId = memberDto.getUser_id();
 		List<MessageDto> receiveList = MemberMessageServiceImpl.getMemberMessageService().receiveListArticle(receiveId);
 		
 		request.setAttribute("messageList", receiveList);
