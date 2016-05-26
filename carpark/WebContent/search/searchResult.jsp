@@ -36,10 +36,13 @@ List<ParkingDto> list = (List<ParkingDto>)request.getAttribute("searchlist");
 
 <script>
 $(document).ready(function() {
+	var key = document.getElementById("key");
+	var word = document.getElementById("word");
      jQuery.ajax({
            type:"GET",
-           url:"/member",
+           url:"/carpark/member",
            dataType:"JSON", // 옵션이므로 JSON으로 받을게 아니면 안써도 됨
+           data:"",
            success : function(data) {
                  // 통신이 성공적으로 이루어졌을 때 이 함수를 타게 된다.
                  // TODO
@@ -94,6 +97,9 @@ $(document).ready(function() {
 <%
 for(ParkingDto parkingDto :list){
 %>
+				<a href="<%=root%>/member?act=mvSearchResultDetail&parkingid=<%=parkingDto.getPark_id()%> 
+				&parkingname=<%=parkingDto.getPark_name()%>&latitude=<%=parkingDto.getLatitude()%>
+				&longitude=<%=parkingDto.getLongitude()%>" class="list-group-item">					
 				<form id="parkListForm" name="parkListForm" class="form-inline" 
 				role="form" method="post">
 					<input type="hidden" name="act" value="mvSearchResultDetail">
@@ -102,7 +108,6 @@ for(ParkingDto parkingDto :list){
 					<input type="hidden" name="latitude" value="<%=parkingDto.getLatitude()%>">
 					<input type="hidden" name="longitude" value="<%=parkingDto.getLongitude()%>">
 					
-					<a href="javascript:goResultDetail();" class="list-group-item">					
 						<h4 class="list-group-item-heading"><%=parkingDto.getPark_name() %></h4>
 						<div class="ratings">
                         <p class="pull-right">
@@ -115,8 +120,8 @@ for(ParkingDto parkingDto :list){
                         </p>
                     </div>
 						<p class="list-group-item-text">역에서 도보로 3분 다양한 회사들 밀집</p>
-					</a>
 				</form>
+				</a>
 <%
 }
 %>			
