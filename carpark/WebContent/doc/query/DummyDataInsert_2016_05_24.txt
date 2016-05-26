@@ -5870,6 +5870,6 @@ into board(seq, bcode, user_id, subject, contents, logtime, photo_key)
 values(board_num_seq.nextval,0,'IUGuest','계속 이용해 오던 곳인데...','점점 더 좋아지는 것 같아요! 앞으로도 계속 이용하겠습니다!',sysdate-20,'')
 into review(seq, rseq, aval_code, get_point, avaled_id, host_flag) 
 values(board_num_seq,review_num_rseq.nextval,0,4,'PublicPark',0)
-into avgpoint(board_num-seq,review_num_rseq,'111804',4)
+into avgpoint(board_num_seq,review_num_rseq,'111804',4)
 SELECT * FROM dual
 
