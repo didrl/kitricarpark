@@ -74,7 +74,7 @@
                             </a>
                         </li>
                         <li class="message-footer">
-                            <a href="#">Read All New Messages</a>
+                            <a href="<%=root %>/message?act=messageReceiveList">Read All New Messages</a>
                         </li>
                     </ul>
                 </li>

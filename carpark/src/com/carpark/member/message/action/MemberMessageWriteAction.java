@@ -1,6 +1,7 @@
 package com.carpark.member.message.action;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
@@ -20,13 +21,13 @@ public class MemberMessageWriteAction implements Action {
 		
 		String root = request.getContextPath();
 		HttpSession session = request.getSession();
-		MemberDto memberDto = (MemberDto) session.getAttribute("userInfo");
+		MemberDto memberDto = (MemberDto) session.getAttribute("memberInfo");
 		
 		int seq = CommonServiceImpl.getCommonService().getNextSeq();
 		
 		MessageDto messageDto = new MessageDto();
 		messageDto.setSeq(seq);
-		messageDto.setUserID("kangnam17");
+		messageDto.setUserID(memberDto.getUser_id());
 		messageDto.setSubject(request.getParameter("subject"));
 		messageDto.setContent(request.getParameter("content"));
 		messageDto.setBcode(NumberCheck.nullToZero(request.getParameter("bcode")));
@@ -35,7 +36,8 @@ public class MemberMessageWriteAction implements Action {
 		messageDto.setMsgFlag(0);
 		
 		MemberMessageServiceImpl.getMemberMessageService().writeArticle(messageDto);
-		MemberMessageServiceImpl.getMemberMessageService().sendListArticle("kangnam17");
+		List<MessageDto> list = MemberMessageServiceImpl.getMemberMessageService().sendListArticle(memberDto.getUser_id());
+		request.setAttribute("messageList", list);
 		
 		
 		return "/message/list.jsp";
