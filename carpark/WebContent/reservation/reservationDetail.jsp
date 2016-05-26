@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
-    import="com.carpark.member.model.ReservationDto, java.util.*, com.carpark.member.model.MemberDto"
+    import="com.carpark.member.model.ReservationDto, java.util.*"
+    import="com.carpark.member.model.MemberCarDto"
     %>
     
 <%@include file="/common/common.jsp" %>
@@ -8,7 +9,7 @@
 
 <%
 ReservationDto reservationDto = (ReservationDto)request.getAttribute("reservationDto");
-ArrayList<Map<String,String>> carInfo = (ArrayList<Map<String,String>>) request.getAttribute("carinfo"); 
+ArrayList<MemberCarDto> carInfo = (ArrayList<MemberCarDto>) request.getAttribute("carinfo"); 
 ArrayList<String> availdate = (ArrayList<String>) request.getAttribute("availalbledate");
 //if(reservationDto != null){
 %>
@@ -148,8 +149,8 @@ ArrayList<String> availdate = (ArrayList<String>) request.getAttribute("availalb
 						</div>
 						<div class="col-md-8 col-lg-8 col-sm-8" >		
 								<selectlong  id="mycarlist" name="mycarlist" >
-<%for(Map<String,String> map : carInfo){ %>
-								  <option value="등록차량1">map.get("carnum")</option>  
+<%for(MemberCarDto memberCarDto : carInfo){ %>
+								  <option value="<%=memberCarDto.getCar_id()%>"><%=memberCarDto.getModel() %></option>  
 <%} %>
 								</selectlong>
 								<button type="button" class="btn btn-success"  id="addmycarbt" data-toggle="modal" data-target="#addCar">

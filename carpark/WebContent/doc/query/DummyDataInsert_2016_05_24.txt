@@ -5863,13 +5863,122 @@ values('sm_003','소형','77오5559','TopGuest');
 insert into member_car(car_id, category, reg_num, user_id)
 values('sp_001','특수','88군2988','TopGuest');
 
----
+------------------------------------------
+--  REVIEW Dummy Create SQL --
+-----------------------------------------
+
+insert into board(seq, bcode, user_id, subject, contents, logtime, photo_key)
+values(board_num_seq.nextval,0,'Alexander103','한국에 놀러왔어요 주차장 좋아요.',
+' 나 영국 살아요. 한국인 친구 이야기했어요. 서울에 차 많아요. 주차장 없어요. 하지만 나 미리 여행 전에 예약했어요. 나 주차했어요. 나 기뻤어요.',sysdate-19,'');
+insert into review(seq, rseq, aval_code, get_point, avaled_id) 
+values(board_num_seq.currval,review_num_rseq.nextval,0,5,'kangnam17');
+insert into AVGPOINT (RSEQ, SEQ, PARK_ID, AVGPOINT) 
+values(review_num_rseq.currval,board_num_seq.currval,173530,5);
 
 insert all
 into board(seq, bcode, user_id, subject, contents, logtime, photo_key)
-values(board_num_seq.nextval,0,'IUGuest','계속 이용해 오던 곳인데...','점점 더 좋아지는 것 같아요! 앞으로도 계속 이용하겠습니다!',sysdate-20,'')
+values(board_num_seq.nextval,0,'Steven100','강남올때마다 이곳에 와요 ','미리 예약하면 할인혜택 제공이 너무 좋아요.',sysdate-20,'')
 into review(seq, rseq, aval_code, get_point, avaled_id, host_flag) 
-values(board_num_seq,review_num_rseq.nextval,0,4,'PublicPark',0)
-into avgpoint(board_num_seq,review_num_rseq,'111804',4)
-SELECT * FROM dual
+values(board_num_seq.currval,review_num_rseq.nextval,0,4,'PublicPark',0)
+into AVGPOINT (RSEQ, SEQ, PARK_ID, AVGPOINT) 
+values(review_num_rseq.currval,board_num_seq.currval,111804,4)
+SELECT * FROM dual;
 
+insert all
+into board(seq, bcode, user_id, subject, contents, logtime, photo_key)
+values(board_num_seq.nextval,0,'SZGuest','초보운전이라 주차가 무서운데',
+'주차공간이 넓어서 좋아요. 골목길에 주차하느라 긴장할 필요도 없어요. 대치동에서는 여기에 주차!',sysdate-19,'')
+into review(seq, rseq, aval_code, get_point, avaled_id, host_flag) 
+values(board_num_seq.currval,review_num_rseq.nextval,0,4,'kangnam17',0)
+into AVGPOINT (RSEQ, SEQ, PARK_ID, AVGPOINT) 
+values(review_num_rseq.currval,board_num_seq.currval,173530,4)
+SELECT * FROM dual;
+
+insert all
+into board(seq, bcode, user_id, subject, contents, logtime, photo_key)
+values(board_num_seq.nextval,0,'GdHost','주차공간이 넓네요',
+'주차장 찾기도 쉽고 공간이 넓어요.즐겨찾기 추가해두었습니다!',sysdate-15,'')
+into review(seq, rseq, aval_code, get_point, avaled_id, host_flag) 
+values(board_num_seq.currval,review_num_rseq.nextval,0,4,'kangnam17',0)
+into AVGPOINT (RSEQ, SEQ, PARK_ID, AVGPOINT) 
+values(review_num_rseq.currval,board_num_seq.currval,173530,4)
+SELECT * FROM dual;
+
+insert all
+into board(seq, bcode, user_id, subject, contents, logtime, photo_key)
+values(board_num_seq.nextval,0,'TopGuest','여자친구와 데이트 할때 사용했어요',
+'맛집과 가까워서 좋네요. 미리 예약해서 주차장 찾으러 길 헤멜 필요도 없고 ',sysdate,'')
+into review(seq, rseq, aval_code, get_point, avaled_id, host_flag) 
+values(board_num_seq.currval,review_num_rseq.nextval,0,4,'kangnam17',0)
+into AVGPOINT (RSEQ, SEQ, PARK_ID, AVGPOINT) 
+values(review_num_rseq.currval,board_num_seq.currval,173530,4)
+SELECT * FROM dual;
+
+insert all
+into board(seq, bcode, user_id, subject, contents, logtime, photo_key)
+values(board_num_seq.nextval,0,'IUGuest','오늘 정기권 구매했어요',
+'회사가 근처라 월 정기권 구매했어요. 할인혜택이 쏠쏠하네요. 일일권보다',sysdate,'')
+into review(seq, rseq, aval_code, get_point, avaled_id, host_flag) 
+values(board_num_seq.currval,review_num_rseq.nextval,0,5,'kangnam17',0)
+into AVGPOINT (RSEQ, SEQ, PARK_ID, AVGPOINT) 
+values(review_num_rseq.currval,board_num_seq.currval,173530,5)
+SELECT * FROM dual;
+
+----
+
+insert into board(seq, bcode, user_id, subject, contents, logtime, photo_key)
+values(board_num_seq.nextval,0,'Neena101','더이상 골목길 주차안해도 되네요',
+'강남 올 때면 주차장 찾느라 몇십분 소비할 때도 있었는데, 인제 그럴 필요 없네요. 주말에 가도 미리 예약만해놓으면 되니까. 여긴 따로 또 주차권 뽑을 필요도 없네요. 자동화된 주차장이라.',sysdate-10,'');
+insert into review(seq, rseq, aval_code, get_point, avaled_id) 
+values(board_num_seq.currval,review_num_rseq.nextval,0,5,'kangnam17');
+insert into AVGPOINT (RSEQ, SEQ, PARK_ID, AVGPOINT) 
+values(review_num_rseq.currval,board_num_seq.currval,173530,5);
+
+insert all
+into board(seq, bcode, user_id, subject, contents, logtime, photo_key)
+values(board_num_seq.nextval,0,'Diana107','누가 차 긁어놓을까 걱정안해도 됨','전에 어쩔 수 없이 골목 주차했다가 차 누가 긁어놓고 가서 속상했는데, 여긴 관리 깔끔하게 되어있네요.',sysdate-10,'')
+into review(seq, rseq, aval_code, get_point, avaled_id, host_flag) 
+values(board_num_seq.currval,review_num_rseq.nextval,0,4,'kangnam17',0)
+into AVGPOINT (RSEQ, SEQ, PARK_ID, AVGPOINT) 
+values(review_num_rseq.currval,board_num_seq.currval,173530,4)
+SELECT * FROM dual;
+
+insert all
+into board(seq, bcode, user_id, subject, contents, logtime, photo_key)
+values(board_num_seq.nextval,0,'Trenna141','갑자기 미팅잡혀서 부랴부랴 차 가지고 갔는데',
+'강남은 주차하기 힘들어서 차 안가지고 다니는데, 갑자기 미팅이 잡혀서 할 수 없이 차 가지고 갔어요. 저번에 페이스북 친구가 소개해줘서 이 서비스를 알고는 있었거든요.바로 예약하니까 되네요. 이 주차장은 무인에 실시간 시스템이라 결제한 정보 바로 뜨더라구요. 편해요.',sysdate,'')
+into review(seq, rseq, aval_code, get_point, avaled_id, host_flag) 
+values(board_num_seq.currval,review_num_rseq.nextval,0,4,'kangnam17',0)
+into AVGPOINT (RSEQ, SEQ, PARK_ID, AVGPOINT) 
+values(review_num_rseq.currval,board_num_seq.currval,173530,4)
+SELECT * FROM dual;
+
+insert all
+into board(seq, bcode, user_id, subject, contents, logtime, photo_key)
+values(board_num_seq.nextval,0,'Ellen174','너무 좋아요.',
+'자동화된 주차장 시스템! 애용할듯',sysdate,'')
+into review(seq, rseq, aval_code, get_point, avaled_id, host_flag) 
+values(board_num_seq.currval,review_num_rseq.nextval,0,5,'kangnam17',0)
+into AVGPOINT (RSEQ, SEQ, PARK_ID, AVGPOINT) 
+values(review_num_rseq.currval,board_num_seq.currval,173530,5)
+SELECT * FROM dual;
+
+insert all
+into board(seq, code, user_id, subject, contents, longtime, photo_key)
+values(board_num_seq.nextval,0,'Bruce104','다른데 정기주차권보다 저렴해요',
+'지금 이벤트 중이라 여기서 예약하면 할인혜택 준다고 해서 써봤어요.회사건물 주차권보다 저렴해요.',sysdate,'')
+into review(seq, rose, aval_code, get_point, avaled_id, host_flag) 
+values(board_num_seq.currval,review_num_rseq.nextval,0,5,'kangnam17',0)
+into AVGPOINT (RSEQ, SEQ, PARK_ID, AVGPOINT) 
+values(review_num_rseq.currval,board_num_seq.currval,173530,5)
+SELECT * FROM dual;
+
+insert all
+into board(seq, code, user_id, subject, contents, longtime, photo_key)
+values(board_num_seq.nextval,0,'Curtis142','관리 잘 되어있음 깔끔',
+'음식점이랑 놀 곳이 바로 옆이라 위치 좋아요. ',sysdate,'')
+into review(seq, rose, aval_code, get_point, avaled_id, host_flag) 
+values(board_num_seq.currval,review_num_rseq.nextval,0,5,'kangnam17',0)
+into AVGPOINT (RSEQ, SEQ, PARK_ID, AVGPOINT) 
+values(review_num_rseq.currval,board_num_seq.currval,173530,5)
+SELECT * FROM dual;
