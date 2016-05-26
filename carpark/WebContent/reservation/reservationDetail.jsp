@@ -4,13 +4,12 @@
     %>
     
 <%@include file="/common/common.jsp" %>
-<%@include file="/common/header.jsp" %> 
+<%@include file="/common/header/init.jsp"%>
 
 <%
-//ReservationDto reservationDto = (ReservationDto)request.getAttribute("reservationDto");
-//ArrayList<Map<String,String>> carInfo = (ArrayList<Map<String,String>>) request.getAttribute("carinfo"); 
-//ArrayList<String> availdate = (ArrayList<String>) request.getAttribute("availalbledate");
-//MemberDto memberDto = (MemberDto) sess
+ReservationDto reservationDto = (ReservationDto)request.getAttribute("reservationDto");
+ArrayList<Map<String,String>> carInfo = (ArrayList<Map<String,String>>) request.getAttribute("carinfo"); 
+ArrayList<String> availdate = (ArrayList<String>) request.getAttribute("availalbledate");
 //if(reservationDto != null){
 %>
     <!-- For sendMsg Modal -->
@@ -70,8 +69,10 @@
 			<div class="col-md-7 col-lg-7 col-sm-7">
 				<div class="panel panel-default"> <!--  Left panel div Start -->
 				<div class="panel-body"> <!--  Left panel body Start -->
-				<div>	<h3><a href="" >주차장이름</a></h3></div>
-				<div>주차장 내용들</div><br><br><br><br>
+				<div>	<h3><a href="" ><%=reservationDto.getPark_name() %></a></h3></div>
+				<div><%=reservationDto.getHost_id() %>
+						이것저것 정보들
+				</div><br><br><br><br>
 				<div><h3>언제 주차를 하길 원하십니까?</h3></div><br>
 				<div class="row"><!-- From Choice Start -->
 					<div class="col-md-3 col-lg-3 col-sm-3">
@@ -89,8 +90,8 @@
 								<div class="pull-right">From : </div>
 						</div>
 						<div class="col-md-8 col-lg-8 col-sm-8" >		
-								<input class="date-picker" id="fromdate" name="fromdate" type="text"  />
-								<select id="fromTime" name="fromTime">
+								<input class="date-picker" id="rdfromdate" name="rdfromdate" type="text"  />
+								<select id="rdfromTime" name="rdfromTime">
 								  <option value="0">00:00</option><option value="1">01:00</option><option value="2">02:00</option>
 								  <option value="3">03:00</option> <option value="4">04:00</option><option value="5">05:00</option>
 								  <option value="6">06:00</option><option value="7">07:00</option><option value="8">08:00</option>
@@ -107,8 +108,8 @@
 								<div class="pull-right">T o :</div> 
 								</div>
 								<div class="col-md-8 col-lg-8 col-sm-8" >
-								<input class="date-picker" id="todate" name="todate" type="text" />
-								<select id="toTime" name="toTime">
+								<input class="date-picker" id="rdtodate" name="todardtodatete" type="text" />
+								<select id="rdtoTime" name="rdtoTime">
 								  <option value="0">00:00</option><option value="1">01:00</option><option value="2">02:00</option>
 								  <option value="3">03:00</option> <option value="4">04:00</option><option value="5">05:00</option>
 								  <option value="6">06:00</option><option value="7">07:00</option><option value="8">08:00</option>
@@ -147,8 +148,9 @@
 						</div>
 						<div class="col-md-8 col-lg-8 col-sm-8" >		
 								<selectlong  id="mycarlist" name="mycarlist" >
-								  <option value="등록차량1">레인지 로버</option>
-								  <option value="등록차량2">전기차</option>
+<%for(Map<String,String> map : carInfo){ %>
+								  <option value="등록차량1">map.get("carnum")</option>  
+<%} %>
 								</selectlong>
 								<button type="button" class="btn btn-success"  id="addmycarbt" data-toggle="modal" data-target="#addCar">
                   				 + 차량 등록 
@@ -281,6 +283,9 @@
 		$(document).ready(function () {
 				$("#multireservation").attr("checked", true);
 				$("#singleReservationDiv").addClass("hidden");
+				
+				$("'#rdfromdate").val(<%=reservationDto.getHost_id() %>);
+				$("'#rdtodate").val(<%=reservationDto.getHost_id() %>);
 		});
 			// Radio Control div Show or Hide 
 				$("#multireservation").on("click",function(){
