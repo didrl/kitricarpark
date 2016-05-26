@@ -32,25 +32,6 @@ List<ParkingDto> list = (List<ParkingDto>)request.getAttribute("searchlist");
 <script
 	src="https://apis.skplanetx.com/tmap/js?version=1&format=javascript&appKey=a4ea8cc9-e49c-308f-99de-3aadb0c70298"></script>
 <script type="text/javascript" src="/carpark/js/search/mapsearch.js"></script>
-<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
-
-<script>
-$(document).ready(function() {
-     jQuery.ajax({
-           type:"GET",
-           url:"/member",
-           dataType:"JSON", // 옵션이므로 JSON으로 받을게 아니면 안써도 됨
-           success : function(data) {
-                 // 통신이 성공적으로 이루어졌을 때 이 함수를 타게 된다.
-                 // TODO
-           },
-           error : function(xhr, status, error) {
-                 alert("에러발생");
-           }
-     });
-});
-</script>
-
 <br><br><br><br>
 	
     <!-- Page Content -->
@@ -96,8 +77,7 @@ $(document).ready(function() {
 <%
 for(ParkingDto parkingDto :list){
 %>
-				<form id="parkListForm" name="parkListForm" class="form-inline" 
-				role="form" method="post">
+				<form id="parkListForm" name="parkListForm" class="form-inline"  role="form" method="post">
 					<input type="hidden" name="act" value="mvSearchResultDetail">
 					<input type="hidden" name="id" value="<%=parkingDto.getPark_id()%>">
 					<input type="hidden" name="name" value="<%=parkingDto.getPark_name()%>">
