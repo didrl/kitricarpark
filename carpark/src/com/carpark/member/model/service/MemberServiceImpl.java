@@ -30,8 +30,7 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public int idcheck(String id) {
-		// TODO Auto-generated method stub
-		return 0;
+		return MemberDaoImpl.getMemberDao().idcheck(id);
 	}
 
 	@Override
