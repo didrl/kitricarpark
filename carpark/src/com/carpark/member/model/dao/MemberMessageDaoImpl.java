@@ -31,7 +31,7 @@ public class MemberMessageDaoImpl implements MemberMessageDao {
 			conn = DBConnection.makeConnection();
 			String sql = "";
 			sql += "insert all \n";
-			sql += "into board (seq, user_id, subjects, contents, bcode, logtime) \n";
+			sql += "into board (seq, user_id, subject, contents, bcode, logtime) \n";
 			sql += "values (?, ?, ?, ?, ?, sysdate) \n";
 			sql += "into message (mseq, seq, receiver_id, msg_flag) \n";
 			sql += "values (message_num_mseq.nextval, ?, ?, ?) \n";
