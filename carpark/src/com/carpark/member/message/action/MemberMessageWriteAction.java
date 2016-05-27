@@ -37,10 +37,10 @@ public class MemberMessageWriteAction implements Action {
 		
 		MemberMessageServiceImpl.getMemberMessageService().writeArticle(messageDto);
 		List<MessageDto> list = MemberMessageServiceImpl.getMemberMessageService().sendListArticle(memberDto.getUser_id());
-		request.setAttribute("messageList", list);
+		request.setAttribute("sendList", list);
 		
 		
-		return "/message/list.jsp";
+		return "/message/sendlist.jsp";
 	}
 
 }

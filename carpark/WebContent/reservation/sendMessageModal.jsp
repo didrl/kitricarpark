@@ -22,7 +22,7 @@
 				<input type="hidden" name="act" value="messageWrite">
 				<input type="hidden" id="sendmsguser_id" name="user_id" value="">
 				<input type="hidden" id="sendmsgpark_id" name="park_id" value="">
-				<input type="hidden" name="bcode" value="1">
+				<input type="hidden" name="bcode" value="2">
 				<input type="hidden" name="pg" value="1">
 				<input type="hidden" name="key" value="">
 				<input type="hidden" name="word" value="">
