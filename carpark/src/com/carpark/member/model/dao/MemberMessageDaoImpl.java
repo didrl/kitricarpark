@@ -31,11 +31,12 @@ public class MemberMessageDaoImpl implements MemberMessageDao {
 			conn = DBConnection.makeConnection();
 			String sql = "";
 			sql += "insert all \n";
-			sql += "into board (seq, user_id, subjects, content, bcode, logtime) \n";
+			sql += "into board (seq, user_id, subject, contents, bcode, logtime) \n";
 			sql += "values (?, ?, ?, ?, ?, sysdate) \n";
 			sql += "into message (mseq, seq, receiver_id, msg_flag) \n";
 			sql += "values (message_num_mseq.nextval, ?, ?, ?) \n";
 			sql += "select * from dual";
+			System.out.println(sql);
 			pstmt = conn.prepareStatement(sql);
 			int idx = 0;
 			pstmt.setInt(++idx, messageDto.getSeq());
@@ -77,6 +78,7 @@ public class MemberMessageDaoImpl implements MemberMessageDao {
 			sql += "where b.seq = m.seq \n";
 			sql += "and b.seq = ?";
 			pstmt = conn.prepareStatement(sql);
+			System.out.println(sql);
 			pstmt.setInt(1, seq);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
@@ -114,12 +116,12 @@ public class MemberMessageDaoImpl implements MemberMessageDao {
 			pstmt.setInt(1, seq);
 			pstmt.executeUpdate();
 			pstmt.close();
-			
+			System.out.println(sql);
 			sql = "delete from board where seq = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, seq);
 			pstmt.executeUpdate();
-
+			System.out.println(sql);
 			conn.commit();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -149,6 +151,7 @@ public class MemberMessageDaoImpl implements MemberMessageDao {
 			sql += "and user_id = ? \n";
 			sql += "order by logtime desc";
 			//정렬 수정해야함(rownum) 
+			System.out.println(sql);
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, userId);
 			rs = pstmt.executeQuery();

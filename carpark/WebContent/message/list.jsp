@@ -26,7 +26,7 @@ List<MessageDto> list = (List<MessageDto>) request.getAttribute("messageList");
 	  				<button type="button" class="btn btn-default" onclick="javascript:messageSendList();">
 	  					보낸쪽지함
 	  				</button>	
-					<button type="button" class="btn btn-default"  data-toggle="modal" data-target="#sendMessage">
+					<button type="button" class="btn btn-default"  data-toggle="modal" data-target="#msgToHost">
                 		쪽지보내기
                		</button>
 				</div>
@@ -58,19 +58,22 @@ if(size > 0) {
 						<td><%=messageDto.getLogtime() %></td>						
 						<td><%=(messageDto.getMsgFlag() == 0) ? "X" : "O" %></td>
 					</tr>
+				  </table>
+				</div>
 <%
 	}	
 } else {
 %>
-<center><h3>메세지가 없습니다</h3></center>	  
+				  </table>
+				</div>
+<center><h3>메세지가 없습니다</h3></center>	
+<br><br>  
 <%
 }
 %>
-				  </table>
-				</div>
 				
 			<!-- 메세지보기 모달창 -->	
-			<%@include file="/message/view.jsp" %>
+			
 
 
 			<!-- 페이지 네비게이션/검색 -->
