@@ -10,7 +10,7 @@
 			<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span>
 			<span class="icon-bar"></span> <span class="icon-bar"></span>
 		</button>
-		<a class="navbar-brand" href="index.jsp">Car Park</a>
+		<a class="navbar-brand" href="/index.jsp">Car Park</a>
 	</div>
 	<!-- Top Menu Items -->
 	<ul class="nav navbar-right top-nav">
@@ -221,7 +221,7 @@ if(memberDto!=null){
 					<div class="form-group">
 						<label for="username">id</label>
 						<div class="input-group">
-							<input type="text" class="form-control" name="id" id="username"
+							<input type="text" class="form-control" name="id" id="userid"
 								placeholder="id" required="required"> <span class="input-group-btn">
 								<button class="btn btn-success" id="idcheck">
 									id 체크<i class="fa fa-edit spaceLeft"></i>
@@ -287,5 +287,28 @@ if(memberDto!=null){
 	</div>
 </div>
 
+<script type="text/javascript">
+var id = document.getElementById("userid").value; 
 
+$('#idcheck').click(function(id){
+	$.ajax({
+		type :"POST",
+		url : "/carpark/member",
+		dataType : "json",
+		data : {
+			"act" : "mvidcheck",
+			"id" : id
+		},
+		successs: function(data){
+			alert("룰루루루");
+			console.log(data);
+		},
+		error: function(data){
+			alert("에러입니다");
+			console.log(data);
+		}
+	});
+});
+
+</script>
 

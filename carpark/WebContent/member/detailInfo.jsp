@@ -32,7 +32,7 @@ MemberDto memberDetailDto = (MemberDto)request.getAttribute("memberDetailInfo");
 						<form role="form">
 							<div class="form-group">
 								<label>Full Name</label> <input class="form-control"
-									placeholder="Full name">
+									placeholder="<%=memberDetailDto.getUser_name() %>">
 								<p class="help-block">Example block-level help text here.</p>
 							</div>
 
