@@ -1,3 +1,4 @@
+<%@page import="com.carpark.member.model.MemberDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
@@ -24,12 +25,13 @@ function addNewCar(){
 				<button type="button" class="close" data-dismiss="modal">
 					<span aria-hidden="true">×</span><span class="sr-only">Close</span>
 				</button>
-				<h4 class="addCar" id="addCarTitle">차량 등록</h4>
+				<h4 class="addCar" id="addCarTitle"></h4>
 			</div>
 			<div class="modal-body">
 
 				<form class="form-horizontal" id="addcarForm" name="addcarForm">
 					<input type="hidden" name="act" value="addcarok">
+			<!-- 		<input type="hidden" name="user_id" value="<%//=memberDto.getUser_id%>"> -->
 					<div class="form-group">
 						<label for="inputCarNum" class="col-sm-2 control-label">차량
 							번호</label>
@@ -39,7 +41,20 @@ function addNewCar(){
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="inputCarName" class="col-sm-2 control-label">차종</label>
+						<label for="inputCarName" class="col-sm-2 control-label">분류</label>
+						<div class="col-sm-10">
+							<select id="carcategory" name="carcategory">
+								<option value="sm">소형</option>
+								<option value="md">중형</option>
+								<option value="bg">대형</option>
+								<option value="sp">특수</option>
+								<option value="tr">화물</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputCarNum" class="col-sm-2 control-label">차량
+							명</label>
 						<div class="col-sm-10">
 							<input type="text" class="form-control" id="inputCarName"
 								name="inputCarName" placeholder="CarName">

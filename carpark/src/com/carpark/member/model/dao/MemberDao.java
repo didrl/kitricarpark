@@ -15,4 +15,5 @@ public interface MemberDao {
 	MemberDto login(Map<String ,String> map);
 	List<ParkingDto>list(Map<String,String> map);
 	ParkingDto parkingDetail(String parkingId);
+	int addNewCar(String user_id);
 }

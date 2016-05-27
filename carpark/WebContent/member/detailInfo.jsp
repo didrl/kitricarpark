@@ -4,7 +4,9 @@
 <%@include file="/common/common.jsp" %>
 <%@include file="/common/header/init.jsp"%>
 <%@include file="/common/side.jsp" %>
-
+<%
+MemberDto memberDetailDto = (MemberDto)request.getAttribute("memberDetailInfo");
+%>
 
 	<div id="wrapper">
 <!-- ****************************************************************************************************************** -->	
@@ -64,13 +66,13 @@
 							<div class="form-group">
 								<label for="exampleInputName2">전화번호</label> <input type="text"
 									class="form-control" id="exampleInputName2"
-									placeholder="Jane Doe">
+									placeholder="<%=memberDetailDto.getTel() %>">
 							</div>
 
 							<div class="form-group">
-								<label for="exampleInputEmail2">Email</label> <input
+								<label for="exampleInputEmail2">이메일</label> <input
 									type="email" class="form-control" id="exampleInputEmail2"
-									placeholder="jane.doe@example.com">
+									placeholder="<%=memberDetailDto.getEmail() %>">
 							</div>
 
 

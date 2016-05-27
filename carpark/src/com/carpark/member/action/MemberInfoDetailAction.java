@@ -1,8 +1,6 @@
 package com.carpark.member.action;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -13,19 +11,18 @@ import com.carpark.action.Action;
 import com.carpark.member.model.MemberDto;
 import com.carpark.member.model.service.MemberServiceImpl;
 
-public class MemberLoginAction implements Action{
+public class MemberInfoDetailAction implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-	
 		HttpSession session = request.getSession();
-		String id = request.getParameter("id");
-		String pass = request.getParameter("pass");
-		MemberDto memberDto = MemberServiceImpl.getMemberService().login(id,pass);
-		session.setAttribute("memberInfo",memberDto);
-			
-		return memberDto==null ? "/member/loginFail.jsp":"/index.jsp";
+		MemberDto memberDto = (MemberDto)session.getAttribute("memberInfo");
+		memberDto = MemberServiceImpl.getMemberService().getMemberDetail(memberDto.getUser_id());
+		System.out.println("memberinfodetailaction>>>>>>>>>>>>"+memberDto.getUser_id());
+		request.setAttribute("memberDetailInfo", memberDto);
+		
+		return "/member/detailInfo.jsp";
 	}
 
 }

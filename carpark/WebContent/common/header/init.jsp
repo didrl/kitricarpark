@@ -98,7 +98,7 @@ if(memberDto!=null){
 				class="caret"></b></a>
 			<ul class="dropdown-menu">
 				<li><a href="<%=root%>/member?act=mvprofile"><i class="fa fa-fw fa-user"></i> profile</a></li>
-				<li><a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
+				<li><a href="<%=root%>/member?act=mvmessage"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
 				</li>
 				<li><a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a></li>
 				<li class="divider"></li>
@@ -138,6 +138,8 @@ if(memberDto!=null){
 
 	<!-- /.navbar-collapse -->
 </nav>
+
+
 
 
 <!-- login modal popup -->
@@ -221,7 +223,7 @@ if(memberDto!=null){
 						<div class="input-group">
 							<input type="text" class="form-control" name="id" id="username"
 								placeholder="id" required="required"> <span class="input-group-btn">
-								<button class="btn btn-success">
+								<button class="btn btn-success" id="idcheck">
 									id 체크<i class="fa fa-edit spaceLeft"></i>
 								</button>
 							</span>
@@ -284,4 +286,6 @@ if(memberDto!=null){
 		</div>
 	</div>
 </div>
+
+
 

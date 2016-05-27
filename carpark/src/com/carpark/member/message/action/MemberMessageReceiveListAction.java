@@ -24,9 +24,9 @@ public class MemberMessageReceiveListAction implements Action {
 		String receiveId = memberDto.getUser_id();
 		List<MessageDto> receiveList = MemberMessageServiceImpl.getMemberMessageService().receiveListArticle(receiveId);
 		
-		request.setAttribute("messageList", receiveList);
+		request.setAttribute("receiveList", receiveList);
 		
-		return "/message/list.jsp";
+		return "/message/receivelist.jsp";
 	}
 
 }

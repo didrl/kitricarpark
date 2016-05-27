@@ -5,7 +5,6 @@
     pageEncoding="UTF-8"%>
 
 <%@include file="/common/common.jsp" %>
-
 <%@include file="/common/header/init.jsp"%>
 
 <%
@@ -24,8 +23,10 @@ System.out.println("<><><><><><><><"+parkingDetail.getPark_id()	);
    
 
 
-<!-- Seclect List CSS -->
+<!-- Seclect List CSS
+
 <link rel="stylesheet" type="text/css" href="/carpark/css/jquery.selectlist.css">
+ -->
 
 <!-- Simple Celander -->
 <link rel="stylesheet" href="/carpark/css/calendar/style.css" />
@@ -230,6 +231,9 @@ for(ReviewDto reviewDto : reviewlist){
 					<div class="panel panel-default">
 					<form id="selectdateForm" name="selectdateForm" class="form-inline" role="form" method="post" >
 					<input type="hidden"  name="act" value="mvReservation">
+					<input type="hidden"  name="park_id" value="<%=parkingDetail.getPark_id()%>">
+					<input type="hidden"  name="park_name" value="<%=parkingDetail.getPark_name()%>">
+					<input type="hidden"  name="host_id" value="<%=parkingDetail.getPark_name()%>">
 						<div class="panel-body">	
 				<div class="row"><!-- From Choice Start -->
 					<div class="col-md-3">
@@ -237,7 +241,7 @@ for(ReviewDto reviewDto : reviewlist){
 						</div>
 						<div class="col-md-9" >		
 								<input class="date-picker" id="fromdate" name="fromdate" type="text" />
-								<select id="fromTime" name="fromTime">
+								<select id="srfromTime" name="srfromTime">
 								  <option value="0">00:00</option><option value="1">01:00</option><option value="2">02:00</option>
 								  <option value="3">03:00</option> <option value="4">04:00</option><option value="5">05:00</option>
 								  <option value="6">06:00</option><option value="7">07:00</option><option value="8">08:00</option>
@@ -255,7 +259,7 @@ for(ReviewDto reviewDto : reviewlist){
 								</div>
 								<div class="col-md-9" >
 								<input class="date-picker" id="todate"   name="todate" type="text" />
-								<select id="toTime" name="toTime">
+								<select id="srtoTime" name="srtoTime">
 								  <option value="0">00:00</option><option value="1">01:00</option><option value="2">02:00</option>
 								  <option value="3">03:00</option> <option value="4">04:00</option><option value="5">05:00</option>
 								  <option value="6">06:00</option><option value="7">07:00</option><option value="8">08:00</option>
@@ -267,7 +271,9 @@ for(ReviewDto reviewDto : reviewlist){
 								</select>
 								</div>
 					</div>	<!-- To Choice End --><br>
-								<button type="button" class="btn btn-success" id="goreser" name="goreser" ">
+
+								<button type="button" onclick="javascript:goReservation();" class="btn btn-success" id="goreser" name="goreser"">
+
                   				 예약하기 
                				</button>
 					</div> <!--  radio button에 의한 Multi reservation End-->
@@ -360,26 +366,26 @@ for(ReviewDto reviewDto : reviewlist){
 									}
 								});
 			});
-			
+			/*
 			$('#goreser').on('click', function (event) {
 				  var button = $(event.relatedTarget) // Button that triggered the modal
-				
 				  $.ajax({
- //			            url:'/carpark/reservation?act=mvReservation&park_id=<%=parkingDetail.getPark_id()%>',
+						type:"POST",
 						url:'/carpark/reservation',
 			            data:{
 			            	act : "mvReservation",
 			            	park_id : "<%=parkingDetail.getPark_id()%>",
-			            	fromTime : $("#fromTime").val(),
-			            	toTime : $("#toTime").val()
-										            	
+			            	fromTime : $("#srfromTime").val(),
+			            	toTime : $("#srtoTime").val(),
+			            	fromdate : $("#fromdate").val(),
+			            	todate : $("#todate").val()
 			            },
 			            success:function(data){
 			            }
 			        })
 
 				})
-			
+			*/
 			// 맵 위에서 마우스 휠, 키보드 방향키가 동작하지 않도록 막음
 			$('#map_div').on('scroll touchmove mousewheel', function(e){
 				e.preventDefault();
@@ -391,13 +397,13 @@ for(ReviewDto reviewDto : reviewlist){
 			$('#sendMsgToHost').on('click', function (event) {
 				  var button = $(event.relatedTarget) // Button that triggered the modal
 			      console.log("Here!");
-			        $("#receiver").text("<%=parkingDetail.getOwner_id() %>");
+			        $("#receiver").text("<%=parkingDetail.getOwner_id()%>");
 			        $("#receiver").attr("disabled");
 			        $('#msgToHost').show();
 				})
 			
 		</script>
-		<script src="/carpark/js/selectlist/jquery.selectlist.js"></script>
+<!-- 		<script src="/carpark/js/selectlist/jquery.selectlist.js"></script> 
 		<script type="text/javascript">
 			$(function(){
 				$('select').selectlist({
@@ -409,7 +415,7 @@ for(ReviewDto reviewDto : reviewlist){
 </script>
 
 
-
+-->
 
 <!-- ****************************************************************************************************************** -->
 

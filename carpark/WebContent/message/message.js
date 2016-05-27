@@ -8,8 +8,17 @@ function messageSearch() {
 	}
 }
 
-function messageView(seq) {
-	document.getElementById("act").value = "messageView";
+function messageSendView(seq) {
+	document.getElementById("act").value = "messageSendView";
+	document.getElementById("seq").value = seq;
+		
+	document.common.action = "/carpark/message";
+	document.common.submit();
+	
+}
+
+function messageReceiveView(seq) {
+	document.getElementById("act").value = "messageReceiveView";
 	document.getElementById("seq").value = seq;
 		
 	document.common.action = "/carpark/message";
@@ -55,4 +64,8 @@ function messageWrite() {
 		document.writeForm.action = "/carpark/message";
 		document.writeForm.submit();
 	}
+}
+
+function msgToHost() {
+	
 }

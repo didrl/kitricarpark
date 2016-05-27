@@ -1,17 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
-    import="com.carpark.member.model.ReservationDto, java.util.*"
-    import="com.carpark.member.model.MemberCarDto"
+    import="com.carpark.member.model.ReservationDto, java.util.*,com.carpark.member.model.MemberCarDto"
     %>
     
 <%@include file="/common/common.jsp" %>
 <%@include file="/common/header/init.jsp"%>
 
 <%
-ReservationDto reservationDto = (ReservationDto)request.getAttribute("reservationDto");
+ReservationDto reservationDto = (ReservationDto) request.getAttribute("reservationDto");
 ArrayList<MemberCarDto> carInfo = (ArrayList<MemberCarDto>) request.getAttribute("carinfo"); 
 ArrayList<String> availdate = (ArrayList<String>) request.getAttribute("availalbledate");
-//if(reservationDto != null){
+if(reservationDto != null){
 %>
     <!-- For sendMsg Modal -->
    <%@include file="/reservation/sendMessageModal.jsp"%>
@@ -23,9 +22,9 @@ ArrayList<String> availdate = (ArrayList<String>) request.getAttribute("availalb
    <%@include file="/reservation/payment.jsp"%>
    <!-- For payment Modal -->
 
-<!-- Seclect List CSS -->
+<!-- Seclect List CSS
 <link rel="stylesheet" type="text/css" href="/carpark/css/jquery.selectlist.css">
-
+ -->
 <!-- Simple Celander -->
 <link rel="stylesheet" href="/carpark/css/calendar/style.css" />
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -109,7 +108,7 @@ ArrayList<String> availdate = (ArrayList<String>) request.getAttribute("availalb
 								<div class="pull-right">T o :</div> 
 								</div>
 								<div class="col-md-8 col-lg-8 col-sm-8" >
-								<input class="date-picker" id="rdtodate" name="todardtodatete" type="text" />
+								<input class="date-picker" id="rdtodate" name="rdtodate" type="text" />
 								<select id="rdtoTime" name="rdtoTime">
 								  <option value="0">00:00</option><option value="1">01:00</option><option value="2">02:00</option>
 								  <option value="3">03:00</option> <option value="4">04:00</option><option value="5">05:00</option>
@@ -130,7 +129,19 @@ ArrayList<String> availdate = (ArrayList<String>) request.getAttribute("availalb
 						</div>
 						<div class="col-md-8 col-lg-8 col-sm-8" >		
 								<input class="date-picker" id="singedate"  name="singedate"  type="text"  />
-								<select id="dateTime" name="dateTime">
+								<select id="datefromTime" name="datefromTime">
+								  <option value="0">00:00</option><option value="1">01:00</option><option value="2">02:00</option>
+								  <option value="3">03:00</option> <option value="4">04:00</option><option value="5">05:00</option>
+								  <option value="6">06:00</option><option value="7">07:00</option><option value="8">08:00</option>
+								  <option value="9">09:00</option><option value="10">10:00</option><option value="11">11:00</option>
+								  <option value="12">12:00</option><option value="13">13:00</option><option value="14">14:00</option>
+								  <option value="15">15:00</option> <option value="16">16:00</option><option value="17">17:00</option>
+								  <option value="18">18:00</option><option value="19">19:00</option> <option value="20">20:00</option>
+								  <option value="21">21:00</option><option value="22">22:00</option><option value="23">23:00</option>
+								</select>
+							</div>
+							<div class="col-md-8 col-lg-8 col-sm-8" >		
+								<select id="datetoTime" name="datetoTime">
 								  <option value="0">00:00</option><option value="1">01:00</option><option value="2">02:00</option>
 								  <option value="3">03:00</option> <option value="4">04:00</option><option value="5">05:00</option>
 								  <option value="6">06:00</option><option value="7">07:00</option><option value="8">08:00</option>
@@ -148,11 +159,11 @@ ArrayList<String> availdate = (ArrayList<String>) request.getAttribute("availalb
 								<div class="pull-right">등록 차량 </div>
 						</div>
 						<div class="col-md-8 col-lg-8 col-sm-8" >		
-								<selectlong  id="mycarlist" name="mycarlist" >
+								<select  id="mycarlist" name="mycarlist" >
 <%for(MemberCarDto memberCarDto : carInfo){ %>
 								  <option value="<%=memberCarDto.getCar_id()%>"><%=memberCarDto.getModel() %></option>  
 <%} %>
-								</selectlong>
+								</select>
 								<button type="button" class="btn btn-success"  id="addmycarbt" data-toggle="modal" data-target="#addCar">
                   				 + 차량 등록 
                				</button>
@@ -164,12 +175,12 @@ ArrayList<String> availdate = (ArrayList<String>) request.getAttribute("availalb
 								<div class="pull-right">이용 목적</div>
 						</div>
 						<div class="col-md-8 col-lg-8 col-sm-8" >		
-								<selectlong  id="reasonlist" name="reasonlist" >
+								<select  id="reasonlist" name="reasonlist" >
 								  <option value="business">업무</option>
 								  <option value="trip">여행</option>
 								  <option value="visit">방문</option>
 								  <option value="ext">기타</option>
-								</selectlong>
+								</select>
 							</div>
 					</div><!-- Select Reason div End--> <br>
 					</div><!--  Left panel body End -->
@@ -225,9 +236,9 @@ ArrayList<String> availdate = (ArrayList<String>) request.getAttribute("availalb
 
 	
 </div>
-		<!-- Custom Theme JavaScript -->
+		<!-- Custom Theme JavaScript 
 		<script src="/carpark/js/selectlist/jquery.selectlist.js"></script>
-
+-->
 		<script>
 			// Closes the sidebar menu
 			$("#menu-close").click(function(e) {
@@ -264,7 +275,7 @@ ArrayList<String> availdate = (ArrayList<String>) request.getAttribute("availalb
 									}
 								});
 			});
-			
+	/*		
 			$(function(){
 				$('select').selectlist({
 					zIndex: 10,
@@ -279,19 +290,26 @@ ArrayList<String> availdate = (ArrayList<String>) request.getAttribute("availalb
 					height: 30
 				});		
 			})
-			
+	*/
 
 		$(document).ready(function () {
 				$("#multireservation").attr("checked", true);
 				$("#singleReservationDiv").addClass("hidden");
 				
-				$("'#rdfromdate").val(<%=reservationDto.getHost_id() %>);
-				$("'#rdtodate").val(<%=reservationDto.getHost_id() %>);
+				//init time
+				$("#rdfromdate").val("<%=reservationDto.getFromdate()%>");
+				$("#rdtodate").val("<%=reservationDto.getTodate()%>");
+				$("#rdtoTime").val("<%=reservationDto.getTotime()%>");
+				$("#rdfromTime").val("<%=reservationDto.getFromtime()%>");
+				
+				$("#datefromTime").val("<%=reservationDto.getFromtime()%>");
+				$("#datetoTime").val("<%=reservationDto.getTotime()%>");
+				$("#singedate").val("<%=reservationDto.getFromdate()%>");
+				
 		});
 			// Radio Control div Show or Hide 
 				$("#multireservation").on("click",function(){
 					if(this.checked){
-						console.log(this+"   func");
 						$("#multiReservationDiv").removeClass("hidden");
 						$("#singleReservationDiv").addClass("hidden");
 					}
@@ -299,21 +317,24 @@ ArrayList<String> availdate = (ArrayList<String>) request.getAttribute("availalb
 				
 				$("#singlereservation").on("click",function(){
 					if(this.checked){
-						console.log(this+"   func");
 						$("#multiReservationDiv").addClass("hidden");
 						$("#singleReservationDiv").removeClass("hidden");
 					}
 				});
 			
 				
-		//	$("#addmycarbt").on('clikc',function(e){
-		//		 $('#addcar').show();
-		//	});
+			$("#addmycarbt").on('click',function(e){
+				$("#inputCarNum").empty();
+				$("#inputCarName").empty();
+				$("#addCarTitle").append("<%=memberDto.getUser_id()%>");
+				
+				$('#addcar').show();
+			});
 			
 			$('#mvpaymodalbtn').on('click', function (event) {
 				  var button = $(event.relatedTarget) // Button that triggered the modal
-				  var fdate =$('#fromdate');
-				  var tdate =$('#todate');
+				  var fdate =$('#rdfromdate');
+				  var tdate =$('#rdtodate');
 				  var ddate =$('#singledate');
 			      console.log("fd : "+fdate.val()+"  td : "+tdate.val()+"  dd :"+ddate.val());
 	
@@ -322,17 +343,19 @@ ArrayList<String> availdate = (ArrayList<String>) request.getAttribute("availalb
 			        $("#selectedtodate").empty();
 			        $("#selectedid").empty();
 			        $("#selectedgrade").empty();
-			        $("#selectedcarinfo").empty();
+			        $("#selectedcarnum").empty();
+			        $("#selectedcarname").empty();
 			        $("#selectedcoin").empty();
 			        $("#selectedprice").empty();
 			        // Clean text in modal label
 			            	
-			        $("#selectedfromdate").append($('#fromdate').val());
-			        $("#selectedtodate").append($('#todate').val());
-			        $("#selectedid").append("Hello");
-			        $("#selectedgrade").append();
-			        $("#selectedcarinfo").append();
-			        $("#selectedcoin").append();
+			        $("#selectedfromdate").append(fdate);
+			        $("#selectedtodate").append(tdate);
+			        $("#selectedid").append("<%=memberDto.getUser_id()%>");
+			        $("#selectedgrade").append("<%=memberDto.getGrade_id()%>");
+			        $("#selectedcarnum").append($("#mycarlist option:selected").val());
+			        $("#selectedcarname").append($("#mycarlist option:selected").text());
+			        $("#selectedcoin").append("<%=memberDto.getCoin()%>");
 			        $("#selectedprice").append();
 			        
 			        $('#payment').show();
@@ -348,15 +371,15 @@ ArrayList<String> availdate = (ArrayList<String>) request.getAttribute("availalb
 
 
 <%@ include file="/common/footer.jsp" %>		
-		<!-- 
+		
 <%
-//}else{
+}else{
 %>
 <script type="text/javascript">
 alert("잘못된 접근입니다. 다시 시도해주세요.");
 document.location.href = "<%=root%>/index.jsp";
 </script>
 <%
-//}
+}
 %>
- -->
+ 

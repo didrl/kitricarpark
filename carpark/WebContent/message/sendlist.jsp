@@ -8,7 +8,7 @@
     
 <%
 if(memberDto != null) {
-List<MessageDto> list = (List<MessageDto>) request.getAttribute("messageList");
+List<MessageDto> list = (List<MessageDto>) request.getAttribute("sendList");
 %>
 
 <div id="wrapper">
@@ -26,7 +26,7 @@ List<MessageDto> list = (List<MessageDto>) request.getAttribute("messageList");
 	  				<button type="button" class="btn btn-default" onclick="javascript:messageSendList();">
 	  					보낸쪽지함
 	  				</button>	
-					<button type="button" class="btn btn-default"  data-toggle="modal" data-target="#sendMessage">
+					<button type="button" class="btn btn-default"  data-toggle="modal" data-target="#messageWrite">
                 		쪽지보내기
                		</button>
 				</div>
@@ -40,9 +40,9 @@ List<MessageDto> list = (List<MessageDto>) request.getAttribute("messageList");
 				<div class="table">
 				  <table class="table table-hover" style="text-align:center">
 				  	<tr>
-				  		<td width="200"><b>보낸사람</b></td>
+				  		<td width="200"><b>받는사람</b></td>
 				  		<td><b>제목</b></td>
-				  		<td width="100"><b>보낸시간</b></td>
+				  		<td><b>시간</b></td>
 				  		<td width="50"><b>확인</b></td>
 				  	</tr>
 				
@@ -53,24 +53,27 @@ if(size > 0) {
 %>
 					<!-- 모달로 연결해야함 -->
 					<tr >
-						<td><a href="javascript:messageView('<%=messageDto.getSeq()%>');"><%=messageDto.getReceiverId() %></a></td>
-						<td><a href="javascript:messageView('<%=messageDto.getSeq() %>');"><%=messageDto.getSubject() %></a></td>
+						<td><a href="javascript:messageSendView('<%=messageDto.getSeq()%>');"><%=messageDto.getReceiverId() %></a></td>
+						<td><a href="javascript:messageSendView('<%=messageDto.getSeq() %>');"><%=messageDto.getSubject() %></a></td>
 						<td><%=messageDto.getLogtime() %></td>						
 						<td><%=(messageDto.getMsgFlag() == 0) ? "X" : "O" %></td>
 					</tr>
+				  </table>
+				</div>
+				
+					<!-- 메세지보기 모달창 -->	
+					<%@ include file="/message/sendview.jsp" %>
 <%
 	}	
 } else {
 %>
-<center><h3>메세지가 없습니다</h3></center>	  
+				  </table>
+				</div>
+<center><h3>메세지가 없습니다</h3></center>	
+<br><br>  
 <%
 }
 %>
-				  </table>
-				</div>
-				
-			<!-- 메세지보기 모달창 -->	
-			<%@include file="/message/view.jsp" %>
 
 
 			<!-- 페이지 네비게이션/검색 -->

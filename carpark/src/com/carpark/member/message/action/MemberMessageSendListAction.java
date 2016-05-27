@@ -22,9 +22,9 @@ public class MemberMessageSendListAction implements Action {
 		
 		String userId = memberDto.getUser_id();
 		List<MessageDto> sendList = MemberMessageServiceImpl.getMemberMessageService().sendListArticle(userId);
-		request.setAttribute("messageList", sendList);
+		request.setAttribute("sendList", sendList);
 		
-		return "/message/list.jsp";
+		return "/message/sendlist.jsp";
 	}
 
 }

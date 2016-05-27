@@ -76,7 +76,7 @@ public class MemberDaoImpl implements MemberDao {
 			conn=DBConnection.makeConnection();
 			String sql="";
 
-			sql+="select user_name,user_id,carinfo,coin,user_avgpoint,penalty,user_name,email,tel,grade_id \n";
+			sql+="select user_name,user_id,coin,user_avgpoint,penalty,user_name,email,tel,grade_id \n";
 			sql+="from member \n";
 			sql+="where user_id=? \n";
 		
@@ -245,5 +245,10 @@ public class MemberDaoImpl implements MemberDao {
 		return parkingDto;
 	}
 
-	
+	@Override
+	public int addNewCar(String user_id) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }
