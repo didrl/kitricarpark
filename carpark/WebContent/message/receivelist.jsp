@@ -65,7 +65,7 @@ if(messageDto.getMsgFlag() == 0) {
 } else {
 %>
 						<td>O</td>
-						<td><input type="button" class="btn btn-default" value="삭제" onclick="javascript:messageDelete('<%=messageDto.getSeq()%>');"></td>
+						<td><input type="button" class="btn btn-default" value="삭제" onclick="javascript:messageDelete('<%=messageDto.getSeq()%>, <%=messageDto.getReceiverId()%>');"></td>
 					</tr>
 <%
 	}	

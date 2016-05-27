@@ -24,12 +24,13 @@ MessageDto messageDto = (MessageDto) request.getAttribute("messageView");
 	<input type="hidden" name="key" id="key" value="">
 	<input type="hidden" name="word" id="word" value="">
 	<input type="hidden" name="seq" id="seq" value="">
+	<input type="hidden" name="receiver" id="receiver" value="">
 </form>
 <br>
 <div id="page-wrapper">
 <div class="container-fluid">
 	<p>
-	<input type="button" class="btn btn-default" value="삭제" onclick="javascript:messageDelete('<%=messageDto.getSeq()%>');">
+	<input type="button" class="btn btn-default" value="삭제" onclick="javascript:messageDelete('<%=messageDto.getSeq()%>,<%=messageDto.getReceiverId() %>');">
 	</p>
 	<table class="table">
 		<tr>
