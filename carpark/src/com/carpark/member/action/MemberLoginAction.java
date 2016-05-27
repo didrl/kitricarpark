@@ -22,7 +22,6 @@ public class MemberLoginAction implements Action{
 		HttpSession session = request.getSession();
 		String id = request.getParameter("id");
 		String pass = request.getParameter("pass");
-		
 		MemberDto memberDto = MemberServiceImpl.getMemberService().login(id,pass);
 		session.setAttribute("memberInfo",memberDto);
 			

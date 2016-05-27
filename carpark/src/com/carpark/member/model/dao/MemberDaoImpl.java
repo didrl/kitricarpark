@@ -244,7 +244,6 @@ public class MemberDaoImpl implements MemberDao {
 		
 		return parkingDto;
 	}
-<<<<<<< HEAD
 
 	@Override
 	public int addNewCar(String user_id) {
@@ -252,7 +251,4 @@ public class MemberDaoImpl implements MemberDao {
 		return 0;
 	}
 
-=======
->>>>>>> minseok
-	
 }
