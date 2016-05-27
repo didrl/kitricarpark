@@ -63,6 +63,7 @@ public class MemberActionFactory {
 	private static Action memberMessageWriteAction;
 	private static Action memberMessageSendViewAction;
 	private static Action memberMessageReceiveViewAction;
+	private static Action memberMessageReplyAction;
 	
 	private static Action memberReportListAction;
 	private static Action memberReportRegisterAction;
@@ -109,6 +110,7 @@ public class MemberActionFactory {
 		memberMessageWriteAction = new MemberMessageWriteAction();
 		memberMessageSendViewAction = new MemberMessageSendViewAction();
 		memberMessageReceiveViewAction = new MemberMessageReceiveViewAction();
+		memberMessageReplyAction = new MemberMessageReplyAction();
 		
 		memberReportListAction = new MemberReportListAction();
 		memberReportRegisterAction = new MemberReportRegisterAction();
@@ -223,6 +225,10 @@ public class MemberActionFactory {
 	
 	public static Action getMemberMessageReceiveViewAction() {
 		return memberMessageReceiveViewAction;
+	}
+	
+	public static Action getMemberMessageReplyAction() {
+		return memberMessageReplyAction;
 	}
 	
 	public static Action getMemberReportListAction() {

@@ -55,16 +55,24 @@ if(size > 0) {
 					<tr >
 						<td><a href="javascript:messageReceiveView('<%=messageDto.getSeq()%>');"><%=messageDto.getReceiverId() %></a></td>
 						<td><a href="javascript:messageReceiveView('<%=messageDto.getSeq() %>');"><%=messageDto.getSubject() %></a></td>
-						<td><%=messageDto.getLogtime() %></td>						
-						<td><%=(messageDto.getMsgFlag() == 0) ? "X" : "O" %></td>
+						<td><%=messageDto.getLogtime() %></td>	
+<%
+if(messageDto.getMsgFlag() == 0) {
+%>					
+						<td>X</td>
+<%
+} else {
+%>
+						<td>O</td>
 					</tr>
-				  </table>
-				</div>
-				
-					<!-- 메세지보기 모달창 -->	
-					<%@ include file="/message/receiveview.jsp" %>
 <%
 	}	
+}
+%>
+				  </table>
+				</div>
+
+<%
 } else {
 %>
 				  </table>
