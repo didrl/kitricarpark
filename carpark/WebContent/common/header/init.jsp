@@ -223,7 +223,7 @@ if(memberDto!=null){
 						<div class="input-group">
 							<input type="text" class="form-control" name="id" id="username"
 								placeholder="id" required="required"> <span class="input-group-btn">
-								<button class="btn btn-success">
+								<button class="btn btn-success" id="idcheck">
 									id 체크<i class="fa fa-edit spaceLeft"></i>
 								</button>
 							</span>
@@ -286,4 +286,6 @@ if(memberDto!=null){
 		</div>
 	</div>
 </div>
+
+
 
