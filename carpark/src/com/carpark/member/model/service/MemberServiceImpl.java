@@ -69,5 +69,10 @@ public class MemberServiceImpl implements MemberService {
 	public ParkingDto parkingDetail(String parkingId) {
 		return MemberDaoImpl.getMemberDao().parkingDetail(parkingId);
 	}
+
+	@Override
+	public int addNewCar(String user_id) {
+		return MemberDaoImpl.getMemberDao().addNewCar(user_id);
+	}
 	
 }

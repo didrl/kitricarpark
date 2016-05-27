@@ -52,8 +52,8 @@ public class MemberReservationDaoImpl implements MemberReservationDao {
 
 			rs=pstmt.executeQuery();
 			
-			System.out.println("id   in carinfo "+user_id);
-			System.out.println(sql);
+//			System.out.println("id   in carinfo "+user_id);
+//			System.out.println(sql);
 
 			while(rs.next()){
 				memberCarDto = new MemberCarDto();
@@ -96,8 +96,8 @@ public class MemberReservationDaoImpl implements MemberReservationDao {
 			pstmt.setInt(idx++, park_id);
 			rs=pstmt.executeQuery();
 			
-			System.out.println("park_id    in getdate"+park_id);
-			System.out.println(sql);
+//			System.out.println("park_id    in getdate"+park_id);
+//			System.out.println(sql);
 
 			while(rs.next()){
 				map = new HashMap<String, String>();

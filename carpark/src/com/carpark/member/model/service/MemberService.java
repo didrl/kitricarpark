@@ -15,4 +15,5 @@ public interface MemberService {
 	MemberDto login(String id ,String pass);	
 	List<ParkingDto>list(Map<String,String> map);
 	ParkingDto parkingDetail(String parkingId);
+	int addNewCar(String user_id);
 }
