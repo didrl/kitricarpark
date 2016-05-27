@@ -1,17 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
-    import="com.carpark.member.model.ReservationDto, java.util.*"
-    import="com.carpark.member.model.MemberCarDto"
+    import="com.carpark.member.model.ReservationDto, java.util.*,com.carpark.member.model.MemberCarDto"
     %>
     
 <%@include file="/common/common.jsp" %>
 <%@include file="/common/header/init.jsp"%>
 
 <%
-ReservationDto reservationDto = (ReservationDto)request.getAttribute("reservationDto");
+ReservationDto reservationDto = (ReservationDto) request.getAttribute("reservationDto");
 ArrayList<MemberCarDto> carInfo = (ArrayList<MemberCarDto>) request.getAttribute("carinfo"); 
 ArrayList<String> availdate = (ArrayList<String>) request.getAttribute("availalbledate");
-//if(reservationDto != null){
+if(reservationDto != null){
 %>
     <!-- For sendMsg Modal -->
    <%@include file="/reservation/sendMessageModal.jsp"%>
@@ -23,9 +22,9 @@ ArrayList<String> availdate = (ArrayList<String>) request.getAttribute("availalb
    <%@include file="/reservation/payment.jsp"%>
    <!-- For payment Modal -->
 
-<!-- Seclect List CSS -->
+<!-- Seclect List CSS
 <link rel="stylesheet" type="text/css" href="/carpark/css/jquery.selectlist.css">
-
+ -->
 <!-- Simple Celander -->
 <link rel="stylesheet" href="/carpark/css/calendar/style.css" />
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -109,7 +108,7 @@ ArrayList<String> availdate = (ArrayList<String>) request.getAttribute("availalb
 								<div class="pull-right">T o :</div> 
 								</div>
 								<div class="col-md-8 col-lg-8 col-sm-8" >
-								<input class="date-picker" id="rdtodate" name="todardtodatete" type="text" />
+								<input class="date-picker" id="rdtodate" name="rdtodate" type="text" />
 								<select id="rdtoTime" name="rdtoTime">
 								  <option value="0">00:00</option><option value="1">01:00</option><option value="2">02:00</option>
 								  <option value="3">03:00</option> <option value="4">04:00</option><option value="5">05:00</option>
@@ -164,12 +163,12 @@ ArrayList<String> availdate = (ArrayList<String>) request.getAttribute("availalb
 								<div class="pull-right">이용 목적</div>
 						</div>
 						<div class="col-md-8 col-lg-8 col-sm-8" >		
-								<selectlong  id="reasonlist" name="reasonlist" >
+								<select  id="reasonlist" name="reasonlist" >
 								  <option value="business">업무</option>
 								  <option value="trip">여행</option>
 								  <option value="visit">방문</option>
 								  <option value="ext">기타</option>
-								</selectlong>
+								</select>
 							</div>
 					</div><!-- Select Reason div End--> <br>
 					</div><!--  Left panel body End -->
@@ -225,9 +224,9 @@ ArrayList<String> availdate = (ArrayList<String>) request.getAttribute("availalb
 
 	
 </div>
-		<!-- Custom Theme JavaScript -->
+		<!-- Custom Theme JavaScript 
 		<script src="/carpark/js/selectlist/jquery.selectlist.js"></script>
-
+-->
 		<script>
 			// Closes the sidebar menu
 			$("#menu-close").click(function(e) {
@@ -264,7 +263,7 @@ ArrayList<String> availdate = (ArrayList<String>) request.getAttribute("availalb
 									}
 								});
 			});
-			
+	/*		
 			$(function(){
 				$('select').selectlist({
 					zIndex: 10,
@@ -279,19 +278,19 @@ ArrayList<String> availdate = (ArrayList<String>) request.getAttribute("availalb
 					height: 30
 				});		
 			})
-			
+	*/
 
 		$(document).ready(function () {
 				$("#multireservation").attr("checked", true);
 				$("#singleReservationDiv").addClass("hidden");
 				
-				$("'#rdfromdate").val(<%=reservationDto.getHost_id() %>);
-				$("'#rdtodate").val(<%=reservationDto.getHost_id() %>);
+			console.log("hereasdf    <%=reservationDto.getFromdate()%>        <%=reservationDto.getTodate()%>");
+				$("#rdfromdate").text("<%=reservationDto.getFromdate()%>");
+				$("#rdtodate").text("<%=reservationDto.getTodate()%>");
 		});
 			// Radio Control div Show or Hide 
 				$("#multireservation").on("click",function(){
 					if(this.checked){
-						console.log(this+"   func");
 						$("#multiReservationDiv").removeClass("hidden");
 						$("#singleReservationDiv").addClass("hidden");
 					}
@@ -299,7 +298,6 @@ ArrayList<String> availdate = (ArrayList<String>) request.getAttribute("availalb
 				
 				$("#singlereservation").on("click",function(){
 					if(this.checked){
-						console.log(this+"   func");
 						$("#multiReservationDiv").addClass("hidden");
 						$("#singleReservationDiv").removeClass("hidden");
 					}
@@ -348,15 +346,15 @@ ArrayList<String> availdate = (ArrayList<String>) request.getAttribute("availalb
 
 
 <%@ include file="/common/footer.jsp" %>		
-		<!-- 
+		
 <%
-//}else{
+}else{
 %>
 <script type="text/javascript">
 alert("잘못된 접근입니다. 다시 시도해주세요.");
 document.location.href = "<%=root%>/index.jsp";
 </script>
 <%
-//}
+}
 %>
- -->
+ 

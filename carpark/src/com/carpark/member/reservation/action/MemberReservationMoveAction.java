@@ -37,17 +37,17 @@ public class MemberReservationMoveAction implements Action {
 		int park_id = Integer.parseInt(request.getParameter("park_id"));
 		
 		reservationDto.setUser_id(user_id);
+		reservationDto.setHost_id(request.getParameter("host_id"));
 		ArrayList<MemberCarDto> carinfo=MemberReservationServiceImpl.getMemberReservationService().getCarInfo(user_id);
 		ArrayList<Map<String,String>> availabledate =MemberReservationServiceImpl.getMemberReservationService().getAvailDate(park_id);
 		reservationDto.setFromdate(request.getParameter("fromdate"));
 		reservationDto.setTodate(request.getParameter("todate"));
-		reservationDto.setFromtime(Integer.parseInt(request.getParameter("fromTime")));
-		reservationDto.setTotime(Integer.parseInt(request.getParameter("toTime")));
+		reservationDto.setFromtime(Integer.parseInt(request.getParameter("srfromTime")));
+		reservationDto.setTotime(Integer.parseInt(request.getParameter("srtoTime")));
 		
 		//parkingDto 
 		reservationDto.setPark_id(park_id);
 		reservationDto.setPark_name(request.getParameter("park_name"));
-
 		
 		request.setAttribute("reservationDto", reservationDto);
 		request.setAttribute("carinfo", carinfo);
