@@ -328,6 +328,7 @@ if(reservationDto != null){
 				$("#inputCarName").empty();
 				$("#addCarTitle").append("<%=memberDto.getUser_id()%>");
 				
+				
 				$('#addcar').show();
 			});
 			
