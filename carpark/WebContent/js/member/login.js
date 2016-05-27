@@ -1,5 +1,5 @@
 function detailprofile(){
-	document.location.href=root+"/member?act=mvSearchResultDetail";
+	document.location.href=root+"/member?act=mvProfileDetail";
 }
 
 function confirm(){

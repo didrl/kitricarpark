@@ -10,6 +10,7 @@ public interface MemberService {
 	int register(MemberDto memberDto);
 	int idcheck(String id);
 	MemberDto getMember(String id);
+	MemberDto getMemberDetail(String id);	
 	int modify(MemberDto memberDto);
 	int delete(String id);
 	MemberDto login(String id ,String pass);	
