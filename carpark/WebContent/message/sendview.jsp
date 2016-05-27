@@ -26,17 +26,17 @@ if(viewDto != null) {
 						<div class="table-responsive">
 				  			<table class="table">
 							  <tr>
-							  	<td width="100">보낸사람</td>
-							  	<td><%=viewDto.getUserID() %></td>
-							  	<td width="100">보낸시간</td>
-							  	<td width="100"><%=viewDto.getLogtime() %></td>
+							  	<td width="80">받는사람</td>
+							  	<td><%=viewDto.getReceiverId() %></td>
+							  	<td>시간</td>
+							  	<td width="80"><%=viewDto.getLogtime() %></td>
 							  </tr>
 							  <tr>
-							  	<td width="100">제목</td>
+							  	<td width="80">제목</td>
 							  	<td colspan="3"><%=viewDto.getSubject() %></td>
 							  </tr>
 							  <tr>
-							  	<td width="100">내용</td>
+							  	<td width="80">내용</td>
 							  	<td colspan="3"><p><%=viewDto.getContent() %></p></td>
 							  </tr>
 							</table>
@@ -53,10 +53,5 @@ if(viewDto != null) {
 	<!-- Msg Modal End -->
 
 <%
-} else {
-%>
-<center><b>글이 없습니다</b></center>
-<%
 }
 %>			
-				

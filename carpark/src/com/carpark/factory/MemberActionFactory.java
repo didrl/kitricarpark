@@ -57,8 +57,9 @@ public class MemberActionFactory {
 	private static Action memberMessageDeleteAction;
 	private static Action memberMessageSendListAction;
 	private static Action memberMessageReceiveListAction;	
-	private static Action memberMessageViewAction;
 	private static Action memberMessageWriteAction;
+	private static Action memberMessageSendViewAction;
+	private static Action memberMessageReceiveViewAction;
 	
 	private static Action memberReportListAction;
 	private static Action memberReportRegisterAction;
@@ -100,8 +101,9 @@ public class MemberActionFactory {
 		memberMessageDeleteAction = new MemberMessageDeleteAction();
 		memberMessageSendListAction = new MemberMessageSendListAction();
 		memberMessageReceiveListAction = new MemberMessageReceiveListAction();
-		memberMessageViewAction = new MemberMessageViewAction();
 		memberMessageWriteAction = new MemberMessageWriteAction();
+		memberMessageSendViewAction = new MemberMessageSendViewAction();
+		memberMessageReceiveViewAction = new MemberMessageReceiveViewAction();
 		
 		memberReportListAction = new MemberReportListAction();
 		memberReportRegisterAction = new MemberReportRegisterAction();
@@ -199,13 +201,17 @@ public class MemberActionFactory {
 	public static Action getMemberMessageReceiveListAction() {
 		return memberMessageReceiveListAction;
 	}
-
-	public static Action getMemberMessageViewAction() {
-		return memberMessageViewAction;
-	}
 	
 	public static Action getMemberMessageWriteAction() {
 		return memberMessageWriteAction;
+	}
+	
+	public static Action getMemberMessageSendViewAction() {
+		return memberMessageSendViewAction;
+	}
+	
+	public static Action getMemberMessageReceiveViewAction() {
+		return memberMessageReceiveViewAction;
 	}
 	
 	public static Action getMemberReportListAction() {

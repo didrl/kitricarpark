@@ -7,13 +7,14 @@
   
     
 <%
-List<MessageDto> list = (List<MessageDto>) request.getAttribute("messageList");
+if(memberDto != null) {
+List<MessageDto> list = (List<MessageDto>) request.getAttribute("receiveList");
 %>
 
 <div id="wrapper">
 <!-- ****************************************************************************************************************** -->	
 
-			<!-- main -->
+		<!-- main -->
 		<div id="page-wrapper">
 			<div class="container-fluid">
 				<br><h3>쪽지함</h3><br>
@@ -41,26 +42,39 @@ List<MessageDto> list = (List<MessageDto>) request.getAttribute("messageList");
 				  	<tr>
 				  		<td width="200"><b>보낸사람</b></td>
 				  		<td><b>제목</b></td>
-				  		<td width="100"><b>보낸시간</b></td>
+				  		<td><b>시간</b></td>
 				  		<td width="50"><b>확인</b></td>
 				  	</tr>
 				
 <%
-if(list != null) {
+int size = list.size();
+if(size > 0) {
 	for(MessageDto messageDto : list) {
 %>
+					<!-- 모달로 연결해야함 -->
 					<tr >
-						<td><a href="javascript:messageView('<%=messageDto.getSeq()%>');"><%=messageDto.getReceiverId() %></a></td>
-						<td><a href="javascript:messageView('<%=messageDto.getSeq() %>');"><%=messageDto.getSubject() %></a></td>
+						<td><a href="javascript:messageReceiveView('<%=messageDto.getSeq()%>');"><%=messageDto.getReceiverId() %></a></td>
+						<td><a href="javascript:messageReceiveView('<%=messageDto.getSeq() %>');"><%=messageDto.getSubject() %></a></td>
 						<td><%=messageDto.getLogtime() %></td>						
 						<td><%=(messageDto.getMsgFlag() == 0) ? "X" : "O" %></td>
 					</tr>
-<%
-	}	
-}
-%>	  
 				  </table>
 				</div>
+				
+					<!-- 메세지보기 모달창 -->	
+					<%@ include file="/message/receiveview.jsp" %>
+<%
+	}	
+} else {
+%>
+				  </table>
+				</div>
+<center><h3>메세지가 없습니다</h3></center>	
+<br><br>  
+<%
+}
+%>
+
 
 			<!-- 페이지 네비게이션/검색 -->
 			<nav align="center">
@@ -103,5 +117,12 @@ if(list != null) {
 	</div>
 <!-- ****************************************************************************************************************** -->	
 </div>
+<%
+} else {
+%>
+<center><h3>로그인 후 이용해주세요</h3></center>
+<%
+}
+%>
 
 <%@include file="/common/footer.jsp"%>
