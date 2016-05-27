@@ -74,5 +74,8 @@ public class MemberServiceImpl implements MemberService {
 	public int addNewCar(String user_id) {
 		return MemberDaoImpl.getMemberDao().addNewCar(user_id);
 	}
-	
+
+	public MemberDto getMemberDetail(String id) {
+		return MemberDaoImpl.getMemberDao().getMember(id);
+	}	
 }

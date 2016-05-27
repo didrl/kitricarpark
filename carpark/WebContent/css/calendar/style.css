@@ -5,7 +5,7 @@
 .picker-container {
 position: absolute;
 z-index: 1200;
-
+padding-top:35px;
 }
 
 
