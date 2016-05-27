@@ -40,11 +40,11 @@ public class MemberMessageController extends HttpServlet {
 			
 		} else if("messageSendList".equals(act)) {
 			path = MemberActionFactory.getMemberMessageSendListAction().execute(request, response);
-			PageMove.forward(request, response, path);
+			PageMove.forward(request, response, path + queryString);
 			
 		} else if("messageReceiveList".equals(act)) {
 			path = MemberActionFactory.getMemberMessageReceiveListAction().execute(request, response);
-			PageMove.forward(request, response, path);
+			PageMove.forward(request, response, path + queryString);
 			
 		} else if("".equals(act)) {
 			
