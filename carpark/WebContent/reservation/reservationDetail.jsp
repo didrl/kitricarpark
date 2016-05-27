@@ -129,7 +129,19 @@ if(reservationDto != null){
 						</div>
 						<div class="col-md-8 col-lg-8 col-sm-8" >		
 								<input class="date-picker" id="singedate"  name="singedate"  type="text"  />
-								<select id="dateTime" name="dateTime">
+								<select id="datefromTime" name="datefromTime">
+								  <option value="0">00:00</option><option value="1">01:00</option><option value="2">02:00</option>
+								  <option value="3">03:00</option> <option value="4">04:00</option><option value="5">05:00</option>
+								  <option value="6">06:00</option><option value="7">07:00</option><option value="8">08:00</option>
+								  <option value="9">09:00</option><option value="10">10:00</option><option value="11">11:00</option>
+								  <option value="12">12:00</option><option value="13">13:00</option><option value="14">14:00</option>
+								  <option value="15">15:00</option> <option value="16">16:00</option><option value="17">17:00</option>
+								  <option value="18">18:00</option><option value="19">19:00</option> <option value="20">20:00</option>
+								  <option value="21">21:00</option><option value="22">22:00</option><option value="23">23:00</option>
+								</select>
+							</div>
+							<div class="col-md-8 col-lg-8 col-sm-8" >		
+								<select id="datetoTime" name="datetoTime">
 								  <option value="0">00:00</option><option value="1">01:00</option><option value="2">02:00</option>
 								  <option value="3">03:00</option> <option value="4">04:00</option><option value="5">05:00</option>
 								  <option value="6">06:00</option><option value="7">07:00</option><option value="8">08:00</option>
@@ -147,11 +159,11 @@ if(reservationDto != null){
 								<div class="pull-right">등록 차량 </div>
 						</div>
 						<div class="col-md-8 col-lg-8 col-sm-8" >		
-								<selectlong  id="mycarlist" name="mycarlist" >
+								<select  id="mycarlist" name="mycarlist" >
 <%for(MemberCarDto memberCarDto : carInfo){ %>
 								  <option value="<%=memberCarDto.getCar_id()%>"><%=memberCarDto.getModel() %></option>  
 <%} %>
-								</selectlong>
+								</select>
 								<button type="button" class="btn btn-success"  id="addmycarbt" data-toggle="modal" data-target="#addCar">
                   				 + 차량 등록 
                				</button>
@@ -284,9 +296,16 @@ if(reservationDto != null){
 				$("#multireservation").attr("checked", true);
 				$("#singleReservationDiv").addClass("hidden");
 				
-			console.log("hereasdf    <%=reservationDto.getFromdate()%>        <%=reservationDto.getTodate()%>");
-				$("#rdfromdate").text("<%=reservationDto.getFromdate()%>");
-				$("#rdtodate").text("<%=reservationDto.getTodate()%>");
+				//init time
+				$("#rdfromdate").val("<%=reservationDto.getFromdate()%>");
+				$("#rdtodate").val("<%=reservationDto.getTodate()%>");
+				$("#rdtoTime").val("<%=reservationDto.getTotime()%>");
+				$("#rdfromTime").val("<%=reservationDto.getFromtime()%>");
+				
+				$("#datefromTime").val("<%=reservationDto.getFromtime()%>");
+				$("#datetoTime").val("<%=reservationDto.getTotime()%>");
+				$("#singedate").val("<%=reservationDto.getFromdate()%>");
+				
 		});
 			// Radio Control div Show or Hide 
 				$("#multireservation").on("click",function(){
@@ -304,14 +323,18 @@ if(reservationDto != null){
 				});
 			
 				
-		//	$("#addmycarbt").on('clikc',function(e){
-		//		 $('#addcar').show();
-		//	});
+			$("#addmycarbt").on('click',function(e){
+				$("#inputCarNum").empty();
+				$("#inputCarName").empty();
+				$("#addCarTitle").append("<%=memberDto.getUser_id()%>");
+				
+				$('#addcar').show();
+			});
 			
 			$('#mvpaymodalbtn').on('click', function (event) {
 				  var button = $(event.relatedTarget) // Button that triggered the modal
-				  var fdate =$('#fromdate');
-				  var tdate =$('#todate');
+				  var fdate =$('#rdfromdate');
+				  var tdate =$('#rdtodate');
 				  var ddate =$('#singledate');
 			      console.log("fd : "+fdate.val()+"  td : "+tdate.val()+"  dd :"+ddate.val());
 	
@@ -320,17 +343,19 @@ if(reservationDto != null){
 			        $("#selectedtodate").empty();
 			        $("#selectedid").empty();
 			        $("#selectedgrade").empty();
-			        $("#selectedcarinfo").empty();
+			        $("#selectedcarnum").empty();
+			        $("#selectedcarname").empty();
 			        $("#selectedcoin").empty();
 			        $("#selectedprice").empty();
 			        // Clean text in modal label
 			            	
-			        $("#selectedfromdate").append($('#fromdate').val());
-			        $("#selectedtodate").append($('#todate').val());
-			        $("#selectedid").append("Hello");
-			        $("#selectedgrade").append();
-			        $("#selectedcarinfo").append();
-			        $("#selectedcoin").append();
+			        $("#selectedfromdate").append(fdate);
+			        $("#selectedtodate").append(tdate);
+			        $("#selectedid").append("<%=memberDto.getUser_id()%>");
+			        $("#selectedgrade").append("<%=memberDto.getGrade_id()%>");
+			        $("#selectedcarnum").append($("#mycarlist option:selected").val());
+			        $("#selectedcarname").append($("#mycarlist option:selected").text());
+			        $("#selectedcoin").append("<%=memberDto.getCoin()%>");
 			        $("#selectedprice").append();
 			        
 			        $('#payment').show();

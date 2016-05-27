@@ -245,5 +245,11 @@ public class MemberDaoImpl implements MemberDao {
 		return parkingDto;
 	}
 
+	@Override
+	public int addNewCar(String user_id) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 	
 }
