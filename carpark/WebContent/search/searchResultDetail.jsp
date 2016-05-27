@@ -397,8 +397,12 @@ for(ReviewDto reviewDto : reviewlist){
 			$('#sendMsgToHost').on('click', function (event) {
 				  var button = $(event.relatedTarget) // Button that triggered the modal
 			      console.log("Here!");
-			        $("#receiver").text("<%=parkingDetail.getOwner_id()%>");
-			        $("#receiver").attr("disabled");
+			        $("#receiver").val("<%=parkingDetail.getOwner_id()%>");
+			        $("#subject").val("");
+			        $("#content").empty();
+			        $("#sendmsguser_id").val("<%=memberDto.getUser_id()%>");
+			        $("#sendmsgpark_id").val("<%=parkingDetail.getPark_id()%>");
+			        $("#receiver").prop("disabled", true);
 			        $('#msgToHost').show();
 				})
 			
