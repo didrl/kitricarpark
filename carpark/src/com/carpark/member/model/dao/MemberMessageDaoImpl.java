@@ -36,7 +36,6 @@ public class MemberMessageDaoImpl implements MemberMessageDao {
 			sql += "into message (mseq, seq, receiver_id, msg_flag) \n";
 			sql += "values (message_num_mseq.nextval, ?, ?, ?) \n";
 			sql += "select * from dual";
-			System.out.println(sql);
 			pstmt = conn.prepareStatement(sql);
 			int idx = 0;
 			pstmt.setInt(++idx, messageDto.getSeq());
@@ -78,7 +77,6 @@ public class MemberMessageDaoImpl implements MemberMessageDao {
 			sql += "where b.seq = m.seq \n";
 			sql += "and b.seq = ?";
 			pstmt = conn.prepareStatement(sql);
-			System.out.println(sql);
 			pstmt.setInt(1, seq);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
