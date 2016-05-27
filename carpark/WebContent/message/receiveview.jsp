@@ -6,7 +6,7 @@ if(viewDto != null) {
 %>
 
     <!-- 쪽지보기모달 -->
-	<div class="modal fade" id="viewMessage" tabindex="-1" role="dialog"
+	<div class="modal fade" id="messageView" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -14,7 +14,7 @@ if(viewDto != null) {
 					<button type="button" class="close" data-dismiss="modal">
 						<span aria-hidden="true">×</span><span class="sr-only">Close</span>
 					</button>
-					<h4 class="viewMessage" id="viewMessageModal">쪽지 보내기</h4>
+					<h4 class="messageView" id="messageViewModal">쪽지 보내기</h4>
 				</div>
 				<div class="modal-body">
 

@@ -26,7 +26,7 @@ List<MessageDto> list = (List<MessageDto>) request.getAttribute("receiveList");
 	  				<button type="button" class="btn btn-default" onclick="javascript:messageSendList();">
 	  					보낸쪽지함
 	  				</button>	
-					<button type="button" class="btn btn-default"  data-toggle="modal" data-target="#msgToHost">
+					<button type="button" class="btn btn-default"  data-toggle="modal" data-target="#messageWrite">
                 		쪽지보내기
                		</button>
 				</div>

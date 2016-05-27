@@ -65,3 +65,7 @@ function messageWrite() {
 		document.writeForm.submit();
 	}
 }
+
+function msgToHost() {
+	
+}
