@@ -36,19 +36,18 @@ public class MemberDaoImpl implements MemberDao {
 		try {
 			conn=DBConnection.makeConnection();
 			String sql="";
-			sql += "insert into member(user_name,user_id,user_pass,email,tel,carinfo,grade_id,user_avgpoint,coin,host_flag,login_key) \n";
-			sql += "values(?,?,?,?,?,?,3,0,0,0,null)";//치환변수 
+			sql += "insert into member(user_name,user_id,user_pass,email,tel,grade_id,user_avgpoint,coin,host_flag,login_key) \n";
+			sql += "values(?,?,?,?,?,3,0,0,0,null)";//치환변수 
 			pstmt = conn.prepareStatement(sql);//미리 sql 문장을 가져가서 검사하고 틀린게 없을 때 실행
 			int idx =1;//중간에 없어지거나 추가될때 필요
 			pstmt.setString(idx++, memberDto.getUser_name());
 			pstmt.setString(idx++, memberDto.getUser_id());
-			pstmt.setString(idx++, memberDto.getEmail());
 			pstmt.setString(idx++, memberDto.getUser_pass());
+			pstmt.setString(idx++, memberDto.getEmail());
 			pstmt.setString(idx++, memberDto.getTel());
-			pstmt.setString(idx++, memberDto.getCarInfo());
+			
 			System.out.println("id"+memberDto.getUser_id());
 			System.out.println("pass"+memberDto.getUser_pass());
-			System.out.println("carinfo"+memberDto.getCarInfo());
 			
 			count=pstmt.executeUpdate();
 			
@@ -58,7 +57,6 @@ public class MemberDaoImpl implements MemberDao {
 			DBClose.close(conn, pstmt);
 		}	
 		return count;
-
 	}
 
 	@Override
@@ -130,7 +128,7 @@ public class MemberDaoImpl implements MemberDao {
 			conn=DBConnection.makeConnection();
 			String sql="";
 
-			sql+="select user_id,coin,grade_id,user_name,carinfo,user_avgpoint,email,tel \n";
+			sql+="select user_id,coin,grade_id,user_name,user_avgpoint,email,tel \n";
 			sql+="from member \n";
 			sql+="where user_id=? and user_pass=? \n";
 		
@@ -145,7 +143,6 @@ public class MemberDaoImpl implements MemberDao {
 				memberDto.setCoin(rs.getInt("coin"));
 				memberDto.setGrade_id(rs.getInt("grade_id"));
 				memberDto.setUser_name(rs.getString("user_name"));
-				memberDto.setCarInfo(rs.getString("carinfo"));
 				memberDto.setUser_avgPoint(rs.getInt("user_avgpoint"));
 				memberDto.setEmail(rs.getString("email"));
 				memberDto.setTel(rs.getString("tel"));

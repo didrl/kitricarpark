@@ -28,10 +28,10 @@ MemberDto memberDto = (MemberDto)session.getAttribute("memberInfo");
     <link href="<%=root %>/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 	<link href="<%=root %>/css/custom_kitri.css" rel="stylesheet">
 	<!-- login -->
-	<script type="text/javascript" src="<%=root%>/js/member/login.js"></script>
 	<script type="text/javascript">
 	var root = "<%=root%>";
 	</script>
+	<script type="text/javascript" src="<%=root%>/js/member/login.js"></script>
 	
 	
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->

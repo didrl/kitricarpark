@@ -205,77 +205,82 @@ if(memberDto!=null){
 				</button>
 				<h2 class="modal-title" id="myModalLabel">회원가입</h2>
 			</div>
-
-			<form class="form-signin" role="form" name="signUpForm" id="signUpForm" method="post"
-					action="<%=root%>/member">
-			<input type="hidden" name="act" value="mvsignup"  required="required">
 			<div class="modal-body">
-					<fieldset>
+				<form class="form-signin" role="form" name="signUpForm"
+					id="signUpForm" method="post" action="<%=root%>/member">
+					<input type="hidden" name="act" value="mvsignup">
 
 					<div class="form-group">
-						<div class="controls">
-						<label for="inputid">name</label> <input type="text"
-							class="form-control" id="signupname" name="name" value=""
-							placeholder="name" required="required" >
-							
-						</div>
-					</div>
-					
-					
-					<div class="form-group">
-						<div class="controls">
-						<label for="inputid">id</label> <input type="text"
-							class="form-control" id="signupid" name="id" value=""
-							placeholder="id" required="required">
-						</div>
+						<label for="username">이름</label> <input type="text"
+							class="form-control" name="name" id="username" required="required"
+							placeholder="이름을 입력해 주세요">
 					</div>
 
 					<div class="form-group">
-						<label for="inputPassword">Password</label> <input type="password"
-							class="form-control" id="signuppass" name="pass" value=""
-							placeholder="password" required="required">
-					</div>
-					<div class="form-group">
-						<label for="inputPasswordCheck">PasswordCheck</label> <input
-							type="password" class="form-control" id="signuppasswordcheck"
-							name="passwordcheck" value="" placeholder="passwordcheck"
-							required="required">
-					</div>
-					
-					
-					<div class="form-group">
-						<div class="controls">
-						<label for="inputid">email</label> <input type="text"
-							class="form-control" id="signupemail" name="email" value=""
-							placeholder="email" required="required">
+						<label for="username">id</label>
+						<div class="input-group">
+							<input type="text" class="form-control" name="id" id="username"
+								placeholder="id" required="required"> <span class="input-group-btn">
+								<button class="btn btn-success">
+									id 체크<i class="fa fa-edit spaceLeft"></i>
+								</button>
+							</span>
 						</div>
 					</div>
-					
-					
-					<div class="form-group">
-						<div class="controls">
-						<label for="inputid">전화번호</label> <input type="text"
-							class="form-control" id="signupphone" name="phone" value=""
-							placeholder="tel" required="required">
-						</div>
-					</div>
-					
-					
-					<div class="form-group">
-						<label for="inputCarInfo">CarInfo</label> <input type="text"
-							class="form-control" id="signupcarInfo" name=carInfo value=""
-							placeholder="carInfo" required="required">
-					</div>
-					</fieldset>
 
-			</div>
-			<div class="modal-footer">
-				<button type="submit" class="btn btn-default"
-				>Register</button>
-				<button type="button" class="btn btn-default" data-dismiss="modal"
-					onclick="javascript:formclear();">Cancel</button>
-			</div>
+					<div class="form-group">
+						<label for="InputPassword1">비밀번호</label> <input type="password"
+							class="form-control" name="pass" id="InputPassword1" required="required"
+							placeholder="비밀번호">
+					</div>
+
+					<div class="form-group">
+						<label for="InputPassword2">비밀번호 확인</label> <input type="password"
+							class="form-control" name="passwordcheck" id="InputPassword2" required="required"
+							placeholder="비밀번호 확인">
+						<p class="help-block">비밀번호 확인을 위해 다시한번 입력 해 주세요</p>
+					</div>
+
+					<div class="form-group">
+						<label for="InputEmail">이메일 주소</label> <input type="email"
+							class="form-control" name="email" id="InputEmail" required="required"
+							placeholder="이메일 주소">
+					</div>
+
+
+					<div class="form-group">
+						<label for="username">휴대폰 인증</label>
+						<div class="input-group">
+							<input type="tel" class="form-control" name="phone" id="username" required="required"
+								placeholder="- 없이 입력해 주세요"> <span
+								class="input-group-btn">
+								<button class="btn btn-success">
+									인증번호 전송<i class="fa fa-mail-forward spaceLeft"></i>
+								</button>
+							</span>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label>약관 동의</label>
+						<div data-toggle="buttons">
+							<label class="btn btn-primary active"> <span
+								class="fa fa-check"></span> <input id="agree" type="checkbox"
+								autocomplete="off" checked>
+							</label> <a href="#">이용약관</a>에 동의합니다.
+						</div>
+					</div>
+					<div class="form-group text-center">
+						<button type="submit" class="btn btn-info">
+							회원가입<i class="fa fa-check spaceLeft"></i>
+						</button>
+						<button type="button" class="btn btn-warning" data-dismiss="modal"
+						onclick="javascript:formclear();">
+							가입취소<i class="fa fa-times spaceLeft"></i>
+						</button>
+					</div>
 				</form>
+			</div>
 		</div>
 	</div>
 </div>

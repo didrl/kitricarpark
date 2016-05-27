@@ -23,11 +23,10 @@ public class MemberRegisterAction implements Action{
 		memberDto.setUser_name(request.getParameter("name"));
 		memberDto.setEmail(request.getParameter("email"));
 		memberDto.setTel(request.getParameter("tel"));
-		memberDto.setCarInfo(request.getParameter("carInfo"));
 		int count=MemberServiceImpl.getMemberService().register(memberDto);
 		System.out.println("Dao에서 service 들어옴>>>>>"+count);
 		request.setAttribute("registerInfo", memberDto);
 		request.setAttribute("count",count);
-		return count==0 ? "":"/member/info.jsp";
+		return count==0 ? "":"";
 	}
 }

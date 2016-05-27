@@ -48,7 +48,7 @@ public class MemberController extends HttpServlet {
 			PageMove.redirect(response, root+path);
 		}else if("addcarok".equals(act)){
 			//in reservationDetail, '차량등록' will send this act
-		}else if("".equals(act)){
+		}else if("mvProfileDetail".equals(act)){
 			
 		}else if("".equals(act)){
 			

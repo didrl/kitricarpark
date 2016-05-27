@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
     
 <%@include file="/common/common.jsp" %>
-<%@include file="/common/header.jsp" %> 
+<%@include file="/common/header/init.jsp"%>
 <%@include file="/common/side.jsp" %>
 
 <div id="wrapper">

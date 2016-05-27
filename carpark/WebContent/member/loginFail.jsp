@@ -4,7 +4,7 @@
 <%@include file="/common/common.jsp"%>
 <%@include file="/common/header/init.jsp"%>
 
-	<div class="modal-dialog">
+	<div class="modal-dialog" style="padding-top: 60px;">
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">
@@ -14,8 +14,8 @@
 			</div>
 			<div class="modal-body">
 				
-				<form name="loginForm" class="form-horizontal" id="tryLoginForm"
-					method="post" action="">
+				<form name="tryloginForm" class="form-horizontal" id="tryLoginForm"
+					method="post" action="<%=root%>/member">
 					<input type="hidden" name="act" value="mvlogin">
 					<div class="form-group">
 						<label for="inputEmail3" class="col-sm-2 control-label">ID</label>
@@ -41,8 +41,8 @@
 					</div>
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
-							<button type="button" class="btn btn-default"
-								onclick="javascript:mvlogin();">Sign in</button>
+							<button type="submit" class="btn btn-default"
+							>Sign in</button>
 						</div>
 					</div>
 				</form>

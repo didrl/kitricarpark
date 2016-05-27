@@ -3,6 +3,7 @@ package com.carpark.member.model.service;
 import java.util.ArrayList;
 import java.util.Map;
 
+import com.carpark.member.model.MemberCarDto;
 import com.carpark.member.model.ReservationDto;
 import com.carpark.member.model.dao.MemberReservationDaoImpl;
 
@@ -21,7 +22,7 @@ public class MemberReservationServiceImpl implements MemberReservationService {
 	}
 
 	@Override
-	public ArrayList<Map<String,String>> getCarInfo(String user_id) {
+	public ArrayList<MemberCarDto> getCarInfo(String user_id) {
 		return MemberReservationDaoImpl.getMemberReservationDao().getCarInfo(user_id);
 	}
 
