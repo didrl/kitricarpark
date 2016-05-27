@@ -57,8 +57,9 @@ public class MemberController extends HttpServlet {
 		}else if("mvmessage".equals(act)){
 			path = MemberActionFactory.getMemberMessageReceiveListAction().execute(request, response);
 			PageMove.forward(request, response, path);
-		}else if("".equals(act)){
-			
+		}else if("mvidcheck".equals(act)){
+			path = MemberActionFactory.getMemberIdCheckAction().execute(request, response);
+			PageMove.forward(request, response, path);
 		}else if("".equals(act)){
 			
 		}else if("".equals(act)){
