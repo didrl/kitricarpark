@@ -9,11 +9,11 @@ function messageSearch() {
 }
 
 function messageSendView(seq) {
-	window.open( "/carpark/message?act=messageSendView&seq=" + seq, "newWindow", "width=640;height=400" );
+	window.open( "/carpark/message?act=messageSendView&seq=" + seq, "newWindow", "top=100, left=400, width=500, height=600, scrollbars=yes" );
 }
 
 function messageReceiveView(seq) {
-	window.open( "/carpark/message?act=messageReceiveView&seq=" + seq, "newWindow", "width=640;height=400" );
+	window.open( "/carpark/message?act=messageReceiveView&seq=" + seq, "newWindow", "top=100, left=400, width=500, height=600, scrollbars=yes" );
 }
 
 function messageViewClose() {

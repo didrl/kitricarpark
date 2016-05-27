@@ -25,7 +25,7 @@ public class MemberMessageDeleteAction implements Action {
 		
 		MemberMessageServiceImpl.getMemberMessageService().deleteArticle(seq);
 				
-		return "/message/delete.jsp";
+		return "";
 	}
 
 }
