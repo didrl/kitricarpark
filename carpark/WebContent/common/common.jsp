@@ -70,6 +70,5 @@ MemberDto memberDto = (MemberDto)session.getAttribute("memberInfo");
 	<input type="hidden" name="key" id="key" value="">
 	<input type="hidden" name="word" id="word" value="">
 	<input type="hidden" name="seq" id="seq" value="">
-	<input type="hidden" name="receiver" id="receiver" value="<%=messageDto.getReceiverId() %>">
 	</form>
     
