@@ -12,6 +12,8 @@ ParkingDto parkingDetail = (ParkingDto)request.getAttribute("parkingDetail");
 ArrayList<ReviewDto> reviewlist = (ArrayList<ReviewDto>)request.getAttribute("reviewlist");
 
 System.out.println("<><><><><><><><"+parkingDetail.getPark_id()	);
+System.out.println("<><><><latitude><><><"+parkingDetail.getLatitude());
+System.out.println("<><><><longtitude><><"+parkingDetail.getLongitude());
 %>
 
 <!-- ****************************************************************************************************************** -->	
@@ -166,6 +168,10 @@ function goReservation() {
 						<span i= glyphicon glyphicon-tag>주차장대수:<%=parkingDetail.getPark_capacity() %></span>, 역과 가까움, 정기권 판매, 할인혜택 제공, 카드 가능  
 					</div>
 					<div class="panel-body">
+						<!-- Daum road View start -->
+						
+						
+						<!-- Daum road View End -->
 						<!-- Street View start -->
 						<iframe width="300" height="200" frameborder="1" style="border: 0"
 							src="https://www.google.com/maps/embed/v1/streetview?key=AIzaSyB3d8wlcwuwvoXDFp4vd4ghi9nDnuDt4Hw&location=46.414382,10.013988&heading=210&pitch=10&fov=35">
