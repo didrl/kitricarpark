@@ -22,7 +22,7 @@ public class MemberMessageDeleteAction implements Action {
 		HttpSession session = request.getSession();
 		MemberDto memberDto = (MemberDto) session.getAttribute("memberInfo");
 		String user = memberDto.getUser_id();
-		String receiver = request.getParameter("receiver");
+		String receiver = request.getParameter("deleteReceive");
 		
 		int seq = NumberCheck.nullToZero(request.getParameter("seq"));
 		int bcode = NumberCheck.nullToZero(request.getParameter("bcode"));

@@ -27,6 +27,7 @@ function messageDelete(seq) {
 	document.common.action = "/carpark/message";
 	document.common.submit();
 	
+	alert("메세지가 삭제되었습니다");
 }
 
 function messageSendList() {

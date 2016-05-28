@@ -24,7 +24,7 @@ MessageDto messageDto = (MessageDto) request.getAttribute("messageView");
 	<input type="hidden" name="key" id="key" value="">
 	<input type="hidden" name="word" id="word" value="">
 	<input type="hidden" name="seq" id="seq" value="">
-	<input type="hidden" name="receiver" id="receiver" value="<%=messageDto.getReceiverId() %>">
+	<input type="hidden" name="deleteReceive" id="deleteReceive" value="<%=messageDto.getReceiverId() %>">
 </form>
 <br>
 <div id="page-wrapper">
