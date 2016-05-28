@@ -144,6 +144,7 @@ function goReservation() {
 		<div class="row">
 			<!-- Left Section Start -->
 			<div class="col-md-7">
+				<!--  Map  -->
 				<div class="panel panel-default">
 					<div class="row" align="left">
 						<h3><b>&nbsp;&nbsp;&nbsp; <%=parkingDetail.getPark_name()%>  &nbsp;&nbsp;&nbsp; 
@@ -409,11 +410,7 @@ function goReservation() {
 							
 							</script>
 					</div>
-				
-				
-    
 				</div>
-				
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h3 class="panel-title">상세 정보</h3>  
@@ -454,7 +451,7 @@ function goReservation() {
 				<div class="panel panel-default">
 					<div class="panel-heading">주변 정보</div>
 					<div class="panel-body">
-					<!-- Daum road View start -->
+						<!-- Daum road View start -->
 						
 						
 						<!-- Daum road View End -->
@@ -491,7 +488,7 @@ for(ReviewDto reviewDto : reviewlist){
 								<span class="glyphicon glyphicon-star-empty"></span>
 <% 
 	}
-%>
+%> 
 								<%=reviewDto.getUser_id() %> <span class="pull-right">작성일 : <%=reviewDto.getLogtime() %></span>
 								<p><%=reviewDto.getSubject()%></p>
 								<p><%=reviewDto.getContent()%></p>
