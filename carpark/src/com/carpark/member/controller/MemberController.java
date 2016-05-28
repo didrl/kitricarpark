@@ -45,7 +45,7 @@ public class MemberController extends HttpServlet {
 			PageMove.forward(request, response, path);
 		}else if("mvprofile".equals(act)){
 			path = MemberActionFactory.getMemberInfoAction().execute(request, response);
-			PageMove.redirect(response, root+path);
+			PageMove.forward(request, response, path);
 		}else if("mvlogout".equals(act)){
 			path = MemberActionFactory.getMemberLogoutAction().execute(request, response);
 			PageMove.redirect(response, root+path);
@@ -60,8 +60,9 @@ public class MemberController extends HttpServlet {
 		}else if("mvidcheck".equals(act)){
 			path = MemberActionFactory.getMemberIdCheckAction().execute(request, response);
 			PageMove.forward(request, response, path);
-		}else if("".equals(act)){
-			
+		}else if("mvmodify".equals(act)){
+			path = MemberActionFactory.getMemberModifyAction().execute(request, response);
+			PageMove.forward(request, response, path);
 		}else if("".equals(act)){
 			
 		}else{

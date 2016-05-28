@@ -40,11 +40,7 @@ public class MemberServiceImpl implements MemberService {
 		return MemberDaoImpl.getMemberDao().getMember(id);
 	}
 
-	@Override
-	public int modify(MemberDto memberDto) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+	
 
 	@Override
 	public int delete(String id) {
@@ -81,6 +77,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
+<<<<<<< HEAD
 	public ParkingDetailDto getParkingDetail_info(String park_id) {
 		return MemberDaoImpl.getMemberDao().getParkingDetail_info(park_id);
 	}
@@ -89,4 +86,10 @@ public class MemberServiceImpl implements MemberService {
 	public ParkingFacilityDto getParkingFacility_info(String park_id) {
 		return MemberDaoImpl.getMemberDao().getParkingFacility_info(park_id);;
 	}	
+=======
+	public int modify(MemberDto memberDto) {
+		return MemberDaoImpl.getMemberDao().modify(memberDto);
+	}
+
+>>>>>>> seok
 }
