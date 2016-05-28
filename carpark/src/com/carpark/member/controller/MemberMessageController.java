@@ -24,16 +24,11 @@ public class MemberMessageController extends HttpServlet {
 		String path = "/index.jsp";
 		String queryString = "?bcode=" + bcode + "&pg=" + pg + "&key=" + key + "&word=" + Encoder.isoToUtf(word);
 		
-		System.out.println(act);
-		
 		if("".equals(act)) {
 			
 		} else if("messageWrite".equals(act)) {
 			path = MemberActionFactory.getMemberMessageWriteAction().execute(request, response);
 			PageMove.forward(request, response, path + queryString);
-			
-		} else if("messageToWrite".equals(act)) {
-			
 			
 		} else if("messageSendView".equals(act)) {
 			path = MemberActionFactory.getMemberMessageSendViewAction().execute(request, response);
@@ -43,16 +38,16 @@ public class MemberMessageController extends HttpServlet {
 			path = MemberActionFactory.getMemberMessageReceiveViewAction().execute(request, response);
 			PageMove.forward(request, response, path + queryString);
 			
-		} else if("messageSendDelete".equals(act)) {
-			System.out.println("send");
-			MemberActionFactory.getMemberMessageSendDeleteAction().execute(request, response);
-			path = MemberActionFactory.getMemberMessageSendListAction().execute(request, response);
-			PageMove.forward(request, response, path + queryString);
-			
-		} else if("messageReceiveDelete".equals(act)) {
-			System.out.println("receive");
-			MemberActionFactory.getMemberMessageReceiveDeleteAction().execute(request, response);
-			path = MemberActionFactory.getMemberMessageReceiveListAction().execute(request, response);
+		} else if("messageDelete".equals(act)) {
+			System.out.println("시작점");
+			String delete = MemberActionFactory.getMemberMessageDeleteAction().execute(request, response);
+			if("sendlist" == delete) {
+				System.out.println("send");
+				path = MemberActionFactory.getMemberMessageSendListAction().execute(request, response);
+			} else {
+				System.out.println("receive");
+				path = MemberActionFactory.getMemberMessageReceiveListAction().execute(request, response);
+			}
 			PageMove.forward(request, response, path + queryString);
 			
 		} else if("messageSendList".equals(act)) {
