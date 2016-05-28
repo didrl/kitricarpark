@@ -4,9 +4,6 @@
 List<ParkingDto> list = (List<ParkingDto>)request.getAttribute("searchlist");
 %>    
 
-<!DOCTYPE html>
-<html lang="en">
-
 <%@include file="/common/common.jsp" %>
 <%@include file="/common/header/init.jsp" %> 
 

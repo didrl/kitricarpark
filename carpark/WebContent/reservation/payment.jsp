@@ -50,7 +50,6 @@ function reservationok(){
                                   </div>
                               </div>
                            </form>
-                            
                               </div>
                         </div>
                      </div>

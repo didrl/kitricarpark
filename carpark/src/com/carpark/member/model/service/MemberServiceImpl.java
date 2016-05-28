@@ -4,7 +4,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.carpark.admin.model.ParkingDetailDto;
 import com.carpark.admin.model.ParkingDto;
+import com.carpark.admin.model.ParkingFacilityDto;
 import com.carpark.member.model.MemberDto;
 import com.carpark.member.model.dao.MemberDaoImpl;
 
@@ -76,5 +78,15 @@ public class MemberServiceImpl implements MemberService {
 
 	public MemberDto getMemberDetail(String id) {
 		return MemberDaoImpl.getMemberDao().getMember(id);
+	}
+
+	@Override
+	public ParkingDetailDto getParkingDetail_info(String park_id) {
+		return MemberDaoImpl.getMemberDao().getParkingDetail_info(park_id);
+	}
+
+	@Override
+	public ParkingFacilityDto getParkingFacility_info(String park_id) {
+		return MemberDaoImpl.getMemberDao().getParkingFacility_info(park_id);;
 	}	
 }
