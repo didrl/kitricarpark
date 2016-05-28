@@ -30,6 +30,30 @@
 				<input type="hidden" name="" value="">
 				<input type="hidden" name="" value="">
 				<input type="hidden" name="" value="">
+				
+				<div class="row">
+					<div class="col-md-2">
+						<b>주차장 이름</b><br>
+					</div>
+					<div class="col-md-10">
+						<div class="form-group">
+							<input type="text" class="form-control" id="parkname">
+						</div>
+					</div><br>
+				</div><hr>
+				
+				<div class="row">
+					<div class="col-md-2">
+						<b>위치</b><br>
+					</div>
+					<div class="col-md-10">
+						<div class="form-group">
+							<input type="text" class="form-control" placeholder="Search">
+						</div>
+							<button type="submit" class="btn btn-default">검색</button>
+					</div>
+				</div><hr>
+				
 				<div class="row">
 					<div class="col-md-2">
 						<b>주차장 구분</b><br>
@@ -37,10 +61,13 @@
 					<div class="col-md-10">
 						<div class="btn-group btn-group-justified" role="group" aria-label="...">
 				  			<div class="btn-group" role="group">
-								<button type="button" class="btn btn-default">주차장구분</button>
+								<button type="button" class="btn btn-default">공영</button>
 							</div>
 							<div class="btn-group" role="group">
-								<button type="button" class="btn btn-default">주차장구분</button>
+								<button type="button" class="btn btn-default">사설</button>
+							</div>
+							<div class="btn-group" role="group">
+								<button type="button" class="btn btn-default">개인</button>
 							</div>
 						</div>
 					</div>
@@ -48,18 +75,13 @@
 				
 				<div class="row">
 					<div class="col-md-2">
-						<b>호스트구분</b><br>
+						<b>총 주차면 수</b><br>
 					</div>
 					<div class="col-md-10">
-						<div class="btn-group btn-group-justified" role="group" aria-label="...">
-				  			<div class="btn-group" role="group">
-								<button type="button" class="btn btn-default">개인</button>
-							</div>
-							<div class="btn-group" role="group">
-								<button type="button" class="btn btn-default">사업자</button>
-							</div>
+						<div class="form-group">
+							<input type="text" class="form-control" id="parkname">
 						</div>
-					</div>
+					</div><br>
 				</div><hr>
 				
 				<div class="row">
@@ -78,17 +100,7 @@
 					</div>
 				</div><hr>
 				
-				<div class="row">
-					<div class="col-md-2">
-						<b>위치</b><br>
-					</div>
-					<div class="col-md-10">
-						<div class="form-group">
-							<input type="text" class="form-control" placeholder="Search">
-						</div>
-							<button type="submit" class="btn btn-default">검색</button>
-					</div>
-				</div><hr>
+
 
 				<div class="row">
 					<div class="col-md-2">
