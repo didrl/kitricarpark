@@ -2,6 +2,7 @@
     pageEncoding="UTF-8" import="com.carpark.member.model.*"%>  
 <%
 String root = request.getContextPath();
+MemberDto memberDto = (MemberDto)session.getAttribute("memberInfo");
 MessageDto messageDto = (MessageDto) request.getAttribute("messageView");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -31,7 +32,8 @@ MessageDto messageDto = (MessageDto) request.getAttribute("messageView");
 <div id="page-wrapper">
 <div class="container-fluid">
 <%
-if(messageDto != null) {
+if(memberDto != null) {
+	if(messageDto != null) {
 %>
 	<table class="table">
 		<tr>
@@ -57,9 +59,17 @@ if(messageDto != null) {
 		</tr>
 	</table>
 <%
-} else {
+	} else {
 %>
 <center><h3>쪽지가 없습니다</h3></center>
+<%
+	}
+} else {
+%>
+<center>
+<h3>로그인 후 이용해 주세요</h3>
+<a class="btn btn-default" href="<%=root%>/index.jsp">확인</a>
+</center>
 <%
 }
 %>

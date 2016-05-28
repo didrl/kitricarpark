@@ -137,7 +137,9 @@ if(messageDto.getMsgFlag() == 0) {
 <%
 } else {
 %>
-<center><h3>로그인 후 이용해주세요</h3></center>
+<center>
+<h3>로그인 후 이용해주세요</h3>
+</center>
 <%
 }
 %>
