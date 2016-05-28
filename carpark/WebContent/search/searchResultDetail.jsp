@@ -13,16 +13,15 @@ ArrayList<ReviewDto> reviewlist = (ArrayList<ReviewDto>)request.getAttribute("re
 ParkingDetailDto parkingDetail_info = (ParkingDetailDto)request.getAttribute("parkingDetail_info");
 //ParkingFacilityDto parkingFacilityDto = (ParkingFacilityDto)request.getAttribute("parkingFacilityDto");
 
-<<<<<<< HEAD
 System.out.println("<><><><><><><><"+parkingDetail.getPark_id()	);
 System.out.println("<><><><latitude><><><"+parkingDetail.getLatitude());
 System.out.println("<><><><longtitude><><"+parkingDetail.getLongitude());
-=======
+
 /*
 	ParkingDetailDto parkingDetail_info		: parkingDetail table info
 	ParkingFacilityDto parkingFacilityDto	: parking_facility info + parking_img info
 */
->>>>>>> ae898f98c14e3ecc3ad9a833b2bdbef8eed689cb
+
 %>
 
 <!-- ****************************************************************************************************************** -->	
