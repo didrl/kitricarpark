@@ -59,13 +59,13 @@ public class MemberActionFactory {
 	private static Action memberFavoriteListAction;
 	private static Action memberFavoriteRegisterAction;
 	
-	private static Action memberMessageDeleteAction;
 	private static Action memberMessageSendListAction;
 	private static Action memberMessageReceiveListAction;	
 	private static Action memberMessageWriteAction;
 	private static Action memberMessageSendViewAction;
 	private static Action memberMessageReceiveViewAction;
-	private static Action memberMessageReplyAction;
+	private static Action memberMessageSendDeleteAction;
+	private static Action memberMessageReceiveDeleteAction;
 	
 	private static Action memberReportListAction;
 	private static Action memberReportRegisterAction;
@@ -106,13 +106,13 @@ public class MemberActionFactory {
 		memberFavoriteListAction = new MemberFavoriteListAction();
 		memberFavoriteRegisterAction = new MemberFavoriteRegisterAction();
 		
-		memberMessageDeleteAction = new MemberMessageDeleteAction();
 		memberMessageSendListAction = new MemberMessageSendListAction();
 		memberMessageReceiveListAction = new MemberMessageReceiveListAction();
 		memberMessageWriteAction = new MemberMessageWriteAction();
 		memberMessageSendViewAction = new MemberMessageSendViewAction();
 		memberMessageReceiveViewAction = new MemberMessageReceiveViewAction();
-		memberMessageReplyAction = new MemberMessageReplyAction();
+		memberMessageSendDeleteAction = new MemberMessageSendDeleteAction();
+		memberMessageReceiveDeleteAction = new MemberMessageReceiveDeleteAction();
 		
 		memberReportListAction = new MemberReportListAction();
 		memberReportRegisterAction = new MemberReportRegisterAction();
@@ -208,10 +208,6 @@ public class MemberActionFactory {
 	public static Action getMemberFavoriteRegisterAction() {
 		return memberFavoriteRegisterAction;
 	}
-
-	public static Action getMemberMessageDeleteAction() {
-		return memberMessageDeleteAction;
-	}
 	
 	public static Action getMemberMessageSendListAction() {
 		return memberMessageSendListAction;
@@ -233,10 +229,14 @@ public class MemberActionFactory {
 		return memberMessageReceiveViewAction;
 	}
 	
-	public static Action getMemberMessageReplyAction() {
-		return memberMessageReplyAction;
+	public static Action getMemberMessageSendDeleteAction() {
+		return memberMessageSendDeleteAction;
 	}
-	
+
+	public static Action getMemberMessageReceiveDeleteAction() {
+		return memberMessageReceiveDeleteAction;
+	}
+
 	public static Action getMemberReportListAction() {
 		return memberReportListAction;
 	}

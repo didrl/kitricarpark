@@ -22,9 +22,10 @@ public class MemberMessageReceiveListAction implements Action {
 		MemberDto memberDto = (MemberDto) session.getAttribute("memberInfo");
 		
 		String receiveId = memberDto.getUser_id();
-		List<MessageDto> receiveList = MemberMessageServiceImpl.getMemberMessageService().receiveListArticle(receiveId);
-		
-		request.setAttribute("receiveList", receiveList);
+		if(receiveId != null) {
+			List<MessageDto> receiveList = MemberMessageServiceImpl.getMemberMessageService().receiveListArticle(receiveId);
+			request.setAttribute("receiveList", receiveList);
+		}
 		
 		return "/message/receivelist.jsp";
 	}

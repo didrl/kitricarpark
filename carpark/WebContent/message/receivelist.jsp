@@ -26,14 +26,14 @@ List<MessageDto> list = (List<MessageDto>) request.getAttribute("receiveList");
 	  				<button type="button" class="btn btn-default" onclick="javascript:messageSendList();">
 	  					보낸쪽지함
 	  				</button>	
-					<button type="button" class="btn btn-default"  data-toggle="modal" data-target="#messageWrite">
+					<button type="button" class="btn btn-default"  data-toggle="modal" data-target="#messageWrite" onclick="javascript:init();">
                 		쪽지보내기
                		</button>
 				</div>
 				
 				<!-- 메세지 보내기 모달창 -->
 				<%@ include file="/message/write.jsp" %>
-				
+				<%@ include file="/message/towrite.jsp" %>
 					
 				
 				<!-- 메세지 리스트 -->
@@ -61,11 +61,18 @@ if(size > 0) {
 if(messageDto.getMsgFlag() == 0) {
 %>					
 						<td>X</td>
+						<td>
+						<button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#messageToWrite" onclick="toWriteInit('<%=messageDto.getReceiverId()%>');">답장</button>
+						<button type="button" class="btn btn-default btn-xs" onclick="javascript:messageReceiveDelete('<%=messageDto.getSeq()%>');">삭제</button>
+						</td>
 <%
 } else {
 %>
 						<td>O</td>
-						<td><input type="button" class="btn btn-default" value="삭제" onclick="javascript:messageDelete('<%=messageDto.getSeq()%>');"></td>
+						<td>
+						<button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#messageToWrite" onclick="javascript:toWriteInit('<%=messageDto.getReceiverId()%>');">답장</button>
+						<button type="button" class="btn btn-default btn-xs" onclick="javascript:messageReceiveDelete('<%=messageDto.getSeq()%>');">삭제</button>
+						</td>
 					</tr>
 <%
 	}	
@@ -130,7 +137,9 @@ if(messageDto.getMsgFlag() == 0) {
 <%
 } else {
 %>
-<center><h3>로그인 후 이용해주세요</h3></center>
+<center>
+<h3>로그인 후 이용해주세요</h3>
+</center>
 <%
 }
 %>
