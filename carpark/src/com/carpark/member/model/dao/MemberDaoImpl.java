@@ -9,7 +9,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.carpark.admin.model.ParkingDetailDto;
 import com.carpark.admin.model.ParkingDto;
+import com.carpark.admin.model.ParkingFacilityDto;
 import com.carpark.db.DBClose;
 import com.carpark.db.DBConnection;
 import com.carpark.member.model.MemberDto;
@@ -275,5 +277,91 @@ public class MemberDaoImpl implements MemberDao {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	
+	@Override
+	public ParkingDetailDto getParkingDetail_info(String park_id){
+		ParkingDetailDto parkingDetailDto=null;
+		Connection conn =null;
+		PreparedStatement pstmt =null;
+		ResultSet rs =null;
+	
+		try {
+			conn=DBConnection.makeConnection();
+			String sql="";
+			sql+="select park_flag, park_avgpoint, get_status, cur_parking, pay_yn, \n";
+			sql+="satur_pay_yn, holi_pay_yn, fulltime_monthly_pay, park_rate, park_time_rate, \n";
+			sql+="add_park_rate, day_max_pay \n";
+			sql+="from parking_detail \n";
+			sql+="where park_id =?\n";
+			int idx=1;
+			pstmt =conn.prepareStatement(sql);
+			pstmt.setString(idx++,park_id);
 
+			rs=pstmt.executeQuery();
+			while(rs.next()){
+				parkingDetailDto = new ParkingDetailDto();
+				parkingDetailDto.setPark_id(rs.getInt("park_id"));
+				parkingDetailDto.setPark_flag(rs.getInt("park_flag"));
+				parkingDetailDto.setCur_parking(rs.getInt("cur_parking")); 		
+				parkingDetailDto.setDay_max_pay(rs.getInt("day_max_pay"));
+				parkingDetailDto.setFulltime_monthly_pay(rs.getInt("fulltime_monthly_pay"));
+				parkingDetailDto.setGet_status(rs.getInt("get_status"));
+				parkingDetailDto.setHoli_pay_yn(rs.getString("holi_pay_yn"));
+				parkingDetailDto.setPark_avgPoint(rs.getDouble("park_avgpoint"));
+				parkingDetailDto.setPark_flag(rs.getInt("park_flag"));
+				parkingDetailDto.setPark_rate(rs.getInt("park_rate"));
+				parkingDetailDto.setPark_time_rate(rs.getInt("park_time_rate"));
+				parkingDetailDto.setPay_yn(rs.getString("pay_yn"));
+				parkingDetailDto.setSatur_pay_yn(rs.getString("satur_pay_yn"));
+				
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			DBClose.close(conn, pstmt, rs);
+		}
+		
+		return parkingDetailDto;
+	}
+
+	@Override
+	public ParkingFacilityDto getParkingFacility_info(String park_id) {
+		ParkingFacilityDto parkingFacilityDto=null;
+		Connection conn =null;
+		PreparedStatement pstmt =null;
+		ResultSet rs =null;
+	
+		try {
+			conn=DBConnection.makeConnection();
+			String sql="";
+			sql+="select pf.park_id pf.facility, pf.feature, pi.file_name,  \n";
+			sql+="pi.file_path, pi.file_num \n";
+			sql+="from parking_facility pf, parking_img pi \n";
+			sql+="where pf.park_id=pi.park_id \n";
+			sql+="and pf.park_id=? ";
+			int idx=1;
+			pstmt =conn.prepareStatement(sql);
+			pstmt.setString(idx++,park_id);
+
+			rs=pstmt.executeQuery();
+			while(rs.next()){
+				parkingFacilityDto = new ParkingFacilityDto();
+				parkingFacilityDto.setPark_id(rs.getInt("park_id"));
+				parkingFacilityDto.setFacility(rs.getString("facility"));
+				parkingFacilityDto.setFeature(rs.getString("feature")); 		
+				parkingFacilityDto.setImg_file_name(rs.getString("file_name"));
+				parkingFacilityDto.setImg_file_num(rs.getString("file_num"));
+				parkingFacilityDto.setImg_file_path(rs.getString("file_path"));
+				
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			DBClose.close(conn, pstmt, rs);
+		}
+		
+		return parkingFacilityDto;	
+		}
 }

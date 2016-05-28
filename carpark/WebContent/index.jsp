@@ -45,8 +45,7 @@
 					<div class="col-lg-1 input-group">
 						<button class="btn btn-success" type="button"
 							onclick="javascript:goSearchResult();">Search</button>
-					</div>
-							
+					</div>			
 				</form>
 			</div>
 			

@@ -10,10 +10,19 @@
 <%
 ParkingDto parkingDetail = (ParkingDto)request.getAttribute("parkingDetail");
 ArrayList<ReviewDto> reviewlist = (ArrayList<ReviewDto>)request.getAttribute("reviewlist");
+ParkingDetailDto parkingDetail_info = (ParkingDetailDto)request.getAttribute("parkingDetail_info");
+//ParkingFacilityDto parkingFacilityDto = (ParkingFacilityDto)request.getAttribute("parkingFacilityDto");
 
+<<<<<<< HEAD
 System.out.println("<><><><><><><><"+parkingDetail.getPark_id()	);
 System.out.println("<><><><latitude><><><"+parkingDetail.getLatitude());
 System.out.println("<><><><longtitude><><"+parkingDetail.getLongitude());
+=======
+/*
+	ParkingDetailDto parkingDetail_info		: parkingDetail table info
+	ParkingFacilityDto parkingFacilityDto	: parking_facility info + parking_img info
+*/
+>>>>>>> ae898f98c14e3ecc3ad9a833b2bdbef8eed689cb
 %>
 
 <!-- ****************************************************************************************************************** -->	
@@ -401,15 +410,22 @@ for(ReviewDto reviewDto : reviewlist){
 			
 			//review
 			$('#sendMsgToHost').on('click', function (event) {
+				
+				<%if(memberDto !=null){%>
+                  var user_id = <%=memberDto.getUser_id()%> ;
+				console.log("uidasdf :"+user_id);
 				  var button = $(event.relatedTarget) // Button that triggered the modal
-			      console.log("Here!");
 			        $("#receiver").val("<%=parkingDetail.getOwner_id()%>");
 			        $("#subject").val("");
 			        $("#content").empty();
-			        $("#sendmsguser_id").val("<%=memberDto.getUser_id()%>");
-			        $("#sendmsgpark_id").val("<%=parkingDetail.getPark_id()%>");
+		        	$("#sendmsguser_id").val(user_id);
+		        	$("#sendmsgpark_id").val("<%=parkingDetail.getPark_id()%>");
 			        $("#receiver").prop("disabled", true);
 			        $('#msgToHost').show();
+				<%}else{%>
+					alert("로그인 후 이용할 수 있습니다.");
+					return;
+					<%}%>
 				})
 			
 		</script>
