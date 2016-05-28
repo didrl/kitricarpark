@@ -9,25 +9,26 @@ function messageSearch() {
 }
 
 function messageSendView(seq) {
-	window.open( "/carpark/message?act=messageSendView&seq=" + seq, "newWindow", "width=640;height=400" );
+	window.open( "/carpark/message?act=messageSendView&seq=" + seq, "newWindow", "top=100, left=400, width=500, height=600, scrollbars=yes" );
 }
 
 function messageReceiveView(seq) {
-	window.open( "/carpark/message?act=messageReceiveView&seq=" + seq, "newWindow", "width=640;height=400" );
+	window.open( "/carpark/message?act=messageReceiveView&seq=" + seq, "newWindow", "top=100, left=400, width=500, height=600, scrollbars=yes" );
 }
 
 function messageViewClose() {
 	self.close();
 }
 
-function messageDelete(seq) {
-	document.getElementById("act").value = "messageDelete";
-	document.getElementById("seq").value = seq;
-	
-	alert("글이 삭제되었습니다")
-		
+function messageDelete(seq, receiver) {
+	document.common.act.value = "messageDelete";
+	document.common.seq.value = seq;
+	document.common.receiver.value = receiver;
+			
 	document.common.action = "/carpark/message";
 	document.common.submit();
+	
+	alert("글이 삭제되었습니다")
 }
 
 function messageSendList() {

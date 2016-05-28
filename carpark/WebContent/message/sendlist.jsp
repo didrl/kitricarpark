@@ -44,6 +44,7 @@ List<MessageDto> list = (List<MessageDto>) request.getAttribute("sendList");
 				  		<td><b>제목</b></td>
 				  		<td><b>시간</b></td>
 				  		<td width="50"><b>확인</b></td>
+				  		<td></td>
 				  	</tr>
 				
 <%
@@ -51,7 +52,7 @@ int size = list.size();
 if(size > 0) {
 	for(MessageDto messageDto : list) {
 %>
-					<!-- 모달로 연결해야함 -->
+					<!-- 쪽지목록 -->
 					<tr >
 						<td><a href="javascript:messageSendView('<%=messageDto.getSeq()%>');"><%=messageDto.getReceiverId() %></a></td>
 						<td><a href="javascript:messageSendView('<%=messageDto.getSeq() %>');"><%=messageDto.getSubject() %></a></td>
@@ -64,6 +65,7 @@ if(messageDto.getMsgFlag() == 0) {
 } else {
 %>
 						<td>O</td>
+						<td><input type="button" class="btn btn-default" value="삭제" onclick="javascript:messageDelete('<%=messageDto.getSeq()%>, <%=messageDto.getReceiverId() %>');"></td>
 					</tr>
 <%
 	}	
