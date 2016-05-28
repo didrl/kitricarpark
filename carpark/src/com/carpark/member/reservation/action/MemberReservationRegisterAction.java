@@ -22,13 +22,7 @@ public class MemberReservationRegisterAction implements Action {
 		MemberDto memberDto = (MemberDto)session.getAttribute("memberInfo");
 		
 		ReservationDto reservationDto = new ReservationDto();
-		
-		System.out.println("In register Action \n"+
-				"fd : "+request.getParameter("selectedfromdate")+
-				"td : "+request.getParameter("selectedtodate")+
-				""
-				);
-		
+			
 		reservationDto.setUser_id(memberDto.getUser_id());
 		reservationDto.setPark_id(Integer.parseInt(request.getParameter("park_id")));
 		reservationDto.setFromdate(request.getParameter("selectedfromdate"));
