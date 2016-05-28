@@ -9,7 +9,15 @@ public class ParkingDto {
 	private double latitude;
 	private double longitude;
 	private String park_type;
+	private String content;
 	
+	
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
 	
 	public int getPark_id() {
 		return park_id;
