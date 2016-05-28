@@ -7,6 +7,7 @@ import java.util.Map;
 import com.carpark.admin.model.ParkingDetailDto;
 import com.carpark.admin.model.ParkingDto;
 import com.carpark.admin.model.ParkingFacilityDto;
+import com.carpark.member.model.MemberCarDto;
 import com.carpark.member.model.MemberDto;
 import com.carpark.member.model.dao.MemberDaoImpl;
 
@@ -40,11 +41,7 @@ public class MemberServiceImpl implements MemberService {
 		return MemberDaoImpl.getMemberDao().getMember(id);
 	}
 
-	@Override
-	public int modify(MemberDto memberDto) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+	
 
 	@Override
 	public int delete(String id) {
@@ -72,8 +69,8 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public int addNewCar(String user_id) {
-		return MemberDaoImpl.getMemberDao().addNewCar(user_id);
+	public int addNewCar(MemberCarDto memberCarDto) {
+		return MemberDaoImpl.getMemberDao().addNewCar(memberCarDto);
 	}
 
 	public MemberDto getMemberDetail(String id) {
@@ -87,6 +84,10 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public ParkingFacilityDto getParkingFacility_info(String park_id) {
-		return MemberDaoImpl.getMemberDao().getParkingFacility_info(park_id);;
+		return MemberDaoImpl.getMemberDao().getParkingFacility_info(park_id);
 	}	
+	public int modify(MemberDto memberDto) {
+		return MemberDaoImpl.getMemberDao().modify(memberDto);
+	}
+
 }

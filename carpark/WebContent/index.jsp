@@ -3,15 +3,14 @@
 <%@include file="/common/common.jsp"%>
 <%@include file="/common/header/init.jsp"%>
 
-<!-- Tmap -->
+<!-- Tmap --> 
 <!-- Simple Celander -->
 <link rel="stylesheet" href="/carpark/css/calendar/style.css" />
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script type="text/javascript" src="/carpark/js/calendar/calendar.js"></script>
 <!-- Simple Celander -->
-<script
-	src="https://apis.skplanetx.com/tmap/js?version=1&format=javascript&appKey=a4ea8cc9-e49c-308f-99de-3aadb0c70298">
+<script src="https://apis.skplanetx.com/tmap/js?version=1&format=javascript&appKey=a4ea8cc9-e49c-308f-99de-3aadb0c70298">
 </script>
 <script type="text/javascript" src="/carpark/js/search/mapsearch.js"></script>
 

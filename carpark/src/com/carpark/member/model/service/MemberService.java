@@ -6,6 +6,7 @@ import java.util.Map;
 import com.carpark.admin.model.ParkingDetailDto;
 import com.carpark.admin.model.ParkingDto;
 import com.carpark.admin.model.ParkingFacilityDto;
+import com.carpark.member.model.MemberCarDto;
 import com.carpark.member.model.MemberDto;
 
 public interface MemberService {
@@ -19,6 +20,6 @@ public interface MemberService {
 	List<ParkingDto>list(Map<String,String> map);
 	ParkingDto parkingDetail(String parkingId);
 	ParkingDetailDto getParkingDetail_info(String park_id);
-	int addNewCar(String user_id);
+	int addNewCar(MemberCarDto memberCarDto);
 	ParkingFacilityDto getParkingFacility_info(String park_id);
 }

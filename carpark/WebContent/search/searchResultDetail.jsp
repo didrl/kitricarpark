@@ -13,16 +13,15 @@ ArrayList<ReviewDto> reviewlist = (ArrayList<ReviewDto>)request.getAttribute("re
 ParkingDetailDto parkingDetail_info = (ParkingDetailDto)request.getAttribute("parkingDetail_info");
 //ParkingFacilityDto parkingFacilityDto = (ParkingFacilityDto)request.getAttribute("parkingFacilityDto");
 
-<<<<<<< HEAD
 System.out.println("<><><><><><><><"+parkingDetail.getPark_id()	);
 System.out.println("<><><><latitude><><><"+parkingDetail.getLatitude());
 System.out.println("<><><><longtitude><><"+parkingDetail.getLongitude());
-=======
+
 /*
 	ParkingDetailDto parkingDetail_info		: parkingDetail table info
 	ParkingFacilityDto parkingFacilityDto	: parking_facility info + parking_img info
 */
->>>>>>> ae898f98c14e3ecc3ad9a833b2bdbef8eed689cb
+
 %>
 
 <!-- ****************************************************************************************************************** -->	
@@ -248,7 +247,7 @@ for(ReviewDto reviewDto : reviewlist){
 					<input type="hidden"  name="act" value="mvReservation">
 					<input type="hidden"  name="park_id" value="<%=parkingDetail.getPark_id()%>">
 					<input type="hidden"  name="park_name" value="<%=parkingDetail.getPark_name()%>">
-					<input type="hidden"  name="host_id" value="<%=parkingDetail.getPark_name()%>">
+					<input type="hidden"  name="host_id" value="<%=parkingDetail.getOwner_id()%>">
 						<div class="panel-body">	
 				<div class="row"><!-- From Choice Start -->
 					<div class="col-md-3">
@@ -288,7 +287,6 @@ for(ReviewDto reviewDto : reviewlist){
 					</div>	<!-- To Choice End --><br>
 
 								<button type="button" onclick="javascript:goReservation();" class="btn btn-success" id="goreser" name="goreser"">
-
                   				 예약하기 
                				</button>
 					</div> <!--  radio button에 의한 Multi reservation End-->
@@ -304,7 +302,7 @@ for(ReviewDto reviewDto : reviewlist){
 					<div class="well">
 						<div class="panel-body">호스트 : <%=parkingDetail.getOwner_id() %></div>
 						<div class="text-center">
-							 <button type="button" class="btn btn-success"  id="sendMsgToHost" name="sendMsgToHost" data-toggle="modal" data-target="#msgToHost">
+							 <button type="button" class="btn btn-success"  id="sendMsgToHost" name="sendMsgToHost" data-toggle="modal"  data-target="#msgToHost">
                   				Send Message
                				</button>
                
@@ -381,26 +379,7 @@ for(ReviewDto reviewDto : reviewlist){
 									}
 								});
 			});
-			/*
-			$('#goreser').on('click', function (event) {
-				  var button = $(event.relatedTarget) // Button that triggered the modal
-				  $.ajax({
-						type:"POST",
-						url:'/carpark/reservation',
-			            data:{
-			            	act : "mvReservation",
-			            	park_id : "<%=parkingDetail.getPark_id()%>",
-			            	fromTime : $("#srfromTime").val(),
-			            	toTime : $("#srtoTime").val(),
-			            	fromdate : $("#fromdate").val(),
-			            	todate : $("#todate").val()
-			            },
-			            success:function(data){
-			            }
-			        })
-
-				})
-			*/
+	
 			// 맵 위에서 마우스 휠, 키보드 방향키가 동작하지 않도록 막음
 			$('#map_div').on('scroll touchmove mousewheel', function(e){
 				e.preventDefault();
@@ -410,22 +389,19 @@ for(ReviewDto reviewDto : reviewlist){
 			
 			//review
 			$('#sendMsgToHost').on('click', function (event) {
-				
-				<%if(memberDto !=null){%>
-                  var user_id = <%=memberDto.getUser_id()%> ;
-				console.log("uidasdf :"+user_id);
-				  var button = $(event.relatedTarget) // Button that triggered the modal
+				<%//if(memberDto !=null){%>
+				console.log("dasfasdfafsdf");
 			        $("#receiver").val("<%=parkingDetail.getOwner_id()%>");
 			        $("#subject").val("");
 			        $("#content").empty();
-		        	$("#sendmsguser_id").val(user_id);
+		        	$("#sendmsguser_id").val("<%=memberDto.getUser_id()%>");
 		        	$("#sendmsgpark_id").val("<%=parkingDetail.getPark_id()%>");
 			        $("#receiver").prop("disabled", true);
-			        $('#msgToHost').show();
-				<%}else{%>
-					alert("로그인 후 이용할 수 있습니다.");
-					return;
-					<%}%>
+			//        $("#msgToHost").load("<%=root%>/reservation/sendMessageModal.jsp");
+				<%//}else{%>
+				//	alert("로그인 후 이용할 수 있습니다.");
+				//	return;
+					<%///}%>
 				})
 			
 		</script>

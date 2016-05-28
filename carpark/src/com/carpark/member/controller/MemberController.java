@@ -1,23 +1,16 @@
 package com.carpark.member.controller;
 
 import java.io.IOException;
-import java.lang.reflect.Member;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.xml.crypto.dsig.keyinfo.PGPData;
-
-import org.apache.tomcat.util.buf.Utf8Decoder;
 
 import com.carpark.factory.MemberActionFactory;
-import com.carpark.util.PageMove;
 import com.carpark.util.Encoder;
-import com.carpark.util.NumberCheck;
 import com.carpark.util.PageMove;
-import com.carpark.util.StringCheck;
 
 
 @WebServlet("/member")
@@ -45,7 +38,7 @@ public class MemberController extends HttpServlet {
 			PageMove.forward(request, response, path);
 		}else if("mvprofile".equals(act)){
 			path = MemberActionFactory.getMemberInfoAction().execute(request, response);
-			PageMove.redirect(response, root+path);
+			PageMove.forward(request, response, path);
 		}else if("mvlogout".equals(act)){
 			path = MemberActionFactory.getMemberLogoutAction().execute(request, response);
 			PageMove.redirect(response, root+path);
@@ -53,6 +46,7 @@ public class MemberController extends HttpServlet {
 			path = MemberActionFactory.getMemberAddCarAction().execute(request, response);
 		}else if("mvProfileDetail".equals(act)){
 			path = MemberActionFactory.getMemberInfoDetailAction().execute(request, response);
+			PageMove.redirect(response, root + path);
 			PageMove.forward(request, response, path);
 		}else if("mvmessage".equals(act)){
 			path = MemberActionFactory.getMemberMessageReceiveListAction().execute(request, response);
@@ -60,8 +54,9 @@ public class MemberController extends HttpServlet {
 		}else if("mvidcheck".equals(act)){
 			path = MemberActionFactory.getMemberIdCheckAction().execute(request, response);
 			PageMove.forward(request, response, path);
-		}else if("".equals(act)){
-			
+		}else if("mvmodify".equals(act)){
+			path = MemberActionFactory.getMemberModifyAction().execute(request, response);
+			PageMove.forward(request, response, path);
 		}else if("".equals(act)){
 			
 		}else{

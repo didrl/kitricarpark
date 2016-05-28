@@ -10,10 +10,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.carpark.action.Action;
+import com.carpark.admin.model.ParkingDetailDto;
 import com.carpark.member.model.MemberCarDto;
 import com.carpark.member.model.MemberDto;
 import com.carpark.member.model.ReservationDto;
 import com.carpark.member.model.service.MemberReservationServiceImpl;
+import com.carpark.member.model.service.MemberServiceImpl;
 
 public class MemberReservationMoveAction implements Action {
 
@@ -35,7 +37,7 @@ public class MemberReservationMoveAction implements Action {
 		ReservationDto reservationDto = new ReservationDto();
 		String user_id = memberDto.getUser_id();
 		int park_id = Integer.parseInt(request.getParameter("park_id"));
-		
+		 
 		reservationDto.setUser_id(user_id);
 		reservationDto.setHost_id(request.getParameter("host_id"));
 		ArrayList<MemberCarDto> carinfo=MemberReservationServiceImpl.getMemberReservationService().getCarInfo(user_id);
@@ -48,10 +50,13 @@ public class MemberReservationMoveAction implements Action {
 		//parkingDto 
 		reservationDto.setPark_id(park_id);
 		reservationDto.setPark_name(request.getParameter("park_name"));
+		ParkingDetailDto parkingDetailDto = MemberServiceImpl.getMemberService().getParkingDetail_info(request.getParameter("park_id"));
 		
+		 
 		request.setAttribute("reservationDto", reservationDto);
 		request.setAttribute("carinfo", carinfo);
 		request.setAttribute("availabledate", availabledate);
+		request.setAttribute("parkingDetailDto", parkingDetailDto);
 		
 		return "/reservation/reservationDetail.jsp";
 	}
