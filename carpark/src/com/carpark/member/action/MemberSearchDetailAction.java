@@ -21,7 +21,7 @@ public class MemberSearchDetailAction implements Action {
 			throws IOException, ServletException {
 		String park_id= request.getParameter("parkingid");
 		ParkingDto parkingDto= MemberServiceImpl.getMemberService().parkingDetail(park_id);
-		ArrayList<ReviewDto> reviewlist = MemberReviewServiceImpl.getMemberReviewService().getReview(park_id);
+		ArrayList<ReviewDto> reviewlist = MemberReviewServiceImpl.getMemberReviewService().listReview(park_id);
 		
 		ParkingFacilityDto parkingFacilityDto = MemberServiceImpl.getMemberService().getParkingFacility_info(park_id);
 		
