@@ -97,8 +97,8 @@ function writeInit() {
 }
 
 function toWriteInit(receiver) {
-	document.messageToWriteForm.reset();
-	document.messageToWriteForm.receiver.value = receiver;
+	document.messageToWriteForm.reset();//폼 초기화
+	document.messageToWriteForm.receiver.value = receiver;//대상지정
 }
 
 function messageClose() {
