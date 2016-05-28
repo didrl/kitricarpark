@@ -39,7 +39,15 @@ public class MemberMessageController extends HttpServlet {
 			PageMove.forward(request, response, path + queryString);
 			
 		} else if("messageDelete".equals(act)) {
-			path = MemberActionFactory.getMemberMessageDeleteAction().execute(request, response);
+			System.out.println("시작점");
+			String delete = MemberActionFactory.getMemberMessageDeleteAction().execute(request, response);
+			if("sendlist" == delete) {
+				System.out.println("send");
+				path = MemberActionFactory.getMemberMessageSendListAction().execute(request, response);
+			} else {
+				System.out.println("receive");
+				path = MemberActionFactory.getMemberMessageReceiveListAction().execute(request, response);
+			}
 			PageMove.forward(request, response, path + queryString);
 			
 		} else if("messageSendList".equals(act)) {

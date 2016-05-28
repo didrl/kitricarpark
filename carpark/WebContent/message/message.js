@@ -9,11 +9,11 @@ function messageSearch() {
 }
 
 function messageSendView(seq) {
-	window.open( "/carpark/message?act=messageSendView&seq=" + seq, "newWindow", "width=640;height=400" );
+	window.open( "/carpark/message?act=messageSendView&seq=" + seq, "newWindow", "top=100, left=400, width=500, height=600, scrollbars=yes" );
 }
 
 function messageReceiveView(seq) {
-	window.open( "/carpark/message?act=messageReceiveView&seq=" + seq, "newWindow", "width=640;height=400" );
+	window.open( "/carpark/message?act=messageReceiveView&seq=" + seq, "newWindow", "top=100, left=400, width=500, height=600, scrollbars=yes" );
 }
 
 function messageViewClose() {
@@ -21,13 +21,13 @@ function messageViewClose() {
 }
 
 function messageDelete(seq) {
-	document.getElementById("act").value = "messageDelete";
-	document.getElementById("seq").value = seq;
-	
-	alert("글이 삭제되었습니다")
-		
+	document.common.act.value = "messageDelete";
+	document.common.seq.value = seq;
+			
 	document.common.action = "/carpark/message";
 	document.common.submit();
+	
+	alert("메세지가 삭제되었습니다");
 }
 
 function messageSendList() {
@@ -57,5 +57,21 @@ function messageWrite() {
 	} else{
 		document.writeForm.action = "/carpark/message";
 		document.writeForm.submit();
+	}
+}
+
+function messageToWrite() {
+	if(document.toWriteForm.receiver.value == ""){
+		alert("대상을 입력하세요");
+		return;
+	} else if(document.toWriteForm.subject.value == "") {
+		alert("제목을 입력하세요");
+		return;	
+	} else if(document.toWriteForm.content.value == "") {
+		alert("내용을 입력하세요");
+		return;
+	} else{
+		document.toWriteForm.action = "/carpark/message";
+		document.toWriteForm.submit();
 	}
 }

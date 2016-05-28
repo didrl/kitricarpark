@@ -124,7 +124,7 @@ public class MemberMessageDaoImpl implements MemberMessageDao {
 			pstmt.setInt(1, seq);
 			pstmt.executeUpdate();
 			pstmt.close();
-			System.out.println(sql);
+			
 			sql = "delete from board where seq = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, seq);

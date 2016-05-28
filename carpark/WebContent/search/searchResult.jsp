@@ -75,7 +75,11 @@ List<ParkingDto> list = (List<ParkingDto>)request.getAttribute("searchlist");
 				<!--  for-->
 			
 <%
-for(ParkingDto parkingDto :list){
+ParkingDto parkingDto = new ParkingDto();
+System.out.println("<><><><latitude><><><"+list.get(1).getLatitude());
+for(int i =0;i<list.size();i++){
+	parkingDto = list.get(i);
+//for(ParkingDto parkingDto :list){
 %>
 				<a href="<%=root%>/member?act=mvSearchResultDetail&parkingid=<%=parkingDto.getPark_id()%> &parkingname=<%=parkingDto.getPark_name()%>&latitude=<%=parkingDto.getLatitude()%>&longitude=<%=parkingDto.getLongitude()%>" class="list-group-item">					
 				<form id="parkListForm" name="parkListForm" class="form-inline" role="form" method="post">
@@ -86,7 +90,7 @@ for(ParkingDto parkingDto :list){
 					<input type="hidden" name="latitude" value="<%=parkingDto.getLatitude()%>">
 					<input type="hidden" name="longitude" value="<%=parkingDto.getLongitude()%>">
 					
-						<h4 class="list-group-item-heading"><%=parkingDto.getPark_name() %></h4>
+						<h4 class="list-group-item-heading"><%=i+1%>.<%=parkingDto.getPark_name() %></h4>
 						<div class="ratings">
                         <p class="pull-right">
                             <span class="glyphicon glyphicon-star"></span>
