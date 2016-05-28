@@ -61,8 +61,33 @@ public class MemberDaoImpl implements MemberDao {
 
 	@Override
 	public int idcheck(String id) {
-		// TODO Auto-generated method stub
-		return 0;
+		int count=1;
+		Connection conn =null;
+		PreparedStatement pstmt =null;
+		ResultSet rs =null;
+		
+		try {
+			conn=DBConnection.makeConnection();
+			String sql="";
+
+			sql+="select user_id \n";
+			sql+="from member \n";
+			sql+="where user_id=? \n";
+		
+			pstmt =conn.prepareStatement(sql);
+			pstmt.setString(1,id);
+			rs=pstmt.executeQuery();
+			if(rs.next()){
+				//이름,이메일,보유코인 필요	
+				count = 0;	
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			DBClose.close(conn, pstmt, rs);
+		}
+		return count;
 	}
 
 	@Override
@@ -76,7 +101,7 @@ public class MemberDaoImpl implements MemberDao {
 			conn=DBConnection.makeConnection();
 			String sql="";
 
-			sql+="select user_name,user_id,carinfo,coin,user_avgpoint,penalty,user_name,email,tel,grade_id \n";
+			sql+="select user_name,user_id,coin,user_avgpoint,penalty,user_name,email,tel,grade_id \n";
 			sql+="from member \n";
 			sql+="where user_id=? \n";
 		
@@ -245,5 +270,10 @@ public class MemberDaoImpl implements MemberDao {
 		return parkingDto;
 	}
 
-	
+	@Override
+	public int addNewCar(String user_id) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

@@ -31,7 +31,7 @@
 										<div class="form-group">
 											<label for="receiver">받는사람</label> <input type="text"
 												class="form-control" id="receiver" placeholder="받는사람"
-												name="receiver">
+												name="receiver" value="받는사람아이디" readonly="true">
 										</div>
 										<div class="form-group">
 											<label for="subject">제목</label> <input type="text"

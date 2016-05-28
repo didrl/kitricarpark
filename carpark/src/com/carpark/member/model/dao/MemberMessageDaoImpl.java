@@ -36,7 +36,6 @@ public class MemberMessageDaoImpl implements MemberMessageDao {
 			sql += "into message (mseq, seq, receiver_id, msg_flag) \n";
 			sql += "values (message_num_mseq.nextval, ?, ?, ?) \n";
 			sql += "select * from dual";
-			System.out.println(sql);
 			pstmt = conn.prepareStatement(sql);
 			int idx = 0;
 			pstmt.setInt(++idx, messageDto.getSeq());
@@ -68,8 +67,17 @@ public class MemberMessageDaoImpl implements MemberMessageDao {
 		
 		try {
 			conn = DBConnection.makeConnection();
+			conn.setAutoCommit(false);
 			String sql = "";
-			sql += "select b.seq, bcode, user_id, subject, contents, \n";
+			sql += "update message set msg_flag = 1 \n";
+			sql += "where seq = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, seq);
+			pstmt.executeUpdate();
+			pstmt.close();
+			
+			
+			sql = "select b.seq, bcode, user_id, subject, contents, \n";
 			sql += "		decode(to_char(logtime, 'yymmdd'), \n";
 			sql += "				to_char(sysdate, 'yymmdd'), to_char(b.logtime, 'hh24:mi:ss'), \n";
 			sql += "				to_char(b.logtime, 'yy.mm.dd')) logtime, \n";
@@ -78,9 +86,9 @@ public class MemberMessageDaoImpl implements MemberMessageDao {
 			sql += "where b.seq = m.seq \n";
 			sql += "and b.seq = ?";
 			pstmt = conn.prepareStatement(sql);
-			System.out.println(sql);
 			pstmt.setInt(1, seq);
 			rs = pstmt.executeQuery();
+			conn.commit();
 			if(rs.next()) {
 				messageDto.setSeq(seq);
 				messageDto.setSubject(rs.getString("subject"));
@@ -90,7 +98,7 @@ public class MemberMessageDaoImpl implements MemberMessageDao {
 				messageDto.setBcode(rs.getInt("bcode"));
 				messageDto.setMseq(rs.getInt("mseq"));
 				messageDto.setReceiverId(rs.getString("receiver_id"));
-				messageDto.setMsgFlag(1);
+				messageDto.setMsgFlag(rs.getInt("msg_flag"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -121,7 +129,6 @@ public class MemberMessageDaoImpl implements MemberMessageDao {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, seq);
 			pstmt.executeUpdate();
-			System.out.println(sql);
 			conn.commit();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -150,8 +157,6 @@ public class MemberMessageDaoImpl implements MemberMessageDao {
 			sql += "where b.seq = m.seq \n";
 			sql += "and user_id = ? \n";
 			sql += "order by logtime desc";
-			//정렬 수정해야함(rownum) 
-			System.out.println(sql);
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, userId);
 			rs = pstmt.executeQuery();
@@ -197,7 +202,6 @@ public class MemberMessageDaoImpl implements MemberMessageDao {
 			sql += "where b.seq = m.seq \n";
 			sql += "and receiver_id = ? \n";
 			sql += "order by logtime desc";
-			//정렬 수정 필요(rownum)
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, receiveId);
 			rs = pstmt.executeQuery();

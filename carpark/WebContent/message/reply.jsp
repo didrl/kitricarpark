@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@page import="com.carpark.member.model.MessageDto"%>
 
     <!-- Msg Modal Start -->
-		<div class="modal fade" id="msgToHost" tabindex="-1" role="dialog"
+		<div class="modal fade" id="messageReply" tabindex="-1" role="dialog"
 			aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
@@ -11,7 +11,7 @@
 						<button type="button" class="close" data-dismiss="modal">
 							<span aria-hidden="true">×</span><span class="sr-only">Close</span>
 						</button>
-						<h4 class="msgToHost" id="msgToHostModal">쪽지 보내기</h4>
+						<h4 class="" id="messageReplyModal">쪽지 보내기</h4>
 					</div>
 					<div class="modal-body">
 
@@ -31,7 +31,7 @@
 										<div class="form-group">
 											<label for="receiver">받는사람</label> <input type="text"
 												class="form-control" id="receiver" placeholder="받는사람"
-												name="receiver">
+												name="receiver" value="<%=messageDto.getUser_ID %>">
 										</div>
 										<div class="form-group">
 											<label for="subject">제목</label> <input type="text"
@@ -59,5 +59,3 @@
 			</div>
 		</div>
 		<!-- Msg Modal End -->
-
-		<!-- 쪽지보내기 모달 -->

@@ -8,7 +8,7 @@
     
 <%
 if(memberDto != null) {
-List<MessageDto> list = (List<MessageDto>) request.getAttribute("messageList");
+List<MessageDto> list = (List<MessageDto>) request.getAttribute("receiveList");
 %>
 
 <div id="wrapper">
@@ -26,7 +26,7 @@ List<MessageDto> list = (List<MessageDto>) request.getAttribute("messageList");
 	  				<button type="button" class="btn btn-default" onclick="javascript:messageSendList();">
 	  					보낸쪽지함
 	  				</button>	
-					<button type="button" class="btn btn-default"  data-toggle="modal" data-target="#msgToHost">
+					<button type="button" class="btn btn-default"  data-toggle="modal" data-target="#messageWrite">
                 		쪽지보내기
                		</button>
 				</div>
@@ -42,7 +42,7 @@ List<MessageDto> list = (List<MessageDto>) request.getAttribute("messageList");
 				  	<tr>
 				  		<td width="200"><b>보낸사람</b></td>
 				  		<td><b>제목</b></td>
-				  		<td width="100"><b>보낸시간</b></td>
+				  		<td><b>시간</b></td>
 				  		<td width="50"><b>확인</b></td>
 				  	</tr>
 				
@@ -53,15 +53,26 @@ if(size > 0) {
 %>
 					<!-- 모달로 연결해야함 -->
 					<tr >
-						<td><a href="javascript:messageView('<%=messageDto.getSeq()%>');"><%=messageDto.getReceiverId() %></a></td>
-						<td><a href="javascript:messageView('<%=messageDto.getSeq() %>');"><%=messageDto.getSubject() %></a></td>
-						<td><%=messageDto.getLogtime() %></td>						
-						<td><%=(messageDto.getMsgFlag() == 0) ? "X" : "O" %></td>
+						<td><a href="javascript:messageReceiveView('<%=messageDto.getSeq()%>');"><%=messageDto.getReceiverId() %></a></td>
+						<td><a href="javascript:messageReceiveView('<%=messageDto.getSeq() %>');"><%=messageDto.getSubject() %></a></td>
+						<td><%=messageDto.getLogtime() %></td>	
+<%
+if(messageDto.getMsgFlag() == 0) {
+%>					
+						<td>X</td>
+<%
+} else {
+%>
+						<td>O</td>
 					</tr>
-				  </table>
-				</div>
 <%
 	}	
+}
+%>
+				  </table>
+				</div>
+
+<%
 } else {
 %>
 				  </table>
@@ -71,9 +82,6 @@ if(size > 0) {
 <%
 }
 %>
-				
-			<!-- 메세지보기 모달창 -->	
-			
 
 
 			<!-- 페이지 네비게이션/검색 -->

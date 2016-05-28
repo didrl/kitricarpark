@@ -20,7 +20,9 @@
 			<div class="form-group">
 				<form class="form-horizontal" name="messageForm" method="post" action="">
 				<input type="hidden" name="act" value="messageWrite">
-				<input type="hidden" name="bcode" value="1">
+				<input type="hidden" id="sendmsguser_id" name="user_id" value="">
+				<input type="hidden" id="sendmsgpark_id" name="park_id" value="">
+				<input type="hidden" name="bcode" value="2">
 				<input type="hidden" name="pg" value="1">
 				<input type="hidden" name="key" value="">
 				<input type="hidden" name="word" value="">
@@ -39,8 +41,7 @@
 				  </div>
 				  
 				  <div class="form-group text-center">
-					<input class="btn btn-default" type="button" value="보내기" onclick="javascript:messageWrite();">
-					<input class="btn btn-default" type="reset" value="취소">
+					<input class="btn btn-default" type="button"  id="tmpbtnid" value="보내기" onclick="javascript:messageWrite();">
 				  </div>
 			
 				</form>
@@ -52,4 +53,12 @@
                         </div>
                      </div>
                 </div>
+                <!-- For checking pass data to Modal 
+                <script>
+                $('#tmpbtnid').on('click',function(){
+                	console.log("uuuserid   "+$('#sendmsguser_id').val());
+                	console.log("ppparkid   "+$('#sendmsgpark_id').val());
+                })
+                </script>
+                 -->
                 <!-- Msg Modal End -->

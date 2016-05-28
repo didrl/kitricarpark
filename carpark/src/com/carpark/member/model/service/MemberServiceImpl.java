@@ -30,8 +30,7 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public int idcheck(String id) {
-		// TODO Auto-generated method stub
-		return 0;
+		return MemberDaoImpl.getMemberDao().idcheck(id);
 	}
 
 	@Override
@@ -69,5 +68,13 @@ public class MemberServiceImpl implements MemberService {
 	public ParkingDto parkingDetail(String parkingId) {
 		return MemberDaoImpl.getMemberDao().parkingDetail(parkingId);
 	}
-	
+
+	@Override
+	public int addNewCar(String user_id) {
+		return MemberDaoImpl.getMemberDao().addNewCar(user_id);
+	}
+
+	public MemberDto getMemberDetail(String id) {
+		return MemberDaoImpl.getMemberDao().getMember(id);
+	}	
 }

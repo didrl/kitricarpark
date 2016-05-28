@@ -1,8 +1,11 @@
 package com.carpark.factory;
 
 import com.carpark.action.Action;
+import com.carpark.member.action.MemberAddCarAction;
 import com.carpark.member.action.MemberDeleteAction;
+import com.carpark.member.action.MemberIdCheckAction;
 import com.carpark.member.action.MemberInfoAction;
+import com.carpark.member.action.MemberInfoDetailAction;
 import com.carpark.member.action.MemberLoginAction;
 import com.carpark.member.action.MemberLogoutAction;
 import com.carpark.member.action.MemberModifyAction;
@@ -35,14 +38,16 @@ public class MemberActionFactory {
 	
 	private static Action memberDeleteAction;
 	private static Action memberInfoAction;
+	private static Action memberInfoDetailAction;
 	private static Action memberLoginAction;
 	private static Action memberModifyAction;
 	private static Action memberRegisterAction;
+	private static Action memberAddCarAction;
+	private static Action memberIdCheckAction;
 	
 	private static Action memberSearchAction;
 	private static Action memberSearchDetailAction;
 	private static Action memberLogoutAction;
-	
 	
 	private static Action memberCallDeleteAction;
 	private static Action memberCallListAction;
@@ -57,8 +62,10 @@ public class MemberActionFactory {
 	private static Action memberMessageDeleteAction;
 	private static Action memberMessageSendListAction;
 	private static Action memberMessageReceiveListAction;	
-	private static Action memberMessageViewAction;
 	private static Action memberMessageWriteAction;
+	private static Action memberMessageSendViewAction;
+	private static Action memberMessageReceiveViewAction;
+	private static Action memberMessageReplyAction;
 	
 	private static Action memberReportListAction;
 	private static Action memberReportRegisterAction;
@@ -78,14 +85,16 @@ public class MemberActionFactory {
 	static {
 		memberDeleteAction = new MemberDeleteAction();
 		memberInfoAction = new MemberInfoAction();
+		memberInfoDetailAction = new MemberInfoDetailAction();
 		memberLoginAction = new MemberLoginAction();
 		memberModifyAction = new MemberModifyAction();
 		memberRegisterAction = new MemberRegisterAction();
-		
+		memberIdCheckAction= new MemberIdCheckAction();
 		
 		memberSearchAction = new MemberSearchAction();
 		memberSearchDetailAction = new MemberSearchDetailAction();
 		memberLogoutAction = new MemberLogoutAction();
+		memberAddCarAction = new MemberAddCarAction();
 		
 		memberCallDeleteAction = new MemberCallDeleteAction();
 		memberCallListAction = new MemberCallListAction();
@@ -100,8 +109,10 @@ public class MemberActionFactory {
 		memberMessageDeleteAction = new MemberMessageDeleteAction();
 		memberMessageSendListAction = new MemberMessageSendListAction();
 		memberMessageReceiveListAction = new MemberMessageReceiveListAction();
-		memberMessageViewAction = new MemberMessageViewAction();
 		memberMessageWriteAction = new MemberMessageWriteAction();
+		memberMessageSendViewAction = new MemberMessageSendViewAction();
+		memberMessageReceiveViewAction = new MemberMessageReceiveViewAction();
+		memberMessageReplyAction = new MemberMessageReplyAction();
 		
 		memberReportListAction = new MemberReportListAction();
 		memberReportRegisterAction = new MemberReportRegisterAction();
@@ -119,7 +130,17 @@ public class MemberActionFactory {
 		memberReviewRegisterAction = new MemberReviewRegisterAction();
 	}
 
+	public static Action getMemberIdCheckAction() {
+		return memberIdCheckAction;
+	}
 
+	public static Action getMemberInfoDetailAction() {
+		return memberInfoDetailAction;
+	}
+
+	public static Action getMemberAddCarAction() {
+		return memberAddCarAction;
+	}
 	public static Action getMemberSearchDetailAction() {
 		return memberSearchDetailAction;
 	}
@@ -199,13 +220,21 @@ public class MemberActionFactory {
 	public static Action getMemberMessageReceiveListAction() {
 		return memberMessageReceiveListAction;
 	}
-
-	public static Action getMemberMessageViewAction() {
-		return memberMessageViewAction;
-	}
 	
 	public static Action getMemberMessageWriteAction() {
 		return memberMessageWriteAction;
+	}
+	
+	public static Action getMemberMessageSendViewAction() {
+		return memberMessageSendViewAction;
+	}
+	
+	public static Action getMemberMessageReceiveViewAction() {
+		return memberMessageReceiveViewAction;
+	}
+	
+	public static Action getMemberMessageReplyAction() {
+		return memberMessageReplyAction;
 	}
 	
 	public static Action getMemberReportListAction() {

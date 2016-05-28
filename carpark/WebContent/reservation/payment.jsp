@@ -33,8 +33,8 @@ function reservationok(){
                                </div>
                               <div class="form-group" align ="center">
                                   <label for="inputMsgContent" id="selectedid" class="col-sm-3 control-label">아이디</label>
-                                  <label for="inputMsgContent" id="selectedgrade" class="col-sm-3 control-label">등급</label>
-                                  <label for="inputMsgSubject" id="selectedcarinfo" class="col-sm-3 control-label">차량정보</label>
+                                  <label for="inputMsgSubject" id="selectedcarnum" class="col-sm-3 control-label"></label>
+                                  <label for="inputMsgSubject" id="selectedcarname" class="col-sm-3 control-label"></label>
                               </div>
                                <div class="form-group" align ="center">
                                   <label for="inputMsgContent" class="col-sm-5 control-label">보유 코인</label>

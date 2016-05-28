@@ -71,4 +71,4 @@ MemberDto memberDto = (MemberDto)session.getAttribute("memberInfo");
 	<input type="hidden" name="word" id="word" value="">
 	<input type="hidden" name="seq" id="seq" value="">
 	</form>
-   
+    

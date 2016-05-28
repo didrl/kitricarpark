@@ -8,13 +8,16 @@ function messageSearch() {
 	}
 }
 
-function messageView(seq) {
-	document.getElementById("act").value = "messageView";
-	document.getElementById("seq").value = seq;
-		
-	document.common.action = "/carpark/message";
-	document.common.submit();
-	
+function messageSendView(seq) {
+	window.open( "/carpark/message?act=messageSendView&seq=" + seq, "newWindow", "width=640;height=400" );
+}
+
+function messageReceiveView(seq) {
+	window.open( "/carpark/message?act=messageReceiveView&seq=" + seq, "newWindow", "width=640;height=400" );
+}
+
+function messageViewClose() {
+	self.close();
 }
 
 function messageDelete(seq) {

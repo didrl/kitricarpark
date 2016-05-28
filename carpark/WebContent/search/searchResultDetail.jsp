@@ -271,7 +271,9 @@ for(ReviewDto reviewDto : reviewlist){
 								</select>
 								</div>
 					</div>	<!-- To Choice End --><br>
+
 								<button type="button" onclick="javascript:goReservation();" class="btn btn-success" id="goreser" name="goreser"">
+
                   				 예약하기 
                				</button>
 					</div> <!--  radio button에 의한 Multi reservation End-->
@@ -395,8 +397,12 @@ for(ReviewDto reviewDto : reviewlist){
 			$('#sendMsgToHost').on('click', function (event) {
 				  var button = $(event.relatedTarget) // Button that triggered the modal
 			      console.log("Here!");
-			        $("#receiver").text("<%=parkingDetail.getOwner_id() %>");
-			        $("#receiver").attr("disabled");
+			        $("#receiver").val("<%=parkingDetail.getOwner_id()%>");
+			        $("#subject").val("");
+			        $("#content").empty();
+			        $("#sendmsguser_id").val("<%=memberDto.getUser_id()%>");
+			        $("#sendmsgpark_id").val("<%=parkingDetail.getPark_id()%>");
+			        $("#receiver").prop("disabled", true);
 			        $('#msgToHost').show();
 				})
 			
