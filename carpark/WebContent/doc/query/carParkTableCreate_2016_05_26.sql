@@ -132,7 +132,8 @@ CREATE TABLE reservation (
 	park_id NUMBER NOT NULL, /* 주차장아이디 */
 	user_id VARCHAR2(16) NOT NULL, /* 회원아이디(예약자) */
 	start_date DATE, /* 예약시작일 */
-	end_date DATE /* 예약종료일 */
+	end_date DATE, /* 예약종료일 */
+	pay number
 );
 
 ALTER TABLE reservation
@@ -374,9 +375,10 @@ CREATE TABLE parking_facility (
 /* 회원차량정보 */
 CREATE TABLE member_car (
 	category VARCHAR2(10), /* 차카테고리 */
-	reg_num VARCHAR2(10), /* 차량번호 */
+	reg_num VARCHAR2(14), /* 차량번호 */
 	car_id varchar2(20), /* 차모델아이디 */
-	user_id VARCHAR2(16) /* 회원아이디 */
+	user_id VARCHAR2(16), /* 회원아이디 */
+	car_name VARCHAR2(100)
 );
 
 /* 차종정보 */

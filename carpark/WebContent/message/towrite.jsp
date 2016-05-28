@@ -2,8 +2,8 @@
     pageEncoding="UTF-8"%>
 
 
-    <!-- Msg Modal Start -->
-		<div class="modal fade" id="messageWrite" tabindex="-1" role="dialog"
+ <!-- Msg Modal Start -->
+		<div class="modal fade" id="messageToWrite" tabindex="-1" role="dialog"
 			aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
@@ -11,7 +11,7 @@
 						<button type="button" class="close" data-dismiss="modal">
 							<span aria-hidden="true">×</span><span class="sr-only">Close</span>
 						</button>
-						<h4 class="messageWrite" id="messageWriteModal">쪽지 보내기</h4>
+						<h4 class="" id="messageToWriteModal">쪽지 보내기</h4>
 					</div>
 					<div class="modal-body">
 
@@ -21,7 +21,7 @@
 
 								<!-- 쪽지보내기 -->
 								<div class="form-group">
-									<form class="form-horizontal" name="writeForm" method="post" action="">
+									<form class="form-horizontal" name="messageToWriteForm" method="post" action="">
 										<input type="hidden" name="act" value="messageWrite">
 										<input type="hidden" name="bcode" value="2"> 
 										<input type="hidden" name="pg" value="1"> 
@@ -31,7 +31,7 @@
 										<div class="form-group">
 											<label for="receiver">받는사람</label> <input type="text"
 												class="form-control" id="receiver" placeholder="받는사람"
-												name="receiver" value="받는사람아이디" readonly="true">
+												name="receiver" readonly="true">
 										</div>
 										<div class="form-group">
 											<label for="subject">제목</label> <input type="text"
@@ -46,7 +46,7 @@
 
 										<div class="form-group text-center">
 											<input class="btn btn-default" type="button" value="보내기"
-												onclick="javascript:messageWrite();">
+												onclick="javascript:messageToWrite();">
 										</div>
 
 									</form>
