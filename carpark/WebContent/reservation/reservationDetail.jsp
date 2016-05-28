@@ -350,25 +350,40 @@ if(reservationDto != null){
 			      console.log("fd : "+(tdateDate-fdateDate)+"  dd :"+ddate.val());
 	
          			// Clean text in modal label
-			        $("#selectedfromdate").empty();
-			        $("#selectedtodate").empty();
-			        $("#selectedid").empty();
-			        $("#selectedgrade").empty();
-			        $("#selectedcarnum").empty();
-			        $("#selectedcarname").empty();
-			        $("#selectedcoin").empty();
-			        $("#selectedprice").empty();
+			 //       $("#selectedfromdate").empty();
+			//        $("#selectedtodate").empty();
+			//        $("#selectedid").empty();
+	//		        $("#selectedgrade").empty();
+			//        $("#selectedcarnum").empty();
+		//	        $("#selectedcarname").empty();
+		//	        $("#selectedcoin").empty();
+		//	        $("#selectedprice").empty();
 			        // Clean text in modal label
 			            	
-			        $("#selectedfromdate").append(fdate);
-			        $("#selectedtodate").append(tdate);
-			        $("#selectedid").append("<%=memberDto.getUser_id()%>");
+			        $("#selectedfromdate").val(fdate.val());
+			        $("#selectedtodate").val(tdate.val());
+			        $("#paypark_id").val("<%=parkingDetailDto.getPark_id()%>");
+			        $("#payfromtime").val($("#rdfromTime").val());
+			        $("#paytotime").val($("#rdtoTime").val());
+			        
+			        $("#selectedid").val("<%=memberDto.getUser_id()%>");
 			        $("#selectedgrade").append("<%=memberDto.getGrade_id()%>");
-			        $("#selectedcarnum").append($("#mycarlist option:selected").val());
-			        $("#selectedcarname").append($("#mycarlist option:selected").text());
-			        $("#selectedcoin").append("<%=memberDto.getCoin()%>");
-			        $("#selectedprice").append("<%=parkingDetailDto.getDay_max_pay()%>");
+			        $("#selectedcarnum").val($("#mycarlist option:selected").val());
+			        $("#selectedcarname").val($("#mycarlist option:selected").text());
+			        $("#selectedcoin").val("<%=memberDto.getCoin()%>");
+			        $("#selectedprice").val("<%=parkingDetailDto.getDay_max_pay()%>");
 					//init price
+					
+					
+					
+					 $("#selectedfromdate").prop("disabled", true);
+					 $("#selectedtodate").prop("disabled", true);
+					  $("#selectedid").prop("disabled", true);
+				        $("#selectedgrade").prop("disabled", true);
+				        $("#selectedcarnum").prop("disabled", true);
+				        $("#selectedcarname").prop("disabled", true);
+				        $("#selectedcoin").prop("disabled", true);
+				        $("#selectedprice").prop("disabled", true);
 			        $('#payment').show();
 				})
 		</script>

@@ -27,9 +27,9 @@ public class MemberAddCarAction implements Action {
 		memberCarDto.setModel(request.getParameter("inputCarName"));
 		memberCarDto.setUser_id(memberDto.getUser_id());
 		
-		int cnt = MemberServiceImpl.getMemberService().addNewCar(memberCarDto);
+		MemberServiceImpl.getMemberService().addNewCar(memberCarDto);
 
-		return "/reservation/reservationDetail.jsp";
+		return "/reservation?act=mvReservation";
 	}
 
 }

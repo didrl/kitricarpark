@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.carpark.action.Action;
+import com.carpark.member.model.MemberDto;
 import com.carpark.member.model.ReservationDto;
 import com.carpark.member.model.service.MemberReservationServiceImpl;
 
@@ -18,21 +19,30 @@ public class MemberReservationRegisterAction implements Action {
 			throws IOException, ServletException {
 		
 		HttpSession session = request.getSession();
+		MemberDto memberDto = (MemberDto)session.getAttribute("memberInfo");
+		
 		ReservationDto reservationDto = new ReservationDto();
 		
+		System.out.println("In register Action \n"+
+				"fd : "+request.getParameter("fromdate")+
+				"td : "+request.getParameter("todate")+
+				""
+				);
 		
-		reservationDto.setUser_id(request.getParameter("id"));
+		reservationDto.setUser_id(memberDto.getUser_id());
 		reservationDto.setPark_id(Integer.parseInt(request.getParameter("park_id")));
 		reservationDto.setFromdate(request.getParameter("fromdate"));
 		reservationDto.setTodate(request.getParameter("todate"));
-		reservationDto.setFromtime(Integer.parseInt(request.getParameter("fromTime")));
-		reservationDto.setTotime(Integer.parseInt(request.getParameter("toTime")));
+		reservationDto.setFromtime(Integer.parseInt(request.getParameter("payfromtime")));
+		reservationDto.setTotime(Integer.parseInt(request.getParameter("paytotime")));
+		reservationDto.setPay(Integer.parseInt(request.getParameter("selectedprice")));
+		
 		
 		MemberReservationServiceImpl.getMemberReservationService().registerReservation(reservationDto);
 
 		
 		
-		return "/carpark/index.jsp";
+		return "";
 	}
 
 }

@@ -132,7 +132,8 @@ CREATE TABLE reservation (
 	park_id NUMBER NOT NULL, /* 주차장아이디 */
 	user_id VARCHAR2(16) NOT NULL, /* 회원아이디(예약자) */
 	start_date DATE, /* 예약시작일 */
-	end_date DATE /* 예약종료일 */
+	end_date DATE, /* 예약종료일 */
+	pay number
 );
 
 ALTER TABLE reservation
