@@ -33,21 +33,21 @@ function reservationok(){
                                
                               <div class="form-group" align ="center">
                                  <label class="col-sm-3 control-label">선택한 날짜 :</label>
-                                 <label class="col-sm-4 control-label"><input type="text"  id="selectedfromdate"  name="selectedfromdate"></label>
-                                 <label class="col-sm-3 control-label"><input type="text"  id="selectedtodate" name="selectedtodate" ></label>
+                                 <label class="col-sm-4 control-label"><input type="text" readonly = "readonly" id="selectedfromdate"  name="selectedfromdate"></label>
+                                 <label class="col-sm-3 control-label"><input type="text" readonly = "readonly" id="selectedtodate" name="selectedtodate" ></label>
                                </div>
                               <div class="form-group" align ="center">
-                                  <label class="col-sm-3 control-label"><input type="text"  id="selectedid"  name="selectedid"></label>
-                                  <label class="col-sm-3 control-label"><input type="text"  id="selectedcarnum" name="selectedcarnum" ></label>
-                                  <label  class="col-sm-3 control-label"><input type="text"  id="selectedcarname"  name="selectedcarname" ></label>
+                                  <label class="col-sm-3 control-label"><input type="text" readonly = "readonly" id="selectedid"  name="selectedid"></label>
+                                  <label class="col-sm-3 control-label"><input type="text"  readonly = "readonly" id="selectedcarnum" name="selectedcarnum" ></label>
+                                  <label  class="col-sm-3 control-label"><input type="text" readonly = "readonly" id="selectedcarname"  name="selectedcarname" ></label>
                               </div>
                                <div class="form-group" align ="center">
                                   <label class="col-sm-5 control-label">보유 코인</label>
-                                  <label class="col-sm-5 control-label"><input type="text"  id="selectedcoin"  name="selectedcoin" ></label>
+                                  <label class="col-sm-5 control-label"><input type="text" readonly = "readonly" id="selectedcoin"  name="selectedcoin" ></label>
                               </div>
 							 <div class="form-group" align ="center">
                                   <label class="col-sm-5 control-label">이용 가격</label>
-                                  <label for="inputMsgContent" class="col-sm-5 control-label"><input type="text"  id="selectedprice"  name="selectedprice"></label>
+                                  <label class="col-sm-5 control-label"><input type="text" readonly = "readonly" id="selectedprice"  name="selectedprice"></label>
                               </div>
                               <div class="form-group" align ="center">
                                   <div >
