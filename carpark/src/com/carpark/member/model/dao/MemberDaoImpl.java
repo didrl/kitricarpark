@@ -288,7 +288,7 @@ public class MemberDaoImpl implements MemberDao {
 		try {
 			conn=DBConnection.makeConnection();
 			String sql="";
-			sql+="select park_flag, park_avgpoint, get_status, cur_parking, pay_yn, \n";
+			sql+="select distinct park_flag, park_avgpoint, get_status, cur_parking, pay_yn, \n";
 			sql+="satur_pay_yn, holi_pay_yn, fulltime_monthly_pay, park_rate, park_time_rate, \n";
 			sql+="add_park_rate, day_max_pay \n";
 			sql+="from parking_detail \n";

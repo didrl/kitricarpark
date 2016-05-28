@@ -10,6 +10,11 @@
 ReservationDto reservationDto = (ReservationDto) request.getAttribute("reservationDto");
 ArrayList<MemberCarDto> carInfo = (ArrayList<MemberCarDto>) request.getAttribute("carinfo"); 
 ArrayList<String> availdate = (ArrayList<String>) request.getAttribute("availalbledate");
+ParkingDetailDto parkingDetailDto =(ParkingDetailDto) request.getAttribute("parkingDetailDto");
+
+if(parkingDetailDto == null)
+	System.out.println("없어!!!!!!!!!!!!!!!!!");
+
 if(reservationDto != null){
 %>
     <!-- For sendMsg Modal -->
@@ -306,6 +311,8 @@ if(reservationDto != null){
 				$("#datetoTime").val("<%=reservationDto.getTotime()%>");
 				$("#singedate").val("<%=reservationDto.getFromdate()%>");
 				
+	
+				
 		});
 			// Radio Control div Show or Hide 
 				$("#multireservation").on("click",function(){
@@ -358,7 +365,7 @@ if(reservationDto != null){
 			        $("#selectedcarname").append($("#mycarlist option:selected").text());
 			        $("#selectedcoin").append("<%=memberDto.getCoin()%>");
 			        $("#selectedprice").append();
-			        
+					//init price
 			        $('#payment').show();
 				})
 		</script>

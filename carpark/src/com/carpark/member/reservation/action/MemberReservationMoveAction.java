@@ -10,10 +10,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.carpark.action.Action;
+import com.carpark.admin.model.ParkingDetailDto;
 import com.carpark.member.model.MemberCarDto;
 import com.carpark.member.model.MemberDto;
 import com.carpark.member.model.ReservationDto;
 import com.carpark.member.model.service.MemberReservationServiceImpl;
+import com.carpark.member.model.service.MemberServiceImpl;
 
 public class MemberReservationMoveAction implements Action {
 
@@ -48,10 +50,14 @@ public class MemberReservationMoveAction implements Action {
 		//parkingDto 
 		reservationDto.setPark_id(park_id);
 		reservationDto.setPark_name(request.getParameter("park_name"));
+		ParkingDetailDto parkingDetailDto = MemberServiceImpl.getMemberService().getParkingDetail_info(request.getParameter("park_id"));
+		
+		System.out.println(">>>>>>>>>"+parkingDetailDto.getDay_max_pay());
 		
 		request.setAttribute("reservationDto", reservationDto);
 		request.setAttribute("carinfo", carinfo);
 		request.setAttribute("availabledate", availabledate);
+		request.setAttribute("parkingDetailDto", parkingDetailDto);
 		
 		return "/reservation/reservationDetail.jsp";
 	}
