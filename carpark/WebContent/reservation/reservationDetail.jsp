@@ -347,19 +347,6 @@ if(reservationDto != null){
 				var fdateDate=new Date(fdate);
 				var tdateDate=new Date(tdate);
 				  
-			      console.log("fd : "+(tdateDate-fdateDate)+"  dd :"+ddate.val());
-	
-         			// Clean text in modal label
-			 //       $("#selectedfromdate").empty();
-			//        $("#selectedtodate").empty();
-			//        $("#selectedid").empty();
-	//		        $("#selectedgrade").empty();
-			//        $("#selectedcarnum").empty();
-		//	        $("#selectedcarname").empty();
-		//	        $("#selectedcoin").empty();
-		//	        $("#selectedprice").empty();
-			        // Clean text in modal label
-			            	
 			        $("#selectedfromdate").val(fdate.val());
 			        $("#selectedtodate").val(tdate.val());
 			        $("#paypark_id").val("<%=parkingDetailDto.getPark_id()%>");
@@ -374,24 +361,13 @@ if(reservationDto != null){
 			        $("#selectedprice").val("<%=parkingDetailDto.getDay_max_pay()%>");
 					//init price
 					
-					
-					
-	//				 $("#selectedfromdate").prop("disabled", true);
-	//				 $("#selectedtodate").prop("disabled", true);
-	//				  $("#selectedid").prop("disabled", true);
-	//			        $("#selectedgrade").prop("disabled", true);
-	//			        $("#selectedcarnum").prop("disabled", true);
-	//			        $("#selectedcarname").prop("disabled", true);
-	//			        $("#selectedcoin").prop("disabled", true);
-	//			        $("#selectedprice").prop("disabled", true);
+
 			        $('#payment').show();
 				})
 		</script>
 
 
 
-		
-		
 
 <!-- ****************************************************************************************************************** -->			
 
