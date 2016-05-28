@@ -213,8 +213,8 @@ public class MemberDaoImpl implements MemberDao {
 				parkingDto.setPark_name(rs.getString("park_name"));
 				parkingDto.setLocation(rs.getString("city")); 		
 				parkingDto.setPark_capacity(rs.getInt("park_capacity"));
-				parkingDto.setLongitude(rs.getInt("longitude"));
-				parkingDto.setLatitude(rs.getInt("latitude"));
+				parkingDto.setLongitude(rs.getDouble("longitude"));
+				parkingDto.setLatitude(rs.getDouble("latitude"));
 				list.add(parkingDto);	
 			}
 
@@ -255,8 +255,8 @@ public class MemberDaoImpl implements MemberDao {
 				parkingDto.setPark_name(rs.getString("park_name"));
 				parkingDto.setLocation(rs.getString("city")); 		
 				parkingDto.setPark_capacity(rs.getInt("park_capacity"));
-				parkingDto.setLongitude(rs.getInt("longitude"));
-				parkingDto.setLatitude(rs.getInt("latitude"));
+				parkingDto.setLongitude(rs.getDouble("longitude"));
+				parkingDto.setLatitude(rs.getDouble("latitude"));
 				parkingDto.setOwner_id(rs.getString("owner_id"));
 				
 			}

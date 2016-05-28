@@ -80,10 +80,8 @@ List<ParkingDto> list = (List<ParkingDto>)request.getAttribute("searchlist");
 <%
 for(ParkingDto parkingDto :list){
 %>
-				<a href="<%=root%>/member?act=mvSearchResultDetail&parkingid=<%=parkingDto.getPark_id()%> 
-				&parkingname=<%=parkingDto.getPark_name()%>&latitude=<%=parkingDto.getLatitude()%>
-				&longitude=<%=parkingDto.getLongitude()%>" class="list-group-item">					
-				<form id="parkListForm" name="parkListForm" class="form-inline" 	role="form" method="post">
+				<a href="<%=root%>/member?act=mvSearchResultDetail&parkingid=<%=parkingDto.getPark_id()%> &parkingname=<%=parkingDto.getPark_name()%>&latitude=<%=parkingDto.getLatitude()%>&longitude=<%=parkingDto.getLongitude()%>" class="list-group-item">					
+				<form id="parkListForm" name="parkListForm" class="form-inline" role="form" method="post">
 
 					<input type="hidden" name="act" value="mvSearchResultDetail">
 					<input type="hidden" name="id" value="<%=parkingDto.getPark_id()%>">
