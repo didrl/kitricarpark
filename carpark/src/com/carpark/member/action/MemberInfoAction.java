@@ -18,8 +18,9 @@ public class MemberInfoAction implements Action {
 			throws IOException, ServletException {
 		HttpSession session = request.getSession();
 		MemberDto memberDto = (MemberDto)session.getAttribute("memberInfo");
-		memberDto = MemberServiceImpl.getMemberService().getMember(memberDto.getUser_id());
-		request.setAttribute("memberInfo", memberDto);
+		MemberDto getmemberDto = new MemberDto();
+		getmemberDto = MemberServiceImpl.getMemberService().getMember(memberDto.getUser_id());
+		request.setAttribute("getmemberInfo", getmemberDto);
 		return "/member/info.jsp";
 	}
 }

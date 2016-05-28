@@ -4,9 +4,7 @@
 <%@include file="/common/header/init.jsp" %> 
 <%@include file="/common/side.jsp" %>
 
-<% 
-int count = (Integer)request.getAttribute("count");
-%>
+
 <div id="wrapper">
 <%
 if(memberDto!=null){ 
@@ -55,7 +53,7 @@ if(memberDto!=null){
                                 	
                                 <img src="<%=root%>/img/star.png" width="25" height="25">
                                 	<label for="disabledSelect">
-                                		<h4>등급 : <%=memberDto.getGrade_id() %> 등급 </h4>
+                                		<h4>등급 : <%= memberDto.getGrade_id() %> 등급 </h4>
                                 	</label><br>        
                             </div>
 						</form>

@@ -5,7 +5,7 @@
 <%@include file="/common/header/init.jsp"%>
 <%@include file="/common/side.jsp" %>
 <%
-MemberDto memberDetailDto = (MemberDto)request.getAttribute("memberDetailInfo");
+MemberDto memberDetailInfo =(MemberDto)request.getAttribute("memberDetailInfo");
 %>
 
 	<div id="wrapper">
@@ -28,66 +28,42 @@ MemberDto memberDetailDto = (MemberDto)request.getAttribute("memberDetailInfo");
 
 
 				<div class="row">
+					<form role="form" id="memberdetail" name="memberdetail" method="post" action="<%=root %>/member">
+					<input type="hidden" name="act" value="mvmodify">
 					<div class="col-lg-6">
-						<form role="form">
 							<div class="form-group">
 								<label>Full Name</label> <input class="form-control"
-									placeholder="<%=memberDetailDto.getUser_name() %>">
+									value="<%=memberDetailInfo.getUser_name()%>" name="modifyname">
 								<p class="help-block">Example block-level help text here.</p>
 							</div>
 
 							<div class="form-group">
-								<div class="row">
-									<div class="col-xs-4">
-										<label>년도</label> <input type="text" class="form-control"
-											placeholder="year">
-									</div>
-									<div class="col-xs-3">
-										<label>월</label> <input type="text" class="form-control"
-											placeholder="month">
-									</div>
-									<div class="col-xs-3">
-										<label>일</label> <input type="text" class="form-control"
-											placeholder="day">
-									</div>
-								</div>
-							</div>
-
-
-							<div class="form-group">
-								<label>비밀번호</label> <input class="form-control">
+								<label>새비밀번호</label> <input class="form-control" name="modifypass1" id="modifypass1">
 							</div>
 
 							<div class="form-group">
-								<label>비밀번호확인</label> <input class="form-control">
+								<label>새비밀번호확인</label> <input class="form-control" name="modifypass2" id="modifypass2">
 							</div>
-
-
+							
+							
 							<div class="form-group">
 								<label for="exampleInputName2">전화번호</label> <input type="text"
-									class="form-control" id="exampleInputName2"
-									placeholder="<%=memberDetailDto.getTel() %>">
+									class="form-control" id="modifytel" name="modifytel"
+									value="<%=memberDetailInfo.getTel() %>">
+									<p class="help-block"> - 없이 입력해주세요.</p>
 							</div>
 
 							<div class="form-group">
 								<label for="exampleInputEmail2">이메일</label> <input
-									type="email" class="form-control" id="exampleInputEmail2"
-									placeholder="<%=memberDetailDto.getEmail() %>">
-							</div>
-
-
-							<div class="form-group">
-								<label>Company Name</label> <input class="form-control">
-								<p class="help-block">Example block-level help text here.</p>
+									type="email" class="form-control" id="exampleInputEmail2" name="modifyemail"
+									value="<%=memberDetailInfo.getEmail() %>">
 							</div>
 					</div>
 					<!-- /.col-lg-6 -->
 
 					<div class="col-lg-6">
-
 						<div class="form-group">
 							<label class="checkbox-inline"> <input type="checkbox">사업자등록번호체크
-
 							</label>
 						</div>
 
@@ -95,10 +71,7 @@ MemberDto memberDetailDto = (MemberDto)request.getAttribute("memberDetailInfo");
 							<label>프로필 사진 선택</label> <input type="file">
 						</div>
 
-						<div class="form-group">
-							<label>소개글</label>
-							<textarea class="form-control" rows="3"></textarea>
-						</div>
+					
 
 						<div class="form-group">
 							<label>Checkboxes</label>
@@ -120,15 +93,21 @@ MemberDto memberDetailDto = (MemberDto)request.getAttribute("memberDetailInfo");
 						</div>
 
 						<div class="form-group">
-							<label>Inline Radio Buttons</label> <label class="radio-inline">
+							<label>회사 선택</label> <label class="radio-inline">
 								<input type="radio" name="optionsRadiosInline"
-								id="optionsRadiosInline1" value="option1" checked>1
-							</label> <label class="radio-inline"> <input type="radio"
+								id="optionsRadiosInline1" value="option1" checked>개인
+							</label> 
+							<label class="radio-inline"> <input type="radio"
 								name="optionsRadiosInline" id="optionsRadiosInline2"
-								value="option2">2
-							</label> <label class="radio-inline"> <input type="radio"
+								value="option2">기업
+							</label> 
+							<label class="radio-inline"> <input type="radio"
 								name="optionsRadiosInline" id="optionsRadiosInline3"
-								value="option3">3
+								value="option3">공공기관
+							</label>
+							<label class="radio-inline"> <input type="radio"
+								name="optionsRadiosInline" id="optionsRadiosInline3"
+								value="option3">없음
 							</label>
 						</div>
 
@@ -139,7 +118,6 @@ MemberDto memberDetailDto = (MemberDto)request.getAttribute("memberDetailInfo");
 
 					</div>
 					</form>
-
 					<!-- /.col-lg-6 -->
 				</div>
 				<!-- /.row -->

@@ -263,8 +263,8 @@ if(memberDto!=null){
 						<div data-toggle="buttons">
 							<label class="btn btn-primary active"> <span
 								class="fa fa-check"></span> <input id="agree" type="checkbox"
-								autocomplete="off" checked>
-							</label> <a href="#">이용약관</a>에 동의합니다.
+								autocomplete="off">
+							</label> <a href="#">개인정보 이용약관</a>에 동의합니다.
 						</div>
 					</div>
 					<div class="form-group text-center">

@@ -101,7 +101,7 @@ public class MemberDaoImpl implements MemberDao {
 			conn=DBConnection.makeConnection();
 			String sql="";
 
-			sql+="select user_name,user_id,coin,user_avgpoint,penalty,user_name,email,tel,grade_id \n";
+			sql+="select user_name,user_id,coin,user_avgpoint,penalty,user_name,email,tel,grade_id,user_pass \n";
 			sql+="from member \n";
 			sql+="where user_id=? \n";
 		
@@ -117,9 +117,9 @@ public class MemberDaoImpl implements MemberDao {
 				memberDto.setGrade_id(rs.getInt("grade_id"));
 				memberDto.setUser_avgPoint(rs.getInt("user_avgpoint"));
 				memberDto.setPenalty(rs.getInt("penalty"));
-				memberDto.setUser_name(rs.getString("user_name"));
 				memberDto.setEmail(rs.getString("email"));
 				memberDto.setTel(rs.getString("tel"));
+				memberDto.setUser_pass(rs.getString("user_pass"));
 			}
 
 		} catch (SQLException e) {
@@ -130,11 +130,7 @@ public class MemberDaoImpl implements MemberDao {
 		return memberDto;
 	}
 
-	@Override
-	public int modify(MemberDto memberDto) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+
 
 	@Override
 	public int delete(String id) {
@@ -153,7 +149,7 @@ public class MemberDaoImpl implements MemberDao {
 			conn=DBConnection.makeConnection();
 			String sql="";
 
-			sql+="select user_id,coin,grade_id,user_name,user_avgpoint,email,tel \n";
+			sql+="select user_id,coin,grade_id,user_name,user_avgpoint,email,tel,user_pass \n";
 			sql+="from member \n";
 			sql+="where user_id=? and user_pass=? \n";
 		
@@ -171,6 +167,7 @@ public class MemberDaoImpl implements MemberDao {
 				memberDto.setUser_avgPoint(rs.getInt("user_avgpoint"));
 				memberDto.setEmail(rs.getString("email"));
 				memberDto.setTel(rs.getString("tel"));
+				memberDto.setUser_pass(rs.getString("user_pass"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -275,5 +272,43 @@ public class MemberDaoImpl implements MemberDao {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+	@Override
+	public int modify(MemberDto memberDto) {
+		int count=0;
+		Connection conn =null;
+		PreparedStatement pstmt =null;
+		
+		try {
+			conn=DBConnection.makeConnection();
+			String sql="";
+
+			sql+="update member \n";
+			sql+="set user_name=?, user_pass=?, email=?, tel=? \n";
+			sql+="where user_id=?";
+			
+			int idx=1;
+			pstmt =conn.prepareStatement(sql);
+			pstmt.setString(idx++, memberDto.getUser_name());
+			pstmt.setString(idx++, memberDto.getUser_pass());
+			pstmt.setString(idx++, memberDto.getEmail());
+			pstmt.setString(idx++, memberDto.getTel());
+			pstmt.setString(idx++, memberDto.getUser_id());
+			System.out.println("DAO name:"+memberDto.getUser_name());
+			System.out.println("DAO pass:"+memberDto.getUser_pass());
+			System.out.println("DAO email:"+memberDto.getEmail());
+			System.out.println("DAO tel:"+memberDto.getTel());
+			System.out.println("DAO id:"+memberDto.getUser_id());
+			
+			count =pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			DBClose.close(conn, pstmt);
+		}
+		return count;
+	}
+
+
 
 }
