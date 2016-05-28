@@ -21,7 +21,7 @@
 
 								<!-- 쪽지보내기 -->
 								<div class="form-group">
-									<form class="form-horizontal" name="writeForm" method="post" action="">
+									<form class="form-horizontal" name="messageWriteForm" method="post" action="">
 										<input type="hidden" name="act" value="messageWrite">
 										<input type="hidden" name="bcode" value="2"> 
 										<input type="hidden" name="pg" value="1"> 
