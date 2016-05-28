@@ -97,7 +97,7 @@ public class MemberReservationDaoImpl implements MemberReservationDao {
 
 			while(rs.next()){
 				map = new HashMap<String, String>();
-				map.put("startdate", rs.getString("startdate"));
+				map.put("startdate", rs.getString("start_date"));
 				map.put("betweendate", rs.getString("betweendate"));		// end_date - start_date
 				list.add(map);
 			}

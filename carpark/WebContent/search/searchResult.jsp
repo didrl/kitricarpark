@@ -13,11 +13,13 @@ List<ParkingDto> list = (List<ParkingDto>)request.getAttribute("searchlist");
 <script type="text/javascript" src="/carpark/js/calendar/calendar.js"></script>
 <!-- Simple Celander -->
 
-
+<!-- Custom CSS -->
+<link href="/carpark/css/shop-item.css" rel="stylesheet">
 <link
 	href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic"
 	rel="stylesheet" type="text/css">
-
+<link rel="stylesheet" href="/carpark/css/normalize.css">
+<link rel="stylesheet" href="/carpark/css/style.css">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -29,34 +31,8 @@ List<ParkingDto> list = (List<ParkingDto>)request.getAttribute("searchlist");
 	
     <!-- Page Content -->
 	<div class="container" style="text-align:center">
-					<!--  search bar start -->
-			<div class="col-sm-13">
-				<!-- /input-group -->
-				<form id="searchForm" name="searchForm" class="form-inline" role="form" method="post">
-					<input type="hidden" name="act" value="mvSearchResult">
-					<input type="hidden" name="search" value="">
-					
-					
-					<div class="input-group">
-						<input type="text" class="form-control" id="citysearch" name="city" placeholder="Search for..."> 
-					</div>
-					<div class="input-group">
-						<input class="date-picker" id="fromdatesearch" name="from" type="text" />
-					</div>
-
-					<div class="input-group">
-						<input class="date-picker" id="todatesearch" type="text" name="to"/>
-					</div>
-					<div class="input-group">
-						<button class="btn btn-success" type="button"
-							onclick="javascript:goSearchResult();">Search</button>
-					</div>
-				</form>
-			</div>
-			<br>
-			<br>
-			<!--  search bar end-->
-		
+			<%@include file="/common/searchBar.jsp"%>
+		<br><br>
 		
 		
 		<!-- Left List Group Strat -->
