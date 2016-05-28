@@ -323,7 +323,7 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	@Override
-<<<<<<< HEAD
+
 	public ParkingFacilityDto getParkingFacility_info(String park_id) {
 		ParkingFacilityDto parkingFacilityDto=null;
 		Connection conn =null;
@@ -362,7 +362,7 @@ public class MemberDaoImpl implements MemberDao {
 		
 		return parkingFacilityDto;	
 		}
-=======
+
 	public int modify(MemberDto memberDto) {
 		int count=0;
 		Connection conn =null;
@@ -397,8 +397,4 @@ public class MemberDaoImpl implements MemberDao {
 		}
 		return count;
 	}
-
-
-
->>>>>>> seok
 }

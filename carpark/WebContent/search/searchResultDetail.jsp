@@ -16,10 +16,12 @@ ParkingDetailDto parkingDetail_info = (ParkingDetailDto)request.getAttribute("pa
 System.out.println("<><><><><><><><"+parkingDetail.getPark_id()	);
 System.out.println("<><><><latitude><><><"+parkingDetail.getLatitude());
 System.out.println("<><><><longtitude><><"+parkingDetail.getLongitude());
+
 /*
 	ParkingDetailDto parkingDetail_info		: parkingDetail table info
 	ParkingFacilityDto parkingFacilityDto	: parking_facility info + parking_img info
 */
+
 %>
 
 <!-- ****************************************************************************************************************** -->	
@@ -399,7 +401,7 @@ for(ReviewDto reviewDto : reviewlist){
 				<%//}else{%>
 				//	alert("로그인 후 이용할 수 있습니다.");
 				//	return;
-					<%//}%>
+					<%///}%>
 				})
 			
 		</script>
