@@ -18,7 +18,7 @@
 			<br>
 			<!-- 본문내용 -->
 			<div class="col-md-10"><!-- 12칸 중 좌측메뉴 2칸 제외한 나머지 -->
-			<form name="" method="" action="">
+			<form name="parkRegisterForm" method="post" action="">
 				<input type="hidden" name="" value="">
 				<input type="hidden" name="" value="">
 				<input type="hidden" name="" value="">
