@@ -74,20 +74,15 @@ if(memberDto!=null){
 				<li class="message-footer"><a href="javascript:messageReceiveList();">Read All New
 						Messages</a></li>
 			</ul></li>
+		
 		<li class="dropdown"><a href="#" class="dropdown-toggle"
 			data-toggle="dropdown"><i class="fa fa-bell"></i> <b
 				class="caret"></b></a>
 			<ul class="dropdown-menu alert-dropdown">
-				<li><a href="#">Alert Name <span
+				<li><a href="#" data-toggle="modal" data-target="#messageReply">제보하기 <span
 						class="label label-default">Alert Badge</span></a></li>
-				<li><a href="#">Alert Name <span
+				<li><a href="<%=root%>/qna.jsp">  QnA  <span
 						class="label label-primary">Alert Badge</span></a></li>
-				<li><a href="#">Alert Name <span
-						class="label label-success">Alert Badge</span></a></li>
-				<li><a href="#">Alert Name <span class="label label-info">Alert
-							Badge</span></a></li>
-				<li><a href="#">Alert Name <span
-						class="label label-warning">Alert Badge</span></a></li>
 				<li><a href="#">Alert Name <span class="label label-danger">Alert
 							Badge</span></a></li>
 				<li class="divider"></li>
@@ -287,6 +282,75 @@ if(memberDto!=null){
 	</div>
 </div>
 
+
+
+
+
+
+
+    <!-- 제보 Modal Start -->
+		<div class="modal fade" id="messageReply" tabindex="-1" role="dialog"
+			aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header" style="background-color: #00cc00" align="center">
+						<button type="button" class="close" data-dismiss="modal">
+							<span aria-hidden="true">×</span><span class="sr-only">Close</span>
+						</button>
+						<h4 class="" id="messageReplyModal" style="color: #FFFFFF">주차장 제보 하기</h4>
+					</div>
+					<div class="modal-body">
+
+						<!-- main -->
+						<div id="page-wrapper">
+							<div class="container-fluid">
+
+								<!-- 쪽지보내기 -->
+								<div class="form-group">
+									<form class="form-horizontal" name="writeForm" method="post" action="">
+										<input type="hidden" name="act" value="messageWrite">
+										<input type="hidden" name="bcode" value="2"> 
+										<input type="hidden" name="pg" value="1"> 
+										<input type="hidden" name="key" value=""> 
+										<input type="hidden" name="word" value="">
+
+										<div class="form-group">
+											<label for="receiver">받는사람</label> <input type="text"
+												class="form-control" id="receiver" placeholder="Cpark 관리자"
+												style="text-align: center;"  disabled="disabled"  name="receiver" value="">
+										</div>
+										<div class="form-group">
+											<label for="subject">제목</label> <input type="text"
+												class="form-control" id="subject" placeholder="제목"
+												name="subject">
+										</div>
+										<div class="form-group">
+											<label for="content">내용</label>
+											<textarea class="form-control" rows="10" id="content"
+												name="content"></textarea>
+										</div>
+
+										<div class="form-group text-center">
+											<input class="btn btn-default" type="button" value="제보하기"
+												onclick="javascript:messageWrite();">
+										</div>
+
+									</form>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 제보 Modal End -->
+
+
+
+
+
+
 <script type="text/javascript">
 var id = document.getElementById("userid").value; 
 
@@ -300,7 +364,7 @@ $('#idcheck').click(function(id){
 			"id" : id
 		},
 		successs: function(data){
-			alert("룰루루루");
+			alert("성공입니다.");
 			console.log(data);
 		},
 		error: function(data){
