@@ -24,16 +24,11 @@ public class MemberMessageController extends HttpServlet {
 		String path = "/index.jsp";
 		String queryString = "?bcode=" + bcode + "&pg=" + pg + "&key=" + key + "&word=" + Encoder.isoToUtf(word);
 		
-		System.out.println(act);
-		
 		if("".equals(act)) {
 			
 		} else if("messageWrite".equals(act)) {
 			path = MemberActionFactory.getMemberMessageWriteAction().execute(request, response);
 			PageMove.forward(request, response, path + queryString);
-			
-		} else if("messageToWrite".equals(act)) {
-			
 			
 		} else if("messageSendView".equals(act)) {
 			path = MemberActionFactory.getMemberMessageSendViewAction().execute(request, response);
@@ -53,7 +48,7 @@ public class MemberMessageController extends HttpServlet {
 			System.out.println("receive");
 			MemberActionFactory.getMemberMessageReceiveDeleteAction().execute(request, response);
 			path = MemberActionFactory.getMemberMessageReceiveListAction().execute(request, response);
-			PageMove.forward(request, response, path + queryString);
+
 			
 		} else if("messageSendList".equals(act)) {
 			path = MemberActionFactory.getMemberMessageSendListAction().execute(request, response);
@@ -63,8 +58,18 @@ public class MemberMessageController extends HttpServlet {
 			path = MemberActionFactory.getMemberMessageReceiveListAction().execute(request, response);
 			PageMove.forward(request, response, path + queryString);
 			
-		} else if("".equals(act)) {
-			
+		} else if("messageDelete".equals(act)) {//두개로 분할 /////////////////////////////////////////////
+			System.out.println("시작점");
+			String delete = MemberActionFactory.getMemberMessageDeleteAction().execute(request, response);
+			if("sendlist" == delete) {
+				System.out.println("send");
+				path = MemberActionFactory.getMemberMessageSendListAction().execute(request, response);
+			} else {
+				System.out.println("receive");
+				path = MemberActionFactory.getMemberMessageReceiveListAction().execute(request, response);
+			}
+			PageMove.forward(request, response, path + queryString);
+			///////////////////////////////////////////////////////////////////////////////////////////////
 		} else if("".equals(act)) {
 			
 		}
