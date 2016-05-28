@@ -288,7 +288,7 @@ public class MemberDaoImpl implements MemberDao {
 		try {
 			conn=DBConnection.makeConnection();
 			String sql="";
-			sql+="select distinct park_flag, park_avgpoint, get_status, cur_parking, pay_yn, \n";
+			sql+="select distinct park_id, park_flag, park_avgpoint, get_status, cur_parking, pay_yn, \n";
 			sql+="satur_pay_yn, holi_pay_yn, fulltime_monthly_pay, park_rate, park_time_rate, \n";
 			sql+="add_park_rate, day_max_pay \n";
 			sql+="from parking_detail \n";
@@ -296,7 +296,7 @@ public class MemberDaoImpl implements MemberDao {
 			int idx=1;
 			pstmt =conn.prepareStatement(sql);
 			pstmt.setString(idx++,park_id);
-
+ 
 			rs=pstmt.executeQuery();
 			while(rs.next()){
 				parkingDetailDto = new ParkingDetailDto();
@@ -335,7 +335,7 @@ public class MemberDaoImpl implements MemberDao {
 		try {
 			conn=DBConnection.makeConnection();
 			String sql="";
-			sql+="select pf.park_id pf.facility, pf.feature, pi.file_name,  \n";
+			sql+="select pf.park_id, pf.facility, pf.feature, pi.file_name, \n";
 			sql+="pi.file_path, pi.file_num \n";
 			sql+="from parking_facility pf, parking_img pi \n";
 			sql+="where pf.park_id=pi.park_id \n";

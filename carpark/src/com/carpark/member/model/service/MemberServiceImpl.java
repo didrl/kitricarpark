@@ -87,6 +87,6 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public ParkingFacilityDto getParkingFacility_info(String park_id) {
-		return MemberDaoImpl.getMemberDao().getParkingFacility_info(park_id);;
+		return MemberDaoImpl.getMemberDao().getParkingFacility_info(park_id);
 	}	
 }

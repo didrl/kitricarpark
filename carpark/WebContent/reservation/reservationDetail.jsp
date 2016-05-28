@@ -340,11 +340,14 @@ if(reservationDto != null){
 			});
 			
 			$('#mvpaymodalbtn').on('click', function (event) {
-				  var button = $(event.relatedTarget) // Button that triggered the modal
-				  var fdate =$('#rdfromdate');
+				var fdate =$('#rdfromdate');
 				  var tdate =$('#rdtodate');
 				  var ddate =$('#singledate');
-			      console.log("fd : "+fdate.val()+"  td : "+tdate.val()+"  dd :"+ddate.val());
+				  
+				var fdateDate=new Date(fdate);
+				var tdateDate=new Date(tdate);
+				  
+			      console.log("fd : "+(tdateDate-fdateDate)+"  dd :"+ddate.val());
 	
          			// Clean text in modal label
 			        $("#selectedfromdate").empty();
@@ -364,7 +367,7 @@ if(reservationDto != null){
 			        $("#selectedcarnum").append($("#mycarlist option:selected").val());
 			        $("#selectedcarname").append($("#mycarlist option:selected").text());
 			        $("#selectedcoin").append("<%=memberDto.getCoin()%>");
-			        $("#selectedprice").append();
+			        $("#selectedprice").append("<%=parkingDetailDto.getDay_max_pay()%>");
 					//init price
 			        $('#payment').show();
 				})

@@ -37,7 +37,7 @@ public class MemberReservationMoveAction implements Action {
 		ReservationDto reservationDto = new ReservationDto();
 		String user_id = memberDto.getUser_id();
 		int park_id = Integer.parseInt(request.getParameter("park_id"));
-		
+		 
 		reservationDto.setUser_id(user_id);
 		reservationDto.setHost_id(request.getParameter("host_id"));
 		ArrayList<MemberCarDto> carinfo=MemberReservationServiceImpl.getMemberReservationService().getCarInfo(user_id);
@@ -52,8 +52,7 @@ public class MemberReservationMoveAction implements Action {
 		reservationDto.setPark_name(request.getParameter("park_name"));
 		ParkingDetailDto parkingDetailDto = MemberServiceImpl.getMemberService().getParkingDetail_info(request.getParameter("park_id"));
 		
-		System.out.println(">>>>>>>>>"+parkingDetailDto.getDay_max_pay());
-		
+		 
 		request.setAttribute("reservationDto", reservationDto);
 		request.setAttribute("carinfo", carinfo);
 		request.setAttribute("availabledate", availabledate);

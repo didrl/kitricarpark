@@ -1,23 +1,16 @@
 package com.carpark.member.controller;
 
 import java.io.IOException;
-import java.lang.reflect.Member;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.xml.crypto.dsig.keyinfo.PGPData;
-
-import org.apache.tomcat.util.buf.Utf8Decoder;
 
 import com.carpark.factory.MemberActionFactory;
-import com.carpark.util.PageMove;
 import com.carpark.util.Encoder;
-import com.carpark.util.NumberCheck;
 import com.carpark.util.PageMove;
-import com.carpark.util.StringCheck;
 
 
 @WebServlet("/member")
