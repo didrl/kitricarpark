@@ -22,7 +22,7 @@ public class MemberMessageDaoImpl implements MemberMessageDao {
 	}
 
 	@Override
-	public int writeArticle(MessageDto messageDto) {
+	public int writeArticle(MessageDto messageDto) {//쪽지보내기
 		int seq = 0;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -59,7 +59,7 @@ public class MemberMessageDaoImpl implements MemberMessageDao {
 	}
 
 	@Override
-	public MessageDto viewArticle(int seq) {
+	public MessageDto viewArticle(int seq) {//쪽지보기
 		MessageDto messageDto = new MessageDto();
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -69,7 +69,7 @@ public class MemberMessageDaoImpl implements MemberMessageDao {
 			conn = DBConnection.makeConnection();
 			conn.setAutoCommit(false);
 			String sql = "";
-			sql += "update message set msg_flag = 1 \n";
+			sql += "update message set msg_flag = 1 \n";//쪽지 미확인->확인
 			sql += "where seq = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, seq);
@@ -110,7 +110,7 @@ public class MemberMessageDaoImpl implements MemberMessageDao {
 	}
 
 	@Override
-	public void deleteArticle(int seq) {
+	public void deleteArticle(int seq) {//쪽지삭제
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		
@@ -139,7 +139,7 @@ public class MemberMessageDaoImpl implements MemberMessageDao {
 	}
 
 	@Override
-	public List<MessageDto> sendListArticle(String userId) {
+	public List<MessageDto> sendListArticle(String userId) {//보낸쪽지목록
 		List<MessageDto> sendList = new ArrayList<MessageDto>();
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -184,7 +184,7 @@ public class MemberMessageDaoImpl implements MemberMessageDao {
 	}
 
 	@Override
-	public List<MessageDto> receiveListArticle(String receiveId) {
+	public List<MessageDto> receiveListArticle(String receiveId) {//받은쪽지목록
 		List<MessageDto> receiveList = new ArrayList<MessageDto>();
 		Connection conn = null;
 		PreparedStatement pstmt = null;
