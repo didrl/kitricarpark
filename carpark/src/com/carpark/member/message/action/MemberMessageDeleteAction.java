@@ -30,9 +30,13 @@ public class MemberMessageDeleteAction implements Action {
 		String key = StringCheck.nullToBlank(request.getParameter("key"));
 		String word = Encoder.isoToUtf(StringCheck.nullToBlank(request.getParameter("word")));
 		
+		System.out.println("오나?");
 		MemberMessageServiceImpl.getMemberMessageService().deleteArticle(seq);
-		
-		return (user != receiver) ? "sendlist.jsp" : "receivelist.jsp";
+		if(memberDto.getUser_id() != receiver) {
+			return "sendlist";
+		} else {
+			return "receivelist";
+		}
 	}
 
 }

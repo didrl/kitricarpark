@@ -30,7 +30,7 @@ MessageDto messageDto = (MessageDto) request.getAttribute("messageView");
 <div id="page-wrapper">
 <div class="container-fluid">
 	<p>
-	<input type="button" class="btn btn-default" value="삭제" onclick="javascript:messageDelete('<%=messageDto.getSeq()%>,<%=messageDto.getReceiverId() %>');">
+	<input type="button" class="btn btn-default" value="삭제" onclick="javascript:messageDelete('<%=messageDto.getSeq()%>');">
 	</p>
 	<table class="table">
 		<tr>

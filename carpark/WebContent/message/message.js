@@ -20,15 +20,13 @@ function messageViewClose() {
 	self.close();
 }
 
-function messageDelete(seq, receiver) {
+function messageDelete(seq) {
 	document.common.act.value = "messageDelete";
 	document.common.seq.value = seq;
-	document.common.receiver.value = receiver;
 			
 	document.common.action = "/carpark/message";
 	document.common.submit();
 	
-	alert("글이 삭제되었습니다")
 }
 
 function messageSendList() {
