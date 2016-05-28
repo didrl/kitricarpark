@@ -30,37 +30,16 @@ if(memberDto!=null){
 				<!-- form container -->
 				<div class="container">
 				<div class="row">
-					<div class="col-lg-6">
+					<div class="col-lg-5">
 						<form role="form">
+						
 							<div class="form-group">
-								
-								<label ><h3>내 사진</h3></label><br> 
-							
-								<img src="<%=root%>/img/bg.jpg" class="img-circle" width="200" height="200" border="5">
+									<label ><h3>내 사진</h3></label><br>
+									<img src="<%=root%>/img/bg.jpg" class="img-circle" width="200" height="200" border="5" align="middle">
+									
 							</div>
-							<div class="form-group">        	
-                             	<img src="<%=root%>/img/car.png" width="25" height="25">
-                                	<label for="disabledSelect">
-                                		<h4>Bookings Made : 0 </h4>
-                                	</label><br>
-                               
-                                <img src="<%=root%>/img/home.png" width="25" height="25">
-                                	<label for="disabledSelect">
-                                		<h4>Bookings Received : 0 </h4>
-                                	</label><br>    
-                                	
-                              
-                                	
-                                <img src="<%=root%>/img/star.png" width="25" height="25">
-                                	<label for="disabledSelect">
-                                		<h4>등급 : <%= memberDto.getGrade_id() %> 등급 </h4>
-                                	</label><br>        
-                            </div>
-						</form>
-					</div>
-
-					<div class="col-lg-4">
-						<form role="form">
+							<div class="form-group">   
+							
 							<div class="form-group">
                                     <label for="disabledSelect">이름</label>
                                     <input class="form-control" id="disabledInput" type="text" placeholder="<%=memberDto.getUser_name() %>" disabled>
@@ -76,11 +55,62 @@ if(memberDto!=null){
                                     <label for="disabledSelect">이메일</label>
                                     <input class="form-control" id="disabledInput" type="text" placeholder="<%=memberDto.getEmail() %>" disabled>
                             </div>
-                            
-                        	
-                            <button type="button" class="btn btn-default" onclick="">확인</button>
-                            <button type="button" class="btn btn-default">상세정보</button>
-                  
+                              	   
+                            </div>
+						</form>
+					</div>
+
+					<div class="col-lg-5">
+						<form role="form" name="" method="post" action="<%=root%>/member">
+							<input type="hidden" name="act" value="mvProfileDetail">
+							<div class="form-group" data-toggle="buttons" align="right">
+  								<label class="btn btn-primary active">
+    								<input type="radio" name="options" id="option1" autocomplete="off" 
+    								checked > 게스트
+  								</label>
+  								<label class="btn btn-primary">
+    							<input type="radio" name="options" id="option2" autocomplete="off"> 호스트
+  								</label>
+							</div>
+							
+							<div class="form-group" align="center">
+							<label for="disabledSelect">나의 등급</label> 
+<%
+	for(int i=0;i<memberDto.getGrade_id();i++){							
+%>  
+                                <img src="<%=root%>/img/star.png" width="25" height="25">
+<%
+	}
+%>	
+							</div>
+							
+							<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  								<div class="panel panel-default">
+								    <div class="panel-heading" role="tab" id="headingOne">
+								      <h4 class="panel-title">
+								        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+								          	등급 혜택 정보
+								        </a>
+								      </h4>
+								    </div>
+								    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+								      <div class="panel-body">
+								        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+								      </div>
+								    </div>
+								  </div>
+								  </div>
+							
+						
+							<div class="form-group">
+                                    <label for="disabledSelect">나의 주차장</label>
+                                    <input class="form-control" id="disabledInput" type="text" placeholder="<%=memberDto.getUser_name() %>" disabled>
+                            </div>
+
+                                                
+                        	<div class="form-group" align="center"> 
+                           	 	<button type="submit" class="btn btn-default">상세정보 보기</button>
+                  			</div>
 						</form>
 					</div>
 
