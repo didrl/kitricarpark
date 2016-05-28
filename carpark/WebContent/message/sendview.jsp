@@ -30,7 +30,9 @@ MessageDto messageDto = (MessageDto) request.getAttribute("messageView");
 <br>
 <div id="page-wrapper">
 <div class="container-fluid">
-
+<%
+if(messageDto != null) {
+%>
 	<table class="table">
 		<tr>
 			<td width="80">받는사람</td>
@@ -54,6 +56,13 @@ MessageDto messageDto = (MessageDto) request.getAttribute("messageView");
 			</td>
 		</tr>
 	</table>
+<%
+} else {
+%>
+<center><h3>쪽지가 없습니다</h3></center>
+<%
+}
+%>
 </div>
 </div>
 </body>

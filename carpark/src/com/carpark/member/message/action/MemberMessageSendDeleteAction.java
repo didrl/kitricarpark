@@ -19,19 +19,11 @@ public class MemberMessageSendDeleteAction implements Action {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-
-		HttpSession session = request.getSession();
-		MemberDto memberDto = (MemberDto) session.getAttribute("memberInfo");
-		String user = memberDto.getUser_id();
 		
 		int seq = NumberCheck.nullToZero(request.getParameter("seq"));
-		int bcode = NumberCheck.nullToZero(request.getParameter("bcode"));
-		int pg = NumberCheck.nullToOne(request.getParameter("pg"));
-		String key = StringCheck.nullToBlank(request.getParameter("key"));
-		String word = Encoder.isoToUtf(StringCheck.nullToBlank(request.getParameter("word")));
-		
-		MemberMessageServiceImpl.getMemberMessageService().deleteArticle(seq);
-		
+		if(seq != 0) {
+			MemberMessageServiceImpl.getMemberMessageService().deleteArticle(seq);
+		}
 		return "/message/sendlist.jsp";
 	}
 
