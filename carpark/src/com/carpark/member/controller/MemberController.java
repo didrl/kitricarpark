@@ -46,7 +46,6 @@ public class MemberController extends HttpServlet {
 			path = MemberActionFactory.getMemberAddCarAction().execute(request, response);
 		}else if("mvProfileDetail".equals(act)){
 			path = MemberActionFactory.getMemberInfoDetailAction().execute(request, response);
-			PageMove.redirect(response, root + path);
 			PageMove.forward(request, response, path);
 		}else if("mvmessage".equals(act)){
 			path = MemberActionFactory.getMemberMessageReceiveListAction().execute(request, response);
