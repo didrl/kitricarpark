@@ -374,9 +374,10 @@ CREATE TABLE parking_facility (
 /* 회원차량정보 */
 CREATE TABLE member_car (
 	category VARCHAR2(10), /* 차카테고리 */
-	reg_num VARCHAR2(10), /* 차량번호 */
+	reg_num VARCHAR2(14), /* 차량번호 */
 	car_id varchar2(20), /* 차모델아이디 */
-	user_id VARCHAR2(16) /* 회원아이디 */
+	user_id VARCHAR2(16), /* 회원아이디 */
+	car_name VARCHAR2(100)
 );
 
 /* 차종정보 */
