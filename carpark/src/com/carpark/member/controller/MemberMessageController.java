@@ -38,7 +38,27 @@ public class MemberMessageController extends HttpServlet {
 			path = MemberActionFactory.getMemberMessageReceiveViewAction().execute(request, response);
 			PageMove.forward(request, response, path + queryString);
 			
-		} else if("messageDelete".equals(act)) {
+		} else if("messageSendDelete".equals(act)) {
+			System.out.println("send");
+			MemberActionFactory.getMemberMessageSendDeleteAction().execute(request, response);
+			path = MemberActionFactory.getMemberMessageSendListAction().execute(request, response);
+			PageMove.forward(request, response, path + queryString);
+			
+		} else if("messageReceiveDelete".equals(act)) {
+			System.out.println("receive");
+			MemberActionFactory.getMemberMessageReceiveDeleteAction().execute(request, response);
+			path = MemberActionFactory.getMemberMessageReceiveListAction().execute(request, response);
+
+			
+		} else if("messageSendList".equals(act)) {
+			path = MemberActionFactory.getMemberMessageSendListAction().execute(request, response);
+			PageMove.forward(request, response, path + queryString);
+			
+		} else if("messageReceiveList".equals(act)) {
+			path = MemberActionFactory.getMemberMessageReceiveListAction().execute(request, response);
+			PageMove.forward(request, response, path + queryString);
+			
+		} else if("messageDelete".equals(act)) {//두개로 분할 /////////////////////////////////////////////
 			System.out.println("시작점");
 			String delete = MemberActionFactory.getMemberMessageDeleteAction().execute(request, response);
 			if("sendlist" == delete) {
@@ -49,17 +69,7 @@ public class MemberMessageController extends HttpServlet {
 				path = MemberActionFactory.getMemberMessageReceiveListAction().execute(request, response);
 			}
 			PageMove.forward(request, response, path + queryString);
-			
-		} else if("messageSendList".equals(act)) {
-			path = MemberActionFactory.getMemberMessageSendListAction().execute(request, response);
-			PageMove.forward(request, response, path + queryString);
-			
-		} else if("messageReceiveList".equals(act)) {
-			path = MemberActionFactory.getMemberMessageReceiveListAction().execute(request, response);
-			PageMove.forward(request, response, path + queryString);
-			
-		} else if("".equals(act)) {
-			
+			///////////////////////////////////////////////////////////////////////////////////////////////
 		} else if("".equals(act)) {
 			
 		}

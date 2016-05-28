@@ -59,13 +59,19 @@ public class MemberActionFactory {
 	private static Action memberFavoriteListAction;
 	private static Action memberFavoriteRegisterAction;
 	
-	private static Action memberMessageDeleteAction;
 	private static Action memberMessageSendListAction;
 	private static Action memberMessageReceiveListAction;	
 	private static Action memberMessageWriteAction;
 	private static Action memberMessageSendViewAction;
 	private static Action memberMessageReceiveViewAction;
+	private static Action memberMessageSendDeleteAction;
+	private static Action memberMessageReceiveDeleteAction;
+
+	//messageDelete 2개로 분할//////////////////////
+	private static Action memberMessageDeleteAction;
+	//messageWrite로 통합
 	private static Action memberMessageReplyAction;
+	////////////////////////////////////////////////
 	
 	private static Action memberReportListAction;
 	private static Action memberReportRegisterAction;
@@ -106,13 +112,18 @@ public class MemberActionFactory {
 		memberFavoriteListAction = new MemberFavoriteListAction();
 		memberFavoriteRegisterAction = new MemberFavoriteRegisterAction();
 		
-		memberMessageDeleteAction = new MemberMessageDeleteAction();
 		memberMessageSendListAction = new MemberMessageSendListAction();
 		memberMessageReceiveListAction = new MemberMessageReceiveListAction();
 		memberMessageWriteAction = new MemberMessageWriteAction();
 		memberMessageSendViewAction = new MemberMessageSendViewAction();
 		memberMessageReceiveViewAction = new MemberMessageReceiveViewAction();
+		memberMessageSendDeleteAction = new MemberMessageSendDeleteAction();
+		memberMessageReceiveDeleteAction = new MemberMessageReceiveDeleteAction();
+		
+		////////////////////////////////////////////////////////////////
+		memberMessageDeleteAction = new MemberMessageDeleteAction();
 		memberMessageReplyAction = new MemberMessageReplyAction();
+		////////////////////////////////////////////////////////////////
 		
 		memberReportListAction = new MemberReportListAction();
 		memberReportRegisterAction = new MemberReportRegisterAction();
@@ -209,9 +220,6 @@ public class MemberActionFactory {
 		return memberFavoriteRegisterAction;
 	}
 
-	public static Action getMemberMessageDeleteAction() {
-		return memberMessageDeleteAction;
-	}
 	
 	public static Action getMemberMessageSendListAction() {
 		return memberMessageSendListAction;
@@ -233,9 +241,23 @@ public class MemberActionFactory {
 		return memberMessageReceiveViewAction;
 	}
 	
+	public static Action getMemberMessageSendDeleteAction() {
+		return memberMessageSendDeleteAction;
+	}
+	
+	public static Action getMemberMessageReceiveDeleteAction() {
+		return memberMessageReceiveDeleteAction;
+	}
+	
+	//////////////////////////////////////////////////////
+	public static Action getMemberMessageDeleteAction() {
+		return memberMessageDeleteAction;
+	}
+	
 	public static Action getMemberMessageReplyAction() {
 		return memberMessageReplyAction;
 	}
+	///////////////////////////////////////////////////////
 	
 	public static Action getMemberReportListAction() {
 		return memberReportListAction;

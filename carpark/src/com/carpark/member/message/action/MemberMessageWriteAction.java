@@ -28,7 +28,7 @@ public class MemberMessageWriteAction implements Action {
 		messageDto.setSeq(seq);
 		messageDto.setUserID(memberDto.getUser_id());
 		messageDto.setSubject(request.getParameter("subject"));
-		messageDto.setContent(request.getParameter("content"));
+		messageDto.setContent(request.getParameter("content").replace("\r\n", "<br>"));
 		messageDto.setBcode(NumberCheck.nullToZero(request.getParameter("bcode")));
 		messageDto.setMseq(seq);
 		messageDto.setReceiverId(request.getParameter("receiver"));
