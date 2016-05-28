@@ -25,13 +25,6 @@ List<ParkingDto> list = (List<ParkingDto>)request.getAttribute("searchlist");
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     
-    <!-- Tmap -->
-<script
-	src="https://apis.skplanetx.com/tmap/js?version=1&format=javascript&appKey=a4ea8cc9-e49c-308f-99de-3aadb0c70298"></script>
-<script type="text/javascript" src="/carpark/js/search/mapsearch.js"></script>
-
-
-
 <br><br><br><br>
 	
     <!-- Page Content -->
@@ -76,7 +69,7 @@ List<ParkingDto> list = (List<ParkingDto>)request.getAttribute("searchlist");
 			
 <%
 ParkingDto parkingDto = new ParkingDto();
-System.out.println("<><><><latitude><><><"+list.get(1).getLatitude());
+ParkingDetailDto parkingDetailDto = new ParkingDetailDto();
 for(int i =0;i<list.size();i++){
 	parkingDto = list.get(i);
 //for(ParkingDto parkingDto :list){
@@ -101,7 +94,7 @@ for(int i =0;i<list.size();i++){
                             (4점)
                         </p>
                     </div>
-						<p class="list-group-item-text">역에서 도보로 3분 다양한 회사들 밀집</p>
+						<p class="list-group-item-text"><%=parkingDto.getContent()%></p>
 				</form>
 				</a>
 <%
@@ -115,32 +108,119 @@ for(int i =0;i<list.size();i++){
             <div class="col-md-8">
 				
 				<!-- Map -->
-                <div class="thumbnail">
-                <div class="panel panel-default" id="divformap">
-                    <section id="contact" class="map">
-						<div id="map_div"></div>
-					</section>
-				</div>
-                    <div class="caption-full">
-                        <h4><a href="#">Product Name</a>
-                        </h4>
-                        <p>See more snippets like these online store reviews at <a target="_blank" href="http://bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.</p>
-                        <p>Want to make these reviews work? Check out
-                            <strong><a href="http://maxoffsky.com/code-blog/laravel-shop-tutorial-1-building-a-review-system/">this building a review system tutorial</a>
-                            </strong>over at maxoffsky.com!</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
-                    </div>
-                    <div class="ratings">
-                        <p class="pull-right">3 reviews</p>
-                        <p>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                            4.0 stars
-                        </p>
-                    </div>
+	                <div class="thumbnail">
+	                
+		                <div class="panel panel-default">
+		
+							<div id="daumlistmap" style="width:100%;height:650px;"></div>
+							<script src="//apis.daum.net/maps/maps3.js?apikey=c2d873676f2c4854b2b2c62e165a629d"></script>
+							<script>
+								var mapContainer = document.getElementById('daumlistmap'), // 지도를 표시할 div 
+								    mapOption = {
+								        center: new daum.maps.LatLng(<%=parkingDto.getLatitude()%>, <%=parkingDto.getLongitude()%>), // 지도의 중심좌표
+								        level: 6, // 지도의 확대 레벨
+								        mapTypeId : daum.maps.MapTypeId.ROADMAP // 지도종류
+								    }; 					
+								// 지도를 생성한다 
+								var listmap = new daum.maps.Map(mapContainer, mapOption); 					
+								// 마우스 드래그와 모바일 터치를 이용한 지도 이동을 막는다
+								listmap.setDraggable(false);							
+								// 마우스 휠과 모바일 터치를 이용한 지도 확대, 축소를 막는다
+								listmap.setZoomable(false);   					
+								
+								// 마커를 표시할 위치와 내용을 가지고 있는 객체 배열입니다 
+								var positions = new Array();
+<%
+for(int i =0;i<list.size();i++){
+	parkingDto = list.get(i);
+	System.out.println(parkingDto.getPark_name());
+%>
+								var parkName ='<div>주차장</div>'
+								positions.push({
+										content: parkName, 
+								        latlng: new daum.maps.LatLng(<%=parkingDto.getLatitude()%>, <%=parkingDto.getLongitude()%>)
+								});
+<%
+}
+%>
+								for (var i = 0; i < positions.length; i ++) {
+								    // 마커를 생성합니다
+								    var marker = new daum.maps.Marker({
+								        map: listmap, // 마커를 표시할 지도
+								        position: positions[i].latlng // 마커의 위치
+								    });
+
+								    // 마커에 표시할 인포윈도우를 생성합니다 
+								    var infowindow = new daum.maps.InfoWindow({
+								        content: positions[i].content // 인포윈도우에 표시할 내용
+								    });
+
+								    // 마커에 이벤트를 등록하는 함수 만들고 즉시 호출하여 클로저를 만듭니다
+								    // 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
+								    (function(marker, infowindow) {
+								        // 마커에 mouseover 이벤트를 등록하고 마우스 오버 시 인포윈도우를 표시합니다 
+								        daum.maps.event.addListener(marker, 'mouseover', function() {
+								            infowindow.open(listmap, marker);
+								        });
+
+								        // 마커에 mouseout 이벤트를 등록하고 마우스 아웃 시 인포윈도우를 닫습니다
+								        daum.maps.event.addListener(marker, 'mouseout', function() {
+								            infowindow.close();
+								        });
+								    })(marker, infowindow);
+								}
+								
+								
+								
+								//sigleMarker start
+								// 지도에 마커를 생성하고 표시한다
+								var listmarker = new daum.maps.Marker({
+								    position: new daum.maps.LatLng(37.56682, 126.97865), // 마커의 좌표
+								    map: listmap // 마커를 표시할 지도 객체
+								});					
+								// 마커 위에 표시할 인포윈도우를 생성한다
+								var infowindow = new daum.maps.InfoWindow({
+								    content : '<div style="padding:5px;">인포윈도우 :D</div>' // 인포윈도우에 표시할 내용
+								});		
+								// 인포윈도우를 지도에 표시한다
+								infowindow.open(map, listmarker);					
+								// 마커에 클릭 이벤트를 등록한다 (우클릭 : rightclick)
+								daum.maps.event.addListener(listmarker, 'click', function() {
+								    alert('마커를 클릭했습니다!');
+								});					
+								// 마커에 mouseover 이벤트를 등록한다
+								daum.maps.event.addListener(listmarker, 'mouseover', function() {
+								    console.log('마커에 mouseover 이벤트가 발생했습니다!');
+								});					
+								// 마커에 mouseout 이벤트 등록
+								daum.maps.event.addListener(listmarker, 'mouseout', function() {
+								    console.log('마커에 mouseout 이벤트가 발생했습니다!');
+								});			
+								//sigleMarker end
+								
+							</script>
+						</div>
+	                    <div class="caption-full">
+	                        <h4><a href="#">Product Name</a>
+	                        </h4>
+	                        <p>See more snippets like these online store reviews at <a target="_blank" href="http://bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.</p>
+	                        <p>Want to make these reviews work? Check out
+	                            <strong><a href="http://maxoffsky.com/code-blog/laravel-shop-tutorial-1-building-a-review-system/">this building a review system tutorial</a>
+	                            </strong>over at maxoffsky.com!</p>
+	                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+	                    </div>
+	                    <div class="ratings">
+	                        <p class="pull-right">3 reviews</p>
+	                        <p>
+	                            <span class="glyphicon glyphicon-star"></span>
+	                            <span class="glyphicon glyphicon-star"></span>
+	                            <span class="glyphicon glyphicon-star"></span>
+	                            <span class="glyphicon glyphicon-star"></span>
+	                            <span class="glyphicon glyphicon-star-empty"></span>
+	                            4.0 stars
+	                        </p>
+	                    </div>
+	                </div>
                 </div>
 
                 <div class="well">
@@ -244,12 +324,7 @@ for(int i =0;i<list.size();i++){
 								}
 							});
 		});
-		// 맵 위에서 마우스 휠, 키보드 방향키가 동작하지 않도록 막음
-		$('#map_div').on('scroll touchmove mousewheel', function(e){
-			e.preventDefault();
-			e.stopPropagation();
-			return false;
-		});
+		
 	</script>
 	<script src="/carpark/js/selectlist/jquery.selectlist.js"></script>
 		<script type="text/javascript">
