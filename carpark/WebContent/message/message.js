@@ -59,3 +59,19 @@ function messageWrite() {
 		document.writeForm.submit();
 	}
 }
+
+function messageToWrite() {
+	if(document.toWriteForm.receiver.value == ""){
+		alert("대상을 입력하세요");
+		return;
+	} else if(document.toWriteForm.subject.value == "") {
+		alert("제목을 입력하세요");
+		return;	
+	} else if(document.toWriteForm.content.value == "") {
+		alert("내용을 입력하세요");
+		return;
+	} else{
+		document.toWriteForm.action = "/carpark/message";
+		document.toWriteForm.submit();
+	}
+}
