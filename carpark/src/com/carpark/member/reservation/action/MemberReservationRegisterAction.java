@@ -24,15 +24,15 @@ public class MemberReservationRegisterAction implements Action {
 		ReservationDto reservationDto = new ReservationDto();
 		
 		System.out.println("In register Action \n"+
-				"fd : "+request.getParameter("fromdate")+
-				"td : "+request.getParameter("todate")+
+				"fd : "+request.getParameter("selectedfromdate")+
+				"td : "+request.getParameter("selectedtodate")+
 				""
 				);
 		
 		reservationDto.setUser_id(memberDto.getUser_id());
 		reservationDto.setPark_id(Integer.parseInt(request.getParameter("park_id")));
-		reservationDto.setFromdate(request.getParameter("fromdate"));
-		reservationDto.setTodate(request.getParameter("todate"));
+		reservationDto.setFromdate(request.getParameter("selectedfromdate"));
+		reservationDto.setTodate(request.getParameter("selectedtodate"));
 		reservationDto.setFromtime(Integer.parseInt(request.getParameter("payfromtime")));
 		reservationDto.setTotime(Integer.parseInt(request.getParameter("paytotime")));
 		reservationDto.setPay(Integer.parseInt(request.getParameter("selectedprice")));

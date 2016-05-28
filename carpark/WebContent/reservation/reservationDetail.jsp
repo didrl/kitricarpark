@@ -376,14 +376,14 @@ if(reservationDto != null){
 					
 					
 					
-					 $("#selectedfromdate").prop("disabled", true);
-					 $("#selectedtodate").prop("disabled", true);
-					  $("#selectedid").prop("disabled", true);
-				        $("#selectedgrade").prop("disabled", true);
-				        $("#selectedcarnum").prop("disabled", true);
-				        $("#selectedcarname").prop("disabled", true);
-				        $("#selectedcoin").prop("disabled", true);
-				        $("#selectedprice").prop("disabled", true);
+	//				 $("#selectedfromdate").prop("disabled", true);
+	//				 $("#selectedtodate").prop("disabled", true);
+	//				  $("#selectedid").prop("disabled", true);
+	//			        $("#selectedgrade").prop("disabled", true);
+	//			        $("#selectedcarnum").prop("disabled", true);
+	//			        $("#selectedcarname").prop("disabled", true);
+	//			        $("#selectedcoin").prop("disabled", true);
+	//			        $("#selectedprice").prop("disabled", true);
 			        $('#payment').show();
 				})
 		</script>
