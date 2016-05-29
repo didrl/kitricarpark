@@ -9,7 +9,7 @@ function parkingRegister() {
 		alert("주소를 입력하세요");
 		return;
 	} else if(document.parkRegisterForm.emdName.value == ""){
-		alert("주소를 입력하세요");
+		alert("상세주소를 입력하세요");
 		return;
 	} else if(document.parkRegisterForm.payYn.value == ""){
 		alert("평일 유료/무료를 선택하세요");

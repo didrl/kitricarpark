@@ -9,6 +9,10 @@ public class ParkingDto {
 	private int longtitude;
 	private String parkType;
 	private String content;
+	private String ssgName;
+	private String emdName;
+	private String parkAddress;
+	private String parkAddressDetail;
 	
 	public int getParkId() {
 		return parkId;
@@ -58,5 +62,30 @@ public class ParkingDto {
 	public void setContent(String content) {
 		this.content = content;
 	}
+	public String getSsgName() {
+		return ssgName;
+	}
+	public void setSsgName(String ssgName) {
+		this.ssgName = ssgName;
+	}
+	public String getEmdName() {
+		return emdName;
+	}
+	public void setEmdName(String emdName) {
+		this.emdName = emdName;
+	}
+	public String getParkAddress() {
+		return parkAddress;
+	}
+	public void setParkAddress(String parkAddress) {
+		this.parkAddress = parkAddress;
+	}
+	public String getParkAddressDetail() {
+		return parkAddressDetail;
+	}
+	public void setParkAddressDetail(String parkAddressDetail) {
+		this.parkAddressDetail = parkAddressDetail;
+	}
+	
 	
 }

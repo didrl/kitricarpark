@@ -44,20 +44,8 @@ function parkingRegister() {
 	}
 }
 
-function parkTypePublic() {
-	document.parkRegisterForm.value = publicParking;
-}
-
-function parkTypePrivate() {
-	document.parkRegisterForm.value = privateParking;
-}
-
-function parkTypePersonal() {
-	document.parkRegisterForm.value = personalParking;
-}
-
-function parkSearch() {
-	
+function parkSearchWindow() {
+	window.open( "<%=root%>/parking/parksearch.jsp", "newWindow", "top=100, left=400, width=500, height=400, scrollbars=yes" );
 }
 </script>
 <!-- ************************************************************************************ -->	
@@ -106,10 +94,10 @@ function parkSearch() {
 					</div>
 					<div class="col-md-10">
 						<div class="form-group">
-							<input type="text" class="form-control" placeholder="시/군/구" name="ssgName" readonly="readonly"><br>
-							<input type="text" class="form-control" placeholder="읍/면/동" name="emdName" readonly="readonly">
+							<input type="text" class="form-control" placeholder="주소" name="parkAddress" readonly="readonly"><br>
+							<input type="text" class="form-control" placeholder="상세주소" name="parkAddressDetail" readonly="readonly">
 						</div>
-							<button type="button" class="btn btn-default" onclick="javascript:parkSearch();">검색</button>
+							<button type="button" class="btn btn-default" onclick="javascript:parkSearchWindow();">검색</button>
 					</div>
 				</div><hr>
 				
