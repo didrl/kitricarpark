@@ -114,6 +114,7 @@ function goReservation() {
 
 		<!-- row -->
 	<div class="container" style="text-align:center">
+<<<<<<< HEAD
 			<!--  search bar start -->
 			<div class="col-sm-13">
 				<!-- /input-group -->
@@ -144,6 +145,13 @@ function goReservation() {
 		<div class="row">
 			<!-- Left Section Start -->
 			<div class="col-md-7">
+=======
+		<%@include file="/common/searchBar.jsp"%>
+		<br><br>
+			<!-- Left Section Start -->
+			<div class="col-md-7">
+				<!--  Map  -->
+>>>>>>> c32de7a45a882c6a7176cbb332da56883331d09c
 				<div class="panel panel-default">
 					<div class="row" align="left">
 						<h3><b>&nbsp;&nbsp;&nbsp; <%=parkingDetail.getPark_name()%>  &nbsp;&nbsp;&nbsp; 
@@ -152,6 +160,7 @@ function goReservation() {
 							<a href=""><img height="30"  src="/carpark/img/heart.jpg"></a>
 						</h3>
 					</div>
+<<<<<<< HEAD
 					
 					<div class="panel panel-default" id="daummap">
 						<div class="panel-body">
@@ -164,12 +173,29 @@ function goReservation() {
 							        <div id="map" style="width:100%;height:350px></div> <!-- 지도를 표시할 div 입니다 -->
 							        <div id="roadviewControl" onclick="setRoadviewRoad()"><span>로드뷰</span></div>
 							    </div>
+=======
+				</div>	
+				<div class="panel panel-default" id="daummap">
+					<div class="panel-body">
+						<div id="container">
+						    <div id="rvWrapper">
+						        <div id="roadview" style="width:100%;height:100%;"></div> <!-- 로드뷰를 표시할 div 입니다 -->							        <div id="close" title="로드뷰닫기" onclick="closeRoadview()"><span class="img"></span></div>
+						    </div>
+						    <div id="mapWrapper">
+						        <div id="map" style="width:100%; height:350px;"></div> <!-- 지도를 표시할 div 입니다 -->
+						        <div id="roadviewControl" onclick="setRoadviewRoad()"><span>로드뷰</span></div>							    </div>
+>>>>>>> c32de7a45a882c6a7176cbb332da56883331d09c
 							</div>
 							
 							<!-- Daum map script-->
 							
+<<<<<<< HEAD
 							<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=c2d873676f2c4854b2b2c62e165a629d"></script>
 							<script>
+=======
+						<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=c2d873676f2c4854b2b2c62e165a629d"></script>
+						<script>
+>>>>>>> c32de7a45a882c6a7176cbb332da56883331d09c
 							var overlayOn = false, // 지도 위에 로드뷰 오버레이가 추가된 상태를 가지고 있을 변수
 						    container = document.getElementById('container'), // 지도와 로드뷰를 감싸고 있는 div 입니다
 						    mapWrapper = document.getElementById('mapWrapper'), // 지도를 감싸고 있는 div 입니다
@@ -409,11 +435,15 @@ function goReservation() {
 							
 							</script>
 					</div>
+<<<<<<< HEAD
 				
 				
     
 				</div>
 				
+=======
+				</div>
+>>>>>>> c32de7a45a882c6a7176cbb332da56883331d09c
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h3 class="panel-title">상세 정보</h3>  
@@ -427,8 +457,11 @@ function goReservation() {
 						    <input type="checkbox" id="chkRoadview" onclick="setOverlayMapTypeId()" /> 생생한 주차장 위치 보기
 						</p>
 						<p><%=parkingDetail.getContent()%></p>	
+<<<<<<< HEAD
 						
 						
+=======
+>>>>>>> c32de7a45a882c6a7176cbb332da56883331d09c
 					</div>
 					<div class="panel-footer">상세 사진</div>
 					<a href="원본사진"><img src="/carpark/img/tmpcar/car1.jpg"></a>
@@ -454,7 +487,11 @@ function goReservation() {
 				<div class="panel panel-default">
 					<div class="panel-heading">주변 정보</div>
 					<div class="panel-body">
+<<<<<<< HEAD
 					<!-- Daum road View start -->
+=======
+						<!-- Daum road View start -->
+>>>>>>> c32de7a45a882c6a7176cbb332da56883331d09c
 						
 						
 						<!-- Daum road View End -->
@@ -467,6 +504,7 @@ function goReservation() {
 				</div>
 				
 				<!-- Review Start-->
+<<<<<<< HEAD
 				<div class="well">
 					<b>Review</b>
 						<div class="text-right">
@@ -474,10 +512,22 @@ function goReservation() {
 						</div>
 
 						<hr>
+=======
+				<div class="panel panel-default">
+					<div class="panel-heading"> 
+						<b>Review</b>
+							<div class="text-right">
+								<a class="btn btn-success">Leave a Review</a>
+							</div>
+					</div>
+					<div class="panel-body">
+							<hr></hr>
+>>>>>>> c32de7a45a882c6a7176cbb332da56883331d09c
 <%
 for(ReviewDto reviewDto : reviewlist){
 	int avgpoint = (int) reviewDto.getAvgPoint();
 %>
+<<<<<<< HEAD
 						<div class="row">
 							<div class="col-md-12">
 <% 
@@ -504,6 +554,42 @@ for(ReviewDto reviewDto : reviewlist){
 					</div>
 					<!-- Review End-->
 			</div>
+=======
+							<div class="row">
+								<div class="col-md-12">
+									<p><%=reviewDto.getUser_id() %></p>
+									<span class="pull-right">작성일 : <%=reviewDto.getLogtime() %></span>
+							</div>
+	<% 
+		for(int i = 0;i<avgpoint;++i){
+	%>
+									<span class="glyphicon glyphicon-star"></span>
+	<% 
+		}
+		for(int i = 0;i<5-avgpoint;++i){
+	%>
+									<span class="glyphicon glyphicon-star-empty"></span>
+	<% 
+		}
+	%> 
+							<div class="row">
+									<p><%=reviewDto.getSubject()%></p>
+							</div>
+							<div class="row">
+									<p><%=reviewDto.getContent()%></p>
+									<p>-------------------------------------------</p>
+								</div>
+							</div>
+	<%
+	}
+	%>
+	
+						</div>
+					</div>
+				</div>
+					<!-- Review End-->
+			
+>>>>>>> c32de7a45a882c6a7176cbb332da56883331d09c
 			<!-- Left Section End -->
 
 			<!-- Right Section Start -->
@@ -596,7 +682,11 @@ for(ReviewDto reviewDto : reviewlist){
 					<!-- clelander panel End -->
 				</div>
 			</div>
+<<<<<<< HEAD
 		</div>
+=======
+		
+>>>>>>> c32de7a45a882c6a7176cbb332da56883331d09c
 	</div>
 	<!-- /.container -->
 	<div class="container">

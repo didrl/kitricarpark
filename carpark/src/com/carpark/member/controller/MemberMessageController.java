@@ -15,7 +15,6 @@ public class MemberMessageController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String root = request.getContextPath();
 		String act = request.getParameter("act");
 		int bcode = NumberCheck.nullToZero(request.getParameter("bcode"));
 		int pg = NumberCheck.nullToOne(request.getParameter("pg"));
@@ -26,35 +25,37 @@ public class MemberMessageController extends HttpServlet {
 		
 		if("".equals(act)) {
 			
-		} else if("messageWrite".equals(act)) {
+		} else if("messageWrite".equals(act)) {//쪽지보내기
 			path = MemberActionFactory.getMemberMessageWriteAction().execute(request, response);
 			PageMove.forward(request, response, path + queryString);
 			
+<<<<<<< HEAD
 		} else if("messageSendView".equals(act)) {
+=======
+		} else if("messageSendView".equals(act)) {//보낸쪽지보기
+>>>>>>> c32de7a45a882c6a7176cbb332da56883331d09c
 			path = MemberActionFactory.getMemberMessageSendViewAction().execute(request, response);
 			PageMove.forward(request, response, path + queryString);
 			
-		} else if("messageReceiveView".equals(act)) {
+		} else if("messageReceiveView".equals(act)) {//받은쪽지보기
 			path = MemberActionFactory.getMemberMessageReceiveViewAction().execute(request, response);
 			PageMove.forward(request, response, path + queryString);
 			
-		} else if("messageSendDelete".equals(act)) {
-			System.out.println("send");
+		} else if("messageSendDelete".equals(act)) {//보낸쪽지삭제
 			MemberActionFactory.getMemberMessageSendDeleteAction().execute(request, response);
 			path = MemberActionFactory.getMemberMessageSendListAction().execute(request, response);
 			PageMove.forward(request, response, path + queryString);
 			
-		} else if("messageReceiveDelete".equals(act)) {
-			System.out.println("receive");
+		} else if("messageReceiveDelete".equals(act)) {//받은쪽지삭제
 			MemberActionFactory.getMemberMessageReceiveDeleteAction().execute(request, response);
 			path = MemberActionFactory.getMemberMessageReceiveListAction().execute(request, response);
 
 			
-		} else if("messageSendList".equals(act)) {
+		} else if("messageSendList".equals(act)) {//보낸쪽지목록
 			path = MemberActionFactory.getMemberMessageSendListAction().execute(request, response);
 			PageMove.forward(request, response, path + queryString);
 			
-		} else if("messageReceiveList".equals(act)) {
+		} else if("messageReceiveList".equals(act)) {//받은쪽지목록
 			path = MemberActionFactory.getMemberMessageReceiveListAction().execute(request, response);
 			PageMove.forward(request, response, path + queryString);
 			

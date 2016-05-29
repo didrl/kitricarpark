@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.carpark.db.DBClose;
 import com.carpark.db.DBConnection;
@@ -26,7 +27,7 @@ public class MemberReviewDaoImpl implements MemberReviewDao {
 	}
 
 	@Override
-	public ArrayList<ReviewDto> getReview(String park_id) {
+	public ArrayList<ReviewDto> listReview(String park_id) {
 		ReviewDto reviewDto = null;
 		ArrayList<ReviewDto> list = new ArrayList<ReviewDto>();
 		Connection conn =null;
@@ -47,7 +48,7 @@ public class MemberReviewDaoImpl implements MemberReviewDao {
 			pstmt =conn.prepareStatement(sql);
 			pstmt.setString(1,park_id);
 			rs = pstmt.executeQuery();
-			if(rs.next()){
+			while(rs.next()){
 				//이름,이메일,보유코인 필요
 				reviewDto =new ReviewDto();		
 				reviewDto.setContent(rs.getString("contents"));
@@ -66,6 +67,36 @@ public class MemberReviewDaoImpl implements MemberReviewDao {
 			DBClose.close(conn, pstmt, rs);
 		}
 		return list;
+	}
+
+	@Override
+	public int writeArticle(ReviewDto reviewDto) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public ReviewDto viewArticle(int seq) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<ReviewDto> sendListArticle(String userId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<ReviewDto> receiveListArticle(String receiveId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void deleteArticle(int seq) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	

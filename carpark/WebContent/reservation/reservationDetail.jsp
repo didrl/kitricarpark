@@ -280,22 +280,6 @@ if(reservationDto != null){
 									}
 								});
 			});
-	/*		
-			$(function(){
-				$('select').selectlist({
-					zIndex: 10,
-					width: 100,
-					height: 30
-				});		
-			})
-			$(function(){
-				$('selectlong').selectlist({
-					zIndex: 10,
-					width: 200,
-					height: 30
-				});		
-			})
-	*/
 
 		$(document).ready(function () {
 				$("#multireservation").attr("checked", true);
@@ -334,8 +318,7 @@ if(reservationDto != null){
 				$("#inputCarNum").empty();
 				$("#inputCarName").empty();
 				$("#addCarTitle").append("<%=memberDto.getUser_id()%>");
-				
-				
+							
 				$('#addcar').show();
 			});
 			

@@ -21,9 +21,10 @@ public class MemberMessageSendListAction implements Action {
 		MemberDto memberDto = (MemberDto) session.getAttribute("memberInfo");
 		
 		String userId = memberDto.getUser_id();
-		List<MessageDto> sendList = MemberMessageServiceImpl.getMemberMessageService().sendListArticle(userId);
-		request.setAttribute("sendList", sendList);
-		
+		if(userId != null) {
+			List<MessageDto> sendList = MemberMessageServiceImpl.getMemberMessageService().sendListArticle(userId);
+			request.setAttribute("sendList", sendList);
+		}
 		return "/message/sendlist.jsp";
 	}
 

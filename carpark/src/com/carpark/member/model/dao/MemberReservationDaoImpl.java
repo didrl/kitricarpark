@@ -4,11 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -101,7 +97,7 @@ public class MemberReservationDaoImpl implements MemberReservationDao {
 
 			while(rs.next()){
 				map = new HashMap<String, String>();
-				map.put("startdate", rs.getString("startdate"));
+				map.put("startdate", rs.getString("start_date"));
 				map.put("betweendate", rs.getString("betweendate"));		// end_date - start_date
 				list.add(map);
 			}

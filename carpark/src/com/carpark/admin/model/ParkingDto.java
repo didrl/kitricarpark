@@ -18,6 +18,10 @@ public class ParkingDto {
 	public void setContent(String content) {
 		this.content = content;
 	}
+<<<<<<< HEAD
+=======
+	
+>>>>>>> c32de7a45a882c6a7176cbb332da56883331d09c
 	public int getPark_id() {
 		return park_id;
 	}
