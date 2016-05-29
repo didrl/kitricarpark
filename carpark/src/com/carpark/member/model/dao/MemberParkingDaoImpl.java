@@ -2,7 +2,9 @@ package com.carpark.member.model.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.carpark.common.model.CitiesDto;
@@ -34,16 +36,17 @@ public class MemberParkingDaoImpl implements MemberParkingDao {
 			String sql = "";
 			sql += "insert all \n";
 			sql += "	into parking (park_id, park_name, park_capacity, owner_id, latitude, "
-										+ "longitude, park_type) \n";
-			sql += "	values (? ,? ,? ,? ,? ,? ,?) \n";
+										+ "longitude, park_type, emd_code) \n";
+			sql += "	values (? ,? ,? ,? ,? ,? ,?, ?) \n";
 			sql += "	into parking_facility (park_id, facility, feature) \n";
 			sql += "	values (?, ?, ?) \n";
-			sql += "	into parking_img (park_id, file_name, file_path, file_num) \n";
-			sql += "	values (?, ?, ?, ?) \n";
+			sql += "	into parking_img (park_id, file_name, file_path) \n";
+			sql += "	values (?, ?, ?) \n";
 			sql += "	into parking_detail (park_id, park_flag, PAY_YN, satur_pay_yn, holi_pay_yn, "
 												+ "fulltime_monthly_pay, park_rate, "
 												+ "park_time_rate, add_park_rate, day_max_pay) \n";
 			sql += "	values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			sql += "select * from dual";
 			
 			pstmt = conn.prepareStatement(sql);
 			int idx = 0;
@@ -52,13 +55,18 @@ public class MemberParkingDaoImpl implements MemberParkingDao {
 			pstmt.setString(++idx, parkingDto.getParkName());
 			pstmt.setInt(++idx, parkingDto.getParkCapacity());
 			pstmt.setString(++idx, parkingDto.getOwnerId());
-			pstmt.setInt(++idx, parkingDto.getLatitude());
-			pstmt.setInt(++idx, parkingDto.getLongtitude());
+			pstmt.setDouble(++idx, parkingDto.getLatitude());
+			pstmt.setDouble(++idx, parkingDto.getLongtitude());
 			pstmt.setString(++idx, parkingDto.getParkType());
+			pstmt.setInt(++idx, parkingDto.getEmdCode());
 			//parking_facility table
 			pstmt.setInt(++idx, parkingDto.getParkId());
 			pstmt.setString(++idx, parkingDto.getFacility());
 			pstmt.setString(++idx, parkingDto.getFeature());
+			//parking_img table
+			pstmt.setInt(++idx, parkingDto.getParkId());
+			pstmt.setString(++idx, parkingDto.getFileName());
+			pstmt.setString(++idx, parkingDto.getFilePath());
 			//parking_img table
 			pstmt.setInt(++idx, parkingDto.getParkId());
 			pstmt.setInt(++idx, parkingDto.getParkFlag());
@@ -101,8 +109,39 @@ public class MemberParkingDaoImpl implements MemberParkingDao {
 
 	@Override
 	public List<CitiesDto> ParkSearch(String address) {
-		// TODO Auto-generated method stub
-		return null;
+		List<CitiesDto> list = new ArrayList<CitiesDto>();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = DBConnection.makeConnection();
+			String sql = "";
+			sql += "select sgg_code, emd_code, sgg_name, emd_name, lat, lng \n";
+			sql += "from cities \n";
+			sql += "where emd_name like '%'||?||'%' "; // "%" + ? + "%"
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, address);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				CitiesDto citiesDto = new CitiesDto();
+				
+				citiesDto.setSsgCode(rs.getInt("sgg_code"));
+				citiesDto.setEmdCode(rs.getInt("emd_code"));
+				citiesDto.setSsgName(rs.getString("sgg_name"));
+				citiesDto.setEmdName(rs.getString("emd_name"));
+				citiesDto.setLat(rs.getDouble("lat"));
+				citiesDto.setLng(rs.getDouble("lng"));
+				
+				list.add(citiesDto);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose.close(conn, pstmt, rs);
+		}
+		
+		return list;
 	}
 
 }

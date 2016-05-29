@@ -6,8 +6,8 @@ public class CitiesDto {
 	private int emdCode;
 	private String ssgName;
 	private String emdName;
-	private int lat;
-	private int lng;
+	private double lat;
+	private double lng;
 	
 	public int getSsgCode() {
 		return ssgCode;
@@ -33,16 +33,16 @@ public class CitiesDto {
 	public void setEmdName(String emdName) {
 		this.emdName = emdName;
 	}
-	public int getLat() {
+	public double getLat() {
 		return lat;
 	}
-	public void setLat(int lat) {
+	public void setLat(double lat) {
 		this.lat = lat;
 	}
-	public int getLng() {
+	public double getLng() {
 		return lng;
 	}
-	public void setLng(int lng) {
+	public void setLng(double lng) {
 		this.lng = lng;
 	}
 

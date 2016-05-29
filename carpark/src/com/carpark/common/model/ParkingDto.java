@@ -5,14 +5,11 @@ public class ParkingDto {
 	private String parkName;
 	private int parkCapacity;
 	private String ownerId;
-	private int latitude;
-	private int longtitude;
+	private double latitude;
+	private double longtitude;
 	private String parkType;
+	private int emdCode;
 	private String content;
-	private String ssgName;
-	private String emdName;
-	private String parkAddress;
-	private String parkAddressDetail;
 	
 	public int getParkId() {
 		return parkId;
@@ -38,16 +35,16 @@ public class ParkingDto {
 	public void setOwnerId(String ownerId) {
 		this.ownerId = ownerId;
 	}
-	public int getLatitude() {
+	public double getLatitude() {
 		return latitude;
 	}
-	public void setLatitude(int latitude) {
+	public void setLatitude(double latitude) {
 		this.latitude = latitude;
 	}
-	public int getLongtitude() {
+	public double getLongtitude() {
 		return longtitude;
 	}
-	public void setLongtitude(int longtitude) {
+	public void setLongtitude(double longtitude) {
 		this.longtitude = longtitude;
 	}
 	public String getParkType() {
@@ -62,30 +59,13 @@ public class ParkingDto {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public String getSsgName() {
-		return ssgName;
+	public int getEmdCode() {
+		return emdCode;
 	}
-	public void setSsgName(String ssgName) {
-		this.ssgName = ssgName;
+	public void setEmdCode(int emdCode) {
+		this.emdCode = emdCode;
 	}
-	public String getEmdName() {
-		return emdName;
-	}
-	public void setEmdName(String emdName) {
-		this.emdName = emdName;
-	}
-	public String getParkAddress() {
-		return parkAddress;
-	}
-	public void setParkAddress(String parkAddress) {
-		this.parkAddress = parkAddress;
-	}
-	public String getParkAddressDetail() {
-		return parkAddressDetail;
-	}
-	public void setParkAddressDetail(String parkAddressDetail) {
-		this.parkAddressDetail = parkAddressDetail;
-	}
+
 	
 	
 }

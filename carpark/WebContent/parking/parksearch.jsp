@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.carpark.common.model.*,java.util.*"%>
 <%
 String root = request.getContextPath();
-
+List<CitiesDto> list = (List<CitiesDto>) request.getAttribute("addressList");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -28,10 +28,11 @@ function parkSearch(){
 	}
 }
 
-function selectAddress(z1, z2, address){
-	opener.document.joinform.zip1.value = z1;//opener.document.getElementById("zip1").value = z1;
-	opener.document.joinform.zip2.value = z2;//opener 열어준 창
-	opener.document.joinform.addr1.value = address;
+function selectAddress(parkAddress, emdCode , lat, lng){	
+	opener.document.parkRegisterForm.parkAddress.value = parkAddress;
+	opener.document.parkRegisterForm.emdCode.value = emdCode;	
+	opener.document.parkRegisterForm.latitude.value = lat;
+	opener.document.parkRegisterForm.longtitude.value = lng;
 	
 	self.close();
 
@@ -47,22 +48,59 @@ function windowClose() {
 <div id="page-wrapper">
 <div class="container-fluid">
 
+
+
 <form name="parkSearchForm" method="get" action="">
 	<input type="hidden" name="act" value="parkSearch">
 
 	<table class="table">
+	
 		<tr>
-			<td align="center">주소를 입력해 주세요</td>
+			<td align="center">동을 입력해 주세요</td>
 		</tr>
 		<tr>
 			<td><input type="text" class="form-control" name="parkAddress"></td>
 		</tr>
+		
+<%
+if(list != null) {
+	int size = list.size();
+	if(size == 0) {
+%>
+
+		<tr>
+			<td>
+				검색 결과가 없습니다
+			</td>		
+		</tr>
+
+<%
+	} else {
+		for(CitiesDto citiesDto : list) {
+%>
+
+	<tr>
+		<td align="center">
+			<a href="javascript:selectAddress('<%=citiesDto.getSsgName()%> <%=citiesDto.getEmdName()%>', '<%=citiesDto.getEmdCode() %>', '<%=citiesDto.getLat()%>', '<%=citiesDto.getLng()%>')">
+				<%=citiesDto.getSsgName()%> <%=citiesDto.getEmdName()%>
+			</a>
+		</td>
+	</tr>
+
+<%		
+		}
+	}
+}
+%>
+		
 		<tr>
 			<td align="center">
 		  		<button type="button" class="btn btn-default btn-lg" onclick="javascript:parkSearch();">검색</button>
-		  		<button type="reset" class="btn btn-default btn-lg">취소</button>
+		  		<button type="button" class="btn btn-default btn-lg" onclick="javascript:windowClose();">취소</button>
 			</td>
 		</tr>
+		
+	
 	</table>    
 </form>
 

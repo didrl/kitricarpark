@@ -25,7 +25,8 @@ public class MemberParkingController extends HttpServlet {
 			PageMove.forward(request, response, path);
 			
 		} else if("parkSearch".equals(act)) {
-			
+			path = MemberActionFactory.getMemberParkingSearchAction().execute(request, response);
+			PageMove.forward(request, response, path);
 			
 		} else if("".equals(act)) {
 			

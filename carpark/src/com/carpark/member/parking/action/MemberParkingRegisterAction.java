@@ -32,9 +32,13 @@ public class MemberParkingRegisterAction implements Action {
 		parkingDto.setParkId(parkingId);
 		parkingDto.setParkType(request.getParameter("parkType"));
 		parkingDto.setParkName(request.getParameter("parkName"));
-		parkingDto.setLatitude(NumberCheck.nullToOne(request.getParameter("latitude")));
-		parkingDto.setLongtitude(NumberCheck.nullToZero(request.getParameter("longtitude")));
-		parkingDto.setOwnerId(memberDto.getUser_id());
+		parkingDto.setLatitude(Double.parseDouble(request.getParameter("latitude")));
+		parkingDto.setLongtitude(Double.parseDouble(request.getParameter("longtitude")));
+		parkingDto.setEmdCode(NumberCheck.nullToZero(request.getParameter("emdCode")));
+		
+		parkingDto.setOwnerId("didrl");
+		//parkingDto.setOwnerId(memberDto.getUser_id());
+		
 		parkingDto.setFacility(StringCheck.nullToBlank(request.getParameter("facility")));
 		parkingDto.setFeature(StringCheck.nullToBlank(request.getParameter("feature")));
 		parkingDto.setPayYn(request.getParameter("payYn"));
@@ -51,6 +55,7 @@ public class MemberParkingRegisterAction implements Action {
 		if(parkingId != 0) {
 			MemberParkingServiceImpl.getMemberParkingservice().MemberParkingRegister(parkingDto);
 		}
+		
 		
 		return "/parking/list";
 	}

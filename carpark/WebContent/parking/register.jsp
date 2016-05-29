@@ -58,7 +58,10 @@ function parkSearchWindow() {
 			<!-- 본문내용 -->
 			<div class="col-md-10">
 			<form name="parkRegisterForm" method="post" action="">
-				<input type="hidden" name="act" value="parkRegister">
+				<input type="hidden" name="act" value="parkRegister">				
+				<input type="hidden" name="latitude" value="">
+				<input type="hidden" name="longtitude" value="">
+				<input type="hidden" name="emdCode" value="">
 				
 				<div class="row">
 					<div class="col-md-2">
@@ -66,13 +69,13 @@ function parkSearchWindow() {
 					</div>
 					<div class="col-md-10">
 						<label class="radio-inline">
-						  <input type="radio" name="parkType" value="public"> 공영
+						  <input type="radio" name="parkType" value="1"> 공영
 						</label>
 						<label class="radio-inline">
-						  <input type="radio" name="parkType" value="private"> 사설
+						  <input type="radio" name="parkType" value="2"> 사설
 						</label>
 						<label class="radio-inline">
-						  <input type="radio" name="parkType" value="personal"> 개인
+						  <input type="radio" name="parkType" value="3"> 개인
 						</label>
 					</div>
 				</div><hr>
@@ -95,7 +98,6 @@ function parkSearchWindow() {
 					<div class="col-md-10">
 						<div class="form-group">
 							<input type="text" class="form-control" placeholder="주소" name="parkAddress" readonly="readonly"><br>
-							<input type="text" class="form-control" placeholder="상세주소" name="parkAddressDetail" readonly="readonly">
 						</div>
 							<button type="button" class="btn btn-default" onclick="javascript:parkSearchWindow();">검색</button>
 					</div>
