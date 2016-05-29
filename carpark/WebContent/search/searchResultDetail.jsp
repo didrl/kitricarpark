@@ -55,7 +55,11 @@ System.out.println("<><><><content><><"+parkingDetail.getContent());
 
 <!-- Custom CSS -->
 <link href="/carpark/css/shop-item.css" rel="stylesheet">
-
+ 
+ <!-- calendar -->
+ <link href="/carpark/css/calendar/glDatePicker.default.css" rel="stylesheet" type="text/css">
+ 
+ 
 <!-- Custom Fonts -->
 <link
 	href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic"
@@ -71,7 +75,7 @@ System.out.println("<><><><content><><"+parkingDetail.getContent());
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
+		<script src="/carpark/js/calendar/glDatePicker.min.js"></script>
 
 
 <script type="text/javascript">
@@ -103,7 +107,26 @@ function goReservation() {
 		document.selectdateForm.submit();
 	}
 }
+function goSearchResult() {
+	if(document.getElementById("citysearch").value  == "") {
+		alert("검색하실 도시의 이름을 입력해주세요.");
+		return;
+	} else if(document.getElementById("fromdatesearch").value  == "") {
+		alert("시작일을 입력해주세요.");
+		return;
+	}else if(document.getElementById("todatesearch").value  == "") {
+		alert("종료일을 입력해주세요.");
+		return;
+	}else{
+	document.searchForm.action = "/carpark/member";
+	document.searchForm.submit();
+	}
+}
 
+function goResultDetail() {
+	document.parkListForm.action = "/carpark/member";
+	document.parkListForm.submit();
+}
 </script>
 
 
@@ -557,7 +580,7 @@ for(ReviewDto reviewDto : reviewlist){
 								</div>
 					</div>	<!-- To Choice End --><br>
 
-								<button type="button" onclick="javascript:goReservation();" class="btn btn-success" id="goreser" name="goreser"">
+								<button type="button" onclick="javascript:goReservation();" class="btn btn-success" id="goreser" name="goreser">
                   				 예약하기 
                				</button>
 					</div> <!--  radio button에 의한 Multi reservation End-->
@@ -583,25 +606,16 @@ for(ReviewDto reviewDto : reviewlist){
 					<!-- host info panel End -->
 					<div class="panel panel-default">
 						<div class="panel-body">
-							<div id="c">
-							<h3>사용 가능 일</h3>
-								<div id="disp">
-									<div id="prev" class="nav">←</div>
-									<div id="month"></div>
-									<div id="next" class="nav">→</div>
-								</div>
-								<div id="cal"></div>
-							</div>
-							<!— /#c —>
-							<script src="/carpark/js/calendar/index.js"></script>
+							   <input type="text" id="mydate" gldp-id="mydate" />
+   								 <div gldp-el="mydate" id="divforcal" style="width:400px; height:300px; position:absolute; top:70px; left:100px;">
+    						</div>
 						</div>
 					</div>
-					<!— clelander panel End —>
+					<!--  clelander panel End  -->
 				</div>
 			</div>
 		
 	</div>
-	<!— /.container —>
 	<div class="container">
 
 		<hr>
@@ -613,7 +627,7 @@ for(ReviewDto reviewDto : reviewlist){
 
 
 
-		<!— Custom Theme JavaScript —>
+		<!-- Custom Theme JavaScript -->
 		<script>
 			// Closes the sidebar menu
 			$("#menu-close").click(function(e) {
@@ -670,20 +684,17 @@ for(ReviewDto reviewDto : reviewlist){
 				})
 			
 		</script>
-<!—		<script src="/carpark/js/selectlist/jquery.selectlist.js"></script> 
-		<script type="text/javascript">
-			$(function(){
-				$('select').selectlist({
-					zIndex: 10,
-					width: 100,
-					height: 30
-				});		
-			})
-</script>
 
 
-—>
+    <script type="text/javascript">
+        $(window).load(function()
+        {
+            $('#divforcal').glDatePicker();
+        });
+    </script>
+		
 
-<!— ****************************************************************************************************************** —>
+
+<!--  ******************************************************************************************************************  -->
 
 <%@ include file="/common/footer.jsp" %>

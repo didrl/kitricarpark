@@ -10,7 +10,7 @@ import com.carpark.member.model.dao.MemberReservationDaoImpl;
 public class MemberReservationServiceImpl implements MemberReservationService {
 
 	private static MemberReservationService memberReservationService;
-	
+	 
 	static {
 		memberReservationService = new MemberReservationServiceImpl();
 	}

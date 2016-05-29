@@ -28,6 +28,28 @@ List<ParkingDto> list = (List<ParkingDto>)request.getAttribute("searchlist");
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     
+    <script type="text/javascript">
+function goSearchResult() {
+	if(document.getElementById("citysearch").value  == "") {
+		alert("검색하실 도시의 이름을 입력해주세요.");
+		return;
+	} else if(document.getElementById("fromdatesearch").value  == "") {
+		alert("시작일을 입력해주세요.");
+		return;
+	}else if(document.getElementById("todatesearch").value  == "") {
+		alert("종료일을 입력해주세요.");
+		return;
+	}else{
+	document.searchForm.action = "/carpark/member";
+	document.searchForm.submit();
+	}
+}
+
+function goResultDetail() {
+	document.parkListForm.action = "/carpark/member";
+	document.parkListForm.submit();
+}
+</script>
 <br><br><br><br>
 	
     <!-- Page Content -->
@@ -392,19 +414,6 @@ for(int i =0;i<list.size();i++){
 								}
 							});
 		});
-		
-	</script>
-	<script src="/carpark/js/selectlist/jquery.selectlist.js"></script>
-		<script type="text/javascript">
-			$(function(){
-				$('select').selectlist({
-					zIndex: 10,
-					width: 100,
-					height: 30
-				});		
-			})
-			
-	</script>
 
 
 

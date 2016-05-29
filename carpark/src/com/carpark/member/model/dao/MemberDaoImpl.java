@@ -368,11 +368,11 @@ public class MemberDaoImpl implements MemberDao {
 		int count=0;
 		Connection conn =null;
 		PreparedStatement pstmt =null;
-		
+		 
 		try {
 			conn=DBConnection.makeConnection();
 			String sql="";
-
+ 
 			sql+="update member \n";
 			sql+="set user_name=?, user_pass=?, email=?, tel=? \n";
 			sql+="where user_id=?";
