@@ -24,7 +24,7 @@ if(cookie!=null){
 			<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span>
 			<span class="icon-bar"></span> <span class="icon-bar"></span>
 		</button>
-		<a class="navbar-brand" href="/index.jsp">Car Park</a>
+		<a class="navbar-brand" href="<%=root %>/index.jsp">Car Park</a>
 	</div>
 	<!-- Top Menu Items -->
 	<ul class="nav navbar-right top-nav">
@@ -156,11 +156,11 @@ if(memberDto!=null){
 	aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<div class="modal-header">
+			<div class="modal-header" style="background: #00cc00">
 				<button type="button" class="close" data-dismiss="modal">
 					<span aria-hidden="true">×</span><span class="sr-only">Close</span>
 				</button>
-				<h4 class="modal-title" id="myModalLabel">Modal title</h4>
+				<h4 class="modal-title" id="myModalLabel">로그인</h4>
 			</div>
 			
 			
@@ -366,27 +366,31 @@ if(memberDto!=null){
 
 
 <script type="text/javascript">
-var id = document.getElementById("userid").value; 
 
-$('#idcheck').click(function(id){
+$('#idcheck').click(function(){
+var id = document.getElementById("userid").value; 
 	$.ajax({
-		type :"POST",
-		url : "/carpark/member",
+		type :"GET",
+		url : "/carpark/member?act=mvidcheck",
 		dataType : "json",
 		data : {
-			"act" : "mvidcheck",
-			"id" : id
+			"idcheck" : id
 		},
-		successs: function(data){
-			alert("성공입니다.");
-			console.log(data);
-		},
-		error: function(data){
-			alert("에러입니다");
-			console.log(data);
-		}
+		 success: function(data) {
+		      console.log('성공 - ', data);
+		      idcheck(data);
+		    },
+		 error: function(xhr) {
+		      console.log('실패 - ', xhr);
+		    }
 	});
 });
 
+function idcheck(data){
+	if(data.id < 1)
+		alert("아이디를 사용하실 수 있습니다.");
+	else
+		alert("아이디를 사용할 수 없습니다.");
+}
 </script>
 

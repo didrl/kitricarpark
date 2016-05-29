@@ -4,6 +4,23 @@
 <%@include file="/common/common.jsp"%>
 <%@include file="/common/header/init.jsp"%>
 
+<%
+String svid="";
+String ckid="";
+Cookie cookie[]= request.getCookies();
+if(cookie!=null){
+	int len = cookie.length;
+	for(int i=0;i<len;i++){
+		if("myid".equals(cookie[i].getName())){
+			svid = cookie[i].getValue(); 
+			ckid = "checked=\"checked\"";
+		}
+	}
+}
+%>
+
+
+
 	<div class="modal-dialog" style="padding-top: 60px;">
 		<div class="modal-content">
 			<div class="modal-header">
