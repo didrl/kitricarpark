@@ -28,11 +28,17 @@ public class MemberParkingController extends HttpServlet {
 			path = MemberActionFactory.getMemberParkingSearchAction().execute(request, response);
 			PageMove.forward(request, response, path);
 			
-		} else if("".equals(act)) {
+		} else if("parkList".equals(act)) {
+			path = MemberActionFactory.getMemberParkingListAction().execute(request, response);
+			PageMove.forward(request, response, path);
 			
-		} else if("".equals(act)) {
+		} else if("parkModify".equals(act)) {
+			path = MemberActionFactory.getMemberParkingModifyAction().execute(request, response);
+			PageMove.forward(request, response, path);
 			
-		} else if("".equals(act)) {
+		} else if("parkDelete".equals(act)) {
+			path = MemberActionFactory.getMemberParkingDeleteAction().execute(request, response);
+			PageMove.forward(request, response, path);
 			
 		} else if("".equals(act)) {
 			

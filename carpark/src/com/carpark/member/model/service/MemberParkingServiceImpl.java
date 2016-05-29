@@ -33,8 +33,7 @@ public class MemberParkingServiceImpl implements MemberParkingService {
 
 	@Override
 	public List<ParkingDetailDto> MemberParkingList(String userId) {
-		// TODO Auto-generated method stub
-		return null;
+		return MemberParkingDaoImpl.getMemberParkingDao().MemberParkingList(userId);
 	}
 
 	@Override

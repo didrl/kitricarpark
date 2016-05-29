@@ -21,6 +21,9 @@ import com.carpark.member.favorite.action.MemberFavoriteDeleteAction;
 import com.carpark.member.favorite.action.MemberFavoriteListAction;
 import com.carpark.member.favorite.action.MemberFavoriteRegisterAction;
 import com.carpark.member.message.action.*;
+import com.carpark.member.parking.action.MemberParkingDeleteAction;
+import com.carpark.member.parking.action.MemberParkingListAction;
+import com.carpark.member.parking.action.MemberParkingModifyAction;
 import com.carpark.member.parking.action.MemberParkingRegisterAction;
 import com.carpark.member.parking.action.MemberParkingSearchAction;
 import com.carpark.member.report.action.MemberReportListAction;
@@ -86,6 +89,9 @@ public class MemberActionFactory {
 	
 	private static Action memberParkingRegisterAction;
 	private static Action memberParkingSearchAction;
+	private static Action memberParkingModifyAction;
+	private static Action memberParkingListAction;
+	private static Action memberParkingDeleteAction;
 	
 	static {
 		memberDeleteAction = new MemberDeleteAction();
@@ -136,6 +142,9 @@ public class MemberActionFactory {
 		
 		memberParkingRegisterAction = new MemberParkingRegisterAction();
 		memberParkingSearchAction = new MemberParkingSearchAction();
+		memberParkingModifyAction = new MemberParkingModifyAction();
+		memberParkingListAction = new MemberParkingListAction();
+		memberParkingDeleteAction = new MemberParkingDeleteAction();
 		
 	}
 
@@ -297,6 +306,18 @@ public class MemberActionFactory {
 
 	public static Action getMemberParkingSearchAction() {
 		return memberParkingSearchAction;
+	}
+
+	public static Action getMemberParkingModifyAction() {
+		return memberParkingModifyAction;
+	}
+
+	public static Action getMemberParkingListAction() {
+		return memberParkingListAction;
+	}
+
+	public static Action getMemberParkingDeleteAction() {
+		return memberParkingDeleteAction;
 	}
 
 	
