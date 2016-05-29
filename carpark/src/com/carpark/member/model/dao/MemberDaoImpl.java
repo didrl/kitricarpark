@@ -368,7 +368,7 @@ public class MemberDaoImpl implements MemberDao {
 		int count=0;
 		Connection conn =null;
 		PreparedStatement pstmt =null;
-		 
+		
 		try {
 			conn=DBConnection.makeConnection();
 			String sql="";

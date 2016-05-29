@@ -30,13 +30,6 @@ System.out.println("<><><><content><><"+parkingDetail.getContent());
    <%@include file="/reservation/sendMessageModal.jsp"%>
    <!-- For sendMsg Modal -->
    
-
-
-<!-- Seclect List CSS
-
-<link rel="stylesheet" type="text/css" href="/carpark/css/jquery.selectlist.css">
- -->
-
 <!-- Simple Celander -->
 <link rel="stylesheet" href="/carpark/css/calendar/style.css" />
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -604,10 +597,9 @@ for(ReviewDto reviewDto : reviewlist){
 						</div>
 						</div>
 					<!-- host info panel End -->
+					<!--  clelander panel  -->
 					<div class="panel panel-default">
-						<div class="panel-body">
-							   <input type="text" id="mydate" gldp-id="mydate" />
-   								 <div gldp-el="mydate" id="divforcal" style="width:400px; height:300px; position:absolute; top:70px; left:100px;">
+						<div class="panel-body" id="datepanelbody">
     						</div>
 						</div>
 					</div>
@@ -615,7 +607,6 @@ for(ReviewDto reviewDto : reviewlist){
 				</div>
 			</div>
 		
-	</div>
 	<div class="container">
 
 		<hr>
@@ -689,7 +680,25 @@ for(ReviewDto reviewDto : reviewlist){
     <script type="text/javascript">
         $(window).load(function()
         {
-            $('#divforcal').glDatePicker();
+            $('#datepanelbody').glDatePicker(
+           {
+            showAlways: true,
+            allowMonthSelect: false,
+            allowYearSelect: false,
+            prevArrow: '',
+            nextArrow: '',
+            selectedDate: new Date(),
+            selectableDateRange: [
+                { from: new Date(2013, 8, 1),
+                    to: new Date(2013, 8, 10) },
+                { from: new Date(2013, 8, 19),
+                    to: new Date(2013, 8, 22) },
+            ],
+            selectableDates: [
+                { date: new Date(2013, 8, 24) },
+                { date: new Date(2013, 8, 30) }
+            ]
+           });
         });
     </script>
 		

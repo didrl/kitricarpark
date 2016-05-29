@@ -78,7 +78,7 @@ public class MemberReservationDaoImpl implements MemberReservationDao {
 		
 		Map<String, String> map = null;
 		ArrayList<Map<String,String>> list = new ArrayList<Map<String,String>>();
-		
+		 
 		try {
 			conn=DBConnection.makeConnection();
 			String sql="";
