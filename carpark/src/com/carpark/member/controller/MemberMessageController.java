@@ -29,10 +29,7 @@ public class MemberMessageController extends HttpServlet {
 			path = MemberActionFactory.getMemberMessageWriteAction().execute(request, response);
 			PageMove.forward(request, response, path + queryString);
 
-		} else if("messageSendView".equals(act)) {
-
 		} else if("messageSendView".equals(act)) {//보낸쪽지보기
-
 			path = MemberActionFactory.getMemberMessageSendViewAction().execute(request, response);
 			PageMove.forward(request, response, path + queryString);
 			
@@ -48,8 +45,7 @@ public class MemberMessageController extends HttpServlet {
 		} else if("messageReceiveDelete".equals(act)) {//받은쪽지삭제
 			MemberActionFactory.getMemberMessageReceiveDeleteAction().execute(request, response);
 			path = MemberActionFactory.getMemberMessageReceiveListAction().execute(request, response);
-
-			
+	
 		} else if("messageSendList".equals(act)) {//보낸쪽지목록
 			path = MemberActionFactory.getMemberMessageSendListAction().execute(request, response);
 			PageMove.forward(request, response, path + queryString);
@@ -58,18 +54,6 @@ public class MemberMessageController extends HttpServlet {
 			path = MemberActionFactory.getMemberMessageReceiveListAction().execute(request, response);
 			PageMove.forward(request, response, path + queryString);
 			
-		} else if("messageDelete".equals(act)) {//두개로 분할 /////////////////////////////////////////////
-			System.out.println("시작점");
-			String delete = MemberActionFactory.getMemberMessageDeleteAction().execute(request, response);
-			if("sendlist" == delete) {
-				System.out.println("send");
-				path = MemberActionFactory.getMemberMessageSendListAction().execute(request, response);
-			} else {
-				System.out.println("receive");
-				path = MemberActionFactory.getMemberMessageReceiveListAction().execute(request, response);
-			}
-			PageMove.forward(request, response, path + queryString);
-			///////////////////////////////////////////////////////////////////////////////////////////////
 		} else if("".equals(act)) {
 			
 		}

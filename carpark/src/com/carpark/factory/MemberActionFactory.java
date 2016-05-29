@@ -66,12 +66,6 @@ public class MemberActionFactory {
 	private static Action memberMessageReceiveViewAction;
 	private static Action memberMessageSendDeleteAction;
 	private static Action memberMessageReceiveDeleteAction;
-
-	//messageDelete 2개로 분할//////////////////////
-	private static Action memberMessageDeleteAction;
-	//messageWrite로 통합
-	private static Action memberMessageReplyAction;
-	////////////////////////////////////////////////
 	
 	private static Action memberReportListAction;
 	private static Action memberReportRegisterAction;
@@ -119,11 +113,6 @@ public class MemberActionFactory {
 		memberMessageReceiveViewAction = new MemberMessageReceiveViewAction();
 		memberMessageSendDeleteAction = new MemberMessageSendDeleteAction();
 		memberMessageReceiveDeleteAction = new MemberMessageReceiveDeleteAction();
-		
-		////////////////////////////////////////////////////////////////
-		memberMessageDeleteAction = new MemberMessageDeleteAction();
-		memberMessageReplyAction = new MemberMessageReplyAction();
-		////////////////////////////////////////////////////////////////
 		
 		memberReportListAction = new MemberReportListAction();
 		memberReportRegisterAction = new MemberReportRegisterAction();
@@ -248,16 +237,6 @@ public class MemberActionFactory {
 	public static Action getMemberMessageReceiveDeleteAction() {
 		return memberMessageReceiveDeleteAction;
 	}
-	
-	//////////////////////////////////////////////////////
-	public static Action getMemberMessageDeleteAction() {
-		return memberMessageDeleteAction;
-	}
-	
-	public static Action getMemberMessageReplyAction() {
-		return memberMessageReplyAction;
-	}
-	///////////////////////////////////////////////////////
 	
 	public static Action getMemberReportListAction() {
 		return memberReportListAction;
