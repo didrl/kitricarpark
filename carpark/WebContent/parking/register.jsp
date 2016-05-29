@@ -7,7 +7,58 @@
 
 <!-- ************************************************************************************ -->
 <script type="text/javascript">
+function parkingRegister() {
+	if(document.parkRegisterForm.parkType.value == ""){
+		alert("주차장 구분을 선택하세요");
+		return;
+	} else if(document.parkRegisterForm.parkName.value == ""){
+		alert("주차장 이름을 입력하세요");
+		return;
+	} else if(document.parkRegisterForm.payYn.value == ""){
+		alert("평일 유료/무료를 선택하세요");
+		return;
+	} else if(document.parkRegisterForm.saturPayYn.value == ""){
+		alert("토요일 유료/무료를 선택하세요");
+		return;
+	} else if(document.parkRegisterForm.holiPayYn.value == ""){
+		alert("공휴일 유료/무료를 선택하세요");
+		return;
+	} else if(document.parkRegisterForm.parkCapacity.value == ""){
+		alert("총 주차면수를 입력하세요");
+		return;
+	}  else if(document.parkRegisterForm.parkTimeRate.value == ""){
+		alert("기본 주차시간을 선택하세요");
+		return;
+	} else if(document.parkRegisterForm.parkRate.value == ""){
+		alert("기본 주차요금을 선택하세요");
+		return;
+	} else if(document.parkRegisterForm.addParkRate.value == ""){
+		alert("추가 단위요금을 선택하세요");
+		return;
+	} else if(document.parkRegisterForm.dayMaxPay.value == ""){
+		alert("하루 최대요금을 선택하세요");
+		return;
+	} else{
+		document.parkRegisterForm.action = "/carpark/memberparking";
+		document.parkRegisterForm.submit();
+	}
+}
 
+function parkTypePublic() {
+	document.parkRegisterForm.value = publicParking;
+}
+
+function parkTypePrivate() {
+	document.parkRegisterForm.value = privateParking;
+}
+
+function parkTypePersonal() {
+	document.parkRegisterForm.value = personalParking;
+}
+
+function parkSearch() {
+	
+}
 </script>
 <!-- ************************************************************************************ -->	
 <div id="wrapper">
@@ -20,38 +71,21 @@
 			<div class="col-md-10">
 			<form name="parkRegisterForm" method="post" action="">
 				<input type="hidden" name="act" value="parkRegister">
-				<input type="hidden" name="parkType" value="">
-				<input type="hidden" name="parkName" value="">
-				<input type="hidden" name="ssgName" value="">
-				<input type="hidden" name="emdName" value="">
-				<input type="hidden" name="facility" value="">
-				<input type="hidden" name="feature" value="">
-				<input type="hidden" name="payYn" value="">
-				<input type="hidden" name="saturPayYn" value="">
-				<input type="hidden" name="holiPayYn" value="">
-				<input type="hidden" name="parkCapacity" value="">
-				<input type="hidden" name="parkTimeRate" value="">
-				<input type="hidden" name="parkRate" value="">
-				<input type="hidden" name="addParkRate" value="">
-				<input type="hidden" name="dayMaxPay" value="">
-				<input type="hidden" name="fullTimeMonthlyPay" value="">
 				
 				<div class="row">
 					<div class="col-md-2">
 						<b>주차장 구분</b><br>
 					</div>
 					<div class="col-md-10">
-						<div class="btn-group btn-group-justified" role="group" aria-label="...">
-				  			<div class="btn-group" role="group">
-								<button type="button" class="btn btn-default" onclick="javascript:parkTypePublic();">공영</button>
-							</div>
-							<div class="btn-group" role="group">
-								<button type="button" class="btn btn-default" onclick="javascript:parkTypePrivate();">사설</button>
-							</div>
-							<div class="btn-group" role="group">
-								<button type="button" class="btn btn-default" onclick="javascript:parkTypePersonal();">개인</button>
-							</div>
-						</div>
+						<label class="radio-inline">
+						  <input type="radio" name="parkType" value="public"> 공영
+						</label>
+						<label class="radio-inline">
+						  <input type="radio" name="parkType" value="private"> 사설
+						</label>
+						<label class="radio-inline">
+						  <input type="radio" name="parkType" value="personal"> 개인
+						</label>
 					</div>
 				</div><hr>
 				
@@ -61,7 +95,7 @@
 					</div>
 					<div class="col-md-10">
 						<div class="form-group">
-							<input type="text" class="form-control" id="parkName">
+							<input type="text" class="form-control" name="parkName">
 						</div>
 					</div><br>
 				</div><hr>
@@ -220,7 +254,7 @@
 	
 				<div class="row">
 						<p align="center">
-		  					<button type="button" class="btn btn-primary btn-lg" onclick="javascript:parkRegister();">등록</button>
+		  					<button type="button" class="btn btn-primary btn-lg" onclick="javascript:parkingRegister();">등록</button>
 		  					<button type="reset" class="btn btn-default btn-lg">취소</button>
 						</p>
 				</div>

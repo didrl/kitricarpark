@@ -36,21 +36,9 @@ function parkingRegister() {
 		alert("하루 최대요금을 선택하세요");
 		return;
 	} else{
-		document.parkRegisterForm.action = "/carpark/parking";
+		document.parkRegisterForm.action = "/carpark/memberparking";
 		document.parkRegisterForm.submit();
 	}
-}
-
-function parkTypePublic() {
-	document.parkRegisterForm.value = publicParking;
-}
-
-function parkTypePrivate() {
-	document.parkRegisterForm.value = privateParking;
-}
-
-function parkTypePersonal() {
-	document.parkRegisterForm.value = personalParking;
 }
 
 function parkSearch() {
