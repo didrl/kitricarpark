@@ -58,6 +58,8 @@ public class MemberController extends HttpServlet {
 			PageMove.forward(request, response, path);
 		}else if("".equals(act)){
 			
+		}else if("".equals(act)){
+			
 		}else{
 			PageMove.redirect(response, root+path);
 		}

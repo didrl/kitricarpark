@@ -1,6 +1,21 @@
 <%@page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" %>
 
+<%
+String svid="";
+String ckid="";
+Cookie cookie[]= request.getCookies();
+if(cookie!=null){
+	int len = cookie.length;
+	for(int i=0;i<len;i++){
+		if("myid".equals(cookie[i].getName())){
+			svid = cookie[i].getValue(); 
+			ckid = "checked=\"checked\"";
+		}
+	}
+}
+%>
+
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 	<!-- Brand and toggle get grouped for better mobile display -->
 	<div class="navbar-header">
@@ -157,7 +172,7 @@ if(memberDto!=null){
 					<div class="form-group">
 						<label for="inputEmail3" class="col-sm-2 control-label">ID</label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control" name="id" value=""
+							<input type="text" class="form-control" name="id" value="<%=svid %>"
 								id="id" placeholder="id" required="required">
 						</div>
 					</div>
@@ -173,7 +188,7 @@ if(memberDto!=null){
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
 							<div class="checkbox">
-								<label> <input type="checkbox"> Remember me
+								<label> <input type="checkbox" name="svid" value="idsave" <%=ckid%>> Remember me
 								</label>
 							</div>
 						</div>

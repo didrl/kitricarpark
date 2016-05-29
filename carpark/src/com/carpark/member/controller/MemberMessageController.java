@@ -28,12 +28,11 @@ public class MemberMessageController extends HttpServlet {
 		} else if("messageWrite".equals(act)) {//쪽지보내기
 			path = MemberActionFactory.getMemberMessageWriteAction().execute(request, response);
 			PageMove.forward(request, response, path + queryString);
-			
-<<<<<<< HEAD
+
 		} else if("messageSendView".equals(act)) {
-=======
+
 		} else if("messageSendView".equals(act)) {//보낸쪽지보기
->>>>>>> c32de7a45a882c6a7176cbb332da56883331d09c
+
 			path = MemberActionFactory.getMemberMessageSendViewAction().execute(request, response);
 			PageMove.forward(request, response, path + queryString);
 			

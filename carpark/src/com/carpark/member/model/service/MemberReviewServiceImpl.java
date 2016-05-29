@@ -32,8 +32,6 @@ public class MemberReviewServiceImpl implements MemberReviewService {
 		return null;
 	}
 
-	
-
 	@Override
 	public int writeArticle(ReviewDto reviewDto) {
 		// TODO Auto-generated method stub

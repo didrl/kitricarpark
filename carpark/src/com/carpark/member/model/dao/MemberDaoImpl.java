@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -189,7 +188,7 @@ public class MemberDaoImpl implements MemberDao {
 		ResultSet rs =null;
 	
 		try {
-<<<<<<< HEAD
+
 			conn=DBConnection.makeConnection();
 			String sql="";
 			sql +="select a.park_id, a.park_name,a.city, a.park_avgPoint, a.park_capacity, a.latitude, a.longitude,a.content\n";
@@ -206,27 +205,9 @@ public class MemberDaoImpl implements MemberDao {
 //			pstmt.setString(idx++,map.get("from"));
 //			pstmt.setString(idx++,map.get("to"));
 
-			rs=pstmt.executeQuery();
-			while(rs.next()){
-=======
-			conn = DBConnection.makeConnection();
-			String sql = "";
-			sql += "select a.park_id, a.park_name,a.city, a.park_avgPoint, a.park_capacity, a.latitude, a.longitude,a.content\n";
-			sql += "from (select p.park_id, p.park_name,c.sgg_name ||' '|| c.emd_name as city, pd.park_avgPoint,p.park_capacity,p.latitude,p.longitude,p.content\n";
-			sql += "			from parking p , cities c, parking_detail pd\n";
-			sql += "			where p.emd_code = c.emd_code\n";
-			sql += "					and p.park_id = pd.park_id) a\n";
-			sql += "where a.city like '%'||?||'%'\n";
-
-			int idx = 1;
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(idx++, map.get("city").trim());
-			// pstmt.setString(idx++,map.get("from"));
-			// pstmt.setString(idx++,map.get("to"));
-
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
->>>>>>> c32de7a45a882c6a7176cbb332da56883331d09c
+
 				parkingDto = new ParkingDto();
 				parkingDto.setPark_id(rs.getInt("park_id"));
 				parkingDto.setPark_name(rs.getString("park_name"));
@@ -235,14 +216,10 @@ public class MemberDaoImpl implements MemberDao {
 				parkingDto.setLongitude(rs.getDouble("longitude"));
 				parkingDto.setLatitude(rs.getDouble("latitude"));
 				parkingDto.setContent(rs.getString("content"));
-<<<<<<< HEAD
 				list.add(parkingDto);	
-=======
 				list.add(parkingDto);
->>>>>>> c32de7a45a882c6a7176cbb332da56883331d09c
-			}
-
-		} catch (SQLException e) {
+				}
+			} catch (SQLException e) {
 			e.printStackTrace();
 		}finally{
 			DBClose.close(conn, pstmt, rs);
@@ -258,7 +235,6 @@ public class MemberDaoImpl implements MemberDao {
 		ResultSet rs =null;
 	
 		try {
-<<<<<<< HEAD
 			conn=DBConnection.makeConnection();
 			String sql="";
 			sql+="select p.park_id, p.park_name,c.sgg_name ||' '|| c.emd_name as city, pd.park_avgPoint,p.park_capacity, \n";
@@ -273,26 +249,8 @@ public class MemberDaoImpl implements MemberDao {
 //			pstmt.setString(idx++,map.get("from"));
 //			pstmt.setString(idx++,map.get("to"));
 
-			rs=pstmt.executeQuery();
-			while(rs.next()){
-=======
-			conn = DBConnection.makeConnection();
-			String sql = "";
-			sql += "select p.park_id, p.park_name,c.sgg_name ||' '|| c.emd_name as city, pd.park_avgPoint,p.park_capacity, \n";
-			sql += "p.latitude,p.longitude,p.owner_id,p.content \n";
-			sql += "from parking p , cities c, parking_detail pd \n";
-			sql += "where p.emd_code = c.emd_code \n";
-			sql += "and p.park_id = pd.park_id \n";
-			sql += "and p.park_id=? ";
-			int idx = 1;
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(idx++, parkingId);
-			// pstmt.setString(idx++,map.get("from"));
-			// pstmt.setString(idx++,map.get("to"));
-
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
->>>>>>> c32de7a45a882c6a7176cbb332da56883331d09c
 				parkingDto = new ParkingDto();
 				parkingDto.setPark_id(rs.getInt("park_id"));
 				parkingDto.setPark_name(rs.getString("park_name"));
@@ -302,13 +260,8 @@ public class MemberDaoImpl implements MemberDao {
 				parkingDto.setLatitude(rs.getDouble("latitude"));
 				parkingDto.setOwner_id(rs.getString("owner_id"));
 				parkingDto.setContent(rs.getString("content"));
-<<<<<<< HEAD
-				
-=======
->>>>>>> c32de7a45a882c6a7176cbb332da56883331d09c
 			}
-
-		} catch (SQLException e) {
+		}catch (SQLException e) {
 			e.printStackTrace();
 		}finally{
 			DBClose.close(conn, pstmt, rs);
@@ -410,7 +363,7 @@ public class MemberDaoImpl implements MemberDao {
 		
 		return parkingFacilityDto;	
 		}
-
+	
 	public int modify(MemberDto memberDto) {
 		int count=0;
 		Connection conn =null;

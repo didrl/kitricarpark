@@ -88,7 +88,7 @@ for(int i =0;i<list.size();i++){
             <div class="col-md-8">
 				
 				<!-- Map -->
-<<<<<<< HEAD
+
                 <div class="thumbnail">
                 
 	                <div class="panel panel-default" id="map"></div>
@@ -174,7 +174,7 @@ for(int i =0;i<list.size();i++){
                             4.0 stars
                         </p>
                     </div>
-=======
+
 	                <div class="thumbnail">
 	                
 		                <div class="panel panel-default">
@@ -288,7 +288,7 @@ for(int i =0;i<list.size();i++){
 	                        </p>
 	                    </div>
 	                </div>
->>>>>>> c32de7a45a882c6a7176cbb332da56883331d09c
+
                 </div>
 
                 <div class="well">
@@ -404,7 +404,7 @@ for(int i =0;i<list.size();i++){
 				});		
 			})
 			
-</script>
+	</script>
 
 
 

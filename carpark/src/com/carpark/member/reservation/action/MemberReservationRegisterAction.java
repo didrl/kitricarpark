@@ -31,11 +31,7 @@ public class MemberReservationRegisterAction implements Action {
 		reservationDto.setTotime(Integer.parseInt(request.getParameter("paytotime")));
 		reservationDto.setPay(Integer.parseInt(request.getParameter("selectedprice")));
 		
-		
 		MemberReservationServiceImpl.getMemberReservationService().registerReservation(reservationDto);
-
-		
-		
 		return "";
 	}
 
