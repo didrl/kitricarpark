@@ -1,4 +1,4 @@
-package com.carpark.parking.model;
+package com.carpark.common.model;
 
 public class ParkingDto {
 	private int parkId;

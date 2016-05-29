@@ -1,4 +1,4 @@
-package com.carpark.parking.model;
+package com.carpark.common.model;
 
 public class ParkingDetail extends ParkingFacility {
 	
