@@ -1,6 +1,6 @@
 package com.carpark.common.model;
 
-public class ParkingFacility extends ParkingDto {
+public class ParkingFacilityDto extends ParkingDto {
 	
 	private String facility;
 	private String feature;

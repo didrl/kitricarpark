@@ -1,6 +1,6 @@
 package com.carpark.common.model;
 
-public class ParkingDetail extends ParkingFacility {
+public class ParkingDetailDto extends ParkingFacilityDto {
 	
 	private int parkFlag;
 	private int parkAvgPoint;

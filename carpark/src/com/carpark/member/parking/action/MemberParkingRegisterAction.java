@@ -20,23 +20,26 @@ public class MemberParkingRegisterAction implements Action {
 		HttpSession session = request.getSession();
 		MemberDto memberDto = (MemberDto) session.getAttribute("memberInfo");
 		
-		String parkType = request.getParameter("parkType");
-		String parkName = request.getParameter("parkName");
-		String ssgName = request.getParameter("ssgName");
-		String emdName = request.getParameter("emdName");
-		String facility = request.getParameter("facility");
-		String feature = request.getParameter("feature");
-		String payYn = request.getParameter("payYn");
-		String saturPayYn = request.getParameter("saturPayYn");
-		String holiPayYn = request.getParameter("holiPayYn");
-		String parkCapacity = request.getParameter("parkCapacity");
-		String parkTimeRate = request.getParameter("parkTimeRate");
-		String parkRate = request.getParameter("parkRate");
-		String addParkRate = request.getParameter("addParkRate");
-		String dayMaxPay = request.getParameter("dayMaxPay");
-		String fullTimeMonthlyPay = request.getParameter("fullTimeMonthlyPay");
-		
 		int parkingId = CommonServiceImpl.getCommonService().getNextParkingId();
+		
+
+		
+	
+	request.getParameter("parkName");
+		request.getParameter("ssgName");
+	request.getParameter("emdName");
+	 request.getParameter("facility");
+	 request.getParameter("feature");
+ request.getParameter("payYn");
+ request.getParameter("saturPayYn");
+		request.getParameter("holiPayYn");
+	request.getParameter("parkCapacity");
+	request.getParameter("parkTimeRate");
+	 request.getParameter("parkRate");
+	 request.getParameter("addParkRate");
+	 request.getParameter("dayMaxPay");
+	request.getParameter("fullTimeMonthlyPay");
+		
 		
 		
 		
