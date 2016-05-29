@@ -38,6 +38,5 @@ public class MessageDto extends BoardDto {
 	public void setMsgFlag(int msgFlag) {
 		this.msgFlag = msgFlag;
 	}
-	
-	
+		
 }

@@ -7,7 +7,7 @@
   
     
 <%
-if(memberDto != null) {
+if(memberDto == null) {
 List<MessageDto> list = (List<MessageDto>) request.getAttribute("receiveList");
 %>
 
