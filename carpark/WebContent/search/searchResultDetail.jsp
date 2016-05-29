@@ -515,12 +515,10 @@ function goReservation() {
 					</div>
 					<div class="panel-body">
 							<hr></hr>
->>>>>>> c32de7a45a882c6a7176cbb332da56883331d09c
 <%
 for(ReviewDto reviewDto : reviewlist){
 	int avgpoint = (int) reviewDto.getAvgPoint();
 %>
-<<<<<<< HEAD
 						<div class="row">
 							<div class="col-md-12">
 <% 
