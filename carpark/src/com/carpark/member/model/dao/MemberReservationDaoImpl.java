@@ -78,7 +78,7 @@ public class MemberReservationDaoImpl implements MemberReservationDao {
 		
 		Map<String, String> map = null;
 		ArrayList<Map<String,String>> list = new ArrayList<Map<String,String>>();
-		
+		 
 		try {
 			conn=DBConnection.makeConnection();
 			String sql="";
@@ -88,13 +88,13 @@ public class MemberReservationDaoImpl implements MemberReservationDao {
 			sql += "where park_id =? \n"; 
 			pstmt = conn.prepareStatement(sql);//미리 sql 문장을 가져가서 검사하고 틀린게 없을 때 실행
 			int idx =1;//중간에 없어지거나 추가될때 필요
-	
+	 
 			pstmt.setInt(idx++, park_id);
 			rs=pstmt.executeQuery();
 			
 //			System.out.println("park_id    in getdate"+park_id);
 //			System.out.println(sql);
-
+ 
 			while(rs.next()){
 				map = new HashMap<String, String>();
 				map.put("startdate", rs.getString("start_date"));

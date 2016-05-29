@@ -1,6 +1,11 @@
 package com.carpark.factory;
 
 import com.carpark.action.Action;
+import com.carpark.admin.call.action.AdminCallDeleteAction;
+import com.carpark.admin.call.action.AdminCallListAction;
+import com.carpark.admin.call.action.AdminCallModifyAction;
+import com.carpark.admin.call.action.AdminCallRegisterAction;
+import com.carpark.admin.call.action.AdminCallViewAction;
 import com.carpark.admin.evaluation.action.AdminEvaluationDeleteAction;
 import com.carpark.admin.evaluation.action.AdminEvaluationListAction;
 import com.carpark.admin.evaluation.action.AdminEvaluationModifyAction;
@@ -43,6 +48,13 @@ public class AdminActionFactory {
 	private static Action adminPenaltyRegisterAction;
 	private static Action adminPenaltySearchAction;
 	
+	private static Action adminCallDeleteAction;
+	private static Action adminCallListAction;
+	private static Action adminCallModifyAction;
+	private static Action adminCallRegisterAction;
+	private static Action adminCallViewAction;
+	
+	
 	static {
 		adminEvaluationDeleteAction = new AdminEvaluationDeleteAction();
 		adminEvaluationListAction = new AdminEvaluationListAction();
@@ -62,6 +74,33 @@ public class AdminActionFactory {
 		
 		adminPenaltyModifyAction = new AdminPenaltyModifyAction();
 		adminPenaltyRegisterAction = new AdminPenaltyRegisterAction();
+		
+		adminCallDeleteAction = new AdminCallDeleteAction();
+		adminCallListAction = new AdminCallListAction();
+		adminCallModifyAction = new AdminCallModifyAction();
+		adminCallRegisterAction = new AdminCallRegisterAction();
+		adminCallViewAction = new AdminCallViewAction();	
+		}
+
+
+	public static Action getAdminCallDeleteAction() {
+		return adminCallDeleteAction;
+	}
+
+	public static Action getAdminCallListAction() {
+		return adminCallListAction;
+	}
+
+	public static Action getAdminCallModifyAction() {
+		return adminCallModifyAction;
+	}
+
+	public static Action getAdminCallRegisterAction() {
+		return adminCallRegisterAction;
+	}
+
+	public static Action getAdminCallViewAction() {
+		return adminCallViewAction;
 	}
 
 	public static Action getAdminEvaluationDeleteAction() {

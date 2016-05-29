@@ -372,7 +372,7 @@ public class MemberDaoImpl implements MemberDao {
 		try {
 			conn=DBConnection.makeConnection();
 			String sql="";
-
+ 
 			sql+="update member \n";
 			sql+="set user_name=?, user_pass=?, email=?, tel=? \n";
 			sql+="where user_id=?";

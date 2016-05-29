@@ -35,8 +35,12 @@ if(reservationDto != null){
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script type="text/javascript" src="/carpark/js/calendar/calendar.js"></script>
 <!-- Simple Celander -->
-
-
+ 
+ <!-- calendar -->
+ <link href="/carpark/css/calendar/glDatePicker.default.css" rel="stylesheet" type="text/css">
+ <script src="/carpark/js/calendar/glDatePicker.min.js"></script>
+ <!-- calendar -->
+ 
 <link rel="stylesheet" href="/carpark/css/normalize.css">
 <link rel="stylesheet" href="/carpark/css/style.css">
 <link
@@ -215,18 +219,10 @@ if(reservationDto != null){
 						</div>
 					<!-- host info panel End -->
 					<div class="panel panel-default">
+					<!-- clelander panel  -->
 						<div class="panel-body">
 						<h3>사용 가능 일</h3>
-							<div id="c">
-								<div id="disp">
-									<div id="prev" class="nav">←</div>
-									<div id="month"></div>
-									<div id="next" class="nav">→</div>
-								</div>
-								<div id="cal"></div>
-							</div>
-							<!-- /#c -->
-							<script src="/carpark/js/calendar/index.js"></script>
+						<div id="rdcalendar"></div>
 						</div>
 					</div>
 					<!-- clelander panel End -->
@@ -241,9 +237,6 @@ if(reservationDto != null){
 
 	
 </div>
-		<!-- Custom Theme JavaScript 
-		<script src="/carpark/js/selectlist/jquery.selectlist.js"></script>
--->
 		<script>
 			// Closes the sidebar menu
 			$("#menu-close").click(function(e) {
@@ -295,7 +288,25 @@ if(reservationDto != null){
 				$("#datetoTime").val("<%=reservationDto.getTotime()%>");
 				$("#singedate").val("<%=reservationDto.getFromdate()%>");
 				
-	
+	            $('#rdcalendar').glDatePicker(
+	                    {
+	                     showAlways: true,
+	                     allowMonthSelect: false,
+	                     allowYearSelect: false,
+	                     prevArrow: '',
+	                     nextArrow: '',
+	                     selectedDate: new Date(),
+	                     selectableDateRange: [
+	                         { from: new Date(2013, 8, 1),
+	                             to: new Date(2013, 8, 10) },
+	                         { from: new Date(2013, 8, 19),
+	                             to: new Date(2013, 8, 22) },
+	                     ],
+	                     selectableDates: [
+	                         { date: new Date(2013, 8, 24) },
+	                         { date: new Date(2013, 8, 30) }
+	                     ]
+	                    });
 				
 		});
 			// Radio Control div Show or Hide 
@@ -347,7 +358,8 @@ if(reservationDto != null){
 
 			        $('#payment').show();
 				})
-		</script>
+				
+    </script>
 
 
 
