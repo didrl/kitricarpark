@@ -6,5 +6,6 @@ public interface CommonService {
 
 	int getNextSeq();
 	PageNavigator getPageNavigator(int bcode, int pg, String key, String word);
+	int getNextParkingId();
 	
 }

@@ -61,4 +61,27 @@ public class CommonDaoImpl implements CommonDao {
 		return 0;
 	}
 
+	@Override
+	public int getNextParkingId() {
+		int parkingId = 0;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = DBConnection.makeConnection();
+			String sql = "select call_num_pcseq.nextval from dual";//주차장 아이디
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			rs.next();
+			parkingId = rs.getInt(1);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose.close(conn, pstmt, rs);
+		}
+		
+		return parkingId;
+	}
+
 }

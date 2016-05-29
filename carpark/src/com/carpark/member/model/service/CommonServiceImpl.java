@@ -28,4 +28,9 @@ public class CommonServiceImpl implements CommonService {
 		return null;
 	}
 
+	@Override
+	public int getNextParkingId() {
+		return CommonDaoImpl.getCommonDao().getNextParkingId();
+	}
+
 }
