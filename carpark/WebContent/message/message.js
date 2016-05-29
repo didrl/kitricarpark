@@ -97,11 +97,7 @@ function writeInit() {
 }
 
 function toWriteInit(receiver) {
-<<<<<<< HEAD
-	document.messageToWriteForm.reset();//폼초기화
-=======
 	document.messageToWriteForm.reset();//폼 초기화
->>>>>>> c32de7a45a882c6a7176cbb332da56883331d09c
 	document.messageToWriteForm.receiver.value = receiver;//대상지정
 }
 
