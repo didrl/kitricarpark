@@ -244,11 +244,7 @@ function setfavorite(){
 							
 							// 지도에 마커를 생성하고 표시한다
 							var marker = new daum.maps.Marker({
-<<<<<<< HEAD
-							    position: new daum.maps.LatLng(37.566826, 126.9786567), // 마커의 좌표
-=======
 							    position: new daum.maps.LatLng(<%=parkingDetail.getLatitude()%>, <%=parkingDetail.getLongitude()%>), // 마커의 좌표
->>>>>>> ca4290a2455cc3719dbd3b7a6d73910f8a8ae031
 							    map: searchmap // 마커를 표시할 지도 객체
 							});
 

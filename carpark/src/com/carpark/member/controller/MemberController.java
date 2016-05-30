@@ -52,7 +52,7 @@ public class MemberController extends HttpServlet {
 			PageMove.forward(request, response, path);
 		}else if("mvidcheck".equals(act)){
 			path = MemberActionFactory.getMemberIdCheckAction().execute(request, response);
-
+  
 		}else if("mvmodify".equals(act)){
 			path = MemberActionFactory.getMemberModifyAction().execute(request, response);
 			PageMove.forward(request, response, path);
