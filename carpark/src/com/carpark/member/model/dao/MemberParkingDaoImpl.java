@@ -90,9 +90,78 @@ public class MemberParkingDaoImpl implements MemberParkingDao {
 	}
 
 	@Override
-	public int MemberParkingModify(int parkingId) {
-		// TODO Auto-generated method stub
-		return 0;
+	public void MemberParkingModify(ParkingDetailDto parkingDto) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			conn = DBConnection.makeConnection();
+			conn.setAutoCommit(false);
+			String sql = "";
+			sql += "update parking \n";
+			sql += "set park_id = ?, park_name = ?, park_capacity = ?, owner_id = ?, latitude = ?, \n";
+			sql += "longitude = ?, park_type = ?, emd_code = ? \n";
+			sql += "where park_id = ? \n";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, parkingDto.getParkId());
+			pstmt.setString(2, parkingDto.getParkName());
+			pstmt.setInt(3, parkingDto.getParkCapacity());
+			pstmt.setString(4, parkingDto.getOwnerId());
+			pstmt.setDouble(5, parkingDto.getLatitude());
+			pstmt.setDouble(6, parkingDto.getLongtitude());
+			pstmt.setString(7, parkingDto.getParkType());
+			pstmt.setInt(8, parkingDto.getEmdCode());
+			pstmt.setInt(9, parkingDto.getParkId());
+			pstmt.executeUpdate();
+			pstmt.close();
+			
+			sql = "update parking_facility \n";
+			sql += "set park_id = ?, facility = ?, feature = ? \n";
+			sql += "where park_id = ? \n";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, parkingDto.getParkId());
+			pstmt.setString(2, parkingDto.getFacility());
+			pstmt.setString(3, parkingDto.getFeature());
+			pstmt.setInt(4, parkingDto.getParkId());
+			pstmt.executeUpdate();
+			pstmt.close();
+			
+			sql = "update parking_img \n";
+			sql += "set park_id = ?, file_name = ?, file_path = ? \n";
+			sql += "where park_id = ? \n";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, parkingDto.getParkId());
+			pstmt.setString(2, parkingDto.getFileName());
+			pstmt.setString(3, parkingDto.getFilePath());
+			pstmt.setInt(4, parkingDto.getParkId());
+			pstmt.executeUpdate();
+			pstmt.close();
+			
+			sql = "update parking_detail \n";
+			sql += "set park_id = ?, park_flag = ?, PAY_YN = ?, satur_pay_yn = ?, holi_pay_yn = ?, \n";
+			sql += "fulltime_monthly_pay = ?, park_rate = ?, \n";
+			sql += "park_time_rate = ?, add_park_rate = ?, day_max_pay = ? \n";
+			sql += "where park_id = ? \n";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, parkingDto.getParkId());
+			pstmt.setInt(2, parkingDto.getParkFlag());
+			pstmt.setString(3, parkingDto.getPayYn());
+			pstmt.setString(4, parkingDto.getSaturPayYn());
+			pstmt.setString(5, parkingDto.getHoliPayYn());
+			pstmt.setInt(6, parkingDto.getFullTimeMonthlyPay());
+			pstmt.setInt(7, parkingDto.getParkRate());
+			pstmt.setInt(8, parkingDto.getParkTimeRate());
+			pstmt.setInt(9, parkingDto.getAddParkRate());
+			pstmt.setInt(10, parkingDto.getDayMaxPay());
+			pstmt.setInt(11, parkingDto.getParkId());
+			pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose.close(conn, pstmt);
+		}
+
 	}
 
 	@Override
@@ -158,9 +227,45 @@ public class MemberParkingDaoImpl implements MemberParkingDao {
 	}
 
 	@Override
-	public void MemberParkingDelete(int parkingId) {
-		// TODO Auto-generated method stub
-
+	public void MemberParkingDelete(int parkId) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			conn = DBConnection.makeConnection();
+			conn.setAutoCommit(false);
+			String sql = "";
+			sql += "delete parking_Detail \n";
+			sql += "where park_id = ? \n";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, parkId);
+			pstmt.executeUpdate();
+			pstmt.close();
+			
+			sql = "delete parking_img \n";
+			sql += "where parkId = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, parkId);
+			pstmt.executeUpdate();
+			pstmt.close();
+			
+			sql = "delete parking_facility \n";
+			sql += "where parkId = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, parkId);
+			pstmt.executeUpdate();
+			pstmt.close();
+			
+			sql = "delete parking \n";
+			sql += "where parkId = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, parkId);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose.close(conn, pstmt);
+		}
 	}
 
 	@Override

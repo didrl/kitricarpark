@@ -8,9 +8,9 @@ import com.carpark.common.model.ParkingDetailDto;
 public interface MemberParkingService {
 	
 	void MemberParkingRegister(ParkingDetailDto parkingDto);
-	int MemberParkingModify(int parkingId);
+	void MemberParkingModify(ParkingDetailDto parkingDto);
 	List<ParkingDetailDto> MemberParkingList(String userId);
-	void MemberParkingDelete(int parkingId);
+	void MemberParkingDelete(int parkId);
 	List<CitiesDto> ParkSearch(String address);
 	
 }
