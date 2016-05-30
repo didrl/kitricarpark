@@ -56,8 +56,9 @@ public class MemberController extends HttpServlet {
 		}else if("mvmodify".equals(act)){
 			path = MemberActionFactory.getMemberModifyAction().execute(request, response);
 			PageMove.forward(request, response, path);
-		}else if("setfavorite".equals(act)){
-			path = MemberActionFactory.getMemberFavoriteRegisterAction().
+		}else if("addfavorite".equals(act)){
+			path = MemberActionFactory.getMemberFavoriteRegisterAction().execute(request, response);
+			PageMove.redirect(response, root + path);
 		}else if("".equals(act)){
 			
 		}else{

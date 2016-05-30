@@ -1,3 +1,4 @@
+<%@page import="com.carpark.member.model.FavoriteDto"%>
 <%@page import="com.carpark.member.model.ReviewDto"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.carpark.admin.model.ParkingDto"%>
@@ -11,12 +12,24 @@
 ParkingDto parkingDetail = (ParkingDto)request.getAttribute("parkingDetail");
 ArrayList<ReviewDto> reviewlist = (ArrayList<ReviewDto>)request.getAttribute("reviewlist");
 ParkingDetailDto parkingDetail_info = (ParkingDetailDto)request.getAttribute("parkingDetail_info");
+ArrayList<FavoriteDto> favoritelist = (ArrayList<FavoriteDto>) request.getAttribute("favoritelist");
+
 //ParkingFacilityDto parkingFacilityDto = (ParkingFacilityDto)request.getAttribute("parkingFacilityDto");
 
 System.out.println("<><><><><><><><"+parkingDetail.getPark_id()	);
 System.out.println("<><><><latitude><><><"+parkingDetail.getLatitude());
 System.out.println("<><><><longtitude><><"+parkingDetail.getLongitude());
 System.out.println("<><><><content><><"+parkingDetail.getContent());
+
+int flagj=0;
+
+for(FavoriteDto favoriteDto : favoritelist){
+	if(favoriteDto.getPark_id() ==	parkingDetail.getPark_id()){
+		flagj=1;
+		break;
+	}
+}
+
 /*
 	ParkingDetailDto parkingDetail_info		: parkingDetail table info
 	ParkingFacilityDto parkingFacilityDto	: parking_facility info + parking_img info
@@ -116,16 +129,22 @@ function goSearchResult() {
 	}
 }
 
-function goResultDetail() {
-	document.parkListForm.action = "/carpark/member";
-	document.parkListForm.submit();
-}
-
 function setfavorite(){
-	if (confirm("즐겨찾기에 등록하시겠습니까?")) {
-	document.location.href = "<%=root%>/member?act=setfavorite&park_id=<%=parkingDetail.getPark_id()%>";
+	var flag=<%=flagj%>;
+	console.log("asdf!@!@!"+flag+"     "+"<%=flagj%>");
+	if(flag!=0){
+		alert("flag1");
+		if(confirm("즐겨찾기에서 삭제하시겠습니까?")) {
+			document.location.href = "<%=root%>/member?act=delfavorite&park_id=<%=parkingDetail.getPark_id()%>";
+		}
+	}else{
+		alert("flag0");
+		if(confirm("즐겨찾기에 등록하시겠습니까?")) {
+			document.location.href = "<%=root%>/member?act=addfavorite&park_id=<%=parkingDetail.getPark_id()%>";
+		}
 	}
 }
+
 </script>
 
 
@@ -136,33 +155,7 @@ function setfavorite(){
 
 		<!-- row -->
 	<div class="container" style="text-align:center">
-			<!--  search bar start -->
-			<div class="col-sm-13">
-				<!-- /input-group -->
-				<form id="searchForm" name="searchForm" class="form-inline" role="form" method="post">
-					<input type="hidden" name="act" value="mvSearchResult">
-					<input type="hidden" name="search" value="">
-					
-					
-					<div class="input-group">
-						<input type="text" class="form-control" id="citysearch" name="city" placeholder="Search for..."> 
-					</div>
-					<div class="input-group">
-						<input class="date-picker" id="fromdatesearch" name="from" type="text" />
-					</div>
-
-					<div class="input-group">
-						<input class="date-picker" id="todatesearch" type="text" name="to"/>
-					</div>
-					<div class="input-group">
-						<button class="btn btn-success" type="button"
-							onclick="javascript:goSearchResult();">Search</button>
-					</div>
-				</form>
-			</div>
-			<br>
-			<br>
-			<!--  search bar end-->
+<%@include file="/common/searchBar.jsp"%>
 		
 			<!-- Left Section Start -->
 			<div class="col-md-7">
@@ -171,8 +164,8 @@ function setfavorite(){
 					<div class="row" align="left">
 						<h3><b>&nbsp;&nbsp;&nbsp; <%=parkingDetail.getPark_name()%>  &nbsp;&nbsp;&nbsp; 
 							<i class = glyphicon glyphicon-star></i><i class = glyphicon glyphicon-star></i><i class = glyphicon glyphicon-star> </i><i class = glyphicon glyphicon-star></i><i class = glyphicon glyphicon-star-empty></i></b> 
-							<%=parkingDetail.getLocation() %>
-							<a href="javascript:setfavorite();"><img height="30"  src="/carpark/img/heart.jpg"></a>
+							<%=parkingDetail.getLocation()%>
+							<a href="#" onclick="javascript:setfavorite();"><img id="favoriteimg" height="30"  src="/carpark/img/heart.jpg"></a>
 						</h3>
 					</div>
 				</div>	
@@ -665,19 +658,18 @@ for(ReviewDto reviewDto : reviewlist){
 			
 			//review
 			$('#sendMsgToHost').on('click', function (event) {
-				<%//if(memberDto !=null){%>
-				console.log("dasfasdfafsdf");
+		 		<%//if(memberDto !=null){%>
 			        $("#receiver").val("<%=parkingDetail.getOwner_id()%>");
 			        $("#subject").val("");
 			        $("#content").empty();
 		        	$("#sendmsguser_id").val("<%=memberDto.getUser_id()%>");
 		        	$("#sendmsgpark_id").val("<%=parkingDetail.getPark_id()%>");
 			        $("#receiver").prop("disabled", true);
-			//        $("#msgToHost").load("<%=root%>/reservation/sendMessageModal.jsp");
+		     //    $("#msgToHost").load("<%=root%>/reservation/sendMessageModal.jsp");
 				<%//}else{%>
-				//	alert("로그인 후 이용할 수 있습니다.");
-				//	return;
-					<%//}%>
+					//alert("로그인 후 이용할 수 있습니다.");
+					//return;
+				 	<%//}}%>
 				})
 			
 		</script>
@@ -706,6 +698,8 @@ for(ReviewDto reviewDto : reviewlist){
             ]
            });
         });
+        
+
     </script>
 		
 

@@ -10,7 +10,6 @@ import java.util.List;
 import com.carpark.db.DBClose;
 import com.carpark.db.DBConnection;
 import com.carpark.member.model.FavoriteDto;
-import com.carpark.member.model.MemberCarDto;
 
 public class MemberFavoriteDaoImpl implements MemberFavoriteDao {
 
