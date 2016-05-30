@@ -13,6 +13,7 @@ import com.carpark.admin.model.ParkingDto;
 import com.carpark.admin.model.ParkingFacilityDto;
 import com.carpark.db.DBClose;
 import com.carpark.db.DBConnection;
+import com.carpark.member.model.MemberCarDto;
 import com.carpark.member.model.MemberDto;
 
 public class MemberDaoImpl implements MemberDao {
@@ -276,8 +277,24 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	@Override
-	public int addNewCar(String user_id) {
-		// TODO Auto-generated method stub
+	public int addNewCar(MemberCarDto memberCarDto) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			conn = DBConnection.makeConnection();
+			String sql = "insert into favorite(user_id, park_id) \n";//새로 작성하는 글 번호
+			sql +="values (?,?)";
+			pstmt = conn.prepareStatement(sql);
+			int idx=0;
+			pstmt.setString(++idx, memberCarDto.getUser_id());
+			pstmt.setInt(++idx, memberCarDto.getPark_id());
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose.close(conn, pstmt);
+		}
 		return 0;
 	}
 	

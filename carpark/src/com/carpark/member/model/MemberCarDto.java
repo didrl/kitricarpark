@@ -1,12 +1,19 @@
 package com.carpark.member.model;
 
 public class MemberCarDto {
+	private String user_id;
 	private String car_id;
 	private String maker;
 	private String model;
 	private String category;
 	private String reg_num;
 	
+	public String getUser_id() {
+		return user_id;
+	}
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
+	}
 	public String getCar_id() {
 		return car_id;
 	}

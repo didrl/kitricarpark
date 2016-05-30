@@ -110,94 +110,7 @@ for(int i =0;i<list.size();i++){
             <div class="col-md-8">
 				
 				<!-- Map -->
-
                 <div class="thumbnail">
-                
-	                <div class="panel panel-default" id="map"></div>
-	
-					<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=c2d873676f2c4854b2b2c62e165a629d"></script>
-					<script>
-					var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-					    mapOption = { 
-					        center: new daum.maps.LatLng(<%=parkingDto.getLatitude()%>,<%=parkingDto.getLongitude()%>), // 지도의 중심좌표
-					        level: 3 // 지도의 확대 레벨
-					    };
-					
-					var map = new daum.maps.Map(mapContainer, mapOption);
-					
-					
-					// 마커를 표시할 위치와 title 객체 배열입니다 
-					//for => make positions list
-		            
-					var positions = new Array();
-					
-<%
-for(int i =0;i<list.size();i++){
-	parkingDto = list.get(i);		
-//for(ParkingDto parkingDto :list){
-%>	
-		positions[i] = {content: <%=parkingDto.getPark_name()%>, 
-        latlng: new daum.maps.LatLng(<%=parkingDto.getLatitude()%>,<%=parkingDto.getLongitude()%>)}	
-<%
-}
-%>					
-//for end					
-					//여러개의 마커에 마우스 이벤트를 등록합니다. 
-					//마커에 마우스오버하면 인포윈도우에 마커의 타이틀을 표시하고 
-					//마우스아웃하면 인포윈도우를 닫습니다.
-					
-					for (var i = 0; i < positions.length; i ++) {
-					    // 마커를 생성합니다
-					    var marker = new daum.maps.Marker({
-					        map: map, // 마커를 표시할 지도
-					        position: positions[i].latlng // 마커의 위치
-					    });
-
-					    // 마커에 표시할 인포윈도우를 생성합니다 
-					    var infowindow = new daum.maps.InfoWindow({
-					        content: positions[i].content // 인포윈도우에 표시할 내용
-					    });
-
-					    // 마커에 이벤트를 등록하는 함수 만들고 즉시 호출하여 클로저를 만듭니다
-					    // 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
-					    (function(marker, infowindow) {
-					        // 마커에 mouseover 이벤트를 등록하고 마우스 오버 시 인포윈도우를 표시합니다 
-					        daum.maps.event.addListener(marker, 'mouseover', function() {
-					            infowindow.open(map, marker);
-					        });
-
-					        // 마커에 mouseout 이벤트를 등록하고 마우스 아웃 시 인포윈도우를 닫습니다
-					        daum.maps.event.addListener(marker, 'mouseout', function() {
-					            infowindow.close();  
-					        });
-					     
-					    })(marker, infowindow);
-					  
-					</script>
-				</div>
-				
-                    <div class="caption-full">
-                        <h4><a href="#">Product Name</a>
-                        </h4>
-                        <p>See more snippets like these online store reviews at <a target="_blank" href="http://bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.</p>
-                        <p>Want to make these reviews work? Check out
-                            <strong><a href="http://maxoffsky.com/code-blog/laravel-shop-tutorial-1-building-a-review-system/">this building a review system tutorial</a>
-                            </strong>over at maxoffsky.com!</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
-                    </div>
-                    <div class="ratings">
-                        <p class="pull-right">3 reviews</p>
-                        <p>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                            4.0 stars
-                        </p>
-                    </div>
-
-	                <div class="thumbnail">
 	                
 		                <div class="panel panel-default">
 		
@@ -224,10 +137,10 @@ for(int i =0;i<list.size();i++){
 	parkingDto = list.get(i);
 	System.out.println(parkingDto.getPark_name());
 %>
-								var parkName ='<div>주차장</div>'
+								
 								positions.push({
-										content: parkName, 
-								        latlng: new daum.maps.LatLng(<%=parkingDto.getLatitude()%>, <%=parkingDto.getLongitude()%>)
+										content: '<div>주차장</div>', 
+										latlng: new daum.maps.LatLng(<%=parkingDto.getLatitude()%>, <%=parkingDto.getLongitude()%>)
 								});
 <%
 }
@@ -288,7 +201,7 @@ for(int i =0;i<list.size();i++){
 								//sigleMarker end
 								
 							</script>
-						</div>
+			</div>
 	                    <div class="caption-full">
 	                        <h4><a href="#">Product Name</a>
 	                        </h4>
@@ -310,7 +223,6 @@ for(int i =0;i<list.size();i++){
 	                        </p>
 	                    </div>
 	                </div>
-
                 </div>
 
                 <div class="well">
@@ -414,7 +326,6 @@ for(int i =0;i<list.size();i++){
 								}
 							});
 		});
-					}
 </script>
 		
 <%@ include file="/common/footer.jsp" %>	

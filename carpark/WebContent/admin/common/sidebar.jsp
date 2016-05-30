@@ -4,7 +4,7 @@
  <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                    <li class="active">
-                        <a href="<%=root%>/adminindex.jsp"><i class="fa fa-fw fa-file"></i> 관리자 화면</a>
+                        <a href="<%=root%>/admin/adminindex.jsp"><i class="fa fa-fw fa-file"></i> 관리자 화면</a>
                     </li>
               
                     <li>
@@ -53,7 +53,7 @@
                         </ul>
                     </li>
                 <li>
-                        <a href="<%=root%>/adminindex.jsp"><i class="fa fa-fw fa-bar-chart-o"></i> 사이트 통계 </a>
+                        <a href="<%=root%>/admin/adminindex.jsp"><i class="fa fa-fw fa-bar-chart-o"></i> 사이트 통계 </a>
                 </li>
                 </ul>
                 
