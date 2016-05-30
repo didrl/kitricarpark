@@ -17,7 +17,7 @@ import com.carpark.util.StringCheck;
 /**
  * Servlet implementation class AdminCallController
  */
-@WebServlet("/AdminCallController")
+@WebServlet("/admincall")
 public class AdminCallController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
            
