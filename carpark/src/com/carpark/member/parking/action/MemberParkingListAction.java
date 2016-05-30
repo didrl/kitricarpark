@@ -20,9 +20,10 @@ public class MemberParkingListAction implements Action {
 			throws IOException, ServletException {
 		
 		HttpSession session = request.getSession();
-		MemberDto memberDto = (MemberDto) session.getAttribute("memberInfo");
+//		MemberDto memberDto = (MemberDto) session.getAttribute("memberInfo");
 		
-		String ownerId = memberDto.getUser_id();
+		String ownerId = "didrl";
+//		String ownerId = memberDto.getUser_id();
 		if(ownerId != null) {
 			
 			List<ParkingDetailDto> list = MemberParkingServiceImpl.getMemberParkingservice().MemberParkingList(ownerId);

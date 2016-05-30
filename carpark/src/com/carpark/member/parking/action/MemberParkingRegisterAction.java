@@ -1,6 +1,7 @@
 package com.carpark.member.parking.action;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -54,10 +55,12 @@ public class MemberParkingRegisterAction implements Action {
 		
 		if(parkingId != 0) {
 			MemberParkingServiceImpl.getMemberParkingservice().MemberParkingRegister(parkingDto);
+			List<ParkingDetailDto> list = MemberParkingServiceImpl.getMemberParkingservice().MemberParkingList("didrl");
+			request.setAttribute("parkList", list);
 		}
 		
 		
-		return "/parking/list";
+		return "/parking/list.jsp";
 	}
 
 }

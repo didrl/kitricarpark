@@ -106,8 +106,8 @@ public class MemberParkingDaoImpl implements MemberParkingDao {
 			conn = DBConnection.makeConnection();
 			String sql = "";
 			sql += "select p.park_id, park_name, park_capacity, owner_id, latitude, "
-							+ "longitude, park_type, emd_code, content \n";
-			sql += "		facility, feature, file_name, file_path, file_num \n";
+							+ "longitude, park_type, emd_code, content, \n";
+			sql += "		facility, feature, file_name, file_path, file_num, \n";
 			sql += "		park_flag, park_avgPoint, get_status, cur_parking, PAY_YN, satur_pay_yn, holi_pay_yn, "
 							+ "fulltime_monthly_pay, park_rate, park_time_rate, add_park_rate, day_max_pay \n";
 			sql += "from parking p, parking_facility f, parking_img i, parking_detail d \n";
