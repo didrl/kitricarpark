@@ -52,8 +52,8 @@ if(size > 0) {
 %>
 					<!-- 쪽지목록 -->
 					<tr >
-						<td><a href="javascript:messageReceiveView('<%=callDto.getSeq()%>');"><%=callDto.getUserID() %></a></td>
-						<td><a href="javascript:messageReceiveView('<%=callDto.getSeq() %>');"><%=callDto.getSubject() %></a></td>
+						<td><a href="javascript:adminMessageReceiveView('<%=callDto.getSeq()%>');"><%=callDto.getUserID() %></a></td>
+						<td><a href="javascript:adminMessageReceiveView('<%=callDto.getSeq() %>');"><%=callDto.getSubject() %></a></td>
 						<td><%=callDto.getLogtime() %></td>	
 <%
 if(callDto.getpCall_Flag() == 0) {
