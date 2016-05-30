@@ -135,10 +135,10 @@ for(int i =0;i<list.size();i++){
 	parkingDto = list.get(i);
 	System.out.println(parkingDto.getPark_name());
 %>
-								var parkName ='<div>주차장</div>'
+								
 								positions.push({
-										content: parkName, 
-								        latlng: new daum.maps.LatLng(<%=parkingDto.getLatitude()%>, <%=parkingDto.getLongitude()%>)
+										content: '<div>주차장</div>', 
+										latlng: new daum.maps.LatLng(<%=parkingDto.getLatitude()%>, <%=parkingDto.getLongitude()%>)
 								});
 <%
 }
