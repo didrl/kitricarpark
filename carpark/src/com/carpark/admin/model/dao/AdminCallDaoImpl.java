@@ -48,7 +48,7 @@ public class AdminCallDaoImpl implements AdminCallDao {
 			sql += "pcseq, pcall_flag \n";
 			sql += "from board b, call c \n";
 			sql += "where b.seq = c.pcall_id \n";
-			sql += "and user_id= 'IUGuest' \n";
+			sql += "and user_id= ? \n";
 			sql += "order by logtime desc";
 			
 			pstmt = conn.prepareStatement(sql);

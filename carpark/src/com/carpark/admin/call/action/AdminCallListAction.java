@@ -21,9 +21,11 @@ public class AdminCallListAction implements Action {
 			throws IOException, ServletException {
 		
 		HttpSession session = request.getSession();
-		MemberDto memberDto = (MemberDto) session.getAttribute("memberInfo");
+//		MemberDto memberDto = (MemberDto) session.getAttribute("memberInfo");
 		
-		String receiveId = memberDto.getUser_id();
+//		String receiveId = memberDto.getUser_id();
+
+		String receiveId = "RgPark";
 		
 		if(receiveId != null) {
 			List<CallDto> receiveList = AdminCallServiceImpl.getAdminCallService().receiveListArticle(receiveId);
