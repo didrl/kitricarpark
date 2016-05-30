@@ -3,6 +3,7 @@ package com.carpark.member.model.dao;
 import java.util.List;
 import java.util.Map;
 
+import com.carpark.admin.model.GradeDto;
 import com.carpark.admin.model.ParkingDetailDto;
 import com.carpark.admin.model.ParkingDto;
 import com.carpark.admin.model.ParkingFacilityDto;
@@ -21,4 +22,5 @@ public interface MemberDao {
 	int addNewCar(MemberCarDto memberCarDto);
 	ParkingDetailDto getParkingDetail_info(String park_id);
 	ParkingFacilityDto getParkingFacility_info(String park_id);
+	GradeDto gradeInfo(String id);
 }

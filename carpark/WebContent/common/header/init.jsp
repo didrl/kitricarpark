@@ -96,12 +96,11 @@ if(memberDto!=null){
 			<ul class="dropdown-menu alert-dropdown">
 				<li><a href="#" data-toggle="modal" data-target="#messageReply">제보하기 <span
 						class="label label-default">Alert Badge</span></a></li>
+				<li class="divider"></li>
 				<li><a href="<%=root%>/qna.jsp">  QnA  <span
 						class="label label-primary">Alert Badge</span></a></li>
-				<li><a href="#">Alert Name <span class="label label-danger">Alert
-							Badge</span></a></li>
-				<li class="divider"></li>
-				<li><a href="#">View All</a></li>
+				
+				
 			</ul></li>
 		<li class="dropdown"><a href="#" class="dropdown-toggle"
 			data-toggle="dropdown"><i class="fa fa-user"></i> <%=memberDto.getUser_id() %> <b
@@ -159,12 +158,11 @@ if(memberDto!=null){
 			<ul class="dropdown-menu alert-dropdown">
 				<li><a href="#" data-toggle="modal" data-target="#messageReply">제보하기 <span
 						class="label label-default">Alert Badge</span></a></li>
+				<li class="divider"></li>
 				<li><a href="<%=root%>/qna.jsp">  QnA  <span
 						class="label label-primary">Alert Badge</span></a></li>
-				<li><a href="#">Alert Name <span class="label label-danger">Alert
-							Badge</span></a></li>
-				<li class="divider"></li>
-				<li><a href="#">View All</a></li>
+			
+				
 			</ul></li>
 		<li class="dropdown"><a href="#" class="dropdown-toggle"
 			data-toggle="dropdown"><i class="fa fa-user"></i> <%=memberDto.getUser_id() %> <b
@@ -195,11 +193,7 @@ if(memberDto!=null){
 			data-toggle="dropdown"><i class="fa fa-user"></i> 아이디 <b
 				class="caret"></b></a>
 			<ul class="dropdown-menu">
-				<li><a href="<%=root%>/member?act=mvprofile"><i class="fa fa-fw fa-user"></i> profile</a></li>
-				<li><a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
-				</li>
-				<li><a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a></li>
-				<li class="divider"></li>
+				
 				<li><a href="<%=root%>/member?act=mvlogin"><i class="fa fa-fw fa-power-off"></i> Log
 						in</a></li>
 			</ul></li>
@@ -221,11 +215,11 @@ if(memberDto!=null){
 	aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<div class="modal-header" style="background: #00cc00">
-				<button type="button" class="close" data-dismiss="modal">
+			<div class="modal-header" style="background: #00cc00" align="center">
+				<button type="button" class="close" data-dismiss="modal" onclick="javascript:loginConfirm();">
 					<span aria-hidden="true">×</span><span class="sr-only">Close</span>
 				</button>
-				<h4 class="modal-title" id="myModalLabel">로그인</h4>
+				<h4 class="modal-title" id="myModalLabel" style="color: #FFFFFF">로그인</h4>
 			</div>
 			
 			
@@ -276,7 +270,7 @@ if(memberDto!=null){
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal">
+				<button type="button" class="close" data-dismiss="modal" onclick="javascript:confirm();">
 					<span aria-hidden="true">x</span><span class="sr-only">Close</span>
 				</button>
 				<h2 class="modal-title" id="myModalLabel">회원가입</h2>
@@ -460,5 +454,7 @@ function idcheck(data){
 		document.getElementById("chid").innerHTML ="아이디를 사용할 수 없습니다.";
 	}
 }
+
 </script>
+
 

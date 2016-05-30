@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import com.carpark.admin.model.GradeDto;
 import com.carpark.admin.model.ParkingDetailDto;
 import com.carpark.admin.model.ParkingDto;
 import com.carpark.admin.model.ParkingFacilityDto;
@@ -103,9 +104,12 @@ public class MemberDaoImpl implements MemberDao {
 			conn=DBConnection.makeConnection();
 			String sql="";
 
-			sql+="select user_name,user_id,coin,user_avgpoint,penalty,user_name,email,tel,grade_id,user_pass \n";
-			sql+="from member \n";
-			sql+="where user_id=? \n";
+			sql+="select m.user_name,m.user_id,m.coin,m.user_avgpoint,m.penalty, \n";
+			sql+="m.email,m.tel,m.grade_id,m.user_pass, \n";
+			sql+="g.grade_name, g.grade_id,g.avgpoint,g.benefit,g.penalty \n";
+			sql+="from member m, grade g \n";
+			sql+="where m.user_id=? \n";
+			sql+="and m.grade_id=g.grade_id";
 		
 			pstmt =conn.prepareStatement(sql);
 			pstmt.setString(1,id);
@@ -122,6 +126,10 @@ public class MemberDaoImpl implements MemberDao {
 				memberDto.setEmail(rs.getString("email"));
 				memberDto.setTel(rs.getString("tel"));
 				memberDto.setUser_pass(rs.getString("user_pass"));
+				memberDto.setGrade_name(rs.getString("grade_name"));
+				memberDto.setBenefit(rs.getInt("benefit"));
+				memberDto.setAvgpoint(rs.getInt("avgpoint"));
+				memberDto.setPenalty(rs.getInt("penalty"));		
 			}
 
 		} catch (SQLException e) {
@@ -383,9 +391,8 @@ public class MemberDaoImpl implements MemberDao {
 		}finally{
 			DBClose.close(conn, pstmt, rs);
 		}
-		
 		return parkingFacilityDto;	
-		}
+	}
 	
 	public int modify(MemberDto memberDto) {
 		int count=0;
@@ -420,5 +427,41 @@ public class MemberDaoImpl implements MemberDao {
 			DBClose.close(conn, pstmt);
 		}
 		return count;
+	}
+
+	@Override
+	public GradeDto gradeInfo(String id) {
+		GradeDto gradeDto = null;
+		Connection conn =null;
+		PreparedStatement pstmt =null;
+		ResultSet rs =null;
+	
+		try {
+			conn=DBConnection.makeConnection();
+			String sql="";
+			sql+="select g.grade_id,g.grade_name,g.avgpoint,g.benefit,g.penalty  \n";
+			sql+="from member m ,grade g \n";
+			sql+="where m.grade_id=g.grade_id \n";
+			sql+="and m.user_id = ?";
+			int idx=1;
+			pstmt =conn.prepareStatement(sql);
+			pstmt.setString(idx++,id);
+			rs=pstmt.executeQuery();
+			
+			while(rs.next()){
+				gradeDto = new GradeDto();
+				gradeDto.setGrade_id(rs.getInt("grade_id"));
+				gradeDto.setGrade_name(rs.getString("grade_name"));
+				gradeDto.setAvgpoint(rs.getInt("avgpoint"));		
+				gradeDto.setBenefit(rs.getInt("benefit"));
+				gradeDto.setPenalty(rs.getInt("penalty"));
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			DBClose.close(conn, pstmt, rs);
+		}
+		return gradeDto;
 	}
 }

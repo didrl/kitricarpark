@@ -57,6 +57,16 @@ public class MemberController extends HttpServlet {
 			path = MemberActionFactory.getMemberModifyAction().execute(request, response);
 			PageMove.forward(request, response, path);
 		}else if("mvbenefit".equals(act)){
+			path = MemberActionFactory.getMemberBenefitAction().execute(request, response);
+			PageMove.forward(request, response, path);
+		}else if("mvcoin".equals(act)){
+			path = MemberActionFactory.getMemberCoinAction().execute(request, response);
+			PageMove.redirect(response, root+path);
+		}else if("mycarInfo".equals(act)){
+//			path = MemberActionFactory.get
+		}else if("".equals(act)){
+			
+		}else if("".equals(act)){
 			
 		}else if("mvMyOwnCar".equals(act)){
 			path = MemberActionFactory.getMemberCarListAction().execute(request, response);
