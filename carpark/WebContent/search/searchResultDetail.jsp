@@ -133,15 +133,12 @@ function setfavorite(){
 	var flag=<%=flagj%>;
 	console.log("asdf!@!@!"+flag+"     "+"<%=flagj%>");
 	if(flag!=0){
-		alert("flag1");
-		if(confirm("즐겨찾기에서 삭제하시겠습니까?")) {
-			document.location.href = "<%=root%>/member?act=delfavorite&park_id=<%=parkingDetail.getPark_id()%>";
-		}
+		alert("즐겨찾기에서 삭제되었습니다")
+		document.location.href = "<%=root%>/member?act=delfavorite&park_id=<%=parkingDetail.getPark_id()%>";
+		
 	}else{
-		alert("flag0");
-		if(confirm("즐겨찾기에 등록하시겠습니까?")) {
-			document.location.href = "<%=root%>/member?act=addfavorite&park_id=<%=parkingDetail.getPark_id()%>";
-		}
+		alert("즐겨찾기에 추가되었습니다")
+		document.location.href = "<%=root%>/member?act=addfavorite&park_id=<%=parkingDetail.getPark_id()%>";
 	}
 }
 

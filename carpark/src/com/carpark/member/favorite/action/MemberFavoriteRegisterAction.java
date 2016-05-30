@@ -27,7 +27,8 @@ public class MemberFavoriteRegisterAction implements Action {
 		
 		MemberFavoriteServiceImpl.getMemberFavoriteService().addfavortie(favoriteDto);
 
-		return "";	
+//		return "/reservation?act=mvReservation";
+		return "";
 	}
 
 }
