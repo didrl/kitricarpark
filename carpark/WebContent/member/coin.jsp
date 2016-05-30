@@ -31,7 +31,7 @@
 							<div class="form-group">
 
 								<div class="col-lg-4">
-									<label>내 코인</label>
+									<label><%=memberDto.getUser_id()%>님의 코인</label>
 								</div>
 								<div class="col-lg-6">
 									<p class="breadcrumb">보유 코인</p>
