@@ -28,7 +28,7 @@ public class AdminController extends HttpServlet {
     		System.out.println("act>>>>>>>>>>>>>"+act);
     		String path ="/index.jsp";
     		
-    		if("".equals(act)) {
+    		if("mvprofile".equals(act)) {
     			
     		}else if("".equals(act)) {
     			

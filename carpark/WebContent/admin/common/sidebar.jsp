@@ -53,7 +53,7 @@
                         </ul>
                     </li>
                 <li>
-                        <a href="<%=staticpath%>/static.jsp"><i class="fa fa-fw fa-bar-chart-o"></i> 사이트 통계 </a>
+                        <a href="<%=root%>/adminindex.jsp"><i class="fa fa-fw fa-bar-chart-o"></i> 사이트 통계 </a>
                 </li>
                 </ul>
                 

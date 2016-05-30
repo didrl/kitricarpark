@@ -170,7 +170,7 @@ if(memberDto!=null){
 			data-toggle="dropdown"><i class="fa fa-user"></i> <%=memberDto.getUser_id() %> <b
 				class="caret"></b></a>
 			<ul class="dropdown-menu">
-				<li><a href="<%=root%>/member?act=mvprofile"><i class="fa fa-fw fa-user"></i> profile</a></li>
+				<li><a href="<%=root%>/admin?act=mvprofile"><i class="fa fa-fw fa-user"></i> profile</a></li>
 				<li><a href="<%=root%>/member?act=mvmessage"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
 				</li>
 				<li><a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a></li>

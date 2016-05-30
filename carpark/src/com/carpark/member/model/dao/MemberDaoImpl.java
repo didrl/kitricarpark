@@ -150,7 +150,7 @@ public class MemberDaoImpl implements MemberDao {
 			conn=DBConnection.makeConnection();
 			String sql="";
 
-			sql+="select user_id,coin,grade_id,user_name,user_avgpoint,email,tel,user_pass \n";
+			sql+="select user_id,coin,grade_id,user_name,user_avgpoint,email,tel,user_pass,login_key, host_flag, profile_image, penalty, user_flag \n";
 			sql+="from member \n";
 			sql+="where user_id=? and user_pass=? \n";
 		
@@ -166,9 +166,14 @@ public class MemberDaoImpl implements MemberDao {
 				memberDto.setGrade_id(rs.getInt("grade_id"));
 				memberDto.setUser_name(rs.getString("user_name"));
 				memberDto.setUser_avgPoint(rs.getInt("user_avgpoint"));
+				memberDto.setHost_flag(rs.getInt("host_flag"));
+				memberDto.setPenalty(rs.getInt("penalty"));
+				memberDto.setUser_flag(rs.getInt("user_flag"));
 				memberDto.setEmail(rs.getString("email"));
 				memberDto.setTel(rs.getString("tel"));
 				memberDto.setUser_pass(rs.getString("user_pass"));
+				memberDto.setLogin_key(rs.getString("login_key"));
+				memberDto.setProfile_image(rs.getString("profile_image"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -9,12 +9,18 @@ public class MemberDto {
 	private String user_pass;
 	private String login_key;
 	private int host_flag;
-	private String carInfo;
+	private String profile_image;
 	private int coin;
 	private int user_avgPoint;
 	private int penalty;
 	private int user_flag;
 	
+	public String getProfile_image() {
+		return profile_image;
+	}
+	public void setProfile_image(String profile_image) {
+		this.profile_image = profile_image;
+	}
 	public String getUser_name() {
 		return user_name;
 	}
@@ -62,12 +68,6 @@ public class MemberDto {
 	}
 	public void setHost_flag(int host_flag) {
 		this.host_flag = host_flag;
-	}
-	public String getCarInfo() {
-		return carInfo;
-	}
-	public void setCarInfo(String carInfo) {
-		this.carInfo = carInfo;
 	}
 	public int getCoin() {
 		return coin;
