@@ -27,8 +27,10 @@ public class AdminCallListAction implements Action {
 		
 		if(receiveId != null) {
 			List<CallDto> receiveList = AdminCallServiceImpl.getAdminCallService().receiveListArticle(receiveId);
+			System.out.println("CallListAction>>> "+ receiveId);
 			request.setAttribute("receiveList", receiveList);
 		}
+		
 		return "/admin/parklist/getInform.jsp";
 	}
 

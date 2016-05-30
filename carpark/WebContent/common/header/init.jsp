@@ -237,6 +237,7 @@ if(memberDto!=null){
 								</button>
 							</span>
 						</div>
+						<p id="chid"></p>
 					</div>
 
 					<div class="form-group">
@@ -387,8 +388,9 @@ var id = document.getElementById("userid").value;
 });
 
 function idcheck(data){
-	if(data.id < 1)
-		alert("아이디를 사용하실 수 있습니다.");
+	if(data.id == 1)
+// 		alert("아이디를 사용하실 수 있습니다.");
+		document.getElementById("chid").innerHTML = "아이디를 사용하실 수 있습니다.";
 	else
 		alert("아이디를 사용할 수 없습니다.");
 }

@@ -26,7 +26,7 @@ public class MemberIdCheckAction implements Action {
 		json.put("id",count);
 		System.out.println(json.toJSONString());
 		PrintWriter out = response.getWriter();
-		response.setContentType("text/html;charset=UTF-8");
+		response.setContentType("text/plain;charset=UTF-8");
 		out.print(json.toJSONString());
 		return "";
 	}
