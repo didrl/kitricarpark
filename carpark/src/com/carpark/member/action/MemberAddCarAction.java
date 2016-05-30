@@ -16,10 +16,14 @@ public class MemberAddCarAction implements Action {
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 		
-		String user_id = request.getParameter("user_id");
-		MemberCarDto memberCarDto ;
+		MemberCarDto memberCarDto = new MemberCarDto();
 		
-//		MemberServiceImpl.getMemberService().addNewCar(user_id);
+		memberCarDto.setUser_id(request.getParameter("user_id"));
+		memberCarDto.setModel(request.getParameter("inputCarName"));
+		memberCarDto.setCategory(request.getParameter("carcategory"));
+		memberCarDto.setReg_num(request.getParameter("inputCarNum"));
+		
+		MemberServiceImpl.getMemberService().addNewCar(memberCarDto);
 
 		return "";
 	}

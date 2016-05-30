@@ -13,6 +13,7 @@ import com.carpark.admin.model.ParkingDto;
 import com.carpark.admin.model.ParkingFacilityDto;
 import com.carpark.db.DBClose;
 import com.carpark.db.DBConnection;
+import com.carpark.member.model.MemberCarDto;
 import com.carpark.member.model.MemberDto;
 
 public class MemberDaoImpl implements MemberDao {
@@ -276,9 +277,27 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	@Override
-	public int addNewCar(String user_id) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int addNewCar(MemberCarDto memberCarDto) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		int cnt=0;
+		try {
+			conn = DBConnection.makeConnection();
+			String sql = "insert into member_car(category, reg_num, user_id,car_name) \n";
+			sql +="values (?,?,?,?)";
+			pstmt = conn.prepareStatement(sql);
+			int idx=0;
+			pstmt.setString(++idx, memberCarDto.getCategory());
+			pstmt.setString(++idx, memberCarDto.getReg_num());
+			pstmt.setString(++idx, memberCarDto.getUser_id());
+			pstmt.setString(++idx, memberCarDto.getModel());
+			cnt = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose.close(conn, pstmt);
+		}
+		return cnt;
 	}
 	
 	@Override
