@@ -5,6 +5,7 @@
 <%@include file="/common/header/init.jsp"%>
 <%@ include file="/admin/common/sidebar.jsp" %>
 <%
+
 List<CallDto> callList = (List<CallDto>)request.getAttribute("receiveList");
 %>
 <div id="wrapper">
