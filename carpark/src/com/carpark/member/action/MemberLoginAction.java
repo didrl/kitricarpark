@@ -46,7 +46,6 @@ public class MemberLoginAction implements Action{
 		
 		MemberDto memberDto = MemberServiceImpl.getMemberService().login(id,pass);
 		session.setAttribute("memberInfo",memberDto);
-		System.out.println(memberDto.getUser_id()+"    userFlag       "+memberDto.getUser_flag());
 		return memberDto==null ? "/member/loginFail.jsp":((memberDto.getUser_flag()!=10)?"/index.jsp":"/admin/adminindex.jsp");
 	}
 
