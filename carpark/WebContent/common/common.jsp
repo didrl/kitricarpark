@@ -27,6 +27,9 @@ MemberDto memberDto = (MemberDto)session.getAttribute("memberInfo");
     <link href="<%=root %>/css/stylish-portfolio.css" rel="stylesheet">
     <link href="<%=root %>/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 	<link href="<%=root %>/css/custom_kitri.css" rel="stylesheet">
+	
+	<link rel="stylesheet" href="/carpark/css/normalize.css">
+<link rel="stylesheet" href="/carpark/css/style.css">
 	<!-- login -->
 	<script type="text/javascript">
 	var root = "<%=root%>";

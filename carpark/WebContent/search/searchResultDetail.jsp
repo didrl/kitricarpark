@@ -135,11 +135,11 @@ function setfavorite(){
 	console.log("asdf!@!@!"+flag+"     "+"<%=flagj%>");
 	if(flag!=0){
 		alert("즐겨찾기에서 삭제되었습니다")
-		document.location.href = "<%=root%>/member?act=delfavorite&park_id=<%=parkingDetail.getPark_id()%>";
+		document.location.href = "<%=root%>/favorite?act=delfavorite&park_id=<%=parkingDetail.getPark_id()%>";
 		
 	}else{
 		alert("즐겨찾기에 추가되었습니다")
-		document.location.href = "<%=root%>/member?act=addfavorite&park_id=<%=parkingDetail.getPark_id()%>";
+		document.location.href = "<%=root%>/favorite?act=addfavorite&park_id=<%=parkingDetail.getPark_id()%>";
 
 	}
 }

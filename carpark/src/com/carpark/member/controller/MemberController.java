@@ -56,13 +56,11 @@ public class MemberController extends HttpServlet {
 		}else if("mvmodify".equals(act)){
 			path = MemberActionFactory.getMemberModifyAction().execute(request, response);
 			PageMove.forward(request, response, path);
-		}else if("addfavorite".equals(act)){
-			path = MemberActionFactory.getMemberFavoriteRegisterAction().execute(request, response);
-			PageMove.forward(request, response, path);
 		}else if("mvbenefit".equals(act)){
 			
-		}else if("".equals(act)){
-			
+		}else if("mvMyOwnCar".equals(act)){
+			path = MemberActionFactory.getMemberCarListAction().execute(request, response);
+			PageMove.forward(request, response, path);
 		}else if("".equals(act)){
 			
 		}else{
