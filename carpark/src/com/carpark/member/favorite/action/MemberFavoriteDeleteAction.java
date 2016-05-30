@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.carpark.action.Action;
 
 public class MemberFavoriteDeleteAction implements Action {
-
+  
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {

@@ -8,5 +8,6 @@ public interface CommonDao {
 	void updateHit(int seq);
 	int newArticleCount(int bcode);
 	int totalArticleCount(Map<String, String> map);
+	int getNextParkingId();
 	
 }

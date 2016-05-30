@@ -1,6 +1,21 @@
 <%@page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" %>
 
+<%
+String svid="";
+String ckid="";
+Cookie cookie[]= request.getCookies();
+if(cookie!=null){
+	int len = cookie.length;
+	for(int i=0;i<len;i++){
+		if("myid".equals(cookie[i].getName())){
+			svid = cookie[i].getValue(); 
+			ckid = "checked=\"checked\"";
+		}
+	}
+}
+%>
+
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 	<!-- Brand and toggle get grouped for better mobile display -->
 	<div class="navbar-header">
@@ -9,7 +24,7 @@
 			<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span>
 			<span class="icon-bar"></span> <span class="icon-bar"></span>
 		</button>
-		<a class="navbar-brand" href="/index.jsp">Car Park</a>
+		<a class="navbar-brand" href="<%=root %>/index.jsp">Car Park</a>
 	</div>
 	<!-- Top Menu Items -->
 	<ul class="nav navbar-right top-nav">
@@ -17,6 +32,7 @@
 		
 <%
 if(memberDto!=null){
+	if(memberDto.getUser_flag()!=10){
 %>
 		<li class="dropdown"><a href="#" class="dropdown-toggle"
 			data-toggle="dropdown"><i class="fa fa-envelope"></i> <b
@@ -100,6 +116,70 @@ if(memberDto!=null){
 						Out</a></li>
 			</ul></li>		
 <%
+	}else{	//관리자
+		%>
+		<li class="dropdown"><a href="#" class="dropdown-toggle"
+			data-toggle="dropdown"><i class="fa fa-envelope"></i> <b
+				class="caret"></b></a>
+			<ul class="dropdown-menu message-dropdown">
+				<li class="message-preview"><a href="#">
+						<div class="media">
+							<span class="pull-left"> <img class="media-object"
+								src="http://placehold.it/50x50" alt="">
+							</span>
+							<div class="media-body">
+							</div>
+						</div>
+				</a></li>
+				<li class="message-preview"><a href="#">
+						<div class="media">
+							<span class="pull-left"> <img class="media-object"
+								src="http://placehold.it/50x50" alt="">
+							</span>
+							<div class="media-body">
+							</div>
+						</div>
+				</a></li>
+				<li class="message-preview"><a href="#">
+						<div class="media">
+							<span class="pull-left"> <img class="media-object"
+								src="http://placehold.it/50x50" alt="">
+							</span>
+							<div class="media-body">
+							</div>
+						</div>
+				</a></li>
+				<li class="message-footer"><a href="javascript:messageReceiveList();">Read All New
+						Messages</a></li>
+			</ul></li>
+		
+		<li class="dropdown"><a href="#" class="dropdown-toggle"
+			data-toggle="dropdown"><i class="fa fa-bell"></i> <b
+				class="caret"></b></a>
+			<ul class="dropdown-menu alert-dropdown">
+				<li><a href="#" data-toggle="modal" data-target="#messageReply">제보하기 <span
+						class="label label-default">Alert Badge</span></a></li>
+				<li><a href="<%=root%>/qna.jsp">  QnA  <span
+						class="label label-primary">Alert Badge</span></a></li>
+				<li><a href="#">Alert Name <span class="label label-danger">Alert
+							Badge</span></a></li>
+				<li class="divider"></li>
+				<li><a href="#">View All</a></li>
+			</ul></li>
+		<li class="dropdown"><a href="#" class="dropdown-toggle"
+			data-toggle="dropdown"><i class="fa fa-user"></i> <%=memberDto.getUser_id() %> <b
+				class="caret"></b></a>
+			<ul class="dropdown-menu">
+				<li><a href="<%=root%>/admin?act=mvprofile"><i class="fa fa-fw fa-user"></i> profile</a></li>
+				<li><a href="<%=root%>/member?act=mvmessage"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
+				</li>
+				<li><a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a></li>
+				<li class="divider"></li>
+				<li><a href="<%=root%>/member?act=mvlogout"><i class="fa fa-fw fa-power-off"></i> Log
+						Out</a></li>
+			</ul></li>		
+		<%
+	}
 }else{
 %>
 		<li>
@@ -141,11 +221,11 @@ if(memberDto!=null){
 	aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<div class="modal-header">
+			<div class="modal-header" style="background: #00cc00">
 				<button type="button" class="close" data-dismiss="modal">
 					<span aria-hidden="true">×</span><span class="sr-only">Close</span>
 				</button>
-				<h4 class="modal-title" id="myModalLabel">Modal title</h4>
+				<h4 class="modal-title" id="myModalLabel">로그인</h4>
 			</div>
 			
 			
@@ -157,7 +237,7 @@ if(memberDto!=null){
 					<div class="form-group">
 						<label for="inputEmail3" class="col-sm-2 control-label">ID</label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control" name="id" value=""
+							<input type="text" class="form-control" name="id" value="<%=svid %>"
 								id="id" placeholder="id" required="required">
 						</div>
 					</div>
@@ -173,7 +253,7 @@ if(memberDto!=null){
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
 							<div class="checkbox">
-								<label> <input type="checkbox"> Remember me
+								<label> <input type="checkbox" name="svid" value="idsave" <%=ckid%>> Remember me
 								</label>
 							</div>
 						</div>
@@ -222,6 +302,7 @@ if(memberDto!=null){
 								</button>
 							</span>
 						</div>
+						<p id="chid"></p>
 					</div>
 
 					<div class="form-group">
@@ -351,27 +432,33 @@ if(memberDto!=null){
 
 
 <script type="text/javascript">
-var id = document.getElementById("userid").value; 
 
-$('#idcheck').click(function(id){
+$('#idcheck').click(function(){
+var id = document.getElementById("userid").value; 
 	$.ajax({
-		type :"POST",
-		url : "/carpark/member",
+		type :"GET",
+		url : "/carpark/member?act=mvidcheck",
 		dataType : "json",
 		data : {
-			"act" : "mvidcheck",
-			"id" : id
+			"idcheck" : id
 		},
-		successs: function(data){
-			alert("성공입니다.");
-			console.log(data);
-		},
-		error: function(data){
-			alert("에러입니다");
-			console.log(data);
-		}
+		 success: function(data) {
+		      console.log('성공 - ', data);
+		      idcheck(data);
+		    },
+		 error: function(xhr) {
+		      console.log('실패 - ', xhr);
+		    }
 	});
 });
 
+function idcheck(data){
+	if(data.id == 1)
+// 		alert("아이디를 사용하실 수 있습니다.");
+		document.getElementById("chid").innerHTML = "아이디를 사용하실 수 있습니다.";
+	else{
+		document.getElementById("chid").innerHTML ="아이디를 사용할 수 없습니다.";
+	}
+}
 </script>
 

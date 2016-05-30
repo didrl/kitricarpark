@@ -18,12 +18,17 @@ public class MemberIdCheckAction implements Action {
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 		JSONObject json = new JSONObject();
-		String id = request.getParameter("id");
+		String id = new String(request.getParameter("idcheck").getBytes("ISO-8859-1"),"UTF-8");
+		
+		System.out.println("id>>>>>"+id);
 		int count = MemberServiceImpl.getMemberService().idcheck(id);
-		json.put("id",count+"");
+		System.out.println("action>>>"+count);
+		json.put("id",count);
+		System.out.println(json.toJSONString());
 		PrintWriter out = response.getWriter();
+		response.setContentType("text/plain;charset=UTF-8");
 		out.print(json.toJSONString());
-		return "/index.jsp";
+		return "";
 	}
 
 }

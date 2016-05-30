@@ -1,3 +1,4 @@
+<%@page import="com.carpark.member.model.FavoriteDto"%>
 <%@page import="com.carpark.member.model.ReviewDto"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.carpark.admin.model.ParkingDto"%>
@@ -11,12 +12,24 @@
 ParkingDto parkingDetail = (ParkingDto)request.getAttribute("parkingDetail");
 ArrayList<ReviewDto> reviewlist = (ArrayList<ReviewDto>)request.getAttribute("reviewlist");
 ParkingDetailDto parkingDetail_info = (ParkingDetailDto)request.getAttribute("parkingDetail_info");
+ArrayList<FavoriteDto> favoritelist = (ArrayList<FavoriteDto>) request.getAttribute("favoritelist");
+
 //ParkingFacilityDto parkingFacilityDto = (ParkingFacilityDto)request.getAttribute("parkingFacilityDto");
 
 System.out.println("<><><><><><><><"+parkingDetail.getPark_id()	);
 System.out.println("<><><><latitude><><><"+parkingDetail.getLatitude());
 System.out.println("<><><><longtitude><><"+parkingDetail.getLongitude());
 System.out.println("<><><><content><><"+parkingDetail.getContent());
+
+int flagj=0;
+
+for(FavoriteDto favoriteDto : favoritelist){
+	if(favoriteDto.getPark_id() ==	parkingDetail.getPark_id()){
+		flagj=1;
+		break;
+	}
+}
+
 /*
 	ParkingDetailDto parkingDetail_info		: parkingDetail table info
 	ParkingFacilityDto parkingFacilityDto	: parking_facility info + parking_img info
@@ -30,13 +43,6 @@ System.out.println("<><><><content><><"+parkingDetail.getContent());
    <%@include file="/reservation/sendMessageModal.jsp"%>
    <!-- For sendMsg Modal -->
    
-
-
-<!-- Seclect List CSS
-
-<link rel="stylesheet" type="text/css" href="/carpark/css/jquery.selectlist.css">
- -->
-
 <!-- Simple Celander -->
 <link rel="stylesheet" href="/carpark/css/calendar/style.css" />
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -55,7 +61,11 @@ System.out.println("<><><><content><><"+parkingDetail.getContent());
 
 <!-- Custom CSS -->
 <link href="/carpark/css/shop-item.css" rel="stylesheet">
-
+ 
+ <!-- calendar -->
+ <link href="/carpark/css/calendar/glDatePicker.default.css" rel="stylesheet" type="text/css">
+ 
+ 
 <!-- Custom Fonts -->
 <link
 	href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic"
@@ -71,7 +81,7 @@ System.out.println("<><><><content><><"+parkingDetail.getContent());
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
+		<script src="/carpark/js/calendar/glDatePicker.min.js"></script>
 
 
 <script type="text/javascript">
@@ -103,6 +113,35 @@ function goReservation() {
 		document.selectdateForm.submit();
 	}
 }
+function goSearchResult() {
+	if(document.getElementById("citysearch").value  == "") {
+		alert("검색하실 도시의 이름을 입력해주세요.");
+		return;
+	} else if(document.getElementById("fromdatesearch").value  == "") {
+		alert("시작일을 입력해주세요.");
+		return;
+	}else if(document.getElementById("todatesearch").value  == "") {
+		alert("종료일을 입력해주세요.");
+		return;
+	}else{
+	document.searchForm.action = "/carpark/member";
+	document.searchForm.submit();
+	}
+}
+
+function setfavorite(){
+	var flag=<%=flagj%>;
+	console.log("asdf!@!@!"+flag+"     "+"<%=flagj%>");
+	if(flag!=0){
+		alert("즐겨찾기에서 삭제되었습니다")
+		document.location.href = "<%=root%>/member?act=delfavorite&park_id=<%=parkingDetail.getPark_id()%>";
+		
+	}else{
+		alert("즐겨찾기에 추가되었습니다")
+		document.location.href = "<%=root%>/member?act=addfavorite&park_id=<%=parkingDetail.getPark_id()%>";
+
+	}
+}
 
 </script>
 
@@ -114,33 +153,7 @@ function goReservation() {
 
 		<!-- row -->
 	<div class="container" style="text-align:center">
-			<!--  search bar start -->
-			<div class="col-sm-13">
-				<!-- /input-group -->
-				<form id="searchForm" name="searchForm" class="form-inline" role="form" method="post">
-					<input type="hidden" name="act" value="mvSearchResult">
-					<input type="hidden" name="search" value="">
-					
-					
-					<div class="input-group">
-						<input type="text" class="form-control" id="citysearch" name="city" placeholder="Search for..."> 
-					</div>
-					<div class="input-group">
-						<input class="date-picker" id="fromdatesearch" name="from" type="text" />
-					</div>
-
-					<div class="input-group">
-						<input class="date-picker" id="todatesearch" type="text" name="to"/>
-					</div>
-					<div class="input-group">
-						<button class="btn btn-success" type="button"
-							onclick="javascript:goSearchResult();">Search</button>
-					</div>
-				</form>
-			</div>
-			<br>
-			<br>
-			<!--  search bar end-->
+<%@include file="/common/searchBar.jsp"%>
 		
 			<!-- Left Section Start -->
 			<div class="col-md-7">
@@ -149,8 +162,8 @@ function goReservation() {
 					<div class="row" align="left">
 						<h3><b>&nbsp;&nbsp;&nbsp; <%=parkingDetail.getPark_name()%>  &nbsp;&nbsp;&nbsp; 
 							<i class = glyphicon glyphicon-star></i><i class = glyphicon glyphicon-star></i><i class = glyphicon glyphicon-star> </i><i class = glyphicon glyphicon-star></i><i class = glyphicon glyphicon-star-empty></i></b> 
-							<%=parkingDetail.getLocation() %>
-							<a href=""><img height="30"  src="/carpark/img/heart.jpg"></a>
+							<%=parkingDetail.getLocation()%>
+							<a href="#" onclick="javascript:setfavorite();"><img id="favoriteimg" height="30"  src="/carpark/img/heart.jpg"></a>
 						</h3>
 					</div>
 				</div>	
@@ -568,6 +581,7 @@ for(ReviewDto reviewDto : reviewlist){
 									  <option value="21">21:00</option><option value="22">22:00</option><option value="23">23:00</option>
 									</select>
 								</div>
+<<<<<<< HEAD
 						</div><!-- From Choice End -->
 						<div class="row"><!-- To Choice Start -->
 								<div class="col-md-3">
@@ -593,6 +607,44 @@ for(ReviewDto reviewDto : reviewlist){
 	               				</button>
 						</div> <!--  radio button에 의한 Multi reservation End-->
 						</form>
+=======
+								<div class="col-md-9" >
+								<input class="date-picker" id="todate"   name="todate" type="text" />
+								<select id="srtoTime" name="srtoTime">
+								  <option value="0">00:00</option><option value="1">01:00</option><option value="2">02:00</option>
+								  <option value="3">03:00</option> <option value="4">04:00</option><option value="5">05:00</option>
+								  <option value="6">06:00</option><option value="7">07:00</option><option value="8">08:00</option>
+								  <option value="9">09:00</option><option value="10">10:00</option><option value="11">11:00</option>
+								  <option value="12">12:00</option><option value="13">13:00</option><option value="14">14:00</option>
+								  <option value="15">15:00</option> <option value="16">16:00</option><option value="17">17:00</option>
+								  <option value="18">18:00</option><option value="19">19:00</option> <option value="20">20:00</option>
+								  <option value="21">21:00</option><option value="22">22:00</option><option value="23">23:00</option>
+								</select>
+								</div>
+					</div>	<!-- To Choice End --><br>
+
+								<button type="button" onclick="javascript:goReservation();" class="btn btn-success" id="goreser" name="goreser">
+                  				 예약하기 
+               				</button>
+					</div> <!--  radio button에 의한 Multi reservation End-->
+					</form>
+					</div>
+					<!-- Date Picker panel End -->
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<img src="/carpark/img/tmpimg.JPG" width="350" height="250">
+						</div>
+					</div>
+					<!-- img panel End -->
+					<div class="well">
+						<div class="panel-body">호스트 : <%=parkingDetail.getOwner_id() %></div>
+						<div class="text-center">
+							 <button type="button" class="btn btn-success"  id="sendMsgToHost" name="sendMsgToHost" data-toggle="modal"  data-target="#msgToHost">
+                  				Send Message
+               				</button>
+               
+							<br>
+>>>>>>> d399477e644b3052e8b5c11d21a66b5a0fb28f13
 						</div>
 						<!-- Date Picker panel End -->
 						<div class="panel panel-default">
@@ -600,6 +652,7 @@ for(ReviewDto reviewDto : reviewlist){
 								<img src="/carpark/img/tmpimg.JPG" width="350" height="250">
 							</div>
 						</div>
+<<<<<<< HEAD
 						<!-- img panel End -->
 						<div class="panel panel-default">
 							<div class="panel-body">호스트 : <%=parkingDetail.getOwner_id() %></div>
@@ -626,13 +679,27 @@ for(ReviewDto reviewDto : reviewlist){
 								<!-- /#c -->
 								<script src="/carpark/js/calendar/index.js"></script>
 							</div>
+=======
+					<!-- host info panel End -->
+					<!--  clelander panel  -->
+					<div class="panel panel-default">
+						<div class="panel-body" id="datepanelbody">
+    						</div>
+>>>>>>> d399477e644b3052e8b5c11d21a66b5a0fb28f13
 						</div>
 						<!-- clelander panel End -->
 					</div>
+<<<<<<< HEAD
 				</div>
 			
 		</div>
 	<!-- /.container -->
+=======
+					<!--  clelander panel End  -->
+				</div>
+			</div>
+		
+>>>>>>> d399477e644b3052e8b5c11d21a66b5a0fb28f13
 	<div class="container">
 
 		<hr>
@@ -685,36 +752,52 @@ for(ReviewDto reviewDto : reviewlist){
 			
 			//review
 			$('#sendMsgToHost').on('click', function (event) {
-				<%//if(memberDto !=null){%>
-				console.log("dasfasdfafsdf");
+		 		<%//if(memberDto !=null){%>
 			        $("#receiver").val("<%=parkingDetail.getOwner_id()%>");
 			        $("#subject").val("");
 			        $("#content").empty();
 		        	$("#sendmsguser_id").val("<%=memberDto.getUser_id()%>");
 		        	$("#sendmsgpark_id").val("<%=parkingDetail.getPark_id()%>");
 			        $("#receiver").prop("disabled", true);
-			//        $("#msgToHost").load("<%=root%>/reservation/sendMessageModal.jsp");
+		     //    $("#msgToHost").load("<%=root%>/reservation/sendMessageModal.jsp");
 				<%//}else{%>
-				//	alert("로그인 후 이용할 수 있습니다.");
-				//	return;
-					<%//}%>
+					//alert("로그인 후 이용할 수 있습니다.");
+					//return;
+				 	<%//}}%>
 				})
 			
 		</script>
-<!-- 		<script src="/carpark/js/selectlist/jquery.selectlist.js"></script> 
-		<script type="text/javascript">
-			$(function(){
-				$('select').selectlist({
-					zIndex: 10,
-					width: 100,
-					height: 30
-				});		
-			})
-</script>
 
 
--->
+    <script type="text/javascript">
+        $(window).load(function()
+        {
+            $('#datepanelbody').glDatePicker(
+           {
+            showAlways: true,
+            allowMonthSelect: false,
+            allowYearSelect: false,
+            prevArrow: '',
+            nextArrow: '',
+            selectedDate: new Date(),
+            selectableDateRange: [
+                { from: new Date(2013, 8, 1),
+                    to: new Date(2013, 8, 10) },
+                { from: new Date(2013, 8, 19),
+                    to: new Date(2013, 8, 22) },
+            ],
+            selectableDates: [
+                { date: new Date(2013, 8, 24) },
+                { date: new Date(2013, 8, 30) }
+            ]
+           });
+        });
+        
 
-<!-- ****************************************************************************************************************** -->
+    </script>
+		
 
-<%@ include file="/common/footer.jsp" %>	
+
+<!--  ******************************************************************************************************************  -->
+
+<%@ include file="/common/footer.jsp" %>

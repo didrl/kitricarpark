@@ -18,7 +18,7 @@ public class ParkingDto {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	
+
 	public int getPark_id() {
 		return park_id;
 	}

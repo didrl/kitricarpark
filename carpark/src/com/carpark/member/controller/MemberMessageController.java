@@ -28,7 +28,7 @@ public class MemberMessageController extends HttpServlet {
 		} else if("messageWrite".equals(act)) {//쪽지보내기
 			path = MemberActionFactory.getMemberMessageWriteAction().execute(request, response);
 			PageMove.forward(request, response, path + queryString);
-			
+
 		} else if("messageSendView".equals(act)) {//보낸쪽지보기
 			path = MemberActionFactory.getMemberMessageSendViewAction().execute(request, response);
 			PageMove.forward(request, response, path + queryString);
@@ -45,8 +45,7 @@ public class MemberMessageController extends HttpServlet {
 		} else if("messageReceiveDelete".equals(act)) {//받은쪽지삭제
 			MemberActionFactory.getMemberMessageReceiveDeleteAction().execute(request, response);
 			path = MemberActionFactory.getMemberMessageReceiveListAction().execute(request, response);
-			PageMove.forward(request, response, path + queryString);
-			
+	
 		} else if("messageSendList".equals(act)) {//보낸쪽지목록
 			path = MemberActionFactory.getMemberMessageSendListAction().execute(request, response);
 			PageMove.forward(request, response, path + queryString);
@@ -54,8 +53,6 @@ public class MemberMessageController extends HttpServlet {
 		} else if("messageReceiveList".equals(act)) {//받은쪽지목록
 			path = MemberActionFactory.getMemberMessageReceiveListAction().execute(request, response);
 			PageMove.forward(request, response, path + queryString);
-			
-		} else if("".equals(act)) {
 			
 		} else if("".equals(act)) {
 			

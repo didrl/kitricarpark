@@ -4,11 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -82,7 +78,7 @@ public class MemberReservationDaoImpl implements MemberReservationDao {
 		
 		Map<String, String> map = null;
 		ArrayList<Map<String,String>> list = new ArrayList<Map<String,String>>();
-		
+		 
 		try {
 			conn=DBConnection.makeConnection();
 			String sql="";
@@ -92,16 +88,16 @@ public class MemberReservationDaoImpl implements MemberReservationDao {
 			sql += "where park_id =? \n"; 
 			pstmt = conn.prepareStatement(sql);//미리 sql 문장을 가져가서 검사하고 틀린게 없을 때 실행
 			int idx =1;//중간에 없어지거나 추가될때 필요
-	
+	 
 			pstmt.setInt(idx++, park_id);
 			rs=pstmt.executeQuery();
 			
 //			System.out.println("park_id    in getdate"+park_id);
 //			System.out.println(sql);
-
+ 
 			while(rs.next()){
 				map = new HashMap<String, String>();
-				map.put("startdate", rs.getString("startdate"));
+				map.put("startdate", rs.getString("start_date"));
 				map.put("betweendate", rs.getString("betweendate"));		// end_date - start_date
 				list.add(map);
 			}
@@ -121,8 +117,8 @@ public class MemberReservationDaoImpl implements MemberReservationDao {
 		try {
 			conn=DBConnection.makeConnection();
 			String sql="";
-			sql += "insert into reservation (reser_id, park_id, user_id, start_date, end_date, pay) \n";
-			sql += "values(concat(to_char(systimestamp, 'yyyymmddhh24missFF3'),?),?,?,?,?,?)\n"; 
+			sql += "insert into reservation (reser_id, park_id, user_id, start_date, end_date \n";
+			sql += "values(concat(to_char(systimestamp, 'yyyymmddhh24missFF3'),?),?,?,?,?)\n"; 
 			pstmt = conn.prepareStatement(sql);//미리 sql 문장을 가져가서 검사하고 틀린게 없을 때 실행
 			int idx =1;//중간에 없어지거나 추가될때 필요
 			pstmt.setInt(idx++, reservationDto.getPark_id());
@@ -130,7 +126,6 @@ public class MemberReservationDaoImpl implements MemberReservationDao {
 			pstmt.setString(idx++, reservationDto.getUser_id());
 			pstmt.setString(idx++, reservationDto.getFromdate());
 			pstmt.setString(idx++, reservationDto.getTodate());
-			pstmt.setInt(idx++, reservationDto.getPay());
 
 			pstmt.executeUpdate();
 		} catch (SQLException e) {

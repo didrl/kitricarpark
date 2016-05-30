@@ -1,3 +1,5 @@
+//TMap
+
 var map;
 	var mapW, mapH; // 지도의 가로, 세로 크기(Pixel단위) 를 지정 합니다. 
 	var cLonLat, zoom; //중심 좌표와 지도레벨을 정의 합니다. 

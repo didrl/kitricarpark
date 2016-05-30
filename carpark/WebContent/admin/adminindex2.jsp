@@ -14,7 +14,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="<%=root %>/adminindex.html">관리자</a>
+                <a class="navbar-brand" href="<%=root%>/adminindex.html">관리자</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
@@ -155,7 +155,7 @@
                                 <a href="<%=parkingpath%>/newparking.jsp">새로운 주차장 등록</a>
                             </li>
                             <li>
-                                <a href="<%=parkingpath%>/report.jsp">주차장 제보 목록</a>
+                                <a href="<%=root%>/admincall?act=AdminCallReceiveList">주차장 제보 목록</a>
                             </li>
                             <li>
                                 <a href="<%=parkingpath%>/auth.jsp">주차장 인증예정목록</a>

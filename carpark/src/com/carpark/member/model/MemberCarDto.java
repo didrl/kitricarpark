@@ -2,29 +2,22 @@ package com.carpark.member.model;
 
 public class MemberCarDto {
 	private String car_id;
-	private String user_id;
+	private String maker;
 	private String model;
 	private String category;
 	private String reg_num;
-	private String maker;
 	
-	public String getMaker() {
-		return maker;
-	}
-	public void setMaker(String maker) {
-		this.maker = maker;
-	}
 	public String getCar_id() {
 		return car_id;
 	}
 	public void setCar_id(String car_id) {
 		this.car_id = car_id;
 	}
-	public String getUser_id() {
-		return user_id;
+	public String getMaker() {
+		return maker;
 	}
-	public void setUser_id(String user_id) {
-		this.user_id = user_id;
+	public void setMaker(String maker) {
+		this.maker = maker;
 	}
 	public String getModel() {
 		return model;

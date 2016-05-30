@@ -63,6 +63,9 @@ MemberDto memberDto = (MemberDto)session.getAttribute("memberInfo");
     <!-- message.js -->
     <script type="text/javascript" src="<%=root %>/message/message.js"></script>
     
+    <!-- admincall.js -->
+    <script type="text/javascript" src="<%=root %>/message/message.js"></script>
+       
     <form name="common" method="get" action="">
 	<input type="hidden" name="act" id="act" value="">
 	<input type="hidden" name="bcode" id="bcode" value="2">
