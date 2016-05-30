@@ -280,22 +280,24 @@ public class MemberDaoImpl implements MemberDao {
 	public int addNewCar(MemberCarDto memberCarDto) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		
+		int cnt=0;
 		try {
 			conn = DBConnection.makeConnection();
-			String sql = "insert into favorite(user_id, park_id) \n";//새로 작성하는 글 번호
-			sql +="values (?,?)";
+			String sql = "insert into member_car(category, reg_num, user_id,car_name) \n";
+			sql +="values (?,?,?,?)";
 			pstmt = conn.prepareStatement(sql);
 			int idx=0;
+			pstmt.setString(++idx, memberCarDto.getCategory());
+			pstmt.setString(++idx, memberCarDto.getReg_num());
 			pstmt.setString(++idx, memberCarDto.getUser_id());
-			pstmt.setInt(++idx, memberCarDto.getPark_id());
-			pstmt.executeUpdate();
+			pstmt.setString(++idx, memberCarDto.getModel());
+			cnt = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			DBClose.close(conn, pstmt);
 		}
-		return 0;
+		return cnt;
 	}
 	
 	@Override
