@@ -5,9 +5,6 @@
 <%@include file="/common/header/init.jsp"%>
 
 
-
-
-
 	<div class="modal-dialog" style="padding-top: 60px;">
 		<div class="modal-content">
 			<div class="modal-header">

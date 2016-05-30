@@ -1,3 +1,4 @@
+<%@page import="com.carpark.member.model.FavoriteDto"%>
 <%@page import="com.carpark.member.model.ReviewDto"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.carpark.admin.model.ParkingDto"%>
@@ -11,12 +12,24 @@
 ParkingDto parkingDetail = (ParkingDto)request.getAttribute("parkingDetail");
 ArrayList<ReviewDto> reviewlist = (ArrayList<ReviewDto>)request.getAttribute("reviewlist");
 ParkingDetailDto parkingDetail_info = (ParkingDetailDto)request.getAttribute("parkingDetail_info");
+ArrayList<FavoriteDto> favoritelist = (ArrayList<FavoriteDto>) request.getAttribute("favoritelist");
+
 //ParkingFacilityDto parkingFacilityDto = (ParkingFacilityDto)request.getAttribute("parkingFacilityDto");
 
 System.out.println("<><><><><><><><"+parkingDetail.getPark_id()	);
 System.out.println("<><><><latitude><><><"+parkingDetail.getLatitude());
 System.out.println("<><><><longtitude><><"+parkingDetail.getLongitude());
 System.out.println("<><><><content><><"+parkingDetail.getContent());
+
+int flagj=0;
+
+for(FavoriteDto favoriteDto : favoritelist){
+	if(favoriteDto.getPark_id() ==	parkingDetail.getPark_id()){
+		flagj=1;
+		break;
+	}
+}
+
 /*
 	ParkingDetailDto parkingDetail_info		: parkingDetail table info
 	ParkingFacilityDto parkingFacilityDto	: parking_facility info + parking_img info
@@ -60,8 +73,12 @@ System.out.println("<><><><content><><"+parkingDetail.getContent());
 
 <!-- Damu map -->
 <link rel="stylesheet" href="/carpark/css/roadview.css">
+<link rel="stylesheet" href="/carpark/css/aroundinfo.css">
+<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=c2d873676f2c4854b2b2c62e165a629d&libraries=services"></script>
+<<<<<<< HEAD
+=======
 
-
+>>>>>>> ca4290a2455cc3719dbd3b7a6d73910f8a8ae031
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -116,16 +133,20 @@ function goSearchResult() {
 	}
 }
 
-function goResultDetail() {
-	document.parkListForm.action = "/carpark/member";
-	document.parkListForm.submit();
-}
-
 function setfavorite(){
-	if (confirm("즐겨찾기에 등록하시겠습니까?")) {
-	document.location.href = "<%=root%>/member?act=setfavorite&park_id=<%=parkingDetail.getPark_id()%>";
+	var flag=<%=flagj%>;
+	console.log("asdf!@!@!"+flag+"     "+"<%=flagj%>");
+	if(flag!=0){
+		alert("즐겨찾기에서 삭제되었습니다")
+		document.location.href = "<%=root%>/favorite?act=delfavorite&park_id=<%=parkingDetail.getPark_id()%>";
+		
+	}else{
+		alert("즐겨찾기에 추가되었습니다")
+		document.location.href = "<%=root%>/favorite?act=addfavorite&park_id=<%=parkingDetail.getPark_id()%>";
+
 	}
 }
+
 </script>
 
 
@@ -136,33 +157,7 @@ function setfavorite(){
 
 		<!-- row -->
 	<div class="container" style="text-align:center">
-			<!--  search bar start -->
-			<div class="col-sm-13">
-				<!-- /input-group -->
-				<form id="searchForm" name="searchForm" class="form-inline" role="form" method="post">
-					<input type="hidden" name="act" value="mvSearchResult">
-					<input type="hidden" name="search" value="">
-					
-					
-					<div class="input-group">
-						<input type="text" class="form-control" id="citysearch" name="city" placeholder="Search for..."> 
-					</div>
-					<div class="input-group">
-						<input class="date-picker" id="fromdatesearch" name="from" type="text" />
-					</div>
-
-					<div class="input-group">
-						<input class="date-picker" id="todatesearch" type="text" name="to"/>
-					</div>
-					<div class="input-group">
-						<button class="btn btn-success" type="button"
-							onclick="javascript:goSearchResult();">Search</button>
-					</div>
-				</form>
-			</div>
-			<br>
-			<br>
-			<!--  search bar end-->
+<%@include file="/common/searchBar.jsp"%>
 		
 			<!-- Left Section Start -->
 			<div class="col-md-7">
@@ -172,38 +167,35 @@ function setfavorite(){
 						<h3><b>&nbsp;&nbsp;&nbsp; <%=parkingDetail.getPark_name()%>  &nbsp;&nbsp;&nbsp; 
 							<i class = glyphicon glyphicon-star></i><i class = glyphicon glyphicon-star></i><i class = glyphicon glyphicon-star> </i><i class = glyphicon glyphicon-star></i><i class = glyphicon glyphicon-star-empty></i></b> 
 							<%=parkingDetail.getLocation() %>
-							<a href="javascript:setfavorite();"><img height="30"  src="/carpark/img/heart.jpg"></a>
+							<a href=""><img height="30"  src="/carpark/img/heart.jpg"></a>
 						</h3>
 					</div>
 				</div>	
 				<div class="panel panel-default" id="daummap">
 					<div class="panel-body">
 						<div id="container">
-						    <div id="rvWrapper">
-						        <div id="roadview" style="width:100%;height:100%;"></div> <!-- 로드뷰를 표시할 div 입니다 -->							        <div id="close" title="로드뷰닫기" onclick="closeRoadview()"><span class="img"></span></div>
-						    </div>
+						    
 						    <div id="mapWrapper">
-						        <div id="map" style="width:100%; height:350px;"></div> <!-- 지도를 표시할 div 입니다 -->
-						        <div id="roadviewControl" onclick="setRoadviewRoad()"><span>로드뷰</span></div>							    </div>
+						        <div id="searchmap" style="width:100%; height:350px;"></div> <!-- 지도를 표시할 div 입니다 --> 
 							</div>
+							
 							
 							<!-- Daum map script-->
 							
-						<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=c2d873676f2c4854b2b2c62e165a629d"></script>
+<<<<<<< HEAD
+						
+=======
+					
+>>>>>>> ca4290a2455cc3719dbd3b7a6d73910f8a8ae031
 						<script>
-							var overlayOn = false, // 지도 위에 로드뷰 오버레이가 추가된 상태를 가지고 있을 변수
-						    container = document.getElementById('container'), // 지도와 로드뷰를 감싸고 있는 div 입니다
-						    mapWrapper = document.getElementById('mapWrapper'), // 지도를 감싸고 있는 div 입니다
-						    mapContainer = document.getElementById('map'), // 지도를 표시할 div 입니다 
-						    rvContainer = document.getElementById('roadview'); //로드뷰를 표시할 div 입니다
 							
-							var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+							var mapContainer = document.getElementById('searchmap'), // 지도를 표시할 div 
 							    mapOption = { 
-							        center: new daum.maps.LatLng(<%=parkingDetail.getLatitude()%>, <%=parkingDetail.getLongitude()%>), // 지도의 중심좌표
+							        center: new daum.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
 							        level: 3 // 지도의 확대 레벨
 							    };
 							
-							var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+							var searchmap = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 							
 							
 							
@@ -212,14 +204,14 @@ function setfavorite(){
 
 							// 지도에 컨트롤을 추가해야 지도위에 표시됩니다
 							// daum.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미합니다
-							map.addControl(mapTypeControl, daum.maps.ControlPosition.TOPRIGHT);
+							searchmap.addControl(mapTypeControl, daum.maps.ControlPosition.TOPRIGHT);
 							
 							// 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
 							var zoomControl = new daum.maps.ZoomControl();
-							map.addControl(zoomControl, daum.maps.ControlPosition.RIGHT);
+							searchmap.addControl(zoomControl, daum.maps.ControlPosition.RIGHT);
 							
 							//마우스 휠로 지도 확대,축소 가능여부를 설정합니다
-							map.setZoomable(false);  
+							searchmap.setZoomable(false);  
 							
 							// 지도 타입 정보를 가지고 있을 객체입니다
 							// map.addOverlayMapTypeId 함수로 추가된 지도 타입은
@@ -238,22 +230,26 @@ function setfavorite(){
 							        chkBicycle = document.getElementById('chkBicycle');					    
 							    // 지도 타입을 제거합니다
 							    for (var type in mapTypes) {
-							        map.removeOverlayMapTypeId(mapTypes[type]);    
+							        searchmap.removeOverlayMapTypeId(mapTypes[type]);    
 							    }
 							 // 교통정보 체크박스가 체크되어있으면 지도에 교통정보 지도타입을 추가합니다
 							    if (chkTraffic.checked) {
-							        map.addOverlayMapTypeId(mapTypes.traffic);    
+							        searchmap.addOverlayMapTypeId(mapTypes.traffic);    
 							    }
 							    // 자전거도로정보 체크박스가 체크되어있으면 지도에 자전거도로정보 지도타입을 추가합니다
 							    if (chkBicycle.checked) {
-							        map.addOverlayMapTypeId(mapTypes.bicycle);    
+							        searchmap.addOverlayMapTypeId(mapTypes.bicycle);    
 							    }
 							}
 							
 							// 지도에 마커를 생성하고 표시한다
 							var marker = new daum.maps.Marker({
+<<<<<<< HEAD
+							    position: new daum.maps.LatLng(37.566826, 126.9786567), // 마커의 좌표
+=======
 							    position: new daum.maps.LatLng(<%=parkingDetail.getLatitude()%>, <%=parkingDetail.getLongitude()%>), // 마커의 좌표
-							    map: map // 마커를 표시할 지도 객체
+>>>>>>> ca4290a2455cc3719dbd3b7a6d73910f8a8ae031
+							    map: searchmap // 마커를 표시할 지도 객체
 							});
 
 							// 마커 위에 표시할 인포윈도우를 생성한다
@@ -262,174 +258,12 @@ function setfavorite(){
 							});
 
 							// 인포윈도우를 지도에 표시한다
-							infowindow.open(map, marker);
-							
-							//for roadview marker start
-							// 로드뷰 객체를 생성합니다 
-							var rv = new daum.maps.Roadview(rvContainer); 
-
-							// 좌표로부터 로드뷰 파노라마 ID를 가져올 로드뷰 클라이언트 객체를 생성합니다 
-							var rvClient = new daum.maps.RoadviewClient(); 
-
-							// 로드뷰에 좌표가 바뀌었을 때 발생하는 이벤트를 등록합니다 
-							daum.maps.event.addListener(rv, 'position_changed', function() {
-
-							    // 현재 로드뷰의 위치 좌표를 얻어옵니다 
-							    var rvPosition = rv.getPosition();
-
-							    // 지도의 중심을 현재 로드뷰의 위치로 설정합니다
-							    map.setCenter(rvPosition);
-
-							    // 지도 위에 로드뷰 도로 오버레이가 추가된 상태이면
-							    if(overlayOn) {
-							        // 마커의 위치를 현재 로드뷰의 위치로 설정합니다
-							        roadmarker.setPosition(rvPosition);
-							    }
-							});
-							
-							
-							// 마커 이미지를 생성합니다
-							var markImage = new daum.maps.MarkerImage(
-							    'http://i1.daumcdn.net/localimg/localimages/07/mapapidoc/roadview_wk.png',
-							    new daum.maps.Size(35,39), {
-							    //마커의 좌표에 해당하는 이미지의 위치를 설정합니다.
-							    //이미지의 모양에 따라 값은 다를 수 있으나, 보통 width/2, height를 주면 좌표에 이미지의 하단 중앙이 올라가게 됩니다.
-							    offset: new daum.maps.Point(14, 39)
-							});
-
-							// 드래그가 가능한 마커를 생성합니다
-							var roadmarker = new daum.maps.Marker({
-							    image : markImage,
-							    position: mapCenter,
-							    draggable: true
-							});
-
-							// 마커에 dragend 이벤트를 등록합니다
-							daum.maps.event.addListener(roadmarker, 'dragend', function(mouseEvent) {
-
-							    // 현재 마커가 놓인 자리의 좌표입니다 
-							    var position = roadmarker.getPosition();
-
-							    // 마커가 놓인 위치를 기준으로 로드뷰를 설정합니다
-							    toggleRoadview(position);
-							});
-							
-							//지도에 클릭 이벤트를 등록합니다
-							daum.maps.event.addListener(map, 'click', function(mouseEvent){
-							    
-							    // 지도 위에 로드뷰 도로 오버레이가 추가된 상태가 아니면 클릭이벤트를 무시합니다 
-							    if(!overlayOn) {
-							        return;
-							    }
-
-							    // 클릭한 위치의 좌표입니다 
-							    var position = mouseEvent.latLng;
-
-							    // 마커를 클릭한 위치로 옮깁니다
-							    marker.setPosition(position);
-
-							    // 클릭한 위치를 기준으로 로드뷰를 설정합니다
-							    toggleRoadview(position);
-							});
-
-							// 전달받은 좌표(position)에 가까운 로드뷰의 파노라마 ID를 추출하여
-							// 로드뷰를 설정하는 함수입니다
-							function toggleRoadview(position){
-							    rvClient.getNearestPanoId(position, 50, function(panoId) {
-							        // 파노라마 ID가 null 이면 로드뷰를 숨깁니다
-							        if (panoId === null) {
-							            toggleMapWrapper(true, position);
-							        } else {
-							         toggleMapWrapper(false, position);
-
-							            // panoId로 로드뷰를 설정합니다
-							            rv.setPanoId(panoId, position);
-							        }
-							    });
-							}
-
-							// 지도를 감싸고 있는 div의 크기를 조정하는 함수입니다
-							function toggleMapWrapper(active, position) {
-							    if (active) {
-
-							        // 지도를 감싸고 있는 div의 너비가 100%가 되도록 class를 변경합니다 
-							        container.className = '';
-
-							        // 지도의 크기가 변경되었기 때문에 relayout 함수를 호출합니다
-							        map.relayout();
-
-							        // 지도의 너비가 변경될 때 지도중심을 입력받은 위치(position)로 설정합니다
-							        map.setCenter(position);
-							    } else {
-
-							        // 지도만 보여지고 있는 상태이면 지도의 너비가 50%가 되도록 class를 변경하여
-							        // 로드뷰가 함께 표시되게 합니다
-							        if (container.className.indexOf('view_roadview') === -1) {
-							            container.className = 'view_roadview';
-
-							            // 지도의 크기가 변경되었기 때문에 relayout 함수를 호출합니다
-							            map.relayout();
-
-							            // 지도의 너비가 변경될 때 지도중심을 입력받은 위치(position)로 설정합니다
-							            map.setCenter(position);
-							        }
-							    }
-							}
-
-							// 지도 위의 로드뷰 도로 오버레이를 추가,제거하는 함수입니다
-							function toggleOverlay(active) {
-							    if (active) {
-							        overlayOn = true;
-
-							        // 지도 위에 로드뷰 도로 오버레이를 추가합니다
-							        map.addOverlayMapTypeId(daum.maps.MapTypeId.ROADVIEW);
-
-							        // 지도 위에 마커를 표시합니다
-							        roadmarker.setMap(map);
-
-							        // 마커의 위치를 지도 중심으로 설정합니다 
-							        roadmarker.setPosition(map.getCenter());
-
-							        // 로드뷰의 위치를 지도 중심으로 설정합니다
-							        toggleRoadview(map.getCenter());
-							    } else {
-							        overlayOn = false;
-
-							        // 지도 위의 로드뷰 도로 오버레이를 제거합니다
-							        map.removeOverlayMapTypeId(daum.maps.MapTypeId.ROADVIEW);
-
-							        // 지도 위의 마커를 제거합니다
-							        roadmarker.setMap(null);
-							    }
-							}
-
-							// 지도 위의 로드뷰 버튼을 눌렀을 때 호출되는 함수입니다
-							function setRoadviewRoad() {
-							    var control = document.getElementById('roadviewControl');
-
-							    // 버튼이 눌린 상태가 아니면
-							    if (control.className.indexOf('active') === -1) {
-							        control.className = 'active';
-
-							        // 로드뷰 도로 오버레이가 보이게 합니다
-							        toggleOverlay(true);
-							    } else {
-							        control.className = '';
-
-							        // 로드뷰 도로 오버레이를 제거합니다
-							        toggleOverlay(false);
-							    }
-							}
-
-							// 로드뷰에서 X버튼을 눌렀을 때 로드뷰를 지도 뒤로 숨기는 함수입니다
-							function closeRoadview() {
-							    var position = marker.getPosition();
-							    toggleMapWrapper(true, position);
-							}
-							//for roadview marker end
+							infowindow.open(searchmap, marker);
 							
 							</script>
 					</div>
+					
+					
 				</div>
 				<div class="panel panel-default">
 					<div class="panel-heading">
@@ -438,12 +272,16 @@ function setfavorite(){
 					<div class="panel-body">
 						<p>
 						    <input type="checkbox" id="chkTraffic" onclick="setOverlayMapTypeId()" /> 주위 교통상황을 지도에서 확인하세요     
+<<<<<<< HEAD
 						    <input type="checkbox" id="chkBicycle" onclick="setOverlayMapTypeId()" /> 자동차에서 자전거로! 자전거 도로 정보 보기
 						</p>
-						<p>
-						    <input type="checkbox" id="chkRoadview" onclick="setOverlayMapTypeId()" /> 생생한 주차장 위치 보기
+						<p align = "left"><%=parkingDetail.getContent()%></p>	
+=======
+						    <br><input type="checkbox" id="chkBicycle" onclick="setOverlayMapTypeId()" /> 자동차에서 자전거로! 자전거 도로 정보 보기
 						</p>
+					
 						<p><%=parkingDetail.getContent()%></p>	
+>>>>>>> ca4290a2455cc3719dbd3b7a6d73910f8a8ae031
 					</div>
 					<div class="panel-footer">상세 사진</div>
 					<a href="원본사진"><img src="/carpark/img/tmpcar/car1.jpg"></a>
@@ -451,13 +289,205 @@ function setfavorite(){
 					<a href="원본사진"><img src="/carpark/img/tmpcar/car3.jpg"></a>
 				</div>
 				
-				<div class="panel panel-default">
-					<div class="panel-heading">위치 미리보기</div>
+						<div class="panel panel-default">
+					<div class="panel-heading">주변 정보</div>
 					<div class="panel-body">
-					
-					<!-- Daum road View start -->
+											<!-- Daum category Map start -->
+						<div class="map_wrap">
+							    <div id="aroundmap" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
+							    <ul id="category">
+							        <li id="BK9" data-order="0"><span class="category_bg bank"></span>은행 </li>       
+							        <li id="MT1" data-order="1"><span class="category_bg mart"></span>마트</li>  
+							        <li id="PM9" data-order="2"><span class="category_bg pharmacy"></span>약국</li>  
+							        <li id="OL7" data-order="3"><span class="category_bg oil"></span>주유소</li>  
+							        <li id="CE7" data-order="4"><span class="category_bg cafe"></span>카페</li>  
+							        <li id="CS2" data-order="5"><span class="category_bg store"></span>편의점</li>      
+							    </ul>
+						</div>
 						
+<script>
+// 마커를 클릭했을 때 해당 장소의 상세정보를 보여줄 커스텀오버레이입니다
+var placeOverlay = new daum.maps.CustomOverlay({zIndex:1}), 
+    contentNode = document.createElement('div'), // 커스텀 오버레이의 컨텐츠 엘리먼트 입니다 
+    markers = [], // 마커를 담을 배열입니다
+    currCategory = ''; // 현재 선택된 카테고리를 가지고 있을 변수입니다
+ 
+var mapContainer2 = document.getElementById('aroundmap'), // 지도를 표시할 div 
+    mapOption2 = {
+        center: new daum.maps.LatLng(<%=parkingDetail.getLatitude()%>, <%=parkingDetail.getLongitude()%>), // 지도의 중심좌표
+        level: 5 // 지도의 확대 레벨
+    };  
+
+// 지도를 생성합니다    
+var aroundmap = new daum.maps.Map(mapContainer2, mapOption2); 
+
+// 장소 검색 객체를 생성합니다
+var ps = new daum.maps.services.Places(aroundmap); 
+
+// 지도에 idle 이벤트를 등록합니다
+daum.maps.event.addListener(aroundmap, 'idle', searchPlaces);
+
+// 커스텀 오버레이의 컨텐츠 노드에 css class를 추가합니다 
+contentNode.className = 'placeinfo_wrap';
+
+// 커스텀 오버레이의 컨텐츠 노드에 mousedown, touchstart 이벤트가 발생했을때
+// 지도 객체에 이벤트가 전달되지 않도록 이벤트 핸들러로 daum.maps.event.preventMap 메소드를 등록합니다 
+addEventHandle(contentNode, 'mousedown', daum.maps.event.preventMap);
+addEventHandle(contentNode, 'touchstart', daum.maps.event.preventMap);
+
+// 커스텀 오버레이 컨텐츠를 설정합니다
+placeOverlay.setContent(contentNode);  
+
+// 각 카테고리에 클릭 이벤트를 등록합니다
+addCategoryClickEvent();
+
+// 엘리먼트에 이벤트 핸들러를 등록하는 함수입니다
+function addEventHandle(target, type, callback) {
+    if (target.addEventListener) {
+        target.addEventListener(type, callback);
+    } else {
+        target.attachEvent('on' + type, callback);
+    }
+}
+
+// 카테고리 검색을 요청하는 함수입니다
+function searchPlaces() {
+    if (!currCategory) {
+        return;
+    }
+    // 커스텀 오버레이를 숨깁니다 
+    placeOverlay.setMap(null);
+    // 지도에 표시되고 있는 마커를 제거합니다
+    removeMarker();
+    ps.categorySearch(currCategory, placesSearchCB, {useMapBounds:true}); 
+}
+
+// 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
+function placesSearchCB( status, data, pagination ) {
+    if (status === daum.maps.services.Status.OK) {
+        // 정상적으로 검색이 완료됐으면 지도에 마커를 표출합니다
+        displayPlaces(data.places);
+    } else if (status === daum.maps.services.Status.ZERO_RESULT) {
+        // 검색결과가 없는경우 해야할 처리가 있다면 이곳에 작성해 주세요
+    } else if (status === daum.maps.services.Status.ERROR) {
+        // 에러로 인해 검색결과가 나오지 않은 경우 해야할 처리가 있다면 이곳에 작성해 주세요
+    }
+}
+
+// 지도에 마커를 표출하는 함수입니다
+function displayPlaces(places) {
+    // 몇번째 카테고리가 선택되어 있는지 얻어옵니다
+    // 이 순서는 스프라이트 이미지에서의 위치를 계산하는데 사용됩니다
+    var order = document.getElementById(currCategory).getAttribute('data-order');
+    for ( var i=0; i<places.length; i++ ) {
+            // 마커를 생성하고 지도에 표시합니다
+            var marker2 = addMarker(new daum.maps.LatLng(places[i].latitude, places[i].longitude), order);
+            // 마커와 검색결과 항목을 클릭 했을 때
+            // 장소정보를 표출하도록 클릭 이벤트를 등록합니다
+            (function(marker2, place) {
+                daum.maps.event.addListener(marker2, 'click', function() {
+                    displayPlaceInfo(place);
+                });
+            })(marker2, places[i]);
+    }
+}
+
+// 마커를 생성하고 지도 위에 마커를 표시하는 함수입니다
+function addMarker(position, order) {
+    var imageSrc = 'http://i1.daumcdn.net/localimg/localimages/07/mapapidoc/places_category.png', // 마커 이미지 url, 스프라이트 이미지를 씁니다
+        imageSize = new daum.maps.Size(27, 28),  // 마커 이미지의 크기
+        imgOptions =  {
+            spriteSize : new daum.maps.Size(72, 208), // 스프라이트 이미지의 크기
+            spriteOrigin : new daum.maps.Point(46, (order*36)), // 스프라이트 이미지 중 사용할 영역의 좌상단 좌표
+            offset: new daum.maps.Point(11, 28) // 마커 좌표에 일치시킬 이미지 내에서의 좌표
+        },
+        markerImage = new daum.maps.MarkerImage(imageSrc, imageSize, imgOptions),
+            marker2 = new daum.maps.Marker({
+            position: position, // 마커의 위치
+            image: markerImage 
+        });
+
+    marker2.setMap(aroundmap); // 지도 위에 마커를 표출합니다
+    markers.push(marker2);  // 배열에 생성된 마커를 추가합니다
+
+    return marker2;
+}
+
+// 지도 위에 표시되고 있는 마커를 모두 제거합니다
+function removeMarker() {
+    for ( var i = 0; i < markers.length; i++ ) {
+        markers[i].setMap(null);
+    }   
+    markers = [];
+}
+
+// 클릭한 마커에 대한 장소 상세정보를 커스텀 오버레이로 표시하는 함수입니다
+function displayPlaceInfo (place) {
+    var content2 = '<div class="placeinfo">' +
+                    '   <a class="title" href="' + place.placeUrl + '" target="_blank" title="' + place.title + '">' + place.title + '</a>';   
+
+    if (place.newAddress) {
+        content2 += '    <span title="' + place.newAddress + '">' + place.newAddress + '</span>' +
+                    '  <span class="jibun" title="' + place.address + '">(지번 : ' + place.address + ')</span>';
+    }  else {
+        content2 += '    <span title="' + place.address + '">' + place.address + '</span>';
+    }                
+   
+    content2 += '    <span class="tel">' + place.phone + '</span>' + 
+                '</div>' + 
+                '<div class="after"></div>';
+
+    contentNode.innerHTML = content2;
+    placeOverlay.setPosition(new daum.maps.LatLng(place.latitude, place.longitude));
+    placeOverlay.setMap(aroundmap);  
+}
+
+
+// 각 카테고리에 클릭 이벤트를 등록합니다
+function addCategoryClickEvent() {
+    var category = document.getElementById('category'),
+        children = category.children;
+
+    for (var i=0; i<children.length; i++) {
+        children[i].onclick = onClickCategory;
+    }
+}
+
+// 카테고리를 클릭했을 때 호출되는 함수입니다
+function onClickCategory() {
+    var id = this.id,
+        className = this.className;
+
+    placeOverlay.setMap(null);
+
+    if (className === 'on') {
+        currCategory = '';
+        changeCategoryClass();
+        removeMarker();
+    } else {
+        currCategory = id;
+        changeCategoryClass(this);
+        searchPlaces();
+    }
+}
+
+// 클릭된 카테고리에만 클릭된 스타일을 적용하는 함수입니다
+function changeCategoryClass(el) {
+    var category = document.getElementById('category'),
+        children = category.children,
+        i;
+
+    for ( i=0; i<children.length; i++ ) {
+        children[i].className = '';
+    }
+
+    if (el) {
+        el.className = 'on';
+    } 
+} 
+</script>
 						
+<<<<<<< HEAD
 						<!-- Daum road View End -->
 						<!-- Street View start -->
 						<iframe width="300" height="200" frameborder="1" style="border: 0"
@@ -469,25 +499,217 @@ function setfavorite(){
 				<div class="panel panel-default">
 					<div class="panel-heading">주변 정보</div>
 					<div class="panel-body">
-						<!-- Daum road View start -->
+						<!-- Daum category Map start -->
+						<div class="map_wrap">
+							    <div id="aroundmap" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
+							    <ul id="category">
+							        <li id="BK9" data-order="0"><span class="category_bg bank"></span>은행 </li>       
+							        <li id="MT1" data-order="1"><span class="category_bg mart"></span>마트</li>  
+							        <li id="PM9" data-order="2"><span class="category_bg pharmacy"></span>약국</li>  
+							        <li id="OL7" data-order="3"><span class="category_bg oil"></span>주유소</li>  
+							        <li id="CE7" data-order="4"><span class="category_bg cafe"></span>카페</li>  
+							        <li id="CS2" data-order="5"><span class="category_bg store"></span>편의점</li>      
+							    </ul>
+						</div>
+=======
+>>>>>>> ca4290a2455cc3719dbd3b7a6d73910f8a8ae031
+						
+<script>
+// 마커를 클릭했을 때 해당 장소의 상세정보를 보여줄 커스텀오버레이입니다
+var placeOverlay = new daum.maps.CustomOverlay({zIndex:1}), 
+    contentNode = document.createElement('div'), // 커스텀 오버레이의 컨텐츠 엘리먼트 입니다 
+    markers = [], // 마커를 담을 배열입니다
+    currCategory = ''; // 현재 선택된 카테고리를 가지고 있을 변수입니다
+ 
+var mapContainer2 = document.getElementById('aroundmap'), // 지도를 표시할 div 
+    mapOption2 = {
+        center: new daum.maps.LatLng(<%=parkingDetail.getLatitude()%>, <%=parkingDetail.getLongitude()%>), // 지도의 중심좌표
+        level: 5 // 지도의 확대 레벨
+    };  
+
+// 지도를 생성합니다    
+var aroundmap = new daum.maps.Map(mapContainer2, mapOption2); 
+
+// 장소 검색 객체를 생성합니다
+var ps = new daum.maps.services.Places(aroundmap); 
+
+// 지도에 idle 이벤트를 등록합니다
+daum.maps.event.addListener(aroundmap, 'idle', searchPlaces);
+
+// 커스텀 오버레이의 컨텐츠 노드에 css class를 추가합니다 
+contentNode.className = 'placeinfo_wrap';
+
+// 커스텀 오버레이의 컨텐츠 노드에 mousedown, touchstart 이벤트가 발생했을때
+// 지도 객체에 이벤트가 전달되지 않도록 이벤트 핸들러로 daum.maps.event.preventMap 메소드를 등록합니다 
+addEventHandle(contentNode, 'mousedown', daum.maps.event.preventMap);
+addEventHandle(contentNode, 'touchstart', daum.maps.event.preventMap);
+
+// 커스텀 오버레이 컨텐츠를 설정합니다
+placeOverlay.setContent(contentNode);  
+
+// 각 카테고리에 클릭 이벤트를 등록합니다
+addCategoryClickEvent();
+
+// 엘리먼트에 이벤트 핸들러를 등록하는 함수입니다
+function addEventHandle(target, type, callback) {
+    if (target.addEventListener) {
+        target.addEventListener(type, callback);
+    } else {
+        target.attachEvent('on' + type, callback);
+    }
+}
+
+// 카테고리 검색을 요청하는 함수입니다
+function searchPlaces() {
+    if (!currCategory) {
+        return;
+    }
+    // 커스텀 오버레이를 숨깁니다 
+    placeOverlay.setMap(null);
+    // 지도에 표시되고 있는 마커를 제거합니다
+    removeMarker();
+    ps.categorySearch(currCategory, placesSearchCB, {useMapBounds:true}); 
+}
+
+// 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
+function placesSearchCB( status, data, pagination ) {
+    if (status === daum.maps.services.Status.OK) {
+        // 정상적으로 검색이 완료됐으면 지도에 마커를 표출합니다
+        displayPlaces(data.places);
+    } else if (status === daum.maps.services.Status.ZERO_RESULT) {
+        // 검색결과가 없는경우 해야할 처리가 있다면 이곳에 작성해 주세요
+    } else if (status === daum.maps.services.Status.ERROR) {
+        // 에러로 인해 검색결과가 나오지 않은 경우 해야할 처리가 있다면 이곳에 작성해 주세요
+    }
+}
+
+// 지도에 마커를 표출하는 함수입니다
+function displayPlaces(places) {
+    // 몇번째 카테고리가 선택되어 있는지 얻어옵니다
+    // 이 순서는 스프라이트 이미지에서의 위치를 계산하는데 사용됩니다
+    var order = document.getElementById(currCategory).getAttribute('data-order');
+    for ( var i=0; i<places.length; i++ ) {
+            // 마커를 생성하고 지도에 표시합니다
+            var marker2 = addMarker(new daum.maps.LatLng(places[i].latitude, places[i].longitude), order);
+            // 마커와 검색결과 항목을 클릭 했을 때
+            // 장소정보를 표출하도록 클릭 이벤트를 등록합니다
+            (function(marker2, place) {
+                daum.maps.event.addListener(marker2, 'click', function() {
+                    displayPlaceInfo(place);
+                });
+            })(marker2, places[i]);
+    }
+}
+
+// 마커를 생성하고 지도 위에 마커를 표시하는 함수입니다
+function addMarker(position, order) {
+    var imageSrc = 'http://i1.daumcdn.net/localimg/localimages/07/mapapidoc/places_category.png', // 마커 이미지 url, 스프라이트 이미지를 씁니다
+        imageSize = new daum.maps.Size(27, 28),  // 마커 이미지의 크기
+        imgOptions =  {
+            spriteSize : new daum.maps.Size(72, 208), // 스프라이트 이미지의 크기
+            spriteOrigin : new daum.maps.Point(46, (order*36)), // 스프라이트 이미지 중 사용할 영역의 좌상단 좌표
+            offset: new daum.maps.Point(11, 28) // 마커 좌표에 일치시킬 이미지 내에서의 좌표
+        },
+        markerImage = new daum.maps.MarkerImage(imageSrc, imageSize, imgOptions),
+            marker2 = new daum.maps.Marker({
+            position: position, // 마커의 위치
+            image: markerImage 
+        });
+
+    marker2.setMap(aroundmap); // 지도 위에 마커를 표출합니다
+    markers.push(marker2);  // 배열에 생성된 마커를 추가합니다
+
+    return marker2;
+}
+
+// 지도 위에 표시되고 있는 마커를 모두 제거합니다
+function removeMarker() {
+    for ( var i = 0; i < markers.length; i++ ) {
+        markers[i].setMap(null);
+    }   
+    markers = [];
+}
+
+// 클릭한 마커에 대한 장소 상세정보를 커스텀 오버레이로 표시하는 함수입니다
+function displayPlaceInfo (place) {
+    var content2 = '<div class="placeinfo">' +
+                    '   <a class="title" href="' + place.placeUrl + '" target="_blank" title="' + place.title + '">' + place.title + '</a>';   
+
+    if (place.newAddress) {
+        content2 += '    <span title="' + place.newAddress + '">' + place.newAddress + '</span>' +
+                    '  <span class="jibun" title="' + place.address + '">(지번 : ' + place.address + ')</span>';
+    }  else {
+        content2 += '    <span title="' + place.address + '">' + place.address + '</span>';
+    }                
+   
+    content2 += '    <span class="tel">' + place.phone + '</span>' + 
+                '</div>' + 
+                '<div class="after"></div>';
+
+    contentNode.innerHTML = content2;
+    placeOverlay.setPosition(new daum.maps.LatLng(place.latitude, place.longitude));
+    placeOverlay.setMap(aroundmap);  
+}
+
+
+// 각 카테고리에 클릭 이벤트를 등록합니다
+function addCategoryClickEvent() {
+    var category = document.getElementById('category'),
+        children = category.children;
+
+    for (var i=0; i<children.length; i++) {
+        children[i].onclick = onClickCategory;
+    }
+}
+
+// 카테고리를 클릭했을 때 호출되는 함수입니다
+function onClickCategory() {
+    var id = this.id,
+        className = this.className;
+
+    placeOverlay.setMap(null);
+
+    if (className === 'on') {
+        currCategory = '';
+        changeCategoryClass();
+        removeMarker();
+    } else {
+        currCategory = id;
+        changeCategoryClass(this);
+        searchPlaces();
+    }
+}
+
+// 클릭된 카테고리에만 클릭된 스타일을 적용하는 함수입니다
+function changeCategoryClass(el) {
+    var category = document.getElementById('category'),
+        children = category.children,
+        i;
+
+    for ( i=0; i<children.length; i++ ) {
+        children[i].className = '';
+    }
+
+    if (el) {
+        el.className = 'on';
+    } 
+} 
+</script>
+						
+<<<<<<< HEAD
 						
 						
-						<!-- Daum road View End -->
-						<!-- Street View start -->
-						<iframe width="300" height="200" frameborder="1" style="border: 0"
-							src="https://www.google.com/maps/embed/v1/streetview?key=AIzaSyB3d8wlcwuwvoXDFp4vd4ghi9nDnuDt4Hw&location=46.414382,10.013988&heading=210&pitch=10&fov=35">
-						</iframe>
-						<!-- Street View End -->
+=======
+>>>>>>> ca4290a2455cc3719dbd3b7a6d73910f8a8ae031
+						<!-- Daum category MapEnd -->
 					</div>
 				</div>
 				
-				<!-- Review Start-->
+					<!-- Review Start-->
 				<div class="panel panel-default">
 					<div class="panel-heading"> 
 						<b>Review</b>
-							<div class="text-right">
-								<a class="btn btn-success">Leave a Review</a>
-							</div>
+							
 					</div>
 					<div class="panel-body">
 							<hr></hr>
@@ -497,9 +719,11 @@ for(ReviewDto reviewDto : reviewlist){
 %>
 							<div class="row">
 								<div class="col-md-12">
-									<p><%=reviewDto.getUser_id() %></p>
-									<span class="pull-right">작성일 : <%=reviewDto.getLogtime() %></span>
-							</div>
+									<div class="text-center">
+										<%=reviewDto.getSubject()%>
+									</div>
+								
+									<div class="text-right">
 	<% 
 		for(int i = 0;i<avgpoint;++i){
 	%>
@@ -512,58 +736,96 @@ for(ReviewDto reviewDto : reviewlist){
 	<% 
 		}
 	%> 
-							<div class="row">
-									<p><%=reviewDto.getSubject()%></p>
+									</div>
+								</div>	
 							</div>
+							<div class ="row">
+								<div class="col-md-12">
+									<div class="text-left">
+										작성일 : <%=reviewDto.getLogtime() %>
+									</div>
+									<div class="text-right">
+										<%=reviewDto.getUser_id()%>
+									</div>
+								</div>	
+							</div>		
 							<div class="row">
-									<p><%=reviewDto.getContent()%></p>
-									<p>-------------------------------------------</p>
+								<div class="col-md-12">
+									<div class="text-left">
+										<p><%=reviewDto.getContent()%></p>
+									</div>
+									<div class="text-center">
+										<p>-------------------------------------------</p>
+									</div>
 								</div>
 							</div>
 	<%
 	}
 	%>
-	
 						</div>
 					</div>
 				</div>
+				</div>
 					<!-- Review End-->
-			
+					
 			<!-- Left Section End -->
 
 			<!-- Right Section Start -->
-			<div class="col-md-5">
-				<div class="row">
-					<!-- Date Picker panel Start -->
-					<div class="panel panel-default">
-					<form id="selectdateForm" name="selectdateForm" class="form-inline" role="form" method="post" >
-					<input type="hidden"  name="act" value="mvReservation">
-					<input type="hidden"  name="park_id" value="<%=parkingDetail.getPark_id()%>">
-					<input type="hidden"  name="park_name" value="<%=parkingDetail.getPark_name()%>">
-					<input type="hidden"  name="host_id" value="<%=parkingDetail.getOwner_id()%>">
-						<div class="panel-body">	
-				<div class="row"><!-- From Choice Start -->
-					<div class="col-md-3">
-								<div class="pull-right">From : </div>
-						</div>
-						<div class="col-md-9" >		
-								<input class="date-picker" id="fromdate" name="fromdate" type="text" />
-								<select id="srfromTime" name="srfromTime">
-								  <option value="0">00:00</option><option value="1">01:00</option><option value="2">02:00</option>
-								  <option value="3">03:00</option> <option value="4">04:00</option><option value="5">05:00</option>
-								  <option value="6">06:00</option><option value="7">07:00</option><option value="8">08:00</option>
-								  <option value="9">09:00</option><option value="10">10:00</option><option value="11">11:00</option>
-								  <option value="12">12:00</option><option value="13">13:00</option><option value="14">14:00</option>
-								  <option value="15">15:00</option> <option value="16">16:00</option><option value="17">17:00</option>
-								  <option value="18">18:00</option><option value="19">19:00</option> <option value="20">20:00</option>
-								  <option value="21">21:00</option><option value="22">22:00</option><option value="23">23:00</option>
-								</select>
+			<div class="container" style="text-align:right">
+				<div class="col-md-5">
+					<div class="row">
+						<!-- Date Picker panel Start -->
+						<div class="panel panel-default">
+						<form id="selectdateForm" name="selectdateForm" class="form-inline" role="form" method="post" >
+						<input type="hidden"  name="act" value="mvReservation">
+						<input type="hidden"  name="park_id" value="<%=parkingDetail.getPark_id()%>">
+						<input type="hidden"  name="park_name" value="<%=parkingDetail.getPark_name()%>">
+						<input type="hidden"  name="host_id" value="<%=parkingDetail.getOwner_id()%>">
+							<div class="panel-body">	
+					<div class="row"><!-- From Choice Start -->
+						<div class="col-md-3">
+									<div class="pull-right">From : </div>
 							</div>
-					</div><!-- From Choice End -->
-					<div class="row"><!-- To Choice Start -->
-							<div class="col-md-3">
-								<div class="pull-right">T o :</div> 
+							<div class="col-md-9" >		
+									<input class="date-picker" id="fromdate" name="fromdate" type="text" />
+									<select id="srfromTime" name="srfromTime">
+									  <option value="0">00:00</option><option value="1">01:00</option><option value="2">02:00</option>
+									  <option value="3">03:00</option> <option value="4">04:00</option><option value="5">05:00</option>
+									  <option value="6">06:00</option><option value="7">07:00</option><option value="8">08:00</option>
+									  <option value="9">09:00</option><option value="10">10:00</option><option value="11">11:00</option>
+									  <option value="12">12:00</option><option value="13">13:00</option><option value="14">14:00</option>
+									  <option value="15">15:00</option> <option value="16">16:00</option><option value="17">17:00</option>
+									  <option value="18">18:00</option><option value="19">19:00</option> <option value="20">20:00</option>
+									  <option value="21">21:00</option><option value="22">22:00</option><option value="23">23:00</option>
+									</select>
 								</div>
+<<<<<<< HEAD
+						</div><!-- From Choice End -->
+						<div class="row"><!-- To Choice Start -->
+								<div class="col-md-3">
+									<div class="pull-right">T o :</div> 
+									</div>
+									<div class="col-md-9" >
+									<input class="date-picker" id="todate"   name="todate" type="text" />
+									<select id="srtoTime" name="srtoTime">
+									  <option value="0">00:00</option><option value="1">01:00</option><option value="2">02:00</option>
+									  <option value="3">03:00</option> <option value="4">04:00</option><option value="5">05:00</option>
+									  <option value="6">06:00</option><option value="7">07:00</option><option value="8">08:00</option>
+									  <option value="9">09:00</option><option value="10">10:00</option><option value="11">11:00</option>
+									  <option value="12">12:00</option><option value="13">13:00</option><option value="14">14:00</option>
+									  <option value="15">15:00</option> <option value="16">16:00</option><option value="17">17:00</option>
+									  <option value="18">18:00</option><option value="19">19:00</option> <option value="20">20:00</option>
+									  <option value="21">21:00</option><option value="22">22:00</option><option value="23">23:00</option>
+									</select>
+									</div>
+						</div>	<!-- To Choice End --><br>
+	
+									<button type="button" onclick="javascript:goReservation();" class="btn btn-success" id="goreser" name="goreser"">
+	                  				 예약하기 
+	               				</button>
+						</div> <!--  radio button에 의한 Multi reservation End-->
+						</form>
+=======
 								<div class="col-md-9" >
 								<input class="date-picker" id="todate"   name="todate" type="text" />
 								<select id="srtoTime" name="srtoTime">
@@ -600,19 +862,63 @@ for(ReviewDto reviewDto : reviewlist){
                				</button>
                
 							<br>
+>>>>>>> d399477e644b3052e8b5c11d21a66b5a0fb28f13
 						</div>
+						<!-- Date Picker panel End -->
+						<div class="panel panel-default">
+							<div class="panel-body">
+								<img src="/carpark/img/tmpimg.JPG" width="350" height="250">
+							</div>
 						</div>
+<<<<<<< HEAD
+						<!-- img panel End -->
+						<div class="panel panel-default">
+							<div class="panel-body">호스트 : <%=parkingDetail.getOwner_id() %></div>
+							<div class="text-center">
+								 <button type="button" class="btn btn-success"  id="sendMsgToHost" name="sendMsgToHost" data-toggle="modal"  data-target="#msgToHost">
+	                  				Send Message
+	               				</button>
+	               
+								<br>
+							</div>
+							</div>
+						<!-- host info panel End -->
+						<div class="panel panel-default">
+							<div class="panel-body">
+								<div id="c">
+								<h3>사용 가능 일</h3>
+									<div id="disp">
+										<div id="prev" class="nav">←</div>
+										<div id="month"></div>
+										<div id="next" class="nav">→</div>
+									</div>
+									<div id="cal"></div>
+								</div>
+								<!-- /#c -->
+								<script src="/carpark/js/calendar/index.js"></script>
+							</div>
+=======
 					<!-- host info panel End -->
 					<!--  clelander panel  -->
 					<div class="panel panel-default">
 						<div class="panel-body" id="datepanelbody">
     						</div>
+>>>>>>> d399477e644b3052e8b5c11d21a66b5a0fb28f13
 						</div>
+						<!-- clelander panel End -->
 					</div>
+<<<<<<< HEAD
+				</div>
+			
+		</div>
+	<!-- /.container -->
+=======
 					<!--  clelander panel End  -->
 				</div>
 			</div>
+<<<<<<< HEAD
 		
+>>>>>>> d399477e644b3052e8b5c11d21a66b5a0fb28f13
 	<div class="container">
 
 		<hr>
@@ -622,6 +928,9 @@ for(ReviewDto reviewDto : reviewlist){
 
 
 
+=======
+	
+>>>>>>> ca4290a2455cc3719dbd3b7a6d73910f8a8ae031
 
 
 		<!-- Custom Theme JavaScript -->
@@ -665,19 +974,18 @@ for(ReviewDto reviewDto : reviewlist){
 			
 			//review
 			$('#sendMsgToHost').on('click', function (event) {
-				<%//if(memberDto !=null){%>
-				console.log("dasfasdfafsdf");
+		 		<%//if(memberDto !=null){%>
 			        $("#receiver").val("<%=parkingDetail.getOwner_id()%>");
 			        $("#subject").val("");
 			        $("#content").empty();
 		        	$("#sendmsguser_id").val("<%=memberDto.getUser_id()%>");
 		        	$("#sendmsgpark_id").val("<%=parkingDetail.getPark_id()%>");
 			        $("#receiver").prop("disabled", true);
-			//        $("#msgToHost").load("<%=root%>/reservation/sendMessageModal.jsp");
+		     //    $("#msgToHost").load("<%=root%>/reservation/sendMessageModal.jsp");
 				<%//}else{%>
-				//	alert("로그인 후 이용할 수 있습니다.");
-				//	return;
-					<%//}%>
+					//alert("로그인 후 이용할 수 있습니다.");
+					//return;
+				 	<%//}}%>
 				})
 			
 		</script>
@@ -706,6 +1014,8 @@ for(ReviewDto reviewDto : reviewlist){
             ]
            });
         });
+        
+
     </script>
 		
 

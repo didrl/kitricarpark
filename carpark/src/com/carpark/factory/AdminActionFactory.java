@@ -23,7 +23,6 @@ import com.carpark.admin.penalty.action.AdminPenaltyModifyAction;
 import com.carpark.admin.penalty.action.AdminPenaltyRegisterAction;
 
 public class AdminActionFactory {
-	
 	private static Action adminEvaluationDeleteAction;
 	private static Action adminEvaluationListAction;
 	private static Action adminEvaluationModifyAction;
@@ -56,6 +55,7 @@ public class AdminActionFactory {
 	
 	
 	static {
+		
 		adminEvaluationDeleteAction = new AdminEvaluationDeleteAction();
 		adminEvaluationListAction = new AdminEvaluationListAction();
 		adminEvaluationModifyAction = new AdminEvaluationModifyAction();
@@ -81,6 +81,7 @@ public class AdminActionFactory {
 		adminCallRegisterAction = new AdminCallRegisterAction();
 		adminCallViewAction = new AdminCallViewAction();	
 		}
+
 
 
 	public static Action getAdminCallDeleteAction() {

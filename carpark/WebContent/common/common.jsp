@@ -27,6 +27,9 @@ MemberDto memberDto = (MemberDto)session.getAttribute("memberInfo");
     <link href="<%=root %>/css/stylish-portfolio.css" rel="stylesheet">
     <link href="<%=root %>/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 	<link href="<%=root %>/css/custom_kitri.css" rel="stylesheet">
+	
+	<link rel="stylesheet" href="/carpark/css/normalize.css">
+<link rel="stylesheet" href="/carpark/css/style.css">
 	<!-- login -->
 	<script type="text/javascript">
 	var root = "<%=root%>";
@@ -61,6 +64,9 @@ MemberDto memberDto = (MemberDto)session.getAttribute("memberInfo");
     <script src="//www.fuelcdn.com/fuelux/3.13.0/js/fuelux.min.js"></script>
     
     <!-- message.js -->
+    <script type="text/javascript" src="<%=root %>/message/message.js"></script>
+    
+    <!-- admincall.js -->
     <script type="text/javascript" src="<%=root %>/message/message.js"></script>
        
     <form name="common" method="get" action="">

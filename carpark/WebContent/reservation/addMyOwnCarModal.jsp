@@ -30,8 +30,9 @@ function addNewCar(){
 			<div class="modal-body">
 
 				<form class="form-horizontal" id="addcarForm" name="addcarForm">
-					<input type="hidden" name="act" value="addcarok">
-			<!-- 		<input type="hidden" name="user_id" value="<%//=memberDto.getUser_id%>"> -->
+				<input type="hidden" name="act" value="addcarok">
+				<input type="hidden" name="user_id"  id="addcaruser_id" value="">
+				
 					<div class="form-group">
 						<label for="inputCarNum" class="col-sm-2 control-label">차량
 							번호</label>

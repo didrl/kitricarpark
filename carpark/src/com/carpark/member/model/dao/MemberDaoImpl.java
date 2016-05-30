@@ -13,6 +13,7 @@ import com.carpark.admin.model.ParkingDto;
 import com.carpark.admin.model.ParkingFacilityDto;
 import com.carpark.db.DBClose;
 import com.carpark.db.DBConnection;
+import com.carpark.member.model.MemberCarDto;
 import com.carpark.member.model.MemberDto;
 
 public class MemberDaoImpl implements MemberDao {
@@ -150,7 +151,7 @@ public class MemberDaoImpl implements MemberDao {
 			conn=DBConnection.makeConnection();
 			String sql="";
 
-			sql+="select user_id,coin,grade_id,user_name,user_avgpoint,email,tel,user_pass \n";
+			sql+="select user_id,coin,grade_id,user_name,user_avgpoint,email,tel,user_pass,login_key, host_flag, profile_image, penalty, user_flag \n";
 			sql+="from member \n";
 			sql+="where user_id=? and user_pass=? \n";
 		
@@ -166,9 +167,14 @@ public class MemberDaoImpl implements MemberDao {
 				memberDto.setGrade_id(rs.getInt("grade_id"));
 				memberDto.setUser_name(rs.getString("user_name"));
 				memberDto.setUser_avgPoint(rs.getInt("user_avgpoint"));
+				memberDto.setHost_flag(rs.getInt("host_flag"));
+				memberDto.setPenalty(rs.getInt("penalty"));
+				memberDto.setUser_flag(rs.getInt("user_flag"));
 				memberDto.setEmail(rs.getString("email"));
 				memberDto.setTel(rs.getString("tel"));
 				memberDto.setUser_pass(rs.getString("user_pass"));
+				memberDto.setLogin_key(rs.getString("login_key"));
+				memberDto.setProfile_image(rs.getString("profile_image"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -271,9 +277,27 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	@Override
-	public int addNewCar(String user_id) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int addNewCar(MemberCarDto memberCarDto) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		int cnt=0;
+		try {
+			conn = DBConnection.makeConnection();
+			String sql = "insert into member_car(category, reg_num, user_id,car_name) \n";
+			sql +="values (?,?,?,?)";
+			pstmt = conn.prepareStatement(sql);
+			int idx=0;
+			pstmt.setString(++idx, memberCarDto.getCategory());
+			pstmt.setString(++idx, memberCarDto.getReg_num());
+			pstmt.setString(++idx, memberCarDto.getUser_id());
+			pstmt.setString(++idx, memberCarDto.getModel());
+			cnt = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose.close(conn, pstmt);
+		}
+		return cnt;
 	}
 	
 	@Override

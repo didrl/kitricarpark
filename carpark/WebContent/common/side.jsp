@@ -13,8 +13,8 @@
 						프로필 <i class="fa fa-fw fa-caret-down"></i></a>
 					<ul id="profile" class="collapse">
 						<li><a href="javascript:detailprofile();">프로필 수정</a></li>
-						<li><a href="#">내 차량 정보</a></li>
-						<li><a href="#">즐겨찾는 주차장</a></li>
+						<li><a href="javascript:myowncarinfo();">내 차량 정보</a></li>
+						<li><a href="javascript:myfavoriteparking();">즐겨찾는 주차장</a></li>
 					</ul></li>
 					
 				<li><a href="javascript:;"><i class="fa fa-fw fa-edit"></i>

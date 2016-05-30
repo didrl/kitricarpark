@@ -2,15 +2,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/common/common.jsp" %>
-<%@ include file="/admin/common/header.jsp" %>
+<%@include file="/common/header/init.jsp"%>
 <%@ include file="/admin/common/sidebar.jsp" %>
 <%
-if(memberDto == null) {
+
 List<CallDto> callList = (List<CallDto>)request.getAttribute("receiveList");
 %>
 <div id="wrapper">
 <!-- ****************************************************************************************************************** -->	
-
+ 
 		<!-- main -->
 		<div id="page-wrapper">
 			<div class="container-fluid">
@@ -46,13 +46,14 @@ List<CallDto> callList = (List<CallDto>)request.getAttribute("receiveList");
 				
 <%
 int size = callList.size();
+	
 if(size > 0) {
 	for(CallDto callDto : callList) {
 %>
 					<!-- 쪽지목록 -->
 					<tr >
-						<td><a href="javascript:messageReceiveView('<%=callDto.getSeq()%>');"><%=callDto.getUserID() %></a></td>
-						<td><a href="javascript:messageReceiveView('<%=callDto.getSeq() %>');"><%=callDto.getSubject() %></a></td>
+						<td><a href="javascript:adminMessageReceiveView('<%=callDto.getSeq()%>');"><%=callDto.getUserID() %></a></td>
+						<td><a href="javascript:adminMessageReceiveView('<%=callDto.getSeq() %>');"><%=callDto.getSubject() %></a></td>
 						<td><%=callDto.getLogtime() %></td>	
 <%
 if(callDto.getpCall_Flag() == 0) {
@@ -132,13 +133,13 @@ if(callDto.getpCall_Flag() == 0) {
 <!-- ****************************************************************************************************************** -->	
 </div>
 <%
-}else{
+
 %>
 <center>
 <h3>로그인 후 이용해주세요</h3>
 </center>
 <%
-}
+
 %>
 
 <%@include file="/common/footer.jsp"%>
