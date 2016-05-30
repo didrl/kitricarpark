@@ -1,5 +1,5 @@
 //쪽지 검색
-function messageSearch() {
+function adminMessageSearch() {
 	if(document.searchForm.word.value == ""){
 		alert("내용을 입력하세요");
 		return;
@@ -10,17 +10,17 @@ function messageSearch() {
 }
 
 //보낸쪽지보기
-function messageSendView(seq) {
+function adminMessageSendView(seq) {
 	window.open( "/carpark/message?act=messageSendView&seq=" + seq, "newWindow", "top=100, left=400, width=500, height=600, scrollbars=yes" );
 }
 
 //받은쪽지보기
-function messageReceiveView(seq) {
+function adminMessageReceiveView(seq) {
 	window.open( "/carpark/message?act=messageReceiveView&seq=" + seq, "newWindow", "top=100, left=400, width=500, height=600, scrollbars=yes" );
 }
 
 //보낸 쪽지 삭제(삭제 후 보낸 쪽지 리스트 출력)
-function messageSendDelete(seq) {
+function adminMessageSendDelete(seq) {
 	document.common.act.value = "messageSendDelete";
 	document.common.seq.value = seq;
 			
@@ -31,7 +31,7 @@ function messageSendDelete(seq) {
 }
 
 //받은 쪽지 삭제(삭제 후 받은 쪽지 리스트 출력)
-function messageReceiveDelete(seq) {
+function adminMessageReceiveDelete(seq) {
 	document.common.act.value = "messageReceiveDelete";
 	document.common.seq.value = seq;
 			
@@ -42,7 +42,7 @@ function messageReceiveDelete(seq) {
 }
 
 //보낸 쪽지 리스트
-function messageSendList() {
+function adminMessageSendList() {
 	document.getElementById("act").value = "messageSendList";
 		
 	document.common.action = "/carpark/message";
@@ -50,7 +50,7 @@ function messageSendList() {
 }
 
 //받은 쪽지 리스트
-function messageReceiveList() {
+function adminMessageReceiveList() {
 	document.getElementById("act").value = "messageReceiveList";
 		
 	document.common.action = "/carpark/message";
@@ -58,7 +58,7 @@ function messageReceiveList() {
 }
 
 //쪽지 보내기
-function messageWrite() {
+function adminMessageWrite() {
 	if(document.messageWriteForm.receiver.value == ""){
 		alert("대상을 입력하세요");
 		return;
@@ -75,7 +75,7 @@ function messageWrite() {
 }
 
 //지정된 대상에게 쪽지 보내기
-function messageToWrite() {
+function adminMessageToWrite() {
 	if(document.messageToWriteForm.receiver.value == ""){
 		alert("대상을 입력하세요");
 		return;
@@ -92,15 +92,15 @@ function messageToWrite() {
 }
 
 //입력 초기화
-function writeInit() {
+function adminWriteInit() {
 	document.messageWriteForm.reset();
 }
 
-function toWriteInit(receiver) {
+function adminToWriteInit(receiver) {
 	document.messageToWriteForm.reset();//폼 초기화
 	document.messageToWriteForm.receiver.value = receiver;//대상지정
 }
 
-function messageClose() {
+function adminMessageClose() {
 	window.close();
 }
