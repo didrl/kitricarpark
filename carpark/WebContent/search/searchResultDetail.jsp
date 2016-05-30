@@ -120,6 +120,12 @@ function goResultDetail() {
 	document.parkListForm.action = "/carpark/member";
 	document.parkListForm.submit();
 }
+
+function setfavorite(){
+	if (confirm("즐겨찾기에 등록하시겠습니까?")) {
+	document.location.href = "<%=root%>/member?act=setfavorite&park_id=<%=parkingDetail.getPark_id()%>";
+	}
+}
 </script>
 
 
@@ -166,7 +172,7 @@ function goResultDetail() {
 						<h3><b>&nbsp;&nbsp;&nbsp; <%=parkingDetail.getPark_name()%>  &nbsp;&nbsp;&nbsp; 
 							<i class = glyphicon glyphicon-star></i><i class = glyphicon glyphicon-star></i><i class = glyphicon glyphicon-star> </i><i class = glyphicon glyphicon-star></i><i class = glyphicon glyphicon-star-empty></i></b> 
 							<%=parkingDetail.getLocation() %>
-							<a href=""><img height="30"  src="/carpark/img/heart.jpg"></a>
+							<a href="javascript:setfavorite();"><img height="30"  src="/carpark/img/heart.jpg"></a>
 						</h3>
 					</div>
 				</div>	

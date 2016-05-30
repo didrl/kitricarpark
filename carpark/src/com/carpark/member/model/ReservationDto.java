@@ -13,10 +13,15 @@ public class ReservationDto {
 	private String host_id;
 	private String park_name;
 	private int emd_code;
+	private int pay;
 	private ArrayList<Map<String,String>> carinfo;
 	
-	
-
+	public int getPay() {
+		return pay;
+	}
+	public void setPay(int pay) {
+		this.pay = pay;
+	}
 	public ArrayList<Map<String, String>> getCarinfo() {
 		return carinfo;
 	}

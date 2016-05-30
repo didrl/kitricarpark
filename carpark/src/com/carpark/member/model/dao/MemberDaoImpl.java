@@ -324,7 +324,6 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	@Override
-
 	public ParkingFacilityDto getParkingFacility_info(String park_id) {
 		ParkingFacilityDto parkingFacilityDto=null;
 		Connection conn =null;
