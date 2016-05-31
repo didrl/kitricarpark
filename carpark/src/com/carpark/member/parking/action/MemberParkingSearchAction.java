@@ -9,8 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.carpark.action.Action;
 import com.carpark.common.model.CitiesDto;
-import com.carpark.common.model.ParkingDetailDto;
-import com.carpark.factory.MemberActionFactory;
 import com.carpark.member.model.service.MemberParkingServiceImpl;
 import com.carpark.util.Encoder;
 

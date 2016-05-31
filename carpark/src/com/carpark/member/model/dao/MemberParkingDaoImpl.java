@@ -7,8 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.carpark.admin.model.ParkingDetailDto;
 import com.carpark.common.model.CitiesDto;
-import com.carpark.common.model.ParkingDetailDto;
 import com.carpark.db.DBClose;
 import com.carpark.db.DBConnection;
 
@@ -51,33 +51,33 @@ public class MemberParkingDaoImpl implements MemberParkingDao {
 			pstmt = conn.prepareStatement(sql);
 			int idx = 0;
 			//parking table
-			pstmt.setInt(++idx, parkingDto.getParkId());
-			pstmt.setString(++idx, parkingDto.getParkName());
-			pstmt.setInt(++idx, parkingDto.getParkCapacity());
-			pstmt.setString(++idx, parkingDto.getOwnerId());
+			pstmt.setInt(++idx, parkingDto.getPark_id());
+			pstmt.setString(++idx, parkingDto.getPark_name());
+			pstmt.setInt(++idx, parkingDto.getPark_capacity());
+			pstmt.setString(++idx, parkingDto.getOwner_id());
 			pstmt.setDouble(++idx, parkingDto.getLatitude());
-			pstmt.setDouble(++idx, parkingDto.getLongtitude());
-			pstmt.setString(++idx, parkingDto.getParkType());
-			pstmt.setInt(++idx, parkingDto.getEmdCode());
+			pstmt.setDouble(++idx, parkingDto.getLongitude());
+			pstmt.setString(++idx, parkingDto.getPark_type());
+			pstmt.setInt(++idx, parkingDto.getEmd_code());
 			//parking_facility table
-			pstmt.setInt(++idx, parkingDto.getParkId());
+			pstmt.setInt(++idx, parkingDto.getPark_id());
 			pstmt.setString(++idx, parkingDto.getFacility());
 			pstmt.setString(++idx, parkingDto.getFeature());
 			//parking_img table
-			pstmt.setInt(++idx, parkingDto.getParkId());
-			pstmt.setString(++idx, parkingDto.getFileName());
-			pstmt.setString(++idx, parkingDto.getFilePath());
+			pstmt.setInt(++idx, parkingDto.getPark_id());
+			pstmt.setString(++idx, parkingDto.getImg_file_name());
+			pstmt.setString(++idx, parkingDto.getImg_file_path());
 			//parking_img table
-			pstmt.setInt(++idx, parkingDto.getParkId());
-			pstmt.setInt(++idx, parkingDto.getParkFlag());
-			pstmt.setString(++idx, parkingDto.getPayYn());
-			pstmt.setString(++idx, parkingDto.getSaturPayYn());
-			pstmt.setString(++idx, parkingDto.getHoliPayYn());
-			pstmt.setInt(++idx, parkingDto.getFullTimeMonthlyPay());
-			pstmt.setInt(++idx, parkingDto.getParkRate());
-			pstmt.setInt(++idx, parkingDto.getParkTimeRate());
-			pstmt.setInt(++idx, parkingDto.getAddParkRate());
-			pstmt.setInt(++idx, parkingDto.getDayMaxPay());
+			pstmt.setInt(++idx, parkingDto.getPark_id());
+			pstmt.setInt(++idx, parkingDto.getPark_flag());
+			pstmt.setString(++idx, parkingDto.getPay_yn());
+			pstmt.setString(++idx, parkingDto.getSatur_pay_yn());
+			pstmt.setString(++idx, parkingDto.getHoli_pay_yn());
+			pstmt.setInt(++idx, parkingDto.getFulltime_monthly_pay());
+			pstmt.setInt(++idx, parkingDto.getPark_rate());
+			pstmt.setInt(++idx, parkingDto.getPark_time_rate());
+			pstmt.setInt(++idx, parkingDto.getAdd_park_rate());
+			pstmt.setInt(++idx, parkingDto.getDay_max_pay());
 
 			pstmt.executeUpdate();
 	
@@ -180,27 +180,27 @@ public class MemberParkingDaoImpl implements MemberParkingDao {
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				ParkingDetailDto parkingDto = new ParkingDetailDto();
-				parkingDto.setParkId(rs.getInt("park_id"));
-				parkingDto.setParkName(rs.getString("park_name"));
-				parkingDto.setParkCapacity(rs.getInt("park_capacity"));
-				parkingDto.setOwnerId(rs.getString("owner_id"));
+				parkingDto.setPark_id(rs.getInt("park_id"));
+				parkingDto.setPark_name(rs.getString("park_name"));
+				parkingDto.setPark_capacity(rs.getInt("park_capacity"));
+				parkingDto.setOwner_id(rs.getString("owner_id"));
 				parkingDto.setLatitude(rs.getDouble("latitude"));
-				parkingDto.setLongtitude(rs.getDouble("longitude"));
-				parkingDto.setParkType(rs.getString("park_type"));
-				parkingDto.setEmdCode(rs.getInt("emd_code"));
+				parkingDto.setLongitude(rs.getDouble("longitude"));
+				parkingDto.setPark_type(rs.getString("park_type"));
+				parkingDto.setEmd_code(rs.getInt("emd_code"));
 				parkingDto.setContent(rs.getString("content"));
-				parkingDto.setParkFlag(rs.getInt("park_flag"));
-				parkingDto.setParkAvgPoint(rs.getInt("park_avgPoint"));
-				parkingDto.setGetStatus(rs.getInt("get_status"));
-				parkingDto.setCurParking(rs.getInt("cur_parking"));
-				parkingDto.setPayYn(rs.getString("PAY_YN"));
-				parkingDto.setSaturPayYn(rs.getString("satur_pay_yn"));
-				parkingDto.setHoliPayYn(rs.getString("holi_pay_yn"));
-				parkingDto.setFullTimeMonthlyPay(rs.getInt("fulltime_monthly_pay"));
-				parkingDto.setParkRate(rs.getInt("park_rate"));
-				parkingDto.setParkTimeRate(rs.getInt("park_time_rate"));
-				parkingDto.setAddParkRate(rs.getInt("add_park_rate"));
-				parkingDto.setDayMaxPay(rs.getInt("day_max_pay"));
+				parkingDto.setPark_flag(rs.getInt("park_flag"));
+				parkingDto.setPark_avgPoint(rs.getInt("park_avgPoint"));
+				parkingDto.setGet_status(rs.getInt("get_status"));
+				parkingDto.setCur_parking(rs.getInt("cur_parking"));
+				parkingDto.setPay_yn(rs.getString("PAY_YN"));
+				parkingDto.setSatur_pay_yn(rs.getString("satur_pay_yn"));
+				parkingDto.setHoli_pay_yn(rs.getString("holi_pay_yn"));
+				parkingDto.setFulltime_monthly_pay(rs.getInt("fulltime_monthly_pay"));
+				parkingDto.setPark_rate(rs.getInt("park_rate"));
+				parkingDto.setPark_time_rate(rs.getInt("park_time_rate"));
+				parkingDto.setAdd_park_rate(rs.getInt("add_park_rate"));
+				parkingDto.setDay_max_pay(rs.getInt("day_max_pay"));
 				
 				list.add(parkingDto);
 			}

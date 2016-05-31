@@ -14,7 +14,14 @@ public class ParkingDetailDto extends ParkingFacilityDto{
 	private String pay_yn;					//평일 유무료 구분
 	private String satur_pay_yn;			//토요일 유무료 구분
 	private String holi_pay_yn;				//공휴일 유무료 구분
+	private int emd_code;
 	
+	public int getEmd_code() {
+		return emd_code;
+	}
+	public void setEmd_code(int emd_code) {
+		this.emd_code = emd_code;
+	}
 	public int getPark_id() {
 		return park_id;
 	}

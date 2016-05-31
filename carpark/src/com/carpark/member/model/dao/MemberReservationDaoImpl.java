@@ -38,10 +38,9 @@ public class MemberReservationDaoImpl implements MemberReservationDao {
 		try {
 			conn=DBConnection.makeConnection();
 			String sql="";
-			sql += "select ci.car_id, ci.maker, ci.model, mc.category, mc.reg_num \n";
-			sql += "from car_info ci, member_car mc \n"; 
-			sql += "where ci.car_id = mc.car_id\n";
-			sql += "and mc.user_id=?";
+			sql += "select category, reg_num,car_name,user_id \n";
+			sql += "from member_car \n"; 
+			sql += "where user_id=?\n";
 			pstmt = conn.prepareStatement(sql);//미리 sql 문장을 가져가서 검사하고 틀린게 없을 때 실행
 			int idx =1;//중간에 없어지거나 추가될때 필요
 			pstmt.setString(idx++, user_id);
@@ -54,9 +53,8 @@ public class MemberReservationDaoImpl implements MemberReservationDao {
 			while(rs.next()){
 				memberCarDto = new MemberCarDto();
 				
-				memberCarDto.setCar_id(rs.getString("car_id"));
-				memberCarDto.setMaker(rs.getString("maker"));
-				memberCarDto.setModel(rs.getString("model"));
+				memberCarDto.setUser_id(rs.getString("user_id"));
+				memberCarDto.setModel(rs.getString("car_name"));
 				memberCarDto.setCategory(rs.getString("category"));
 				memberCarDto.setReg_num(rs.getString("reg_num"));
 				
@@ -119,7 +117,7 @@ public class MemberReservationDaoImpl implements MemberReservationDao {
 		try {
 			conn=DBConnection.makeConnection();
 			String sql="";
-			sql += "insert into reservation (reser_id, park_id, user_id, start_date, end_date \n";
+			sql += "insert into reservation (reser_id, park_id, user_id, start_date, end_date) \n";
 			sql += "values(concat(to_char(systimestamp, 'yyyymmddhh24missFF3'),?),?,?,?,?)\n"; 
 			pstmt = conn.prepareStatement(sql);//미리 sql 문장을 가져가서 검사하고 틀린게 없을 때 실행
 			int idx =1;//중간에 없어지거나 추가될때 필요
