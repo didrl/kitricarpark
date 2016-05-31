@@ -41,7 +41,7 @@ function parkDelete(parkId) {
       <!-- main -->
       <div id="page-wrapper">
          <div class="container-fluid">
-         <br><h3>즐겨찾는 주차장</h3><br>   
+         <br><h3>나의 주차장</h3><br>   
                
             
             <!-- 메세지 리스트 -->
@@ -49,7 +49,7 @@ function parkDelete(parkId) {
               <table  class="table table-hover" style="text-align:center">
                  <tr>
                     <td width="200"><b>주차장 이름</b></td>
-                    <td width="200"><b>관리자 아이디</b></td>
+                    <td width="200"><b>주차장 평점</b></td>
                     <td width="100"></td>
                  </tr>
             

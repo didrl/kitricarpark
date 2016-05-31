@@ -16,7 +16,7 @@ function parkingView(park_id){
 	alert(park_id+" 눌렀다.")
 }
 </script>
-<div id="wrapper">
+<div id="wrapper" align="center">
 <!-- ****************************************************************************************************************** -->	
 
 		<!-- main -->
@@ -26,10 +26,10 @@ function parkingView(park_id){
 					
 				
 				<!-- 메세지 리스트 -->
-				<div class="table">
+				<div class="table" style="width: 600px">
 				  <table class="table table-hover" style="text-align:center">
 				  	<tr>
-				  		<td width="100"><b>주차장 이름</b></td>
+				  		<td width="300"><b>주차장 이름</b></td>
 				  		<td><b>관리자 아이디</b></td>
 				  		<td></td>
 				  	</tr>
