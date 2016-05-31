@@ -9,8 +9,8 @@ public interface MemberMessageDao {
 
 	int writeArticle(MessageDto messageDto);
 	MessageDto viewArticle(int seq);
-	List<MessageDto> sendListArticle(String userId);
-	List<MessageDto> receiveListArticle(String receiveId);
+	List<MessageDto> sendListArticle(Map<String, String> map);
+	List<MessageDto> receiveListArticle(Map<String, String> map);
 	void deleteArticle(int seq);
 	
 }

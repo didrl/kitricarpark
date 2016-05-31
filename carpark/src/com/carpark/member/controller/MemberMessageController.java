@@ -20,6 +20,7 @@ public class MemberMessageController extends HttpServlet {
 		int pg = NumberCheck.nullToOne(request.getParameter("pg"));
 		String key = StringCheck.nullToBlank(request.getParameter("key"));
 		String word = StringCheck.nullToBlank(request.getParameter("word"));
+		
 		String path = "/index.jsp";
 		String queryString = "?bcode=" + bcode + "&pg=" + pg + "&key=" + key + "&word=" + Encoder.isoToUtf(word);
 		
@@ -54,7 +55,13 @@ public class MemberMessageController extends HttpServlet {
 			path = MemberActionFactory.getMemberMessageReceiveListAction().execute(request, response);
 			PageMove.forward(request, response, path + queryString);
 			
-		} else if("".equals(act)) {
+		} else if("messageSearchSend".equals(act)) {
+			path = MemberActionFactory.getMemberMessageSendListAction().execute(request, response);
+			PageMove.forward(request, response, path + queryString);
+			
+		} else if("messageSearchReceive".equals(act)) {
+			path = MemberActionFactory.getMemberMessageReceiveListAction().execute(request, response);
+			PageMove.forward(request, response, path + queryString);
 			
 		}
 		

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.*,com.carpark.member.model.*"%>
+    pageEncoding="UTF-8" import="java.util.*,com.carpark.member.model.*,com.carpark.util.*"%>
     
 <%@include file="/common/common.jsp" %>
 <%@include file="/common/header/init.jsp" %> 
@@ -9,6 +9,7 @@
 <%
 if(memberDto != null) {
 List<MessageDto> list = (List<MessageDto>) request.getAttribute("sendList");
+PageNavigator navigator = (PageNavigator) request.getAttribute("navigator");
 %>
 
 <div id="wrapper">
@@ -20,10 +21,10 @@ List<MessageDto> list = (List<MessageDto>) request.getAttribute("sendList");
 				<br><h3>쪽지함</h3><br>
 					
 				<div class="btn-group" role="group" aria-label="...">
-	  				<button type="button" class="btn btn-default" onclick="javascript:messageReceiveList();">
+	  				<button type="button" class="btn btn-default" onclick="javascript:messageReceiveList('1');">
 	  					받은쪽지함
 	  				</button>
-	  				<button type="button" class="btn btn-default" onclick="javascript:messageSendList();">
+	  				<button type="button" class="btn btn-default" onclick="javascript:messageSendList('1');">
 	  					보낸쪽지함
 	  				</button>	
 					<button type="button" class="btn btn-default"  data-toggle="modal" data-target="#messageWrite" onclick="javascript:init();">
@@ -40,9 +41,9 @@ List<MessageDto> list = (List<MessageDto>) request.getAttribute("sendList");
 				<div class="table">
 				  <table class="table table-hover" style="text-align:center">
 				  	<tr>
-				  		<td width="200"><b>받는사람</b></td>
+				  		<td width="150"><b>받는사람</b></td>
 				  		<td><b>제목</b></td>
-				  		<td><b>시간</b></td>
+				  		<td width="80"><b>시간</b></td>
 				  		<td width="50"><b>확인</b></td>
 				  		<td></td>
 				  	</tr>
@@ -54,19 +55,19 @@ if(size > 0) {
 %>
 					<!-- 쪽지목록 -->
 					<tr >
-						<td><a href="javascript:messageSendView('<%=messageDto.getSeq()%>');"><%=messageDto.getReceiverId() %></a></td>
+						<td width="150"><a href="javascript:messageSendView('<%=messageDto.getSeq()%>');"><%=messageDto.getReceiverId() %></a></td>
 						<td><a href="javascript:messageSendView('<%=messageDto.getSeq() %>');"><%=messageDto.getSubject() %></a></td>
-						<td><%=messageDto.getLogtime() %></td>						
+						<td width="80"><%=messageDto.getLogtime() %></td>						
 <%
 if(messageDto.getMsgFlag() == 0) {
 %>					
-						<td>X</td>
-						<td><input type="button" class="btn btn-default btn-xs" value="삭제" onclick="javascript:messageSendDelete('<%=messageDto.getSeq()%>');"></td>
+						<td width="50">X</td>
+						<td width="50"><input type="button" class="btn btn-default btn-xs" value="삭제" onclick="javascript:messageSendDelete('<%=messageDto.getSeq()%>');"></td>
 <%
 } else {
 %>
-						<td>O</td>
-						<td><input type="button" class="btn btn-default btn-xs" value="삭제" onclick="javascript:messageSendDelete('<%=messageDto.getSeq()%>');"></td>
+						<td width="50">O</td>
+						<td width="50"><input type="button" class="btn btn-default btn-xs" value="삭제" onclick="javascript:messageSendDelete('<%=messageDto.getSeq()%>');"></td>
 					</tr>
 <%
 	}	
@@ -91,9 +92,8 @@ if(messageDto.getMsgFlag() == 0) {
 			<nav align="center">
 				<div class="form-group">
 				<form class="form-inline" name="searchForm" method="get" action="">
-					<input type="hidden" name="act" id="act" value="messageSearch">
-					<input type="hidden" name="bcode" id="bcode" value="1">
-					<input type="hidden" name="pg" id="pg" value="1">
+					<input type="hidden" name="act" id="act" value="messageSearchSend">
+					<input type="hidden" name="pg" id="pg" value="<%=pg%>">
 					<select name="key">
 						<option value="subject">제목</option>
 						<option value="content">내용</option>
@@ -105,21 +105,7 @@ if(messageDto.getMsgFlag() == 0) {
 				</div>
 					
 				<ul class="pagination">
-					<li>
-						<a href="#" aria-label="Previous">
-					    	<span aria-hidden="true">&laquo;</span>
-					    </a>
-				 	</li>
-					<li><a href="#">1</a></li>
-					<li><a href="#">2</a></li>
-					<li><a href="#">3</a></li>
-					<li><a href="#">4</a></li>
-					<li><a href="#">5</a></li>
-					<li>
-						<a href="#" aria-label="Next">
-					    	<span aria-hidden="true">&raquo;</span>
-					    </a>
-					</li>
+				<%=navigator.getNavigator() %>
 				</ul>
 			</nav>
 

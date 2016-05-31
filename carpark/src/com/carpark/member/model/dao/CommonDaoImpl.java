@@ -50,15 +50,151 @@ public class CommonDaoImpl implements CommonDao {
 	}
 
 	@Override
-	public int newArticleCount(int bcode) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int newArticleCountReceiver(String receiveId) {
+		int count = 0;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = DBConnection.makeConnection();
+			String sql = "";
+			sql += "select count(b.seq) \n";
+			sql += "from board b, message m \n";
+			sql += "where b.seq = m.seq \n";
+			sql += "and receiver_id = ? \n";
+			sql += "and to_char(logtime, 'yymmdd') = to_char(sysdate, 'yymmdd') \n";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, receiveId);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()){
+				count = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose.close(conn, pstmt, rs);
+		}
+		
+		return count;
 	}
 
 	@Override
-	public int totalArticleCount(Map<String, String> map) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int totalArticleCountReceiver(Map<String, String> map) {
+		int count = 0;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String key = map.get("key");
+		String word = map.get("word");
+		
+		try {
+			conn = DBConnection.makeConnection();
+			String sql = "";
+			sql += "select count(b.seq) \n";
+			sql += "from board b, message m \n";
+			sql += "where b.seq = m.seq \n";
+			sql += "and receiver_id = ? \n";
+			if(key != null && !key.isEmpty()) {
+				if(word != null && !word.isEmpty()) {
+					if("subject".equals(key))
+						sql += "and subject like '%'||?||'%' \n";
+					else
+						sql += "and " + key + " = ? \n";						
+				}
+			}
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, map.get("receiveId"));
+			if(key != null && !key.isEmpty()) {
+				if(word != null && !word.isEmpty()) {
+					pstmt.setString(2, word);
+				}
+			}
+			rs = pstmt.executeQuery();
+			rs.next();
+			count = rs.getInt(1);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose.close(conn, pstmt, rs);
+		}
+		
+		return count;
+	}
+	
+	@Override
+	public int newArticleCountUser(String userId) {
+		int count = 0;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = DBConnection.makeConnection();
+			String sql = "";
+			sql += "select count(seq) \n";
+			sql += "from board \n";
+			sql += "where user_id = ? \n";
+			sql += "and to_char(logtime, 'yymmdd') = to_char(sysdate, 'yymmdd') \n";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userId);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()){
+				count = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose.close(conn, pstmt, rs);
+		}
+		
+		return count;
+	}
+
+	@Override
+	public int totalArticleCountUser(Map<String, String> map) {
+		int count = 0;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String key = map.get("key");
+		String word = map.get("word");
+		
+		try {
+			conn = DBConnection.makeConnection();
+			String sql = "";
+			sql += "select count(seq) \n";
+			sql += "from board \n";
+			sql += "where user_id = ? \n";
+			if(key != null && !key.isEmpty()) {
+				if(word != null && !word.isEmpty()) {
+					if("subject".equals(key))
+						sql += "and subject like '%'||?||'%' \n";
+					else
+						sql += "and " + key + " = ? \n";						
+				}
+			}
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, map.get("userId"));
+			if(key != null && !key.isEmpty()) {
+				if(word != null && !word.isEmpty()) {
+					pstmt.setString(2, word);
+				}
+			}
+			rs = pstmt.executeQuery();
+			rs.next();
+			count = rs.getInt(1);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose.close(conn, pstmt, rs);
+		}
+		
+		return count;
 	}
 
 	@Override

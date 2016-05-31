@@ -1,6 +1,6 @@
 <%@page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import="com.carpark.member.model.MemberDto, com.carpark.admin.model.*"%>
+<%@page import="com.carpark.member.model.MemberDto, com.carpark.admin.model.*,com.carpark.util.*"%>
 <%
 String root = request.getContextPath();
 String commonpath = root + "/common";
@@ -13,6 +13,11 @@ String qnapath = adminpath +"/"+"qna";
 String staticpath = adminpath +"/"+"static";
 
 MemberDto memberDto = (MemberDto)session.getAttribute("memberInfo"); 
+
+int bcode = NumberCheck.nullToZero(request.getParameter("bcode"));
+int pg = NumberCheck.nullToOne(request.getParameter("pg"));
+String key = StringCheck.nullToBlank(request.getParameter("key"));
+String word = Encoder.isoToUtf(StringCheck.nullToBlank(request.getParameter("word")));
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
