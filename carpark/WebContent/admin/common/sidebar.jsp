@@ -37,7 +37,7 @@
                                 <a href="<%=parkingpath%>/newparking.jsp">새로운 주차장 등록</a>
                             </li>
                             <li>
-                                <a href="<%=parkingpath%>/report.jsp">주차장 제보 목록</a>
+                                <a href="<%=root%>/admincall?act=AdminCallReceiveList">주차장 제보 목록</a>
                             </li>
                             <li>
                                 <a href="<%=parkingpath%>/authpark.jsp">주차장 인증예정목록</a>
