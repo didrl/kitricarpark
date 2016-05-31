@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+    <<script type="text/javascript">
+    function getAllUserInfo(){
+    	document.location.href=root+"/admin?act=alluserinfo";
+    }
+</script>
+
  <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                    <li class="active">
@@ -11,11 +16,7 @@
                         <a href="javascript:;" data-toggle="collapse" data-target="#customer"><i class="fa fa-fw fa-arrows-v"></i> 고객관리 <i class="fa fa-fw fa-caret-down"></i></a>       
                         <ul id="customer" class="collapse">
                             <li>
-
-                                <a href="<%=customerpath%>/customerinfo.jsp">전체 고객 정보</a>
-
-                                <a href="/admin?act=alluserinfo">전체 고객 정보</a>
-
+                                <a href="javascript:getAllUserInfo();">전체 고객 정보</a>
                             </li>
                             <li>
                                 <a href="<%=customerpath%>/report.jsp">신고내역</a>

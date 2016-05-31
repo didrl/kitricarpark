@@ -3,12 +3,12 @@
     
 <%@include file="/common/common.jsp" %>
 <%@include file="/common/header/init.jsp" %> 
-<%@include file="/common/side.jsp" %>
+<%@include file="/admin/common/sidebar.jsp" %>
   
     
 <%
 if(memberDto != null) {
-	ArrayList<ReservationDto> list = (ArrayList<ReservationDto>) request.getAttribute("myreservationlist");
+	ArrayList<MemberDto> list = (ArrayList<MemberDto>) request.getAttribute("allmemberinfo");
 %>
 <script type="text/javascript">
 function myReservationView(park_id){
@@ -21,42 +21,54 @@ function myReservationView(park_id){
 		<!-- main -->
 		<div id="page-wrapper">
 			<div class="container-fluid">
-				<br><h3>예약 목록</h3><br>
+				<br><h3>회원 목록</h3><br>
 					
 				
 				<!-- 메세지 리스트 -->
 				<div class="table">
 				  <table class="table table-hover" style="text-align:center">
 				  	<tr>
-				  		<td width="100"><b>예약번호</b></td>
-				  		<td><b>주차장 이름</b></td>
-				  		<td><b>예약 시작일</b></td>
-				  		<td><b>예약 종료일</b></td>
-				  		<td><b>이용 가격</b></td>
-				  		<td><b>관리자 이름</b></td>
+				  		<td width="100"><b>회원 아이디</b></td>
+				  		<td><b>회원 이름</b></td>
+				  		<td><b>회원 등급</b></td>
+				  		<td><b>호스트 여부</b></td>
+				  		<td><b>보유 코인</b></td>
+				  		<td><b>회원 평점</b></td>
+				  		<td><b>벌점</b></td>
+				  		<td><b>회원 구분</b></td>
+				  		<td><b>회원 이메일</b></td>
+				  		<td><b>회원 연락처</b></td>
 				  	</tr>
 				
 <%
 	int size = list.size();
 	if(size > 0) {
-		for(ReservationDto reservationDto : list) {
-			//r.user_id,r.reser_id, p.park_name, r.start_date, r.end_date,r.pay,r.park_id, p.owner_id
+		for(MemberDto allmemDto : list) {
+			//user_id, user_name, grade_name, host_flag,coin, user_avgpoint,penalty,user_flag,email,tel
 %>
 
 					<!-- 쪽지목록 -->
 					<tr >
-						<td><label onclick="javascript:myReservationView('<%=reservationDto.getReser_id()%>');">
-						<%=reservationDto.getReser_id() %></label></td>
-						<td><label onclick="javascript:myReservationView('<%=reservationDto.getReser_id()%>');">
-						<%=reservationDto.getPark_name() %></label></td>
-						<td><label onclick="javascript:myReservationView('<%=reservationDto.getReser_id()%>');">
-						<%=reservationDto.getFromdate() %></label></td>
-						<td><label onclick="javascript:myReservationView('<%=reservationDto.getReser_id()%>');">
-						<%=reservationDto.getTodate() %></label></td>
-						<td><label onclick="javascript:myReservationView('<%=reservationDto.getReser_id()%>');">
-						<%=reservationDto.getPay() %></label></td>
-						<td><label onclick="javascript:myReservationView('<%=reservationDto.getReser_id()%>');">
-						<%=reservationDto.getHost_id() %></label></td>
+						<td><label onclick="javascript:selecteduserView('<%=allmemDto.getUser_id()%>');">
+						<%=allmemDto.getUser_id() %></label></td>
+						<td><label onclick="javascript:selecteduserView('<%=allmemDto.getUser_id()%>');">
+						<%=allmemDto.getUser_name() %></label></td>
+						<td><label onclick="javascript:selecteduserView('<%=allmemDto.getUser_id()%>');">
+						<%=allmemDto.getGrade_id() %></label></td>
+						<td><label onclick="javascript:selecteduserView('<%=allmemDto.getUser_id()%>');">
+						<%=allmemDto.getHost_flag() %></label></td>
+						<td><label onclick="javascript:selecteduserView('<%=allmemDto.getUser_id()%>');">
+						<%=allmemDto.getCoin() %></label></td>
+						<td><label onclick="javascript:selecteduserView('<%=allmemDto.getUser_id()%>');">
+						<%=allmemDto.getAvgpoint() %></label></td>
+						<td><label onclick="javascript:selecteduserView('<%=allmemDto.getUser_id()%>');">
+						<%=allmemDto.getPenalty() %></label></td>
+						<td><label onclick="javascript:selecteduserView('<%=allmemDto.getUser_id()%>');">
+						<%=allmemDto.getUser_flag() %></label></td>
+						<td><label onclick="javascript:selecteduserView('<%=allmemDto.getUser_id()%>');">
+						<%=allmemDto.getEmail() %></label></td>
+						<td><label onclick="javascript:selecteduserView('<%=allmemDto.getUser_id()%>');">
+						<%=allmemDto.getTel() %></label></td>
 <%
 		}
 %>
@@ -69,7 +81,7 @@ function myReservationView(park_id){
 %>
 				  </table>
 				</div>
-<center><h3>예약 내역이 없습니다</h3></center>	
+<center><h3>회원 내역이 없습니다</h3></center>	
 <br><br>  
 <%
 	}
@@ -84,8 +96,11 @@ function myReservationView(park_id){
 					<input type="hidden" name="bcode" id="bcode" value="1">
 					<input type="hidden" name="pg" id="pg" value="1">
 					<select name="key">
-						<option value="subject">주차장 이름</option>
-						<option value="content">관리자 이름</option>
+						<option value="subject">회원 이름</option>
+						<option value="subject">회원 아이디</option>
+						<option value="content">회원 등급</option>
+						<option value="content">회원 구분</option>
+						<option value="content">호스트 여부</option>
 					</select>
 					<input type="text" name="word" id="word" value="">
 					<input type="button" class="btn btn-default" value="검색" onclick="javascript:messageSearch();">

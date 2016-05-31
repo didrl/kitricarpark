@@ -37,7 +37,7 @@ public class AdminParkingRegisterAction implements Action {
 		
 		AdminParkingServiceImpl.getAdminParkingService().registerReservation(parkingDetailDto);
 		request.setAttribute("adminParkingRegiser", parkingDetailDto);
-		return "/parklist/parklist.jsp";
+		return "/parklist/.jsp";
 	}
 
 }
