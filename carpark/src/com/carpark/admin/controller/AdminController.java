@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.carpark.factory.AdminActionFactory;
 import com.carpark.factory.MemberActionFactory;
 import com.carpark.util.BoardConstance;
 import com.carpark.util.Encoder;
@@ -28,8 +29,8 @@ public class AdminController extends HttpServlet {
     		System.out.println("act>>>>>>>>>>>>>"+act);
     		String path ="/index.jsp";
     		
-    		if("mvprofile".equals(act)) {
-    			
+    		if("alluserinfo".equals(act)) {
+    			path = AdminActionFactory.getAdminAllUserInfoAction().execute(request, response);
     		}else if("".equals(act)) {
     			
     		}
