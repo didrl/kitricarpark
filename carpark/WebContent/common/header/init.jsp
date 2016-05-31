@@ -97,7 +97,7 @@ if(memberDto!=null){
 				<li><a href="#" data-toggle="modal" data-target="#messageReply">제보하기 <span
 						class="label label-default">Alert Badge</span></a></li>
 				<li class="divider"></li>
-				<li><a href="<%=root%>/qna.jsp">  QnA  <span
+				<li><a href="<%=root%>/faq.jsp">  FAQ  <span
 						class="label label-primary">Alert Badge</span></a></li>
 				
 				
@@ -269,7 +269,7 @@ if(memberDto!=null){
 	aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<div class="modal-header">
+			<div class="modal-header" align="center">
 				<button type="button" class="close" data-dismiss="modal" onclick="javascript:confirm();">
 					<span aria-hidden="true">x</span><span class="sr-only">Close</span>
 				</button>
@@ -277,7 +277,7 @@ if(memberDto!=null){
 			</div>
 			<div class="modal-body">
 				<form class="form-signin" role="form" name="signUpForm"
-					id="signUpForm" method="post" action="<%=root%>/member">
+					id="signUpForm" method="post" action="">
 					<input type="hidden" name="act" value="mvsignup">
 
 					<div class="form-group">
@@ -322,7 +322,7 @@ if(memberDto!=null){
 					<div class="form-group">
 						<label for="username">휴대폰 인증</label>
 						<div class="input-group">
-							<input type="tel" class="form-control" name="phone" id="username" required="required"
+							<input type="tel" class="form-control" name="phone" id="userphone" required="required"
 								placeholder="- 없이 입력해 주세요"> <span
 								class="input-group-btn">
 								<button class="btn btn-success">
@@ -342,9 +342,12 @@ if(memberDto!=null){
 						</div>
 					</div>
 					<div class="form-group text-center">
-						<button type="submit" class="btn btn-info">
+						<button type="button" class="btn btn-info" onclick="infocheck()">
 							회원가입<i class="fa fa-check spaceLeft"></i>
 						</button>
+<!-- 						<button type="submit" class="btn btn-info"> -->
+<!-- 							회원가입<i class="fa fa-check spaceLeft"></i> -->
+<!-- 						</button> -->
 						<button type="button" class="btn btn-warning" data-dismiss="modal"
 						onclick="javascript:formclear();">
 							가입취소<i class="fa fa-times spaceLeft"></i>

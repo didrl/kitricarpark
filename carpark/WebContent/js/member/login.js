@@ -27,8 +27,41 @@ function loginConfirm(){
 }
 
 function myParking(){
-	document.location.href=root+"/memberparking?act=parkList"
+	document.location.href=root+"/memberparking?act=parkList";
 }
+
+function infocheck(){
+	
+	if(document.getElementById("username").value == "") {
+		alert("이름 입력!");
+		return;
+	} else if(document.getElementById("userid").value == "") {
+		alert("아이디 입력!");
+		$("#userid").focus();
+		return;
+	} else if(document.getElementById("InputPassword1").value  == "") {
+		alert("비밀번호 입력!");
+		$("#InputPassword1").focus();
+		return;
+	} else if(document.getElementById("InputPassword2").value != document.getElementById("InputPassword1").value) {
+		alert("비밀번호 확인!");
+		$("#InputPassword2").focus();
+		return;
+		
+	}else if(document.getElementById("InputEmail").value  == ""){
+		alert("이메일 입력!");
+		$("#InputEmail").focus();
+		return;
+	}else if(document.getElementById("userphone").value  == ""){
+		alert("휴대폰 번호 입력!");
+		$("#userphone").focus();
+		return;
+	}else {
+		document.signUpForm.action="/member?act=mvsignup";
+		document.signUpForm.submit();
+	}
+}
+
 
 function myParkingRegister(){
 	document.location.href=root+"/parking/register.jsp"
