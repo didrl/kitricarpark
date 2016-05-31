@@ -3,7 +3,7 @@
     
 <%@include file="/common/common.jsp" %>
 <%@include file="/common/header/init.jsp" %> 
-<%@include file="admin/common/sidebar.jsp" %>
+<%@include file="/admin/common/sidebar.jsp" %>
   
     
 <%
@@ -21,7 +21,7 @@ function myReservationView(park_id){
 		<!-- main -->
 		<div id="page-wrapper">
 			<div class="container-fluid">
-				<br><h3>예약 목록</h3><br>
+				<br><h3>회원 목록</h3><br>
 					
 				
 				<!-- 메세지 리스트 -->

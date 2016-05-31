@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+    <<script type="text/javascript">
+    function getAllUserInfo(){
+    	document.location.href=root+"/admin?act=alluserinfo";
+    }
+</script>
+
  <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                    <li class="active">
