@@ -1,6 +1,6 @@
 package com.carpark.admin.model;
 
-public class ParkingFacilityDto {
+public class ParkingFacilityDto extends ParkingDto{
 	private int park_id;
 	private String facility;
 	private String feature;

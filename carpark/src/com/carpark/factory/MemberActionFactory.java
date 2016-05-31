@@ -4,6 +4,7 @@ import com.carpark.action.Action;
 import com.carpark.member.action.MemberAddCarAction;
 import com.carpark.member.action.MemberBenefitAction;
 import com.carpark.member.action.MemberCarListAction;
+import com.carpark.member.action.MemberCoinAction;
 import com.carpark.member.action.MemberDeleteAction;
 import com.carpark.member.action.MemberIdCheckAction;
 import com.carpark.member.action.MemberInfoAction;
@@ -22,7 +23,13 @@ import com.carpark.member.call.action.MemberCallViewAction;
 import com.carpark.member.favorite.action.MemberFavoriteDeleteAction;
 import com.carpark.member.favorite.action.MemberFavoriteListAction;
 import com.carpark.member.favorite.action.MemberFavoriteRegisterAction;
-import com.carpark.member.message.action.*;
+import com.carpark.member.message.action.MemberMessageReceiveDeleteAction;
+import com.carpark.member.message.action.MemberMessageReceiveListAction;
+import com.carpark.member.message.action.MemberMessageReceiveViewAction;
+import com.carpark.member.message.action.MemberMessageSendDeleteAction;
+import com.carpark.member.message.action.MemberMessageSendListAction;
+import com.carpark.member.message.action.MemberMessageSendViewAction;
+import com.carpark.member.message.action.MemberMessageWriteAction;
 import com.carpark.member.parking.action.MemberParkingDeleteAction;
 import com.carpark.member.parking.action.MemberParkingListAction;
 import com.carpark.member.parking.action.MemberParkingModifyAction;
@@ -56,6 +63,7 @@ public class MemberActionFactory {
 	private static Action memberSearchDetailAction;
 	private static Action memberLogoutAction;
 	private static Action memberBenefitAction;
+	private static Action memberCoinAction;
 	
 	private static Action memberCallDeleteAction;
 	private static Action memberCallListAction;
@@ -113,6 +121,7 @@ public class MemberActionFactory {
 		memberLogoutAction = new MemberLogoutAction();
 		memberAddCarAction = new MemberAddCarAction();
 		memberBenefitAction = new MemberBenefitAction();
+		memberCoinAction	= new MemberCoinAction();
 		
 		memberCallDeleteAction = new MemberCallDeleteAction();
 		memberCallListAction = new MemberCallListAction();
@@ -159,6 +168,12 @@ public class MemberActionFactory {
 	public static Action getMemberCarListAction() {
 		return memberCarListAction;
 	}
+
+
+	public static Action getMemberCoinAction() {
+		return memberCoinAction;
+	}
+
 	public static Action getMemberBenefitAction() {
 		return memberBenefitAction;
 	}

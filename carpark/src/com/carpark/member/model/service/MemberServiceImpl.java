@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.carpark.admin.model.GradeDto;
 import com.carpark.admin.model.ParkingDetailDto;
 import com.carpark.admin.model.ParkingDto;
 import com.carpark.admin.model.ParkingFacilityDto;
@@ -40,8 +41,6 @@ public class MemberServiceImpl implements MemberService {
 	public MemberDto getMember(String id) {
 		return MemberDaoImpl.getMemberDao().getMember(id);
 	}
-
-	
 
 	@Override
 	public int delete(String id) {
@@ -89,6 +88,11 @@ public class MemberServiceImpl implements MemberService {
 	}	
 	public int modify(MemberDto memberDto) {
 		return MemberDaoImpl.getMemberDao().modify(memberDto);
+	}
+
+	@Override
+	public GradeDto gradeInfo(String id) {
+		return MemberDaoImpl.getMemberDao().gradeInfo(id);
 	}
 
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 public class ReservationDto {
+	private String reser_id;
 	private String fromdate;
 	private String todate;
 	private int fromtime;
@@ -16,6 +17,12 @@ public class ReservationDto {
 	private int pay;
 	private ArrayList<Map<String,String>> carinfo;
 	
+	public String getReser_id() {
+		return reser_id;
+	}
+	public void setReser_id(String reser_id) {
+		this.reser_id = reser_id;
+	}
 	public int getPay() {
 		return pay;
 	}

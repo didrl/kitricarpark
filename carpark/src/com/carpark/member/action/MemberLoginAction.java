@@ -25,8 +25,9 @@ public class MemberLoginAction implements Action{
 		String id = request.getParameter("id");
 		String pass = request.getParameter("pass");
 		String svid = request.getParameter("svid");
+		String failSvid=request.getParameter("failSvid");
 		
-		if("idsave".equals(svid)){
+		if("idsave".equals(svid)||"idsave".equals(failSvid)){
 			Cookie cookie = new Cookie("myid", id);
 			cookie.setPath(root);
 			cookie.setMaxAge(60 * 60 * 24);

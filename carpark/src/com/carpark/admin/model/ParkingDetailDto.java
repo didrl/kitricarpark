@@ -1,6 +1,6 @@
 package com.carpark.admin.model;
 
-public class ParkingDetailDto {
+public class ParkingDetailDto extends ParkingFacilityDto{
 	private int park_id;						//주차장 아이디
 	private int park_flag;					// 주차장 사용가능 여부
 	private double park_avgPoint; 		//주차장 평점
@@ -14,7 +14,14 @@ public class ParkingDetailDto {
 	private String pay_yn;					//평일 유무료 구분
 	private String satur_pay_yn;			//토요일 유무료 구분
 	private String holi_pay_yn;				//공휴일 유무료 구분
+	private int emd_code;
 	
+	public int getEmd_code() {
+		return emd_code;
+	}
+	public void setEmd_code(int emd_code) {
+		this.emd_code = emd_code;
+	}
 	public int getPark_id() {
 		return park_id;
 	}

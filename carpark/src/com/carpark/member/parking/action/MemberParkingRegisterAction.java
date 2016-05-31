@@ -9,11 +9,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.carpark.action.Action;
-import com.carpark.common.model.ParkingDetailDto;
+import com.carpark.admin.model.ParkingDetailDto;
 import com.carpark.member.model.MemberDto;
 import com.carpark.member.model.service.CommonServiceImpl;
 import com.carpark.member.model.service.MemberParkingServiceImpl;
-import com.carpark.member.model.service.MemberServiceImpl;
 import com.carpark.util.NumberCheck;
 import com.carpark.util.StringCheck;
 
@@ -30,28 +29,28 @@ public class MemberParkingRegisterAction implements Action {
 		
 		ParkingDetailDto parkingDto = new ParkingDetailDto();
 		
-		parkingDto.setParkId(parkingId);
-		parkingDto.setParkType(request.getParameter("parkType"));
-		parkingDto.setParkName(request.getParameter("parkName"));
+		parkingDto.setPark_id(parkingId);
+		parkingDto.setPark_type(request.getParameter("parkType"));
+		parkingDto.setPark_name(request.getParameter("parkName"));
 		parkingDto.setLatitude(Double.parseDouble(request.getParameter("latitude")));
-		parkingDto.setLongtitude(Double.parseDouble(request.getParameter("longtitude")));
-		parkingDto.setEmdCode(NumberCheck.nullToZero(request.getParameter("emdCode")));
+		parkingDto.setLongitude(Double.parseDouble(request.getParameter("longtitude")));
+		parkingDto.setEmd_code(NumberCheck.nullToZero(request.getParameter("emdCode")));
 		
-		parkingDto.setOwnerId("didrl");
-		//parkingDto.setOwnerId(memberDto.getUser_id());
+		parkingDto.setOwner_id("didrl");
+//		parkingDto.setOwnerId(memberDto.getUser_id());
 		
 		parkingDto.setFacility(StringCheck.nullToBlank(request.getParameter("facility")));
 		parkingDto.setFeature(StringCheck.nullToBlank(request.getParameter("feature")));
-		parkingDto.setPayYn(request.getParameter("payYn"));
-		parkingDto.setSaturPayYn(request.getParameter("saturPayYn"));
-		parkingDto.setHoliPayYn(request.getParameter("holiPayYn"));
-		parkingDto.setParkCapacity(NumberCheck.nullToOne(request.getParameter("parkCapacity")));
-		parkingDto.setParkTimeRate(NumberCheck.nullToOne(request.getParameter("parkTimeRate")));
-		parkingDto.setParkRate(NumberCheck.nullToOne(request.getParameter("parkRate")));
-		parkingDto.setAddParkRate(NumberCheck.nullToOne(request.getParameter("addParkRate")));
-		parkingDto.setDayMaxPay(NumberCheck.nullToOne(request.getParameter("dayMaxPay")));
-		parkingDto.setFullTimeMonthlyPay(NumberCheck.nullToOne(request.getParameter("fullTimeMonthlyPay")));
-		parkingDto.setParkFlag(NumberCheck.nullToOne(request.getParameter("parkFlag")));
+		parkingDto.setPay_yn(request.getParameter("payYn"));
+		parkingDto.setSatur_pay_yn(request.getParameter("saturPayYn"));
+		parkingDto.setHoli_pay_yn(request.getParameter("holiPayYn"));
+		parkingDto.setPark_capacity(NumberCheck.nullToOne(request.getParameter("parkCapacity")));
+		parkingDto.setPark_time_rate(NumberCheck.nullToOne(request.getParameter("parkTimeRate")));
+		parkingDto.setPark_rate(NumberCheck.nullToOne(request.getParameter("parkRate")));
+		parkingDto.setAdd_park_rate(NumberCheck.nullToOne(request.getParameter("addParkRate")));
+		parkingDto.setDay_max_pay(NumberCheck.nullToOne(request.getParameter("dayMaxPay")));
+		parkingDto.setFulltime_monthly_pay(NumberCheck.nullToOne(request.getParameter("fullTimeMonthlyPay")));
+		parkingDto.setPark_flag(NumberCheck.nullToOne(request.getParameter("parkFlag")));
 		
 		if(parkingId != 0) {
 			MemberParkingServiceImpl.getMemberParkingservice().MemberParkingRegister(parkingDto);
