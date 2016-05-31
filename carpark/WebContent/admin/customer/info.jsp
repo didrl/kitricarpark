@@ -8,44 +8,55 @@
     
 <%
 if(memberDto != null) {
-	ArrayList<FavoriteDto> list = (ArrayList<FavoriteDto>) request.getAttribute("favoritelist");
+	ArrayList<ReservationDto> list = (ArrayList<ReservationDto>) request.getAttribute("myreservationlist");
 %>
 <script type="text/javascript">
-
-function parkingView(park_id){
-	alert(park_id+" 눌렀다.")
+function myReservationView(park_id){
+	alert(park_id+" 눌렀다.");
 }
 </script>
-<div id="wrapper" align="center">
+<div id="wrapper">
 <!-- ****************************************************************************************************************** -->	
 
 		<!-- main -->
 		<div id="page-wrapper">
 			<div class="container-fluid">
-			<br><h3>즐겨찾는 주차장</h3><br>	
+				<br><h3>예약 목록</h3><br>
 					
 				
 				<!-- 메세지 리스트 -->
-				<div class="table" style="width: 600px">
+				<div class="table">
 				  <table class="table table-hover" style="text-align:center">
 				  	<tr>
-				  		<td width="300"><b>주차장 이름</b></td>
-				  		<td><b>관리자 아이디</b></td>
-				  		<td></td>
+				  		<td width="100"><b>예약번호</b></td>
+				  		<td><b>주차장 이름</b></td>
+				  		<td><b>예약 시작일</b></td>
+				  		<td><b>예약 종료일</b></td>
+				  		<td><b>이용 가격</b></td>
+				  		<td><b>관리자 이름</b></td>
 				  	</tr>
 				
 <%
 	int size = list.size();
 	if(size > 0) {
-		for(FavoriteDto favoriteDto : list) {
+		for(ReservationDto reservationDto : list) {
+			//r.user_id,r.reser_id, p.park_name, r.start_date, r.end_date,r.pay,r.park_id, p.owner_id
 %>
+
 					<!-- 쪽지목록 -->
 					<tr >
-						<td><label onclick="javascript:parkingView('<%=favoriteDto.getPark_id()%>');">
-						<%=favoriteDto.getParkName() %></label></td>
-						<td><label onclick="javascript:parkingView('<%=favoriteDto.getPark_id()%>');">
-						<%=favoriteDto.getOwnerId() %></label></td>
-						<td></td>						
+						<td><label onclick="javascript:myReservationView('<%=reservationDto.getReser_id()%>');">
+						<%=reservationDto.getReser_id() %></label></td>
+						<td><label onclick="javascript:myReservationView('<%=reservationDto.getReser_id()%>');">
+						<%=reservationDto.getPark_name() %></label></td>
+						<td><label onclick="javascript:myReservationView('<%=reservationDto.getReser_id()%>');">
+						<%=reservationDto.getFromdate() %></label></td>
+						<td><label onclick="javascript:myReservationView('<%=reservationDto.getReser_id()%>');">
+						<%=reservationDto.getTodate() %></label></td>
+						<td><label onclick="javascript:myReservationView('<%=reservationDto.getReser_id()%>');">
+						<%=reservationDto.getPay() %></label></td>
+						<td><label onclick="javascript:myReservationView('<%=reservationDto.getReser_id()%>');">
+						<%=reservationDto.getHost_id() %></label></td>
 <%
 		}
 %>
@@ -58,7 +69,7 @@ function parkingView(park_id){
 %>
 				  </table>
 				</div>
-<center><h3>등록된 주차장이 없습니다</h3></center>	
+<center><h3>예약 내역이 없습니다</h3></center>	
 <br><br>  
 <%
 	}

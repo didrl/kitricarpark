@@ -13,4 +13,5 @@ public interface MemberReservationDao {
 	ArrayList<MemberCarDto> getCarInfo(String user_id);
 	ArrayList<Map<String,String>> getUsingDate(int park_id);
 	void registerReservation(ReservationDto reservationDto);
+	ArrayList<ReservationDto> myReservationList(String user_id);
 }

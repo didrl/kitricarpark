@@ -3,7 +3,7 @@ function detailprofile(){
 }
 
 function reservationInfo(){
-	document.location.href=root+"/reservation?act=mvReservation";
+	document.location.href=root+"/reservation?act=reservationList";
 }
 
 function mycoin(){

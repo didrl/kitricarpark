@@ -70,6 +70,8 @@ public class MemberReservationDaoImpl implements MemberReservationDao {
 		return list;
 	}
 
+	
+	
 	@Override
 	public ArrayList<Map<String,String>> getUsingDate(int park_id) {
 		Connection conn=null;
@@ -134,6 +136,52 @@ public class MemberReservationDaoImpl implements MemberReservationDao {
 			DBClose.close(conn, pstmt);
 		}	
 
+	}
+
+	@Override
+	public ArrayList<ReservationDto> myReservationList(String user_id) {
+		Connection conn=null;
+		PreparedStatement pstmt =null;
+		ResultSet rs = null;
+		ReservationDto reservationDto;
+		ArrayList<ReservationDto> list = new ArrayList<ReservationDto>();
+		
+		try {
+			conn=DBConnection.makeConnection();
+			String sql="";
+			sql += "select r.user_id,r.reser_id, p.park_name, r.start_date, r.end_date,r.pay,r.park_id, p.owner_id \n";
+			sql += "from reservation r, parking p \n"; 
+			sql += "where user_id=?\n";
+			sql += "and r.park_id=p.park_id";
+			pstmt = conn.prepareStatement(sql);//미리 sql 문장을 가져가서 검사하고 틀린게 없을 때 실행
+			int idx =1;//중간에 없어지거나 추가될때 필요
+			pstmt.setString(idx++, user_id);
+
+			rs=pstmt.executeQuery();
+			
+//			System.out.println("id   in carinfo "+user_id);
+//			System.out.println(sql);
+
+			while(rs.next()){
+				reservationDto = new ReservationDto();
+				
+				reservationDto.setUser_id(rs.getString("user_id"));
+				reservationDto.setReser_id(rs.getString("reser_id"));
+				reservationDto.setPark_name(rs.getString("park_name"));
+				reservationDto.setFromdate(rs.getString("start_date"));
+				reservationDto.setTodate(rs.getString("end_date"));
+				reservationDto.setPay(rs.getInt("pay"));
+				reservationDto.setPark_id(rs.getInt("park_id"));
+				reservationDto.setHost_id(rs.getString("owner_id"));
+				
+				list.add(reservationDto);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			DBClose.close(conn, pstmt, rs);
+		}	
+		return list;
 	}
 	
 	
