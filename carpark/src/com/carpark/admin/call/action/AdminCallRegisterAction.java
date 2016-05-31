@@ -13,7 +13,10 @@ public class AdminCallRegisterAction implements Action{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-		// TODO Auto-generated method stub
+		
+		
+		
+		
 		return null;
 	}
 

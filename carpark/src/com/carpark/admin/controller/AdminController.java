@@ -30,6 +30,14 @@ public class AdminController extends HttpServlet {
     		
     		if("mvprofile".equals(act)) {
     			
+    		}else if("adminParkRegister".equals(act)) {
+    			
+    		}else if("".equals(act)) {
+    			
+    		}else if("".equals(act)) {
+    			
+    		}else if("".equals(act)) {
+    			
     		}else if("".equals(act)) {
     			
     		}

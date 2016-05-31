@@ -11,13 +11,13 @@
                         <a href="javascript:;" data-toggle="collapse" data-target="#customer"><i class="fa fa-fw fa-arrows-v"></i> 고객관리 <i class="fa fa-fw fa-caret-down"></i></a>       
                         <ul id="customer" class="collapse">
                             <li>
-                                <a href="<%=customerpath%>/info.jsp">전체 고객 정보</a>
+                                <a href="<%=customerpath%>/customerinfo.jsp">전체 고객 정보</a>
                             </li>
                             <li>
-                                <a href="<%=customerpath%>/rate.jsp">신고내역</a>
+                                <a href="<%=customerpath%>/report.jsp">신고내역</a>
                             </li>
                             <li>
-                                <a href="<%=customerpath%>/report.jsp">등급 및 혜택 설정</a>
+                                <a href="<%=customerpath%>/rate.jsp">등급 및 혜택 설정</a>
                             </li>
                         </ul>
                     </li>
@@ -35,7 +35,7 @@
                                 <a href="<%=parkingpath%>/report.jsp">주차장 제보 목록</a>
                             </li>
                             <li>
-                                <a href="<%=parkingpath%>/auth.jsp">주차장 인증예정목록</a>
+                                <a href="<%=parkingpath%>/authpark.jsp">주차장 인증예정목록</a>
                             </li>
                         </ul>
                     </li>
