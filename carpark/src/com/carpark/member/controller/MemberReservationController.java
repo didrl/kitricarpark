@@ -27,6 +27,9 @@ public class MemberReservationController extends HttpServlet {
 		}else if("payok".equals(act)){
 			path = MemberActionFactory.getMemberReservationRegisterAction().execute(request, response);
 			PageMove.redirect(response, root + path);
+		}else if("reservationList".equals(act)){
+			path = MemberActionFactory.getMemberReservationListAction().execute(request, response);
+			PageMove.forward(request, response, path);
 		}
 	}
 

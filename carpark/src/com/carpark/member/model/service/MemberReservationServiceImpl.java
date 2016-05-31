@@ -35,6 +35,11 @@ public class MemberReservationServiceImpl implements MemberReservationService {
 	public void registerReservation(ReservationDto reservationDto) {
 		MemberReservationDaoImpl.getMemberReservationDao().registerReservation(reservationDto);
 	}
+
+	@Override
+	public ArrayList<ReservationDto> myReservationList(String user_id) {
+		return MemberReservationDaoImpl.getMemberReservationDao().myReservationList(user_id);
+	}
 	
 	
 }
