@@ -10,8 +10,14 @@ public class ParkingDto {
 	private double longitude;
 	private String park_type;
 	private String content;
+	private String detailAddr;
 	
-	
+	public String getDetailAddr() {
+		return detailAddr;
+	}
+	public void setDetailAddr(String detailAddr) {
+		this.detailAddr = detailAddr;
+	}
 	public String getContent() {
 		return content;
 	}

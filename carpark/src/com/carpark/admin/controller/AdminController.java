@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.carpark.factory.AdminActionFactory;
 import com.carpark.util.BoardConstance;
 import com.carpark.util.Encoder;
+import com.carpark.util.PageMove;
 
 /**
  * Servlet implementation class AdminCallController
@@ -30,20 +31,22 @@ public class AdminController extends HttpServlet {
     		if("mvprofile".equals(act)) {
     			
     		}else if("adminParkRegister".equals(act)) {
-    			
+    			path = AdminActionFactory.getAdminParkingRegisterAction().execute(request, response);
+    			PageMove.forward(request, response, path);
     		}else if("".equals(act)) {
     			
     		}else if("".equals(act)) {
     			
     		}else if("".equals(act)) {
     			
-
+    		}
     		if("alluserinfo".equals(act)) {
     			path = AdminActionFactory.getAdminAllUserInfoAction().execute(request, response);
 
     		}else if("".equals(act)) {
     			
     		}
+    		
     	}
 
     	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
