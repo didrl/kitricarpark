@@ -5,6 +5,11 @@
 <%@include file="/common/header/init.jsp"%>
 <%@include file="/common/side.jsp" %>
 
+<%
+if(memberDto != null) {
+List<MessageDto> list = (List<MessageDto>) request.getAttribute("receiveList");
+%>
+
 <div id="wrapper">
 
 <!-- ****************************************************************************************************************** -->	
