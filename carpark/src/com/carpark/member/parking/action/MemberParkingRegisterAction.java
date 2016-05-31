@@ -38,7 +38,7 @@ public class MemberParkingRegisterAction implements Action {
 		parkingDto.setEmdCode(NumberCheck.nullToZero(request.getParameter("emdCode")));
 		
 		parkingDto.setOwnerId("didrl");
-		//parkingDto.setOwnerId(memberDto.getUser_id());
+//		parkingDto.setOwnerId(memberDto.getUser_id());
 		
 		parkingDto.setFacility(StringCheck.nullToBlank(request.getParameter("facility")));
 		parkingDto.setFeature(StringCheck.nullToBlank(request.getParameter("feature")));

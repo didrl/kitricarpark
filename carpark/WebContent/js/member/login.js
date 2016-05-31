@@ -3,7 +3,7 @@ function detailprofile(){
 }
 
 function reservationInfo(){
-	document.location.href=root+"/memberparking?act=parkList";
+	document.location.href=root+"/reservation?act=mvReservation";
 }
 
 function mycoin(){
@@ -26,3 +26,11 @@ function loginConfirm(){
 	document.loginForm.reset();
 }
 
+function myParking(){
+	document.location.href=root+"/memberparking?act=parkList"
+}
+
+function myParkingRegister(){
+	document.location.href=root+"/parking/register.jsp"
+//	document.location.href=root+"/memberparking?act=parkRegister"
+}

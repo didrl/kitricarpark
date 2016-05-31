@@ -18,7 +18,7 @@ public class MemberParkingController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String act = request.getParameter("act");
 		String path = "/index.jsp";
-		
+		System.out.println("act>>>>>>>>>"+act);
 		
 		if("parkRegister".equals(act)) {
 			path = MemberActionFactory.getMemberParkingRegisterAction().execute(request, response);

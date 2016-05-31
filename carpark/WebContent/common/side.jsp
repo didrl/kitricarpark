@@ -5,7 +5,7 @@
 		<!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
 		<div class="collapse navbar-collapse navbar-ex1-collapse">
 			<ul class="nav navbar-nav side-nav">
-				<li><a href="/carpark/member/detailInfo.jsp"><i class="fa fa-fw fa-dashboard"></i>
+				<li><a href="<%=root%>/member?act=mvprofile"><i class="fa fa-fw fa-dashboard"></i>
 						Dashboard</a></li>
 						
 				<li><a href="javascript:;" data-toggle="collapse"
@@ -34,8 +34,8 @@
 					data-target="#parking"><i class="fa fa-fw fa-wrench"></i>
 						주차장 <i class="fa fa-fw fa-caret-down"></i></a>
 					<ul id="parking" class="collapse">
-						<li><a href="#">내 주차장</a></li>
-						<li><a href="#">주차장 등록</a></li>
+						<li><a href="javascript:myParking();">내 주차장</a></li>
+						<li><a href="javascript:myParkingRegister();">주차장 등록</a></li>
 					</ul></li>
 					
 				<li><a href="javascript:mycoin();"><i class="fa fa-fw fa-file"></i>
