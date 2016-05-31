@@ -57,7 +57,7 @@ function infocheck(){
 		$("#userphone").focus();
 		return;
 	}else {
-		document.signUpForm.action="/member?act=mvsignup";
+		document.signUpForm.action=root+"/member?act=mvsignup";
 		document.signUpForm.submit();
 	}
 }

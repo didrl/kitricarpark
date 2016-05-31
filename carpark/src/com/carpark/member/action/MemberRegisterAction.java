@@ -26,6 +26,6 @@ public class MemberRegisterAction implements Action{
 		System.out.println("Dao에서 service 들어옴>>>>>"+count);
 		request.setAttribute("registerInfo", memberDto);
 		request.setAttribute("count",count);
-		return count==0 ? "":"";
+		return "";
 	}
 }
