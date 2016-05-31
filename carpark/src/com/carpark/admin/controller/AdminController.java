@@ -21,8 +21,8 @@ import com.carpark.util.StringCheck;
 @WebServlet("/admin")
 public class AdminController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-           
-      
+             
+        
     	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     		String root = request.getContextPath();
     		String act = Encoder.utfUrl(request.getParameter("act"));
@@ -31,6 +31,8 @@ public class AdminController extends HttpServlet {
     		
     		if("alluserinfo".equals(act)) {
     			path = AdminActionFactory.getAdminAllUserInfoAction().execute(request, response);
+    			System.out.println("aasdfasd@@"+path);
+    			PageMove.forward(request, response, path);
     		}else if("".equals(act)) {
     			
     		}

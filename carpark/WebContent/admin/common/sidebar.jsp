@@ -11,7 +11,7 @@
                         <a href="javascript:;" data-toggle="collapse" data-target="#customer"><i class="fa fa-fw fa-arrows-v"></i> 고객관리 <i class="fa fa-fw fa-caret-down"></i></a>       
                         <ul id="customer" class="collapse">
                             <li>
-                                <a href="/admin?act=alluserinfo">전체 고객 정보</a>
+                                <a href="javascript:getAllUserInfo();">전체 고객 정보</a>
                             </li>
                             <li>
                                 <a href="<%=customerpath%>/rate.jsp">신고내역</a>
