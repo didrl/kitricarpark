@@ -1,6 +1,8 @@
 package com.carpark.common.model;
 
-public class ParkingDto {
+import java.io.Serializable;
+
+public class ParkingDto implements Serializable{
 	private int park_id;
 	private String park_name;
 	private String location;

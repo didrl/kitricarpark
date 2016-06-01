@@ -1,6 +1,8 @@
 package com.carpark.common.model;
 
-public class ParkingDetailDto extends ParkingFacilityDto{
+import java.io.Serializable;
+
+public class ParkingDetailDto extends ParkingFacilityDto implements Serializable {
 	private int park_id;						//주차장 아이디
 	private int park_flag;					// 주차장 사용가능 여부
 	private double park_avgPoint; 		//주차장 평점

@@ -32,7 +32,7 @@ public class MemberReservationRegisterAction implements Action {
 		reservationDto.setPay(Integer.parseInt(request.getParameter("selectedprice")));
 		
 		MemberReservationServiceImpl.getMemberReservationService().registerReservation(reservationDto);
-		return "";
+		return "/member/myReservation.jsp";
 	}
 
 }

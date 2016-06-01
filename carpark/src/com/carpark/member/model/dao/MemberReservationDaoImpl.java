@@ -147,10 +147,11 @@ public class MemberReservationDaoImpl implements MemberReservationDao {
 		try {
 			conn=DBConnection.makeConnection();
 			String sql="";
-			sql += "select r.user_id,r.reser_id, p.park_name, r.start_date, r.end_date,r.pay,r.park_id, p.owner_id \n";
+			sql += "select r.user_id,r.reser_id, p.park_name, r.start_date, r.end_date,r.pay,r.park_id, p.owner_id,r.rdate  \n";
 			sql += "from reservation r, parking p \n"; 
 			sql += "where user_id=?\n";
-			sql += "and r.park_id=p.park_id";
+			sql += "and r.park_id=p.park_id\n";
+			sql += "order by r.rdate desc";
 			pstmt = conn.prepareStatement(sql);//미리 sql 문장을 가져가서 검사하고 틀린게 없을 때 실행
 			int idx =1;//중간에 없어지거나 추가될때 필요
 			pstmt.setString(idx++, user_id);
@@ -171,6 +172,7 @@ public class MemberReservationDaoImpl implements MemberReservationDao {
 				reservationDto.setPay(rs.getInt("pay"));
 				reservationDto.setPark_id(rs.getInt("park_id"));
 				reservationDto.setHost_id(rs.getString("owner_id"));
+				reservationDto.setReser_date(rs.getString("rdate"));
 				
 				list.add(reservationDto);
 			}

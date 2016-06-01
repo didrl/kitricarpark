@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 		<!--  search bar start -->
-			<script type="text/javascript" src="/carpark/js/date-ko-KR.js"></script>
+			<script type="text/javascript" src="/carpark/js/datejs/date-ko-KR.js"></script>
 			<div class="col-sm-12">
 				<!-- /input-group -->
 				<form id="searchForm" name="searchForm" class="form-inline" role="form" method="post">
