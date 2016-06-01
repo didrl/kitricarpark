@@ -1,132 +1,102 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.*,com.carpark.member.model.*,com.carpark.util.*"%>
     
 <%@include file="/common/common.jsp" %>
-<%@include file="/common/header.jsp" %> 
+<%@include file="/common/header/init.jsp" %> 
 <%@include file="/common/side.jsp" %>
-
-	<div id="wrapper">
-
-<!-- ****************************************************************************************************************** -->	
-
-		<!-- 메인 -->
-        <div id="page-wrapper">
-        
-        
- 
-
-			<!-- 신고리스트 -->
-            <div class="container-fluid">
-
-                <!-- Page Heading -->
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h1 class="page-header">
-                            신고내역
-                        </h1>
-                    
-                    </div>
-                </div>
-                
-                
-	            <!-- 신고하기 -->
-	            <p>
-				<button type="button" class="btn btn-default" data-toggle="modal" data-target="#report">
-					신고
-				</button>
-				</p>
-		         		
-		        <!-- 신고 모달 -->
-				<div class="modal fade" id="report" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-				    <div class="modal-dialog">
-				        <div class="modal-content">
-				           	<div class="modal-header">
-				               	<button type="button" class="close" data-dismiss="modal">
-				                    <span aria-hidden="true">×</span><span class="sr-only">Close</span>
-				                </button>
-				                <center>
-					                <h4 class="modal-title" id="myModalLabel">신고하기</h4>
-				                </center>
-				            </div>
-				               	
-					        <div class="modal-body">
-							    <div class="row">
-									<div class="col-md-2">
-										<b>신고목록</b>
-									</div>
-			                        <div class="form-group">
-			                        	<label>Selects</label>
-			                            <select class="form-control">
-			                            	<option>1</option>
-			                                <option>2</option>
-			                                <option>3</option>
-			                                <option>4</option>
-			                                <option>5</option>
-			                            </select>
-			                    	</div>
-								</div><hr>
-						
-								<div class="row">
-									<div class="form-group">
-										<div class="col-md-2">
-											<label for="form-title">제목</label>
-										</div>
-										<div class="col-md-10">
-											<input type="text" class="form-control" name="title" id="form-title" placeholder="제목을 적어주세요.">
-										</div>
-									</div>
-								</div><hr>
-								
-								<div class="row">
-									<div class="form-group">
-										<div class="col-md-2">
-											<label for="form-author">내용</label>
-										</div>
-										<div class="col-md-10">
-											<textarea class="form-control" rows="10" name="description"  id="form-author" placeholder="본문을 적어주세요."></textarea>
-										</div>
-									</div>
-								</div><hr>	
-							
-								<div class="row">
-									<center>
-										<p>
-						  					<button type="button" class="btn btn-primary btn-lg">등록</button>
-										</p>
-									</center>
-								</div>	
-							</div>
-							               		
-						</div>
-					</div>
-				</div>
-				<!-- 신고 모달 -->
-
-                <div class="list-group">
-				  <a href="#" class="list-group-item">신고1</a>
-				  <a href="#" class="list-group-item">신고2</a>
-				  <a href="#" class="list-group-item">신고3</a>
-				  <a href="#" class="list-group-item">신고4</a>
-				  <a href="#" class="list-group-item">신고5</a>
-				  <a href="#" class="list-group-item">신고6</a>
-				  <a href="#" class="list-group-item">신고7</a>
-				  <a href="#" class="list-group-item">신고8</a>
-				  <a href="#" class="list-group-item">신고9</a>
-				</div>
-                
-            </div>
-            <!-- /.container-fluid -->
-            <!-- 신고리스트 -->
-
-            
-
-        </div>
-        <!-- /#page-wrapper -->
-		<!-- 메인 -->
-
-<!-- ****************************************************************************************************************** -->	
-
-    </div>
-    <!-- /#wrapper -->
+  
     
-<%@ include file="/common/footer.jsp" %>
+<%
+if(memberDto != null) {
+List<ReportDto> list = (List<ReportDto>) request.getAttribute("reportList");
+PageNavigator navigator = (PageNavigator) request.getAttribute("navigator");
+%>
+
+<div id="wrapper">
+<!-- ****************************************************************************************************************** -->	
+
+		<!-- main -->
+		<div id="page-wrapper">
+			<div class="container-fluid">
+				<br><h3>신고내역</h3><br>
+					
+				
+				<!-- 신고하기 모달창 -->
+				<%@ include file="/report/write.jsp" %>
+					
+				
+				<!-- 신고내역 -->
+				<div class="table">
+				  <table class="table table-hover" style="text-align:center">
+				  	<tr>
+				  		<td width="150"><b>신고대상</b></td>
+				  		<td><b>제목</b></td>
+				  		<td width="80"><b>시간</b></td>
+				  	</tr>
+				
+<%
+int size = list.size();
+if(size > 0) {
+	for(ReportDto reportDto : list) {
+%>
+					<!-- 신고내역 -->
+					<tr >
+						<td width="150"><a href="#">신고대상</a></td>
+						<td><a href="#">제목</a></td>
+						<td width="80">신고한 시간</td>	
+					
+<%
+	}
+%>
+				  </table>
+				</div>
+
+<%
+} else {
+%>
+				  </table>
+				</div>
+<center><h3>메세지가 없습니다</h3></center>	
+<br><br>  
+<%
+}
+%>
+
+
+			<!-- 페이지 네비게이션/검색 -->
+			<nav align="center">
+				<div class="form-group">
+				<form class="form-inline" name="searchForm" method="get" action="">
+					<input type="hidden" name="act" id="act" value="reportSearch">
+					<input type="hidden" name="pg" id="pg" value="<%=pg%>">
+					<select name="key">
+						<option value="subject">제목</option>
+						<option value="content">내용</option>
+						<option value="user_id">신고대상</option>
+					</select>
+					<input type="text" name="word" id="word" value="">
+					<input type="button" class="btn btn-default" value="검색" onclick="javascript:reportSearch();">
+				</form>
+				</div>
+				<ul class="pagination">
+				<%=navigator.getNavigator() %>
+				</ul>
+						
+			</nav>
+
+					
+		</div>
+	</div>
+<!-- ****************************************************************************************************************** -->	
+</div>
+<%
+} else {
+%>
+<center>
+<h3>로그인 후 이용해주세요</h3>
+</center>
+<%
+}
+%>
+
+<%@include file="/common/footer.jsp"%>

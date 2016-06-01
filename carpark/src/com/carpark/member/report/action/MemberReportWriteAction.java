@@ -13,36 +13,40 @@ import com.carpark.member.model.MemberDto;
 import com.carpark.member.model.MessageDto;
 import com.carpark.member.model.service.CommonServiceImpl;
 import com.carpark.member.model.service.MemberMessageServiceImpl;
-import com.carpark.util.Encoder;
 import com.carpark.util.NumberCheck;
-import com.carpark.util.PageNavigator;
-import com.carpark.util.StringCheck;
 
-public class MemberReportListAction implements Action {
+public class MemberReportWriteAction implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 
-		int pg = NumberCheck.nullToOne(request.getParameter("pg"));
-		String key = StringCheck.nullToBlank(request.getParameter("key"));
-		String word = Encoder.isoToUtf(StringCheck.nullToBlank(request.getParameter("word")));
-		
 		HttpSession session = request.getSession();
 		MemberDto memberDto = (MemberDto) session.getAttribute("memberInfo");
 		
+		int seq = CommonServiceImpl.getCommonService().getNextSeq();
+		
+		ReportDto reportDto = new ReportDto();
+//		messageDto.setSeq(seq);
+//		messageDto.setUserID(memberDto.getUser_id());
+//		messageDto.setSubject(request.getParameter("subject"));
+//		messageDto.setContent(request.getParameter("content").replace("\r\n", "<br>"));
+//		messageDto.setMseq(seq);
+//		messageDto.setReceiverId(request.getParameter("receiver"));
+//		messageDto.setMsgFlag(0);
+		
 		String userId = memberDto.getUser_id();
-		if(userId != null) {
-			List<ReportDto> list = MemberReportServiceImpl.getMemberReportService().reportListArticle(userId, pg, key, word);
-			PageNavigator navigator = CommonServiceImpl.getCommonService().getPageNavigatorUser(userId, pg, key, word);
-			navigator.setRoot(request.getContextPath());
-			navigator.setNavigatorSend();
-			
-			request.setAttribute("reportList", list);
-			request.setAttribute("navigator", navigator);
-		}
+		int pg = 1;
+		String key = "";
+		String word = "";
+		
+		MemberReportServiceImpl.getMemberReportService().writeArticle(reportDto);
+		List<ReportDto> list = MemberReportServiceImpl.getMemberReportService().ListArticle(userId, pg, key, word);
+		request.setAttribute("reportList", list);
+		
 		
 		return "/report/list.jsp";
+
 	}
 
 }

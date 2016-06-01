@@ -36,7 +36,7 @@ import com.carpark.member.parking.action.MemberParkingModifyAction;
 import com.carpark.member.parking.action.MemberParkingRegisterAction;
 import com.carpark.member.parking.action.MemberParkingSearchAction;
 import com.carpark.member.report.action.MemberReportListAction;
-import com.carpark.member.report.action.MemberReportRegisterAction;
+import com.carpark.member.report.action.MemberReportWriteAction;
 import com.carpark.member.report.action.MemberReportViewAction;
 import com.carpark.member.reservation.action.MemberReservationDeleteAction;
 import com.carpark.member.reservation.action.MemberReservationListAction;
@@ -84,7 +84,7 @@ public class MemberActionFactory {
 	private static Action memberMessageReceiveDeleteAction;
 	
 	private static Action memberReportListAction;
-	private static Action memberReportRegisterAction;
+	private static Action memberReportWriteAction;
 	private static Action memberReportViewAction;
 	
 	private static Action memberReservationDeleteAction;
@@ -142,7 +142,7 @@ public class MemberActionFactory {
 		memberMessageReceiveDeleteAction = new MemberMessageReceiveDeleteAction();
 		
 		memberReportListAction = new MemberReportListAction();
-		memberReportRegisterAction = new MemberReportRegisterAction();
+		memberReportWriteAction = new MemberReportWriteAction();
 		memberReportViewAction = new MemberReportViewAction();
 		
 		memberReservationDeleteAction = new MemberReservationDeleteAction();
@@ -290,8 +290,8 @@ public class MemberActionFactory {
 		return memberReportListAction;
 	}
 
-	public static Action getMemberReportRegisterAction() {
-		return memberReportRegisterAction;
+	public static Action getMemberReportWriteAction() {
+		return memberReportWriteAction;
 	}
 
 	public static Action getMemberReportViewAction() {
