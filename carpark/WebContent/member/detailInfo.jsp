@@ -38,11 +38,11 @@ MemberDto memberDetailInfo =(MemberDto)request.getAttribute("memberDetailInfo");
 							</div>
 
 							<div class="form-group">
-								<label>새비밀번호</label> <input class="form-control" name="modifypass1" id="modifypass1">
+								<label>새비밀번호</label> <input type="password" class="form-control" name="modifypass1" id="modifypass1">
 							</div>
 
 							<div class="form-group">
-								<label>새비밀번호확인</label> <input class="form-control" name="modifypass2" id="modifypass2">
+								<label>새비밀번호확인</label> <input type="password" class="form-control" name="modifypass2" id="modifypass2">
 							</div>
 							
 							
@@ -71,26 +71,6 @@ MemberDto memberDetailInfo =(MemberDto)request.getAttribute("memberDetailInfo");
 							<label>프로필 사진 선택</label> <input type="file">
 						</div>
 
-					
-
-						<div class="form-group">
-							<label>Checkboxes</label>
-							<div class="checkbox">
-								<label> <input type="checkbox" value="">Checkbox
-									1
-								</label>
-							</div>
-							<div class="checkbox">
-								<label> <input type="checkbox" value="">Checkbox
-									2
-								</label>
-							</div>
-							<div class="checkbox">
-								<label> <input type="checkbox" value="">Checkbox
-									3
-								</label>
-							</div>
-						</div>
 
 						<div class="form-group">
 							<label>회사 선택</label> <label class="radio-inline">
