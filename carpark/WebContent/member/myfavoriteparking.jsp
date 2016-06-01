@@ -42,9 +42,9 @@ function parkingView(park_id){
 					<!-- 쪽지목록 -->
 					<tr >
 						<td><label onclick="javascript:parkingView('<%=favoriteDto.getPark_id()%>');">
-						<%=favoriteDto.getParkName() %></label></td>
+						<%=favoriteDto.getPark_name() %></label></td>
 						<td><label onclick="javascript:parkingView('<%=favoriteDto.getPark_id()%>');">
-						<%=favoriteDto.getOwnerId() %></label></td>
+						<%=favoriteDto.getOwner_id() %></label></td>
 						<td></td>						
 <%
 		}

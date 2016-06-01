@@ -1,16 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
     import="com.carpark.member.model.ReservationDto, java.util.*,com.carpark.member.model.MemberCarDto"
+    import="com.carpark.common.model.*"
     %>
     
 <%@include file="/common/common.jsp" %>
 <%@include file="/common/header/init.jsp"%>
 
 <%
-ReservationDto reservationDto = (ReservationDto) request.getAttribute("reservationDto");
-ArrayList<MemberCarDto> carInfo = (ArrayList<MemberCarDto>) request.getAttribute("carinfo"); 
-ArrayList<String> availdate = (ArrayList<String>) request.getAttribute("availalbledate");
-ParkingDetailDto parkingDetailDto =(ParkingDetailDto) request.getAttribute("parkingDetailDto");
+ReservationDto reservationDto = (ReservationDto) session.getAttribute("reservationDto");
+ArrayList<MemberCarDto> carInfo = (ArrayList<MemberCarDto>) session.getAttribute("carinfo"); 
+ArrayList<String> availdate = (ArrayList<String>) session.getAttribute("availalbledate");
+ParkingDetailDto parkingDetailDto =(ParkingDetailDto) session.getAttribute("parkingDetailDto");
 ArrayList<ParkingDto> list = (ArrayList<ParkingDto>)session.getAttribute("searchlist");
 
 if(parkingDetailDto == null)
