@@ -8,7 +8,7 @@
     
 <%
 if(memberDto != null) {
-List<MessageDto> list = (List<MessageDto>) request.getAttribute("receiveList");
+List<MessageDto> list = (List<MessageDto>) request.getAttribute("reservationList_host");
 %>
 
 <div id="wrapper">
@@ -17,32 +17,31 @@ List<MessageDto> list = (List<MessageDto>) request.getAttribute("receiveList");
 		<!-- main -->
 		<div id="page-wrapper">
 			<div class="container-fluid">
-				<br><h3>쪽지함</h3><br>
+				<br><h3>예약 내역</h3><br>
 					
 				<div class="btn-group" role="group" aria-label="...">
-	  				<button type="button" class="btn btn-default" onclick="javascript:messageReceiveList();">
-	  					받은 쪽지함
+	  				<button type="button" class="btn btn-default" onclick="javascript:reservationList_host();">
+	  					받은 예약내역
 	  				</button>
-	  				<button type="button" class="btn btn-default" onclick="javascript:messageSendList();">
-	  					보낸 쪽지함
+	  				<button type="button" class="btn btn-default" onclick="javascript:reservationList_guest();">
+	  					내가 한 예약내역
 	  				</button>	
-					<button type="button" class="btn btn-default"  data-toggle="modal" data-target="#messageWrite" onclick="javascript:init();">
-                		쪽지 보내기
+					<button type="button" class="btn btn-default"  data-toggle="modal" data-target="#leaveReview" onclick="javascript:init();">
+                		리뷰 남기기
                		</button>
 				</div>
 				
-				<!-- 메세지 보내기 모달창 -->
-				<%@ include file="/message/write.jsp" %>
-				<%@ include file="/message/towrite.jsp" %>
+				<!-- 리뷰 남기기 모달창 -->
+				<%@ include file="/reservation/leaveReview.jsp" %>
 					
 				
-				<!-- 메세지 리스트 -->
+				<!-- 예약내역 리스트 -->
 				<div class="table">
 				  <table class="table table-hover" style="text-align:center">
 				  	<tr>
-				  		<td width="200"><b>보낸사람</b></td>
-				  		<td><b>제목</b></td>
-				  		<td><b>시간</b></td>
+				  		<td width="200"><b>호스트 아이디</b></td>
+				  		<td><b>주차장 이름</b></td>
+				  		<td><b>예약 시간</b></td>
 				  		<td width="50"><b>확인</b></td>
 				  		<td></td>
 				  	</tr>
@@ -52,26 +51,24 @@ int size = list.size();
 if(size > 0) {
 	for(MessageDto messageDto : list) {
 %>
-					<!-- 쪽지목록 -->
+					<!-- 예약목록 -->
 					<tr >
-						<td><a href="javascript:messageReceiveView('<%=messageDto.getSeq()%>');"><%=messageDto.getReceiverId() %></a></td>
-						<td><a href="javascript:messageReceiveView('<%=messageDto.getSeq() %>');"><%=messageDto.getSubject() %></a></td>
+						<td><a href="javascript:reservationList_host('<%=messageDto.getSeq()%>');"><%=messageDto.getReceiverId() %></a></td>
+						<td><a href="javascript:reservationList_host('<%=messageDto.getSeq() %>');"><%=messageDto.getSubject() %></a></td>
 						<td><%=messageDto.getLogtime() %></td>	
 <%
 if(messageDto.getMsgFlag() == 0) {
 %>					
 						<td>X</td>
 						<td>
-						<button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#messageToWrite" onclick="toWriteInit('<%=messageDto.getReceiverId()%>');">답장</button>
-						<button type="button" class="btn btn-default btn-xs" onclick="javascript:messageReceiveDelete('<%=messageDto.getSeq()%>');">삭제</button>
+						<button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#leaveReview_to" onclick="leaveReview_toInit('<%=messageDto.getReceiverId()%>');">리뷰남기기</button>
 						</td>
 <%
 } else {
 %>
 						<td>O</td>
 						<td>
-						<button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#messageToWrite" onclick="javascript:toWriteInit('<%=messageDto.getReceiverId()%>');">답장</button>
-						<button type="button" class="btn btn-default btn-xs" onclick="javascript:messageReceiveDelete('<%=messageDto.getSeq()%>');">삭제</button>
+						<button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#messageToWrite" onclick="javascript:toWriteInit('<%=messageDto.getReceiverId()%>');">리뷰남기기</button>
 						</td>
 					</tr>
 <%
@@ -86,7 +83,7 @@ if(messageDto.getMsgFlag() == 0) {
 %>
 				  </table>
 				</div>
-<center><h3>메세지가 없습니다</h3></center>	
+<center><h3>예약내역이 없습니다</h3></center>	
 <br><br>  
 <%
 }
@@ -96,17 +93,17 @@ if(messageDto.getMsgFlag() == 0) {
 			<!-- 페이지 네비게이션/검색 -->
 			<nav align="center">
 				<div class="form-group">
-				<form class="form-inline" name="searchForm" method="get" action="">
-					<input type="hidden" name="act" id="act" value="messageSearch">
+				<form class="form-inline" name="reservationsearchForm" method="get" action="">
+					<input type="hidden" name="act" id="act" value="reservationSearch">
 					<input type="hidden" name="bcode" id="bcode" value="1">
 					<input type="hidden" name="pg" id="pg" value="1">
 					<select name="key">
-						<option value="subject">제목</option>
-						<option value="content">내용</option>
-						<option value="user_id">작성자</option>
+						<option value="parkname_reservation">예약주차장</option>
+						<option value="time_reservation">예약시간</option>
+						<option value="userid_reservationer">예약자</option>
 					</select>
-					<input type="text" name="word" id="word" value="">
-					<input type="button" class="btn btn-default" value="검색" onclick="javascript:messageSearch();">
+					<input type="text" name="word_r" id="word_r" value="">
+					<input type="button" class="btn btn-default" value="검색" onclick="javascript:reservationSearch();">
 				</form>
 				</div>
 					

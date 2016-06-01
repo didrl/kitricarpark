@@ -1,20 +1,31 @@
 package com.carpark.member.reservation.action;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
 
 import com.carpark.action.Action;
+import com.carpark.member.model.MemberDto;
+import com.carpark.member.model.MessageDto;
+import com.carpark.member.model.service.MemberMessageServiceImpl;
 
 public class MemberReservationListAction implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-		// TODO Auto-generated method stub
-		return null;
+		HttpSession session = request.getSession();
+		MemberDto memberDto = (MemberDto) session.getAttribute("memberInfo");
+		
+		String receiveId = memberDto.getUser_id();
+		if(receiveId != null) {
+			List<MessageDto> receiveList = MemberMessageServiceImpl.getMemberMessageService().receiveListArticle(receiveId);
+			request.setAttribute("receiveList", receiveList);
+		}
+		
+		return "/message/reservationlist.jsp";
 	}
 
 }
