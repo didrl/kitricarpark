@@ -23,8 +23,6 @@ import com.carpark.action.Action;
 import com.carpark.member.model.MemberDto;
 import com.carpark.member.model.ReservationDto;
 import com.carpark.member.model.service.MemberReservationServiceImpl;
->>>>>>> a3d98903480c22a6c0e2b5d8691554756d51a1c4
-
 public class MemberReservationListAction implements Action {
 
 	@Override
