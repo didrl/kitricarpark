@@ -60,11 +60,11 @@ function parkDelete(parkId) {
 %>
                <!-- 쪽지목록 -->
                <tr >
-                  <td><label onclick="javascript:parkingView('<%=parkingDetailDto.getParkId()%>');">
-                  <%=parkingDetailDto.getParkName() %></label></td>
-                  <td><label onclick="javascript:parkingView('<%=parkingDetailDto.getParkId()%>');">
-                  <%=parkingDetailDto.getParkAvgPoint() %></label></td>
-                  <td><input type="button" value="삭제" onclick="javascript:parkDelete('<%=parkingDetailDto.getParkId()%>');"></td>                  
+                  <td><label onclick="javascript:parkingView('<%=parkingDetailDto.getPark_id()%>');">
+                  <%=parkingDetailDto.getPark_name() %></label></td>
+                  <td><label onclick="javascript:parkingView('<%=parkingDetailDto.getPark_id()%>');">
+                  <%=parkingDetailDto.getPark_avgPoint() %></label></td>
+                  <td><input type="button" value="삭제" onclick="javascript:parkDelete('<%=parkingDetailDto.getPark_id()%>');"></td>                  
 <%
       }
 %>
