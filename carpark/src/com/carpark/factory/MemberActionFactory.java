@@ -4,6 +4,7 @@ import com.carpark.action.Action;
 import com.carpark.member.action.MemberAddCarAction;
 import com.carpark.member.action.MemberBenefitAction;
 import com.carpark.member.action.MemberCarListAction;
+import com.carpark.member.action.MemberCoinAction;
 import com.carpark.member.action.MemberDeleteAction;
 import com.carpark.member.action.MemberIdCheckAction;
 import com.carpark.member.action.MemberInfoAction;
@@ -120,7 +121,7 @@ public class MemberActionFactory {
 		memberLogoutAction = new MemberLogoutAction();
 		memberAddCarAction = new MemberAddCarAction();
 		memberBenefitAction = new MemberBenefitAction();
-		memberCoinAction	= new Membe();
+		memberCoinAction	= new MemberCoinAction();
 		
 		memberCallDeleteAction = new MemberCallDeleteAction();
 		memberCallListAction = new MemberCallListAction();
