@@ -21,14 +21,22 @@ PageNavigator navigator = (PageNavigator) request.getAttribute("navigator");
 				<br><h3>쪽지함</h3><br>
 					
 				<div class="btn-group" role="group" aria-label="...">
+<<<<<<< HEAD
+	  				<button type="button" class="btn btn-default" onclick="javascript:messageReceiveList();">
+	  					받은 쪽지함
+	  				</button>
+	  				<button type="button" class="btn btn-default" onclick="javascript:messageSendList();">
+	  					보낸 쪽지함
+=======
 	  				<button type="button" class="btn btn-default" onclick="javascript:messageReceiveList('1');">
 	  					받은쪽지함
 	  				</button>
 	  				<button type="button" class="btn btn-default" onclick="javascript:messageSendList('1');">
 	  					보낸쪽지함
+>>>>>>> a3d98903480c22a6c0e2b5d8691554756d51a1c4
 	  				</button>	
 					<button type="button" class="btn btn-default"  data-toggle="modal" data-target="#messageWrite" onclick="javascript:init();">
-                		쪽지보내기
+                		쪽지 보내기
                		</button>
 				</div>
 				
