@@ -9,9 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.carpark.action.Action;
-import com.carpark.admin.model.ParkingDetailDto;
-import com.carpark.admin.model.ParkingDto;
-import com.carpark.admin.model.ParkingFacilityDto;
+import com.carpark.common.model.ParkingDto;
+import com.carpark.common.model.ParkingFacilityDto;
 import com.carpark.member.model.FavoriteDto;
 import com.carpark.member.model.MemberDto;
 import com.carpark.member.model.ReviewDto;
@@ -31,14 +30,18 @@ public class MemberSearchDetailAction implements Action {
 		String park_id= request.getParameter("parkingid");
 		ParkingDto parkingDto= MemberServiceImpl.getMemberService().parkingDetail(park_id);
 		ArrayList<ReviewDto> reviewlist = MemberReviewServiceImpl.getMemberReviewService().listReview(park_id);
-		ArrayList<FavoriteDto> favoritelist = (ArrayList<FavoriteDto>) MemberFavoriteServiceImpl.getMemberFavoriteService().favoritelist(memberDto.getUser_id());
 		ParkingFacilityDto parkingFacilityDto = MemberServiceImpl.getMemberService().getParkingFacility_info(park_id);
+		ArrayList<FavoriteDto> favoritelist;
 		
-		request.setAttribute("parkingDetail", parkingDto);
-		request.setAttribute("reviewlist", reviewlist);
-		request.setAttribute("parkingFacilityDto", parkingFacilityDto);
-		request.setAttribute("favoritelist",favoritelist);
+		session.setAttribute("parkingDetail", parkingDto);
+		session.setAttribute("reviewlist", reviewlist);
+		session.setAttribute("parkingFacilityDto", parkingFacilityDto);
 		
+		if(memberDto != null){
+			favoritelist = (ArrayList<FavoriteDto>) MemberFavoriteServiceImpl.getMemberFavoriteService().favoritelist(memberDto.getUser_id());
+			session.setAttribute("favoritelist",favoritelist);
+		}
+
 		return "/search/searchResultDetail.jsp";
 	}
 

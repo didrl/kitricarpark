@@ -2,7 +2,7 @@ package com.carpark.admin.model.dao;
 
 import java.util.ArrayList;
 
-import com.carpark.admin.model.ParkingDetailDto;
+import com.carpark.common.model.ParkingDetailDto;
 import com.carpark.member.model.ReservationDto;
 
 public interface AdminParkingDao {

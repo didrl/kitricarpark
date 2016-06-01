@@ -2,8 +2,8 @@ package com.carpark.admin.model.service;
 
 import java.util.ArrayList;
 
-import com.carpark.admin.model.ParkingDetailDto;
 import com.carpark.admin.model.dao.AdminParkingDaoImpl;
+import com.carpark.common.model.ParkingDetailDto;
 import com.carpark.member.model.ReservationDto;
 
 public class AdminParkingServiceImpl implements AdminParkingService {

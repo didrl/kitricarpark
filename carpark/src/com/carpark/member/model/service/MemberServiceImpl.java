@@ -5,9 +5,9 @@ import java.util.List;
 import java.util.Map;
 
 import com.carpark.admin.model.GradeDto;
-import com.carpark.admin.model.ParkingDetailDto;
-import com.carpark.admin.model.ParkingDto;
-import com.carpark.admin.model.ParkingFacilityDto;
+import com.carpark.common.model.ParkingDetailDto;
+import com.carpark.common.model.ParkingDto;
+import com.carpark.common.model.ParkingFacilityDto;
 import com.carpark.member.model.MemberCarDto;
 import com.carpark.member.model.MemberDto;
 import com.carpark.member.model.dao.MemberDaoImpl;

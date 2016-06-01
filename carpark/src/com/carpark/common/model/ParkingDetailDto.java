@@ -1,4 +1,4 @@
-package com.carpark.admin.model;
+package com.carpark.common.model;
 
 public class ParkingDetailDto extends ParkingFacilityDto{
 	private int park_id;						//주차장 아이디

@@ -96,8 +96,8 @@ public class MemberFavoriteDaoImpl implements MemberFavoriteDao {
 				
 				favoriteDto.setPark_id(rs.getInt("park_id"));
 				favoriteDto.setUser_id(rs.getString("user_id"));
-				favoriteDto.setParkName(rs.getString("park_name"));
-				favoriteDto.setOwnerId(rs.getString("owner_id"));
+				favoriteDto.setPark_name(rs.getString("park_name"));
+				favoriteDto.setOwner_id(rs.getString("owner_id"));
 				
 				list.add(favoriteDto);
 			}

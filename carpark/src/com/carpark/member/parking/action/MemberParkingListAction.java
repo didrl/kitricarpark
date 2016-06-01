@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.carpark.action.Action;
-import com.carpark.admin.model.ParkingDetailDto;
+import com.carpark.common.model.ParkingDetailDto;
 import com.carpark.member.model.MemberDto;
 import com.carpark.member.model.service.MemberParkingServiceImpl;
 

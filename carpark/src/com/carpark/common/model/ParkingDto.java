@@ -1,57 +1,30 @@
 package com.carpark.common.model;
 
 public class ParkingDto {
-	private int parkId;
-	private String parkName;
-	private int parkCapacity;
-	private String ownerId;
+	private int park_id;
+	private String park_name;
+	private String location;
+	private int park_capacity;
+	private String owner_id;
 	private double latitude;
-	private double longtitude;
-	private String parkType;
-	private int emdCode;
+	private double longitude;
+	private String park_type;
 	private String content;
+	private String detailAddr;
+	private int emdCode;
 	
-	public int getParkId() {
-		return parkId;
+	
+	public int getEmdCode() {
+		return emdCode;
 	}
-	public void setParkId(int parkId) {
-		this.parkId = parkId;
+	public void setEmdCode(int emdCode) {
+		this.emdCode = emdCode;
 	}
-	public String getParkName() {
-		return parkName;
+	public String getDetailAddr() {
+		return detailAddr;
 	}
-	public void setParkName(String parkName) {
-		this.parkName = parkName;
-	}
-	public int getParkCapacity() {
-		return parkCapacity;
-	}
-	public void setParkCapacity(int parkCapacity) {
-		this.parkCapacity = parkCapacity;
-	}
-	public String getOwnerId() {
-		return ownerId;
-	}
-	public void setOwnerId(String ownerId) {
-		this.ownerId = ownerId;
-	}
-	public double getLatitude() {
-		return latitude;
-	}
-	public void setLatitude(double latitude) {
-		this.latitude = latitude;
-	}
-	public double getLongtitude() {
-		return longtitude;
-	}
-	public void setLongtitude(double longtitude) {
-		this.longtitude = longtitude;
-	}
-	public String getParkType() {
-		return parkType;
-	}
-	public void setParkType(String parkType) {
-		this.parkType = parkType;
+	public void setDetailAddr(String detailAddr) {
+		this.detailAddr = detailAddr;
 	}
 	public String getContent() {
 		return content;
@@ -59,13 +32,55 @@ public class ParkingDto {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public int getEmdCode() {
-		return emdCode;
-	}
-	public void setEmdCode(int emdCode) {
-		this.emdCode = emdCode;
-	}
 
+	public int getPark_id() {
+		return park_id;
+	}
+	public void setPark_id(int park_id) {
+		this.park_id = park_id;
+	}
+	public String getPark_name() {
+		return park_name;
+	}
+	public void setPark_name(String park_name) {
+		this.park_name = park_name;
+	}
+	public String getLocation() {
+		return location;
+	}
+	public void setLocation(String location) {
+		this.location = location;
+	}
+	public int getPark_capacity() {
+		return park_capacity;
+	}
+	public void setPark_capacity(int park_capacity) {
+		this.park_capacity = park_capacity;
+	}
+	public String getOwner_id() {
+		return owner_id;
+	}
+	public void setOwner_id(String owner_id) {
+		this.owner_id = owner_id;
+	}
+	public double getLatitude() {
+		return latitude;
+	}
+	public void setLatitude(double latitude) {
+		this.latitude = latitude;
+	}
+	public double getLongitude() {
+		return longitude;
+	}
+	public void setLongitude(double longitude) {
+		this.longitude = longitude;
+	}
+	public String getPark_type() {
+		return park_type;
+	}
+	public void setPark_type(String park_type) {
+		this.park_type = park_type;
+	}
 	
 	
 }

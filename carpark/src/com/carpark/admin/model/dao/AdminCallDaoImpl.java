@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.carpark.admin.model.CallDto;
+import com.carpark.common.model.CallDto;
 import com.carpark.db.DBClose;
 import com.carpark.db.DBConnection;
 

@@ -11,6 +11,7 @@ ReservationDto reservationDto = (ReservationDto) request.getAttribute("reservati
 ArrayList<MemberCarDto> carInfo = (ArrayList<MemberCarDto>) request.getAttribute("carinfo"); 
 ArrayList<String> availdate = (ArrayList<String>) request.getAttribute("availalbledate");
 ParkingDetailDto parkingDetailDto =(ParkingDetailDto) request.getAttribute("parkingDetailDto");
+ArrayList<ParkingDto> list = (ArrayList<ParkingDto>)session.getAttribute("searchlist");
 
 if(parkingDetailDto == null)
 	System.out.println("없어!!!!!!!!!!!!!!!!!");
@@ -80,7 +81,6 @@ if(reservationDto != null){
 				<div class="panel-body"> <!--  Left panel body Start -->
 				<div>	<h3><a href="" ><%=reservationDto.getPark_name() %></a></h3></div>
 				<div><%=reservationDto.getHost_id() %>
-						이것저것 정보들
 				</div><br><br><br><br>
 				<div><h3>언제 주차를 하길 원하십니까?</h3></div><br>
 				<div class="row"><!-- From Choice Start -->

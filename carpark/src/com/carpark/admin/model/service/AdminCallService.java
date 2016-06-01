@@ -2,7 +2,7 @@ package com.carpark.admin.model.service;
 
 import java.util.List;
 
-import com.carpark.admin.model.CallDto;
+import com.carpark.common.model.CallDto;
 
 public interface AdminCallService {
 	CallDto viewArticle(int seq);

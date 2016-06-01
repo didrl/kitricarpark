@@ -9,27 +9,28 @@
 <%@include file="/common/header/init.jsp"%>
 
 <%
-ParkingDto parkingDetail = (ParkingDto)request.getAttribute("parkingDetail");
-ArrayList<ReviewDto> reviewlist = (ArrayList<ReviewDto>)request.getAttribute("reviewlist");
-ParkingDetailDto parkingDetail_info = (ParkingDetailDto)request.getAttribute("parkingDetail_info");
-ArrayList<FavoriteDto> favoritelist = (ArrayList<FavoriteDto>) request.getAttribute("favoritelist");
-
-//ParkingFacilityDto parkingFacilityDto = (ParkingFacilityDto)request.getAttribute("parkingFacilityDto");
-
+ParkingDto parkingDetail = (ParkingDto)session.getAttribute("parkingDetail");
+ArrayList<ReviewDto> reviewlist = (ArrayList<ReviewDto>)session.getAttribute("reviewlist");
+ParkingDetailDto parkingDetail_info = (ParkingDetailDto)session.getAttribute("parkingDetail_info");
+ParkingFacilityDto parkingFacilityDto = (ParkingFacilityDto)session.getAttribute("parkingFacilityDto");
+ArrayList<FavoriteDto> favoritelist;
 System.out.println("<><><><><><><><"+parkingDetail.getPark_id()	);
 System.out.println("<><><><latitude><><><"+parkingDetail.getLatitude());
 System.out.println("<><><><longtitude><><"+parkingDetail.getLongitude());
 System.out.println("<><><><content><><"+parkingDetail.getContent());
 
-int flagj=0;
+int flag=0;
 
-for(FavoriteDto favoriteDto : favoritelist){
-	if(favoriteDto.getPark_id() ==	parkingDetail.getPark_id()){
-		flagj=1;
-		break;
+if(memberDto != null){
+	favoritelist = (ArrayList<FavoriteDto>) session.getAttribute("favoritelist");
+	
+	for(FavoriteDto favoriteDto : favoritelist){
+		if(favoriteDto.getPark_id() ==	parkingDetail.getPark_id()){
+			flag=1;
+			break;
+		}
 	}
 }
-
 /*
 	ParkingDetailDto parkingDetail_info		: parkingDetail table info
 	ParkingFacilityDto parkingFacilityDto	: parking_facility info + parking_img info
@@ -130,8 +131,8 @@ function goSearchResult() {
 }
 
 function setfavorite(){
-	var flag=<%=flagj%>;
-	console.log("asdf!@!@!"+flag+"     "+"<%=flagj%>");
+	var flag=<%=flag%>;
+	console.log("asdf!@!@!"+flag+"     "+"<%=flag%>");
 	if(flag!=0){
 		alert("즐겨찾기에서 삭제되었습니다")
 		document.location.href = "<%=root%>/favorite?act=delfavorite&park_id=<%=parkingDetail.getPark_id()%>";
@@ -675,7 +676,8 @@ for(ReviewDto reviewDto : reviewlist){
 			
 			//review
 			$('#sendMsgToHost').on('click', function (event) {
-		 		<%//if(memberDto !=null){%>
+				var flag=<%=flag%>
+		 		if(flag != 0){
 			        $("#receiver").val("<%=parkingDetail.getOwner_id()%>");
 			        $("#subject").val("");
 			        $("#content").empty();
@@ -683,10 +685,10 @@ for(ReviewDto reviewDto : reviewlist){
 		        	$("#sendmsgpark_id").val("<%=parkingDetail.getPark_id()%>");
 			        $("#receiver").prop("disabled", true);
 		     //    $("#msgToHost").load("<%=root%>/reservation/sendMessageModal.jsp");
-				<%//}else{%>
-					//alert("로그인 후 이용할 수 있습니다.");
-					//return;
-				 	<%//}}%>
+				}else{
+					alert("로그인 후 이용할 수 있습니다.");
+					return;
+				}
 				})
 			
 		</script>

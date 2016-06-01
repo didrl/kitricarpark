@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.carpark.action.Action;
-import com.carpark.admin.model.ParkingDto;
+import com.carpark.common.model.ParkingDto;
 import com.carpark.member.model.service.MemberServiceImpl;
 
 public class MemberSearchAction implements Action {

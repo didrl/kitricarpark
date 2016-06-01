@@ -2,8 +2,8 @@ package com.carpark.admin.model.service;
 
 import java.util.List;
 
-import com.carpark.admin.model.CallDto;
 import com.carpark.admin.model.dao.AdminCallDaoImpl;
+import com.carpark.common.model.CallDto;
 
 public class AdminCallServiceImpl implements AdminCallService {
 	

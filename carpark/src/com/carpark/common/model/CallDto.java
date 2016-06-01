@@ -1,4 +1,4 @@
-package com.carpark.admin.model;
+package com.carpark.common.model;
 
 import com.carpark.member.model.BoardDto;
 

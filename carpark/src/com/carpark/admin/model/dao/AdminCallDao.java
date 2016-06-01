@@ -2,7 +2,7 @@ package com.carpark.admin.model.dao;
 
 import java.util.List;
 
-import com.carpark.admin.model.CallDto;
+import com.carpark.common.model.CallDto;
 
 public interface AdminCallDao {
 	CallDto viewArticle(int seq);

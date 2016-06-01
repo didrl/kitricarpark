@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import com.carpark.admin.model.ParkingDetailDto;
+import com.carpark.common.model.ParkingDetailDto;
 import com.carpark.db.DBClose;
 import com.carpark.db.DBConnection;
 import com.carpark.member.model.ReservationDto;

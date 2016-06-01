@@ -8,10 +8,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.carpark.action.Action;
-import com.carpark.admin.model.ParkingDetailDto;
 import com.carpark.admin.model.service.AdminParkingServiceImpl;
+import com.carpark.common.model.ParkingDetailDto;
 import com.carpark.member.model.MemberDto;
-import com.carpark.member.model.service.MemberReservationServiceImpl;
 
 public class AdminParkingRegisterAction implements Action {
 

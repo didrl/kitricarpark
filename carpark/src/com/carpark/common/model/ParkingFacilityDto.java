@@ -1,13 +1,19 @@
 package com.carpark.common.model;
 
-public class ParkingFacilityDto extends ParkingDto {
-	
+public class ParkingFacilityDto extends ParkingDto{
+	private int park_id;
 	private String facility;
 	private String feature;
-	private String fileName;
-	private String filePath;
-	private int fileNum;
-	
+	private String img_file_name;
+	private String img_file_path;
+	private String img_file_num;
+
+	public int getPark_id() {
+		return park_id;
+	}
+	public void setPark_id(int park_id) {
+		this.park_id = park_id;
+	}
 	public String getFacility() {
 		return facility;
 	}
@@ -20,24 +26,22 @@ public class ParkingFacilityDto extends ParkingDto {
 	public void setFeature(String feature) {
 		this.feature = feature;
 	}
-	public String getFileName() {
-		return fileName;
+	public String getImg_file_name() {
+		return img_file_name;
 	}
-	public void setFileName(String fileName) {
-		this.fileName = fileName;
+	public void setImg_file_name(String img_file_name) {
+		this.img_file_name = img_file_name;
 	}
-	public String getFilePath() {
-		return filePath;
+	public String getImg_file_path() {
+		return img_file_path;
 	}
-	public void setFilePath(String filePath) {
-		this.filePath = filePath;
+	public void setImg_file_path(String img_file_path) {
+		this.img_file_path = img_file_path;
 	}
-	public int getFileNum() {
-		return fileNum;
+	public String getImg_file_num() {
+		return img_file_num;
 	}
-	public void setFileNum(int fileNum) {
-		this.fileNum = fileNum;
+	public void setImg_file_num(String img_file_num) {
+		this.img_file_num = img_file_num;
 	}
-	
-	
 }

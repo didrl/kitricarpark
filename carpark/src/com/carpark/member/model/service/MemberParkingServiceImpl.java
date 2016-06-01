@@ -2,8 +2,8 @@ package com.carpark.member.model.service;
 
 import java.util.List;
 
-import com.carpark.admin.model.ParkingDetailDto;
 import com.carpark.common.model.CitiesDto;
+import com.carpark.common.model.ParkingDetailDto;
 import com.carpark.member.model.dao.MemberParkingDaoImpl;
 
 public class MemberParkingServiceImpl implements MemberParkingService {
