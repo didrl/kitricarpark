@@ -1,6 +1,8 @@
 package com.carpark.member.model;
 
-public class MemberDto {
+import com.carpark.admin.model.GradeDto;
+
+public class MemberDto extends GradeDto{
 	private String user_name;
 	private String email;
 	private String tel;

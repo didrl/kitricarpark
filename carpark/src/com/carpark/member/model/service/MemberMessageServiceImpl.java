@@ -37,13 +37,36 @@ public class MemberMessageServiceImpl implements MemberMessageService {
 	}
 
 	@Override
-	public List<MessageDto> sendListArticle(String userId) {//보낸쪽지리스트
-		return MemberMessageDaoImpl.getMemberMessageDao().sendListArticle(userId);
+	public List<MessageDto> sendListArticle(String userId, int pg, String key, String word) {//보낸쪽지리스트
+		Map<String, String> map = new HashMap<String, String>();
+		
+		int end = BoardConstance.BOARD_LIST_SIZE * pg;
+		System.out.println("페이지 번" + pg);
+		int start = end - BoardConstance.BOARD_LIST_SIZE;
+		
+		map.put("userId", userId);
+		map.put("start", start + "");
+		map.put("end", end + "");
+		map.put("key", key);
+		map.put("word", word);
+		return MemberMessageDaoImpl.getMemberMessageDao().sendListArticle(map);
 	}
 
 	@Override
-	public List<MessageDto> receiveListArticle(String receiveId) {//받은쪽지리스트
-		return MemberMessageDaoImpl.getMemberMessageDao().receiveListArticle(receiveId);
+	public List<MessageDto> receiveListArticle(String receiveId, int pg, String key, String word) {//받은쪽지리스트
+		Map<String, String> map = new HashMap<String, String>();
+		
+		int end = BoardConstance.BOARD_LIST_SIZE * pg;
+		System.out.println("페이지 번" + pg);
+		int start = end - BoardConstance.BOARD_LIST_SIZE;
+		
+		map.put("receiveId", receiveId);
+		map.put("start", start + "");
+		map.put("end", end + "");
+		map.put("key", key);
+		map.put("word", word);
+		
+		return MemberMessageDaoImpl.getMemberMessageDao().receiveListArticle(map);
 	}
 	
 	

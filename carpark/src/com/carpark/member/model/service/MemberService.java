@@ -3,6 +3,7 @@ package com.carpark.member.model.service;
 import java.util.List;
 import java.util.Map;
 
+import com.carpark.admin.model.GradeDto;
 import com.carpark.admin.model.ParkingDetailDto;
 import com.carpark.admin.model.ParkingDto;
 import com.carpark.admin.model.ParkingFacilityDto;
@@ -22,4 +23,5 @@ public interface MemberService {
 	ParkingDetailDto getParkingDetail_info(String park_id);
 	int addNewCar(MemberCarDto memberCarDto);
 	ParkingFacilityDto getParkingFacility_info(String park_id);
+	GradeDto gradeInfo(String id);
 }

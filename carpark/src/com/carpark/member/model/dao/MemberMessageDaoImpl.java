@@ -139,15 +139,23 @@ public class MemberMessageDaoImpl implements MemberMessageDao {
 	}
 
 	@Override
-	public List<MessageDto> sendListArticle(String userId) {//보낸쪽지목록
+	public List<MessageDto> sendListArticle(Map<String, String> map) {//보낸쪽지목록
 		List<MessageDto> sendList = new ArrayList<MessageDto>();
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
+		String key = map.get("key");
+		String word = map.get("word");
+		String userId = map.get("userId");
+		
 		try {
 			conn = DBConnection.makeConnection();
 			String sql = "";
+			sql += "select b.* \n";
+			sql += "from ( \n";
+			sql += "select rownum rn, a.* \n";
+			sql += "from ( \n";
 			sql += "select b.seq, bcode, user_id, subject, contents, \n";
 			sql += "		decode(to_char(logtime, 'yymmdd'), \n";
 			sql += "				to_char(sysdate, 'yymmdd'), to_char(b.logtime, 'hh24:mi:ss'), \n";
@@ -156,9 +164,29 @@ public class MemberMessageDaoImpl implements MemberMessageDao {
 			sql += "from board b, message m \n";
 			sql += "where b.seq = m.seq \n";
 			sql += "and user_id = ? \n";
-			sql += "order by logtime desc";
+			if(key != null && !key.isEmpty()) {
+				if(word != null && !word.isEmpty()) {
+					if("subject".equals(key))
+						sql += "		and b.subject like '%'||?||'%' \n";
+					else
+						sql += "		and b." + key + " = ? \n";						
+				}
+			}
+			sql += "		order by b.seq desc \n";
+			sql += "	      ) a \n";
+			sql += "	where rownum <= ? \n";
+			sql += "      ) b \n";
+			sql += "where b.rn > ? ";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, userId);
+			int idx = 0;
+			pstmt.setString(++idx, userId);
+			if(key != null && !key.isEmpty()) {
+				if(word != null && !word.isEmpty()) {
+					pstmt.setString(++idx, map.get("word"));				
+				}
+			}
+			pstmt.setString(++idx, map.get("end"));
+			pstmt.setString(++idx, map.get("start"));
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				MessageDto messageDto = new MessageDto();
@@ -184,15 +212,23 @@ public class MemberMessageDaoImpl implements MemberMessageDao {
 	}
 
 	@Override
-	public List<MessageDto> receiveListArticle(String receiveId) {//받은쪽지목록
+	public List<MessageDto> receiveListArticle(Map<String, String> map) {//받은쪽지목록
 		List<MessageDto> receiveList = new ArrayList<MessageDto>();
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
+		String key = map.get("key");
+		String word = map.get("word");
+		String receiver = map.get("receiver");
+		
 		try {
 			conn = DBConnection.makeConnection();
 			String sql = "";
+			sql += "select b.* \n";
+			sql += "from ( \n";
+			sql += "select rownum rn, a.* \n";
+			sql += "from ( \n";
 			sql += "select b.seq, bcode, user_id, subject, contents, \n";
 			sql += "		decode(to_char(logtime, 'yymmdd'), \n";
 			sql += "				to_char(sysdate, 'yymmdd'), to_char(b.logtime, 'hh24:mi:ss'), \n";
@@ -200,10 +236,30 @@ public class MemberMessageDaoImpl implements MemberMessageDao {
 			sql += "mseq, receiver_id, msg_flag \n";
 			sql += "from board b, message m \n";
 			sql += "where b.seq = m.seq \n";
-			sql += "and receiver_id = ? \n";
-			sql += "order by logtime desc";
+			sql += "and user_id = ? \n";
+			if(key != null && !key.isEmpty()) {
+				if(word != null && !word.isEmpty()) {
+					if("subject".equals(key))
+						sql += "		and b.subject like '%'||?||'%' \n";
+					else
+						sql += "		and b." + key + " = ? \n";						
+				}
+			}
+			sql += "		order by b.seq desc \n";
+			sql += "	      ) a \n";
+			sql += "	where rownum <= ? \n";
+			sql += "      ) b \n";
+			sql += "where b.rn > ? ";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, receiveId);
+			int idx = 0;
+			pstmt.setString(++idx, receiver);
+			if(key != null && !key.isEmpty()) {
+				if(word != null && !word.isEmpty()) {
+					pstmt.setString(++idx, map.get("word"));				
+				}
+			}
+			pstmt.setString(++idx, map.get("end"));
+			pstmt.setString(++idx, map.get("start"));
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				MessageDto messageDto = new MessageDto();

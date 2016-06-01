@@ -96,12 +96,11 @@ if(memberDto!=null){
 			<ul class="dropdown-menu alert-dropdown">
 				<li><a href="#" data-toggle="modal" data-target="#messageReply">제보하기 <span
 						class="label label-default">Alert Badge</span></a></li>
-				<li><a href="<%=root%>/qna.jsp">  QnA  <span
-						class="label label-primary">Alert Badge</span></a></li>
-				<li><a href="#">Alert Name <span class="label label-danger">Alert
-							Badge</span></a></li>
 				<li class="divider"></li>
-				<li><a href="#">View All</a></li>
+				<li><a href="<%=root%>/faq.jsp">  FAQ  <span
+						class="label label-primary">Alert Badge</span></a></li>
+				
+				
 			</ul></li>
 		<li class="dropdown"><a href="#" class="dropdown-toggle"
 			data-toggle="dropdown"><i class="fa fa-user"></i> <%=memberDto.getUser_id() %> <b
@@ -159,12 +158,11 @@ if(memberDto!=null){
 			<ul class="dropdown-menu alert-dropdown">
 				<li><a href="#" data-toggle="modal" data-target="#messageReply">제보하기 <span
 						class="label label-default">Alert Badge</span></a></li>
+				<li class="divider"></li>
 				<li><a href="<%=root%>/qna.jsp">  QnA  <span
 						class="label label-primary">Alert Badge</span></a></li>
-				<li><a href="#">Alert Name <span class="label label-danger">Alert
-							Badge</span></a></li>
-				<li class="divider"></li>
-				<li><a href="#">View All</a></li>
+			
+				
 			</ul></li>
 		<li class="dropdown"><a href="#" class="dropdown-toggle"
 			data-toggle="dropdown"><i class="fa fa-user"></i> <%=memberDto.getUser_id() %> <b
@@ -195,11 +193,7 @@ if(memberDto!=null){
 			data-toggle="dropdown"><i class="fa fa-user"></i> 아이디 <b
 				class="caret"></b></a>
 			<ul class="dropdown-menu">
-				<li><a href="<%=root%>/member?act=mvprofile"><i class="fa fa-fw fa-user"></i> profile</a></li>
-				<li><a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
-				</li>
-				<li><a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a></li>
-				<li class="divider"></li>
+				
 				<li><a href="<%=root%>/member?act=mvlogin"><i class="fa fa-fw fa-power-off"></i> Log
 						in</a></li>
 			</ul></li>
@@ -221,11 +215,11 @@ if(memberDto!=null){
 	aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<div class="modal-header" style="background: #00cc00">
-				<button type="button" class="close" data-dismiss="modal">
+			<div class="modal-header" style="background: #00cc00" align="center">
+				<button type="button" class="close" data-dismiss="modal" onclick="javascript:loginConfirm();">
 					<span aria-hidden="true">×</span><span class="sr-only">Close</span>
 				</button>
-				<h4 class="modal-title" id="myModalLabel">로그인</h4>
+				<h4 class="modal-title" id="myModalLabel" style="color: #FFFFFF">로그인</h4>
 			</div>
 			
 			
@@ -275,15 +269,15 @@ if(memberDto!=null){
 	aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal">
+			<div class="modal-header" align="center">
+				<button type="button" class="close" data-dismiss="modal" onclick="javascript:confirm();">
 					<span aria-hidden="true">x</span><span class="sr-only">Close</span>
 				</button>
 				<h2 class="modal-title" id="myModalLabel">회원가입</h2>
 			</div>
 			<div class="modal-body">
 				<form class="form-signin" role="form" name="signUpForm"
-					id="signUpForm" method="post" action="<%=root%>/member">
+					id="signUpForm" method="post" action="">
 					<input type="hidden" name="act" value="mvsignup">
 
 					<div class="form-group">
@@ -328,7 +322,7 @@ if(memberDto!=null){
 					<div class="form-group">
 						<label for="username">휴대폰 인증</label>
 						<div class="input-group">
-							<input type="tel" class="form-control" name="phone" id="username" required="required"
+							<input type="tel" class="form-control" name="phone" id="userphone" required="required"
 								placeholder="- 없이 입력해 주세요"> <span
 								class="input-group-btn">
 								<button class="btn btn-success">
@@ -348,9 +342,12 @@ if(memberDto!=null){
 						</div>
 					</div>
 					<div class="form-group text-center">
-						<button type="submit" class="btn btn-info">
+						<button type="button" class="btn btn-info" onclick="infocheck()">
 							회원가입<i class="fa fa-check spaceLeft"></i>
 						</button>
+<!-- 						<button type="submit" class="btn btn-info"> -->
+<!-- 							회원가입<i class="fa fa-check spaceLeft"></i> -->
+<!-- 						</button> -->
 						<button type="button" class="btn btn-warning" data-dismiss="modal"
 						onclick="javascript:formclear();">
 							가입취소<i class="fa fa-times spaceLeft"></i>
@@ -460,5 +457,7 @@ function idcheck(data){
 		document.getElementById("chid").innerHTML ="아이디를 사용할 수 없습니다.";
 	}
 }
+
 </script>
+
 

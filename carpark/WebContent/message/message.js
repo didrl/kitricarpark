@@ -1,5 +1,15 @@
 //쪽지 검색
-function messageSearch() {
+function messageSearchSend() {
+	if(document.searchForm.word.value == ""){
+		alert("내용을 입력하세요");
+		return;
+	} else{
+		document.searchForm.action = "/carpark/message";
+		document.searchForm.submit();
+	}
+}
+
+function messageSearchReceive() {
 	if(document.searchForm.word.value == ""){
 		alert("내용을 입력하세요");
 		return;
@@ -42,16 +52,18 @@ function messageReceiveDelete(seq) {
 }
 
 //보낸 쪽지 리스트
-function messageSendList() {
+function messageSendList(pg) {
 	document.getElementById("act").value = "messageSendList";
+	document.getElementById("pg").value = pg;
 		
 	document.common.action = "/carpark/message";
 	document.common.submit();
 }
 
 //받은 쪽지 리스트
-function messageReceiveList() {
+function messageReceiveList(pg) {
 	document.getElementById("act").value = "messageReceiveList";
+	document.getElementById("pg").value = pg;
 		
 	document.common.action = "/carpark/message";
 	document.common.submit();
@@ -103,4 +115,11 @@ function toWriteInit(receiver) {
 
 function messageClose() {
 	window.close();
+}
+
+function firstList() {
+	document.getElementById("act").value = "messageSendList";
+	
+	document.common.action = "/carpark/message";
+	document.common.submit();
 }

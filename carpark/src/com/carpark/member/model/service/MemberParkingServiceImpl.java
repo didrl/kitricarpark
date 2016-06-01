@@ -2,8 +2,8 @@ package com.carpark.member.model.service;
 
 import java.util.List;
 
+import com.carpark.admin.model.ParkingDetailDto;
 import com.carpark.common.model.CitiesDto;
-import com.carpark.common.model.ParkingDetailDto;
 import com.carpark.member.model.dao.MemberParkingDaoImpl;
 
 public class MemberParkingServiceImpl implements MemberParkingService {
@@ -26,9 +26,8 @@ public class MemberParkingServiceImpl implements MemberParkingService {
 	}
 
 	@Override
-	public int MemberParkingModify(int parkingId) {
-		// TODO Auto-generated method stub
-		return 0;
+	public void MemberParkingModify(ParkingDetailDto parkingDto) {
+		MemberParkingDaoImpl.getMemberParkingDao().MemberParkingModify(parkingDto);
 	}
 
 	@Override
@@ -37,9 +36,8 @@ public class MemberParkingServiceImpl implements MemberParkingService {
 	}
 
 	@Override
-	public void MemberParkingDelete(int parkingId) {
-		// TODO Auto-generated method stub
-		
+	public void MemberParkingDelete(int parkId) {
+		MemberParkingDaoImpl.getMemberParkingDao().MemberParkingDelete(parkId);
 	}
 
 	@Override

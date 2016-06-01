@@ -4,11 +4,9 @@
 <%@include file="/common/header/init.jsp" %> 
 <%@include file="/common/side.jsp" %>
 
-
 <div id="wrapper">
 <%
 if(memberDto!=null){
-	
 %>
 
 <!-- ****************************************************************************************************************** -->	
@@ -48,7 +46,7 @@ if(memberDto!=null){
 
 							<div class="form-group">
                                     <label for="disabledSelect">아이디</label>
-                                    <input class="form-control" id="disabledInput" type="text" placeholder="<%=memberDto.getUser_id() %>" disabled>
+                                    <input class="form-control" id="disabledInputId" type="text" value="<%=memberDto.getUser_id() %>"  disabled>
                             </div>
 
                             
@@ -85,24 +83,48 @@ if(memberDto!=null){
 %>	
 							</div>
 							
-							<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-  								<div class="panel panel-default">
-								    <div class="panel-heading" role="tab" id="headingOne">
-								      <h4 class="panel-title">
-								        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-								          	등급 혜택 정보
-								        </a>
-								      </h4>
-								    </div>
-								    <div id="benefit" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-								      <div class="panel-body">
-								      	
-								        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-								      </div>
-								    </div>
-								  </div>
-								  </div>
-							
+						
+						
+			<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  				<div class="panel panel-default">
+				    <div class="panel-heading" role="tab" id="headingOne">
+				      <h4 class="panel-title">
+				        <a href="<%=root %>/member?act=mvbenefit" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+				          	 <label><h4 style="color: #ff0033" align="center">고객님의 혜택정보</h4></label> 
+				        </a>
+				      </h4>
+				    </div>
+<%
+MemberDto gradeDto = (MemberDto)request.getAttribute("getmemberInfo");
+if(gradeDto!=null){
+%>
+				    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+				      <div class="panel-body">
+			        		
+			        		<label>등급 : <%=gradeDto.getGrade_name()%></label>  <br>
+			        		<label>포인트 : <%=gradeDto.getAvgpoint() %></label> <br>
+			        		<label>할인율 :<%=gradeDto.getBenefit() %> %</label> <br>
+			        		<label>벌점사항 :<%=gradeDto.getPenalty()%> </label> 
+				      </div>
+				    </div>
+				  </div>
+			 </div> 
+				   
+<%
+}else{
+%>					    
+			 <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+				      <div class="panel-body">
+			        	
+				      </div>
+				    </div>
+				  </div>
+			 </div> 	
+				
+<%
+}
+%>					
+						
 						
 							<div class="form-group">
                                     <label for="disabledSelect">나의 주차장</label>
@@ -140,30 +162,34 @@ document.location.href="<%=root%>/member";
 </script>
 <%
 }
-%>
-	</div>
+%>	
+	
+</div>	
 	<!-- /#wrapper -->
 <!-- Footer -->
 <%@include file="/common/footer.jsp" %>
 <!-- /Footer -->
 
 <script type="text/javascript">
-$("#benefit").click(function(){
-	$.ajax({
-		type : "GET",
-		url  :	"/carpark/member?act=mvbenefit",
-		dataType :"json",
-		data : {
-			"user_id" : <%=memberDto.getUser_id()%>
-		},
-		success : function(data){
-			console.log('성공!',data);
-		}, 
-		error : function(xhr){
-			console.log('실패!',data);
-		} 
-	});	
-});
+
+$('#benefit').click(function(){
+	var id = document.getElementById("disabledInputId").value; 
+		$.ajax({
+			type :"GET",
+			url : "/carpark/member?act=mvbenefit",
+			dataType : "json",
+			data : {
+				"user_id" : id
+			},
+			 success: function(data) {
+			      console.log('성공 - ', data);
+			    },
+			 error: function(request,status,error) {
+			      alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+			    }
+		});
+	});
+
 </script>
 
 

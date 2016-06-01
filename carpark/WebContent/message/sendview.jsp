@@ -1,9 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.carpark.member.model.*"%>  
+    pageEncoding="UTF-8" import="com.carpark.member.model.*,com.carpark.util.*"%>  
 <%
 String root = request.getContextPath();
 MemberDto memberDto = (MemberDto)session.getAttribute("memberInfo");
 MessageDto messageDto = (MessageDto) request.getAttribute("messageView");
+
+int bcode = NumberCheck.nullToZero(request.getParameter("bcode"));
+int pg = NumberCheck.nullToOne(request.getParameter("pg"));
+String key = StringCheck.nullToBlank(request.getParameter("key"));
+String word = Encoder.isoToUtf(StringCheck.nullToBlank(request.getParameter("word")));
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -22,7 +27,7 @@ MessageDto messageDto = (MessageDto) request.getAttribute("messageView");
 <form name="common" method="get" action="">
 	<input type="hidden" name="act" id="act" value="">
 	<input type="hidden" name="bcode" id="bcode" value="2">
-	<input type="hidden" name="pg" id="pg" value="1">
+	<input type="hidden" name="pg" id="pg" value="<%=pg%>">
 	<input type="hidden" name="key" id="key" value="">
 	<input type="hidden" name="word" id="word" value="">
 	<input type="hidden" name="seq" id="seq" value=""> 

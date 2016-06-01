@@ -71,34 +71,18 @@ public class PageNavigator {//Dto와 비슷하지만 조금 다름
 		return navigator;
 	}
 	
-	public void setNavigator() {
+	public void setNavigatorSend() {
 		StringBuffer tmpNavigator = new StringBuffer();
 		
 		int listSize = BoardConstance.BOARD_LIST_SIZE;
 		int pageSize = BoardConstance.BOARD_PAGE_SIZE;
 		int prePage = (pageNo - 1) / pageSize * pageSize;
 
-		tmpNavigator.append("<table cellpadding='0' cellspacing='0' border='0'>\n");
-		tmpNavigator.append(" <tr>\n");
 		if (this.isNowFirst()) {//첫번째 범위에 있을 때
-			tmpNavigator.append("  <td><font color='#999999'>\n<a href='javascript:firstarticle()'>");
-			tmpNavigator.append("   <img src='" + root + "/img/board/icon_prev02.gif' width='7' height='11' border='0' align='absmiddle' hspace='3'>최신목록</a>\n");
-			tmpNavigator.append("   <img src='" + root + "/img/board/icon_prev01_dim.gif' width='3' height='11' border='0' align='absmiddle' hspace='3'>\n");
-			tmpNavigator.append("   이전</font>\n");//이전에 링크가 없음
+			tmpNavigator.append("  <li><a href='#' aria-label=\"Previous\"><span aria-hidden=\"true\">&laquo;</span></a></li> \n");
 		} else {//첫번째 범위에 없을 때
-			tmpNavigator.append("  <td>\n<a href='javascript:firstarticle()'>");
-			tmpNavigator.append("   <img src='" + root + "/img/board/icon_prev02.gif' width='7' height='11' border='0' align='absmiddle' hspace='3'>최신목록 </a>\n");
-			tmpNavigator.append("   <a href='javascript:listarticle(" + prePage + ")'>");
-			tmpNavigator.append("   <img src='" + root + "/img/board/icon_prev01_dim.gif' width='3' height='11' border='0' align='absmiddle' hspace='3'>\n");
-			tmpNavigator.append("   이전</a>");//이전에 링크가 있음
+			tmpNavigator.append(" <li><a href='javascript:messageSendList(" + prePage + ")' aria-label=\"Previous\"><span aria-hidden=\"true\">&laquo;</span></a></li> \n");
 		}
-		tmpNavigator.append("  \n</td>\n");
-		tmpNavigator.append("  <td style='padding: 0 5 0 5'>\n");
-		tmpNavigator.append("   <table cellpadding='0' cellspacing='0' border='0'>\n");
-		tmpNavigator.append("    <tr>\n");
-		tmpNavigator.append("     <td width='1' nowrap><img src='" + root + "/img/board/n_tab.gif' width='1'");
-		tmpNavigator.append(" height='11' border='0' align='absmiddle'><br>");
-		tmpNavigator.append("     </td>\n");
 		
 		int startPage = prePage + 1;
 		int endPage = prePage + pageSize;
@@ -107,40 +91,58 @@ public class PageNavigator {//Dto와 비슷하지만 조금 다름
 		
 		for (int i = startPage; i <= endPage; i++) {
 			if (pageNo == i) {//현재 페이지는 링크없고 강조 표시
-				tmpNavigator.append("     <td style='padding:0 7 0 7;' nowrap><font class='text_acc_02'><b>" + i + "</b></font></td>\n");
-				tmpNavigator.append("     <td width='1' nowrap><img src='" + root + "/img/board/n_tab.gif' width='1'");
-				tmpNavigator.append(" height='11' border='0' align='absmiddle'><br>\n");
+				tmpNavigator.append("  <li><a href=\"#\"><b> " + i + " </b></a></li> \n");
 			} else {//현재 페이지가 아닌것은 링크가 있고 강조 표시 없음
-				tmpNavigator.append("     <td style='padding:0 7 0 7;' nowrap><a href='javascript:listarticle(" + i + ")'>" + i + "</td>\n");
-				tmpNavigator.append("     <td width='1' nowrap><img src='" + root + "/img/board/n_tab.gif' width='1'");
-				tmpNavigator.append(" height='11' border='0' align='absmiddle'><br>\n");
+				tmpNavigator.append("  <li><a href='javascript:messageSendList(" + i + ")'>" + i + "</a></li> \n");
 			}
 		}
-		tmpNavigator.append("     </td>\n");
-		tmpNavigator.append("    </tr>\n");
-		tmpNavigator.append("   </table>\n");
-		tmpNavigator.append("  </td>\n");
-		tmpNavigator.append("  <td>\n");
 		
 		if (this.isNowEnd()) {
-			tmpNavigator.append("   <font color='#999999'>다음<img");
-			tmpNavigator.append("   src='" + root + "/img/board/icon_next01_dim.gif' width='3' height='11'");
-			tmpNavigator.append(" border='0' align='absmiddle' hspace='3'> \n");
-			tmpNavigator.append("   끝목록<img src='" + root + "/img/board/icon_next02_dim.gif' width='7' height='11'");
-			tmpNavigator.append(" border='0' align='absmiddle' hspace='3'></font>\n");
+			tmpNavigator.append(" <li><a href='#'><span aria-hidden=\"true\">&raquo;</span></a></li> \n");
 		} else {
-			tmpNavigator.append("   <a href='javascript:listarticle(" + (endPage + 1) + ")'>다음<img");
-			tmpNavigator.append(" src='" + root + "/img/board/icon_next01_dim.gif' width='3' height='11'");
-			tmpNavigator.append(" border='0' align='absmiddle' hspace='3'></a>\n");
-			tmpNavigator.append("   <a href='javascript:listarticle(" + totalPageCount + ")'>끝목록<img src='" + root + "/img/board/icon_next02_dim.gif' width='7' height='11'");
-			tmpNavigator.append(" border='0' align='absmiddle' hspace='3'>\n");
+			tmpNavigator.append("  <li><a href='javascript:messageSendList(" + (endPage + 1) + ")' aria-label=\"Next\"><span aria-hidden=\"true\">&raquo;</span></a></li> \n");
 		}
 
-		tmpNavigator.append("  </td>\n");
-		tmpNavigator.append(" </tr>\n");
-		tmpNavigator.append("</table>\n");
+		this.navigator = tmpNavigator.toString();
+
+
+	}
+	
+	public void setNavigatorReceive() {
+		StringBuffer tmpNavigator = new StringBuffer();
+		
+		int listSize = BoardConstance.BOARD_LIST_SIZE;
+		int pageSize = BoardConstance.BOARD_PAGE_SIZE;
+		int prePage = (pageNo - 1) / pageSize * pageSize;
+
+		if (this.isNowFirst()) {//첫번째 범위에 있을 때
+			tmpNavigator.append("  <li><a href='#' aria-label=\"Previous\"><span aria-hidden=\"true\">&laquo;</span></a></li> \n");
+		} else {//첫번째 범위에 없을 때
+			tmpNavigator.append(" <li><a href='javascript:messageReceiveList(" + prePage + ")' aria-label=\"Previous\"><span aria-hidden=\"true\">&laquo;</span></a></li> \n");
+		}
+		
+		int startPage = prePage + 1;
+		int endPage = prePage + pageSize;
+		if(endPage > totalPageCount)
+			endPage = totalPageCount;
+		
+		for (int i = startPage; i <= endPage; i++) {
+			if (pageNo == i) {//현재 페이지는 링크없고 강조 표시
+				tmpNavigator.append("  <li><a href=\"#\"><b> " + i + " </b></a></li> \n");
+			} else {//현재 페이지가 아닌것은 링크가 있고 강조 표시 없음
+				tmpNavigator.append("  <li><a href='javascript:messageReceiveList(" + i + ")'>" + i + "</a></li> \n");
+			}
+		}
+		
+		if (this.isNowEnd()) {
+			tmpNavigator.append(" <li><a href='#'><span aria-hidden=\"true\">&raquo;</span></a></li> \n");
+		} else {
+			tmpNavigator.append("  <li><a href='javascript:messageSendList(" + (endPage + 1) + ")' aria-label=\"Next\"><span aria-hidden=\"true\">&raquo;</span></a></li> \n");
+		}
 
 		this.navigator = tmpNavigator.toString();
+
+
 	}
 	
 }

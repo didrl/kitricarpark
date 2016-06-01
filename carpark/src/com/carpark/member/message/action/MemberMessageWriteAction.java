@@ -34,8 +34,13 @@ public class MemberMessageWriteAction implements Action {
 		messageDto.setReceiverId(request.getParameter("receiver"));
 		messageDto.setMsgFlag(0);
 		
+		String userId = memberDto.getUser_id();
+		int pg = 1;
+		String key = "";
+		String word = "";
+		
 		MemberMessageServiceImpl.getMemberMessageService().writeArticle(messageDto);
-		List<MessageDto> list = MemberMessageServiceImpl.getMemberMessageService().sendListArticle(memberDto.getUser_id());
+		List<MessageDto> list = MemberMessageServiceImpl.getMemberMessageService().sendListArticle(userId, pg, key, word);
 		request.setAttribute("sendList", list);
 		
 		

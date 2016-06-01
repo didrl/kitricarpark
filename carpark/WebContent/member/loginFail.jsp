@@ -3,15 +3,28 @@
 
 <%@include file="/common/common.jsp"%>
 <%@include file="/common/header/init.jsp"%>
-
+<%
+String failSvid="";
+String failCkid="";
+Cookie failCookie[]= request.getCookies();
+if(cookie!=null){
+	int len = cookie.length;
+	for(int i=0;i<len;i++){
+		if("myid".equals(cookie[i].getName())){
+			failSvid = cookie[i].getValue(); 
+			failCkid = "checked=\"checked\"";
+		}
+	}
+}
+%>
 
 	<div class="modal-dialog" style="padding-top: 60px;">
 		<div class="modal-content">
-			<div class="modal-header">
+			<div class="modal-header" style="background: #00cc00" align="center">
 				<button type="button" class="close" data-dismiss="modal">
 					<span aria-hidden="true"></span>
 				</button>
-				<h4 class="modal-title" id="myModalLabel">Try Login Again</h4>
+				<h4 class="modal-title" id="myModalLabel" style="color: #FFFFFF">Login Again</h4>
 			</div>
 			<div class="modal-body">
 				
@@ -21,7 +34,7 @@
 					<div class="form-group">
 						<label for="inputEmail3" class="col-sm-2 control-label">ID</label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control" name="id" value=""
+							<input type="text" class="form-control" name="id" value="<%=failSvid %>"
 								id="tryid" placeholder="id">
 						</div>
 					</div>
@@ -35,7 +48,7 @@
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
 							<div class="checkbox">
-								<label> <input type="checkbox"> Remember me
+								<label> <input type="checkbox" name="svid" value="idsave" <%=failCkid %>> Remember me
 								</label>
 							</div>
 						</div>

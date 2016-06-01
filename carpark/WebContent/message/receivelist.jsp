@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.*,com.carpark.member.model.*"%>
+    pageEncoding="UTF-8" import="java.util.*,com.carpark.member.model.*,com.carpark.util.*"%>
     
 <%@include file="/common/common.jsp" %>
 <%@include file="/common/header/init.jsp" %> 
@@ -9,6 +9,7 @@
 <%
 if(memberDto != null) {
 List<MessageDto> list = (List<MessageDto>) request.getAttribute("receiveList");
+PageNavigator navigator = (PageNavigator) request.getAttribute("navigator");
 %>
 
 <div id="wrapper">
@@ -20,11 +21,19 @@ List<MessageDto> list = (List<MessageDto>) request.getAttribute("receiveList");
 				<br><h3>쪽지함</h3><br>
 					
 				<div class="btn-group" role="group" aria-label="...">
+<<<<<<< HEAD
 	  				<button type="button" class="btn btn-default" onclick="javascript:messageReceiveList();">
 	  					받은 쪽지함
 	  				</button>
 	  				<button type="button" class="btn btn-default" onclick="javascript:messageSendList();">
 	  					보낸 쪽지함
+=======
+	  				<button type="button" class="btn btn-default" onclick="javascript:messageReceiveList('1');">
+	  					받은쪽지함
+	  				</button>
+	  				<button type="button" class="btn btn-default" onclick="javascript:messageSendList('1');">
+	  					보낸쪽지함
+>>>>>>> a3d98903480c22a6c0e2b5d8691554756d51a1c4
 	  				</button>	
 					<button type="button" class="btn btn-default"  data-toggle="modal" data-target="#messageWrite" onclick="javascript:init();">
                 		쪽지 보내기
@@ -40,11 +49,11 @@ List<MessageDto> list = (List<MessageDto>) request.getAttribute("receiveList");
 				<div class="table">
 				  <table class="table table-hover" style="text-align:center">
 				  	<tr>
-				  		<td width="200"><b>보낸사람</b></td>
+				  		<td width="150"><b>보낸사람</b></td>
 				  		<td><b>제목</b></td>
-				  		<td><b>시간</b></td>
+				  		<td width="80"><b>시간</b></td>
 				  		<td width="50"><b>확인</b></td>
-				  		<td></td>
+				  		<td width="50"></td>
 				  	</tr>
 				
 <%
@@ -54,22 +63,22 @@ if(size > 0) {
 %>
 					<!-- 쪽지목록 -->
 					<tr >
-						<td><a href="javascript:messageReceiveView('<%=messageDto.getSeq()%>');"><%=messageDto.getReceiverId() %></a></td>
+						<td width="150"><a href="javascript:messageReceiveView('<%=messageDto.getSeq()%>');"><%=messageDto.getReceiverId() %></a></td>
 						<td><a href="javascript:messageReceiveView('<%=messageDto.getSeq() %>');"><%=messageDto.getSubject() %></a></td>
-						<td><%=messageDto.getLogtime() %></td>	
+						<td width="80"><%=messageDto.getLogtime() %></td>	
 <%
 if(messageDto.getMsgFlag() == 0) {
 %>					
-						<td>X</td>
-						<td>
+						<td width="50">X</td>
+						<td width="50">
 						<button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#messageToWrite" onclick="toWriteInit('<%=messageDto.getReceiverId()%>');">답장</button>
 						<button type="button" class="btn btn-default btn-xs" onclick="javascript:messageReceiveDelete('<%=messageDto.getSeq()%>');">삭제</button>
 						</td>
 <%
 } else {
 %>
-						<td>O</td>
-						<td>
+						<td width="50">O</td>
+						<td width="50">
 						<button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#messageToWrite" onclick="javascript:toWriteInit('<%=messageDto.getReceiverId()%>');">답장</button>
 						<button type="button" class="btn btn-default btn-xs" onclick="javascript:messageReceiveDelete('<%=messageDto.getSeq()%>');">삭제</button>
 						</td>
@@ -97,9 +106,8 @@ if(messageDto.getMsgFlag() == 0) {
 			<nav align="center">
 				<div class="form-group">
 				<form class="form-inline" name="searchForm" method="get" action="">
-					<input type="hidden" name="act" id="act" value="messageSearch">
-					<input type="hidden" name="bcode" id="bcode" value="1">
-					<input type="hidden" name="pg" id="pg" value="1">
+					<input type="hidden" name="act" id="act" value="messageSearchReceive">
+					<input type="hidden" name="pg" id="pg" value="<%=pg%>">
 					<select name="key">
 						<option value="subject">제목</option>
 						<option value="content">내용</option>
@@ -109,24 +117,10 @@ if(messageDto.getMsgFlag() == 0) {
 					<input type="button" class="btn btn-default" value="검색" onclick="javascript:messageSearch();">
 				</form>
 				</div>
-					
 				<ul class="pagination">
-					<li>
-						<a href="#" aria-label="Previous">
-					    	<span aria-hidden="true">&laquo;</span>
-					    </a>
-				 	</li>
-					<li><a href="#">1</a></li>
-					<li><a href="#">2</a></li>
-					<li><a href="#">3</a></li>
-					<li><a href="#">4</a></li>
-					<li><a href="#">5</a></li>
-					<li>
-						<a href="#" aria-label="Next">
-					    	<span aria-hidden="true">&raquo;</span>
-					    </a>
-					</li>
+				<%=navigator.getNavigator() %>
 				</ul>
+						
 			</nav>
 
 					

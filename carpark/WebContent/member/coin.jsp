@@ -22,7 +22,7 @@ List<MessageDto> list = (List<MessageDto>) request.getAttribute("receiveList");
                 <div class="row">
 					<div class="col-lg-12">
 						<h1 class="page-header">
-							코인 충전 <small>Subheading</small>
+							코인 충전
 						</h1>
 
 					</div>
@@ -36,11 +36,11 @@ List<MessageDto> list = (List<MessageDto>) request.getAttribute("receiveList");
 							<div class="form-group">
 
 								<div class="col-lg-4">
-									<label>내 코인</label>
+									<label><%=memberDto.getUser_id()%>님의 코인</label>
 								</div>
 								<div class="col-lg-6">
-									<p class="breadcrumb">보유 코인</p>
-									<p class="form-control-static">datainput 코인</p>
+									<p class="breadcrumb">보유한 코인</p>
+									<p class="form-control-static"><%=memberDto.getCoin()%> 코인</p>
 									<p class="help-block">코인 사용 안내</p>
 								</div>
 							</div>

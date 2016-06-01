@@ -104,3 +104,9 @@ function adminToWriteInit(receiver) {
 function adminMessageClose() {
 	window.close();
 }
+function getAllUserInfo(){
+	alert("getalluserinfo 눌름!!!");
+	document.location.href=root+"/admin?act=alluserinfo";
+}
+
+
