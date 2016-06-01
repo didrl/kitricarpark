@@ -131,9 +131,9 @@ function goSearchResult() {
 }
 
 function setfavorite(){
-	var flag=<%=flag%>;
+	var flagf=<%=flag%>;
 	console.log("asdf!@!@!"+flag+"     "+"<%=flag%>");
-	if(flag!=0){
+	if(flagf!=0){
 		alert("즐겨찾기에서 삭제되었습니다")
 		document.location.href = "<%=root%>/favorite?act=delfavorite&park_id=<%=parkingDetail.getPark_id()%>";
 		
@@ -676,15 +676,15 @@ for(ReviewDto reviewDto : reviewlist){
 			
 			//review
 			$('#sendMsgToHost').on('click', function (event) {
-				var flag=<%=flag%>
-		 		if(flag != 0){
+				var flagm=<%=flag%>
+		 		if(flagm != 0){
 			        $("#receiver").val("<%=parkingDetail.getOwner_id()%>");
 			        $("#subject").val("");
 			        $("#content").empty();
 		        	$("#sendmsguser_id").val("<%=memberDto.getUser_id()%>");
 		        	$("#sendmsgpark_id").val("<%=parkingDetail.getPark_id()%>");
 			        $("#receiver").prop("disabled", true);
-		     //    $("#msgToHost").load("<%=root%>/reservation/sendMessageModal.jsp");
+		            $("#msgToHost").load("<%=root%>/reservation/sendMessageModal.jsp");
 				}else{
 					alert("로그인 후 이용할 수 있습니다.");
 					return;
