@@ -44,6 +44,7 @@ public class MemberController extends HttpServlet {
 			PageMove.forward(request, response, path);
 		}else if("addcarok".equals(act)){
 			path = MemberActionFactory.getMemberAddCarAction().execute(request, response);
+			PageMove.forward(request, response, path);
 		}else if("mvProfileDetail".equals(act)){
 			path = MemberActionFactory.getMemberInfoDetailAction().execute(request, response);
 			PageMove.forward(request, response, path);

@@ -1,9 +1,10 @@
 package com.carpark.member.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Map;
 
-public class ReservationDto {
+public class ReservationDto implements Serializable{
 	private String reser_id;
 	private String fromdate;
 	private String todate;
@@ -16,7 +17,14 @@ public class ReservationDto {
 	private int emd_code;
 	private int pay;
 	private ArrayList<Map<String,String>> carinfo;
+	private String reser_date;
 	
+	public String getReser_date() {
+		return reser_date;
+	}
+	public void setReser_date(String reser_date) {
+		this.reser_date = reser_date;
+	}
 	public String getReser_id() {
 		return reser_id;
 	}

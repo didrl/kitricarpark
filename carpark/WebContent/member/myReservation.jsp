@@ -34,6 +34,7 @@ function myReservationView(park_id){
 				  		<td><b>예약 종료일</b></td>
 				  		<td><b>이용 가격</b></td>
 				  		<td><b>관리자 이름</b></td>
+				  		<td><b>예약 날짜</b></td>
 				  	</tr>
 				
 <%
@@ -57,6 +58,8 @@ function myReservationView(park_id){
 						<%=reservationDto.getPay() %></label></td>
 						<td><label onclick="javascript:myReservationView('<%=reservationDto.getReser_id()%>');">
 						<%=reservationDto.getHost_id() %></label></td>
+						<td><label onclick="javascript:myReservationView('<%=reservationDto.getReser_id()%>');">
+						<%=reservationDto.getReser_date() %></label></td>
 <%
 		}
 %>

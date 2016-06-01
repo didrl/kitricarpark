@@ -20,8 +20,11 @@ System.out.println("<><><><longtitude><><"+parkingDetail.getLongitude());
 System.out.println("<><><><content><><"+parkingDetail.getContent());
 
 int flag=0;
-
+int flagb=0;
+String user_id="";
 if(memberDto != null){
+	user_id = memberDto.getUser_id();
+	flagb=1;
 	favoritelist = (ArrayList<FavoriteDto>) session.getAttribute("favoritelist");
 	
 	for(FavoriteDto favoriteDto : favoritelist){
@@ -608,7 +611,7 @@ for(ReviewDto reviewDto : reviewlist){
 					<div class="well" align="center">
 						<div class="panel-body">호스트 : <%=parkingDetail.getOwner_id() %></div>
 						<div class="text-center">
-							 <button type="button" class="btn btn-success"  id="sendMsgToHost" name="sendMsgToHost" data-toggle="modal"  data-target="#msgToHost">
+							 <button type="button" class="btn btn-success"  id="sendMsgToHost" name="sendMsgToHost" data-toggle="modal"  data-rel = "dialog" data-target="#msgToHost" >
                   				Send Message
                				</button>
 							</div>
@@ -675,16 +678,20 @@ for(ReviewDto reviewDto : reviewlist){
 	
 			
 			//review
-			$('#sendMsgToHost').on('click', function (event) {
-				var flagm=<%=flag%>
+			$("#sendMsgToHost").on("click", function (event) {
+				var flagm=0;
+				var user_id="";
+				userid=user_id;
+				flagm=<%=flagb%>;
 		 		if(flagm != 0){
 			        $("#receiver").val("<%=parkingDetail.getOwner_id()%>");
 			        $("#subject").val("");
 			        $("#content").empty();
-		        	$("#sendmsguser_id").val("<%=memberDto.getUser_id()%>");
+		        	$("#sendmsguser_id").val(userid);
 		        	$("#sendmsgpark_id").val("<%=parkingDetail.getPark_id()%>");
-			        $("#receiver").prop("disabled", true);
-		            $("#msgToHost").load("<%=root%>/reservation/sendMessageModal.jsp");
+			        $("#receiver").prop("readonly", true);
+			     //   $("#msgToHost").dialog("open");
+		         //   $("#msgToHost").load("<%=root%>/reservation/sendMessageModal.jsp");
 				}else{
 					alert("로그인 후 이용할 수 있습니다.");
 					return;

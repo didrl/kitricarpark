@@ -1,8 +1,10 @@
 package com.carpark.member.model;
 
+import java.io.Serializable;
+
 import com.carpark.common.model.ParkingDto;
 
-public class FavoriteDto extends ParkingDto {
+public class FavoriteDto extends ParkingDto implements Serializable{
 	private int park_id;
 	private String user_id;
 	

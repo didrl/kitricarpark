@@ -1,6 +1,8 @@
 package com.carpark.member.model;
 
-public class MemberCarDto {
+import java.io.Serializable;
+
+public class MemberCarDto implements Serializable{
 	private String user_id;
 	private String car_id;
 	private String maker;

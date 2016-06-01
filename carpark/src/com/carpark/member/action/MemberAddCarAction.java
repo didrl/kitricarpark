@@ -25,7 +25,7 @@ public class MemberAddCarAction implements Action {
 		
 		MemberServiceImpl.getMemberService().addNewCar(memberCarDto);
 
-		return "";
+		return "/reservation/reservationDetail.jsp";
 	}
 
 }
