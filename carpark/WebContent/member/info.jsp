@@ -7,6 +7,7 @@
 <div id="wrapper">
 <%
 if(memberDto!=null){
+MemberDto getmemberInfo = (MemberDto)session.getAttribute("getmemberInfo");
 %>
 
 <!-- ****************************************************************************************************************** -->	
@@ -62,20 +63,12 @@ if(memberDto!=null){
 					<div class="col-lg-5">
 						<form role="form" name="" method="post" action="<%=root%>/member">
 							<input type="hidden" name="act" value="mvProfileDetail">
-							<div class="form-group" data-toggle="buttons" align="right">
-  								<label class="btn btn-primary active">
-    								<input type="radio" name="options" id="option1" autocomplete="off" 
-    								checked > 게스트
-  								</label>
-  								<label class="btn btn-primary">
-    							<input type="radio" name="options" id="option2" autocomplete="off"> 호스트
-  								</label>
-							</div>
+							
 							
 							<div class="form-group" align="center">
 							<label for="disabledSelect">나의 등급</label> 
 <%
-	for(int i=0;i<memberDto.getGrade_id();i++){							
+	for(int i=0;i<getmemberInfo.getGrade_id();i++){							
 %>  
                                 <img src="<%=root%>/img/star.png" width="25" height="25">
 <%
@@ -95,16 +88,15 @@ if(memberDto!=null){
 				      </h4>
 				    </div>
 <%
-MemberDto gradeDto = (MemberDto)request.getAttribute("getmemberInfo");
-if(gradeDto!=null){
+if(getmemberInfo!=null){
 %>
 				    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
 				      <div class="panel-body">
 			        		
-			        		<label>등급 : <%=gradeDto.getGrade_name()%></label>  <br>
-			        		<label>포인트 : <%=gradeDto.getAvgpoint() %></label> <br>
-			        		<label>할인율 :<%=gradeDto.getBenefit() %> %</label> <br>
-			        		<label>벌점사항 :<%=gradeDto.getPenalty()%> </label> 
+			        		<label>등급 : <%=getmemberInfo.getGrade_name()%></label>  <br>
+			        		<label>포인트 : <%=getmemberInfo.getAvgpoint() %></label> <br>
+			        		<label>할인율 :<%=getmemberInfo.getBenefit() %> %</label> <br>
+			        		<label>벌점사항 :<%=getmemberInfo.getPenalty()%> </label> 
 				      </div>
 				    </div>
 				  </div>
@@ -172,7 +164,8 @@ document.location.href="<%=root%>/member";
 
 <script type="text/javascript">
 
-$('#benefit').click(function(){
+$(document).ready(function(){
+	
 	var id = document.getElementById("disabledInputId").value; 
 		$.ajax({
 			type :"GET",

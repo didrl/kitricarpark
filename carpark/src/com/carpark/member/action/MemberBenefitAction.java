@@ -23,13 +23,14 @@ public class MemberBenefitAction implements Action {
 		System.out.println("benefitAction >>>" +id);
 		GradeDto gradeDto= MemberServiceImpl.getMemberService().gradeInfo(id);
 		
-//		JSONObject json = new JSONObject();	
-//		json.put("gradeInfo", gradeDto);
-//		response.setContentType("text/plain;charset=UTF-8");
-//		PrintWriter out = response.getWriter();
-//		out.print(json.toJSONString());
-		request.setAttribute("gradeInfo", gradeDto);
-		return "/member/info.jsp";
+		JSONObject json = new JSONObject();	
+		json.put("gradeInfo", gradeDto);
+		response.setContentType("text/plain;charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		out.print(json.toJSONString());
+		return "";
+//		request.setAttribute("gradeInfo", gradeDto);
+//		return "/member/info.jsp";
 	}
 
 }

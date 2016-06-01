@@ -58,7 +58,7 @@ public class MemberController extends HttpServlet {
 			PageMove.forward(request, response, path);
 		}else if("mvbenefit".equals(act)){
 			path = MemberActionFactory.getMemberBenefitAction().execute(request, response);
-			PageMove.forward(request, response, path);
+
 		}else if("mvcoin".equals(act)){
 			path = MemberActionFactory.getMemberCoinAction().execute(request, response);
 			PageMove.redirect(response, root+path);
