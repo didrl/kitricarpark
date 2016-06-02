@@ -25,6 +25,6 @@ public class MemberCallAddrSearchAction implements Action {
 		List<ZipDto> list = MemberCallServiceImpl.getMemberCallService().list(parkAddress);
 		request.setAttribute("addressList", list);
 		
-		return "/member/init.jsp";
+		return "/member/zipsearch.jsp";
 	}
 }
