@@ -40,6 +40,10 @@
 					
 				<li><a href="javascript:mycoin();"><i class="fa fa-fw fa-file"></i>
 						My Coin</a></li>
+						
+				<li><a href="javascript:;"><i class="fa fa-fw fa-wrench"></i>
+						신고내역 <i class="fa fa-fw fa-caret-down"></i></a>
+				</li>
 			</ul>
 		</div>
 		<!-- /.navbar-collapse -->

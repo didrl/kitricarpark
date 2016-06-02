@@ -34,7 +34,6 @@ public class MemberReportListAction implements Action {
 		String userId = memberDto.getUser_id();
 		if(userId != null) {
 			List<ReportDto> list = MemberReportServiceImpl.getMemberReportService().listArticle(userId, pg, key, word);
-//			List<ReportDto> list = MemberReportServiceImpl.getMemberReportService().reportListArticle(userId, pg, key, word);
 			PageNavigator navigator = CommonServiceImpl.getCommonService().getPageNavigatorUser(userId, pg, key, word);
 			navigator.setRoot(request.getContextPath());
 			navigator.setNavigatorSend();
