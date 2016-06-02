@@ -2,6 +2,8 @@ package com.carpark.member.model.service;
 
 import java.util.List;
 
+import com.carpark.member.model.ReportDto;
+
 public class MemberReportServiceImpl implements MemberReportService {
 
 	private static MemberReportService memberReportService;

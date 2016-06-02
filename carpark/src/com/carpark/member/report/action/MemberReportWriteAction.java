@@ -10,10 +10,9 @@ import javax.servlet.http.HttpSession;
 
 import com.carpark.action.Action;
 import com.carpark.member.model.MemberDto;
-import com.carpark.member.model.MessageDto;
+import com.carpark.member.model.ReportDto;
 import com.carpark.member.model.service.CommonServiceImpl;
-import com.carpark.member.model.service.MemberMessageServiceImpl;
-import com.carpark.util.NumberCheck;
+import com.carpark.member.model.service.MemberReportServiceImpl;
 
 public class MemberReportWriteAction implements Action {
 
@@ -41,7 +40,8 @@ public class MemberReportWriteAction implements Action {
 		String word = "";
 		
 		MemberReportServiceImpl.getMemberReportService().writeArticle(reportDto);
-		List<ReportDto> list = MemberReportServiceImpl.getMemberReportService().ListArticle(userId, pg, key, word);
+		List<ReportDto> list = MemberReportServiceImpl.getMemberReportService().listArticle(userId, pg, key, word);
+//		List<ReportDto> list = MemberReportServiceImpl.getMemberReportService().ListArticle(userId, pg, key, word);
 		request.setAttribute("reportList", list);
 		
 		
