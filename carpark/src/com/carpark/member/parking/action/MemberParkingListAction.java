@@ -18,19 +18,21 @@ public class MemberParkingListAction implements Action {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-		
+
 		HttpSession session = request.getSession();
 		MemberDto memberDto = (MemberDto) session.getAttribute("memberInfo");
-		
-//		String ownerId = "didrl";
-		String ownerId = memberDto.getUser_id();
-		if(ownerId != null) {
-			
-			List<ParkingDetailDto> list = MemberParkingServiceImpl.getMemberParkingservice().MemberParkingList(ownerId);
-			request.setAttribute("parkList", list);
-		}
-		
-		return "/parking/list.jsp";
+		if (memberDto != null) {
+			String ownerId = memberDto.getUser_id();
+			if (ownerId != null) {
+				List<ParkingDetailDto> list = MemberParkingServiceImpl.getMemberParkingservice()
+						.MemberParkingList(ownerId);
+				request.setAttribute("parkList", list);
+			}
+
+			return "/parking/list.jsp";
+		} else
+			return "";
+
 	}
 
 }

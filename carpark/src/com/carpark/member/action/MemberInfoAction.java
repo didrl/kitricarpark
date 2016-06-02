@@ -17,10 +17,13 @@ public class MemberInfoAction implements Action {
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 		HttpSession session = request.getSession();
-		MemberDto memberDto = (MemberDto)session.getAttribute("memberInfo");
-		MemberDto getmemberDto = new MemberDto();
-		getmemberDto = MemberServiceImpl.getMemberService().getMember(memberDto.getUser_id());
-		session.setAttribute("getmemberInfo", getmemberDto);
-		return "/member/info.jsp";
+		MemberDto memberDto = (MemberDto) session.getAttribute("memberInfo");
+		if (memberDto != null) {
+			MemberDto getmemberDto = new MemberDto();
+			getmemberDto = MemberServiceImpl.getMemberService().getMember(memberDto.getUser_id());
+			session.setAttribute("getmemberInfo", getmemberDto);
+			return "/member/info.jsp";
+		} else
+			return "";
 	}
 }

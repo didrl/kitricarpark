@@ -96,10 +96,8 @@ if(reservationDto != null){
 				<!--  radio button에 의한 Multi reservation Start-->
 				<div id="multiReservationDiv" class='formultidiv'>	
 				<div class="row"><!-- From Choice Start -->
-					<div class="col-md-3 col-lg-3 col-sm-3">
-								<div class="pull-right">From : </div>
-						</div>
-						<div class="col-md-8 col-lg-8 col-sm-8" >		
+								<label>
+								From : 
 								<input class="date-picker" id="rdfromdate" name="rdfromdate" type="text"  />
 								<select id="rdfromTime" name="rdfromTime">
 								  <option value="0">00:00</option><option value="1">01:00</option><option value="2">02:00</option>
@@ -111,13 +109,11 @@ if(reservationDto != null){
 								  <option value="18">18:00</option><option value="19">19:00</option> <option value="20">20:00</option>
 								  <option value="21">21:00</option><option value="22">22:00</option><option value="23">23:00</option>
 								</select>
-							</div>
+								</label>
 					</div><!-- From Choice End -->
 					<div class="row"><!-- To Choice Start -->
-							<div class="col-md-3 col-lg-3 col-sm-3">
-								<div class="pull-right">T o :</div> 
-								</div>
-								<div class="col-md-8 col-lg-8 col-sm-8" >
+								<label>
+								T &nbsp;&nbsp; o : 
 								<input class="date-picker" id="rdtodate" name="rdtodate" type="text" />
 								<select id="rdtoTime" name="rdtoTime">
 								  <option value="0">00:00</option><option value="1">01:00</option><option value="2">02:00</option>
@@ -129,15 +125,13 @@ if(reservationDto != null){
 								  <option value="18">18:00</option><option value="19">19:00</option> <option value="20">20:00</option>
 								  <option value="21">21:00</option><option value="22">22:00</option><option value="23">23:00</option>
 								</select>
-								</div>
+								</label>
 					</div>	<!-- To Choice End -->	
 					</div> <!--  radio button에 의한 Multi reservation End-->
 					
 					<div class="row" id="singleReservationDiv" class='forsinglediv'> <!--  radio button에 의한 Single reservation Start-->
-					<div class="col-md-3 col-lg-3 col-sm-3">
-								<div class="pull-right">Date : </div>
-						</div>
-						<div class="col-md-8 col-lg-8 col-sm-8" >		
+								<label>
+								Date : 
 								<input class="date-picker" id="singedate"  name="singedate"  type="text"  />
 								<select id="datefromTime" name="datefromTime">
 								  <option value="0">00:00</option><option value="1">01:00</option><option value="2">02:00</option>
@@ -149,8 +143,6 @@ if(reservationDto != null){
 								  <option value="18">18:00</option><option value="19">19:00</option> <option value="20">20:00</option>
 								  <option value="21">21:00</option><option value="22">22:00</option><option value="23">23:00</option>
 								</select>
-							</div>
-							<div class="col-md-8 col-lg-8 col-sm-8" >		
 								<select id="datetoTime" name="datetoTime">
 								  <option value="0">00:00</option><option value="1">01:00</option><option value="2">02:00</option>
 								  <option value="3">03:00</option> <option value="4">04:00</option><option value="5">05:00</option>
@@ -161,7 +153,7 @@ if(reservationDto != null){
 								  <option value="18">18:00</option><option value="19">19:00</option> <option value="20">20:00</option>
 								  <option value="21">21:00</option><option value="22">22:00</option><option value="23">23:00</option>
 								</select>
-							</div>
+								</label>
 					</div><!--  radio button에 의한 Single reservation End--> <br>
 					<div><h3>어떤 차량을 주차 하길 원하십니까?</h3></div><br>
 					<div class="row" > <!-- Select Car div Start-->
@@ -221,9 +213,8 @@ if(reservationDto != null){
 					<!-- host info panel End -->
 					<div class="panel panel-default">
 					<!-- clelander panel  -->
-						<div class="panel-body">
+						<div class="panel-body" id="rdcalendar">
 						<h3>사용 가능 일</h3>
-						<div id="rdcalendar"></div>
 						</div>
 					</div>
 					<!-- clelander panel End -->

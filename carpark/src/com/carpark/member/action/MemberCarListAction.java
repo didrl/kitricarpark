@@ -19,12 +19,15 @@ public class MemberCarListAction implements Action {
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 		HttpSession session = request.getSession();
-		MemberDto memberDto = (MemberDto)session.getAttribute("memberInfo");
-		ArrayList<MemberCarDto> list = MemberReservationServiceImpl.getMemberReservationService().getCarInfo(memberDto.getUser_id());
-		
-		request.setAttribute("mycarinfo", list);
-		
-		return "/member/ownCarList.jsp";
+		MemberDto memberDto = (MemberDto) session.getAttribute("memberInfo");
+		if (memberDto != null) {
+			ArrayList<MemberCarDto> list = MemberReservationServiceImpl.getMemberReservationService()
+					.getCarInfo(memberDto.getUser_id());
+			request.setAttribute("mycarinfo", list);
+
+			return "/member/ownCarList.jsp";
+		} else
+			return "";
 	}
 
 }

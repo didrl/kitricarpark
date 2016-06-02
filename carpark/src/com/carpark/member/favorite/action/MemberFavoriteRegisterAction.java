@@ -1,6 +1,7 @@
 package com.carpark.member.favorite.action;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -26,9 +27,11 @@ public class MemberFavoriteRegisterAction implements Action {
 		favoriteDto.setPark_id(Integer.parseInt(request.getParameter("park_id")));
 		
 		MemberFavoriteServiceImpl.getMemberFavoriteService().addfavortie(favoriteDto);
-
+		ArrayList<FavoriteDto> favoritelist = (ArrayList<FavoriteDto>) MemberFavoriteServiceImpl
+				.getMemberFavoriteService().favoritelist(memberDto.getUser_id());
+		session.setAttribute("favoritelist", favoritelist);
 //		return "/reservation?act=mvReservation";
-		return "";
+		return "/search/searchResultDetail.jsp";
 	}
 
 }

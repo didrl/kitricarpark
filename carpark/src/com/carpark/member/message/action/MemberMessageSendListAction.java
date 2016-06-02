@@ -21,25 +21,28 @@ public class MemberMessageSendListAction implements Action {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-		
-		
+
 		int pg = NumberCheck.nullToOne(request.getParameter("pg"));
 		String key = StringCheck.nullToBlank(request.getParameter("key"));
 		String word = Encoder.isoToUtf(StringCheck.nullToBlank(request.getParameter("word")));
-		
+
 		HttpSession session = request.getSession();
 		MemberDto memberDto = (MemberDto) session.getAttribute("memberInfo");
-		
-		String userId = memberDto.getUser_id();
-		if(userId != null) {
-			List<MessageDto> sendList = MemberMessageServiceImpl.getMemberMessageService().sendListArticle(userId, pg, key, word);
-			PageNavigator navigator = CommonServiceImpl.getCommonService().getPageNavigatorUser(userId, pg, key, word);
-			navigator.setRoot(request.getContextPath());
-			navigator.setNavigatorSend();
-			request.setAttribute("sendList", sendList);
-			request.setAttribute("navigator", navigator);
-		}
-		return "/message/sendlist.jsp";
+		if (memberDto != null) {
+			String userId = memberDto.getUser_id();
+			if (userId != null) {
+				List<MessageDto> sendList = MemberMessageServiceImpl.getMemberMessageService().sendListArticle(userId,
+						pg, key, word);
+				PageNavigator navigator = CommonServiceImpl.getCommonService().getPageNavigatorUser(userId, pg, key,
+						word);
+				navigator.setRoot(request.getContextPath());
+				navigator.setNavigatorSend();
+				request.setAttribute("sendList", sendList);
+				request.setAttribute("navigator", navigator);
+			}
+			return "/message/sendlist.jsp";
+		} else
+			return "";
 	}
 
 }
