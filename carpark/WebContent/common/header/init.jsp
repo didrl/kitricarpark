@@ -42,9 +42,7 @@ if(memberDto!=null){
 				
 				
 				
-<%
-for(MessageDto messageDto : messageList){
-%>	
+
 				<li class="message-preview"><a href="#">
 						<div class="media">
 							<span class="pull-left"> <img class="media-object"
@@ -61,9 +59,7 @@ for(MessageDto messageDto : messageList){
 							</div>
 						</div>
 				</a></li>			
-<%
-}
-%>		
+	
 				
 				
 				<li class="message-preview"><a href="#">
@@ -486,5 +482,3 @@ function idcheck(data){
 }
 
 </script>
-
-

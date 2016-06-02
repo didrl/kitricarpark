@@ -13,7 +13,6 @@ String qnapath = adminpath +"/"+"qna";
 String staticpath = adminpath +"/"+"static";
 
 MemberDto memberDto = (MemberDto)session.getAttribute("memberInfo"); 
-List<MessageDto> messageList = (List<MessageDto>) request.getAttribute("receiveList");
 
 int bcode = NumberCheck.nullToZero(request.getParameter("bcode"));
 int pg = NumberCheck.nullToOne(request.getParameter("pg"));

@@ -77,3 +77,7 @@ function addrSearch(){
 		document.parkSearchForm.submit();
 	}
 }
+
+function openzip(){
+	window.open("<%=root%>/member?act=mvzip","zip","top=200, left=300, width=400, height=300, menubar=no, status=no, toolbar=no, location=no, scrollbars=yes");
+}
