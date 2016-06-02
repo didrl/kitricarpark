@@ -117,8 +117,8 @@ public class MemberReservationDaoImpl implements MemberReservationDao {
 		try {
 			conn=DBConnection.makeConnection();
 			String sql="";
-			sql += "insert into reservation (reser_id, park_id, user_id, start_date, end_date) \n";
-			sql += "values(concat(to_char(systimestamp, 'yyyymmddhh24missFF3'),?),?,?,?,?)\n"; 
+			sql += "insert into reservation (reser_id, park_id, user_id, start_date, end_date,rdate) \n";
+			sql += "values(concat(to_char(systimestamp, 'yyyymmddhh24missFF3'),?),?,?,?,?,sysdate)\n"; 
 			pstmt = conn.prepareStatement(sql);//미리 sql 문장을 가져가서 검사하고 틀린게 없을 때 실행
 			int idx =1;//중간에 없어지거나 추가될때 필요
 			pstmt.setInt(idx++, reservationDto.getPark_id());

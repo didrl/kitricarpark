@@ -1,6 +1,7 @@
 package com.carpark.member.reservation.action;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -32,6 +33,10 @@ public class MemberReservationRegisterAction implements Action {
 		reservationDto.setPay(Integer.parseInt(request.getParameter("selectedprice")));
 		
 		MemberReservationServiceImpl.getMemberReservationService().registerReservation(reservationDto);
+		
+		ArrayList<ReservationDto> list = ( ArrayList<ReservationDto>) MemberReservationServiceImpl.getMemberReservationService().myReservationList(memberDto.getUser_id());
+		session.setAttribute("myreservationlist", list);
+		
 		return "/member/myReservation.jsp";
 	}
 

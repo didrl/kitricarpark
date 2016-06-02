@@ -106,15 +106,22 @@ function messageWrite() {
 	}
 }
 function goReservation() {
-	if(document.selectdateForm.fromdate.value == ""){
-		alert("대상을 입력하세요");
+	var flagr=0;
+	flagr=<%=flagb%>
+	if(flagr!=0){
+		if(document.selectdateForm.fromdate.value == ""){
+			alert("대상을 입력하세요");
+			return;
+		} else if(document.selectdateForm.todate.value == "") {
+			alert("제목을 입력하세요");
+			return;	
+		} else{
+			document.selectdateForm.action = "/carpark/reservation";
+			document.selectdateForm.submit();
+		}
+	}else{
+		alert("로그인 후 이용할 수 있습니다.");
 		return;
-	} else if(document.selectdateForm.todate.value == "") {
-		alert("제목을 입력하세요");
-		return;	
-	} else{
-		document.selectdateForm.action = "/carpark/reservation";
-		document.selectdateForm.submit();
 	}
 }
 function goSearchResult() {
@@ -134,16 +141,21 @@ function goSearchResult() {
 }
 
 function setfavorite(){
-	var flagf=<%=flag%>;
-	console.log("asdf!@!@!"+flag+"     "+"<%=flag%>");
+	var flagf=0;
+	flagf=<%=flag%>;
 	if(flagf!=0){
-		alert("즐겨찾기에서 삭제되었습니다")
-		document.location.href = "<%=root%>/favorite?act=delfavorite&park_id=<%=parkingDetail.getPark_id()%>";
-		
+		if(flagf!=0){
+			alert("즐겨찾기에서 삭제되었습니다")
+			document.location.href = "<%=root%>/favorite?act=delfavorite&park_id=<%=parkingDetail.getPark_id()%>";
+			
+		}else{
+			alert("즐겨찾기에 추가되었습니다")
+			document.location.href = "<%=root%>/favorite?act=addfavorite&park_id=<%=parkingDetail.getPark_id()%>";
+	
+		}
 	}else{
-		alert("즐겨찾기에 추가되었습니다")
-		document.location.href = "<%=root%>/favorite?act=addfavorite&park_id=<%=parkingDetail.getPark_id()%>";
-
+		alert("로그인 후 이용할 수 있습니다.");
+		return;
 	}
 }
 

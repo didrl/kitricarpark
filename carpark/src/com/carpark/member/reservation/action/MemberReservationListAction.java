@@ -22,7 +22,7 @@ public class MemberReservationListAction implements Action {
 		MemberDto memberDto = (MemberDto)session.getAttribute("memberInfo");
 		
 		 ArrayList<ReservationDto> list = ( ArrayList<ReservationDto>) MemberReservationServiceImpl.getMemberReservationService().myReservationList(memberDto.getUser_id());
-		 request.setAttribute("myreservationlist", list);
+		 session.setAttribute("myreservationlist", list);
 		return "/member/myReservation.jsp";
 	}
 

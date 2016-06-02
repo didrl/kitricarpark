@@ -1,6 +1,7 @@
 package com.carpark.member.action;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.carpark.action.Action;
 import com.carpark.member.model.MemberCarDto;
+import com.carpark.member.model.service.MemberReservationServiceImpl;
 import com.carpark.member.model.service.MemberServiceImpl;
 
 public class MemberAddCarAction implements Action {
@@ -25,6 +27,9 @@ public class MemberAddCarAction implements Action {
 		
 		MemberServiceImpl.getMemberService().addNewCar(memberCarDto);
 
+		ArrayList<MemberCarDto> list = MemberReservationServiceImpl.getMemberReservationService().getCarInfo(request.getParameter("user_id"));
+		request.setAttribute("mycarinfo", list);
+		
 		return "/reservation/reservationDetail.jsp";
 	}
 
