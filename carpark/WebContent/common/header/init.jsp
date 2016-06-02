@@ -40,9 +40,6 @@ if(memberDto!=null){
 				class="caret"></b></a>
 			<ul class="dropdown-menu message-dropdown">
 				
-				
-				
-
 				<li class="message-preview"><a href="#">
 						<div class="media">
 							<span class="pull-left"> <img class="media-object"
@@ -59,9 +56,7 @@ if(memberDto!=null){
 							</div>
 						</div>
 				</a></li>			
-	
-				
-				
+			
 				<li class="message-preview"><a href="#">
 						<div class="media">
 							<span class="pull-left"> <img class="media-object"
@@ -172,6 +167,7 @@ if(memberDto!=null){
 			
 				
 			</ul></li>
+					
 		<li class="dropdown"><a href="#" class="dropdown-toggle"
 			data-toggle="dropdown"><i class="fa fa-user"></i> <%=memberDto.getUser_id() %> <b
 				class="caret"></b></a>
@@ -183,8 +179,9 @@ if(memberDto!=null){
 				<li class="divider"></li>
 				<li><a href="<%=root%>/member?act=mvlogout"><i class="fa fa-fw fa-power-off"></i> Log
 						Out</a></li>
-			</ul></li>		
-		<%
+			</ul></li>
+				
+<%
 	}
 }else{
 %>

@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.*,com.carpark.common.model.*"%>
-
 <%@include file="/common/common.jsp" %>
 <%@include file="/common/header/init.jsp" %> 
 <%
@@ -52,7 +51,7 @@ function goSearchResult() {
 		
 		<h3><b>주차장 제보</b>&nbsp;&nbsp;검색 결과</h3>
 				
-   		<div class="col-md-4" style="height: 900px;">
+   		<div class="col-md-4" style="height: 1000px;">
 					<div class="modal-header" style="background-color: #00cc00" align="center">
 						<h4 class="" id="messageReplyModal" style="color: #FFFFFF">주차장 제보 하기</h4>
 					</div>
@@ -102,7 +101,7 @@ function goSearchResult() {
 
 										<div class="form-group text-center">
 											<input class="btn btn-default" type="button" value="제보하기"
-												onclick="javascript:messageWrite();">
+												onclick="javascript:parkMessageRegister();">
 										</div>
 
 									</form>
@@ -156,6 +155,9 @@ function goSearchResult() {
 								            content: '<div style="padding:5px;">우리회사</div>'
 								        });
 								        infowindow.open(map, marker);
+								        
+								     // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+								        map.setCenter(coords);
 								    } 
 								});    
 								
@@ -304,17 +306,17 @@ function goSearchResult() {
 			
 			
 			
-				<form name="zipform" method="get" action="">
+<form name="zipform" method="get" action="">
 <input type="hidden" name="act" value="zipsearch">
-<h3>우편번호검색</h3>
+
 <table width="350">
 <tr>
 	<td class="td3">검색할동을 입력하세요<br>(예: 역삼동, 신촌)</td>
 </tr>
 <tr>
 	<td class="td4">
-	<input type="text" name="dong" id="dong" onkeypress="javascript:if(event.keyCode == 13){ dongcheck(); }">
-	<input type="button" value="검색" id="btnsearch" onclick="javascript:dongcheck();">
+		<input type="text" name="dong" id="dong" onkeypress="javascript:if(event.keyCode == 13){ dongcheck(); }">
+		<input type="button" value="검색" id="btnsearch" onclick="javascript:dongcheck();">
 	</td>
 </tr>
 <%

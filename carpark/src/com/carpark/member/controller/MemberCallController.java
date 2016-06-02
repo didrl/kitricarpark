@@ -29,8 +29,9 @@ public class MemberCallController extends HttpServlet {
 		}else if("mvzip".equals(act)){
 			path = MemberActionFactory.getMemberCallMvZipAction().execute(request, response);
 			PageMove.redirect(response, root+path);
-		}else if("".equals(act)){
-			
+		}else if("memberParkRegisterMessage".equals(act)){
+			path = MemberActionFactory.getMemberCallRegisterAction().execute(request, response);
+			PageMove.forward(request, response, path);
 		}else if("".equals(act)){
 			
 		}else if("".equals(act)){
