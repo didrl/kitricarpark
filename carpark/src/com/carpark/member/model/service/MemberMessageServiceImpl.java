@@ -41,7 +41,6 @@ public class MemberMessageServiceImpl implements MemberMessageService {
 		Map<String, String> map = new HashMap<String, String>();
 		
 		int end = BoardConstance.BOARD_LIST_SIZE * pg;
-		System.out.println("페이지 번" + pg);
 		int start = end - BoardConstance.BOARD_LIST_SIZE;
 		
 		map.put("userId", userId);
@@ -57,7 +56,6 @@ public class MemberMessageServiceImpl implements MemberMessageService {
 		Map<String, String> map = new HashMap<String, String>();
 		
 		int end = BoardConstance.BOARD_LIST_SIZE * pg;
-		System.out.println("페이지 번" + pg);
 		int start = end - BoardConstance.BOARD_LIST_SIZE;
 		
 		map.put("receiveId", receiveId);
