@@ -276,7 +276,7 @@ function setfavorite(){
 						<h3 class="panel-title">상세 정보</h3>  
 					</div>
 					<div class="panel-body">
-						<p>
+						<p align="left" >
 						    <input type="checkbox" id="chkTraffic" onclick="setOverlayMapTypeId()" /> 주위 교통상황을 지도에서 확인하세요     
 						    <br><input type="checkbox" id="chkBicycle" onclick="setOverlayMapTypeId()" /> 자동차에서 자전거로! 자전거 도로 정보 보기
 						</p>
@@ -574,10 +574,8 @@ for(ReviewDto reviewDto : reviewlist){
 						<input type="hidden"  name="host_id" value="<%=parkingDetail.getOwner_id()%>">
 							<div class="panel-body" align="center">	
 					<div class="row"><!-- From Choice Start -->
-						<div class="col-md-3">
-									<div class="pull-right">From : </div>
-							</div>
-							<div class="col-md-9" >		
+					<label>
+									From : 
 									<input class="date-picker" id="fromdate" name="fromdate" type="text" />
 									<select id="srfromTime" name="srfromTime">
 									  <option value="0">00:00</option><option value="1">01:00</option><option value="2">02:00</option>
@@ -589,13 +587,10 @@ for(ReviewDto reviewDto : reviewlist){
 									  <option value="18">18:00</option><option value="19">19:00</option> <option value="20">20:00</option>
 									  <option value="21">21:00</option><option value="22">22:00</option><option value="23">23:00</option>
 									</select>
-								</div>
+								</label>
 						</div><!-- From Choice End -->
 						<div class="row"><!-- To Choice Start -->
-								<div class="col-md-3">
-									<div class="pull-right">T o :</div> 
-									</div>
-								<div class="col-md-9" >
+								<label>	T &nbsp;&nbsp;   o :  
 								<input class="date-picker" id="todate"   name="todate" type="text" />
 								<select id="srtoTime" name="srtoTime">
 								  <option value="0">00:00</option><option value="1">01:00</option><option value="2">02:00</option>
@@ -607,7 +602,7 @@ for(ReviewDto reviewDto : reviewlist){
 								  <option value="18">18:00</option><option value="19">19:00</option> <option value="20">20:00</option>
 								  <option value="21">21:00</option><option value="22">22:00</option><option value="23">23:00</option>
 								</select>
-								</div>
+								</label>
 					</div>	<!-- To Choice End --><br>
 
 								<button type="button" onclick="javascript:goReservation();" class="btn btn-success" id="goreser" name="goreser">
