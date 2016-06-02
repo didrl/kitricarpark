@@ -46,12 +46,6 @@ if(memberDto != null){
    <!-- For sendMsg Modal -->
    <%@include file="/reservation/sendMessageModal.jsp"%>
    <!-- For sendMsg Modal -->
-   
-<!-- Simple Celander -->
-<link rel="stylesheet" href="/carpark/css/calendar/style.css" />
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script type="text/javascript" src="/carpark/js/calendar/calendar.js"></script>
-<!-- Simple Celander -->
 
 <link href="/carpark/css/stylish-portfolio.css" rel="stylesheet" />
 <link href='http://fonts.googleapis.com/css?family=Roboto:400,500'	rel='stylesheet' type='text/css' />
@@ -576,7 +570,7 @@ for(ReviewDto reviewDto : reviewlist){
 					<div class="row"><!-- From Choice Start -->
 					<label>
 									From : 
-									<input class="date-picker" id="fromdate" name="fromdate" type="text" />
+									<input id="fromdate" name="fromdate" type="text" />
 									<select id="srfromTime" name="srfromTime">
 									  <option value="0">00:00</option><option value="1">01:00</option><option value="2">02:00</option>
 									  <option value="3">03:00</option> <option value="4">04:00</option><option value="5">05:00</option>
@@ -591,7 +585,7 @@ for(ReviewDto reviewDto : reviewlist){
 						</div><!-- From Choice End -->
 						<div class="row"><!-- To Choice Start -->
 								<label>	T &nbsp;&nbsp;   o :  
-								<input class="date-picker" id="todate"   name="todate" type="text" />
+								<input id="todate"   name="todate" type="text" />
 								<select id="srtoTime" name="srtoTime">
 								  <option value="0">00:00</option><option value="1">01:00</option><option value="2">02:00</option>
 								  <option value="3">03:00</option> <option value="4">04:00</option><option value="5">05:00</option>
@@ -707,6 +701,55 @@ for(ReviewDto reviewDto : reviewlist){
 					return;
 				}
 				})
+				
+		var today = new Date();
+	 	var datelimit = new Date(today);
+	 	datelimit.setDate(today.getDate() + 62);
+
+
+
+	 	$('#fromdate').glDatePicker({
+	 	    showAlways: false,
+	 	    allowMonthSelect: true,
+	 	    allowYearSelect: true,
+	 	    selectedDate: today,
+	 	    selectableDateRange: [{
+	 	        from: today,
+	 	        to: datelimit
+	 	    }, ],
+	 	    onClick: function (target, cell, date, data) {
+	 	        target.val(date.getFullYear() + '/' + (date.getMonth() + 1) + '/' + date.getDate());
+
+	 	        if (data != null) {
+	 	            alert(data.message + '\n' + date);
+	 	        }
+	 	    }
+	 	}).glDatePicker(true);
+
+
+	 	var to = $('#todate').glDatePicker(
+	 	{
+	 	    showAlways: false,
+	 	    onClick: function (target, cell, date, data) {
+	 	        target.val(date.getFullYear() + '/' + (date.getMonth() + 1) + '/' + date.getDate());
+
+	 	        if (data != null) {
+	 	            alert(data.message + '\n' + date);
+	 	        }
+	 	    }
+	 	}).glDatePicker(true);
+
+	 	$('#todate').click(function() {
+	 	    var fechaFrom = new Date($("#fromdate").val());
+	 	    var toLimit = new Date();
+	 	    toLimit.setDate(fechaFrom.getDate() + 31);
+	 	    to.options.selectableDateRange = [{
+	 	        from: fechaFrom,
+	 	        to: toLimit
+	 	    }, ],
+	 	    to.options.showAlways = false;
+	 	    to.render();
+	 	});
 			
 		</script>
 
