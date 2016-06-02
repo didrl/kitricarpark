@@ -38,6 +38,25 @@ function selectAddress(parkAddress, emdCode , lat, lng){
 
 }
 
+//주소-좌표 변환 객체를 생성합니다
+var geocoder = new daum.maps.services.Geocoder();
+
+// 주소로 좌표를 검색합니다
+function maptest(address) {
+	
+	geocoder.addr2coord(address, function(status, result) {
+
+	    // 정상적으로 검색이 완료됐으면 
+	    if (status === daum.maps.services.Status.OK) {
+	
+	        var coords = new daum.maps.LatLng(result.addr[0].lat, result.addr[0].lng);
+	        opener.document.parkRegisterForm.
+	        alert(coords);
+	
+	    } 
+	}); 
+}
+
 function windowClose() {
 	window.close();
 }

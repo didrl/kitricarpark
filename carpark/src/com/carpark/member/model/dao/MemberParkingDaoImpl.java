@@ -67,7 +67,7 @@ public class MemberParkingDaoImpl implements MemberParkingDao {
 			pstmt.setInt(++idx, parkingDto.getPark_id());
 			pstmt.setString(++idx, parkingDto.getImg_file_name());
 			pstmt.setString(++idx, parkingDto.getImg_file_path());
-			//parking_img table
+			//parking_detail table
 			pstmt.setInt(++idx, parkingDto.getPark_id());
 			pstmt.setInt(++idx, parkingDto.getPark_flag());
 			pstmt.setString(++idx, parkingDto.getPay_yn());
