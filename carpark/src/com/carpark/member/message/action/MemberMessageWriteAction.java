@@ -11,13 +11,20 @@ import com.carpark.member.model.MemberDto;
 import com.carpark.member.model.MessageDto;
 import com.carpark.member.model.service.CommonServiceImpl;
 import com.carpark.member.model.service.MemberMessageServiceImpl;
+import com.carpark.util.Encoder;
 import com.carpark.util.NumberCheck;
+import com.carpark.util.PageNavigator;
+import com.carpark.util.StringCheck;
 
 public class MemberMessageWriteAction implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
+		
+		int pg = NumberCheck.nullToOne(request.getParameter("pg"));
+		String key = StringCheck.nullToBlank(request.getParameter("key"));
+		String word = Encoder.isoToUtf(StringCheck.nullToBlank(request.getParameter("word")));
 		
 		HttpSession session = request.getSession();
 		MemberDto memberDto = (MemberDto) session.getAttribute("memberInfo");
@@ -35,13 +42,14 @@ public class MemberMessageWriteAction implements Action {
 		messageDto.setMsgFlag(0);
 		
 		String userId = memberDto.getUser_id();
-		int pg = 1;
-		String key = "";
-		String word = "";
 		
 		MemberMessageServiceImpl.getMemberMessageService().writeArticle(messageDto);
 		List<MessageDto> list = MemberMessageServiceImpl.getMemberMessageService().sendListArticle(userId, pg, key, word);
 		request.setAttribute("sendList", list);
+		PageNavigator navigator = CommonServiceImpl.getCommonService().getPageNavigatorUser(userId, pg, key, word);
+		navigator.setRoot(request.getContextPath());
+		navigator.setNavigatorSend();
+		request.setAttribute("navigator", navigator);
 		
 		
 		return "/message/sendlist.jsp";
