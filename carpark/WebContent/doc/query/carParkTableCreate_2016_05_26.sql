@@ -82,6 +82,9 @@ DROP TABLE board_img
 DROP TABLE parking_img 
 	CASCADE CONSTRAINTS;
 
+ drop table zipcode
+	CASCADE CONSTRAINTS;
+	
   drop sequence board_num_seq;
   drop sequence message_num_mseq;
   drop sequence report_num_cseq;
@@ -106,6 +109,18 @@ DROP TABLE parking_img
   start with 1 increment by 1;
 
 
+
+
+create table zipcode(
+	zipcode varchar2(10),
+	sido varchar2(20),
+	gugun varchar2(20),
+	dong varchar2(50),
+	bunji varchar2(50),
+	seq number
+)
+
+  
 /* 주차장정보 */
 CREATE TABLE parking (
 	park_id NUMBER NOT NULL, /* 주차장아이디 */
