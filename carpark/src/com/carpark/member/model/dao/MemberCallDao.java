@@ -1,5 +1,9 @@
 package com.carpark.member.model.dao;
 
-public interface MemberCallDao {
+import java.util.List;
 
+import com.carpark.member.model.ZipDto;
+
+public interface MemberCallDao {
+	List<ZipDto> zipSearch(String dong);
 }
