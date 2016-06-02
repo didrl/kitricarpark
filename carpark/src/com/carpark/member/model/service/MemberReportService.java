@@ -2,6 +2,8 @@ package com.carpark.member.model.service;
 
 import java.util.List;
 
+import com.carpark.member.model.ReportDto;
+
 public interface MemberReportService {
 
 	int writeArticle(ReportDto reportDto);

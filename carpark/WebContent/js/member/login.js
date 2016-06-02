@@ -67,3 +67,13 @@ function myParkingRegister(){
 	document.location.href=root+"/parking/register.jsp"
 //	document.location.href=root+"/memberparking?act=parkRegister"
 }
+
+function addrSearch(){
+	if(document.parkSearchForm.parkAddress.value == "") {
+		alert("주소를 입력하세요");
+		return;
+	} else {
+		document.parkSearchForm.action = "<%=root%>/memberparking";
+		document.parkSearchForm.submit();
+	}
+}
