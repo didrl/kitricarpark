@@ -1,3 +1,4 @@
+<%@page import="com.carpark.member.model.MessageDto"%>
 <%@page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" %>
 
@@ -38,6 +39,12 @@ if(memberDto!=null){
 			data-toggle="dropdown"><i class="fa fa-envelope"></i> <b
 				class="caret"></b></a>
 			<ul class="dropdown-menu message-dropdown">
+				
+				
+				
+<%
+for(MessageDto messageDto : messageList){
+%>	
 				<li class="message-preview"><a href="#">
 						<div class="media">
 							<span class="pull-left"> <img class="media-object"
@@ -45,7 +52,7 @@ if(memberDto!=null){
 							</span>
 							<div class="media-body">
 								<h5 class="media-heading">
-									<strong>John Smith</strong>
+									<strong><%=memberDto.getUser_id()%></strong>
 								</h5>
 								<p class="small text-muted">
 									<i class="fa fa-clock-o"></i> Yesterday at 4:32 PM
@@ -53,7 +60,12 @@ if(memberDto!=null){
 								<p>Lorem ipsum dolor sit amet, consectetur...</p>
 							</div>
 						</div>
-				</a></li>
+				</a></li>			
+<%
+}
+%>		
+				
+				
 				<li class="message-preview"><a href="#">
 						<div class="media">
 							<span class="pull-left"> <img class="media-object"
@@ -396,11 +408,26 @@ if(memberDto!=null){
 												class="form-control" id="receiver" placeholder="Cpark 관리자"
 												style="text-align: center;"  disabled="disabled"  name="receiver" value="">
 										</div>
+										
 										<div class="form-group">
 											<label for="subject">제목</label> <input type="text"
 												class="form-control" id="subject" placeholder="제목"
 												name="subject">
-										</div>
+										</div><hr>
+										
+										<div class="row">
+											<div class="col-md-2">
+												<b>위치</b><br>
+											</div>
+											<div class="col-md-10">
+												<div class="form-group">
+													<input type="text" class="form-control" placeholder="주소" name="parkAddress" readonly="readonly"><br>
+													<button type="button" class="btn btn-default" onclick="javascript:parkSearchWindow();">검색</button>
+												</div>
+												</div>
+											</div><hr>
+										
+										
 										<div class="form-group">
 											<label for="content">내용</label>
 											<textarea class="form-control" rows="10" id="content"

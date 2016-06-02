@@ -8,7 +8,7 @@
     
 <%
 if(memberDto != null) {
-List<MessageDto> list = (List<MessageDto>) request.getAttribute("receiveList");
+//List<MessageDto> list = (List<MessageDto>) request.getAttribute("receiveList");
 PageNavigator navigator = (PageNavigator) request.getAttribute("navigator");
 %>
 

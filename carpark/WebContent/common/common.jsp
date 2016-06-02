@@ -1,6 +1,6 @@
 <%@page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import="com.carpark.member.model.MemberDto, com.carpark.admin.model.*,com.carpark.util.*"%>
+<%@page import="com.carpark.member.model.*, com.carpark.admin.model.*,com.carpark.util.*,java.util.*"%>
 <%
 String root = request.getContextPath();
 String commonpath = root + "/common";
@@ -13,6 +13,7 @@ String qnapath = adminpath +"/"+"qna";
 String staticpath = adminpath +"/"+"static";
 
 MemberDto memberDto = (MemberDto)session.getAttribute("memberInfo"); 
+List<MessageDto> messageList = (List<MessageDto>) request.getAttribute("receiveList");
 
 int bcode = NumberCheck.nullToZero(request.getParameter("bcode"));
 int pg = NumberCheck.nullToOne(request.getParameter("pg"));
