@@ -80,7 +80,7 @@ if(memberDto != null){
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 		<script src="/carpark/js/calendar/glDatePicker.min.js"></script>
-
+		
 
 <script type="text/javascript">
 //쪽지보내기
@@ -571,7 +571,7 @@ for(ReviewDto reviewDto : reviewlist){
 					<label>
 									From : 
 									<input id="fromdate" name="fromdate" type="text" />
-									<select id="srfromTime" name="srfromTime">
+									<select readonly="readonly" id="srfromTime" name="srfromTime">
 									  <option value="0">00:00</option><option value="1">01:00</option><option value="2">02:00</option>
 									  <option value="3">03:00</option> <option value="4">04:00</option><option value="5">05:00</option>
 									  <option value="6">06:00</option><option value="7">07:00</option><option value="8">08:00</option>
@@ -585,7 +585,7 @@ for(ReviewDto reviewDto : reviewlist){
 						</div><!-- From Choice End -->
 						<div class="row"><!-- To Choice Start -->
 								<label>	T &nbsp;&nbsp;   o :  
-								<input id="todate"   name="todate" type="text" />
+								<input readonly="readonly" id="todate"   name="todate" type="text" />
 								<select id="srtoTime" name="srtoTime">
 								  <option value="0">00:00</option><option value="1">01:00</option><option value="2">02:00</option>
 								  <option value="3">03:00</option> <option value="4">04:00</option><option value="5">05:00</option>

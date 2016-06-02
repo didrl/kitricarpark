@@ -30,6 +30,7 @@ if(reservationDto != null){
  <link href="/carpark/css/calendar/glDatePicker.default.css" rel="stylesheet" type="text/css">
  <script src="/carpark/js/calendar/glDatePicker.min.js"></script>
  <!-- calendar -->
+ <script src="/carpark/js/datejs/date-ko-KR.js" type="text/javascript"></script>
  
 <link rel="stylesheet" href="/carpark/css/normalize.css">
 <link rel="stylesheet" href="/carpark/css/style.css">
@@ -254,7 +255,9 @@ if(reservationDto != null){
 								});
 			});
 
-		$(document).ready(function () {
+	//	$(document).ready(function () {
+				
+	
 				$("#multireservation").attr("checked", true);
 				$("#singleReservationDiv").addClass("hidden");
 				
@@ -267,9 +270,8 @@ if(reservationDto != null){
 				$("#datefromTime").val("<%=reservationDto.getFromtime()%>");
 				$("#datetoTime").val("<%=reservationDto.getTotime()%>");
 				$("#singedate").val("<%=reservationDto.getFromdate()%>");
-				
-		});
-		
+//				});
+	
 			// Radio Control div Show or Hide 
 				$("#multireservation").on("click",function(){
 					if(this.checked){
@@ -371,12 +373,22 @@ if(reservationDto != null){
 	          
 			$('#mvpaymodalbtn').on('click', function (event) {
 				var fdate =$('#rdfromdate');
-				  var tdate =$('#rdtodate');
-				  var ddate =$('#singledate');
+				var tdate =$('#rdtodate');
+				var ddate =$('#singledate');
 				  
-				var fdateDate=new Date(fdate);
-				var tdateDate=new Date(tdate);
+				var minutes = 1000 * 60;
+				var hours = minutes * 60;
+				var days = hours * 24;
 				  
+				var fdateDate = Date.parseExact(fdate.val(),"yyyy/M/d");
+				var tdateDate = Date.parseExact(tdate.val(),"yyyy/M/d");
+				
+				var reserHours = (tdateDate-fdateDate)/hours;
+				var reserDays = (tdateDate-fdateDate)/days;
+				var reserExtraHours = $("#rdtoTime").val()-$("#rdfromTime").val();
+				
+				alert("days :"+ reserDays +"    hours :"+reserHours+"       ehours : "+reserExtraHours);
+				
 			        $("#selectedfromdate").val(fdate.val());
 			        $("#selectedtodate").val(tdate.val());
 			        $("#paypark_id").val("<%=parkingDetailDto.getPark_id()%>");

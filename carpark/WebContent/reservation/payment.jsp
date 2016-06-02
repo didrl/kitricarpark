@@ -8,11 +8,6 @@ function reservationok(){
 } 
 </script>
 
-<!-- 
-폼으로 데이터를 전송할 때 label에 있는것들도 전송되는지 알아야함
-모달로 넘길 때 히든의 벨류를 세팅해줄 수 있는지도
- -->
-    
 	 <!-- Payment Modal Start -->
                   <div class="modal fade" id="payment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
