@@ -17,13 +17,18 @@ public class MemberInfoDetailAction implements Action {
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 		HttpSession session = request.getSession();
-		MemberDto memberDto = (MemberDto)session.getAttribute("memberInfo");
-		MemberDto detailMemberDto = MemberServiceImpl.getMemberService().getMemberDetail(memberDto.getUser_id());
-//		memberDto = MemberServiceImpl.getMemberService().getMemberDetail(memberDto.getUser_id());
-		System.out.println("memberinfodetailaction>>>>>>>>>>>>"+detailMemberDto.getUser_id());
-		request.setAttribute("memberDetailInfo", detailMemberDto);
-		
-		return "/member/detailInfo.jsp";
+		MemberDto memberDto = (MemberDto) session.getAttribute("memberInfo");
+		if (memberDto != null) {
+			MemberDto detailMemberDto = MemberServiceImpl.getMemberService().getMemberDetail(memberDto.getUser_id());
+			// memberDto =
+			// MemberServiceImpl.getMemberService().getMemberDetail(memberDto.getUser_id());
+			System.out.println("memberinfodetailaction>>>>>>>>>>>>" + detailMemberDto.getUser_id());
+			request.setAttribute("memberDetailInfo", detailMemberDto);
+
+			return "/member/detailInfo.jsp";
+		} else
+			return "";
 	}
 
 }
+

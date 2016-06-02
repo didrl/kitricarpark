@@ -150,11 +150,12 @@ if(getmemberInfo!=null){
 }else{
 %>
 <script type="text/javascript">
-document.location.href="<%=root%>/member";
+alert("잘못된 접근입니다. 다시 시도해주세요.");
+document.location.href = "<%=root%>/index.jsp";
 </script>
 <%
 }
-%>	
+%>
 	
 </div>	
 	<!-- /#wrapper -->

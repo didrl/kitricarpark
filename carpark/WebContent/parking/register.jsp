@@ -49,6 +49,7 @@ function parkSearchWindow() {
 }
 </script>
 <!-- ************************************************************************************ -->	
+<%if(memberDto != null){ %>
 <div id="wrapper">
 
 		<!-- main -->
@@ -258,4 +259,14 @@ function parkSearchWindow() {
 	</div>
 	
 <%@ include file="/common/footer.jsp" %>		
+<%
+}else{
+%>
+<script type="text/javascript">
+alert("잘못된 접근입니다. 다시 시도해주세요.");
+document.location.href = "<%=root%>/index.jsp";
+</script>
+<%
+}
+%>
 	

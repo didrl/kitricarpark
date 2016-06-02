@@ -19,12 +19,15 @@ public class MemberFavoriteListAction implements Action {
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 		HttpSession session = request.getSession();
-		MemberDto memberDto = (MemberDto)session.getAttribute("memberInfo");
-		
-		ArrayList<FavoriteDto> favoritelist =	(ArrayList<FavoriteDto>) MemberFavoriteServiceImpl.getMemberFavoriteService().favoritelist(memberDto.getUser_id());
-		request.setAttribute("favoritelist", favoritelist);
-		
-		return "/member/myfavoriteparking.jsp";
+		MemberDto memberDto = (MemberDto) session.getAttribute("memberInfo");
+		if (memberDto != null) {
+			ArrayList<FavoriteDto> favoritelist = (ArrayList<FavoriteDto>) MemberFavoriteServiceImpl
+					.getMemberFavoriteService().favoritelist(memberDto.getUser_id());
+			session.setAttribute("favoritelist", favoritelist);
+
+			return "/member/myfavoriteparking.jsp";
+		} else
+			return "";
 	}
 
 }

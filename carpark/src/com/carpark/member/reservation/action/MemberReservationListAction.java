@@ -12,6 +12,7 @@ import com.carpark.action.Action;
 import com.carpark.member.model.MemberDto;
 import com.carpark.member.model.ReservationDto;
 import com.carpark.member.model.service.MemberReservationServiceImpl;
+
 public class MemberReservationListAction implements Action {
 
 	@Override
@@ -19,11 +20,14 @@ public class MemberReservationListAction implements Action {
 			throws IOException, ServletException {
 		HttpSession session = request.getSession();
 
-		MemberDto memberDto = (MemberDto)session.getAttribute("memberInfo");
-		
-		 ArrayList<ReservationDto> list = ( ArrayList<ReservationDto>) MemberReservationServiceImpl.getMemberReservationService().myReservationList(memberDto.getUser_id());
-		 session.setAttribute("myreservationlist", list);
-		return "/member/myReservation.jsp";
+		MemberDto memberDto = (MemberDto) session.getAttribute("memberInfo");
+		if (memberDto != null) {
+			ArrayList<ReservationDto> list = (ArrayList<ReservationDto>) MemberReservationServiceImpl
+					.getMemberReservationService().myReservationList(memberDto.getUser_id());
+			session.setAttribute("myreservationlist", list);
+			return "/member/myReservation.jsp";
+		} else
+			return "";
 	}
 
 }
