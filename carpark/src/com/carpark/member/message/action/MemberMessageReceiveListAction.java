@@ -29,8 +29,12 @@ public class MemberMessageReceiveListAction implements Action {
 		String word = Encoder.isoToUtf(StringCheck.nullToBlank(request.getParameter("word")));
 
 		HttpSession session = request.getSession();
+//		HttpSession receiveSession = request.getSession();
+		
 		MemberDto memberDto = (MemberDto) session.getAttribute("memberInfo");
-
+		
+		
+		
 		if (memberDto != null) {
 
 			String receiveId = memberDto.getUser_id();
@@ -44,8 +48,9 @@ public class MemberMessageReceiveListAction implements Action {
 
 				request.setAttribute("receiveList", receiveList);
 				request.setAttribute("navigator", navigator);
+//				receiveSession.setAttribute("receiveList",receiveList);
 			}
-
+	
 			return "/message/receivelist.jsp";
 		} else
 			return "";
