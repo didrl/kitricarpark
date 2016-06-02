@@ -26,13 +26,14 @@ public class MemberReportWriteAction implements Action {
 		int seq = CommonServiceImpl.getCommonService().getNextSeq();
 		
 		ReportDto reportDto = new ReportDto();
-//		messageDto.setSeq(seq);
-//		messageDto.setUserID(memberDto.getUser_id());
-//		messageDto.setSubject(request.getParameter("subject"));
-//		messageDto.setContent(request.getParameter("content").replace("\r\n", "<br>"));
-//		messageDto.setMseq(seq);
-//		messageDto.setReceiverId(request.getParameter("receiver"));
-//		messageDto.setMsgFlag(0);
+		reportDto.setSeq(seq);
+		reportDto.setUserID(memberDto.getUser_id());
+		reportDto.setSubject(request.getParameter("subject"));
+		reportDto.setContent(request.getParameter("content").replace("\r\n", "<br>"));
+
+		reportDto.setPark_id(Integer.parseInt(request.getParameter("park_id")));
+		reportDto.setReport_id(request.getParameter("report_id"));
+
 		
 		String userId = memberDto.getUser_id();
 		int pg = 1;
@@ -41,7 +42,6 @@ public class MemberReportWriteAction implements Action {
 		
 		MemberReportServiceImpl.getMemberReportService().writeArticle(reportDto);
 		List<ReportDto> list = MemberReportServiceImpl.getMemberReportService().listArticle(userId, pg, key, word);
-//		List<ReportDto> list = MemberReportServiceImpl.getMemberReportService().ListArticle(userId, pg, key, word);
 		request.setAttribute("reportList", list);
 		
 		

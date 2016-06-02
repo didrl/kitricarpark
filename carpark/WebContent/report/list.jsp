@@ -40,11 +40,11 @@ if(size > 0) {
 	for(ReportDto reportDto : list) {
 %>
 					<!-- 신고내역 -->
-					<tr >
-						<td width="150"><a href="#">신고대상</a></td>
-						<td><a href="#">제목</a></td>
-						<td width="80">신고한 시간</td>	
-					
+					<tr>
+						<td width="150"><a href="#"><%=reportDto.getReport_id() %></a></td>
+						<td><a href="#"><%=reportDto.getSubject() %></a></td>
+						<td width="80"><%=reportDto.getLogtime() %></td>	
+					</tr>
 <%
 	}
 %>
@@ -56,7 +56,7 @@ if(size > 0) {
 %>
 				  </table>
 				</div>
-<center><h3>메세지가 없습니다</h3></center>	
+<center><h3>신고내역이 없습니다</h3></center>	
 <br><br>  
 <%
 }
