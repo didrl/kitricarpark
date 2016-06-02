@@ -6,6 +6,7 @@
 <%@ include file="/common/side.jsp" %>
 
 <!-- ************************************************************************************ -->
+<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=c2d873676f2c4854b2b2c62e165a629d&libraries=services"></script>
 <script type="text/javascript">
 function parkingRegister() {
 	if(document.parkRegisterForm.parkType.value == ""){
@@ -47,6 +48,25 @@ function parkingRegister() {
 function parkSearchWindow() {
 	window.open( "<%=root%>/parking/parksearch.jsp", "newWindow", "top=100, left=400, width=500, height=400, scrollbars=yes" );
 }
+
+
+//주소-좌표 변환 객체를 생성합니다
+var geocoder = new daum.maps.services.Geocoder();
+
+// 주소로 좌표를 검색합니다
+function maptest(address) {
+	
+	geocoder.addr2coord(address, function(status, result) {
+
+	    // 정상적으로 검색이 완료됐으면 
+	    if (status === daum.maps.services.Status.OK) {
+	
+	        var coords = new daum.maps.LatLng(result.addr[0].lat, result.addr[0].lng);
+	        alert(coords);
+	
+	    } 
+	}); 
+}    
 </script>
 <!-- ************************************************************************************ -->	
 <%if(memberDto != null){ %>
@@ -70,13 +90,24 @@ function parkSearchWindow() {
 					</div>
 					<div class="col-md-10">
 						<label class="radio-inline">
-						  <input type="radio" name="parkType" value="1"> 공영
+						  <input type="radio" name="parkType" value="0"> 사설
 						</label>
 						<label class="radio-inline">
-						  <input type="radio" name="parkType" value="2"> 사설
+						  <input type="radio" name="parkType" value="1"> 개인
+						</label>
+					</div>
+				</div><hr>
+				
+				<div class="row">
+					<div class="col-md-2">
+						<b>사용가능여부</b><br>
+					</div>
+					<div class="col-md-10">
+						<label class="radio-inline">
+						  <input type="radio" name="parkFlag" value="0" checked="checked"> 사용가능
 						</label>
 						<label class="radio-inline">
-						  <input type="radio" name="parkType" value="3"> 개인
+						  <input type="radio" name="parkFlag" value="1"> 사용불가
 						</label>
 					</div>
 				</div><hr>
