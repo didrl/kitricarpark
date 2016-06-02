@@ -19,7 +19,7 @@ System.out.println("<><><><latitude><><><"+parkingDetail.getLatitude());
 System.out.println("<><><><longtitude><><"+parkingDetail.getLongitude());
 System.out.println("<><><><content><><"+parkingDetail.getContent());
 
-int flag=0;
+int flagrs=0;
 int flagb=0;
 String user_id="";
 if(memberDto != null){
@@ -29,7 +29,7 @@ if(memberDto != null){
 	
 	for(FavoriteDto favoriteDto : favoritelist){
 		if(favoriteDto.getPark_id() ==	parkingDetail.getPark_id()){
-			flag=1;
+			flagrs=1;
 			break;
 		}
 	}
@@ -142,9 +142,12 @@ function goSearchResult() {
 
 function setfavorite(){
 	var flagf=0;
-	flagf=<%=flag%>;
+	var flagr =0;
+	flagr =<%=flagrs%>;
+	flagf=<%=flagb%>;
+	console.log("ff : "+ flagr +"\t" + <%=flagb%>);
 	if(flagf!=0){
-		if(flagf!=0){
+		if(flagr!=0){
 			alert("즐겨찾기에서 삭제되었습니다")
 			document.location.href = "<%=root%>/favorite?act=delfavorite&park_id=<%=parkingDetail.getPark_id()%>";
 			
@@ -179,7 +182,7 @@ function setfavorite(){
 						<h3><b>&nbsp;&nbsp;&nbsp; <%=parkingDetail.getPark_name()%>  &nbsp;&nbsp;&nbsp; 
 							<i class = glyphicon glyphicon-star></i><i class = glyphicon glyphicon-star></i><i class = glyphicon glyphicon-star> </i><i class = glyphicon glyphicon-star></i><i class = glyphicon glyphicon-star-empty></i></b> 
 							<%=parkingDetail.getLocation() %>
-							<a href=""><img height="30"  src="/carpark/img/heart.jpg"></a>
+							<a href="javascript:setfavorite();"><img height="30"  src="/carpark/img/heart.jpg"></a>
 						</h3>
 					</div>
 				</div>	
