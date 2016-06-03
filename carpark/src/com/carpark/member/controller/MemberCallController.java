@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONArray;
+
 import com.carpark.factory.MemberActionFactory;
 import com.carpark.util.BoardConstance;
 import com.carpark.util.Encoder;
@@ -46,7 +48,6 @@ public class MemberCallController extends HttpServlet {
 			
 		}
 	}
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding(BoardConstance.DEFAULT_CHARSET);
 		doGet(request, response);
