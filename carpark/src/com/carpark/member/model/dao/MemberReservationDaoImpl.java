@@ -88,7 +88,8 @@ public class MemberReservationDaoImpl implements MemberReservationDao {
 			sql += "	to_char(start_date,'yyyy.mm.dd') start_date, to_char(end_date,'yyyy.mm.dd') end_date \n"; 
 			sql += "from reservation)a \n"; 
 			sql += "where to_number(to_char(sysdate,'mm')) in (a.start_month ,a.end_month,to_number(to_char(sysdate,'mm')))";
-			sql += "and park_id=?";
+			sql += "and park_id=? \n";
+			sql += "order by start_date";
 			pstmt = conn.prepareStatement(sql);//미리 sql 문장을 가져가서 검사하고 틀린게 없을 때 실행
 			int idx =1;//중간에 없어지거나 추가될때 필요
 	 

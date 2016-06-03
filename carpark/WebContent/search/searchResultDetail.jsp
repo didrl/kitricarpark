@@ -1,3 +1,4 @@
+<%@page import="org.json.simple.JSONObject"%>
 <%@page import="com.carpark.member.model.FavoriteDto"%>
 <%@page import="com.carpark.member.model.ReviewDto"%>
 <%@page import="java.util.ArrayList"%>
@@ -13,11 +14,21 @@ ParkingDto parkingDetail = (ParkingDto)session.getAttribute("parkingDetail");
 ArrayList<ReviewDto> reviewlist = (ArrayList<ReviewDto>)session.getAttribute("reviewlist");
 ParkingDetailDto parkingDetail_info = (ParkingDetailDto)session.getAttribute("parkingDetail_info");
 ParkingFacilityDto parkingFacilityDto = (ParkingFacilityDto)session.getAttribute("parkingFacilityDto");
+ArrayList<Map<String,String>> availabledate = (ArrayList<Map<String,String>>)session.getAttribute("availabledate");
+
 ArrayList<FavoriteDto> favoritelist;
-System.out.println("<><><><><><><><"+parkingDetail.getPark_id()	);
+System.out.println("<><><><><><><><"+parkingDetail.getPark_id());
 System.out.println("<><><><latitude><><><"+parkingDetail.getLatitude());
 System.out.println("<><><><longtitude><><"+parkingDetail.getLongitude());
 System.out.println("<><><><content><><"+parkingDetail.getContent());
+//{ from: new Date(2013, 1, 1), to: newDate (2013, 2, 1) }
+StringBuffer sb =new StringBuffer("{ ");
+int size = availabledate.size();
+for(int i=0;i<size-1;++i){
+	//String sd =map.get("startdate");
+	//String td = map.get("enddate");
+	//sb.append("to : new Date("+sd+")},");
+}
 
 int flagrs=0;
 int flagb=0;
@@ -618,6 +629,9 @@ for(ReviewDto reviewDto : reviewlist){
 							 <button type="button" class="btn btn-success"  id="sendMsgToHost" name="sendMsgToHost" data-toggle="modal"  data-rel = "dialog" data-target="#msgToHost" >
                   				Send Message
                				</button>
+							 <button type="button" class="btn btn-success"  id="report" name="report" data-toggle="modal"  data-rel = "" data-target="#"  onclick="javascript:d();">
+                  				신고하기
+               				</button>
 							</div>
 							</div>
 						<!-- host info panel End -->
@@ -757,6 +771,7 @@ for(ReviewDto reviewDto : reviewlist){
     <script type="text/javascript">
         $(window).load(function()
         {
+        	var len = <%=availabledate.size()%>
             $('#datepanelbody').glDatePicker(
            {
             showAlways: true,
@@ -765,16 +780,7 @@ for(ReviewDto reviewDto : reviewlist){
             prevArrow: '',
             nextArrow: '',
             selectedDate: new Date(),
-            selectableDateRange: [
-                { from: new Date(2013, 8, 1),
-                    to: new Date(2013, 8, 10) },
-                { from: new Date(2013, 8, 19),
-                    to: new Date(2013, 8, 22) },
-            ],
-            selectableDates: [
-                { date: new Date(2013, 8, 24) },
-                { date: new Date(2013, 8, 30) }
-            ]
+            selectableDateRange: []
            });
         });
         
