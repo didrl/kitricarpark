@@ -1,4 +1,4 @@
-package com.carpark.member.model;
+package com.carpark.common.model;
 
 public class ZipDto {
 	private String zip1;
