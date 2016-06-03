@@ -29,7 +29,7 @@ function addNewCar(){
 			</div>
 			<div class="modal-body">
 
-				<form class="form-horizontal" id="addcarForm" name="addcarForm">
+				<form method="post" class="form-horizontal" id="addcarForm" name="addcarForm">
 				<input type="hidden" name="act" value="addcarok">
 				<input type="hidden" name="user_id"  id="addcaruser_id" value="">
 				
@@ -45,11 +45,11 @@ function addNewCar(){
 						<label for="inputCarName" class="col-sm-2 control-label">분류</label>
 						<div class="col-sm-10">
 							<select id="carcategory" name="carcategory">
-								<option value="sm">소형</option>
-								<option value="md">중형</option>
-								<option value="bg">대형</option>
-								<option value="sp">특수</option>
-								<option value="tr">화물</option>
+								<option value="소형">소형</option>
+								<option value="중형">중형</option>
+								<option value="대형">대형</option>
+								<option value="특수">특수</option>
+								<option value="화물">화물</option>
 							</select>
 						</div>
 					</div>

@@ -8,7 +8,7 @@
     
 <%
 if(memberDto != null) {
-	ArrayList<FavoriteDto> list = (ArrayList<FavoriteDto>) request.getAttribute("favoritelist");
+	ArrayList<FavoriteDto> list = (ArrayList<FavoriteDto>) session.getAttribute("favoritelist");
 %>
 <script type="text/javascript">
 

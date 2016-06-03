@@ -1,6 +1,7 @@
 package com.carpark.member.favorite.action;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -27,7 +28,9 @@ public class MemberFavoriteDeleteAction implements Action {
 		
 		
 		MemberFavoriteServiceImpl.getMemberFavoriteService().delfavortie(favoriteDto);
-		return "";
+		ArrayList<FavoriteDto> favoritelist = (ArrayList<FavoriteDto>) MemberFavoriteServiceImpl.getMemberFavoriteService().favoritelist(memberDto.getUser_id());
+		session.setAttribute("favoritelist", favoritelist);
+		return "/search/searchResultDetail.jsp";
 	}
 
 }

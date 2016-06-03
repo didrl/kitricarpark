@@ -123,6 +123,13 @@ List<MessageDto> list = (List<MessageDto>) request.getAttribute("receiveList");
   <!-- Footer -->
   <%@include file="/common/footer.jsp" %>
   <!-- /Footer -->
-  <%
+ <%
+}else{
+%>
+<script type="text/javascript">
+alert("잘못된 접근입니다. 다시 시도해주세요.");
+document.location.href = "<%=root%>/index.jsp";
+</script>
+<%
 }
-  %>
+%>

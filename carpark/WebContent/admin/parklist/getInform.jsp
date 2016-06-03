@@ -17,10 +17,10 @@ List<CallDto> callList = (List<CallDto>)request.getAttribute("receiveList");
 				<br><h3>쪽지함</h3><br>
 					
 				<div class="btn-group" role="group" aria-label="...">
-	  				<button type="button" class="btn btn-default" onclick="javascript:messageReceiveList();">
+	  				<button type="button" class="btn btn-default" onclick="javascript:adminMessageReceiveList();">
 	  					받은쪽지함
 	  				</button>
-	  				<button type="button" class="btn btn-default" onclick="javascript:messageSendList();">
+	  				<button type="button" class="btn btn-default" onclick="javascript:adminMessageSendList();">
 	  					보낸쪽지함
 	  				</button>	
 					<button type="button" class="btn btn-default"  data-toggle="modal" data-target="#messageWrite" onclick="javascript:init();">

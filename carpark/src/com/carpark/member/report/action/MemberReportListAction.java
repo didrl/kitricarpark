@@ -10,9 +10,9 @@ import javax.servlet.http.HttpSession;
 
 import com.carpark.action.Action;
 import com.carpark.member.model.MemberDto;
-import com.carpark.member.model.MessageDto;
+import com.carpark.member.model.ReportDto;
 import com.carpark.member.model.service.CommonServiceImpl;
-import com.carpark.member.model.service.MemberMessageServiceImpl;
+import com.carpark.member.model.service.MemberReportServiceImpl;
 import com.carpark.util.Encoder;
 import com.carpark.util.NumberCheck;
 import com.carpark.util.PageNavigator;
@@ -33,7 +33,7 @@ public class MemberReportListAction implements Action {
 		
 		String userId = memberDto.getUser_id();
 		if(userId != null) {
-			List<ReportDto> list = MemberReportServiceImpl.getMemberReportService().reportListArticle(userId, pg, key, word);
+			List<ReportDto> list = MemberReportServiceImpl.getMemberReportService().listArticle(userId, pg, key, word);
 			PageNavigator navigator = CommonServiceImpl.getCommonService().getPageNavigatorUser(userId, pg, key, word);
 			navigator.setRoot(request.getContextPath());
 			navigator.setNavigatorSend();

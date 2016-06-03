@@ -1,4 +1,4 @@
-package com.carpark.admin.call.action;
+package com.carpark.member.call.action;
 
 import java.io.IOException;
 
@@ -7,16 +7,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.carpark.action.Action;
-import com.carpark.admin.model.service.AdminCallServiceImpl;
 
-public class AdminCallRegisterAction implements Action{
+public class MemberCallMvZipAction implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-		int seq = Integer.parseInt(request.getParameter("seq"));
-		AdminCallServiceImpl.getAdminCallService().viewArticle(seq);	
-		return null;
+		return "/member/memberCall.jsp";
 	}
 
 }

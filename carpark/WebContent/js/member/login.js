@@ -67,3 +67,25 @@ function myParkingRegister(){
 	document.location.href=root+"/parking/register.jsp"
 //	document.location.href=root+"/memberparking?act=parkRegister"
 }
+
+function addrSearch(){
+	if(document.parkSearchForm.parkAddress.value == "") {
+		alert("주소를 입력하세요");
+		return;
+	} else {
+		document.parkSearchForm.action = root+"/memberparking";
+		document.parkSearchForm.submit();
+	}
+}
+
+function adminMessageReceiveView(seq){
+	window.open( "/carpark/message?act=AdminCallReceiveView&seq=" + seq, "newWindow", "top=100, left=400, width=500, height=600, scrollbars=yes" );
+}
+
+function parkMessageRegister(){
+	document.location.href = root+"/call?act=memberParkRegisterMessage";
+}
+
+function openzip(){
+	window.open("<%=root%>/member?act=mvzip","zip","top=200, left=300, width=400, height=300, menubar=no, status=no, toolbar=no, location=no, scrollbars=yes");
+}

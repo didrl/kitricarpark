@@ -8,7 +8,7 @@
     
 <%
 if(memberDto != null) {
-	ArrayList<ReservationDto> list = (ArrayList<ReservationDto>) request.getAttribute("myreservationlist");
+	ArrayList<ReservationDto> list = (ArrayList<ReservationDto>) session.getAttribute("myreservationlist");
 %>
 <script type="text/javascript">
 function myReservationView(park_id){

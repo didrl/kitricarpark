@@ -14,9 +14,6 @@ ArrayList<String> availdate = (ArrayList<String>) session.getAttribute("availalb
 ParkingDetailDto parkingDetailDto =(ParkingDetailDto) session.getAttribute("parkingDetailDto");
 ArrayList<ParkingDto> list = (ArrayList<ParkingDto>)session.getAttribute("searchlist");
 
-if(parkingDetailDto == null)
-	System.out.println("없어!!!!!!!!!!!!!!!!!");
-
 if(reservationDto != null){
 %>
     <!-- For sendMsg Modal -->
@@ -29,19 +26,11 @@ if(reservationDto != null){
    <%@include file="/reservation/payment.jsp"%>
    <!-- For payment Modal -->
 
-<!-- Seclect List CSS
-<link rel="stylesheet" type="text/css" href="/carpark/css/jquery.selectlist.css">
- -->
-<!-- Simple Celander -->
-<link rel="stylesheet" href="/carpark/css/calendar/style.css" />
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script type="text/javascript" src="/carpark/js/calendar/calendar.js"></script>
-<!-- Simple Celander -->
- 
  <!-- calendar -->
  <link href="/carpark/css/calendar/glDatePicker.default.css" rel="stylesheet" type="text/css">
  <script src="/carpark/js/calendar/glDatePicker.min.js"></script>
  <!-- calendar -->
+ <script src="/carpark/js/datejs/date-ko-KR.js" type="text/javascript"></script>
  
 <link rel="stylesheet" href="/carpark/css/normalize.css">
 <link rel="stylesheet" href="/carpark/css/style.css">
@@ -96,11 +85,9 @@ if(reservationDto != null){
 				<!--  radio button에 의한 Multi reservation Start-->
 				<div id="multiReservationDiv" class='formultidiv'>	
 				<div class="row"><!-- From Choice Start -->
-					<div class="col-md-3 col-lg-3 col-sm-3">
-								<div class="pull-right">From : </div>
-						</div>
-						<div class="col-md-8 col-lg-8 col-sm-8" >		
-								<input class="date-picker" id="rdfromdate" name="rdfromdate" type="text"  />
+								<label>
+								From : 
+								<input readonly="readonly" id="rdfromdate" name="rdfromdate" type="text"  />
 								<select id="rdfromTime" name="rdfromTime">
 								  <option value="0">00:00</option><option value="1">01:00</option><option value="2">02:00</option>
 								  <option value="3">03:00</option> <option value="4">04:00</option><option value="5">05:00</option>
@@ -111,14 +98,12 @@ if(reservationDto != null){
 								  <option value="18">18:00</option><option value="19">19:00</option> <option value="20">20:00</option>
 								  <option value="21">21:00</option><option value="22">22:00</option><option value="23">23:00</option>
 								</select>
-							</div>
+								</label>
 					</div><!-- From Choice End -->
 					<div class="row"><!-- To Choice Start -->
-							<div class="col-md-3 col-lg-3 col-sm-3">
-								<div class="pull-right">T o :</div> 
-								</div>
-								<div class="col-md-8 col-lg-8 col-sm-8" >
-								<input class="date-picker" id="rdtodate" name="rdtodate" type="text" />
+								<label>
+								T &nbsp;&nbsp; o : 
+								<input readonly="readonly" id="rdtodate" name="rdtodate" type="text" />
 								<select id="rdtoTime" name="rdtoTime">
 								  <option value="0">00:00</option><option value="1">01:00</option><option value="2">02:00</option>
 								  <option value="3">03:00</option> <option value="4">04:00</option><option value="5">05:00</option>
@@ -129,16 +114,14 @@ if(reservationDto != null){
 								  <option value="18">18:00</option><option value="19">19:00</option> <option value="20">20:00</option>
 								  <option value="21">21:00</option><option value="22">22:00</option><option value="23">23:00</option>
 								</select>
-								</div>
+								</label>
 					</div>	<!-- To Choice End -->	
 					</div> <!--  radio button에 의한 Multi reservation End-->
 					
 					<div class="row" id="singleReservationDiv" class='forsinglediv'> <!--  radio button에 의한 Single reservation Start-->
-					<div class="col-md-3 col-lg-3 col-sm-3">
-								<div class="pull-right">Date : </div>
-						</div>
-						<div class="col-md-8 col-lg-8 col-sm-8" >		
-								<input class="date-picker" id="singedate"  name="singedate"  type="text"  />
+								<label>
+								Date : 
+								<input  readonly="readonly" id="singledate"  name="singledate"  type="text"  />
 								<select id="datefromTime" name="datefromTime">
 								  <option value="0">00:00</option><option value="1">01:00</option><option value="2">02:00</option>
 								  <option value="3">03:00</option> <option value="4">04:00</option><option value="5">05:00</option>
@@ -149,8 +132,6 @@ if(reservationDto != null){
 								  <option value="18">18:00</option><option value="19">19:00</option> <option value="20">20:00</option>
 								  <option value="21">21:00</option><option value="22">22:00</option><option value="23">23:00</option>
 								</select>
-							</div>
-							<div class="col-md-8 col-lg-8 col-sm-8" >		
 								<select id="datetoTime" name="datetoTime">
 								  <option value="0">00:00</option><option value="1">01:00</option><option value="2">02:00</option>
 								  <option value="3">03:00</option> <option value="4">04:00</option><option value="5">05:00</option>
@@ -161,7 +142,7 @@ if(reservationDto != null){
 								  <option value="18">18:00</option><option value="19">19:00</option> <option value="20">20:00</option>
 								  <option value="21">21:00</option><option value="22">22:00</option><option value="23">23:00</option>
 								</select>
-							</div>
+								</label>
 					</div><!--  radio button에 의한 Single reservation End--> <br>
 					<div><h3>어떤 차량을 주차 하길 원하십니까?</h3></div><br>
 					<div class="row" > <!-- Select Car div Start-->
@@ -221,9 +202,8 @@ if(reservationDto != null){
 					<!-- host info panel End -->
 					<div class="panel panel-default">
 					<!-- clelander panel  -->
-						<div class="panel-body">
+						<div class="panel-body" id="rdcalendar">
 						<h3>사용 가능 일</h3>
-						<div id="rdcalendar"></div>
 						</div>
 					</div>
 					<!-- clelander panel End -->
@@ -275,7 +255,9 @@ if(reservationDto != null){
 								});
 			});
 
-		$(document).ready(function () {
+	//	$(document).ready(function () {
+				
+	
 				$("#multireservation").attr("checked", true);
 				$("#singleReservationDiv").addClass("hidden");
 				
@@ -288,28 +270,8 @@ if(reservationDto != null){
 				$("#datefromTime").val("<%=reservationDto.getFromtime()%>");
 				$("#datetoTime").val("<%=reservationDto.getTotime()%>");
 				$("#singedate").val("<%=reservationDto.getFromdate()%>");
-				
-	            $('#rdcalendar').glDatePicker(
-	                    {
-	                     showAlways: true,
-	                     allowMonthSelect: false,
-	                     allowYearSelect: false,
-	                     prevArrow: '',
-	                     nextArrow: '',
-	                     selectedDate: new Date(),
-	                     selectableDateRange: [
-	                         { from: new Date(2013, 8, 1),
-	                             to: new Date(2013, 8, 10) },
-	                         { from: new Date(2013, 8, 19),
-	                             to: new Date(2013, 8, 22) },
-	                     ],
-	                     selectableDates: [
-	                         { date: new Date(2013, 8, 24) },
-	                         { date: new Date(2013, 8, 30) }
-	                     ]
-	                    });
-				
-		});
+//				});
+	
 			// Radio Control div Show or Hide 
 				$("#multireservation").on("click",function(){
 					if(this.checked){
@@ -332,18 +294,101 @@ if(reservationDto != null){
 				$("#addCarTitle").append("<%=memberDto.getUser_id()%>");
 				$("#addcaruser_id").val("<%=memberDto.getUser_id()%>");
 				
-							
 				$('#addcar').show();
 			});
 			
+		 	var today = new Date();
+		 	var datelimit = new Date(today);
+		 	datelimit.setDate(today.getDate() + 62);
+
+		 	$('#rdfromdate').glDatePicker({
+		 	    showAlways: false,
+		 	    allowMonthSelect: true,
+		 	    allowYearSelect: true,
+		 	    selectedDate: today,
+		 	    selectableDateRange: [{
+		 	        from: today,
+		 	        to: datelimit
+		 	    }, ],
+		 	    onClick: function (target, cell, date, data) {
+		 	        target.val(date.getFullYear() + '/' + (date.getMonth() + 1) + '/' + date.getDate());
+
+		 	        if (data != null) {
+		 	            alert(data.message + '\n' + date);
+		 	        }
+		 	    }
+		 	}).glDatePicker(true);
+
+		 	$('#singledate').glDatePicker({
+		 	    showAlways: false,
+		 	    allowMonthSelect: true,
+		 	    allowYearSelect: true,
+		 	    selectableDateRange: [{
+		 	        from: today}]
+		 	});
+		 	
+		 	var to = $('#rdtodate').glDatePicker(
+		 	{
+		 	    showAlways: false,
+		 	    onClick: function (target, cell, date, data) {
+		 	        target.val(date.getFullYear() + '/' + (date.getMonth() + 1) + '/' + date.getDate());
+
+		 	        if (data != null) {
+		 	            alert(data.message + '\n' + date);
+		 	        }
+		 	    }
+		 	}).glDatePicker(true);
+
+		 	$('#rdtodate').click(function() {
+		 	    var fechaFrom = new Date($("#rdfromdate").val());
+		 	    var toLimit = new Date();
+		 	    toLimit.setDate(fechaFrom.getDate() + 31);
+		 	    to.options.selectableDateRange = [{
+		 	        from: fechaFrom,
+		 	        to: toLimit
+		 	    }, ],
+		 	    to.options.showAlways = false;
+		 	    to.render();
+		 	});
+		 	
+	          $('#rdcalendar').glDatePicker(
+	                    {
+	                     showAlways: true,
+	                     allowMonthSelect: false,
+	                     allowYearSelect: false,
+	                     prevArrow: '',
+	                     nextArrow: '',
+	                     selectedDate: new Date(),
+	                     selectableDateRange: [
+	                         { from: new Date(2013, 8, 1),
+	                             to: new Date(2013, 8, 10) },
+	                         { from: new Date(2013, 8, 19),
+	                             to: new Date(2013, 8, 22) },
+	                     ],
+	                     selectableDates: [
+	                         { date: new Date(2013, 8, 24) },
+	                         { date: new Date(2013, 8, 30) }
+	                     ]
+	                    });
+	          
 			$('#mvpaymodalbtn').on('click', function (event) {
 				var fdate =$('#rdfromdate');
-				  var tdate =$('#rdtodate');
-				  var ddate =$('#singledate');
+				var tdate =$('#rdtodate');
+				var ddate =$('#singledate');
 				  
-				var fdateDate=new Date(fdate);
-				var tdateDate=new Date(tdate);
+				var minutes = 1000 * 60;
+				var hours = minutes * 60;
+				var days = hours * 24;
 				  
+				var fdateDate = Date.parseExact(fdate.val(),"yyyy/M/d");
+				var tdateDate = Date.parseExact(tdate.val(),"yyyy/M/d");
+				
+				var reserHours = (tdateDate-fdateDate)/hours;
+				var reserDays = (tdateDate-fdateDate)/days;
+				var reserExtraHours = $("#rdtoTime").val()-$("#rdfromTime").val();
+				
+				alert("days :"+ reserDays +"    hours :"+reserHours+"       ehours : "+reserExtraHours);
+				
 			        $("#selectedfromdate").val(fdate.val());
 			        $("#selectedtodate").val(tdate.val());
 			        $("#paypark_id").val("<%=parkingDetailDto.getPark_id()%>");

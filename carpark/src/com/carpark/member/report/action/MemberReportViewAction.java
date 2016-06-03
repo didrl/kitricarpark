@@ -7,8 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.carpark.action.Action;
-import com.carpark.member.model.MessageDto;
-import com.carpark.member.model.service.MemberMessageServiceImpl;
+import com.carpark.member.model.ReportDto;
+import com.carpark.member.model.service.MemberReportServiceImpl;
 import com.carpark.util.NumberCheck;
 
 public class MemberReportViewAction implements Action {

@@ -29,6 +29,8 @@ public class MemberParkingRegisterAction implements Action {
 		
 		ParkingDetailDto parkingDto = new ParkingDetailDto();
 		
+		parkingDto.setPark_flag(Integer.parseInt(request.getParameter("parkFlag")));
+		
 		parkingDto.setPark_id(parkingId);
 		parkingDto.setPark_type(request.getParameter("parkType"));
 		parkingDto.setPark_name(request.getParameter("parkName"));

@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 
 
-		<!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+	<!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
 		<div class="collapse navbar-collapse navbar-ex1-collapse">
 			<ul class="nav navbar-nav side-nav">
 				<li><a href="<%=root%>/member?act=mvprofile"><i class="fa fa-fw fa-dashboard"></i>
@@ -40,6 +40,10 @@
 					
 				<li><a href="javascript:mycoin();"><i class="fa fa-fw fa-file"></i>
 						My Coin</a></li>
+						
+				<li><a href="javascript:;"><i class="fa fa-fw fa-wrench"></i>
+						신고내역 <i class="fa fa-fw fa-caret-down"></i></a>
+				</li>
 			</ul>
 		</div>
 		<!-- /.navbar-collapse -->

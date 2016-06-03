@@ -82,10 +82,13 @@ public class MemberReservationDaoImpl implements MemberReservationDao {
 		try {
 			conn=DBConnection.makeConnection();
 			String sql="";
-			sql += "select to_char(start_date,'yyyy.mm.dd') start_date, to_char(end_date,'yyyy.mm.dd') end_date, \n";
-			sql += "end_date-start_date betweendate \n";
-			sql += "from reservation \n"; 
-			sql += "where park_id =? \n"; 
+						
+			sql += "select a.park_id, a.start_date, a.end_date \n";
+			sql += "from(select to_number(to_char(start_date,'mm')) start_month, to_number(to_char(end_date,'mm')) end_month,park_id, \n";
+			sql += "	to_char(start_date,'yyyy.mm.dd') start_date, to_char(end_date,'yyyy.mm.dd') end_date \n"; 
+			sql += "from reservation)a \n"; 
+			sql += "where to_number(to_char(sysdate,'mm')) in (a.start_month ,a.end_month,to_number(to_char(sysdate,'mm')))";
+			sql += "and park_id=?";
 			pstmt = conn.prepareStatement(sql);//미리 sql 문장을 가져가서 검사하고 틀린게 없을 때 실행
 			int idx =1;//중간에 없어지거나 추가될때 필요
 	 
@@ -98,7 +101,7 @@ public class MemberReservationDaoImpl implements MemberReservationDao {
 			while(rs.next()){
 				map = new HashMap<String, String>();
 				map.put("startdate", rs.getString("start_date"));
-				map.put("betweendate", rs.getString("betweendate"));		// end_date - start_date
+				map.put("enddate", rs.getString("end_date"));
 				list.add(map);
 			}
 		} catch (SQLException e) {
@@ -117,8 +120,8 @@ public class MemberReservationDaoImpl implements MemberReservationDao {
 		try {
 			conn=DBConnection.makeConnection();
 			String sql="";
-			sql += "insert into reservation (reser_id, park_id, user_id, start_date, end_date) \n";
-			sql += "values(concat(to_char(systimestamp, 'yyyymmddhh24missFF3'),?),?,?,?,?)\n"; 
+			sql += "insert into reservation (reser_id, park_id, user_id, start_date, end_date,rdate) \n";
+			sql += "values(concat(to_char(systimestamp, 'yyyymmddhh24missFF3'),?),?,?,?,?,sysdate)\n"; 
 			pstmt = conn.prepareStatement(sql);//미리 sql 문장을 가져가서 검사하고 틀린게 없을 때 실행
 			int idx =1;//중간에 없어지거나 추가될때 필요
 			pstmt.setInt(idx++, reservationDto.getPark_id());

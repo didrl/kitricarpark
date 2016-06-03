@@ -1,3 +1,4 @@
+<%@page import="com.carpark.member.model.MessageDto"%>
 <%@page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" %>
 
@@ -38,6 +39,7 @@ if(memberDto!=null){
 			data-toggle="dropdown"><i class="fa fa-envelope"></i> <b
 				class="caret"></b></a>
 			<ul class="dropdown-menu message-dropdown">
+				
 				<li class="message-preview"><a href="#">
 						<div class="media">
 							<span class="pull-left"> <img class="media-object"
@@ -45,7 +47,7 @@ if(memberDto!=null){
 							</span>
 							<div class="media-body">
 								<h5 class="media-heading">
-									<strong>John Smith</strong>
+									<strong><%=memberDto.getUser_id()%></strong>
 								</h5>
 								<p class="small text-muted">
 									<i class="fa fa-clock-o"></i> Yesterday at 4:32 PM
@@ -53,7 +55,8 @@ if(memberDto!=null){
 								<p>Lorem ipsum dolor sit amet, consectetur...</p>
 							</div>
 						</div>
-				</a></li>
+				</a></li>			
+			
 				<li class="message-preview"><a href="#">
 						<div class="media">
 							<span class="pull-left"> <img class="media-object"
@@ -94,7 +97,7 @@ if(memberDto!=null){
 			data-toggle="dropdown"><i class="fa fa-bell"></i> <b
 				class="caret"></b></a>
 			<ul class="dropdown-menu alert-dropdown">
-				<li><a href="#" data-toggle="modal" data-target="#messageReply">제보하기 <span
+				<li><a href="<%=root%>/call?act=mvzip">제보하기 <span
 						class="label label-default">Alert Badge</span></a></li>
 				<li class="divider"></li>
 				<li><a href="<%=root%>/faq.jsp">  FAQ  <span
@@ -164,6 +167,7 @@ if(memberDto!=null){
 			
 				
 			</ul></li>
+					
 		<li class="dropdown"><a href="#" class="dropdown-toggle"
 			data-toggle="dropdown"><i class="fa fa-user"></i> <%=memberDto.getUser_id() %> <b
 				class="caret"></b></a>
@@ -175,8 +179,9 @@ if(memberDto!=null){
 				<li class="divider"></li>
 				<li><a href="<%=root%>/member?act=mvlogout"><i class="fa fa-fw fa-power-off"></i> Log
 						Out</a></li>
-			</ul></li>		
-		<%
+			</ul></li>
+				
+<%
 	}
 }else{
 %>
@@ -363,71 +368,6 @@ if(memberDto!=null){
 
 
 
-
-
-    <!-- 제보 Modal Start -->
-		<div class="modal fade" id="messageReply" tabindex="-1" role="dialog"
-			aria-labelledby="myModalLabel" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header" style="background-color: #00cc00" align="center">
-						<button type="button" class="close" data-dismiss="modal">
-							<span aria-hidden="true">×</span><span class="sr-only">Close</span>
-						</button>
-						<h4 class="" id="messageReplyModal" style="color: #FFFFFF">주차장 제보 하기</h4>
-					</div>
-					<div class="modal-body">
-
-						<!-- main -->
-						<div id="page-wrapper">
-							<div class="container-fluid">
-
-								<!-- 쪽지보내기 -->
-								<div class="form-group">
-									<form class="form-horizontal" name="writeForm" method="post" action="">
-										<input type="hidden" name="act" value="messageWrite">
-										<input type="hidden" name="bcode" value="2"> 
-										<input type="hidden" name="pg" value="1"> 
-										<input type="hidden" name="key" value=""> 
-										<input type="hidden" name="word" value="">
-
-										<div class="form-group">
-											<label for="receiver">받는사람</label> <input type="text"
-												class="form-control" id="receiver" placeholder="Cpark 관리자"
-												style="text-align: center;"  disabled="disabled"  name="receiver" value="">
-										</div>
-										<div class="form-group">
-											<label for="subject">제목</label> <input type="text"
-												class="form-control" id="subject" placeholder="제목"
-												name="subject">
-										</div>
-										<div class="form-group">
-											<label for="content">내용</label>
-											<textarea class="form-control" rows="10" id="content"
-												name="content"></textarea>
-										</div>
-
-										<div class="form-group text-center">
-											<input class="btn btn-default" type="button" value="제보하기"
-												onclick="javascript:messageWrite();">
-										</div>
-
-									</form>
-								</div>
-							</div>
-						</div>
-
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- 제보 Modal End -->
-
-
-
-
-
-
 <script type="text/javascript">
 
 $('#idcheck').click(function(){
@@ -459,5 +399,3 @@ function idcheck(data){
 }
 
 </script>
-
-

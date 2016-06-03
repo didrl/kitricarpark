@@ -15,9 +15,11 @@ import com.carpark.member.action.MemberModifyAction;
 import com.carpark.member.action.MemberRegisterAction;
 import com.carpark.member.action.MemberSearchAction;
 import com.carpark.member.action.MemberSearchDetailAction;
+import com.carpark.member.call.action.MemberCallAddrSearchAction;
 import com.carpark.member.call.action.MemberCallDeleteAction;
 import com.carpark.member.call.action.MemberCallListAction;
 import com.carpark.member.call.action.MemberCallModifyAction;
+import com.carpark.member.call.action.MemberCallMvZipAction;
 import com.carpark.member.call.action.MemberCallRegisterAction;
 import com.carpark.member.call.action.MemberCallViewAction;
 import com.carpark.member.favorite.action.MemberFavoriteDeleteAction;
@@ -70,6 +72,8 @@ public class MemberActionFactory {
 	private static Action memberCallModifyAction;
 	private static Action memberCallRegisterAction;
 	private static Action memberCallViewAction;
+	private static Action memberCallAddrSearchAction;
+	private static Action memberCallMvZipAction;
 	
 	private static Action memberFavoriteDeleteAction;
 	private static Action memberFavoriteListAction;
@@ -128,6 +132,8 @@ public class MemberActionFactory {
 		memberCallModifyAction = new MemberCallModifyAction();
 		memberCallRegisterAction = new MemberCallRegisterAction();
 		memberCallViewAction = new MemberCallViewAction();
+		memberCallAddrSearchAction = new MemberCallAddrSearchAction();
+		memberCallMvZipAction = new MemberCallMvZipAction();
 		
 		memberFavoriteDeleteAction = new MemberFavoriteDeleteAction();
 		memberFavoriteListAction = new MemberFavoriteListAction();
@@ -165,6 +171,16 @@ public class MemberActionFactory {
 		memberCarListAction = new MemberCarListAction();
 		
 	}
+	public static Action getMemberCallMvZipAction() {
+		return memberCallMvZipAction;
+	}
+
+
+	public static Action getMemberCallAddrSearchAction() {
+		return memberCallAddrSearchAction;
+	}
+
+
 	public static Action getMemberCarListAction() {
 		return memberCarListAction;
 	}

@@ -19,7 +19,7 @@ System.out.println("<><><><latitude><><><"+parkingDetail.getLatitude());
 System.out.println("<><><><longtitude><><"+parkingDetail.getLongitude());
 System.out.println("<><><><content><><"+parkingDetail.getContent());
 
-int flag=0;
+int flagrs=0;
 int flagb=0;
 String user_id="";
 if(memberDto != null){
@@ -29,7 +29,7 @@ if(memberDto != null){
 	
 	for(FavoriteDto favoriteDto : favoritelist){
 		if(favoriteDto.getPark_id() ==	parkingDetail.getPark_id()){
-			flag=1;
+			flagrs=1;
 			break;
 		}
 	}
@@ -46,12 +46,6 @@ if(memberDto != null){
    <!-- For sendMsg Modal -->
    <%@include file="/reservation/sendMessageModal.jsp"%>
    <!-- For sendMsg Modal -->
-   
-<!-- Simple Celander -->
-<link rel="stylesheet" href="/carpark/css/calendar/style.css" />
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script type="text/javascript" src="/carpark/js/calendar/calendar.js"></script>
-<!-- Simple Celander -->
 
 <link href="/carpark/css/stylish-portfolio.css" rel="stylesheet" />
 <link href='http://fonts.googleapis.com/css?family=Roboto:400,500'	rel='stylesheet' type='text/css' />
@@ -86,7 +80,7 @@ if(memberDto != null){
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 		<script src="/carpark/js/calendar/glDatePicker.min.js"></script>
-
+		
 
 <script type="text/javascript">
 //쪽지보내기
@@ -106,15 +100,22 @@ function messageWrite() {
 	}
 }
 function goReservation() {
-	if(document.selectdateForm.fromdate.value == ""){
-		alert("대상을 입력하세요");
+	var flagr=0;
+	flagr=<%=flagb%>
+	if(flagr!=0){
+		if(document.selectdateForm.fromdate.value == ""){
+			alert("대상을 입력하세요");
+			return;
+		} else if(document.selectdateForm.todate.value == "") {
+			alert("제목을 입력하세요");
+			return;	
+		} else{
+			document.selectdateForm.action = "/carpark/reservation";
+			document.selectdateForm.submit();
+		}
+	}else{
+		alert("로그인 후 이용할 수 있습니다.");
 		return;
-	} else if(document.selectdateForm.todate.value == "") {
-		alert("제목을 입력하세요");
-		return;	
-	} else{
-		document.selectdateForm.action = "/carpark/reservation";
-		document.selectdateForm.submit();
 	}
 }
 function goSearchResult() {
@@ -134,16 +135,24 @@ function goSearchResult() {
 }
 
 function setfavorite(){
-	var flagf=<%=flag%>;
-	console.log("asdf!@!@!"+flag+"     "+"<%=flag%>");
+	var flagf=0;
+	var flagr =0;
+	flagr =<%=flagrs%>;
+	flagf=<%=flagb%>;
+	console.log("ff : "+ flagr +"\t" + <%=flagb%>);
 	if(flagf!=0){
-		alert("즐겨찾기에서 삭제되었습니다")
-		document.location.href = "<%=root%>/favorite?act=delfavorite&park_id=<%=parkingDetail.getPark_id()%>";
-		
+		if(flagr!=0){
+			alert("즐겨찾기에서 삭제되었습니다")
+			document.location.href = "<%=root%>/favorite?act=delfavorite&park_id=<%=parkingDetail.getPark_id()%>";
+			
+		}else{
+			alert("즐겨찾기에 추가되었습니다")
+			document.location.href = "<%=root%>/favorite?act=addfavorite&park_id=<%=parkingDetail.getPark_id()%>";
+	
+		}
 	}else{
-		alert("즐겨찾기에 추가되었습니다")
-		document.location.href = "<%=root%>/favorite?act=addfavorite&park_id=<%=parkingDetail.getPark_id()%>";
-
+		alert("로그인 후 이용할 수 있습니다.");
+		return;
 	}
 }
 
@@ -167,7 +176,7 @@ function setfavorite(){
 						<h3><b>&nbsp;&nbsp;&nbsp; <%=parkingDetail.getPark_name()%>  &nbsp;&nbsp;&nbsp; 
 							<i class = glyphicon glyphicon-star></i><i class = glyphicon glyphicon-star></i><i class = glyphicon glyphicon-star> </i><i class = glyphicon glyphicon-star></i><i class = glyphicon glyphicon-star-empty></i></b> 
 							<%=parkingDetail.getLocation() %>
-							<a href=""><img height="30"  src="/carpark/img/heart.jpg"></a>
+							<a href="javascript:setfavorite();"><img height="30"  src="/carpark/img/heart.jpg"></a>
 						</h3>
 					</div>
 				</div>	
@@ -261,7 +270,7 @@ function setfavorite(){
 						<h3 class="panel-title">상세 정보</h3>  
 					</div>
 					<div class="panel-body">
-						<p>
+						<p align="left" >
 						    <input type="checkbox" id="chkTraffic" onclick="setOverlayMapTypeId()" /> 주위 교통상황을 지도에서 확인하세요     
 						    <br><input type="checkbox" id="chkBicycle" onclick="setOverlayMapTypeId()" /> 자동차에서 자전거로! 자전거 도로 정보 보기
 						</p>
@@ -559,12 +568,10 @@ for(ReviewDto reviewDto : reviewlist){
 						<input type="hidden"  name="host_id" value="<%=parkingDetail.getOwner_id()%>">
 							<div class="panel-body" align="center">	
 					<div class="row"><!-- From Choice Start -->
-						<div class="col-md-3">
-									<div class="pull-right">From : </div>
-							</div>
-							<div class="col-md-9" >		
-									<input class="date-picker" id="fromdate" name="fromdate" type="text" />
-									<select id="srfromTime" name="srfromTime">
+					<label>
+									From : 
+									<input id="fromdate" name="fromdate" type="text" />
+									<select readonly="readonly" id="srfromTime" name="srfromTime">
 									  <option value="0">00:00</option><option value="1">01:00</option><option value="2">02:00</option>
 									  <option value="3">03:00</option> <option value="4">04:00</option><option value="5">05:00</option>
 									  <option value="6">06:00</option><option value="7">07:00</option><option value="8">08:00</option>
@@ -574,14 +581,11 @@ for(ReviewDto reviewDto : reviewlist){
 									  <option value="18">18:00</option><option value="19">19:00</option> <option value="20">20:00</option>
 									  <option value="21">21:00</option><option value="22">22:00</option><option value="23">23:00</option>
 									</select>
-								</div>
+								</label>
 						</div><!-- From Choice End -->
 						<div class="row"><!-- To Choice Start -->
-								<div class="col-md-3">
-									<div class="pull-right">T o :</div> 
-									</div>
-								<div class="col-md-9" >
-								<input class="date-picker" id="todate"   name="todate" type="text" />
+								<label>	T &nbsp;&nbsp;   o :  
+								<input readonly="readonly" id="todate"   name="todate" type="text" />
 								<select id="srtoTime" name="srtoTime">
 								  <option value="0">00:00</option><option value="1">01:00</option><option value="2">02:00</option>
 								  <option value="3">03:00</option> <option value="4">04:00</option><option value="5">05:00</option>
@@ -592,7 +596,7 @@ for(ReviewDto reviewDto : reviewlist){
 								  <option value="18">18:00</option><option value="19">19:00</option> <option value="20">20:00</option>
 								  <option value="21">21:00</option><option value="22">22:00</option><option value="23">23:00</option>
 								</select>
-								</div>
+								</label>
 					</div>	<!-- To Choice End --><br>
 
 								<button type="button" onclick="javascript:goReservation();" class="btn btn-success" id="goreser" name="goreser">
@@ -697,6 +701,55 @@ for(ReviewDto reviewDto : reviewlist){
 					return;
 				}
 				})
+				
+		var today = new Date();
+	 	var datelimit = new Date(today);
+	 	datelimit.setDate(today.getDate() + 62);
+
+
+
+	 	$('#fromdate').glDatePicker({
+	 	    showAlways: false,
+	 	    allowMonthSelect: true,
+	 	    allowYearSelect: true,
+	 	    selectedDate: today,
+	 	    selectableDateRange: [{
+	 	        from: today,
+	 	        to: datelimit
+	 	    }, ],
+	 	    onClick: function (target, cell, date, data) {
+	 	        target.val(date.getFullYear() + '/' + (date.getMonth() + 1) + '/' + date.getDate());
+
+	 	        if (data != null) {
+	 	            alert(data.message + '\n' + date);
+	 	        }
+	 	    }
+	 	}).glDatePicker(true);
+
+
+	 	var to = $('#todate').glDatePicker(
+	 	{
+	 	    showAlways: false,
+	 	    onClick: function (target, cell, date, data) {
+	 	        target.val(date.getFullYear() + '/' + (date.getMonth() + 1) + '/' + date.getDate());
+
+	 	        if (data != null) {
+	 	            alert(data.message + '\n' + date);
+	 	        }
+	 	    }
+	 	}).glDatePicker(true);
+
+	 	$('#todate').click(function() {
+	 	    var fechaFrom = new Date($("#fromdate").val());
+	 	    var toLimit = new Date();
+	 	    toLimit.setDate(fechaFrom.getDate() + 31);
+	 	    to.options.selectableDateRange = [{
+	 	        from: fechaFrom,
+	 	        to: toLimit
+	 	    }, ],
+	 	    to.options.showAlways = false;
+	 	    to.render();
+	 	});
 			
 		</script>
 
