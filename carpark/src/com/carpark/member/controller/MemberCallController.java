@@ -25,7 +25,7 @@ public class MemberCallController extends HttpServlet {
 		
 		if("addrSearch".equals(act)){
 			path = MemberActionFactory.getMemberCallAddrSearchAction().execute(request, response);
-			PageMove.forward(request, response, path);
+//			PageMove.forward(request, response, path);
 		}else if("mvzip".equals(act)){
 			path = MemberActionFactory.getMemberCallMvZipAction().execute(request, response);
 			PageMove.redirect(response, root+path);

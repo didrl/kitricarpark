@@ -7,9 +7,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.carpark.common.model.ZipDto;
 import com.carpark.db.DBClose;
 import com.carpark.db.DBConnection;
-import com.carpark.member.model.ZipDto;
 
 public class MemberCallDaoImpl implements MemberCallDao {
 
