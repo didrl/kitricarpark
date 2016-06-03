@@ -13,7 +13,6 @@ if(memberDto != null) {
 <script type="text/javascript">
 
 function parkingView(park_id){
-	alert(park_id+" 눌렀다.");
 	window.open( "/carpark/favorite?act=favoriteParkView&park_id=" + park_id, "newWindow", "top=100, left=400, width=500, height=600, scrollbars=yes" );
 }
 </script>
@@ -31,8 +30,7 @@ function parkingView(park_id){
 				  <table class="table table-hover" style="text-align:center">
 				  	<tr>
 				  		<td width="300"><b>주차장 이름</b></td>
-				  		<td><b>관리자 아이디</b></td>
-				  		<td></td>
+				  		<td colspan="2"><b>관리자 아이디</b></td>
 				  	</tr>
 				
 <%

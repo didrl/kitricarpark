@@ -15,6 +15,11 @@ ParkingViewDto parkingViewDto = (ParkingViewDto) request.getAttribute("parkingVi
     <script src="<%=root %>/js/jquery.js"></script>
     <!-- Bootstrap Core JavaScript -->
     <script src="<%=root %>/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+function parkingViewClose() {
+	window.close();
+}
+</script>
 </head>
 <body>
 
@@ -33,16 +38,18 @@ if(memberDto != null) {
 %>
 	<table class="table">
 		<tr>
-				<td width="80">주차장 이름</td>
-				<td><%=parkingViewDto.getPark_name()%></td>
+				<td width="120">주차장 이름</td>
+				<td colspan="3"><%=parkingViewDto.getPark_name()%></td>
+		</tr>
+		<tr>
 				<td width="50">관리자 이름</td>
-				<td width="80"><%=parkingViewDto.getOwner_id() %></td>
+				<td width="100"><%=parkingViewDto.getOwner_id() %></td>
+				<td >평점</td>
+				<td ><%=parkingViewDto.getAvg_point() %></td>
 		</tr>
 		<tr>
 				<td width="80">주소</td>
-				<td ><%=parkingViewDto.getLocation() %></td>
-				<td >평점</td>
-				<td ><%=parkingViewDto.getAvg_point() %></td>
+				<td colspas="3"><%=parkingViewDto.getLocation() %></td>
 		</tr>
 		<tr>
 				<td width="80">사용가능 여부</td>
@@ -53,7 +60,7 @@ if(memberDto != null) {
 		<tr>
 			<td colspan="4" align="center">
 			<p>
-			<input type="button" class="btn btn-default" value="닫기" onclick="javascript:messageClose();">
+			<input type="button" class="btn btn-default" value="닫기" onclick="javascript:parkingViewClose();">
 			</p>
 			</td>
 		</tr>
