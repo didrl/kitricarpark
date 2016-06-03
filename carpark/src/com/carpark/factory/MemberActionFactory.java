@@ -25,6 +25,7 @@ import com.carpark.member.call.action.MemberCallViewAction;
 import com.carpark.member.favorite.action.MemberFavoriteDeleteAction;
 import com.carpark.member.favorite.action.MemberFavoriteListAction;
 import com.carpark.member.favorite.action.MemberFavoriteRegisterAction;
+import com.carpark.member.favorite.action.MemberFavoriteViewAction;
 import com.carpark.member.message.action.MemberMessageReceiveDeleteAction;
 import com.carpark.member.message.action.MemberMessageReceiveListAction;
 import com.carpark.member.message.action.MemberMessageReceiveViewAction;
@@ -78,7 +79,12 @@ public class MemberActionFactory {
 	private static Action memberFavoriteDeleteAction;
 	private static Action memberFavoriteListAction;
 	private static Action memberFavoriteRegisterAction;
+	private static Action memberFavoriteViewAction;
 	
+	public static Action getMemberFavoriteViewAction() {
+		return memberFavoriteViewAction;
+	}
+
 	private static Action memberMessageSendListAction;
 	private static Action memberMessageReceiveListAction;	
 	private static Action memberMessageWriteAction;
@@ -138,6 +144,7 @@ public class MemberActionFactory {
 		memberFavoriteDeleteAction = new MemberFavoriteDeleteAction();
 		memberFavoriteListAction = new MemberFavoriteListAction();
 		memberFavoriteRegisterAction = new MemberFavoriteRegisterAction();
+		memberFavoriteViewAction = new MemberFavoriteViewAction();
 		
 		memberMessageSendListAction = new MemberMessageSendListAction();
 		memberMessageReceiveListAction = new MemberMessageReceiveListAction();

@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.carpark.common.model.ParkingViewDto;
 import com.carpark.db.DBClose;
 import com.carpark.db.DBConnection;
 import com.carpark.member.model.FavoriteDto;
@@ -108,6 +109,42 @@ public class MemberFavoriteDaoImpl implements MemberFavoriteDao {
 		}	
 		return list;
 	}
-	
-	
+
+	@Override
+	public ParkingViewDto getParkingView(int park_id) {
+		Connection conn=null;
+		PreparedStatement pstmt =null;
+		ResultSet rs = null;
+		ParkingViewDto parkingViewDto = new ParkingViewDto();
+		
+		try {
+			conn=DBConnection.makeConnection();
+			String sql="";
+			
+			sql += "select p.park_name, p.owner_id, p.detailaddr, pd.park_avgpoint, pd.park_flag, pd.fulltime_monthly_pay \n";
+			sql += "from parking_detail pd, parking p \n"; 
+			sql += "where pd.park_id = p.park_id \n";
+			sql += "			and p.park_id = ? \n";
+
+			pstmt = conn.prepareStatement(sql);
+			int idx =1;
+			pstmt.setInt(idx++, park_id);
+
+			rs=pstmt.executeQuery();
+
+			if(rs.next()){
+				parkingViewDto.setPark_name(rs.getString("park_name"));
+				parkingViewDto.setAvg_point(rs.getDouble("park_avgpoint"));
+				parkingViewDto.setFulltime_monthly_pay(rs.getInt("fulltime_monthly_pay"));
+				parkingViewDto.setOwner_id(rs.getString("owner_id"));
+				parkingViewDto.setLocation(rs.getString("detailaddr"));
+				parkingViewDto.setPark_flag(rs.getInt("park_flag"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			DBClose.close(conn, pstmt, rs);
+		}	
+		return parkingViewDto;
+	}
 }
