@@ -2,9 +2,6 @@
     pageEncoding="UTF-8" import="java.util.*,com.carpark.common.model.*"%>
 <%@include file="/common/common.jsp" %>
 <%@include file="/common/header/init.jsp" %> 
-<%
-String dong = (String)request.getParameter("");
-%>
 
 
 <!-- Custom CSS -->
@@ -76,7 +73,7 @@ function goSearchResult() {
 										
 										<div class="form-group">
 											<label for="subject">제목</label> <input type="text"
-												class="form-control" id="subject" placeholder="제목"
+												class="form-control" id="subject" name="subject" placeholder="제목"
 												name="subject">
 										</div><hr>
 										
@@ -87,7 +84,7 @@ function goSearchResult() {
 											<div class="col-md-10">
 												<div class="form-group">
 													<input type="text" class="form-control" placeholder="주소" name="parkAddress" readonly="readonly"><br>
-													<button type="button" class="btn btn-default" data-toggle="modal" data-target="#addrSearch";">검색</button>
+													<button type="button" class="btn btn-default" data-toggle="modal" data-target="#addrSearch">검색</button>
 												</div>
 											</div>
 											</div><hr>
@@ -302,78 +299,88 @@ function goSearchResult() {
 				</button>
 				<h4 class="modal-title" id="myModalLabel" style="color: #FFFFFF">주소 검색</h4>
 			</div>
+					
 			
-			
-			
-			
-<form name="zipform" method="get" action="">
-<input type="hidden" name="act" value="zipsearch">
-
-<table width="350">
-<tr>
-	<td class="td3">검색할동을 입력하세요<br>(예: 역삼동, 신촌)</td>
-</tr>
-<tr>
-	<td class="td4">
-		<input type="text" name="dong" id="dong" onkeypress="javascript:if(event.keyCode == 13){ dongcheck(); }">
-		<input type="button" value="검색" id="btnsearch" onclick="javascript:dongcheck();">
-	</td>
-</tr>
-<%
-if(dong ==null){//검색한적이 없다면.... 
-%>
-<tr>
-	<td class="td4">
-	검색 결과가 없습니다.<br>
-	동이름을 정확히 입력하세요.
-	</td>
-</tr>
-<%
-} else{//검색한적이 있다면
-	List<ZipDto> list = (List<ZipDto>)request.getAttribute("ziplist");
-	int size =list.size();
-	if(size ==0){
-%>
-<tr>
-	<td class="td4">
-	<b><%=dong %></b>검색 결과가 없습니다.<br>
-	정확히 입력 후 다시 검색하세요.
-	</td>
-</tr>
-<%
-	}else{//있다면...
-		for(ZipDto zipDto : list){
-%>
-<tr>
-	<td class="td4">
-	<a href="javascript:selectzip('<%=zipDto.getZip1() %>','<%=zipDto.getZip2() %>','<%=zipDto.getSido() %> <%=zipDto.getGugun() %>  <%=zipDto.getDong() %> <%=zipDto.getBunji() %>')">
-	<%=zipDto.getZip1() %>-<%=zipDto.getZip2() %>
-	<%=zipDto.getSido() %> <%=zipDto.getGugun() %>  <%=zipDto.getDong() %> <%=zipDto.getBunji() %></a>
-	</td>
-</tr>
-<%
+		<form name="zipform" method="get" action="<%=root%>/call">
+		
+		<table width="350">
+		<tr>
+			<td class="td3">검색할동을 입력하세요<br>(예: 역삼동, 신촌)</td>
+		</tr>
+		<tr>
+			<td class="td4">
+				<input type="text" name="dong" id="dong">
+				<input type="button" id="addrSearchBtn" value="검색">
+			</td>
+		</tr>
+		<%
+		String dong = (String)request.getAttribute("dong");
+		if(dong ==null){//검색한적이 없다면.... 
+		%>
+		<tr>
+			<td class="td4">
+			검색 결과가 없습니다.<br>
+			동이름을 정확히 입력하세요.
+			</td>
+		</tr>
+		<%
+		} else{//검색한적이 있다면
+			List<ZipDto> list = (List<ZipDto>)request.getAttribute("addressList");
+			int size =list.size();
+			if(size ==0){
+		%>
+		<tr>
+			<td class="td4">
+			<b><%=dong %></b>검색 결과가 없습니다.<br>
+			정확히 입력 후 다시 검색하세요.
+			</td>
+		</tr>
+		<%
+			}else{//있다면...
+				for(ZipDto zipDto : list){
+		%>
+		<tr>
+			<td class="td4">
+			<a href="javascript:selectzip('<%=zipDto.getZip1() %>','<%=zipDto.getZip2() %>','<%=zipDto.getSido() %> <%=zipDto.getGugun() %>  <%=zipDto.getDong() %> <%=zipDto.getBunji() %>')">
+			<%=zipDto.getZip1() %>-<%=zipDto.getZip2() %>
+			<%=zipDto.getSido() %> <%=zipDto.getGugun() %>  <%=zipDto.getDong() %> <%=zipDto.getBunji() %></a>
+			</td>
+		</tr>
+		<%
+				}
+			}
 		}
-	}
-}
-%>
-</table>
-</form>
-			
-			
-			
-			
-			
+		%>
+		</table>
+		</form>
+					
 		</div>
 	</div>
 </div>		
-		
-		
-		
-		
-		
-		
-		
-		
+
+<script type="text/javascript">
+$("#addrSearchBtn").click(function(){
+	var dong = document.getElementById("dong");
+	$.ajax({
+		type :"POST",
+		url : "/carpark/call?act=addrSearch",
+			dataType : "json",
+			data : {
+				"dong" : dong
+			},
+			success : function(data) {
+				console.log('성공 - ', data);
+				
+
+			},
+			error : function(xhr) {
+				console.log('실패 - ', xhr);
+			}
+		});
+
+	});
+</script>
+			
 		
 		
 <%@ include file="/common/footer.jsp" %>	

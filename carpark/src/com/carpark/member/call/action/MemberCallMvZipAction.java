@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.carpark.action.Action;
+import com.carpark.member.model.service.MemberCallServiceImpl;
 
 public class MemberCallMvZipAction implements Action {
 
