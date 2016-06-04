@@ -34,8 +34,8 @@ public class MemberCallAddrSearchAction implements Action {
 			zip.put("zip2", zipDto.getZip2());
 			zip.put("sido", zipDto.getSido());
 			zip.put("gugun", zipDto.getGugun());
-			zip.put("zip1", zipDto.getDong());
-			zip.put("zip1", zipDto.getBunji());
+			zip.put("dong", zipDto.getDong());
+			zip.put("bungi", zipDto.getBunji());
 			jArray.add(zip);
 		}
 		json.put("ziplist", jArray);

@@ -301,8 +301,8 @@ function goSearchResult() {
 			</div>
 					
 			
-		<form name="zipform" method="get" action="<%=root%>/call">
-		
+		<form name="zipform" method="get" action="">
+		<div style="height: 300px; overflow: scroll;">
 		<table width="350">
 		<tr>
 			<td class="td3">검색할동을 입력하세요<br>(예: 역삼동, 신촌)</td>
@@ -313,45 +313,11 @@ function goSearchResult() {
 				<input type="button" id="addrSearchBtn" value="검색">
 			</td>
 		</tr>
-		<%
-		String dong = (String)request.getAttribute("dong");
-		if(dong ==null){//검색한적이 없다면.... 
-		%>
-		<tr>
-			<td class="td4">
-			검색 결과가 없습니다.<br>
-			동이름을 정확히 입력하세요.
-			</td>
-		</tr>
-		<%
-		} else{//검색한적이 있다면
-			List<ZipDto> list = (List<ZipDto>)request.getAttribute("addressList");
-			int size =list.size();
-			if(size ==0){
-		%>
-		<tr>
-			<td class="td4">
-			<b><%=dong %></b>검색 결과가 없습니다.<br>
-			정확히 입력 후 다시 검색하세요.
-			</td>
-		</tr>
-		<%
-			}else{//있다면...
-				for(ZipDto zipDto : list){
-		%>
-		<tr>
-			<td class="td4">
-			<a href="javascript:selectzip('<%=zipDto.getZip1() %>','<%=zipDto.getZip2() %>','<%=zipDto.getSido() %> <%=zipDto.getGugun() %>  <%=zipDto.getDong() %> <%=zipDto.getBunji() %>')">
-			<%=zipDto.getZip1() %>-<%=zipDto.getZip2() %>
-			<%=zipDto.getSido() %> <%=zipDto.getGugun() %>  <%=zipDto.getDong() %> <%=zipDto.getBunji() %></a>
-			</td>
-		</tr>
-		<%
-				}
-			}
-		}
-		%>
+		
+		<tbody id="ml">
+		</tbody>	
 		</table>
+		</div>
 		</form>
 					
 		</div>
@@ -359,26 +325,68 @@ function goSearchResult() {
 </div>		
 
 <script type="text/javascript">
-$("#addrSearchBtn").click(function(){
-	var dong = document.getElementById("dong");
+$('#addrSearchBtn').click(function(){
+	var dong = document.getElementById("dong").value;
 	$.ajax({
-		type :"POST",
+		type :"GET",
 		url : "/carpark/call?act=addrSearch",
 			dataType : "json",
 			data : {
 				"dong" : dong
 			},
 			success : function(data) {
+				alert("성공!");
 				console.log('성공 - ', data);
-				
-
+				zipcodeView(data);
 			},
 			error : function(xhr) {
+				alert("실패!");
 				console.log('실패 - ', xhr);
 			}
 		});
 
 	});
+	
+var ml;
+
+function zipcodeView(data){
+	ml = document.getElementById("ml");
+	var len = data.ziplist.length;
+	clearData();
+	for(var i=0; i<len; i++){
+		var row = createRow(data.ziplist[i].zip1,data.ziplist[i].zip2,data.ziplist[i].sido,
+				  data.ziplist[i].gugun,data.ziplist[i].dong,data.ziplist[i].bungi);
+		ml.appendChild(row);
+	}
+}
+
+function createRow(zip1,zip2,sido,gugun,dong,bungi){
+	row = document.createElement("tr");
+	row.appendChild(createCell(zip1+"-"+zip2+" "+sido+" "+gugun+" "+dong+" "+bungi));
+	return row;
+}
+
+
+function createCell(data){
+	cell = document.createElement("td");
+	var textnode = document.createTextNode(data);
+	cell.appendChild(createAtag(textnode));
+	return cell;
+}
+
+function createAtag(data){
+	aTag = document.createElement("a");
+	aTag.appendChild(data);
+	return aTag;
+}
+
+function clearData() {
+	var len = ml.childNodes.length;
+	for(var i=len-1;i>=0;i--)
+		ml.removeChild(ml.childNodes[i]);
+}
+
+
 </script>
 			
 		
