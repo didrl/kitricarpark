@@ -223,7 +223,7 @@ for(int i =0;i<list.size();i++){
 	                    </div>
 	                </div>
                 </div>
-
+<!-- 
                 <div class="well">
 
                     <div class="text-right">
@@ -281,7 +281,7 @@ for(int i =0;i<list.size();i++){
 
         </div>
 
-    </div>
+    </div> -->
     <!-- /.container -->
 
     <div class="container">

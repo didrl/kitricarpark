@@ -110,6 +110,10 @@ function messageWrite() {
 		document.messageForm.submit();
 	}
 }
+
+function writeReview(){
+}
+
 function goReservation() {
 	var flagr=0;
 	flagr=<%=flagb%>
@@ -212,8 +216,6 @@ function setfavorite(){
 							
 							var searchmap = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 							
-							
-							
 							// 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
 							var mapTypeControl = new daum.maps.MapTypeControl();
 
@@ -270,7 +272,6 @@ function setfavorite(){
 
 							// 인포윈도우를 지도에 표시한다
 							infowindow.open(searchmap, marker);
-							
 							</script>
 					</div>
 					
@@ -504,14 +505,20 @@ function changeCategoryClass(el) {
 					<!-- Review Start-->
 				<div class="panel panel-default">
 					<div class="panel-heading"> 
-						<b>Review</b>
+						<b> 후 기 </b>
 							
 					</div>
 					<div class="panel-body">
+						<div align="right">
+							<button type="button" class="btn btn-success"  id="srReview" name="srReview" onclick="javascript:writeReview();">
+                  				후기 남기기
+               				</button>
+               			</div>
 							<hr></hr>
 <%
-for(ReviewDto reviewDto : reviewlist){
-	int avgpoint = (int) reviewDto.getAvgPoint();
+if(reviewlist.size()>0){
+	for(ReviewDto reviewDto : reviewlist){
+		int avgpoint = (int) reviewDto.getAvgPoint();
 %>
 							<div class="row">
 								<div class="col-md-12">
@@ -520,18 +527,18 @@ for(ReviewDto reviewDto : reviewlist){
 									</div>
 								
 									<div class="text-right">
-	<% 
+<% 
 		for(int i = 0;i<avgpoint;++i){
-	%>
+%>
 									<span class="glyphicon glyphicon-star"></span>
-	<% 
+<% 
 		}
 		for(int i = 0;i<5-avgpoint;++i){
-	%>
+%>
 									<span class="glyphicon glyphicon-star-empty"></span>
-	<% 
+<% 
 		}
-	%> 
+%> 
 									</div>
 								</div>	
 							</div>
@@ -555,9 +562,14 @@ for(ReviewDto reviewDto : reviewlist){
 									</div>
 								</div>
 							</div>
-	<%
+<%
 	}
-	%>
+}else{
+%>
+	작성된 후기가 없습니다.
+<%
+}
+%>
 						</div>
 					</div>
 				</div>
@@ -624,10 +636,10 @@ for(ReviewDto reviewDto : reviewlist){
 					</div>
 					<!-- img panel End -->
 					<div class="well" align="center">
-						<div class="panel-body">호스트 : <%=parkingDetail.getOwner_id() %></div>
+						<div class="panel-body">관리자 아이디 : <%=parkingDetail.getOwner_id() %></div>
 						<div class="text-center">
 							 <button type="button" class="btn btn-success"  id="sendMsgToHost" name="sendMsgToHost" data-toggle="modal"  data-rel = "dialog" data-target="#msgToHost" >
-                  				Send Message
+                  				메세지 보내기
                				</button>
 							 <button type="button" class="btn btn-success"  id="report" name="report" data-toggle="modal"  data-rel = "" data-target="#"  onclick="javascript:d();">
                   				신고하기
@@ -711,6 +723,7 @@ for(ReviewDto reviewDto : reviewlist){
 			     //   $("#msgToHost").dialog("open");
 		         //   $("#msgToHost").load("<%=root%>/reservation/sendMessageModal.jsp");
 				}else{
+					$("#msgToHost").modal("hide");
 					alert("로그인 후 이용할 수 있습니다.");
 					return;
 				}
