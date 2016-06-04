@@ -57,6 +57,10 @@ if(memberDto != null){
    <!-- For sendMsg Modal -->
    <%@include file="/reservation/sendMessageModal.jsp"%>
    <!-- For sendMsg Modal -->
+   
+   <!-- For sendMsg Modal -->
+   <%@include file="/module/review_modal.jsp"%>
+   <!-- For sendMsg Modal -->
 
 <link href="/carpark/css/stylish-portfolio.css" rel="stylesheet" />
 <link href='http://fonts.googleapis.com/css?family=Roboto:400,500'	rel='stylesheet' type='text/css' />
@@ -112,6 +116,7 @@ function messageWrite() {
 }
 
 function writeReview(){
+	
 }
 
 function goReservation() {
@@ -510,7 +515,7 @@ function changeCategoryClass(el) {
 					</div>
 					<div class="panel-body">
 						<div align="right">
-							<button type="button" class="btn btn-success"  id="srReview" name="srReview" onclick="javascript:writeReview();">
+							<button type="button" class="btn btn-success"  id="reviewToParkingbt" name="reviewToParking"  data-target="#reviewToParking" >
                   				후기 남기기
                				</button>
                			</div>
@@ -638,10 +643,10 @@ if(reviewlist.size()>0){
 					<div class="well" align="center">
 						<div class="panel-body">관리자 아이디 : <%=parkingDetail.getOwner_id() %></div>
 						<div class="text-center">
-							 <button type="button" class="btn btn-success"  id="sendMsgToHost" name="sendMsgToHost" data-toggle="modal"  data-rel = "dialog" data-target="#msgToHost" >
+							 <button type="button" class="btn btn-success"  id="sendMsgToHost" name="sendMsgToHost"   data-target="#msgToHost" >
                   				메세지 보내기
                				</button>
-							 <button type="button" class="btn btn-success"  id="report" name="report" data-toggle="modal"  data-rel = "" data-target="#"  onclick="javascript:d();">
+							 <button type="button" class="btn btn-success"  id="report" name="report" data-toggle="modal"  data-target="#"  onclick="javascript:d();">
                   				신고하기
                				</button>
 							</div>
@@ -707,7 +712,7 @@ if(reviewlist.size()>0){
 			});
 	
 			
-			//review
+			//Msg to Host
 			$("#sendMsgToHost").on("click", function (event) {
 				var flagm=0;
 				var user_id="";
@@ -720,10 +725,30 @@ if(reviewlist.size()>0){
 		        	$("#sendmsguser_id").val(userid);
 		        	$("#sendmsgpark_id").val("<%=parkingDetail.getPark_id()%>");
 			        $("#receiver").prop("readonly", true);
-			     //   $("#msgToHost").dialog("open");
-		         //   $("#msgToHost").load("<%=root%>/reservation/sendMessageModal.jsp");
+			        $("#msgToHost").modal("show");
 				}else{
 					$("#msgToHost").modal("hide");
+					alert("로그인 후 이용할 수 있습니다.");
+					return;
+				}
+				})
+				
+							//review to parking
+			$("#reviewToParkingbt").on("click", function (event) {
+				var flagm=0;
+				var user_id="";
+				userid=user_id;
+				flagm=<%=flagb%>;
+		 		if(flagm != 0){
+			        $("#park_name_review").val("<%=parkingDetail.getOwner_id()%>");
+			        $("#subject_review").val("");
+			        $("#content_review").empty();
+		        	$("#review_user_id").val(userid);
+		        	$("#review_park_id").val("<%=parkingDetail.getPark_id()%>");
+			        $("#park_name_review").prop("readonly", true);
+			        $("#reviewToParking").modal("show");
+				}else{
+					$("#reviewToParking").modal("hide");
 					alert("로그인 후 이용할 수 있습니다.");
 					return;
 				}
@@ -793,7 +818,7 @@ if(reviewlist.size()>0){
             prevArrow: '',
             nextArrow: '',
             selectedDate: new Date(),
-            selectableDateRange: []
+           // selectableDateRange: []
            });
         });
         

@@ -7,18 +7,32 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.carpark.factory.MemberActionFactory;
 import com.carpark.util.BoardConstance;
+import com.carpark.util.Encoder;
+import com.carpark.util.PageMove;
 
 @WebServlet("/review")
 public class MemberReviewController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		String root = request.getContextPath();
+		String search = Encoder.utfUrl(request.getParameter("search"));
+		String act = Encoder.utfUrl(request.getParameter("act"));
+		System.out.println("act>>>>>>>>>>>>>"+act);
+		String path ="/index.jsp";
+		
+		if("reviewWriteToParking".equals(act)){
+			path = MemberActionFactory.getMemberLoginAction().execute(request, response);
+			PageMove.forward(request, response, path);
+		}else if("".equals(act)){
+			
+		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding(BoardConstance.DEFAULT_CHARSET);
+		request.setCharacterEncoding("UTF-8");
 		doGet(request, response);
 	}
 
