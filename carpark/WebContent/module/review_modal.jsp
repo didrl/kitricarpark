@@ -29,8 +29,8 @@ function reviewWrite(){
 							<form class="form-horizontal" name="reviewWriteForm" method="post"
 								action="">
 								<input type="hidden" name="act" value="reviewWriteToParking"> 
-								<input	type="hidden" name="bcode" value="1"> 
-								<input	type="hidden" id="review_user_id" name="user_id" value=""> 
+								<input	type="hidden" name="bcode" value="0"> 
+								<input	type="hidden" name="host_flag" value="0">
 								<input type="hidden" id="review_park_id" name="park_id" value=""> 
 
 								<div class="form-group">

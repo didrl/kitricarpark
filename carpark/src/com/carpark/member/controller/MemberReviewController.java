@@ -24,7 +24,7 @@ public class MemberReviewController extends HttpServlet {
 		String path ="/index.jsp";
 		
 		if("reviewWriteToParking".equals(act)){
-			path = MemberActionFactory.getMemberLoginAction().execute(request, response);
+			path = MemberActionFactory.getMemberReviewRegisterAction().execute(request, response);
 			PageMove.forward(request, response, path);
 		}else if("".equals(act)){
 			
