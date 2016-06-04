@@ -45,6 +45,5 @@ public class MemberCallAddrSearchAction implements Action {
 //		request.setAttribute("addressList", list);
 //		request.setAttribute("dong", dong);
 		return "";
-//		return "/member/memberCall.jsp";
 	}
 }
