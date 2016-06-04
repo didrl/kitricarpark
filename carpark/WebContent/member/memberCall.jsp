@@ -83,7 +83,7 @@ function goSearchResult() {
 											</div>
 											<div class="col-md-10">
 												<div class="form-group">
-													<input type="text" class="form-control" placeholder="주소" name="parkAddress" readonly="readonly"><br>
+													<input type="text" id="parkAddress" class="form-control" placeholder="주소" name="parkAddress" readonly="readonly"><br>
 													<button type="button" class="btn btn-default" data-toggle="modal" data-target="#addrSearch">검색</button>
 												</div>
 											</div>
@@ -97,7 +97,7 @@ function goSearchResult() {
 										</div>
 
 										<div class="form-group text-center">
-											<input class="btn btn-default" type="button" value="제보하기"
+											<input class="btn btn-default" id="callBtn" name="callBtn" type="button" value="제보하기"
 												onclick="javascript:parkMessageRegister();">
 										</div>
 
@@ -362,21 +362,21 @@ function zipcodeView(data){
 
 function createRow(zip1,zip2,sido,gugun,dong,bungi){
 	row = document.createElement("tr");
-	row.appendChild(createCell(zip1+"-"+zip2+" "+sido+" "+gugun+" "+dong+" "+bungi));
+	row.appendChild(createCell(zip1,zip2,sido,gugun,dong,bungi));
 	return row;
 }
 
-
-function createCell(data){
+function createCell(zip1,zip2,sido,gugun,dong,bungi){
 	cell = document.createElement("td");
-	var textnode = document.createTextNode(data);
-	cell.appendChild(createAtag(textnode));
+	cell.appendChild(createAtag(zip1,zip2,sido,gugun,dong,bungi));
 	return cell;
 }
 
-function createAtag(data){
+function createAtag(zip1,zip2,sido,gugun,dong,bungi){
 	aTag = document.createElement("a");
-	aTag.appendChild(data);
+	aTag.setAttribute("href","javascript:selected('"+sido+" "+gugun+" "+dong+" "+bungi+"');");
+	var textnode = document.createTextNode(sido+" "+gugun+" "+dong+" "+bungi);
+	aTag.appendChild(textnode);
 	return aTag;
 }
 
@@ -386,7 +386,14 @@ function clearData() {
 		ml.removeChild(ml.childNodes[i]);
 }
 
+function selected(data){
+	document.getElementById("parkAddress").value=data;
+}
 
+function parkMessageRegister(){
+	document.writeForm.action="<%=root%>/call?act=callReceiveList";
+	document.writeForm.submit();
+}
 </script>
 			
 		

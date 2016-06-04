@@ -32,7 +32,7 @@ MemberDto memberDetailInfo =(MemberDto)request.getAttribute("memberDetailInfo");
 					<input type="hidden" name="act" value="mvmodify">
 					<div class="col-lg-6">
 							<div class="form-group">
-								<label>Full Name</label> <input class="form-control"
+								<label>이름</label> <input class="form-control"
 									value="<%=memberDetailInfo.getUser_name()%>" name="modifyname">
 								<p class="help-block">Example block-level help text here.</p>
 							</div>
