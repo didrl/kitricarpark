@@ -30,7 +30,7 @@ function receiveReviewList(pg) {
 		<!-- main -->
 		<div id="page-wrapper">
 			<div class="container-fluid">
-				<br><h3>후기 목록</h3><br>
+				<br><h3>받은 후기 목록</h3><br>
 					
 				<div class="btn-group" role="group" aria-label="...">
 	  				<button type="button" class="btn btn-default" onclick="javascript:receiveReviewList('1');">

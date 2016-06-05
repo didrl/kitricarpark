@@ -30,7 +30,7 @@ function receiveReviewList(pg) {
 		<!-- main -->
 		<div id="page-wrapper">
 			<div class="container-fluid">
-				<br><h3>후기 목록</h3><br>
+				<br><h3>작성한 후기 목록</h3><br>
 					
 				<div class="btn-group" role="group" aria-label="...">
 	  				<button type="button" class="btn btn-default" onclick="javascript:receiveReviewList('1');">
@@ -46,7 +46,7 @@ function receiveReviewList(pg) {
 				<div class="table">
 				  <table class="table table-hover" style="text-align:center">
 				  	<tr>
-					  	<td width="150"><b>보낸 사람</b></td>
+					  	<td width="150"><b>받은 사람</b></td>
 				  		<td width="150"><b>작성자</b></td>
 				  		<td width="100"><b>주차장 번호</b></td>
 				  		<td width="450"><b>제목</b></td>
