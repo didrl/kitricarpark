@@ -42,8 +42,10 @@ public class MemberReportDaoImpl implements MemberReportDao {
 			sql += "into report (cseq, park_id, user_id as report_id) \n";
 			sql += "values (message_num_mseq.nextval, ?, ?) \n";
 			sql += "select * from dual";
+			
 			pstmt = conn.prepareStatement(sql);
 			int idx = 0;
+			
 			pstmt.setInt(++idx, reportDto.getSeq());
 			pstmt.setString(++idx, reportDto.getUserID());
 			pstmt.setString(++idx, reportDto.getSubject());
@@ -83,7 +85,7 @@ public class MemberReportDaoImpl implements MemberReportDao {
 			sql += "and b.seq = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, seq);
-			pstmt.executeQuery();
+			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				reportDto.setSeq(rs.getInt("seq"));
 				reportDto.setBcode(rs.getInt("bcode"));

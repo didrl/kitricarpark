@@ -740,7 +740,8 @@ if(reviewlist.size()>0){
 				userid=user_id;
 				flagm=<%=flagb%>;
 		 		if(flagm != 0){
-			        $("#park_name_review").val("<%=parkingDetail.getOwner_id()%>");
+			        $("#park_name_review").val("<%=parkingDetail.getPark_name()%>");
+		 			$("#review_avaled_id").val("<%=parkingDetail.getOwner_id()%>");
 			        $("#subject_review").val("");
 			        $("#content_review").empty();
 		        	$("#review_user_id").val(userid);

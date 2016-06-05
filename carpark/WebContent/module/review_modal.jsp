@@ -31,7 +31,8 @@ function reviewWrite(){
 								<input type="hidden" name="act" value="reviewWriteToParking"> 
 								<input	type="hidden" name="bcode" value="0"> 
 								<input	type="hidden" name="host_flag" value="0">
-								<input type="hidden" id="review_park_id" name="park_id" value=""> 
+								<input type="hidden" id="review_park_id" name="park_id" value="">
+								<input type="hidden" id="review_avaled_id" name="avaled_id" value="">								
 
 								<div class="form-group">
 									<label for="receiver">주차장이름</label> <input type="text"
@@ -45,7 +46,7 @@ function reviewWrite(){
 								</div>
 								<div class="form-group">
 									<label for="content">내용</label>
-									<label for="content">평점 <input type="text" id="avg_point_review"></label>
+									<label for="content">평점 <input type="text" id="avg_point_review" name="avg_point_review"></label>
 									<textarea class="form-control" rows="10" id="content_review"
 										name="content_review"></textarea>
 								</div>

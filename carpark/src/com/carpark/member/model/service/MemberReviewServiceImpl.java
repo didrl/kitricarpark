@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.carpark.member.model.ReviewDto;
-import com.carpark.member.model.dao.MemberDaoImpl;
 import com.carpark.member.model.dao.MemberReviewDaoImpl;
 
 public class MemberReviewServiceImpl implements MemberReviewService {
@@ -28,32 +27,27 @@ public class MemberReviewServiceImpl implements MemberReviewService {
 
 	@Override
 	public ReviewDto viewArticle(int seq) {
-		// TODO Auto-generated method stub
-		return null;
+		return MemberReviewDaoImpl.getMemberReviewDao().viewArticle(seq);
 	}
 
 	@Override
 	public int writeArticle(ReviewDto reviewDto) {
-		// TODO Auto-generated method stub
-		return 0;
+		return MemberReviewDaoImpl.getMemberReviewDao().writeArticle(reviewDto);
 	}
 
 	@Override
 	public List<ReviewDto> sendListArticle(String userId) {
-		// TODO Auto-generated method stub
-		return null;
+		return MemberReviewDaoImpl.getMemberReviewDao().sendListArticle(userId);
 	}
 
 	@Override
 	public List<ReviewDto> receiveListArticle(String receiveId) {
-		// TODO Auto-generated method stub
-		return null;
+		return MemberReviewDaoImpl.getMemberReviewDao().receiveListArticle(receiveId);
 	}
 
 	@Override
 	public void deleteArticle(int seq) {
-		// TODO Auto-generated method stub
-		
+		MemberReviewDaoImpl.getMemberReviewDao().deleteArticle(seq);
 	}
 	
 	
