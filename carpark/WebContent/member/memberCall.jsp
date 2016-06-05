@@ -58,8 +58,8 @@ function goSearchResult() {
 
 								<!-- 쪽지보내기 -->
 								<div class="form-group">
-									<form class="form-horizontal" name="writeForm" method="post" action="">
-										<input type="hidden" name="act" value="messageWrite">
+									<form class="form-horizontal" name="writeForm" method="post" action="<%=root%>/call">
+										<input type="hidden" name="act" value="memberParkRegisterMessage">
 										<input type="hidden" name="bcode" value="2"> 
 										<input type="hidden" name="pg" value="1"> 
 										<input type="hidden" name="key" value=""> 
@@ -97,8 +97,7 @@ function goSearchResult() {
 										</div>
 
 										<div class="form-group text-center">
-											<input class="btn btn-default" id="callBtn" name="callBtn" type="button" value="제보하기"
-												onclick="javascript:parkMessageRegister();">
+											<input class="btn btn-default" id="callBtn" name="callBtn" type="submit" value="제보하기">
 										</div>
 
 									</form>
@@ -391,10 +390,6 @@ function selected(data){
 	document.getElementById("parkAddress").value=data;
 }
 
-function parkMessageRegister(){
-	document.writeForm.action="<%=root%>/call?act=callReceiveList";
-	document.writeForm.submit();
-}
 </script>
 			
 		

@@ -24,7 +24,7 @@ public class MemberCallAddrSearchAction implements Action {
 		
 		String dong = Encoder.isoToUtf(request.getParameter("dong"));
 		System.out.println(dong);
-		List<ZipDto> list = MemberCallServiceImpl.getMemberCallService().list(dong);
+		List<ZipDto> list = MemberCallServiceImpl.getMemberCallService().zipSearchList(dong);
 		JSONObject json = new JSONObject();
 		JSONArray jArray = new JSONArray();
 		
