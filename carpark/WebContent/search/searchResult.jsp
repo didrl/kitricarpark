@@ -2,7 +2,7 @@
     pageEncoding="UTF-8" import="java.util.*,com.carpark.common.model.*"%>
 <%
 List<ParkingDto> list = (List<ParkingDto>)request.getAttribute("searchlist");
-
+String city = (String)request.getParameter("city");
 %>    
 
 <%@include file="/common/common.jsp" %>
@@ -59,7 +59,8 @@ function goResultDetail() {
 		
 		<!-- Left List Group Strat -->
 		
-		<h3><b>도시이름 </b>&nbsp;&nbsp;검색 결과</h3>
+		<h3 align="left"><b>&nbsp;&nbsp;&nbsp;&nbsp;<%=city %> 
+		</b>&nbsp;&nbsp;검색 결과</h3>
 				
    		<div class="col-md-4" style="overflow:scroll ; height: 600px;">
 				<ul class="list-group">

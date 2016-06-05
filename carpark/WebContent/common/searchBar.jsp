@@ -12,7 +12,7 @@
 					<input type="hidden" name="act" value="mvSearchResult">
 					<input type="hidden" name="search" value="">
 					<label>
-						<input type="text" class="form-control col-lg-6" id="citysearch" name="city" placeholder="Search for...">
+						<input type="text" class="form-control col-lg-6" id="citysearch" name="city" placeholder="Search for..."> &nbsp;
 						<input readonly="readonly"  id="fromdatesearch" name="fromdatesearch" type="text" placeholder="Start Date"/>
 						<input readonly="readonly"  id="todatesearch" type="text" name="todatesearch" placeholder="End Date"/>
 						<button class="btn btn-success" type="button"

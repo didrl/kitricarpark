@@ -29,6 +29,7 @@ public class MemberSearchAction implements Action {
 		
 		List<ParkingDto> list = MemberServiceImpl.getMemberService().list(map);
 		request.setAttribute("searchlist", list);
+		request.setAttribute("city", city);
 		
 		return list==null ? "":"/search/searchResult.jsp";
 	}
