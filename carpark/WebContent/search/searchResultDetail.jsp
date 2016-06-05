@@ -115,6 +115,10 @@ function messageWrite() {
 	}
 }
 
+function reportWrite(id) {
+	document.reportWriteForm.userId.value = id;
+}
+
 function writeReview(){
 	
 }
@@ -646,9 +650,12 @@ if(reviewlist.size()>0){
 							 <button type="button" class="btn btn-success"  id="sendMsgToHost" name="sendMsgToHost"   data-target="#msgToHost" >
                   				메세지 보내기
                				</button>
-							 <button type="button" class="btn btn-success"  id="report" name="report" data-toggle="modal"  data-target="#"  onclick="javascript:d();">
+							 <button type="button" class="btn btn-success"  id="report" name="report" data-toggle="modal"  data-target="#reportWrite"  onclick="javascript:reportWrite('<%=parkingDetail_info.getOwner_id()%>');">
                   				신고하기
                				</button>
+               				
+               				<%@include file="/report/write.jsp" %>
+               				
 							</div>
 							</div>
 						<!-- host info panel End -->
