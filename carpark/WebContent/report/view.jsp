@@ -19,16 +19,17 @@ String word = Encoder.isoToUtf(StringCheck.nullToBlank(request.getParameter("wor
     <!-- Bootstrap Core JavaScript -->
     <script src="<%=root %>/js/bootstrap.min.js"></script>
     <!-- message.js -->
-    <script type="text/javascript" src="<%=root %>/message/message.js"></script>
+    <script type="text/javascript" src="<%=root %>/report/report.js"></script>
 </head>
 <body>
 
 <form name="common" method="get" action="">
-	<input type="hidden" name="act" id="act" value="">
+	<input type="hidden" name="act" value="">	
+	<input type="hidden" name="bcode" value="3">
 	<input type="hidden" name="pg" id="pg" value="<%=pg%>">
-	<input type="hidden" name="key" id="key" value="">
-	<input type="hidden" name="word" id="word" value="">
-	<input type="hidden" name="seq" id="seq" value="">
+	<input type="hidden" name="key" value="">
+	<input type="hidden" name="word" value="">
+	<input type="hidden" name="seq" value="">
 </form>
 
 <br>
@@ -41,22 +42,22 @@ if(memberDto != null) {
 	<table class="table">
 		<tr>
 			<td width="80">신고대상</td>
-			<td>신고대상 아이디</td>
+			<td><%=reportDto.getReport_id() %></td>
 			<td width="50">시간</td>
-			<td width="80">시간</td>
+			<td width="80"><%=reportDto.getLogtime() %></td>
 			</tr>
 			<tr>
 			<td width="80">제목</td>
-			<td colspan="3">제목</td>
+			<td colspan="3"><%=reportDto.getSubject() %></td>
 			</tr>
 			<tr>
 			<td width="80">내용</td>
-			<td colspan="3" height="350"><p>신고내용</p></td>
+			<td colspan="3" height="350"><p><%=reportDto.getContent() %></p></td>
 			</tr>
 		<tr>
 			<td colspan="4" align="center">
 			<p>
-			<input type="button" class="btn btn-default" value="닫기" onclick="#">
+			<input type="button" class="btn btn-default" value="닫기" onclick="javascript:reportClose();">
 			</p>
 			</td>
 		</tr>
@@ -64,7 +65,7 @@ if(memberDto != null) {
 <%
 	} else {
 %>
-<center><h3>쪽지가 없습니다</h3></center>
+<center><h3>신고내역이 없습니다</h3></center>
 <%
 	}
 } else {

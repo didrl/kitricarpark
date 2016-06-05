@@ -115,10 +115,6 @@ function messageWrite() {
 	}
 }
 
-function reportWrite(id) {
-	document.reportWriteForm.userId.value = id;
-}
-
 function writeReview(){
 	
 }
@@ -650,14 +646,20 @@ if(reviewlist.size()>0){
 							 <button type="button" class="btn btn-success"  id="sendMsgToHost" name="sendMsgToHost"   data-target="#msgToHost" >
                   				메세지 보내기
                				</button>
-							 <button type="button" class="btn btn-success"  id="report" name="report" data-toggle="modal"  data-target="#reportWrite"  onclick="javascript:reportWrite('<%=parkingDetail_info.getOwner_id()%>');">
+               				
+<%
+//if(!"".equals(parkingDetail.getOwner_id())) {//공영주차장이 아닐때
+%>
+							 <button type="button" class="btn btn-success"  id="report" name="report" data-toggle="modal"  data-target="#reportWrite"  onclick="javascript:reportId('<%=parkingDetail.getOwner_id() %>', '<%=parkingDetail.getPark_id() %>', '<%=parkingDetail.getPark_name() %>');">
                   				신고하기
                				</button>
-               				
-               				<%@include file="/report/write.jsp" %>
-               				
+<%
+//}
+%>
+
 							</div>
 							</div>
+<%@include file="/report/write.jsp" %>
 						<!-- host info panel End -->
 					<!--  clelander panel  -->
 					<div class="panel panel-default" align="center">

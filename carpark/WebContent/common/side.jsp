@@ -2,16 +2,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<<script type="text/javascript">
-function sendReviewList(pg) {
-	document.location.href = root+"/review?act=sendReviewList&pg="+pg;
-}
-
-function receiveReviewList(pg) {
-	document.location.href = root+"/review?act=receiveReviewList&pg="+pg;
-}
-</script>
-
 	<!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
 		<div class="collapse navbar-collapse navbar-ex1-collapse">
 			<ul class="nav navbar-nav side-nav">
@@ -59,7 +49,7 @@ function receiveReviewList(pg) {
 				<li><a href="javascript:mycoin();"><i class="fa fa-fw fa-file"></i>
 						My Coin</a></li>
 						
-				<li><a href="javascript:;"><i class="fa fa-fw fa-wrench"></i>
+				<li><a href="javascript:reportList('1');"><i class="fa fa-fw fa-wrench"></i>
 						신고내역 <i class="fa fa-fw fa-caret-down"></i></a>
 				</li>
 			</ul>

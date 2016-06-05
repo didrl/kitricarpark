@@ -4,8 +4,7 @@
 <%@include file="/common/common.jsp" %>
 <%@include file="/common/header/init.jsp" %> 
 <%@include file="/common/side.jsp" %>
-  
-    
+
 <%
 if(memberDto != null) {
 List<ReportDto> list = (List<ReportDto>) request.getAttribute("reportList");
@@ -32,6 +31,8 @@ PageNavigator navigator = (PageNavigator) request.getAttribute("navigator");
 				  		<td width="150"><b>신고대상</b></td>
 				  		<td><b>제목</b></td>
 				  		<td width="80"><b>시간</b></td>
+				  		<td width="50">처리</td>
+				  		<td width="80"></td>
 				  	</tr>
 				
 <%
@@ -41,9 +42,22 @@ if(size > 0) {
 %>
 					<!-- 신고내역 -->
 					<tr>
-						<td width="150"><a href="#"><%=reportDto.getReport_id() %></a></td>
-						<td><a href="#"><%=reportDto.getSubject() %></a></td>
-						<td width="80"><%=reportDto.getLogtime() %></td>	
+						<td width="150"><a href="javascript:reportView('<%=reportDto.getSeq() %>');"><%=reportDto.getReport_id() %></a></td>
+						<td><a href="javascript:reportView('<%=reportDto.getSeq() %>');"><%=reportDto.getSubject() %></a></td>
+						<td width="80"><%=reportDto.getLogtime() %></td>
+<%
+		if(reportDto.getReport_flag() == 0) {
+%>
+						<td width="50"> X </td>
+						<td width="80"><input type="button" class="btn btn-default" value="취소" onclick="javascript:reportDelete('<%=reportDto.getSeq()%>');"></td>
+<%
+		} else {
+%>
+						<td width="50"> O </td>
+						<td width="80"></td>
+<%
+		}
+%>
 					</tr>
 <%
 	}
@@ -66,9 +80,10 @@ if(size > 0) {
 			<!-- 페이지 네비게이션/검색 -->
 			<nav align="center">
 				<div class="form-group">
-				<form class="form-inline" name="searchForm" method="get" action="">
-					<input type="hidden" name="act" id="act" value="reportSearch">
-					<input type="hidden" name="pg" id="pg" value="<%=pg%>">
+				<form class="form-inline" name="reportSearchForm" method="get" action="">
+					<input type="hidden" name="act" value="reportSearch">
+					<input type="hidden" name="bcode" value="3">
+					<input type="hidden" name="pg" value="<%=pg%>">
 					<select name="key">
 						<option value="subject">제목</option>
 						<option value="content">내용</option>
@@ -76,6 +91,7 @@ if(size > 0) {
 					</select>
 					<input type="text" name="word" id="word" value="">
 					<input type="button" class="btn btn-default" value="검색" onclick="javascript:reportSearch();">
+					<input type="button" class="btn btn-default" value="전체목록" onclick="javascript:reportList('1');">
 				</form>
 				</div>
 				<ul class="pagination">

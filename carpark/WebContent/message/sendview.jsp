@@ -5,7 +5,6 @@ String root = request.getContextPath();
 MemberDto memberDto = (MemberDto)session.getAttribute("memberInfo");
 MessageDto messageDto = (MessageDto) request.getAttribute("messageView");
 
-int bcode = NumberCheck.nullToZero(request.getParameter("bcode"));
 int pg = NumberCheck.nullToOne(request.getParameter("pg"));
 String key = StringCheck.nullToBlank(request.getParameter("key"));
 String word = Encoder.isoToUtf(StringCheck.nullToBlank(request.getParameter("word")));

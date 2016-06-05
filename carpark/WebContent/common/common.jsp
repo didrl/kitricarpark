@@ -72,13 +72,16 @@ String word = Encoder.isoToUtf(StringCheck.nullToBlank(request.getParameter("wor
     <!-- message.js -->
     <script type="text/javascript" src="<%=root %>/message/message.js"></script>
     
+    <!-- report.js -->
+    <script type="text/javascript" src="<%=root %>/report/report.js"></script>
+    
     <!-- admincall.js -->
     <script type="text/javascript" src="<%=root %>/message/message.js"></script>
        
     <form name="common" method="get" action="">
 	<input type="hidden" name="act" id="act" value="">
-	<input type="hidden" name="bcode" id="bcode" value="2">
-	<input type="hidden" name="pg" id="pg" value="1">
+	<input type="hidden" name="bcode" id="bcode" value="<%=bcode%>">
+	<input type="hidden" name="pg" id="pg" value="<%=pg%>">
 	<input type="hidden" name="key" id="key" value="">
 	<input type="hidden" name="word" id="word" value="">
 	<input type="hidden" name="seq" id="seq" value="">

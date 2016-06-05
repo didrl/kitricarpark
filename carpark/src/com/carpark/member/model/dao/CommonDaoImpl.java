@@ -48,6 +48,91 @@ public class CommonDaoImpl implements CommonDao {
 		// TODO Auto-generated method stub
 
 	}
+	
+	@Override
+	public int newArticleCount(String userId, int bcode) {
+		int count = 0;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = DBConnection.makeConnection();
+			String sql = "";
+			sql += "select count(seq) \n";
+			sql += "from board \n";
+			sql += "where to_char(logtime, 'yymmdd') = to_char(sysdate, 'yymmdd') \n";
+			sql += "and bcode = ? \n";
+			sql += "and user_id = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, bcode);
+			pstmt.setString(2, userId);
+			rs = pstmt.executeQuery();
+			
+			rs.next();
+			count = rs.getInt(1);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose.close(conn, pstmt, rs);
+		}
+		
+		return count;
+	}
+
+	@Override
+	public int totalArticleCount(Map<String, String> map) {
+		int count = 0;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String id = map.get("id");
+		String bcode = map.get("bcode");
+		String key = map.get("key");
+		String word = map.get("word");
+		
+		try {
+			conn = DBConnection.makeConnection();
+			String sql = "";
+			sql += "select count(seq) \n";
+				sql += "from board \n";
+				sql += "where bcode = ? \n";
+				sql += "and user_id = ? \n";
+			if(key != null && !key.isEmpty()) {
+				if(word != null && !word.isEmpty()) {
+					if("subject".equals(key))
+						sql += "and subject like '%'||?||'%' \n";
+					else
+						sql += "and " + key + " = ? \n";						
+				}
+			}
+			pstmt = conn.prepareStatement(sql);
+			int idx = 0;
+			pstmt.setString(++idx, bcode);
+			pstmt.setString(++idx, id);
+			if(key != null && !key.isEmpty()) {
+				if(word != null && !word.isEmpty()) {
+					pstmt.setString(++idx, word);
+				}
+			}
+			rs = pstmt.executeQuery();
+			rs.next();
+			count = rs.getInt(1);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose.close(conn, pstmt, rs);
+		}
+		
+		return count;
+	}
+	
+	
+/////////////////////////// 메소드 통합중 ////////////////////////////////////	
+	
+	
+	
 
 	@Override
 	public int newArticleCountReceiver(String receiveId) {
@@ -196,6 +281,8 @@ public class CommonDaoImpl implements CommonDao {
 		
 		return count;
 	}
+	
+////////////////////////////////////////////////////////////////////////////	
 
 	@Override
 	public int getNextParkingId() {
