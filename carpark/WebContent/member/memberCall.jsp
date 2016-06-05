@@ -118,6 +118,7 @@ function goSearchResult() {
 							<div id="daumlistmap" style="width:100%;height:650px;"></div>
 							<script src="//apis.daum.net/maps/maps3.js?apikey=c2d873676f2c4854b2b2c62e165a629d&libraries=services"></script>
 							<script>
+						
 								var mapContainer = document.getElementById('daumlistmap'), // 지도를 표시할 div 
 								    mapOption = {
 								        center: new daum.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
@@ -132,7 +133,7 @@ function goSearchResult() {
 								var geocoder = new daum.maps.services.Geocoder();
 
 								// 주소로 좌표를 검색합니다
-								geocoder.addr2coord('서울시 구로구 디지털로 34길 43 코오롱사이언스벨리 1차', function(status, result) {
+								geocoder.addr2coord('서울 송파구 송파 1동', function(status, result) {
 
 								    // 정상적으로 검색이 완료됐으면 
 								     if (status === daum.maps.services.Status.OK) {
@@ -157,7 +158,7 @@ function goSearchResult() {
 								        map.setCenter(coords);
 								    } 
 								});    
-								
+						
 							</script>
 						</div>
 						
