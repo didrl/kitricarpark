@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.carpark.common.model.CallDto;
 import com.carpark.common.model.ZipDto;
 import com.carpark.db.DBClose;
 import com.carpark.db.DBConnection;
@@ -26,7 +27,7 @@ public class MemberCallDaoImpl implements MemberCallDao {
 	}
 
 	@Override
-	public List<ZipDto> zipSearch(String dong) {
+	public List<ZipDto> zipSearchList(String dong) {
 		List<ZipDto> list =new ArrayList<ZipDto>();
 		Connection conn =null;
 		PreparedStatement pstmt =null;
@@ -64,6 +65,57 @@ public class MemberCallDaoImpl implements MemberCallDao {
 	}
 	
 	
+	@Override
+	public int register(CallDto callDto) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		int count = 0;
+		try {
+			conn = DBConnection.makeConnection();
+			String sql = "";
+			sql+= "insert all \n";
+			sql += "into board (seq, user_id, subject, contents, bcode, logtime) \n";
+			sql += "values (?, ?, ?, ?, ?, sysdate) \n";
+			sql+= "into call \n";
+			sql+= "values() \n";
+			pstmt = conn.prepareStatement(sql);
+			count = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}finally {
+			DBClose.close(conn, pstmt);
+		}
+		return count;
+	}
+	
+	
+	
+	
+	@Override
+	public List<CallDto> sendList(String id) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		CallDto callSendDto = null;
+		List<CallDto>list = new ArrayList<CallDto>();
+		try {
+			
+			conn = DBConnection.makeConnection();
+			String sql = "";
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while(rs.next()){
+				
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
 	
 	
 }

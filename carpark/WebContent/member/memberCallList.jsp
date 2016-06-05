@@ -8,7 +8,7 @@
     
 <%
 if(memberDto != null) {
-List<CallDto> callReceiveList = (List<CallDto>)request.getAttribute("callReceiveList");
+List<CallDto> callReceiveList = (List<CallDto>)request.getAttribute("callSendList");
 PageNavigator navigator = (PageNavigator) request.getAttribute("navigator");
 %>
 

@@ -2,8 +2,11 @@ package com.carpark.member.model.dao;
 
 import java.util.List;
 
+import com.carpark.common.model.CallDto;
 import com.carpark.common.model.ZipDto;
 
 public interface MemberCallDao {
-	List<ZipDto> zipSearch(String dong);
+	List<ZipDto> zipSearchList(String dong);
+	int register(CallDto callDto);
+	List<CallDto>sendList(String id);
 }
