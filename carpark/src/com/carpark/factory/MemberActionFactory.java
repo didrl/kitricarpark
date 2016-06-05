@@ -47,9 +47,10 @@ import com.carpark.member.reservation.action.MemberReservationMoveAction;
 import com.carpark.member.reservation.action.MemberReservationRegisterAction;
 import com.carpark.member.reservation.action.MemberReservationViewAction;
 import com.carpark.member.review.action.MemberReviewDeleteAction;
-import com.carpark.member.review.action.MemberReviewListAction;
+import com.carpark.member.review.action.MemberReceiveReviewListAction;
 import com.carpark.member.review.action.MemberReviewModifyAction;
 import com.carpark.member.review.action.MemberReviewRegisterAction;
+import com.carpark.member.review.action.MemberSendReviewListAction;
 
 public class MemberActionFactory {
 	
@@ -81,9 +82,7 @@ public class MemberActionFactory {
 	private static Action memberFavoriteRegisterAction;
 	private static Action memberFavoriteViewAction;
 	
-	public static Action getMemberFavoriteViewAction() {
-		return memberFavoriteViewAction;
-	}
+
 
 	private static Action memberMessageSendListAction;
 	private static Action memberMessageReceiveListAction;	
@@ -104,7 +103,8 @@ public class MemberActionFactory {
 	private static Action memberReservationMoveAction;
 	
 	private static Action memberReviewDeleteAction;
-	private static Action memberReviewListAction;
+	private static Action memberSendReviewListAction;
+	private static Action memberReceiveReviewListAction;
 	private static Action memberReviewModifyAction;
 	private static Action memberReviewRegisterAction;
 	
@@ -165,7 +165,8 @@ public class MemberActionFactory {
 		memberReservationMoveAction= new MemberReservationMoveAction();
 		
 		memberReviewDeleteAction = new MemberReviewDeleteAction();
-		memberReviewListAction = new MemberReviewListAction();
+		memberReceiveReviewListAction = new MemberReceiveReviewListAction();
+		memberSendReviewListAction = new MemberSendReviewListAction();
 		memberReviewModifyAction = new MemberReviewModifyAction();
 		memberReviewRegisterAction = new MemberReviewRegisterAction();
 		
@@ -182,6 +183,9 @@ public class MemberActionFactory {
 		return memberCallMvZipAction;
 	}
 
+	public static Action getMemberFavoriteViewAction() {
+		return memberFavoriteViewAction;
+	}
 
 	public static Action getMemberCallAddrSearchAction() {
 		return memberCallAddrSearchAction;
@@ -191,7 +195,6 @@ public class MemberActionFactory {
 	public static Action getMemberCarListAction() {
 		return memberCarListAction;
 	}
-
 
 	public static Action getMemberCoinAction() {
 		return memberCoinAction;
@@ -234,7 +237,14 @@ public class MemberActionFactory {
 	public static Action getMemberInfoAction() {
 		return memberInfoAction;
 	}
+	
+	public static Action getMemberSendReviewListAction() {
+		return memberSendReviewListAction;
+	}
 
+	public static Action getMemberReceiveReviewListAction() {
+		return memberReceiveReviewListAction;
+	}
 
 	public static Action getMemberLoginAction() {
 		return memberLoginAction;
@@ -341,10 +351,6 @@ public class MemberActionFactory {
 		return memberReviewDeleteAction;
 	}
 
-	public static Action getMemberReviewListAction() {
-		return memberReviewListAction;
-	}
-
 	public static Action getMemberReviewModifyAction() {
 		return memberReviewModifyAction;
 	}
@@ -372,7 +378,4 @@ public class MemberActionFactory {
 	public static Action getMemberParkingDeleteAction() {
 		return memberParkingDeleteAction;
 	}
-
-	
-	
 }

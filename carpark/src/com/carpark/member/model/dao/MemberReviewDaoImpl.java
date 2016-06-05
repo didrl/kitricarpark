@@ -166,7 +166,7 @@ public class MemberReviewDaoImpl implements MemberReviewDao {
 			conn=DBConnection.makeConnection();
 			String sql="";
 
-			sql +="select b.user_id, b.subject, b.contents,r.aval_code, r.get_point, r.avaled_id,r.host_flag \n";
+			sql +="select b.user_id, b.subject, b.contents,b.logtime,b.bcode,r.rseq,r.aval_code, r.get_point, r.avaled_id,r.host_flag \n";
 			sql +="from review r, board b\n";
 			sql +="where r.seq=b.seq\n";
 			sql +="and b.user_id=?\n";
@@ -211,7 +211,7 @@ public class MemberReviewDaoImpl implements MemberReviewDao {
 			conn=DBConnection.makeConnection();
 			String sql="";
 
-			sql +="select b.user_id, b.subject, b.contents,r.aval_code, r.get_point, r.avaled_id,r.host_flag \n";
+			sql +="select b.user_id, b.subject, b.contents,b.logtime,b.bcode,r.rseq,r.aval_code, r.get_point, r.avaled_id,r.host_flag \n";
 			sql +="from review r, board b\n";
 			sql +="where r.seq=b.seq\n";
 			sql +="and r.avaled_id=?\n";

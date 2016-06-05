@@ -196,7 +196,7 @@ function setfavorite(){
 						<h3><b>&nbsp;&nbsp;&nbsp; <%=parkingDetail.getPark_name()%>  &nbsp;&nbsp;&nbsp; 
 							<i class = glyphicon glyphicon-star></i><i class = glyphicon glyphicon-star></i><i class = glyphicon glyphicon-star> </i><i class = glyphicon glyphicon-star></i><i class = glyphicon glyphicon-star-empty></i></b> 
 							<%=parkingDetail.getLocation() %>
-							<a href="javascript:setfavorite();"><img height="30"  src="/carpark/img/heart.jpg"></a>
+							<a href="javascript:setfavorite();"><img height="25"  src="/carpark/img/green-heart.png"></a>
 						</h3>
 					</div>
 				</div>	
@@ -499,10 +499,10 @@ function changeCategoryClass(el) {
 </script>
 						
 						<!-- Daum road View End -->
-						<!-- Street View start -->
+						<!-- Street View start
 						<iframe width="300" height="200" frameborder="1" style="border: 0"
 							src="https://www.google.com/maps/embed/v1/streetview?key=AIzaSyB3d8wlcwuwvoXDFp4vd4ghi9nDnuDt4Hw&location=46.414382,10.013988&heading=210&pitch=10&fov=35">
-						</iframe>
+						</iframe> -->
 						<!-- Street View End -->
 					</div>
 				</div>

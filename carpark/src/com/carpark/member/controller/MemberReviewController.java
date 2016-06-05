@@ -26,11 +26,14 @@ public class MemberReviewController extends HttpServlet {
 		if("reviewWriteToParking".equals(act)){
 			path = MemberActionFactory.getMemberReviewRegisterAction().execute(request, response);
 			PageMove.forward(request, response, path);
-		}else if("".equals(act)){
-			
+		}else if("sendReviewList".equals(act)){
+			path = MemberActionFactory.getMemberSendReviewListAction().execute(request, response);
+			PageMove.forward(request, response, path);
+		}else if("receiveReviewList".equals(act)){
+			path = MemberActionFactory.getMemberReceiveReviewListAction().execute(request, response);
+			PageMove.forward(request, response, path);
 		}
 	}
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		doGet(request, response);
