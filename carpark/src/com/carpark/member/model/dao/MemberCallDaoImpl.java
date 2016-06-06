@@ -113,7 +113,7 @@ public class MemberCallDaoImpl implements MemberCallDao {
 			
 			conn = DBConnection.makeConnection();
 			String sql = "";
-			sql+= "select b.user_id,b.subject,b.logtime,b.contents,c.pcall_flag \n";
+			sql+= "select b.seq, b.user_id,b.subject,b.logtime,b.contents,c.pcall_flag \n";
 			sql+= "from board b, call c \n";
 			sql+= "where b.seq = c.pcall_id \n";
 			sql+= "and b.user_id = ? \n";
@@ -122,6 +122,7 @@ public class MemberCallDaoImpl implements MemberCallDao {
 			rs = pstmt.executeQuery();
 			while(rs.next()){
 				callDto = new CallDto();
+				callDto.setSeq(rs.getInt("seq"));
 				callDto.setUserID(rs.getString("user_id"));
 				callDto.setSubject(rs.getString("subject"));
 				callDto.setContent(rs.getString("contents"));
@@ -133,5 +134,36 @@ public class MemberCallDaoImpl implements MemberCallDao {
 			e.printStackTrace();
 		}
 		return list;
+	}
+
+	@Override
+	public CallDto sendView(int seq) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		CallDto callDto = null;
+	try {		
+			conn = DBConnection.makeConnection();
+			String sql = "";
+			sql+= "select b.seq, b.user_id,b.subject,b.logtime,b.contents,c.pcall_flag \n";
+			sql+= "from board b, call c \n";
+			sql+= "where b.seq = c.pcall_id \n";
+			sql+= "and b.seq = ? \n";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, seq);
+			rs = pstmt.executeQuery();
+			while(rs.next()){
+				callDto = new CallDto();
+				callDto.setSeq(rs.getInt("seq"));
+				callDto.setUserID(rs.getString("user_id"));
+				callDto.setSubject(rs.getString("subject"));
+				callDto.setContent(rs.getString("contents"));
+				callDto.setLogtime(rs.getString("logtime"));
+				callDto.setpCall_Flag(rs.getInt("pcall_flag"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return callDto;
 	}
 }
