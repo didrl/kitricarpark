@@ -9,4 +9,5 @@ public interface MemberCallService {
 	List<ZipDto> zipSearchList(String dong);
 	int register(CallDto callDto);
 	List<CallDto>sendList(String id);
+	CallDto sendView(int seq);
 }

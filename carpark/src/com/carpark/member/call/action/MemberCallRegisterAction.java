@@ -50,12 +50,12 @@ public class MemberCallRegisterAction implements Action {
 	
 		MemberCallServiceImpl.getMemberCallService().register(callDto);
 		List<CallDto> list = MemberCallServiceImpl.getMemberCallService().sendList(id);
-		request.setAttribute("sendList", list);
+		session.setAttribute("sendList", list);
 		
 		PageNavigator navigator = CommonServiceImpl.getCommonService().getPageNavigatorUser(id, pg, key, word);
 		navigator.setRoot(request.getContextPath());
 		navigator.setNavigatorSend();
-		request.setAttribute("navigator", navigator);
+		session.setAttribute("navigator", navigator);
 		
 		return "/member/memberCallList.jsp";
 	}
