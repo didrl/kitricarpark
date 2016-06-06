@@ -15,6 +15,9 @@ ArrayList<ReviewDto> reviewlist = (ArrayList<ReviewDto>)session.getAttribute("re
 ParkingDetailDto parkingDetail_info = (ParkingDetailDto)session.getAttribute("parkingDetail_info");
 ParkingFacilityDto parkingFacilityDto = (ParkingFacilityDto)session.getAttribute("parkingFacilityDto");
 ArrayList<Map<String,String>> availabledate = (ArrayList<Map<String,String>>)session.getAttribute("availabledate");
+Map<String, String> map =(Map<String,String>)session.getAttribute("searchInfo"); 
+
+System.out.print("없다!!!!"+map.get("from")+"     "+map.get("city"));
 
 ArrayList<FavoriteDto> favoritelist;
 System.out.println("<><><><><><><><"+parkingDetail.getPark_id());
@@ -764,6 +767,8 @@ if(reviewlist.size()>0){
 				}
 				})
 				
+		$('#fromdate').val("<%=map.get("from")%>");
+		$('#todate').val("<%=map.get("to")%>");
 		var today = new Date();
 	 	var datelimit = new Date(today);
 	 	datelimit.setDate(today.getDate() + 62);

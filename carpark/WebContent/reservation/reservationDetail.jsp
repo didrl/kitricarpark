@@ -152,7 +152,7 @@ if(reservationDto != null){
 						<div class="col-md-8 col-lg-8 col-sm-8" >		
 								<select  id="mycarlist" name="mycarlist" >
 <%for(MemberCarDto memberCarDto : carInfo){ %>
-								  <option value="<%=memberCarDto.getCar_id()%>"><%=memberCarDto.getModel() %></option>  
+								  <option value="<%=memberCarDto.getReg_num()%>"><%=memberCarDto.getModel() %></option>  
 <%} %>
 								</select>
 								<button type="button" class="btn btn-success"  id="addmycarbt" data-toggle="modal" data-target="#addCar">
@@ -257,33 +257,43 @@ if(reservationDto != null){
 
 	//	$(document).ready(function () {
 				
-	
+				var fdate ="<%=reservationDto.getFromdate()%>";
+				var tdate ="<%=reservationDto.getTodate()%>";
+				var ddate ="<%=reservationDto.getFromdate()%>";
+				
 				$("#multireservation").attr("checked", true);
 				$("#singleReservationDiv").addClass("hidden");
 				
 				//init time
-				$("#rdfromdate").val("<%=reservationDto.getFromdate()%>");
-				$("#rdtodate").val("<%=reservationDto.getTodate()%>");
+				$("#rdfromdate").val(fdate);
+				$("#rdtodate").val(tdate);
 				$("#rdtoTime").val("<%=reservationDto.getTotime()%>");
 				$("#rdfromTime").val("<%=reservationDto.getFromtime()%>");
 				
 				$("#datefromTime").val("<%=reservationDto.getFromtime()%>");
 				$("#datetoTime").val("<%=reservationDto.getTotime()%>");
-				$("#singedate").val("<%=reservationDto.getFromdate()%>");
+				$("#singledate").val(ddate);
 //				});
-	
+				 $("#selectedfromdate").val(fdate);
+			     $("#selectedtodate").val(tdate);
 			// Radio Control div Show or Hide 
 				$("#multireservation").on("click",function(){
+			
 					if(this.checked){
 						$("#multiReservationDiv").removeClass("hidden");
 						$("#singleReservationDiv").addClass("hidden");
+					      $("#selectedfromdate").val(fdate);
+					        $("#selectedtodate").val(tdate);
 					}
 				});
 				
 				$("#singlereservation").on("click",function(){
+					
 					if(this.checked){
 						$("#multiReservationDiv").addClass("hidden");
 						$("#singleReservationDiv").removeClass("hidden");
+						$("#selectedfromdate").val(ddate);
+			        	$("#selectedtodate").val(ddate);
 					}
 				});
 			
@@ -360,28 +370,16 @@ if(reservationDto != null){
 	                     nextArrow: '',
 	                     selectedDate: new Date(),
 	                     selectableDateRange: [
-	                         { from: new Date(2013, 8, 1),
-	                             to: new Date(2013, 8, 10) },
-	                         { from: new Date(2013, 8, 19),
-	                             to: new Date(2013, 8, 22) },
-	                     ],
-	                     selectableDates: [
-	                         { date: new Date(2013, 8, 24) },
-	                         { date: new Date(2013, 8, 30) }
 	                     ]
 	                    });
 	          
 			$('#mvpaymodalbtn').on('click', function (event) {
-				var fdate =$('#rdfromdate');
-				var tdate =$('#rdtodate');
-				var ddate =$('#singledate');
-				  
 				var minutes = 1000 * 60;
 				var hours = minutes * 60;
 				var days = hours * 24;
-				  
-				var fdateDate = Date.parseExact(fdate.val(),"yyyy/M/d");
-				var tdateDate = Date.parseExact(tdate.val(),"yyyy/M/d");
+							
+				var fdateDate = Date.parseExact(fdate,"yyyy/M/d");
+				var tdateDate = Date.parseExact(tdate,"yyyy/M/d");
 				
 				var reserHours = (tdateDate-fdateDate)/hours;
 				var reserDays = (tdateDate-fdateDate)/days;
@@ -389,8 +387,7 @@ if(reservationDto != null){
 				
 				alert("days :"+ reserDays +"    hours :"+reserHours+"       ehours : "+reserExtraHours);
 				
-			        $("#selectedfromdate").val(fdate.val());
-			        $("#selectedtodate").val(tdate.val());
+			        
 			        $("#paypark_id").val("<%=parkingDetailDto.getPark_id()%>");
 			        $("#payfromtime").val($("#rdfromTime").val());
 			        $("#paytotime").val($("#rdtoTime").val());
