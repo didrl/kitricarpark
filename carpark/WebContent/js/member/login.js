@@ -83,11 +83,24 @@ function adminMessageReceiveView(seq){
 }
 
 function parkMessageRegister(){
-	document.location.href = root+"/call?act=memberParkRegisterMessage";
+	document.writeForm.submit();
 }
 
 function dongcheck(){
 	document.location.href = root+"/call?";
+}
+
+
+function adminCallSendList(pg) {
+	document.getElementById("act").value = "callSendList";
+	document.getElementById("pg").value = pg;
+		
+	document.common.action = root+"/call";
+	document.common.submit();
+}
+
+function adminCallSendView(){
+	window.open( "/carpark/message?act=messageSendView&seq=" + seq, "newWindow", "top=100, left=400, width=500, height=600, scrollbars=yes" );
 }
 
 
