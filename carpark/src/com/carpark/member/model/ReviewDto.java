@@ -1,6 +1,8 @@
 package com.carpark.member.model;
 
-public class ReviewDto {
+import java.io.Serializable;
+
+public class ReviewDto implements Serializable{
 	private String content;
 	private String subject;
 	private String user_id;

@@ -7,6 +7,10 @@ function reviewWrite(){
 	document.reviewWriteForm.submit();
 }
 </script>
+<link href="/carpark/css/star-rating/star-rating.css" media="all" rel="stylesheet" type="text/css" />
+ 
+<script src="/carpark/js/star-rating/star-rating.js" type="text/javascript"></script>
+
 <!-- Msg Modal Start -->
 <div class="modal fade" id="reviewToParking" tabindex="-1" role="dialog"
 	aria-labelledby="myModalLabel" aria-hidden="true">
@@ -26,8 +30,7 @@ function reviewWrite(){
 
 						<!-- 리뷰 남기기 -->
 						<div class="form-group">
-							<form class="form-horizontal" name="reviewWriteForm" method="post"
-								action="">
+							<form class="form-horizontal" name="reviewWriteForm" method="post"	action="">
 								<input type="hidden" name="act" value="reviewWriteToParking"> 
 								<input	type="hidden" name="bcode" value="0"> 
 								<input	type="hidden" name="host_flag" value="0">
@@ -45,8 +48,8 @@ function reviewWrite(){
 										name="subject_review">
 								</div>
 								<div class="form-group">
-									<label for="content">내용</label>
-									<label for="content">평점 <input type="text" id="avg_point_review" name="avg_point_review"></label>
+									<label for="content">내용 평점 <br></label>
+									<input id="avg_point_review" name="avg_point_review" type="number" class="rating"  >
 									<textarea class="form-control" rows="10" id="content_review"
 										name="content_review"></textarea>
 								</div>
@@ -76,4 +79,14 @@ function reviewWrite(){
 
 <!-- 쪽지보내기 모달 -->
 <script>
+
+$("#avg_point_review").rating({
+	min:1, 
+	max:5,
+	step:0.5, 
+	hoverEnabled:false,
+	size:'sm',
+	showClear:false
+	});
+
 </script>

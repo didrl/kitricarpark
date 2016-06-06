@@ -1,15 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.*,com.carpark.member.model.*,com.carpark.util.*"%>
+    pageEncoding="UTF-8" import="java.util.*,com.carpark.member.model.*,com.carpark.util.*,com.carpark.common.model.*"%>
     
 <%@include file="/common/common.jsp" %>
 <%@include file="/common/header/init.jsp" %> 
 <%@include file="/common/side.jsp" %>
   
-    
 <%
 if(memberDto != null) {
-List<CallDto> callReceiveList = (List<CallDto>)request.getAttribute("callSendList");
-PageNavigator navigator = (PageNavigator) request.getAttribute("navigator");
+List<CallDto> callReceiveList = (List<CallDto>)session.getAttribute("sendList");
+PageNavigator navigator = (PageNavigator) session.getAttribute("navigator");
 %>
 
 <div id="wrapper">
@@ -22,10 +21,10 @@ PageNavigator navigator = (PageNavigator) request.getAttribute("navigator");
 					
 				<div class="btn-group" role="group" aria-label="...">
 
-	  				<button type="button" class="btn btn-default" onclick="javascript:messageReceiveList('1');">
+	  				<button type="button" class="btn btn-default" onclick="javascript:memberCallReceiveList('1');">
 	  					받은쪽지함
 	  				</button>
-	  				<button type="button" class="btn btn-default" onclick="javascript:messageSendList('1');">
+	  				<button type="button" class="btn btn-default" onclick="javascript:memberCallSendList('1');">
 	  					보낸쪽지함
 	  				</button>	
 					<button type="button" class="btn btn-default"  data-toggle="modal" data-target="#messageWrite" onclick="javascript:init();">
@@ -52,28 +51,28 @@ PageNavigator navigator = (PageNavigator) request.getAttribute("navigator");
 <%
 int size = callReceiveList.size();
 if(size > 0) {
-	for(MessageDto messageDto : callReceiveList) {
+	for(CallDto callDto : callReceiveList) {
 %>
 					<!-- 쪽지목록 -->
-					<tr >
-						<td width="150"><a href="javascript:messageReceiveView('<%=messageDto.getSeq()%>');"><%=messageDto.getReceiverId() %></a></td>
-						<td><a href="javascript:messageReceiveView('<%=messageDto.getSeq() %>');"><%=messageDto.getSubject() %></a></td>
-						<td width="80"><%=messageDto.getLogtime() %></td>	
+					<tr > 
+						<td width="150"><a href="javascript:memberCallSendView('<%=callDto.getSeq()%>');"><%=callDto.getUserID()%></a></td>
+						<td><a href="javascript:memberCallSendView('<%=callDto.getSeq() %>');"><%=callDto.getSubject() %></a></td>
+						<td width="80"><%=callDto.getLogtime() %></td>	
 <%
-if(messageDto.getMsgFlag() == 0) {
+if(callDto.getpCall_Flag() == 0) {
 %>					
 						<td width="50">X</td>
 						<td width="50">
-						<button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#messageToWrite" onclick="toWriteInit('<%=messageDto.getReceiverId()%>');">답장</button>
-						<button type="button" class="btn btn-default btn-xs" onclick="javascript:messageReceiveDelete('<%=messageDto.getSeq()%>');">삭제</button>
+						<button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#messageToWrite" onclick="toWriteInit('<%=callDto.getUserID()%>');">변경</button>
+						<button type="button" class="btn btn-default btn-xs" onclick="javascript:memberCallReceiveDelete('<%=callDto.getSeq()%>');">삭제</button>
 						</td>
 <%
 } else {
 %>
 						<td width="50">O</td>
 						<td width="50">
-						<button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#messageToWrite" onclick="javascript:toWriteInit('<%=messageDto.getReceiverId()%>');">답장</button>
-						<button type="button" class="btn btn-default btn-xs" onclick="javascript:messageReceiveDelete('<%=messageDto.getSeq()%>');">삭제</button>
+						<button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#messageToWrite" onclick="javascript:toWriteInit('<%=callDto.getUserID()%>');">변경</button>
+						<button type="button" class="btn btn-default btn-xs" onclick="javascript:memberCallReceiveDelete('<%=callDto.getSeq()%>');">삭제</button>
 						</td>
 					</tr>
 <%

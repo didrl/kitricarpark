@@ -1,6 +1,8 @@
 package com.carpark.member.model;
 
-public class ReportDto extends BoardDto {
+import java.io.Serializable;
+
+public class ReportDto extends BoardDto implements Serializable{
 	
 	private int cseq;
 	private int park_id;

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.*,com.carpark.common.model.*"%>
 <%
-List<ParkingDto> list = (List<ParkingDto>)request.getAttribute("searchlist");
+List<ParkingDto> list = (List<ParkingDto>)session.getAttribute("searchlist");
 String city = (String)request.getParameter("city");
 %>    
 
