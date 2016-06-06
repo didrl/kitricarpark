@@ -156,16 +156,7 @@
 		return false;
 	});
 </script>
-<script src="/carpark/js/selectlist/jquery.selectlist.js"></script>
-<script type="text/javascript">
-	$(function() {
-		$('select').selectlist({
-			zIndex : 10,
-			width : 100,
-			height : 30
-		});
-	})
-</script>
+
 
 
 

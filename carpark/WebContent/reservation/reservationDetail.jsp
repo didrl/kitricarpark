@@ -10,11 +10,26 @@
 <%
 ReservationDto reservationDto = (ReservationDto) session.getAttribute("reservationDto");
 ArrayList<MemberCarDto> carInfo = (ArrayList<MemberCarDto>) session.getAttribute("carinfo"); 
-ArrayList<String> availdate = (ArrayList<String>) session.getAttribute("availalbledate");
+ArrayList<Map<String,String>> availabledate = (ArrayList<Map<String,String>>)session.getAttribute("availabledate");
 ParkingDetailDto parkingDetailDto =(ParkingDetailDto) session.getAttribute("parkingDetailDto");
 ArrayList<ParkingDto> list = (ArrayList<ParkingDto>)session.getAttribute("searchlist");
 
 if(reservationDto != null){
+	StringBuffer sb =new StringBuffer("{ ");
+	int size = availabledate.size();
+	if(size<2){
+		String tmp ="from : new Date("+availabledate.get(0).get("enddate")+")}";
+		sb.append(tmp);
+	}else{
+		for(int i=0;i<size-1;++i){
+			String tmp ="from : new Date("+availabledate.get(i).get("enddate")+"),";
+			sb.append(tmp);
+			tmp ="to : new Date("+availabledate.get(i+1).get("startdate")+")},";
+			sb.append(tmp);
+			tmp ="{from : new Date("+availabledate.get(i+1).get("enddate")+")},";
+			sb.append(tmp);
+		}
+	}
 %>
     <!-- For sendMsg Modal -->
    <%@include file="/reservation/sendMessageModal.jsp"%>
@@ -316,10 +331,7 @@ if(reservationDto != null){
 		 	    allowMonthSelect: true,
 		 	    allowYearSelect: true,
 		 	    selectedDate: today,
-		 	    selectableDateRange: [{
-		 	        from: today,
-		 	        to: datelimit
-		 	    }, ],
+		 	   selectableDateRange: [<%=sb.toString()%>],
 		 	    onClick: function (target, cell, date, data) {
 		 	        target.val(date.getFullYear() + '/' + (date.getMonth() + 1) + '/' + date.getDate());
 
@@ -369,8 +381,7 @@ if(reservationDto != null){
 	                     prevArrow: '',
 	                     nextArrow: '',
 	                     selectedDate: new Date(),
-	                     selectableDateRange: [
-	                     ]
+	                     selectableDateRange: [<%=sb.toString()%>]
 	                    });
 	          
 			$('#mvpaymodalbtn').on('click', function (event) {

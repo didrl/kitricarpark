@@ -16,10 +16,16 @@ ParkingDetailDto parkingDetail_info = (ParkingDetailDto)session.getAttribute("pa
 ParkingFacilityDto parkingFacilityDto = (ParkingFacilityDto)session.getAttribute("parkingFacilityDto");
 ArrayList<Map<String,String>> availabledate = (ArrayList<Map<String,String>>)session.getAttribute("availabledate");
 Map<String, String> map =(Map<String,String>)session.getAttribute("searchInfo"); 
-
-System.out.print("없다!!!!"+map.get("from")+"     "+map.get("city"));
-
 ArrayList<FavoriteDto> favoritelist;
+
+if(map == null){
+	%>
+	<script>
+	alert("세션이 종료되었습니다. 다시 시도해주세요.");
+	document.location.href = "<%=root%>/index.jsp";
+	</script>
+	<%
+}
 System.out.println("<><><><><><><><"+parkingDetail.getPark_id());
 System.out.println("<><><><latitude><><><"+parkingDetail.getLatitude());
 System.out.println("<><><><longtitude><><"+parkingDetail.getLongitude());
@@ -27,11 +33,23 @@ System.out.println("<><><><content><><"+parkingDetail.getContent());
 //{ from: new Date(2013, 1, 1), to: newDate (2013, 2, 1) }
 StringBuffer sb =new StringBuffer("{ ");
 int size = availabledate.size();
-for(int i=0;i<size-1;++i){
-	//String sd =map.get("startdate");
-	//String td = map.get("enddate");
-	//sb.append("to : new Date("+sd+")},");
+if(size<2){
+	String tmp ="from : new Date("+availabledate.get(0).get("enddate")+")}";
+	sb.append(tmp);
+}else{
+	for(int i=0;i<size-1;++i){
+		String tmp ="from : new Date("+availabledate.get(i).get("enddate")+"),";
+		sb.append(tmp);
+		tmp ="to : new Date("+availabledate.get(i+1).get("startdate")+")},";
+		sb.append(tmp);
+		tmp ="{from : new Date("+availabledate.get(i+1).get("enddate")+")},";
+		sb.append(tmp);
+	}
 }
+System.out.println(size+"><><><><><><"+sb);
+System.out.println(availabledate.get(0).get("enddate"));
+System.out.println(availabledate.get(1).get("startdate"));
+System.out.println(availabledate.get(1).get("enddate"));
 
 int flagrs=0;
 int flagb=0;
@@ -780,10 +798,7 @@ if(reviewlist.size()>0){
 	 	    allowMonthSelect: true,
 	 	    allowYearSelect: true,
 	 	    selectedDate: today,
-	 	    selectableDateRange: [{
-	 	        from: today,
-	 	        to: datelimit
-	 	    }, ],
+	 	   selectableDateRange: [<%=sb.toString()%>],
 	 	    onClick: function (target, cell, date, data) {
 	 	        target.val(date.getFullYear() + '/' + (date.getMonth() + 1) + '/' + date.getDate());
 
@@ -833,7 +848,7 @@ if(reviewlist.size()>0){
             prevArrow: '',
             nextArrow: '',
             selectedDate: new Date(),
-           // selectableDateRange: []
+            selectableDateRange: [<%=sb.toString()%>]
            });
         });
         
