@@ -73,8 +73,7 @@ function goSearchResult() {
 										
 										<div class="form-group">
 											<label for="subject">제목</label> <input type="text"
-												class="form-control" id="subject" name="subject" placeholder="제목"
-												name="subject">
+												class="form-control" id="subject" name="subject" placeholder="제목">
 										</div><hr>
 										
 										<div class="row">
@@ -97,7 +96,8 @@ function goSearchResult() {
 										</div>
 
 										<div class="form-group text-center">
-											<input class="btn btn-default" id="callBtn" name="callBtn" type="submit" value="제보하기">
+											<input class="btn btn-default" id="callBtn" name="callBtn" type="button" 
+											value="제보하기" onclick="javascript:parkMessageRegister();">
 										</div>
 
 									</form>

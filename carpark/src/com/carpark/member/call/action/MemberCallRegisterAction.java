@@ -1,6 +1,7 @@
 package com.carpark.member.call.action;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +13,11 @@ import com.carpark.common.model.CallDto;
 import com.carpark.member.model.MemberDto;
 import com.carpark.member.model.service.CommonServiceImpl;
 import com.carpark.member.model.service.MemberCallServiceImpl;
+import com.carpark.util.Encoder;
+import com.carpark.util.NumberCheck;
+import com.carpark.util.PageMove;
+import com.carpark.util.PageNavigator;
+import com.carpark.util.StringCheck;
 
 public class MemberCallRegisterAction implements Action {
 
@@ -20,8 +26,12 @@ public class MemberCallRegisterAction implements Action {
 			throws IOException, ServletException {
 		HttpSession session = request.getSession();
 		MemberDto memberDto = (MemberDto)session.getAttribute("memberInfo");
-		int seq = CommonServiceImpl.getCommonService().getNextSeq();
 		
+		int seq = CommonServiceImpl.getCommonService().getNextSeq();
+		int pg = NumberCheck.nullToOne(request.getParameter("pg"));
+		String key = StringCheck.nullToBlank(request.getParameter("key"));
+		String word = Encoder.isoToUtf(StringCheck.nullToBlank(request.getParameter("word")));
+	
 		String id = memberDto.getUser_id();
 		String subject = request.getParameter("subject");
 		String content = request.getParameter("content");
@@ -31,14 +41,23 @@ public class MemberCallRegisterAction implements Action {
 		CallDto callDto = new CallDto();
 		
 		callDto.setSeq(seq);
+		callDto.setBcode(NumberCheck.nullToZero(request.getParameter("bcode")));
 		callDto.setUserID(id);
 		callDto.setSubject(subject);
 		callDto.setContent(content);	
 		callDto.setpCall_ADDR(parkAddress);
+		callDto.setpCall_Flag(0);
 	
-		int count = MemberCallServiceImpl.getMemberCallService().register(callDto);
-		request.setAttribute("sendList", callDto);
-		return count ==0 ? "/member/memberCallList.jsp":"";
+		MemberCallServiceImpl.getMemberCallService().register(callDto);
+		List<CallDto> list = MemberCallServiceImpl.getMemberCallService().sendList(id);
+		request.setAttribute("sendList", list);
+		
+		PageNavigator navigator = CommonServiceImpl.getCommonService().getPageNavigatorUser(id, pg, key, word);
+		navigator.setRoot(request.getContextPath());
+		navigator.setNavigatorSend();
+		request.setAttribute("navigator", navigator);
+		
+		return "/member/memberCallList.jsp";
 	}
 
 }

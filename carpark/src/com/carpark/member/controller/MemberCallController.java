@@ -34,8 +34,8 @@ public class MemberCallController extends HttpServlet {
 			path = MemberActionFactory.getMemberCallRegisterAction().execute(request, response);
 			PageMove.forward(request, response, path);
 		}else if("callSendList".equals(act)){
-//			path = MemberActionFactory.getMemberCallListAction().execute(request, response);
-//			PageMove.forward(request, response, path);
+			path = MemberActionFactory.getMemberCallListAction().execute(request, response);
+			PageMove.forward(request, response, path);
 		}else if("".equals(act)){
 			
 		}else if("".equals(act)){
