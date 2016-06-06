@@ -48,8 +48,8 @@ function reviewWrite(){
 										name="subject_review">
 								</div>
 								<div class="form-group">
-									<label for="content">내용</label>
-									<label for="content">평점 <input id="input-id" name="input-name" type="number" class="rating" min=1 max=5 step=0.5 ></label>
+									<label for="content">내용 평점 <br></label>
+									<input id="avg_point_review" name="avg_point_review" type="number" class="rating"  >
 									<textarea class="form-control" rows="10" id="content_review"
 										name="content_review"></textarea>
 								</div>
@@ -79,7 +79,14 @@ function reviewWrite(){
 
 <!-- 쪽지보내기 모달 -->
 <script>
-$("#input-id").rating();
-$("#input-id").rating({min:1, max:10, step:2, size:'lg'});
+
+$("#avg_point_review").rating({
+	min:1, 
+	max:5,
+	step:0.5, 
+	hoverEnabled:false,
+	size:'sm',
+	showClear:false
+	});
 
 </script>
