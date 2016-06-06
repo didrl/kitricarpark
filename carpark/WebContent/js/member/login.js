@@ -82,6 +82,10 @@ function adminMessageReceiveView(seq){
 	window.open( "/carpark/message?act=AdminCallReceiveView&seq=" + seq, "newWindow", "top=100, left=400, width=500, height=600, scrollbars=yes" );
 }
 
+function adminCallSendView(){
+	window.open( "/carpark/message?act=messageSendView&seq=" + seq, "newWindow", "top=100, left=400, width=500, height=600, scrollbars=yes" );
+}
+
 function parkMessageRegister(){
 	document.writeForm.submit();
 }
@@ -90,17 +94,15 @@ function dongcheck(){
 	document.location.href = root+"/call?";
 }
 
-
-function adminCallSendList(pg) {
+function memberCallSendList(pg) {
 	document.getElementById("act").value = "callSendList";
 	document.getElementById("pg").value = pg;
-		
 	document.common.action = root+"/call";
 	document.common.submit();
 }
 
-function adminCallSendView(){
-	window.open( "/carpark/message?act=messageSendView&seq=" + seq, "newWindow", "top=100, left=400, width=500, height=600, scrollbars=yes" );
+function memberCallSendView(seq){
+	window.open( "/carpark/call?act=callSendView&seq=" + seq, "newWindow", "top=100, left=400, width=500, height=600, scrollbars=yes" );
 }
 
 

@@ -12,7 +12,9 @@ import org.json.simple.JSONArray;
 import com.carpark.factory.MemberActionFactory;
 import com.carpark.util.BoardConstance;
 import com.carpark.util.Encoder;
+import com.carpark.util.NumberCheck;
 import com.carpark.util.PageMove;
+import com.carpark.util.StringCheck;
 
 @WebServlet("/call")
 public class MemberCallController extends HttpServlet {
@@ -20,9 +22,12 @@ public class MemberCallController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String root = request.getContextPath();
-		String search = Encoder.utfUrl(request.getParameter("search"));
 		String act = Encoder.utfUrl(request.getParameter("act"));
 		System.out.println("act>>>>>>>>>>>>>"+act);
+		int pg = NumberCheck.nullToOne(request.getParameter("pg"));
+		String key = StringCheck.nullToBlank(request.getParameter("key"));
+		String word = StringCheck.nullToBlank(request.getParameter("word"));
+		String queryString = "?&pg=" + pg + "&key=" + key + "&word=" + Encoder.isoToUtf(word);
 		String path ="/index.jsp";
 		
 		if("addrSearch".equals(act)){
@@ -32,12 +37,13 @@ public class MemberCallController extends HttpServlet {
 			PageMove.redirect(response, root+path);
 		}else if("memberParkRegisterMessage".equals(act)){
 			path = MemberActionFactory.getMemberCallRegisterAction().execute(request, response);
-			PageMove.forward(request, response, path);
+			PageMove.forward(request, response, path+queryString);
 		}else if("callSendList".equals(act)){
 			path = MemberActionFactory.getMemberCallListAction().execute(request, response);
-			PageMove.forward(request, response, path);
-		}else if("".equals(act)){
-			
+			PageMove.forward(request, response, path+queryString);
+		}else if("callSendView".equals(act)){
+			path = MemberActionFactory.getMemberCallViewAction().execute(request, response);
+			PageMove.forward(request, response, path+queryString);
 		}else if("".equals(act)){
 			
 		}else if("".equals(act)){

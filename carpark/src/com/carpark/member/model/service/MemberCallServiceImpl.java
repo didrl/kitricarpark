@@ -34,6 +34,11 @@ public class MemberCallServiceImpl implements MemberCallService {
 	public int register(CallDto callDto) {
 		return MemberCallDaoImpl.getMemberCallDao().register(callDto);
 	}
+
+	@Override
+	public CallDto sendView(int seq) {
+		return MemberCallDaoImpl.getMemberCallDao().sendView(seq);
+	}
 	
 	
 }
