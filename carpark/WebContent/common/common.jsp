@@ -74,6 +74,9 @@ String word = Encoder.isoToUtf(StringCheck.nullToBlank(request.getParameter("wor
     
     <!-- report.js -->
     <script type="text/javascript" src="<%=root %>/report/report.js"></script>
+
+    <!-- report.js -->
+    <script type="text/javascript" src="<%=root %>/parking/parking.js"></script> 
     
     <!-- admincall.js -->
     <script type="text/javascript" src="<%=root %>/message/message.js"></script>
@@ -85,5 +88,6 @@ String word = Encoder.isoToUtf(StringCheck.nullToBlank(request.getParameter("wor
 	<input type="hidden" name="key" id="key" value="">
 	<input type="hidden" name="word" id="word" value="">
 	<input type="hidden" name="seq" id="seq" value="">
+	<input type="hidden" name="parkId" id="parkId" value="">
 	</form>
     

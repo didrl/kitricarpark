@@ -24,14 +24,13 @@ public class MemberParkingListAction implements Action {
 		if (memberDto != null) {
 			String ownerId = memberDto.getUser_id();
 			if (ownerId != null) {
-				List<ParkingDetailDto> list = MemberParkingServiceImpl.getMemberParkingservice()
-						.MemberParkingList(ownerId);
-				request.setAttribute("parkList", list);
+				List<ParkingDetailDto> list = MemberParkingServiceImpl.getMemberParkingservice().parkingList(ownerId);
+				request.setAttribute("parkingList", list);
 			}
 
 			return "/parking/list.jsp";
 		} else
-			return "";
+			return "index.jsp";
 
 	}
 

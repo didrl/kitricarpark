@@ -2,8 +2,8 @@ package com.carpark.member.model.service;
 
 import java.util.List;
 
-import com.carpark.common.model.CitiesDto;
 import com.carpark.common.model.ParkingDetailDto;
+import com.carpark.common.model.ZipDto;
 import com.carpark.member.model.dao.MemberParkingDaoImpl;
 
 public class MemberParkingServiceImpl implements MemberParkingService {
@@ -21,28 +21,33 @@ public class MemberParkingServiceImpl implements MemberParkingService {
 	}
 
 	@Override
-	public void MemberParkingRegister(ParkingDetailDto parkingDto) {
-		MemberParkingDaoImpl.getMemberParkingDao().MemberParkingRegister(parkingDto);
+	public void parkingRegister(ParkingDetailDto parkingDto) {
+		MemberParkingDaoImpl.getMemberParkingDao().parkingRegister(parkingDto);
 	}
 
 	@Override
-	public void MemberParkingModify(ParkingDetailDto parkingDto) {
-		MemberParkingDaoImpl.getMemberParkingDao().MemberParkingModify(parkingDto);
+	public void parkingModify(ParkingDetailDto parkingDto) {
+		MemberParkingDaoImpl.getMemberParkingDao().parkingModify(parkingDto);
 	}
 
 	@Override
-	public List<ParkingDetailDto> MemberParkingList(String userId) {
-		return MemberParkingDaoImpl.getMemberParkingDao().MemberParkingList(userId);
+	public List<ParkingDetailDto> parkingList(String userId) {
+		return MemberParkingDaoImpl.getMemberParkingDao().parkingList(userId);
 	}
 
 	@Override
-	public void MemberParkingDelete(int parkId) {
-		MemberParkingDaoImpl.getMemberParkingDao().MemberParkingDelete(parkId);
+	public int parkingDelete(int parkId) {
+		return MemberParkingDaoImpl.getMemberParkingDao().parkingDelete(parkId);
 	}
 
 	@Override
-	public List<CitiesDto> ParkSearch(String address) {
-		return MemberParkingDaoImpl.getMemberParkingDao().ParkSearch(address);
+	public List<ZipDto> parkingSearch(String address) {
+		return MemberParkingDaoImpl.getMemberParkingDao().parkingSearch(address);
+	}
+
+	@Override
+	public ParkingDetailDto parkingView(int parkId) {
+		return MemberParkingDaoImpl.getMemberParkingDao().parkingView(parkId);
 	}
 
 }

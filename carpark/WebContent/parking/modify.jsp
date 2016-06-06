@@ -2,53 +2,12 @@
     pageEncoding="UTF-8"%>
 
 <%@ include file="/common/common.jsp" %>
-<%@ include file="/common/header.jsp" %>
+<%@ include file="/common/header/init.jsp" %>
 <%@ include file="/common/side.jsp" %>
 
 <!-- ************************************************************************************ -->
-<script type="text/javascript">
-function parkingRegister() {
-	if(document.parkRegisterForm.parkType.value == ""){
-		alert("주차장 구분을 선택하세요");
-		return;
-	} else if(document.parkRegisterForm.parkName.value == ""){
-		alert("주차장 이름을 입력하세요");
-		return;
-	} else if(document.parkRegisterForm.payYn.value == ""){
-		alert("평일 유료/무료를 선택하세요");
-		return;
-	} else if(document.parkRegisterForm.saturPayYn.value == ""){
-		alert("토요일 유료/무료를 선택하세요");
-		return;
-	} else if(document.parkRegisterForm.holiPayYn.value == ""){
-		alert("공휴일 유료/무료를 선택하세요");
-		return;
-	} else if(document.parkRegisterForm.parkCapacity.value == ""){
-		alert("총 주차면수를 입력하세요");
-		return;
-	}  else if(document.parkRegisterForm.parkTimeRate.value == ""){
-		alert("기본 주차시간을 선택하세요");
-		return;
-	} else if(document.parkRegisterForm.parkRate.value == ""){
-		alert("기본 주차요금을 선택하세요");
-		return;
-	} else if(document.parkRegisterForm.addParkRate.value == ""){
-		alert("추가 단위요금을 선택하세요");
-		return;
-	} else if(document.parkRegisterForm.dayMaxPay.value == ""){
-		alert("하루 최대요금을 선택하세요");
-		return;
-	} else{
-		document.parkRegisterForm.action = "/carpark/memberparking";
-		document.parkRegisterForm.submit();
-	}
-}
-
-function parkSearchWindow() {
-	window.open( "<%=root%>/parking/parksearch.jsp", "newWindow", "top=100, left=400, width=500, height=400, scrollbars=yes" );
-}
-</script>
 <!-- ************************************************************************************ -->	
+<%if(memberDto != null){ %>
 <div id="wrapper">
 
 		<!-- main -->
@@ -59,9 +18,7 @@ function parkSearchWindow() {
 			<div class="col-md-10">
 			<form name="parkRegisterForm" method="post" action="">
 				<input type="hidden" name="act" value="parkRegister">				
-				<input type="hidden" name="latitude" value="">
-				<input type="hidden" name="longtitude" value="">
-				<input type="hidden" name="emdCode" value="">
+				<input type="hidden" name="coordinate" value="">
 				
 				<div class="row">
 					<div class="col-md-2">
@@ -69,13 +26,24 @@ function parkSearchWindow() {
 					</div>
 					<div class="col-md-10">
 						<label class="radio-inline">
-						  <input type="radio" name="parkType" value="1"> 공영
+						  <input type="radio" name="parkType" value="0" checked="checked"> 개인
 						</label>
 						<label class="radio-inline">
-						  <input type="radio" name="parkType" value="2"> 사설
+						  <input type="radio" name="parkType" value="1"> 사설
+						</label>
+					</div>
+				</div><hr>
+				
+				<div class="row">
+					<div class="col-md-2">
+						<b>사용가능여부</b><br>
+					</div>
+					<div class="col-md-10">
+						<label class="radio-inline">
+						  <input type="radio" name="parkFlag" value="0" checked="checked"> 사용가능
 						</label>
 						<label class="radio-inline">
-						  <input type="radio" name="parkType" value="3"> 개인
+						  <input type="radio" name="parkFlag" value="1"> 사용불가
 						</label>
 					</div>
 				</div><hr>
@@ -99,10 +67,9 @@ function parkSearchWindow() {
 						<div class="form-group">
 							<input type="text" class="form-control" placeholder="주소" name="parkAddress" readonly="readonly"><br>
 						</div>
-							<button type="button" class="btn btn-default" onclick="javascript:parkSearchWindow();">검색</button>
+							<button type="button" class="btn btn-default" onclick="javascript:parkingSearchWindow();">검색</button>
 					</div>
 				</div><hr>
-				
 				
 				<div class="row">
 					<div class="col-md-2">
@@ -240,6 +207,15 @@ function parkSearchWindow() {
 					    <input type="file" id="fileName">
 					    <p class="help-block">주차장 사진 등록</p>
 				</div>
+				
+				<div class="row">
+					<div class="col-md-2">
+						<b>주차장 설명</b><br>
+					</div>
+					<div class="col-md-10">
+						<textarea class="form-control" rows="3" name="content"></textarea>						
+					</div>
+				</div><br>
 			</form>
 	
 				<div class="row">
@@ -258,4 +234,14 @@ function parkSearchWindow() {
 	</div>
 	
 <%@ include file="/common/footer.jsp" %>		
+<%
+}else{
+%>
+<script type="text/javascript">
+alert("잘못된 접근입니다. 다시 시도해주세요.");
+document.location.href = "<%=root%>/index.jsp";
+</script>
+<%
+}
+%>
 	

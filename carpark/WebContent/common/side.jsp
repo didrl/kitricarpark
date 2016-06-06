@@ -42,8 +42,8 @@
 					data-target="#parking"><i class="fa fa-fw fa-wrench"></i>
 						주차장 <i class="fa fa-fw fa-caret-down"></i></a>
 					<ul id="parking" class="collapse">
-						<li><a href="javascript:myParking();">내 주차장</a></li>
-						<li><a href="javascript:myParkingRegister();">주차장 등록</a></li>
+						<li><a href="javascript:parkingList();">내 주차장</a></li>
+						<li><a href="<%=root %>/parking/register.jsp">주차장 등록</a></li>
 					</ul></li>
 					
 				<li><a href="javascript:mycoin();"><i class="fa fa-fw fa-file"></i>

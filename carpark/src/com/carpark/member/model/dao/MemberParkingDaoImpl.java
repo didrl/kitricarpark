@@ -7,10 +7,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.carpark.common.model.CitiesDto;
 import com.carpark.common.model.ParkingDetailDto;
+import com.carpark.common.model.ZipDto;
 import com.carpark.db.DBClose;
 import com.carpark.db.DBConnection;
+import com.carpark.member.model.ReportDto;
 
 public class MemberParkingDaoImpl implements MemberParkingDao {
 	
@@ -27,7 +28,7 @@ public class MemberParkingDaoImpl implements MemberParkingDao {
 	}
 
 	@Override
-	public void MemberParkingRegister(ParkingDetailDto parkingDto) {
+	public void parkingRegister(ParkingDetailDto parkingDto) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		
@@ -36,8 +37,8 @@ public class MemberParkingDaoImpl implements MemberParkingDao {
 			String sql = "";
 			sql += "insert all \n";
 			sql += "	into parking (park_id, park_name, park_capacity, owner_id, latitude, "
-										+ "longitude, park_type, emd_code) \n";
-			sql += "	values (? ,? ,? ,? ,? ,? ,?, ?) \n";
+										+ "longitude, park_type, emd_code, content, detail_addr) \n";
+			sql += "	values (? ,? ,? ,? ,? ,? ,?, ?, ?, ?) \n";
 			sql += "	into parking_facility (park_id, facility, feature) \n";
 			sql += "	values (?, ?, ?) \n";
 			sql += "	into parking_img (park_id, file_name, file_path) \n";
@@ -59,6 +60,8 @@ public class MemberParkingDaoImpl implements MemberParkingDao {
 			pstmt.setDouble(++idx, parkingDto.getLongitude());
 			pstmt.setString(++idx, parkingDto.getPark_type());
 			pstmt.setInt(++idx, parkingDto.getEmd_code());
+			pstmt.setString(++idx, parkingDto.getContent());
+			pstmt.setString(++idx, parkingDto.getDetailAddr());
 			//parking_facility table
 			pstmt.setInt(++idx, parkingDto.getPark_id());
 			pstmt.setString(++idx, parkingDto.getFacility());
@@ -90,7 +93,7 @@ public class MemberParkingDaoImpl implements MemberParkingDao {
 	}
 
 	@Override
-	public void MemberParkingModify(ParkingDetailDto parkingDto) {
+	public void parkingModify(ParkingDetailDto parkingDto) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		
@@ -100,7 +103,7 @@ public class MemberParkingDaoImpl implements MemberParkingDao {
 			String sql = "";
 			sql += "update parking \n";
 			sql += "set park_id = ?, park_name = ?, park_capacity = ?, owner_id = ?, latitude = ?, \n";
-			sql += "longitude = ?, park_type = ?, emd_code = ? \n";
+			sql += "longitude = ?, park_type = ?, detail_addr = ? \n";
 			sql += "where park_id = ? \n";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, parkingDto.getPark_id());
@@ -110,7 +113,7 @@ public class MemberParkingDaoImpl implements MemberParkingDao {
 			pstmt.setDouble(5, parkingDto.getLatitude());
 			pstmt.setDouble(6, parkingDto.getLongitude());
 			pstmt.setString(7, parkingDto.getPark_type());
-			pstmt.setInt(8, parkingDto.getEmd_code());
+			pstmt.setString(8, parkingDto.getDetailAddr());
 			pstmt.setInt(9, parkingDto.getPark_id());
 			pstmt.executeUpdate();
 			pstmt.close();
@@ -164,70 +167,8 @@ public class MemberParkingDaoImpl implements MemberParkingDao {
 
 	}
 
-//	@Override
-//	public List<ParkingDetailDto> MemberParkingList(String userId) {
-//		List<ParkingDetailDto> list = new ArrayList<ParkingDetailDto>();
-//		Connection conn = null;
-//		PreparedStatement pstmt = null;
-//		ResultSet rs = null;
-//		
-//		try {
-//			conn = DBConnection.makeConnection();
-//			String sql = "";
-//			sql += "select p.park_id, park_name, park_capacity, owner_id, latitude, "
-//							+ "longitude, park_type, emd_code, content, \n";
-//			sql += "		facility, feature, file_name, file_path, file_num, \n";
-//			sql += "		park_flag, park_avgPoint, get_status, cur_parking, PAY_YN, satur_pay_yn, holi_pay_yn, "
-//							+ "fulltime_monthly_pay, park_rate, park_time_rate, add_park_rate, day_max_pay \n";
-//			sql += "from parking p, parking_facility f, parking_img i, parking_detail d \n";
-//			sql += "where p.park_id = f.park_id \n";
-//			sql += "and p.park_id = i.park_id \n";
-//			sql += "and p.park_id = d.park_id \n";
-//			sql += "and owner_id = ?";
-//			pstmt = conn.prepareStatement(sql);
-//			pstmt.setString(1, userId);
-//			rs = pstmt.executeQuery();
-//			while(rs.next()) {
-//				ParkingDetailDto parkingDto = new ParkingDetailDto();
-//				parkingDto.setParkId(rs.getInt("park_id"));
-//				parkingDto.setParkName(rs.getString("park_name"));
-//				parkingDto.setParkCapacity(rs.getInt("park_capacity"));
-//				parkingDto.setOwnerId(rs.getString("owner_id"));
-//				parkingDto.setLatitude(rs.getDouble("latitude"));
-//				parkingDto.setLongtitude(rs.getDouble("longitude"));
-//				parkingDto.setParkType(rs.getString("park_type"));
-//				parkingDto.setEmdCode(rs.getInt("emd_code"));
-//				parkingDto.setContent(rs.getString("content"));
-//				parkingDto.setFacility(rs.getString("facility"));
-//				parkingDto.setFeature(rs.getString("feature"));
-//				parkingDto.setFileName(rs.getString("file_name"));
-//				parkingDto.setFilePath(rs.getString("file_path"));
-//				parkingDto.setFileNum(rs.getInt("file_num"));
-//				parkingDto.setParkFlag(rs.getInt("park_flag"));
-//				parkingDto.setParkAvgPoint(rs.getInt("park_avgPoint"));
-//				parkingDto.setGetStatus(rs.getInt("get_status"));
-//				parkingDto.setCurParking(rs.getInt("cur_parking"));
-//				parkingDto.setPayYn(rs.getString("PAY_YN"));
-//				parkingDto.setSaturPayYn(rs.getString("satur_pay_yn"));
-//				parkingDto.setHoliPayYn(rs.getString("holi_pay_yn"));
-//				parkingDto.setFullTimeMonthlyPay(rs.getInt("fulltime_monthly_pay"));
-//				parkingDto.setParkRate(rs.getInt("park_rate"));
-//				parkingDto.setParkTimeRate(rs.getInt("park_time_rate"));
-//				parkingDto.setAddParkRate(rs.getInt("add_park_rate"));
-//				parkingDto.setDayMaxPay(rs.getInt("day_max_pay"));
-//				
-//				list.add(parkingDto);
-//			}
-//			
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//		
-//		return list;
-//	}
-
 	@Override
-	public List<ParkingDetailDto> MemberParkingList(String userId) {
+	public List<ParkingDetailDto> parkingList(String userId) {
 		List<ParkingDetailDto> list = new ArrayList<ParkingDetailDto>();
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -270,6 +211,7 @@ public class MemberParkingDaoImpl implements MemberParkingDao {
 				parkingDto.setPark_time_rate(rs.getInt("park_time_rate"));
 				parkingDto.setAdd_park_rate(rs.getInt("add_park_rate"));
 				parkingDto.setDay_max_pay(rs.getInt("day_max_pay"));
+				parkingDto.setDetailAddr("detail_addr");
 				
 				list.add(parkingDto);
 			}
@@ -283,9 +225,12 @@ public class MemberParkingDaoImpl implements MemberParkingDao {
 	
 	
 	@Override
-	public void MemberParkingDelete(int parkId) {
+	public int parkingDelete(int parkId) {
+		int cnt = 0;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
+		
+		System.out.println(parkId);
 		
 		try {
 			conn = DBConnection.makeConnection();
@@ -294,39 +239,49 @@ public class MemberParkingDaoImpl implements MemberParkingDao {
 			sql += "delete parking_Detail \n";
 			sql += "where park_id = ? \n";
 			pstmt = conn.prepareStatement(sql);
+			System.out.println(sql);
 			pstmt.setInt(1, parkId);
 			pstmt.executeUpdate();
+			conn.commit();
 			pstmt.close();
 			
 			sql = "delete parking_img \n";
-			sql += "where parkId = ?";
+			sql += "where park_id = ?";
 			pstmt = conn.prepareStatement(sql);
+			System.out.println(sql);
 			pstmt.setInt(1, parkId);
 			pstmt.executeUpdate();
+			conn.commit();
 			pstmt.close();
 			
 			sql = "delete parking_facility \n";
-			sql += "where parkId = ?";
+			sql += "where park_id = ?";
 			pstmt = conn.prepareStatement(sql);
+			System.out.println(sql);
 			pstmt.setInt(1, parkId);
 			pstmt.executeUpdate();
+			conn.commit();
 			pstmt.close();
 			
 			sql = "delete parking \n";
-			sql += "where parkId = ?";
+			sql += "where park_id = ?";
 			pstmt = conn.prepareStatement(sql);
+			System.out.println(sql);
 			pstmt.setInt(1, parkId);
-			pstmt.executeUpdate();
+			cnt = pstmt.executeUpdate();
+			conn.commit();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			DBClose.close(conn, pstmt);
 		}
+		
+		return cnt;
 	}
 
 	@Override
-	public List<CitiesDto> ParkSearch(String address) {
-		List<CitiesDto> list = new ArrayList<CitiesDto>();
+	public List<ZipDto> parkingSearch(String address) {
+		List<ZipDto> list = new ArrayList<ZipDto>();
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -334,23 +289,24 @@ public class MemberParkingDaoImpl implements MemberParkingDao {
 		try {
 			conn = DBConnection.makeConnection();
 			String sql = "";
-			sql += "select sgg_code, emd_code, sgg_name, emd_name, lat, lng \n";
-			sql += "from cities \n";
-			sql += "where emd_name like '%'||?||'%' "; // "%" + ? + "%"
+			sql += "select substr(zipcode, 1, instr(zipcode, '-') -1) zip1, \n";
+			sql += "substr(zipcode, instr(zipcode, '-') + 1, 3) zip2, \n";
+			sql += "sido, gugun, dong, nvl(bunji, ' ') bunji \n";
+			sql += "from zipcode \n";
+			sql += "where dong like '%'||?||'%' "; // "%" + ? + "%"
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, address);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
-				CitiesDto citiesDto = new CitiesDto();
+				ZipDto zipDto = new ZipDto();
+				zipDto.setZip1(rs.getString("zip1"));
+				zipDto.setZip2(rs.getString("zip2"));
+				zipDto.setSido(rs.getString("sido"));
+				zipDto.setGugun(rs.getString("gugun"));
+				zipDto.setDong(rs.getString("dong"));
+				zipDto.setBunji(rs.getString("bunji"));
 				
-				citiesDto.setSsgCode(rs.getInt("sgg_code"));
-				citiesDto.setEmdCode(rs.getInt("emd_code"));
-				citiesDto.setSsgName(rs.getString("sgg_name"));
-				citiesDto.setEmdName(rs.getString("emd_name"));
-				citiesDto.setLat(rs.getDouble("lat"));
-				citiesDto.setLng(rs.getDouble("lng"));
-				
-				list.add(citiesDto);
+				list.add(zipDto);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -359,6 +315,60 @@ public class MemberParkingDaoImpl implements MemberParkingDao {
 		}
 		
 		return list;
+	}
+
+	@Override
+	public ParkingDetailDto parkingView(int parkId) {
+		ParkingDetailDto parkingDto = new ParkingDetailDto();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = DBConnection.makeConnection();
+			String sql = "";
+			sql += "select p.park_id, park_name, park_capacity, owner_id, latitude, \n";
+			sql += "longitude, park_type, emd_code, content, detail_addr, \n";
+			sql += "		park_flag, park_avgPoint, get_status, cur_parking, PAY_YN, satur_pay_yn, holi_pay_yn,\n";
+			sql += "fulltime_monthly_pay, park_rate, park_time_rate, add_park_rate, day_max_pay \n";
+			sql += "from parking p, parking_detail d \n";
+			sql += "where p.park_id = d.park_id\n";
+			sql += "and p.park_id = ?";
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, parkId);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				parkingDto.setPark_id(rs.getInt("park_id"));
+				parkingDto.setPark_name(rs.getString("park_name"));
+				parkingDto.setPark_capacity(rs.getInt("park_capacity"));
+				parkingDto.setOwner_id(rs.getString("owner_id"));
+				parkingDto.setLatitude(rs.getDouble("latitude"));
+				parkingDto.setLongitude(rs.getDouble("longitude"));
+				parkingDto.setPark_type(rs.getString("park_type"));
+				parkingDto.setEmd_code(rs.getInt("emd_code"));
+				parkingDto.setContent(rs.getString("content"));
+				parkingDto.setPark_flag(rs.getInt("park_flag"));
+				parkingDto.setPark_avgPoint(rs.getInt("park_avgPoint"));
+				parkingDto.setGet_status(rs.getInt("get_status"));
+				parkingDto.setCur_parking(rs.getInt("cur_parking"));
+				parkingDto.setPay_yn(rs.getString("PAY_YN"));
+				parkingDto.setSatur_pay_yn(rs.getString("satur_pay_yn"));
+				parkingDto.setHoli_pay_yn(rs.getString("holi_pay_yn"));
+				parkingDto.setFulltime_monthly_pay(rs.getInt("fulltime_monthly_pay"));
+				parkingDto.setPark_rate(rs.getInt("park_rate"));
+				parkingDto.setPark_time_rate(rs.getInt("park_time_rate"));
+				parkingDto.setAdd_park_rate(rs.getInt("add_park_rate"));
+				parkingDto.setDay_max_pay(rs.getInt("day_max_pay"));
+				parkingDto.setDetailAddr("detail_addr");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose.close(conn, pstmt, rs);
+		}
+
+		return parkingDto;
 	}
 
 }

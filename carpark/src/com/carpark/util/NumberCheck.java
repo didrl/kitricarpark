@@ -37,5 +37,5 @@ public class NumberCheck {
 		
 		return flag;
 	}
-	
+	 
 }

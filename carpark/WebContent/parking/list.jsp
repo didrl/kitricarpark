@@ -8,33 +8,8 @@
     
 <%
 if(memberDto != null) {
-   List<ParkingDetailDto> list = (List<ParkingDetailDto>) request.getAttribute("parkList");
+   List<ParkingDetailDto> list = (List<ParkingDetailDto>) request.getAttribute("parkingList");
 %>
-
-<script type="text/javascript">
-function parkList() {
-   document.memberParkingForm.act.value = "parkList";
-   document.memberParkingForm.action = "/carpark/memberparking";
-   document.memberParkingForm.submit();
-   
-}
-
-function parkView(parkId) {
-   document.memberParkingForm.act.value = "parkView";
-   document.memberParkingForm.parkId.value = parkId;
-   document.memberParkingForm.action = "/carpark/memberparking"
-   document.memberParkingForm.submit();
-   
-}
-
-function parkDelete(parkId) {
-   document.memberParkingForm.act.value = "parkDelete";
-   document.memberParkingForm.parkId.value = parkId;
-   document.memberParkingForm.action = "/carpark/memberparking"
-   document.memberParkingForm.submit();
-   
-}
-</script>
 <div id="wrapper" align="center">
 <!-- ****************************************************************************************************************** -->   
 
@@ -44,13 +19,15 @@ function parkDelete(parkId) {
          <br><h3>나의 주차장</h3><br>   
                
             
-            <!-- 메세지 리스트 -->
             <div class="table" style="width: 800px">
               <table  class="table table-hover" style="text-align:center">
                  <tr>
-                    <td width="200"><b>주차장 이름</b></td>
-                    <td width="200"><b>주차장 평점</b></td>
-                    <td width="100"></td>
+                    <td>주차장 이름</td>
+                    <td width="50">평점</td>
+                    <td width="80">사용가능</td>
+                    <td width="90"></td>
+                    <td width="60"></td>
+                    <td width="60"></td>
                  </tr>
             
 <%
@@ -58,13 +35,35 @@ function parkDelete(parkId) {
    if(size > 0) {
       for(ParkingDetailDto parkingDetailDto : list) {
 %>
-               <!-- 쪽지목록 -->
-               <tr >
-                  <td><label onclick="javascript:parkingView('<%=parkingDetailDto.getPark_id()%>');">
-                  <%=parkingDetailDto.getPark_name() %></label></td>
-                  <td><label onclick="javascript:parkingView('<%=parkingDetailDto.getPark_id()%>');">
-                  <%=parkingDetailDto.getPark_avgPoint() %></label></td>
-                  <td><input type="button" value="삭제" onclick="javascript:parkDelete('<%=parkingDetailDto.getPark_id()%>');"></td>                  
+				<tr>
+                  <td>
+                  	<a href="javascript:parkingView('<%=parkingDetailDto.getPark_id()%>');">
+                  		<%=parkingDetailDto.getPark_name() %>
+                  	</a>
+                  </td>
+                  <td>
+	                 	<%=parkingDetailDto.getPark_avgPoint() %>
+                  </td>
+<%
+		if(parkingDetailDto.getPark_flag() == 0) {
+%>
+                  <td> O </td>
+<%
+		} else {
+%>
+				  <td> X </td>
+<%
+		}
+%>
+                  <td>
+                  	<button type="button" class="btn btn-default btn-group-xs" onclick="javascript:parkingView('<%=parkingDetailDto.getPark_id()%>');"> 상세보기 </button>
+                  </td>
+                  <td>                  
+                  	<button type="button" class="btn btn-default btn-group-xs" onclick="javascript:parkingModify('<%=parkingDetailDto.getPark_id()%>');"> 수정 </button>
+                  </td>
+                  <td>	
+                  	<button type="button" class="btn btn-default btn-group-xs" onclick="javascript:parkingDelete('<%=parkingDetailDto.getPark_id()%>');"> 삭제 </button>
+				  </td>
 <%
       }
 %>
@@ -87,13 +86,13 @@ function parkDelete(parkId) {
          <!-- 페이지 네비게이션/검색 -->
          <nav align="center">
             <div class="form-group">
-            <form class="form-inline" name="searchForm" method="get" action="">
+            <form class="form-inline" name="parkingSearchForm" method="get" action="">
                <input type="hidden" name="act" id="act" value="messageSearch">
                <input type="hidden" name="bcode" id="bcode" value="1">
                <input type="hidden" name="pg" id="pg" value="1">
                <select name="key">
-                  <option value="subject">주차장 이름</option>
-                  <option value="content">관리자 이름</option>
+                  <option value="subject">주차장</option>
+                  <option value="content">내용</option>
                </select>
                <input type="text" name="word" id="word" value="">
                <input type="button" class="btn btn-default" value="검색" onclick="javascript:messageSearch();">

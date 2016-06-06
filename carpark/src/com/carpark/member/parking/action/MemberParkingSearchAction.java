@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.carpark.action.Action;
-import com.carpark.common.model.CitiesDto;
+import com.carpark.common.model.ZipDto;
 import com.carpark.member.model.service.MemberParkingServiceImpl;
 import com.carpark.util.Encoder;
 
@@ -19,8 +19,7 @@ public class MemberParkingSearchAction implements Action {
 			throws IOException, ServletException {
 		
 		String parkAddress = Encoder.isoToUtf(request.getParameter("parkAddress"));
-		System.out.println(parkAddress);
-		List<CitiesDto> list = MemberParkingServiceImpl.getMemberParkingservice().ParkSearch(parkAddress);
+		List<ZipDto> list = MemberParkingServiceImpl.getMemberParkingservice().parkingSearch(parkAddress);
 		request.setAttribute("addressList", list);
 		
 		return "/parking/parksearch.jsp";
