@@ -84,7 +84,7 @@
 							<h4>
 								<strong>안정적인 서비스</strong>
 							</h4>
-							<p>안정적인 서비스를 위해 직접 확인하며 발로 뛰고 있습니다!</p>
+							<p>안정적인 서비스를 위해 발로 뛰며 직접 확인하고 있습니다!</p>
 							<!-- <a href="#" class="btn btn-light">Learn More</a> -->
 						</div>
 					</div>
