@@ -19,7 +19,6 @@ public class MemberParkingController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("오나?");
 		String act = request.getParameter("act");
 		int bcode = NumberCheck.nullToZero(request.getParameter("bcode"));
 		int pg = NumberCheck.nullToOne(request.getParameter("pg"));
@@ -42,6 +41,7 @@ public class MemberParkingController extends HttpServlet {
 			PageMove.forward(request, response, path + queryString);
 			
 		} else if("parkingModify".equals(act)) {
+			System.out.println("??");
 			path = MemberActionFactory.getMemberParkingModifyAction().execute(request, response);
 			PageMove.forward(request, response, path + queryString);
 			
@@ -51,11 +51,13 @@ public class MemberParkingController extends HttpServlet {
 			PageMove.forward(request, response, path + queryString);
 			
 		} else if("parkingView".equals(act)) {
-			System.out.println("view controller");
 			path = MemberActionFactory.getMemberParkingViewAction().execute(request, response);
 			PageMove.forward(request, response, path + queryString);
 			 
-		} else if("".equals(act)) {
+		} else if("parkingMvModify".equals(act)) {
+			MemberActionFactory.getMemberParkingViewAction().execute(request, response);
+			path = "/parking/modify.jsp";
+			PageMove.forward(request, response, path + queryString);
 			
 		} else if("".equals(act)) {
 			

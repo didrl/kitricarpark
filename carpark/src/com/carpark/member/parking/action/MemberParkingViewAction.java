@@ -18,7 +18,6 @@ public class MemberParkingViewAction implements Action {
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 		
-		System.out.println("view action start");
 		int parkId = NumberCheck.nullToZero(request.getParameter("parkId"));
 		if(parkId != 0) {
 			ParkingDetailDto parkingDto = MemberParkingServiceImpl.getMemberParkingservice().parkingView(parkId);

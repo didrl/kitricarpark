@@ -59,7 +59,7 @@ if(memberDto != null) {
                   	<button type="button" class="btn btn-default btn-group-xs" onclick="javascript:parkingView('<%=parkingDetailDto.getPark_id()%>');"> 상세보기 </button>
                   </td>
                   <td>                  
-                  	<button type="button" class="btn btn-default btn-group-xs" onclick="javascript:parkingModify('<%=parkingDetailDto.getPark_id()%>');"> 수정 </button>
+                  	<button type="button" class="btn btn-default btn-group-xs" onclick="javascript:parkingMvModify('<%=parkingDetailDto.getPark_id()%>');"> 수정 </button>
                   </td>
                   <td>	
                   	<button type="button" class="btn btn-default btn-group-xs" onclick="javascript:parkingDelete('<%=parkingDetailDto.getPark_id()%>');"> 삭제 </button>

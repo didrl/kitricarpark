@@ -7,7 +7,11 @@
 
 <!-- ************************************************************************************ -->
 <!-- ************************************************************************************ -->	
-<%if(memberDto != null){ %>
+<%
+if(memberDto != null){ 
+
+	ParkingDetailDto parkingDto = (ParkingDetailDto) request.getAttribute("parkingView");
+%>
 <div id="wrapper">
 
 		<!-- main -->
@@ -16,21 +20,36 @@
 			<br>
 			<!-- 본문내용 -->
 			<div class="col-md-10">
-			<form name="parkRegisterForm" method="post" action="">
-				<input type="hidden" name="act" value="parkRegister">				
-				<input type="hidden" name="coordinate" value="">
+			<form name="parkingModifyForm" method="post" action="">
+				<input type="hidden" name="act" value="parkingModify">				
+				
 				
 				<div class="row">
 					<div class="col-md-2">
 						<b>주차장 구분</b><br>
 					</div>
 					<div class="col-md-10">
+<%
+if("0" == parkingDto.getPark_type()) {
+%>
 						<label class="radio-inline">
 						  <input type="radio" name="parkType" value="0" checked="checked"> 개인
 						</label>
 						<label class="radio-inline">
 						  <input type="radio" name="parkType" value="1"> 사설
 						</label>
+<%
+} else {
+%>
+						<label class="radio-inline">
+						  <input type="radio" name="parkType" value="0"> 개인
+						</label>
+						<label class="radio-inline">
+						  <input type="radio" name="parkType" value="1" checked="checked"> 사설
+						</label>
+<%
+}
+%>
 					</div>
 				</div><hr>
 				
@@ -39,12 +58,28 @@
 						<b>사용가능여부</b><br>
 					</div>
 					<div class="col-md-10">
+<%
+if(0 == parkingDto.getPark_flag()) {
+%>
 						<label class="radio-inline">
 						  <input type="radio" name="parkFlag" value="0" checked="checked"> 사용가능
 						</label>
 						<label class="radio-inline">
 						  <input type="radio" name="parkFlag" value="1"> 사용불가
 						</label>
+<%
+} else {
+%>
+						<label class="radio-inline">
+						  <input type="radio" name="parkFlag" value="0"> 사용가능
+						</label>
+						<label class="radio-inline">
+						  <input type="radio" name="parkFlag" value="1" checked="checked"> 사용불가
+						</label>
+<%
+}
+%>
+
 					</div>
 				</div><hr>
 				
@@ -54,7 +89,7 @@
 					</div>
 					<div class="col-md-10">
 						<div class="form-group">
-							<input type="text" class="form-control" name="parkName">
+							<input type="text" class="form-control" name="parkName" value="<%=parkingDto.getPark_name()%>">
 						</div>
 					</div><br>
 				</div><hr>
@@ -65,7 +100,8 @@
 					</div>
 					<div class="col-md-10">
 						<div class="form-group">
-							<input type="text" class="form-control" placeholder="주소" name="parkAddress" readonly="readonly"><br>
+							<input type="text" class="form-control" placeholder="주소" name="parkAddress" readonly="readonly" value="<%=parkingDto.getDetailAddr()%>">
+							<input type="text" class="form-control" name="coordinate" value="(<%=parkingDto.getLatitude()%> , <%=parkingDto.getLongitude()%>)">
 						</div>
 							<button type="button" class="btn btn-default" onclick="javascript:parkingSearchWindow();">검색</button>
 					</div>
@@ -76,7 +112,7 @@
 						<b>보유시설</b><br>
 					</div>
 					<div class="col-md-10">
-						<input type="text" class="form-control" name="facility">
+						<input type="text" class="form-control" name="facility" value="<%=parkingDto.getFacility()%>">
 					</div>
 				</div><hr>
 				
@@ -85,7 +121,7 @@
 						<b>보유시설상세</b><br>
 					</div>
 					<div class="col-md-10">
-						<textarea class="form-control" rows="3" name="feature"></textarea>						
+						<textarea class="form-control" rows="3" name="feature" value="<%=parkingDto.getFeature()%>"></textarea>						
 					</div>
 				</div><br>
 				
@@ -123,7 +159,7 @@
 							</tr>							
 							<tr>
 								<td width="90">총 주차면수</td>				
-								<td width="90"><input type="text" class="form-control" placeholder="124" name="parkCapacity"></td>			
+								<td width="90"><input type="text" class="form-control" placeholder="124" name="parkCapacity" value="<%=parkingDto.getPark_capacity()%>"></td>			
 								<td width="90">기본주차시간</td>				
 								<td width="90">
 									<select class="form-control" name="parkTimeRate">
@@ -193,7 +229,7 @@
 									</select>
 								</td>	
 								<td width="90">월정기권</td>
-								<td><input type="text" class="form-control" placeholder="코인" name="fullTimeMonthlyPay"></td>
+								<td><input type="text" class="form-control" placeholder="코인" name="fullTimeMonthlyPay" value="<%=parkingDto.getFulltime_monthly_pay()%>"></td>
 							</tr>					
 						</table>
 					</div>
@@ -213,14 +249,14 @@
 						<b>주차장 설명</b><br>
 					</div>
 					<div class="col-md-10">
-						<textarea class="form-control" rows="3" name="content"></textarea>						
+						<textarea class="form-control" rows="3" name="content" value="<%=parkingDto.getContent()%>"></textarea>						
 					</div>
 				</div><br>
 			</form>
 	
 				<div class="row">
 						<p align="center">
-		  					<button type="button" class="btn btn-primary btn-lg" onclick="javascript:parkingRegister();">등록</button>
+		  					<button type="button" class="btn btn-primary btn-lg" onclick="javascript:parkingModify('<%=parkingDto.getPark_id()%>');">수정</button>
 		  					<button type="reset" class="btn btn-default btn-lg">취소</button>
 						</p>
 				</div>

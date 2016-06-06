@@ -72,3 +72,32 @@ function selectAddress(address){
 function windowClose() {
 	window.close();
 }
+
+function parkingModify(parkId) {
+	if(document.parkingModifyForm.payYn.value == "") {
+		alert("평일 요금을 선택하세요")
+	} else if(document.parkingModifyForm.saturPayYn.value == "") {
+		alert("토요일 요금을 선택하세요")
+	} else if(document.parkingModifyForm.holiPayYn.value == "") {
+		alert("공휴일 요금을 선택하세요")
+	} else if(document.parkingModifyForm.parkTimeRate.value == "") {
+		alert("기본 주차 시간을 선택하세요")
+	} else if(document.parkingModifyForm.parkRate.value == "") {
+		alert("기본 요금을 선택하세요")
+	} else if(document.parkingModifyForm.addParkRate.value == "") {
+		alert("추가 요금을 선택하세요")
+	} else if(document.parkingModifyForm.dayMaxPay.value == "") {
+		alert("하루 최대 요금을 선택하세요")
+	} else {
+		document.parkingModifyForm.action = "/carpark/memberparking";
+		document.parkingModifyForm.submit();
+				
+	}
+}
+
+function parkingMvModify(parkId) {
+	document.common.act.value = "parkingMvModify";
+	document.common.parkId.value = parkId;
+	document.common.action = "/carpark/memberparking";
+	document.common.submit();
+}

@@ -71,7 +71,7 @@ public class MemberParkingRegisterAction implements Action {
 		
 		if(parkingId != 0) {
 			MemberParkingServiceImpl.getMemberParkingservice().parkingRegister(parkingDto);
-			List<ParkingDetailDto> list = MemberParkingServiceImpl.getMemberParkingservice().parkingList("didrl");
+			List<ParkingDetailDto> list = MemberParkingServiceImpl.getMemberParkingservice().parkingList(memberDto.getUser_id());
 			request.setAttribute("parkingList", list);
 		}
 		
