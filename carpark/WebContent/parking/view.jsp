@@ -33,7 +33,7 @@ if(parkingDto != null) {
 					</div>
 					<div class="col-md-10">
 <%
-if("0" == parkingDto.getPark_type()) {
+if("0".equals(parkingDto.getPark_type())) {
 %>
 	개인
 <%
@@ -204,7 +204,7 @@ if("0" == parkingDto.getHoli_pay_yn()) {
 	
 				<div class="row">
 						<p align="center">
-		  					<button type="button" class="btn btn-default btn-lg" onclick="javascript:parkingList();">목록</button>
+		  					<button type="button" class="btn btn-default btn-lg" onclick="javascript:parkingList('<%=pg%>');">목록</button>
 		  					<button type="button" class="btn btn-default btn-lg" onclick="javascript:parkingMvModify('<%=parkingDto.getPark_id()%>');">수정</button>
 		  					<button type="button" class="btn btn-default btn-lg" onclick="javascript:parkingDelete('<%=parkingDto.getPark_id()%>');">삭제</button>
 						</p>

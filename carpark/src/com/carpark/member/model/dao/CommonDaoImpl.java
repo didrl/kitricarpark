@@ -127,6 +127,80 @@ public class CommonDaoImpl implements CommonDao {
 		
 		return count;
 	}
+
+	@Override
+	public int totalArticleCountAddress(Map<String, String> map) {
+		int count = 0;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String address = map.get("address");
+
+		try {
+			conn = DBConnection.makeConnection();
+			String sql = "";
+			sql += "select count(dong) \n";
+				sql += "from zipcode \n";
+				sql += "where dong like '%'||?||'%' \n";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, address);
+			rs = pstmt.executeQuery();
+			rs.next();
+			count = rs.getInt(1);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose.close(conn, pstmt, rs);
+		}
+		
+		return count;
+	}
+	
+	@Override
+	public int totalArticleCountParking(Map<String, String> map) {
+		int count = 0;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String ownerId = map.get("ownerId");
+		String key = map.get("key");
+		String word = map.get("word");
+		
+		try {
+			conn = DBConnection.makeConnection();
+			String sql = "";
+			sql += "select count(park_id) \n";
+				sql += "from parking \n";
+				sql += "where owner_id = ? \n";
+			if(key != null && !key.isEmpty()) {
+				if(word != null && !word.isEmpty()) {
+					if("park_name".equals(key))
+						sql += "and park_name like '%'||?||'%' \n";
+					else
+						sql += "and " + key + " = ? \n";						
+				}
+			}
+			pstmt = conn.prepareStatement(sql);
+			int idx = 0;
+			pstmt.setString(++idx, ownerId);
+			if(key != null && !key.isEmpty()) {
+				if(word != null && !word.isEmpty()) {
+					pstmt.setString(++idx, word);
+				}
+			}
+			rs = pstmt.executeQuery();
+			rs.next();
+			count = rs.getInt(1);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose.close(conn, pstmt, rs);
+		}
+		
+		return count;
+	}
 	
 	
 /////////////////////////// 메소드 통합중 ////////////////////////////////////	
