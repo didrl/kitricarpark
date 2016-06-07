@@ -109,4 +109,7 @@ function callSendViewClose() {
 	window.close();
 }
 
+function memberCallDelete(seq) {
+	document.location.href=root+"/call?act=callSendDelete&seq="+seq;
+}
 
