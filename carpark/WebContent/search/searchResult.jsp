@@ -115,7 +115,7 @@ for(int i =0;i<list.size();i++){
 		                <div class="panel panel-default">
 		
 							<div id="daumlistmap" style="width:100%;height:650px;"></div>
-							<script src="//apis.daum.net/maps/maps3.js?apikey=c2d873676f2c4854b2b2c62e165a629d"></script>
+							<script src="//apis.daum.net/maps/maps3.js?apikey=4763b9e0f6cbc4102f42cb9f7b0f9167"></script>
 							<script>
 								var mapContainer = document.getElementById('daumlistmap'), // 지도를 표시할 div 
 								    mapOption = {
