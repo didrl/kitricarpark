@@ -24,6 +24,7 @@ import com.carpark.admin.penalty.action.AdminPenaltyModifyAction;
 import com.carpark.admin.penalty.action.AdminPenaltyRegisterAction;
 import com.carpark.admin.report.action.AdminReportDeleteAction;
 import com.carpark.admin.report.action.AdminReportListAction;
+import com.carpark.admin.report.action.AdminReportListFlagAction;
 import com.carpark.admin.report.action.AdminReportViewAction;
 
 public class AdminActionFactory {
@@ -60,6 +61,7 @@ public class AdminActionFactory {
 	private static Action adminAllUserInfoAction;
 	
 	private static Action adminReportListAction;
+	private static Action adminReportListFlagAction;
 	private static Action adminReportViewAction;
 	private static Action adminReportDeleteAction;
 	
@@ -95,6 +97,7 @@ public class AdminActionFactory {
 		adminCallViewAction = new AdminCallViewAction();	
 		
 		adminReportListAction = new AdminReportListAction();
+		adminReportListFlagAction = new AdminReportListFlagAction();
 		adminReportViewAction = new AdminReportViewAction();
 		adminReportDeleteAction = new AdminReportDeleteAction();
 		
@@ -214,6 +217,10 @@ public class AdminActionFactory {
 
 	public static Action getAdminReportDeleteAction() {
 		return adminReportDeleteAction;
+	}
+
+	public static Action getAdminReportListFlagAction() {
+		return adminReportListFlagAction;
 	}
 	
 	

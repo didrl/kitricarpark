@@ -20,6 +20,19 @@ PageNavigator navigator = (PageNavigator) request.getAttribute("navigator");
 				<br><h3>신고내역</h3><br>
 					
 				
+				<div class="btn-group" role="group" aria-label="...">
+
+	  				<button type="button" class="btn btn-default" onclick="javascript:adminReportList('1');">
+	  					전체
+	  				</button>
+	  				<button type="button" class="btn btn-default" onclick="javascript:adminReportListFlag('1', '1');">
+	  					처리완료
+	  				</button>
+	  				<button type="button" class="btn btn-default" onclick="javascript:adminReportListFlag('1', '0');">
+	  					처리중
+	  				</button>	
+				</div>
+				
 				<!-- 신고내역 -->
 				<div class="table">
 				  <table class="table table-hover" style="text-align:center">
@@ -88,8 +101,8 @@ if(size > 0) {
 						<option value="user_id">신고대상</option>
 					</select>
 					<input type="text" name="word" id="word" value="">
-					<input type="button" class="btn btn-default" value="검색" onclick="javascript:reportSearch();">
-					<input type="button" class="btn btn-default" value="전체목록" onclick="javascript:reportList('1');">
+					<input type="button" class="btn btn-default" value="검색" onclick="javascript:adminReportSearch();">
+					<input type="button" class="btn btn-default" value="전체목록" onclick="javascript:adminReportList('1');">
 				</form>
 				</div>
 				<ul class="pagination">

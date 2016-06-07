@@ -27,8 +27,8 @@ public class AdminReportListAction implements Action {
 		String key = StringCheck.nullToBlank(request.getParameter("key"));
 		String word = StringCheck.nullToBlank(Encoder.isoToUtf(request.getParameter("word")));
 		
-		
 		List<ReportDto> list = AdminReportServiceImpl.getAdminReportService().listArticle(pg, key, word);
+		
 		request.setAttribute("adminReportList", list);
 		
 		PageNavigator navigator = CommonServiceImpl.getCommonService().getPageNavigatorAdminReport(bcode, pg, key, word);

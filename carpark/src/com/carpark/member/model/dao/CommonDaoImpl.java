@@ -217,7 +217,7 @@ public class CommonDaoImpl implements CommonDao {
 			String sql = "";
 			sql += "select count(seq) \n";
 			sql += "from board \n";
-			sql += "where bocde = ? \n";
+			sql += "where bcode = ? \n";
 			if(key != null && !key.isEmpty()) {
 				if(word != null && !word.isEmpty()) {
 					if("subject".equals(key))
@@ -229,6 +229,53 @@ public class CommonDaoImpl implements CommonDao {
 			pstmt = conn.prepareStatement(sql);
 			int idx = 0;
 			pstmt.setString(++idx, map.get("bcode"));
+			if(key != null && !key.isEmpty()) {
+				if(word != null && !word.isEmpty()) {
+					pstmt.setString(++idx, word);
+				}
+			}
+			rs = pstmt.executeQuery();
+			rs.next();
+			count = rs.getInt(1);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose.close(conn, pstmt, rs);
+		}
+		
+		return count;
+	}
+	
+	@Override
+	public int totalArticleCountAdminReportFlag(Map<String, String> map) {
+		int count = 0;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String key = map.get("key");
+		String word = map.get("word");
+		String flag = map.get("flag");
+		
+		try {
+			conn = DBConnection.makeConnection();
+			String sql = "";
+			sql += "select count(b.seq) \n";
+			sql += "from board b, report r \n";
+			sql += "where b.bcode = ? \n";
+			sql += "and report_flag = ? \n";
+			if(key != null && !key.isEmpty()) {
+				if(word != null && !word.isEmpty()) {
+					if("subject".equals(key))
+						sql += "and subject like '%'||?||'%' \n";
+					else
+						sql += "and " + key + " = ? \n";						
+				}
+			}
+			pstmt = conn.prepareStatement(sql);
+			int idx = 0;
+			pstmt.setString(++idx, map.get("bcode"));
+			pstmt.setString(++idx, flag);
 			if(key != null && !key.isEmpty()) {
 				if(word != null && !word.isEmpty()) {
 					pstmt.setString(++idx, word);

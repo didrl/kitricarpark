@@ -10,6 +10,7 @@ public interface AdminReportDao {
 	int writeArticle(ReportDto reportDto);
 	ReportDto viewArticle(int seq);
 	List<ReportDto> listArticle(Map<String, String> map);
+	List<ReportDto> listFlagArticle(Map<String, String> map);
 	void modifyArticle(int seq);
 
 }

@@ -8,6 +8,17 @@ function adminReportList(pg) {
 	
 }
 
+function adminReportListFlag(pg, flag) {
+	document.getElementById("act").value = "adminReportListFlag";	
+	document.getElementById("bcode").value = 3;
+	document.getElementById("pg").value = pg;
+	document.getElementById("flag").value = flag;
+		
+	document.common.action = "/carpark/adminreport";
+	document.common.submit();
+	
+}
+
 function adminReportId(id, parkId, parkName) {
 	document.reportWriteForm.reset();
 	document.reportWriteForm.report_id.value = id;

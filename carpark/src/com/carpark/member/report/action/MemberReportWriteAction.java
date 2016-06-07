@@ -28,7 +28,6 @@ public class MemberReportWriteAction implements Action {
 		if(memberDto != null) {
 		
 			int seq = CommonServiceImpl.getCommonService().getNextSeq();
-			System.out.println("seq : " + seq);
 			
 			String userId = memberDto.getUser_id();
 			int bcode = 3;//페이지 처리를 위한 bcode

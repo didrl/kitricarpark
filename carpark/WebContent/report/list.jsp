@@ -22,7 +22,6 @@ PageNavigator navigator = (PageNavigator) request.getAttribute("navigator");
 				
 				<!-- 신고하기 모달창 -->
 				<%@ include file="/report/write.jsp" %>
-					
 				
 				<!-- 신고내역 -->
 				<div class="table">

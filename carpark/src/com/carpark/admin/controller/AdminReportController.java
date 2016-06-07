@@ -48,7 +48,9 @@ public class AdminReportController extends HttpServlet {
 			path = AdminActionFactory.getAdminReportListAction().execute(request, response);
 			PageMove.forward(request, response, path + queryString);
 
-		} else if("".equals(act)) {
+		} else if("adminReportListFlag".equals(act)) {
+			path = AdminActionFactory.getAdminReportListFlagAction().execute(request, response);
+			PageMove.forward(request, response, path + queryString);
 
 		} else if("".equals(act)) {
 
