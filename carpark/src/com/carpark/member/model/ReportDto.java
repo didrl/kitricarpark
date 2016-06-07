@@ -1,10 +1,13 @@
 package com.carpark.member.model;
 
-public class ReportDto extends BoardDto {
+import java.io.Serializable;
+
+public class ReportDto extends BoardDto implements Serializable{
 	
 	private int cseq;
 	private int park_id;
 	private String report_id;
+	private int report_flag;
 	
 	public int getCseq() {
 		return cseq;
@@ -24,5 +27,12 @@ public class ReportDto extends BoardDto {
 	public void setReport_id(String report_id) {
 		this.report_id = report_id;
 	}
+	public int getReport_flag() {
+		return report_flag;
+	}
+	public void setReport_flag(int report_flag) {
+		this.report_flag = report_flag;
+	}
+	
 
 }

@@ -2,9 +2,9 @@ package com.carpark.member.model.service;
 
 import java.util.List;
 
-import com.carpark.member.model.ZipDto;
+import com.carpark.common.model.CallDto;
+import com.carpark.common.model.ZipDto;
 import com.carpark.member.model.dao.MemberCallDaoImpl;
-import com.carpark.member.model.dao.MemberParkingDaoImpl;
 
 public class MemberCallServiceImpl implements MemberCallService {
 
@@ -21,8 +21,23 @@ public class MemberCallServiceImpl implements MemberCallService {
 	}
 
 	@Override
-	public List<ZipDto> list(String dong) {
-		return MemberCallDaoImpl.getMemberCallDao().zipSearch(dong);
+	public List<ZipDto> zipSearchList(String dong) {
+		return MemberCallDaoImpl.getMemberCallDao().zipSearchList(dong);
+	}
+
+	@Override
+	public List<CallDto> sendList(String id) {
+		return MemberCallDaoImpl.getMemberCallDao().sendList(id);
+	}
+
+	@Override
+	public int register(CallDto callDto) {
+		return MemberCallDaoImpl.getMemberCallDao().register(callDto);
+	}
+
+	@Override
+	public CallDto sendView(int seq) {
+		return MemberCallDaoImpl.getMemberCallDao().sendView(seq);
 	}
 	
 	

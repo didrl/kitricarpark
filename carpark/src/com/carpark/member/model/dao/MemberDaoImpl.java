@@ -205,7 +205,7 @@ public class MemberDaoImpl implements MemberDao {
 
 			conn=DBConnection.makeConnection();
 			String sql="";
-			sql +="select a.park_id, a.park_name,a.city, a.park_avgPoint, a.park_capacity, a.latitude, a.longitude,a.content\n";
+			sql +="select distinct a.park_id, a.park_name,a.city, a.park_avgPoint, a.park_capacity, a.latitude, a.longitude,a.content\n";
 			sql +="from (select p.park_id, p.park_name,c.sgg_name ||' '|| c.emd_name as city, pd.park_avgPoint,p.park_capacity,p.latitude,p.longitude,p.content\n";
 			sql +="			from parking p , cities c, parking_detail pd\n";
 			sql +="			where p.emd_code = c.emd_code\n";
@@ -230,8 +230,8 @@ public class MemberDaoImpl implements MemberDao {
 				parkingDto.setLongitude(rs.getDouble("longitude"));
 				parkingDto.setLatitude(rs.getDouble("latitude"));
 				parkingDto.setContent(rs.getString("content"));
+
 				list.add(parkingDto);	
-				list.add(parkingDto);
 				}
 			} catch (SQLException e) {
 			e.printStackTrace();

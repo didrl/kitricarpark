@@ -6,11 +6,11 @@
 			aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
-					<div class="modal-header">
+					<div class="modal-header text-center">
 						<button type="button" class="close" data-dismiss="modal">
 							<span aria-hidden="true">×</span><span class="sr-only">Close</span>
 						</button>
-						<h4 id="reportWriteModal">신고하기</h4>
+						<h4 class="reportWrite" id="reportWriteModal">신고하기</h4>
 					</div>
 					<div class="modal-body">
 
@@ -22,21 +22,23 @@
 								<div class="form-group">
 									<form class="form-horizontal" name="reportWriteForm" method="post" action="">
 										<input type="hidden" name="act" value="reportWrite">
+										<input type="hidden" name="bcode" value="3"> 
 										<input type="hidden" name="pg" value="1"> 
 										<input type="hidden" name="key" value=""> 
 										<input type="hidden" name="word" value="">
+										<input type="hidden" name="report_id" value="">
+										<input type="hidden" name="park_id" value="">
 
-										<div class="form-group">
-											<label for="userId">신고대상</label> <input type="text"
-												class="form-control" id="userId" placeholder="신고대상"
-												name="userId">
+										<div class="form-group text-left">
+											<label for="userId">신고대상</label> 
+											<input type="text" class="form-control" name="report_info" readonly="readonly"><br>
 										</div>
-										<div class="form-group">
+										<div class="form-group text-left">
 											<label for="subject">제목</label> <input type="text"
 												class="form-control" id="subject" placeholder="제목"
 												name="subject">
 										</div>
-										<div class="form-group">
+										<div class="form-group text-left">
 											<label for="content">내용</label>
 											<textarea class="form-control" rows="10" id="content"
 												name="content"></textarea>

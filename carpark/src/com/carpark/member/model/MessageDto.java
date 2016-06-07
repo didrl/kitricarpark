@@ -1,6 +1,8 @@
 package com.carpark.member.model;
 
-public class MessageDto extends BoardDto {
+import java.io.Serializable;
+
+public class MessageDto extends BoardDto implements Serializable{
 
 	private int mseq;
 	private int seq;

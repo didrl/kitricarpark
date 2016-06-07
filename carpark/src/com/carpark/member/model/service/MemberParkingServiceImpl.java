@@ -1,10 +1,13 @@
 package com.carpark.member.model.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-import com.carpark.common.model.CitiesDto;
 import com.carpark.common.model.ParkingDetailDto;
+import com.carpark.common.model.ZipDto;
 import com.carpark.member.model.dao.MemberParkingDaoImpl;
+import com.carpark.util.BoardConstance;
 
 public class MemberParkingServiceImpl implements MemberParkingService {
 	
@@ -21,28 +24,43 @@ public class MemberParkingServiceImpl implements MemberParkingService {
 	}
 
 	@Override
-	public void MemberParkingRegister(ParkingDetailDto parkingDto) {
-		MemberParkingDaoImpl.getMemberParkingDao().MemberParkingRegister(parkingDto);
+	public void parkingRegister(ParkingDetailDto parkingDto) {
+		MemberParkingDaoImpl.getMemberParkingDao().parkingRegister(parkingDto);
 	}
 
 	@Override
-	public void MemberParkingModify(ParkingDetailDto parkingDto) {
-		MemberParkingDaoImpl.getMemberParkingDao().MemberParkingModify(parkingDto);
+	public void parkingModify(ParkingDetailDto parkingDto) {
+		MemberParkingDaoImpl.getMemberParkingDao().parkingModify(parkingDto);
 	}
 
 	@Override
-	public List<ParkingDetailDto> MemberParkingList(String userId) {
-		return MemberParkingDaoImpl.getMemberParkingDao().MemberParkingList(userId);
+	public List<ParkingDetailDto> parkingList(String userId) {
+		return MemberParkingDaoImpl.getMemberParkingDao().parkingList(userId);
 	}
 
 	@Override
-	public void MemberParkingDelete(int parkId) {
-		MemberParkingDaoImpl.getMemberParkingDao().MemberParkingDelete(parkId);
+	public int parkingDelete(int parkId) {
+		return MemberParkingDaoImpl.getMemberParkingDao().parkingDelete(parkId);
 	}
 
 	@Override
-	public List<CitiesDto> ParkSearch(String address) {
-		return MemberParkingDaoImpl.getMemberParkingDao().ParkSearch(address);
+	public List<ZipDto> parkingSearch(String address, int pg) {
+		Map<String, String> map = new HashMap<String, String>();
+		
+		int end = BoardConstance.BOARD_LIST_SIZE * pg;
+		System.out.println(end);
+		int start = end - BoardConstance.BOARD_LIST_SIZE;
+		System.out.println(start);
+		
+		map.put("address", address);
+		map.put("end", end + "");
+		map.put("start", start + "");
+		return MemberParkingDaoImpl.getMemberParkingDao().parkingSearch(map);
+	}
+
+	@Override
+	public ParkingDetailDto parkingView(int parkId) {
+		return MemberParkingDaoImpl.getMemberParkingDao().parkingView(parkId);
 	}
 
 }

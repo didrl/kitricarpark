@@ -1,3 +1,4 @@
+<%@page import="org.json.simple.JSONObject"%>
 <%@page import="com.carpark.member.model.FavoriteDto"%>
 <%@page import="com.carpark.member.model.ReviewDto"%>
 <%@page import="java.util.ArrayList"%>
@@ -13,11 +14,42 @@ ParkingDto parkingDetail = (ParkingDto)session.getAttribute("parkingDetail");
 ArrayList<ReviewDto> reviewlist = (ArrayList<ReviewDto>)session.getAttribute("reviewlist");
 ParkingDetailDto parkingDetail_info = (ParkingDetailDto)session.getAttribute("parkingDetail_info");
 ParkingFacilityDto parkingFacilityDto = (ParkingFacilityDto)session.getAttribute("parkingFacilityDto");
+ArrayList<Map<String,String>> availabledate = (ArrayList<Map<String,String>>)session.getAttribute("availabledate");
+Map<String, String> map =(Map<String,String>)session.getAttribute("searchInfo"); 
 ArrayList<FavoriteDto> favoritelist;
-System.out.println("<><><><><><><><"+parkingDetail.getPark_id()	);
+
+if(map == null){
+	%>
+	<script>
+	alert("세션이 종료되었습니다. 다시 시도해주세요.");
+	document.location.href = "<%=root%>/index.jsp";
+	</script>
+	<%
+}
+System.out.println("<><><><><><><><"+parkingDetail.getPark_id());
 System.out.println("<><><><latitude><><><"+parkingDetail.getLatitude());
 System.out.println("<><><><longtitude><><"+parkingDetail.getLongitude());
 System.out.println("<><><><content><><"+parkingDetail.getContent());
+//{ from: new Date(2013, 1, 1), to: newDate (2013, 2, 1) }
+StringBuffer sb =new StringBuffer("{ ");
+int size = availabledate.size();
+if(size<2 && size>0){
+	String tmp ="from : new Date("+availabledate.get(0).get("enddate")+")}";
+	sb.append(tmp);
+}else{
+	for(int i=0;i<size-1;++i){
+		String tmp ="from : new Date("+availabledate.get(i).get("enddate")+"),";
+		sb.append(tmp);
+		tmp ="to : new Date("+availabledate.get(i+1).get("startdate")+")},";
+		sb.append(tmp);
+		tmp ="{from : new Date("+availabledate.get(i+1).get("enddate")+")},";
+		sb.append(tmp);
+	}
+}
+System.out.println(size+"><><><><><><"+sb);
+System.out.println(availabledate.get(0).get("enddate"));
+System.out.println(availabledate.get(1).get("startdate"));
+System.out.println(availabledate.get(1).get("enddate"));
 
 int flagrs=0;
 int flagb=0;
@@ -46,6 +78,10 @@ if(memberDto != null){
    <!-- For sendMsg Modal -->
    <%@include file="/reservation/sendMessageModal.jsp"%>
    <!-- For sendMsg Modal -->
+   
+   <!-- For sendMsg Modal -->
+   <%@include file="/module/review_modal.jsp"%>
+   <!-- For sendMsg Modal -->
 
 <link href="/carpark/css/stylish-portfolio.css" rel="stylesheet" />
 <link href='http://fonts.googleapis.com/css?family=Roboto:400,500'	rel='stylesheet' type='text/css' />
@@ -72,7 +108,7 @@ if(memberDto != null){
 <!-- Damu map -->
 <link rel="stylesheet" href="/carpark/css/roadview.css">
 <link rel="stylesheet" href="/carpark/css/aroundinfo.css">
-<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=c2d873676f2c4854b2b2c62e165a629d&libraries=services"></script>
+<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=4763b9e0f6cbc4102f42cb9f7b0f9167&libraries=services"></script>
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -99,6 +135,11 @@ function messageWrite() {
 		document.messageForm.submit();
 	}
 }
+
+function writeReview(){
+	
+}
+
 function goReservation() {
 	var flagr=0;
 	flagr=<%=flagb%>
@@ -176,7 +217,7 @@ function setfavorite(){
 						<h3><b>&nbsp;&nbsp;&nbsp; <%=parkingDetail.getPark_name()%>  &nbsp;&nbsp;&nbsp; 
 							<i class = glyphicon glyphicon-star></i><i class = glyphicon glyphicon-star></i><i class = glyphicon glyphicon-star> </i><i class = glyphicon glyphicon-star></i><i class = glyphicon glyphicon-star-empty></i></b> 
 							<%=parkingDetail.getLocation() %>
-							<a href="javascript:setfavorite();"><img height="30"  src="/carpark/img/heart.jpg"></a>
+							<a href="javascript:setfavorite();"><img height="25"  src="/carpark/img/green-heart.png"></a>
 						</h3>
 					</div>
 				</div>	
@@ -200,8 +241,6 @@ function setfavorite(){
 							    };
 							
 							var searchmap = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-							
-							
 							
 							// 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
 							var mapTypeControl = new daum.maps.MapTypeControl();
@@ -259,7 +298,6 @@ function setfavorite(){
 
 							// 인포윈도우를 지도에 표시한다
 							infowindow.open(searchmap, marker);
-							
 							</script>
 					</div>
 					
@@ -482,10 +520,10 @@ function changeCategoryClass(el) {
 </script>
 						
 						<!-- Daum road View End -->
-						<!-- Street View start -->
+						<!-- Street View start
 						<iframe width="300" height="200" frameborder="1" style="border: 0"
 							src="https://www.google.com/maps/embed/v1/streetview?key=AIzaSyB3d8wlcwuwvoXDFp4vd4ghi9nDnuDt4Hw&location=46.414382,10.013988&heading=210&pitch=10&fov=35">
-						</iframe>
+						</iframe> -->
 						<!-- Street View End -->
 					</div>
 				</div>
@@ -493,14 +531,20 @@ function changeCategoryClass(el) {
 					<!-- Review Start-->
 				<div class="panel panel-default">
 					<div class="panel-heading"> 
-						<b>Review</b>
+						<b> 후 기 </b>
 							
 					</div>
 					<div class="panel-body">
+						<div align="right">
+							<button type="button" class="btn btn-success"  id="reviewToParkingbt" name="reviewToParking"  data-target="#reviewToParking" >
+                  				후기 남기기
+               				</button>
+               			</div>
 							<hr></hr>
 <%
-for(ReviewDto reviewDto : reviewlist){
-	int avgpoint = (int) reviewDto.getAvgPoint();
+if(reviewlist.size()>0){
+	for(ReviewDto reviewDto : reviewlist){
+		int avgpoint = (int) reviewDto.getAvgPoint();
 %>
 							<div class="row">
 								<div class="col-md-12">
@@ -509,18 +553,18 @@ for(ReviewDto reviewDto : reviewlist){
 									</div>
 								
 									<div class="text-right">
-	<% 
+<% 
 		for(int i = 0;i<avgpoint;++i){
-	%>
+%>
 									<span class="glyphicon glyphicon-star"></span>
-	<% 
+<% 
 		}
 		for(int i = 0;i<5-avgpoint;++i){
-	%>
+%>
 									<span class="glyphicon glyphicon-star-empty"></span>
-	<% 
+<% 
 		}
-	%> 
+%> 
 									</div>
 								</div>	
 							</div>
@@ -544,9 +588,14 @@ for(ReviewDto reviewDto : reviewlist){
 									</div>
 								</div>
 							</div>
-	<%
+<%
 	}
-	%>
+}else{
+%>
+	작성된 후기가 없습니다.
+<%
+}
+%>
 						</div>
 					</div>
 				</div>
@@ -613,13 +662,25 @@ for(ReviewDto reviewDto : reviewlist){
 					</div>
 					<!-- img panel End -->
 					<div class="well" align="center">
-						<div class="panel-body">호스트 : <%=parkingDetail.getOwner_id() %></div>
+						<div class="panel-body">관리자 아이디 : <%=parkingDetail.getOwner_id() %></div>
 						<div class="text-center">
-							 <button type="button" class="btn btn-success"  id="sendMsgToHost" name="sendMsgToHost" data-toggle="modal"  data-rel = "dialog" data-target="#msgToHost" >
-                  				Send Message
+							 <button type="button" class="btn btn-success"  id="sendMsgToHost" name="sendMsgToHost"   data-target="#msgToHost" >
+                  				메세지 보내기
                				</button>
+               				
+<%
+//if(!"".equals(parkingDetail.getOwner_id())) {//공영주차장이 아닐때
+%>
+							 <button type="button" class="btn btn-success"  id="report" name="report" data-toggle="modal"  data-target="#reportWrite"  onclick="javascript:reportId('<%=parkingDetail.getOwner_id() %>', '<%=parkingDetail.getPark_id() %>', '<%=parkingDetail.getPark_name() %>');">
+                  				신고하기
+               				</button>
+<%
+//}
+%>
+
 							</div>
 							</div>
+<%@include file="/report/write.jsp" %>
 						<!-- host info panel End -->
 					<!--  clelander panel  -->
 					<div class="panel panel-default" align="center">
@@ -681,7 +742,7 @@ for(ReviewDto reviewDto : reviewlist){
 			});
 	
 			
-			//review
+			//Msg to Host
 			$("#sendMsgToHost").on("click", function (event) {
 				var flagm=0;
 				var user_id="";
@@ -694,14 +755,38 @@ for(ReviewDto reviewDto : reviewlist){
 		        	$("#sendmsguser_id").val(userid);
 		        	$("#sendmsgpark_id").val("<%=parkingDetail.getPark_id()%>");
 			        $("#receiver").prop("readonly", true);
-			     //   $("#msgToHost").dialog("open");
-		         //   $("#msgToHost").load("<%=root%>/reservation/sendMessageModal.jsp");
+			        $("#msgToHost").modal("show");
 				}else{
+					$("#msgToHost").modal("hide");
 					alert("로그인 후 이용할 수 있습니다.");
 					return;
 				}
 				})
 				
+							//review to parking
+			$("#reviewToParkingbt").on("click", function (event) {
+				var flagm=0;
+				var user_id="";
+				userid=user_id;
+				flagm=<%=flagb%>;
+		 		if(flagm != 0){
+			        $("#park_name_review").val("<%=parkingDetail.getPark_name()%>");
+		 			$("#review_avaled_id").val("<%=parkingDetail.getOwner_id()%>");
+			        $("#subject_review").val("");
+			        $("#content_review").empty();
+		        	$("#review_user_id").val(userid);
+		        	$("#review_park_id").val("<%=parkingDetail.getPark_id()%>");
+			        $("#park_name_review").prop("readonly", true);
+			        $("#reviewToParking").modal("show");
+				}else{
+					$("#reviewToParking").modal("hide");
+					alert("로그인 후 이용할 수 있습니다.");
+					return;
+				}
+				})
+				
+		$('#fromdate').val("<%=map.get("from")%>");
+		$('#todate').val("<%=map.get("to")%>");
 		var today = new Date();
 	 	var datelimit = new Date(today);
 	 	datelimit.setDate(today.getDate() + 62);
@@ -713,10 +798,7 @@ for(ReviewDto reviewDto : reviewlist){
 	 	    allowMonthSelect: true,
 	 	    allowYearSelect: true,
 	 	    selectedDate: today,
-	 	    selectableDateRange: [{
-	 	        from: today,
-	 	        to: datelimit
-	 	    }, ],
+	 	   selectableDateRange: [<%=sb.toString()%>],
 	 	    onClick: function (target, cell, date, data) {
 	 	        target.val(date.getFullYear() + '/' + (date.getMonth() + 1) + '/' + date.getDate());
 
@@ -757,6 +839,7 @@ for(ReviewDto reviewDto : reviewlist){
     <script type="text/javascript">
         $(window).load(function()
         {
+        	var len = <%=availabledate.size()%>
             $('#datepanelbody').glDatePicker(
            {
             showAlways: true,
@@ -765,16 +848,7 @@ for(ReviewDto reviewDto : reviewlist){
             prevArrow: '',
             nextArrow: '',
             selectedDate: new Date(),
-            selectableDateRange: [
-                { from: new Date(2013, 8, 1),
-                    to: new Date(2013, 8, 10) },
-                { from: new Date(2013, 8, 19),
-                    to: new Date(2013, 8, 22) },
-            ],
-            selectableDates: [
-                { date: new Date(2013, 8, 24) },
-                { date: new Date(2013, 8, 30) }
-            ]
+            selectableDateRange: [<%=sb.toString()%>]
            });
         });
         

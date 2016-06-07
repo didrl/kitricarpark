@@ -7,9 +7,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.carpark.common.model.CallDto;
+import com.carpark.common.model.ZipDto;
 import com.carpark.db.DBClose;
 import com.carpark.db.DBConnection;
-import com.carpark.member.model.ZipDto;
 
 public class MemberCallDaoImpl implements MemberCallDao {
 
@@ -26,7 +27,7 @@ public class MemberCallDaoImpl implements MemberCallDao {
 	}
 
 	@Override
-	public List<ZipDto> zipSearch(String dong) {
+	public List<ZipDto> zipSearchList(String dong) {
 		List<ZipDto> list =new ArrayList<ZipDto>();
 		Connection conn =null;
 		PreparedStatement pstmt =null;
@@ -64,6 +65,105 @@ public class MemberCallDaoImpl implements MemberCallDao {
 	}
 	
 	
+	@Override
+	public int register(CallDto callDto) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		int count = 0;
+		try {
+			conn = DBConnection.makeConnection();
+			String sql = "";
+			sql+= "insert all \n";
+			sql += "into board (seq, user_id, subject, contents, bcode, logtime) \n";
+			sql += "values (?, ?, ?, ?, ?, sysdate) \n";
+			sql+= "into call(pcseq,pcall_id,pcall_addr,pcall_flag) \n";
+			sql+= "values(call_num_pcseq.nextval,?,?,?) \n";
+			sql+= "select * from dual";
+			pstmt = conn.prepareStatement(sql);
+			int idx=1;
+		
+			pstmt.setInt(idx++, callDto.getSeq());
+			pstmt.setString(idx++, callDto.getUserID());
+			pstmt.setString(idx++, callDto.getSubject());
+			pstmt.setString(idx++, callDto.getContent());
+			pstmt.setInt(idx++, callDto.getBcode());
+						
+			pstmt.setInt(idx++, callDto.getSeq());
+			pstmt.setString(idx++, callDto.getpCall_ADDR());
+			pstmt.setInt(idx++, callDto.getpCall_Flag());
+			count = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}finally {
+			DBClose.close(conn, pstmt);
+		}
+		return count;
+	}
 	
-	
+	@Override
+	public List<CallDto> sendList(String id) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		CallDto callDto = null;
+		List<CallDto>list = new ArrayList<CallDto>();
+		try {
+			
+			conn = DBConnection.makeConnection();
+			String sql = "";
+			sql+= "select b.seq, b.user_id,b.subject,b.logtime,b.contents,c.pcall_flag \n";
+			sql+= "from board b, call c \n";
+			sql+= "where b.seq = c.pcall_id \n";
+			sql+= "and b.user_id = ? \n";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			while(rs.next()){
+				callDto = new CallDto();
+				callDto.setSeq(rs.getInt("seq"));
+				callDto.setUserID(rs.getString("user_id"));
+				callDto.setSubject(rs.getString("subject"));
+				callDto.setContent(rs.getString("contents"));
+				callDto.setLogtime(rs.getString("logtime"));
+				callDto.setpCall_Flag(rs.getInt("pcall_flag"));
+				list.add(callDto);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	@Override
+	public CallDto sendView(int seq) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		CallDto callDto = null;
+	try {		
+			conn = DBConnection.makeConnection();
+			String sql = "";
+			sql+= "select b.seq, b.user_id,b.subject,b.logtime,b.contents,c.pcall_flag \n";
+			sql+= "from board b, call c \n";
+			sql+= "where b.seq = c.pcall_id \n";
+			sql+= "and b.seq = ? \n";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, seq);
+			rs = pstmt.executeQuery();
+			while(rs.next()){
+				callDto = new CallDto();
+				callDto.setSeq(rs.getInt("seq"));
+				callDto.setUserID(rs.getString("user_id"));
+				callDto.setSubject(rs.getString("subject"));
+				callDto.setContent(rs.getString("contents"));
+				callDto.setLogtime(rs.getString("logtime"));
+				callDto.setpCall_Flag(rs.getInt("pcall_flag"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return callDto;
+	}
 }

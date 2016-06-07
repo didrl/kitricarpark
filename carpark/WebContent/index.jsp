@@ -43,10 +43,10 @@
 								class="fa fa-cloud fa-stack-1x text-primary"></i>
 							</span>
 							<h4>
-								<strong>Service Name</strong>
+								<strong>주차장 공유</strong>
 							</h4>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-							<a href="#" class="btn btn-light">Learn More</a>
+							<p>주차장이 비어있는 동안 다른사람에게 빌려줄 수 있습니다!</p>
+							<!--  <a href="#" class="btn btn-light">Learn More</a> -->
 						</div>
 					</div>
 					<div class="col-md-3 col-sm-6">
@@ -56,10 +56,10 @@
 								class="fa fa-compass fa-stack-1x text-primary"></i>
 							</span>
 							<h4>
-								<strong>Service Name</strong>
+								<strong>편리한 지도</strong>
 							</h4>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-							<a href="#" class="btn btn-light">Learn More</a>
+							<p>다음 지도로 여러분에게 알맞은 정보를 제공해 드립니다!</p>
+							<!-- <a href="#" class="btn btn-light">Learn More</a> --> 
 						</div>
 					</div>
 					<div class="col-md-3 col-sm-6">
@@ -69,10 +69,10 @@
 								class="fa fa-flask fa-stack-1x text-primary"></i>
 							</span>
 							<h4>
-								<strong>Service Name</strong>
+								<strong>지속적인 발전</strong>
 							</h4>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-							<a href="#" class="btn btn-light">Learn More</a>
+							<p>더 나은 서비스 제공을 위해 계속해서 발전하고 있습니다!</p>
+						<!-- 	<a href="#" class="btn btn-light">Learn More</a> -->
 						</div>
 					</div>
 					<div class="col-md-3 col-sm-6">
@@ -82,10 +82,10 @@
 								class="fa fa-shield fa-stack-1x text-primary"></i>
 							</span>
 							<h4>
-								<strong>Service Name</strong>
+								<strong>안정적인 서비스</strong>
 							</h4>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-							<a href="#" class="btn btn-light">Learn More</a>
+							<p>안정적인 서비스를 위해 발로 뛰며 직접 확인하고 있습니다!</p>
+							<!-- <a href="#" class="btn btn-light">Learn More</a> -->
 						</div>
 					</div>
 				</div>
@@ -104,7 +104,6 @@
 		<h1>Vertically Centered Text</h1>
 	</div>
 </aside>
-
 
 <!--  Map  -->
 <div class="panel panel-default">
@@ -156,16 +155,7 @@
 		return false;
 	});
 </script>
-<script src="/carpark/js/selectlist/jquery.selectlist.js"></script>
-<script type="text/javascript">
-	$(function() {
-		$('select').selectlist({
-			zIndex : 10,
-			width : 100,
-			height : 30
-		});
-	})
-</script>
+
 
 
 

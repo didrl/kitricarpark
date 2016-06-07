@@ -24,9 +24,10 @@ public class MemberReportListAction implements Action {
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 
+		int bcode = 3;//페이지처리용
 		int pg = NumberCheck.nullToOne(request.getParameter("pg"));
 		String key = StringCheck.nullToBlank(request.getParameter("key"));
-		String word = Encoder.isoToUtf(StringCheck.nullToBlank(request.getParameter("word")));
+		String word = StringCheck.nullToBlank(Encoder.isoToUtf(request.getParameter("word")));
 		
 		HttpSession session = request.getSession();
 		MemberDto memberDto = (MemberDto) session.getAttribute("memberInfo");
@@ -34,11 +35,11 @@ public class MemberReportListAction implements Action {
 		String userId = memberDto.getUser_id();
 		if(userId != null) {
 			List<ReportDto> list = MemberReportServiceImpl.getMemberReportService().listArticle(userId, pg, key, word);
-			PageNavigator navigator = CommonServiceImpl.getCommonService().getPageNavigatorUser(userId, pg, key, word);
-			navigator.setRoot(request.getContextPath());
-			navigator.setNavigatorSend();
-			
 			request.setAttribute("reportList", list);
+			//페이지
+			PageNavigator navigator = CommonServiceImpl.getCommonService().getPageNavigator(userId, bcode, pg, key, word);
+			navigator.setRoot(request.getContextPath());
+			navigator.setNavigator("reportList");
 			request.setAttribute("navigator", navigator);
 		}
 		

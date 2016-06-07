@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.carpark.action.Action;
 import com.carpark.member.model.service.MemberParkingServiceImpl;
+import com.carpark.util.NumberCheck;
 
 public class MemberParkingDeleteAction implements Action {
 
@@ -15,10 +16,10 @@ public class MemberParkingDeleteAction implements Action {
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 		
-		int parkId = Integer.parseInt(request.getParameter("parkID"));
-		MemberParkingServiceImpl.getMemberParkingservice().MemberParkingDelete(parkId);
+		int parkId = NumberCheck.nullToZero(request.getParameter("parkId"));
+		MemberParkingServiceImpl.getMemberParkingservice().parkingDelete(parkId);
 		
-		return "parking/list.jsp";
+		return "index.jsp";
 	}
 
 }
