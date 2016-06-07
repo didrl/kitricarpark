@@ -39,6 +39,10 @@ public class MemberCallServiceImpl implements MemberCallService {
 	public CallDto sendView(int seq) {
 		return MemberCallDaoImpl.getMemberCallDao().sendView(seq);
 	}
-	
+
+	@Override
+	public int modify(CallDto callDto) {
+		return MemberCallDaoImpl.getMemberCallDao().modify(callDto);
+	}
 	
 }

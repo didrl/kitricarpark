@@ -10,4 +10,5 @@ public interface MemberCallDao {
 	int register(CallDto callDto);
 	List<CallDto>sendList(String id);
 	CallDto sendView(int seq);
+	int modify(CallDto callDto);
 }

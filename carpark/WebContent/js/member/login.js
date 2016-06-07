@@ -102,7 +102,11 @@ function memberCallSendList(pg) {
 }
 
 function memberCallSendView(seq){
-	window.open( "/carpark/call?act=callSendView&seq=" + seq, "newWindow", "top=100, left=400, width=500, height=600, scrollbars=yes" );
+	window.open("/carpark/call?act=callSendView&seq=" + seq, "newWindow", "top=100, left=400, width=500, height=600, scrollbars=yes" );
+}
+
+function callSendViewClose() {
+	window.close();
 }
 
 

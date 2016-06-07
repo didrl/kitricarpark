@@ -59,5 +59,4 @@ public class MemberCallRegisterAction implements Action {
 		
 		return "/member/memberCallList.jsp";
 	}
-
 }
