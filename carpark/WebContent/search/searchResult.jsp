@@ -76,8 +76,8 @@ for(int i =0;i<list.size();i++){
 				<form id="parkListForm" name="parkListForm" class="form-inline" role="form" method="post">
 
 					<input type="hidden" name="act" value="mvSearchResultDetail">
-					<input type="hidden" name="id" value="<%=parkingDto.getPark_id()%>">
-					<input type="hidden" name="name" value="<%=parkingDto.getPark_name()%>">
+					<input type="hidden"  name="id" value="<%=parkingDto.getPark_id()%>">
+					<input type="hidden" id="pName" name="name" value="<%=parkingDto.getPark_name()%>">
 					<input type="hidden" name="latitude" value="<%=parkingDto.getLatitude()%>">
 					<input type="hidden" name="longitude" value="<%=parkingDto.getLongitude()%>">
 					
@@ -131,21 +131,31 @@ for(int i =0;i<list.size();i++){
 								
 								// 마커를 표시할 위치와 내용을 가지고 있는 객체 배열입니다 
 								var positions = new Array();
+								//var iwContent = $('#pName').val();
+								var iwContent = '<div>주차장<br><a href=""/></div>';
+								
 <%
 for(int i =0;i<list.size();i++){
 	parkingDto = list.get(i);
 	System.out.println(parkingDto.getPark_name());
 %>
+								iwContent = '<div>'+ <%=parkingDto.getPark_name()%>;
+								iwContent += '<a href="' + <%=root%>+'/member?act=mvSearchResultDetail&parkingid='+<%=parkingDto.getPark_id()%>+'&parkingname='+<%=parkingDto.getPark_name()%>+'&latitude='+<%=parkingDto.getLatitude()%>+'&longitude='+<%=parkingDto.getLongitude()%>+'" class="list-group-item">';
+								iwContent += '주차장 상세정보로 이동</a></div>';
 								
 								positions.push({
-										content: '<div>주차장</div>', 
+										content: iwContent, 
 										latlng: new daum.maps.LatLng(<%=parkingDto.getLatitude()%>, <%=parkingDto.getLongitude()%>)
 								});
 <%
 }
 %>
+
+
 								for (var i = 0; i < positions.length; i ++) {
-								    // 마커를 생성합니다
+								    
+									
+									// 마커를 생성합니다
 								    var marker = new daum.maps.Marker({
 								        map: listmap, // 마커를 표시할 지도
 								        position: positions[i].latlng // 마커의 위치
@@ -155,11 +165,15 @@ for(int i =0;i<list.size();i++){
 								    var infowindow = new daum.maps.InfoWindow({
 								        content: positions[i].content // 인포윈도우에 표시할 내용
 								    });
+								    
 
 								    // 마커에 이벤트를 등록하는 함수 만들고 즉시 호출하여 클로저를 만듭니다
 								    // 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
 								    (function(marker, infowindow) {
-								        // 마커에 mouseover 이벤트를 등록하고 마우스 오버 시 인포윈도우를 표시합니다 
+								        
+								    	<!-- 
+								    	//기본으로 infowindow 보임
+								    	// 마커에 mouseover 이벤트를 등록하고 마우스 오버 시 인포윈도우를 표시합니다 
 								        daum.maps.event.addListener(marker, 'mouseover', function() {
 								            infowindow.open(listmap, marker);
 								        });
@@ -168,11 +182,13 @@ for(int i =0;i<list.size();i++){
 								        daum.maps.event.addListener(marker, 'mouseout', function() {
 								            infowindow.close();
 								        });
+								        -->
+								          
 								    })(marker, infowindow);
+								   
 								}
 								
-								
-								
+							<!--
 								//sigleMarker start
 								// 지도에 마커를 생성하고 표시한다
 								var listmarker = new daum.maps.Marker({
@@ -198,7 +214,7 @@ for(int i =0;i<list.size();i++){
 								    console.log('마커에 mouseout 이벤트가 발생했습니다!');
 								});			
 								//sigleMarker end
-								
+							-->
 							</script>
 			</div>
 	                    <div class="caption-full">
@@ -210,73 +226,9 @@ for(int i =0;i<list.size();i++){
 	                            </strong>over at maxoffsky.com!</p>
 	                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
 	                    </div>
-	                    <div class="ratings">
-	                        <p class="pull-right">3 reviews</p>
-	                        <p>
-	                            <span class="glyphicon glyphicon-star"></span>
-	                            <span class="glyphicon glyphicon-star"></span>
-	                            <span class="glyphicon glyphicon-star"></span>
-	                            <span class="glyphicon glyphicon-star"></span>
-	                            <span class="glyphicon glyphicon-star-empty"></span>
-	                            4.0 stars
-	                        </p>
-	                    </div>
+	  
 	                </div>
                 </div>
-
-                <div class="well">
-
-                    <div class="text-right">
-                        <a class="btn btn-success">Leave a Review</a>
-                    </div>
-
-                    <hr>
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                            Anonymous
-                            <span class="pull-right">10 days ago</span>
-                            <p>This product was great in terms of quality. I would definitely buy another!</p>
-                        </div>
-                    </div>
-
-                    <hr>
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                            Anonymous
-                            <span class="pull-right">12 days ago</span>
-                            <p>I've alredy ordered another one!</p>
-                        </div>
-                    </div>
-
-                    <hr>
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                            Anonymous
-                            <span class="pull-right">15 days ago</span>
-                            <p>I've seen some better than this, but not at this price. I definitely recommend this item.</p>
-                        </div>
-                    </div>
-
-                </div>
-
             </div>
 
         </div>
