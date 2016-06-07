@@ -33,7 +33,7 @@ System.out.println("<><><><content><><"+parkingDetail.getContent());
 //{ from: new Date(2013, 1, 1), to: newDate (2013, 2, 1) }
 StringBuffer sb =new StringBuffer("{ ");
 int size = availabledate.size();
-if(size<2){
+if(size<2 && size>0){
 	String tmp ="from : new Date("+availabledate.get(0).get("enddate")+")}";
 	sb.append(tmp);
 }else{
@@ -108,7 +108,7 @@ if(memberDto != null){
 <!-- Damu map -->
 <link rel="stylesheet" href="/carpark/css/roadview.css">
 <link rel="stylesheet" href="/carpark/css/aroundinfo.css">
-<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=c2d873676f2c4854b2b2c62e165a629d&libraries=services"></script>
+<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=4763b9e0f6cbc4102f42cb9f7b0f9167&libraries=services"></script>
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>

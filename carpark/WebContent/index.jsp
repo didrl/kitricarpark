@@ -105,7 +105,6 @@
 	</div>
 </aside>
 
-
 <!--  Map  -->
 <div class="panel panel-default">
 	<div class="panel panel-default" id="divformap">
