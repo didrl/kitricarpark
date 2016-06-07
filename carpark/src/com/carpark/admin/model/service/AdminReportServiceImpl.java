@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.carpark.admin.model.PenaltyDto;
 import com.carpark.admin.model.dao.AdminReportDaoImpl;
 import com.carpark.member.model.ReportDto;
 import com.carpark.member.model.dao.MemberMessageDaoImpl;
@@ -25,13 +26,13 @@ public class AdminReportServiceImpl implements AdminReportService {
 	}
 
 	@Override
-	public int writeArticle(ReportDto reportDto) {
-		return MemberReportDaoImpl.getMemberReportDao().writeArticle(reportDto);
+	public int writeArticle(PenaltyDto penaltyDto) {
+		return AdminReportDaoImpl.getAdminReportDao().writeArticle(penaltyDto);
 	}
 
 	@Override
 	public ReportDto viewArticle(int seq) {
-		return MemberReportDaoImpl.getMemberReportDao().viewArticle(seq);
+		return AdminReportDaoImpl.getAdminReportDao().viewArticle(seq);
 	}
 
 	@Override
@@ -68,6 +69,11 @@ public class AdminReportServiceImpl implements AdminReportService {
 		map.put("word", word);
 		
 		return AdminReportDaoImpl.getAdminReportDao().listFlagArticle(map);
+	}
+
+	@Override
+	public int penaltyPoint(String userId) {
+		return AdminReportDaoImpl.getAdminReportDao().penaltyPoint(userId);
 	}
 	
 	

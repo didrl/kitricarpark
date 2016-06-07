@@ -36,7 +36,6 @@ public class AdminReportListAction implements Action {
 		navigator.setNavigator("adminReportList");
 		request.setAttribute("navigator", navigator);
 		
-		
 		return "/admin/report/list.jsp";
 	}
 

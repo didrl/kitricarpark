@@ -20,11 +20,10 @@ import com.carpark.admin.parking.action.AdminParkingDeleteAction;
 import com.carpark.admin.parking.action.AdminParkingModifyAction;
 import com.carpark.admin.parking.action.AdminParkingRegisterAction;
 import com.carpark.admin.parking.action.AdminParkingSearchAction;
-import com.carpark.admin.penalty.action.AdminPenaltyModifyAction;
-import com.carpark.admin.penalty.action.AdminPenaltyRegisterAction;
 import com.carpark.admin.report.action.AdminReportDeleteAction;
 import com.carpark.admin.report.action.AdminReportListAction;
 import com.carpark.admin.report.action.AdminReportListFlagAction;
+import com.carpark.admin.report.action.AdminReportRegisterAction;
 import com.carpark.admin.report.action.AdminReportViewAction;
 
 public class AdminActionFactory {
@@ -46,12 +45,6 @@ public class AdminActionFactory {
 	private static Action adminParkingRegisterAction;
 	private static Action adminParkingSearchAction;
 	
-	private static Action adminPenaltyDeleteAction;
-	private static Action adminPenaltyListAction;
-	private static Action adminPenaltyModifyAction;
-	private static Action adminPenaltyRegisterAction;
-	private static Action adminPenaltySearchAction;
-	
 	private static Action adminCallDeleteAction;
 	private static Action adminCallListAction;
 	private static Action adminCallModifyAction;
@@ -64,6 +57,7 @@ public class AdminActionFactory {
 	private static Action adminReportListFlagAction;
 	private static Action adminReportViewAction;
 	private static Action adminReportDeleteAction;
+	private static Action adminReportRegisterAction;
 	
 	
 
@@ -87,9 +81,6 @@ public class AdminActionFactory {
 		adminParkingRegisterAction = new AdminParkingRegisterAction();
 		adminParkingSearchAction = new AdminParkingSearchAction();
 		
-		adminPenaltyModifyAction = new AdminPenaltyModifyAction();
-		adminPenaltyRegisterAction = new AdminPenaltyRegisterAction();
-		
 		adminCallDeleteAction = new AdminCallDeleteAction();
 		adminCallListAction = new AdminCallListAction();
 		adminCallModifyAction = new AdminCallModifyAction();
@@ -100,6 +91,7 @@ public class AdminActionFactory {
 		adminReportListFlagAction = new AdminReportListFlagAction();
 		adminReportViewAction = new AdminReportViewAction();
 		adminReportDeleteAction = new AdminReportDeleteAction();
+		adminReportRegisterAction = new AdminReportRegisterAction();
 		
 		}
 
@@ -187,26 +179,6 @@ public class AdminActionFactory {
 		return adminParkingSearchAction;
 	}
 
-	public static Action getAdminPenaltyDeleteAction() {
-		return adminPenaltyDeleteAction;
-	}
-
-	public static Action getAdminPenaltyListAction() {
-		return adminPenaltyListAction;
-	}
-
-	public static Action getAdminPenaltyModifyAction() {
-		return adminPenaltyModifyAction;
-	}
-
-	public static Action getAdminPenaltyRegisterAction() {
-		return adminPenaltyRegisterAction;
-	}
-
-	public static Action getAdminPenaltySearchAction() {
-		return adminPenaltySearchAction;
-	}
-
 	public static Action getAdminReportListAction() {
 		return adminReportListAction;
 	}
@@ -221,6 +193,10 @@ public class AdminActionFactory {
 
 	public static Action getAdminReportListFlagAction() {
 		return adminReportListFlagAction;
+	}
+
+	public static Action getAdminReportRegisterAction() {
+		return adminReportRegisterAction;
 	}
 	
 	

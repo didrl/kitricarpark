@@ -16,7 +16,7 @@ import com.carpark.util.StringCheck;
 
 @WebServlet("/adminreport")
 public class AdminReportController extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L; 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -29,7 +29,11 @@ public class AdminReportController extends HttpServlet {
 		String path = "/index.jsp";
 		String queryString = "?bcode=" + bcode + "&pg=" + pg + "&key=" + key + "&word=" + Encoder.isoToUtf(word);
 		
-		if("".equals(act)) {
+		if("penaltyRegister".equals(act)) {
+			System.out.println("컨트롤러");
+			AdminActionFactory.getAdminReportRegisterAction().execute(request, response);
+			path = AdminActionFactory.getAdminReportListAction().execute(request, response);
+			PageMove.forward(request, response, path + queryString);
 			
 		} else if("adminReportList".equals(act)) {
 			path = AdminActionFactory.getAdminReportListAction().execute(request, response);
@@ -40,11 +44,6 @@ public class AdminReportController extends HttpServlet {
 			PageMove.forward(request, response, path + queryString);
 
 		} else if("adminReportSearch".equals(act)) {
-			path = AdminActionFactory.getAdminReportListAction().execute(request, response);
-			PageMove.forward(request, response, path + queryString);
-
-		} else if("adminReportDelete".equals(act)) {
-			AdminActionFactory.getAdminReportDeleteAction().execute(request, response);
 			path = AdminActionFactory.getAdminReportListAction().execute(request, response);
 			PageMove.forward(request, response, path + queryString);
 

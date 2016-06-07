@@ -27,19 +27,8 @@ function adminReportId(id, parkId, parkName) {
 
 }
 
-function adminReportWrite() {
-	if(document.reportWriteForm.subject.value == "") {
-		alert("제목을 입력하세요");
-	} else if(document.reportWriteForm.content.value == "") {
-		alert("내용을 입력하세요");
-	} else {
-		document.reportWriteForm.action = "/carpark/adminreport";
-		document.reportWriteForm.submit();
-	}
-}
-
-function adminReportView(seq) {
-	window.open( "/carpark/adminreport?act=adminReportView&seq=" + seq, "newWindow", "top=100, left=400, width=500, height=600, scrollbars=yes" );
+function adminReportView(seq, reportId) {
+	window.open( "/carpark/adminreport?act=adminReportView&seq=" + seq + "&reportId=" + reportId, "newWindow", "top=100, left=400, width=550, height=620, scrollbars=yes" );
 	
 }
 
@@ -62,4 +51,16 @@ function adminReportSearch() {
 		document.reportSearchForm.action = "/carpark/adminreport";
 		document.reportSearchForm.submit();
 	}
+}
+
+function adminPenaltyRegister(userId) {
+	if(document.penaltyRegisterForm.penalty_code.value == "") {
+		alert("벌점목록을 선택하세요");
+		return;
+	} else {
+		document.penaltyRegisterForm.action.value = "/carpark/adminreport";
+		document.penaltyRegisterForm.report_id.value = userId;
+		document.penaltyRegisterForm.submit();
+	}
+	window.close();
 }

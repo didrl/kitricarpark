@@ -7,8 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.carpark.action.Action;
+import com.carpark.admin.model.service.AdminReportServiceImpl;
 import com.carpark.member.model.ReportDto;
-import com.carpark.member.model.service.MemberReportServiceImpl;
 import com.carpark.util.NumberCheck;
 
 public class AdminReportViewAction implements Action {
@@ -18,9 +18,15 @@ public class AdminReportViewAction implements Action {
 			throws IOException, ServletException {
 
 		int seq = NumberCheck.nullToZero(request.getParameter("seq"));
+		String userId = request.getParameter("reportId");
 		if(seq != 0) {
-			ReportDto reportDto = MemberReportServiceImpl.getMemberReportService().viewArticle(seq);
+			ReportDto reportDto = AdminReportServiceImpl.getAdminReportService().viewArticle(seq);
 			request.setAttribute("reportView", reportDto);
+			
+			int penalty = AdminReportServiceImpl.getAdminReportService().penaltyPoint(userId);
+			
+			request.setAttribute("penalty", penalty);
+			
 		}
 		return "/admin/report/view.jsp";
 	}

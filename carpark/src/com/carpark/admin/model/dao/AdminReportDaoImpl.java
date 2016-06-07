@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import com.carpark.admin.model.PenaltyDto;
 import com.carpark.db.DBClose;
 import com.carpark.db.DBConnection;
 import com.carpark.member.model.MessageDto;
@@ -28,40 +29,44 @@ public class AdminReportDaoImpl implements AdminReportDao {
 	}
 
 	@Override
-	public int writeArticle(ReportDto reportDto) {
-		int seq = 0;
+	public int writeArticle(PenaltyDto penaltyDto) {
+		int cnt = 0;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		
 		try {
 			conn = DBConnection.makeConnection();
+			conn.setAutoCommit(false);
 			String sql = "";
-			sql += "insert all \n";
-			sql += "into board (seq, user_id, subject, contents, bcode, logtime) \n";
-			sql += "values (?, ?, ?, ?, ?, sysdate) \n";
-			sql += "into report (cseq, seq, park_id, user_id, report_flag) \n";
-			sql += "values (message_num_mseq.nextval, ?, ?, ?, 0) \n";
-			sql += "select * from dual";
+			sql += "update table member \n";
+			sql += "set penalty = (select panel_point from evaluation where penal_code = ?) \n";
+			sql += "where user_id = ? \n";
+			System.out.println(sql);
 			pstmt = conn.prepareStatement(sql);
-			int idx = 0;
-			pstmt.setInt(++idx, reportDto.getSeq());
-			pstmt.setString(++idx, reportDto.getUserID());
-			pstmt.setString(++idx, reportDto.getSubject());
-			pstmt.setString(++idx, reportDto.getContent());
-			pstmt.setInt(++idx, reportDto.getBcode());
+			pstmt.setInt(1, penaltyDto.getPenalty_code());
+			pstmt.setString(2, penaltyDto.getUser_id());
+			cnt = pstmt.executeUpdate();
+			conn.commit();
+			pstmt.close();
 			
-			pstmt.setInt(++idx, reportDto.getSeq());
-			pstmt.setInt(++idx, reportDto.getPark_id());
-			pstmt.setString(++idx, reportDto.getReport_id());
-			pstmt.executeUpdate();
-			seq = reportDto.getSeq();
+			sql = "";
+			sql += "insert into penalty (panel_num, user_id, panel_code, panel_date, panel_content) \n";
+			sql += "values (report_num_cseq.nextval, ?, ?, sysdate, ?)";
+			System.out.println(sql);
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, penaltyDto.getUser_id());
+			pstmt.setInt(2, penaltyDto.getPenalty_code());
+			pstmt.setString(3, penaltyDto.getPenalty_content());
+			cnt = pstmt.executeUpdate();
+			conn.commit();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			DBClose.close(conn, pstmt);
 		}
 		
-		return seq;
+		return cnt;
 	}
 
 	@Override
@@ -271,6 +276,32 @@ public class AdminReportDaoImpl implements AdminReportDao {
 		}
 
 		return list;
+	}
+
+	@Override
+	public int penaltyPoint(String userId) {
+		int penalty = 0;
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = DBConnection.makeConnection();
+			String sql = "";
+			sql += "select penalty from member where user_id = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userId);
+			rs = pstmt.executeQuery();
+			rs.next();
+			penalty = rs.getInt(1);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		return penalty;
 	}
 	
 	

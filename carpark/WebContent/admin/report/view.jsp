@@ -4,6 +4,7 @@
 String root = request.getContextPath();
 MemberDto memberDto = (MemberDto)session.getAttribute("memberInfo");
 ReportDto reportDto = (ReportDto) request.getAttribute("reportView");
+int penalty = (Integer) request.getAttribute("penalty");
 
 int pg = NumberCheck.nullToOne(request.getParameter("pg"));
 String key = StringCheck.nullToBlank(request.getParameter("key"));
@@ -19,18 +20,11 @@ String word = Encoder.isoToUtf(StringCheck.nullToBlank(request.getParameter("wor
     <!-- Bootstrap Core JavaScript -->
     <script src="<%=root %>/js/bootstrap.min.js"></script>
     <!-- message.js -->
-    <script type="text/javascript" src="<%=root %>/report/report.js"></script>
+    <script type="text/javascript" src="<%=root %>/admin/report/adminreport.js"></script>
 </head>
 <body>
 
-<form name="common" method="get" action="">
-	<input type="hidden" name="act" value="">	
-	<input type="hidden" name="bcode" value="3">
-	<input type="hidden" name="pg" id="pg" value="<%=pg%>">
-	<input type="hidden" name="key" value="">
-	<input type="hidden" name="word" value="">
-	<input type="hidden" name="seq" value="">
-</form>
+
 
 <br>
 <div id="page-wrapper">
@@ -39,29 +33,59 @@ String word = Encoder.isoToUtf(StringCheck.nullToBlank(request.getParameter("wor
 if(memberDto != null) {
 	if(reportDto != null) {
 %>
+<form name="penaltyRegisterForm" method="post" action="">
+	<input type="hidden" name="act" value="penaltyRegister">	
+	<input type="hidden" name="pg" id="pg" value="<%=pg%>">
+	<input type="hidden" name="key" value="">
+	<input type="hidden" name="word" value="">
+	<input type="hidden" name="report_id" value="">
 	<table class="table">
 		<tr>
-			<td width="80">신고대상</td>
-			<td><%=reportDto.getReport_id() %></td>
+			<td width="100">신고자</td>
+			<td><%=reportDto.getUserID() %></td>
 			<td width="50">시간</td>
 			<td width="80"><%=reportDto.getLogtime() %></td>
-			</tr>
-			<tr>
+		</tr>
+		<tr>
+			<td>신고대상</td>
+			<td><%=reportDto.getReport_id() %></td>
+			<td>벌점</td>
+			<td><%=penalty %></td>
+		</tr>
+		<tr>
 			<td width="80">제목</td>
 			<td colspan="3"><%=reportDto.getSubject() %></td>
-			</tr>
-			<tr>
+		</tr>
+		<tr>
 			<td width="80">내용</td>
-			<td colspan="3" height="350"><p><%=reportDto.getContent() %></p></td>
-			</tr>
+			<td colspan="3" height="300"><p><%=reportDto.getContent() %></p></td>
+		</tr>
+
+		<tr>
+			<td>
+			<select class="form-control" name="penalty_code">
+				<option value="" selected="selected">-----</option>
+				<option value="10">욕설</option>
+				<option value="20">불친절</option>
+				<option value="30">계약위반</option>
+				<option value="40">사기</option>
+			</select>	
+			</td>
+			<td colspan="3">
+				<textarea class="form-control" rows="3" name="penalty_content"></textarea>	
+			</td>		
+		</tr>
+
 		<tr>
 			<td colspan="4" align="center">
 			<p>
-			<input type="button" class="btn btn-default" value="닫기" onclick="javascript:reportClose();">
+			<input type="button" class="btn btn-default" value="벌점주기" onclick="javascript:adminPenaltyRegister('<%=reportDto.getReport_id()%>');">
+			<input type="button" class="btn btn-default" value="닫기" onclick="javascript:adminReportClose();">
 			</p>
-			</td>
+		</td>
 		</tr>
 	</table>    
+	</form>
 <%
 	} else {
 %>

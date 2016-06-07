@@ -42,7 +42,6 @@ PageNavigator navigator = (PageNavigator) request.getAttribute("navigator");
 				  		<td width="150"><b>신고대상</b></td>
 				  		<td width="80"><b>시간</b></td>
 				  		<td width="50">처리</td>
-				  		<td width="50"></td>
 				  	</tr>
 				
 <%
@@ -52,20 +51,18 @@ if(size > 0) {
 %>
 					<!-- 신고내역 -->
 					<tr>
-						<td><a href="javascript:adminReportView('<%=reportDto.getSeq() %>');"><%=reportDto.getUserID() %></a></td>
-						<td><a href="javascript:adminReportView('<%=reportDto.getSeq() %>');"><%=reportDto.getSubject() %></a></td>
-						<td><a href="javascript:adminReportView('<%=reportDto.getSeq() %>');"><%=reportDto.getReport_id() %></a></td>
+						<td><a href="javascript:adminReportView('<%=reportDto.getSeq() %>', '<%=reportDto.getReport_id() %>');"><%=reportDto.getUserID() %></a></td>
+						<td><a href="javascript:adminReportView('<%=reportDto.getSeq() %>', '<%=reportDto.getReport_id() %>');"><%=reportDto.getSubject() %></a></td>
+						<td><a href="javascript:adminReportView('<%=reportDto.getSeq() %>', '<%=reportDto.getReport_id() %>');"><%=reportDto.getReport_id() %></a></td>
 						<td><%=reportDto.getLogtime() %></td>
 <%
 		if(reportDto.getReport_flag() == 0) {
 %>
 						<td> X </td>
-						<td></td>
 <%
 		} else {
 %>
 						<td> O </td>
-						<td></td>
 <%
 		}
 %>
