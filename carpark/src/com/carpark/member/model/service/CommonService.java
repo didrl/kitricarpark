@@ -10,6 +10,7 @@ public interface CommonService {
 	PageNavigator getPageNavigatorParking(String ownerId, int pg, String key, String word);
 	PageNavigator getPageNavigatorUser(String userId, int pg, String key, String word);
 	PageNavigator getPageNavigatorReceiver(String receiveId, int pg, String key, String word);
+	PageNavigator getPageNavigatorAdminReport(int bcode, int pg, String key, String word);
 	int getNextParkingId();
 	
 }

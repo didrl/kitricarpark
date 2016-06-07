@@ -202,6 +202,50 @@ public class CommonDaoImpl implements CommonDao {
 		return count;
 	}
 	
+	@Override
+	public int totalArticleCountAdminReport(Map<String, String> map) {
+		int count = 0;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String key = map.get("key");
+		String word = map.get("word");
+		
+		try {
+			conn = DBConnection.makeConnection();
+			String sql = "";
+			sql += "select count(seq) \n";
+			sql += "from board \n";
+			sql += "where bocde = ? \n";
+			if(key != null && !key.isEmpty()) {
+				if(word != null && !word.isEmpty()) {
+					if("subject".equals(key))
+						sql += "and subject like '%'||?||'%' \n";
+					else
+						sql += "and " + key + " = ? \n";						
+				}
+			}
+			pstmt = conn.prepareStatement(sql);
+			int idx = 0;
+			pstmt.setString(++idx, map.get("bcode"));
+			if(key != null && !key.isEmpty()) {
+				if(word != null && !word.isEmpty()) {
+					pstmt.setString(++idx, word);
+				}
+			}
+			rs = pstmt.executeQuery();
+			rs.next();
+			count = rs.getInt(1);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose.close(conn, pstmt, rs);
+		}
+		
+		return count;
+	}
+	
 	
 /////////////////////////// 메소드 통합중 ////////////////////////////////////	
 	

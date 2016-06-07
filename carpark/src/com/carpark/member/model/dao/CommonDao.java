@@ -14,6 +14,7 @@ public interface CommonDao {
 	int totalArticleCountUser(Map<String, String> map);
 	int newArticleCountReceiver(String id);
 	int totalArticleCountReceiver(Map<String, String> map);
+	int totalArticleCountAdminReport(Map<String, String> map);
 	int getNextParkingId();
 	
 }
