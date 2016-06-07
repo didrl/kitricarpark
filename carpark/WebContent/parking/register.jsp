@@ -66,8 +66,9 @@
 					<div class="col-md-10">
 						<div class="form-group">
 							<input type="text" name="parkAddress" readonly="readonly" class="form-control">
-							<input type="text" name="coordinate" readonly="readonly" class="form-control">
 						</div>
+					</div>
+					<div class="form-group">
 							<button type="button" class="btn btn-default" onclick="javascript:parkingSearchWindow();">검색</button>
 					</div>
 				</div><hr>
