@@ -23,7 +23,6 @@ public class MemberParkingViewAction implements Action {
 			ParkingDetailDto parkingDto = MemberParkingServiceImpl.getMemberParkingservice().parkingView(parkId);
 			request.setAttribute("parkingView", parkingDto);
 		}
-		System.out.println("view action end");
 		return "/parking/view.jsp";
 	}
 

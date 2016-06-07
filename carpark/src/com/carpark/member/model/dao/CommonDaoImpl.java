@@ -127,6 +127,35 @@ public class CommonDaoImpl implements CommonDao {
 		
 		return count;
 	}
+
+	@Override
+	public int totalArticleCountAddress(Map<String, String> map) {
+		int count = 0;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String address = map.get("address");
+
+		try {
+			conn = DBConnection.makeConnection();
+			String sql = "";
+			sql += "select count(dong) \n";
+				sql += "from zipcode \n";
+				sql += "where dong like '%'||?||'%' \n";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, address);
+			rs = pstmt.executeQuery();
+			rs.next();
+			count = rs.getInt(1);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose.close(conn, pstmt, rs);
+		}
+		
+		return count;
+	}
 	
 	
 /////////////////////////// 메소드 통합중 ////////////////////////////////////	

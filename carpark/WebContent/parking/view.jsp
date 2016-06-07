@@ -33,7 +33,7 @@ if(parkingDto != null) {
 					</div>
 					<div class="col-md-10">
 <%
-if("0" == parkingDto.getPark_type()) {
+if("0".equals(parkingDto.getPark_type())) {
 %>
 	개인
 <%

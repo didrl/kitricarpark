@@ -8,6 +8,7 @@ public interface CommonDao {
 	void updateHit(int seq);
 	int newArticleCount(String id, int bcode);
 	int totalArticleCount(Map<String, String> map);
+	int totalArticleCountAddress(Map<String, String> map);
 	int newArticleCountUser(String id);
 	int totalArticleCountUser(Map<String, String> map);
 	int newArticleCountReceiver(String id);

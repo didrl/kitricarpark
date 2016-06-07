@@ -11,7 +11,7 @@ public interface MemberParkingService {
 	void parkingModify(ParkingDetailDto parkingDto);
 	List<ParkingDetailDto> parkingList(String userId);
 	int parkingDelete(int parkId);
-	List<ZipDto> parkingSearch(String address);
+	List<ZipDto> parkingSearch(String address, int pg);
 	ParkingDetailDto parkingView(int parkId);
 	
 }

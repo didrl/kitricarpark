@@ -1,10 +1,13 @@
 package com.carpark.member.model.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.carpark.common.model.ParkingDetailDto;
 import com.carpark.common.model.ZipDto;
 import com.carpark.member.model.dao.MemberParkingDaoImpl;
+import com.carpark.util.BoardConstance;
 
 public class MemberParkingServiceImpl implements MemberParkingService {
 	
@@ -41,8 +44,18 @@ public class MemberParkingServiceImpl implements MemberParkingService {
 	}
 
 	@Override
-	public List<ZipDto> parkingSearch(String address) {
-		return MemberParkingDaoImpl.getMemberParkingDao().parkingSearch(address);
+	public List<ZipDto> parkingSearch(String address, int pg) {
+		Map<String, String> map = new HashMap<String, String>();
+		
+		int end = BoardConstance.BOARD_LIST_SIZE * pg;
+		System.out.println(end);
+		int start = end - BoardConstance.BOARD_LIST_SIZE;
+		System.out.println(start);
+		
+		map.put("address", address);
+		map.put("end", end + "");
+		map.put("start", start + "");
+		return MemberParkingDaoImpl.getMemberParkingDao().parkingSearch(map);
 	}
 
 	@Override

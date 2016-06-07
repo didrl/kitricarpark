@@ -22,6 +22,7 @@ if(memberDto != null){
 			<div class="col-md-10">
 			<form name="parkingModifyForm" method="post" action="">
 				<input type="hidden" name="act" value="parkingModify">				
+				<input type="hidden" name="parkId" value="<%=parkingDto.getPark_id()%>">				
 				
 				
 				<div class="row">
@@ -30,7 +31,7 @@ if(memberDto != null){
 					</div>
 					<div class="col-md-10">
 <%
-if("0" == parkingDto.getPark_type()) {
+if("0".equals(parkingDto.getPark_type())) {
 %>
 						<label class="radio-inline">
 						  <input type="radio" name="parkType" value="0" checked="checked"> 개인

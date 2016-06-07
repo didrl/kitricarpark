@@ -3,9 +3,9 @@
 <%
 String root = request.getContextPath();
 int pg = NumberCheck.nullToOne(request.getParameter("pg"));
-String key = StringCheck.nullToBlank(request.getParameter("key"));
-String word = Encoder.isoToUtf(StringCheck.nullToBlank(request.getParameter("word")));
+String address = StringCheck.nullToBlank((String) session.getAttribute("address"));
 List<ZipDto> list = (List<ZipDto>) request.getAttribute("addressList");
+PageNavigator navigator = (PageNavigator) request.getAttribute("navigator");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -21,25 +21,26 @@ List<ZipDto> list = (List<ZipDto>) request.getAttribute("addressList");
     <script type="text/javascript" src="<%=root %>/parking/parking.js"></script>
 </head>
 <body>
-
 <!-- main -->
 <div id="page-wrapper">
 	<div class="container-fluid">
 
 	<form name="parkSearchForm" method="get" action="">
 		<input type="hidden" name="act" value="parkingSearch">
+		<input type="hidden" name="pg" value="">
 										
 		<table class="table">
 										
 		<tr>
 			<td align="center" colspan="3">동을 입력해 주세요</td>
 		</tr>
+		
 		<tr>
 			<td>
-				<input type="text" class="form-control" name="parkAddress">
+				<input type="text" class="form-control" name="parkAddress" value="<%=address%>">				
 			</td>
 			<td width="60">
-				<button type="button" class="btn btn-default btn-group-xs" onclick="javascript:searchAddress();">검색</button>
+				<button type="button" class="btn btn-default btn-group-xs" onclick="javascript:searchAddress('1');">검색</button>
 			</td>
 			<td width="60">
 				<button type="button" class="btn btn-default btn-group-xs" onclick="javascript:windowClose();">사용</button>
@@ -77,7 +78,22 @@ if(list != null) {
 	}
 }
 %>
-		
+<%
+if(navigator != null) {
+%>
+		<tr>
+		<td align="center" colspan="3">
+			<nav align="center">
+				<ul class="pagination">
+				<%=navigator.getNavigator() %>
+				</ul>
+						
+			</nav>
+			</td>
+        </tr>
+<%
+}
+%>
 		<tr>
 			<td align="center" colspan="3">
 				

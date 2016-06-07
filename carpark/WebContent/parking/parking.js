@@ -38,12 +38,13 @@ function parkingDelete(parkId) {
 	   
 }
 
-function searchAddress() {
+function searchAddress(pg) {
 	if(document.parkSearchForm.parkAddress.value == "") {
 		alert("주소를 입력하세요");
 		return;
 	} else {
 		document.parkSearchForm.action = "/carpark/memberparking";
+		document.parkSearchForm.pg.value = pg;
 		document.parkSearchForm.submit();
 	}
 }
@@ -66,14 +67,14 @@ function selectAddress(address){
 	}); 
 	document.parkSearchForm.parkAddress.value = address;
 	opener.document.parkRegisterForm.parkAddress.value = address;
-//	self.close();
+	self.close();
 }
 
 function windowClose() {
 	window.close();
 }
 
-function parkingModify(parkId) {
+function parkingModify() {
 	if(document.parkingModifyForm.payYn.value == "") {
 		alert("평일 요금을 선택하세요")
 	} else if(document.parkingModifyForm.saturPayYn.value == "") {

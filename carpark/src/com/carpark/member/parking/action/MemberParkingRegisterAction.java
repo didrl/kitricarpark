@@ -34,14 +34,11 @@ public class MemberParkingRegisterAction implements Action {
 		parkingDto.setPark_type(request.getParameter("parkType"));
 		parkingDto.setPark_name(request.getParameter("parkName"));
 		
-		String coordinate = StringCheck.nullToBlank(request.getParameter("coordinate"));//지도에서 가져온 좌표
-		if(!coordinate.isEmpty()) {
+		String coordinate = request.getParameter("coordinate");//지도에서 가져온 좌표
+		if(coordinate != null) {
 		StringTokenizer st = new StringTokenizer(coordinate, ",");//lat, lng로 나눔
 		String latitude = st.nextToken().substring(1);// ( 제거 
 		String longitude = st.nextToken().replace(")", "").trim();// ) 제거
-		System.out.println("test" + coordinate);//확인용
-		System.out.println("lat : " + latitude);
-		System.out.println("lng : " + longitude);
 		
 		parkingDto.setLatitude(Double.parseDouble(latitude));//dto에 넣기
 		parkingDto.setLongitude(Double.parseDouble(longitude));
@@ -52,8 +49,8 @@ public class MemberParkingRegisterAction implements Action {
 		
 		parkingDto.setOwner_id(memberDto.getUser_id());
 		
-		parkingDto.setFacility(StringCheck.nullToBlank(request.getParameter("facility")));
-		parkingDto.setFeature(StringCheck.nullToBlank(request.getParameter("feature").replace("\r\n", "<br>")));
+		parkingDto.setFacility(request.getParameter("facility"));
+		parkingDto.setFeature(request.getParameter("feature").replace("\r\n", "<br>"));
 		parkingDto.setPay_yn(request.getParameter("payYn"));
 		parkingDto.setSatur_pay_yn(request.getParameter("saturPayYn"));
 		parkingDto.setHoli_pay_yn(request.getParameter("holiPayYn"));
@@ -64,8 +61,8 @@ public class MemberParkingRegisterAction implements Action {
 		parkingDto.setDay_max_pay(NumberCheck.nullToOne(request.getParameter("dayMaxPay")));
 		parkingDto.setFulltime_monthly_pay(NumberCheck.nullToOne(request.getParameter("fullTimeMonthlyPay")));
 		parkingDto.setPark_flag(NumberCheck.nullToOne(request.getParameter("parkFlag")));
-		parkingDto.setContent(StringCheck.nullToBlank(request.getParameter("content").replace("\r\n", "<br>")));
-		parkingDto.setDetailAddr(StringCheck.nullToBlank(request.getParameter("parkAddress")));
+		parkingDto.setContent(request.getParameter("content").replace("\r\n", "<br>"));
+		parkingDto.setDetailAddr(request.getParameter("parkAddress"));
 		
 		parkingDto.setEmd_code(11650101);
 		
