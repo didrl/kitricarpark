@@ -19,7 +19,7 @@
                                 <a href="javascript:getAllUserInfo();">전체 고객 정보</a>
                             </li>
                             <li>
-                                <a href="<%=customerpath%>/report.jsp">신고내역</a>
+                                <a href="<%=root%>/admin/report/list.jsp">신고내역</a>
                             </li>
                             <li>
                                 <a href="<%=customerpath%>/rate.jsp">등급 및 혜택 설정</a>
@@ -31,10 +31,10 @@
                         <a href="javascript:;" data-toggle="collapse" data-target="#parking"><i class="fa fa-fw fa-arrows-v"></i> 주차장 관리 <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="parking" class="collapse">
                             <li>
-                                <a href="<%=parkingpath%>/list.jsp">주차장 목록</a>
+                                <a href="<%=root%>/admin/parking/list.jsp">주차장 목록</a>
                             </li>
                             <li>
-                                <a href="<%=parkingpath%>/newparking.jsp">새로운 주차장 등록</a>
+                                <a href="<%=root%>/admin/parking/register.jsp">새로운 주차장 등록</a>
                             </li>
                             <li>
                                 <a href="<%=root%>/admincall?act=AdminCallReceiveList">주차장 제보 목록</a>
