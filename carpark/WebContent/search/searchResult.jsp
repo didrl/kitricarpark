@@ -69,6 +69,12 @@ function goResultDetail() {
 <%
 ParkingDto parkingDto = new ParkingDto();
 ParkingDetailDto parkingDetailDto = new ParkingDetailDto();
+%>
+<script>
+// 마커 클릭시 이동할 페이지를 가지고 있는 객체 배열입니다 
+var hrefs = new Array();
+</script>
+<%
 for(int i =0;i<list.size();i++){
 	parkingDto = list.get(i);
 //for(ParkingDto parkingDto :list){
@@ -86,7 +92,7 @@ for(int i =0;i<list.size();i++){
 						<div class="ratings">
                         <p class="pull-right">
                         <script>
-                        //<%=parkingDetailDto.getPark_avgPoint()%>
+                        <%=parkingDetailDto.getPark_avgPoint()%>
                         </script>
                             <span class="glyphicon glyphicon-star"></span>
                             <span class="glyphicon glyphicon-star"></span>
@@ -98,7 +104,16 @@ for(int i =0;i<list.size();i++){
                     </div>
 						<p class="list-group-item-text"><%=parkingDto.getContent()%></p>
 				</form>
+				
+				<script>
+				var getHref="<%=root%>/member?act=mvSearchResultDetail&parkingid=<%=parkingDto.getPark_id()%>&parkingname=<%=parkingDto.getPark_name()%>&latitude=<%=parkingDto.getLatitude()%>&longitude=<%=parkingDto.getLongitude()%>";
+				hrefs.push({
+					href: getHref
+				});
+				</script>	
 				</a>
+				
+						
 <%
 }
 %>			
@@ -135,70 +150,83 @@ for(int i =0;i<list.size();i++){
 <%
 for(int i =0;i<list.size();i++){
 	parkingDto = list.get(i);
-	System.out.println(parkingDto.getPark_name());
-%>
-								
+%>						
 								positions.push({
-										content: '<div>주차장</div>', 
+										content: '<%=parkingDto.getPark_name()%>',
 										latlng: new daum.maps.LatLng(<%=parkingDto.getLatitude()%>, <%=parkingDto.getLongitude()%>)
 								});
+								
 <%
 }
 %>
-								for (var i = 0; i < positions.length; i ++) {
-								    // 마커를 생성합니다
+								var info_num = 1;
+								var content_design = "";
+								var content_href="";
+								for (var i = 0; i < positions.length; i ++) {			
+									content_href= hrefs[i].href;	
+									content_link='<a href="'+content_href+'">'+'상세보기'+'</a>';
+									// 마커를 생성합니다
 								    var marker = new daum.maps.Marker({
 								        map: listmap, // 마커를 표시할 지도
 								        position: positions[i].latlng // 마커의 위치
 								    });
-
-								    // 마커에 표시할 인포윈도우를 생성합니다 
+								    var selectedMarker = null;
+		
+								 	// 인포윈도우를 생성하고 지도에 표시합니다
 								    var infowindow = new daum.maps.InfoWindow({
-								        content: positions[i].content // 인포윈도우에 표시할 내용
+								        map: listmap, // 인포윈도우가 표시될 지도
+								        position: positions[i].latlng, 
+								        //content: '<div>'+info_num+""+content_link+'</div>'
+								        content: '<div>'+info_num+""+'</div>'
 								    });
+								 	
+								    var infowindow2 = new daum.maps.InfoWindow({
+								        content: '<div><p>'+positions[i].content+'</p><p>'+content_link+'</p></div>'
+								    });
+								   
+								    // 아래 코드는 인포윈도우를 지도에서 제거합니다
+								    // infowindow.close();        
 
 								    // 마커에 이벤트를 등록하는 함수 만들고 즉시 호출하여 클로저를 만듭니다
 								    // 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
-								    (function(marker, infowindow) {
-								        // 마커에 mouseover 이벤트를 등록하고 마우스 오버 시 인포윈도우를 표시합니다 
+								    (function(marker, infowindow,infowindow2) {
+								        /* // 마커에 mouseover 이벤트를 등록하고 마우스 오버 시 인포윈도우를 표시합니다 
 								        daum.maps.event.addListener(marker, 'mouseover', function() {
-								            infowindow.open(listmap, marker);
+								        	infowindow.close();
+								        	infowindow2.open(listmap, marker);
 								        });
 
 								        // 마커에 mouseout 이벤트를 등록하고 마우스 아웃 시 인포윈도우를 닫습니다
 								        daum.maps.event.addListener(marker, 'mouseout', function() {
-								            infowindow.close();
+								            infowindow2.close();
+								            infowindow.open(listmap,marker);
+								        }); */
+								        
+								        //마커 클릭이벤트
+								        daum.maps.event.addListener(marker, 'click', function() {
+								        	// 클릭된 마커가 없고, click 마커가 클릭된 마커가 아니면
+								            // 마커에 상세 인포윈도우를 보여줍니다. 
+								            if (!selectedMarker || selectedMarker !== marker) {
+								                // 현재 클릭된 마커에 상세인포윈도우를 띄웁니다
+								                infowindow.close();
+									        	infowindow2.open(listmap, marker);
+									        	// 클릭된 마커 객체가 null이 아니면
+									            // 클릭된 마커의 이미지를 기본 이미지로 변경하고
+									            //!!selectedMarker && selectedMarker.setImage(selectedMarker.normalImage);
+									        	// 클릭된 마커를 현재 클릭된 마커 객체로 설정합니다
+									            selectedMarker = marker;
+								            }else if(selectedMarker == marker){
+								            	infowindow2.close();
+									            infowindow.open(listmap,marker);
+								            }
+								            
 								        });
-								    })(marker, infowindow);
+								        
+								    })(marker, infowindow,infowindow2); 
+								    
+								    info_num++;
 								}
 								
-								
-								
-								//sigleMarker start
-								// 지도에 마커를 생성하고 표시한다
-								var listmarker = new daum.maps.Marker({
-								    position: new daum.maps.LatLng(37.56682, 126.97865), // 마커의 좌표
-								    map: listmap // 마커를 표시할 지도 객체
-								});					
-								// 마커 위에 표시할 인포윈도우를 생성한다
-								var infowindow = new daum.maps.InfoWindow({
-								    content : '<div style="padding:5px;">인포윈도우 :D</div>' // 인포윈도우에 표시할 내용
-								});		
-								// 인포윈도우를 지도에 표시한다
-								infowindow.open(map, listmarker);					
-								// 마커에 클릭 이벤트를 등록한다 (우클릭 : rightclick)
-								daum.maps.event.addListener(listmarker, 'click', function() {
-								    alert('마커를 클릭했습니다!');
-								});					
-								// 마커에 mouseover 이벤트를 등록한다
-								daum.maps.event.addListener(listmarker, 'mouseover', function() {
-								    console.log('마커에 mouseover 이벤트가 발생했습니다!');
-								});					
-								// 마커에 mouseout 이벤트 등록
-								daum.maps.event.addListener(listmarker, 'mouseout', function() {
-								    console.log('마커에 mouseout 이벤트가 발생했습니다!');
-								});			
-								//sigleMarker end
 								
 							</script>
 			</div>
@@ -211,17 +239,7 @@ for(int i =0;i<list.size();i++){
 	                            </strong>over at maxoffsky.com!</p>
 	                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
 	                    </div>
-	                    <div class="ratings">
-	                        <p class="pull-right">3 reviews</p>
-	                        <p>
-	                            <span class="glyphicon glyphicon-star"></span>
-	                            <span class="glyphicon glyphicon-star"></span>
-	                            <span class="glyphicon glyphicon-star"></span>
-	                            <span class="glyphicon glyphicon-star"></span>
-	                            <span class="glyphicon glyphicon-star-empty"></span>
-	                            4.0 stars
-	                        </p>
-	                    </div>
+	                    
 	                </div>
                 </div>
 <!-- 

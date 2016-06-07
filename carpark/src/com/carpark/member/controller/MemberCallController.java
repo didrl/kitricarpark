@@ -44,7 +44,8 @@ public class MemberCallController extends HttpServlet {
 		}else if("callSendView".equals(act)){
 			path = MemberActionFactory.getMemberCallViewAction().execute(request, response);
 			PageMove.forward(request, response, path+queryString);
-		}else if("".equals(act)){
+		}else if("callViewModify".equals(act)){
+			path = MemberActionFactory.getMemberCallModifyAction().execute(request, response);
 			
 		}else if("".equals(act)){
 			

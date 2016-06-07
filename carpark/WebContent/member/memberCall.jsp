@@ -60,7 +60,7 @@ function goSearchResult() {
 								<div class="form-group">
 									<form class="form-horizontal" name="writeForm" method="post" action="<%=root%>/call">
 										<input type="hidden" name="act" value="memberParkRegisterMessage">
-										<input type="hidden" name="bcode" value="2"> 
+										<input type="hidden" name="bcode" value="1"> 
 										<input type="hidden" name="pg" value="1"> 
 										<input type="hidden" name="key" value=""> 
 										<input type="hidden" name="word" value="">
@@ -76,15 +76,13 @@ function goSearchResult() {
 												class="form-control" id="subject" name="subject" placeholder="제목">
 										</div><hr>
 										
-										<div class="row">
+										<div class="form-group">
 											<div class="col-md-2">
 												<b>위치</b><br>
 											</div>
 											<div class="col-md-10">
-												<div class="form-group">
-													<input type="text" id="parkAddress" class="form-control" placeholder="주소" name="parkAddress" readonly="readonly"><br>
-													<button type="button" class="btn btn-default" data-toggle="modal" data-target="#addrSearch">검색</button>
-												</div>
+												<input type="text" id="parkAddress" class="form-control" placeholder="주소" name="parkAddress" readonly="readonly"><br>
+												<button type="button" class="btn btn-default" data-toggle="modal" data-target="#addrSearch">검색</button>
 											</div>
 											</div><hr>
 										
@@ -387,7 +385,6 @@ function clearData() {
 function selected(data){
 	document.getElementById("parkAddress").value=data;
 	addrMap(data);
-	alert(data);
 	$("#addrSearch").modal("hide");
 } 
 </script>

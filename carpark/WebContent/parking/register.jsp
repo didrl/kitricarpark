@@ -68,6 +68,8 @@
 							<input type="text" name="parkAddress" readonly="readonly" class="form-control">
 							<input type="hidden" name="coordinate" readonly="readonly" class="form-control">
 						</div>
+					</div>
+					<div class="form-group">
 							<button type="button" class="btn btn-default" onclick="javascript:parkingSearchWindow();">검색</button>
 					</div>
 				</div><hr>
