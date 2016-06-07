@@ -34,8 +34,18 @@ public class MemberParkingServiceImpl implements MemberParkingService {
 	}
 
 	@Override
-	public List<ParkingDetailDto> parkingList(String userId) {
-		return MemberParkingDaoImpl.getMemberParkingDao().parkingList(userId);
+	public List<ParkingDetailDto> parkingList(String ownerId, int pg, String key, String word) {
+		Map<String, String> map = new HashMap<String, String>();
+		
+		int end = BoardConstance.BOARD_LIST_SIZE * pg;
+		int start = end - BoardConstance.BOARD_LIST_SIZE;
+		
+		map.put("ownerId", ownerId);
+		map.put("end", end + "");
+		map.put("start", start + "");
+		map.put("key", key);
+		map.put("word", word);
+		return MemberParkingDaoImpl.getMemberParkingDao().parkingList(map);
 	}
 
 	@Override
@@ -48,9 +58,7 @@ public class MemberParkingServiceImpl implements MemberParkingService {
 		Map<String, String> map = new HashMap<String, String>();
 		
 		int end = BoardConstance.BOARD_LIST_SIZE * pg;
-		System.out.println(end);
 		int start = end - BoardConstance.BOARD_LIST_SIZE;
-		System.out.println(start);
 		
 		map.put("address", address);
 		map.put("end", end + "");

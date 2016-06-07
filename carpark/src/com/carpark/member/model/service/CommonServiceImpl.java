@@ -79,6 +79,32 @@ public class CommonServiceImpl implements CommonService {
 		return navigator;
 	}
 	
+	@Override
+	public PageNavigator getPageNavigatorParking(String ownerId, int pg, String key, String word) {
+		int listSize = BoardConstance.BOARD_LIST_SIZE;
+		int pageSize = BoardConstance.BOARD_PAGE_SIZE;
+		
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("ownerId", ownerId);
+		map.put("key", key);
+		map.put("word", word);
+		
+		//순서 주의
+		PageNavigator navigator = new PageNavigator();
+	
+		int totalArticleCount = CommonDaoImpl.getCommonDao().totalArticleCountParking(map);
+		int totalPageCount = (totalArticleCount - 1) / listSize + 1;
+		
+		
+		navigator.setTotalArticleCount(totalArticleCount);
+		navigator.setTotalPageCount(totalPageCount);
+		navigator.setPageNo(pg);
+		navigator.setNowFirst(pg <= pageSize);
+		navigator.setNowEnd((totalPageCount - 1) / pageSize == (pg - 1) / pageSize);
+		
+		return navigator;
+	}
+	
 	////////////////////////////메소드 통합중 ///////////////////////////////////////
 
 	@Override

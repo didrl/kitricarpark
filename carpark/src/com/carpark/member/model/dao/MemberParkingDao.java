@@ -10,7 +10,7 @@ public interface MemberParkingDao {
 	
 	void parkingRegister(ParkingDetailDto parkingDto);
 	void parkingModify(ParkingDetailDto parkingDto);
-	List<ParkingDetailDto> parkingList(String userId);
+	List<ParkingDetailDto> parkingList(Map<String, String> map);
 	int parkingDelete(int parkId);
 	List<ZipDto> parkingSearch(Map<String, String> map);
 	ParkingDetailDto parkingView(int parkId);

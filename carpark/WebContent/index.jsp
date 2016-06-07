@@ -2,7 +2,14 @@
 	pageEncoding="UTF-8"%>
 <%@include file="/common/common.jsp"%>
 <%@include file="/common/header/init.jsp"%>
-
+<%
+memberDto = (MemberDto) session.getAttribute("memberInfo");
+if(10 == memberDto.getUser_flag()) {
+%>
+	<script type="text/javascript">document.location.href = root + "/admin/adminindex.jsp";</script>
+<%	
+}
+%>
 <!-- Tmap --> 
 <!-- Simple Celander -->
 <link rel="stylesheet" href="/carpark/css/calendar/style.css" />
