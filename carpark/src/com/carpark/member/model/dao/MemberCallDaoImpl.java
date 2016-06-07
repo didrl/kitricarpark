@@ -166,4 +166,34 @@ public class MemberCallDaoImpl implements MemberCallDao {
 		}
 		return callDto;
 	}
+
+	@Override
+	public int modify(CallDto callDto) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		int count = 0;
+		try {
+			conn = DBConnection.makeConnection();
+			String sql = "";
+			sql+="update board";
+			sql+="set subject=?,contents=?";
+			sql+="where seq=?";			
+			pstmt = conn.prepareStatement(sql);
+			
+			int idx=1;
+			pstmt.setString(idx++, callDto.getSubject());
+			pstmt.setString(idx++, callDto.getContent());
+			pstmt.setInt(idx++, callDto.getSeq());
+			count = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			DBClose.close(conn, pstmt);
+		}
+		return count;
+	}
+
+
+
 }

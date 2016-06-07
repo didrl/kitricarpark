@@ -69,7 +69,7 @@ if(reservationDto != null){
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-<!-- for hid or show div -->
+<!-- for hide or show div -->
 <style>
 .hidden{display:none;}
 </style>

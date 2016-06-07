@@ -1,4 +1,4 @@
-package com.carpark.member.parking.action;
+package com.carpark.admin.parking.action;
 
 import java.io.IOException;
 import java.util.List;
@@ -42,7 +42,7 @@ public class MemberParkingListAction implements Action {
 				request.setAttribute("navigator", navigator);
 			}
 
-			return "/parking/list.jsp";
+			return "/admin/parking/list.jsp";
 		} else
 			return "index.jsp";
 

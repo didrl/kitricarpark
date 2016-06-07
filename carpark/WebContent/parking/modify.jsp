@@ -102,7 +102,7 @@ if(0 == parkingDto.getPark_flag()) {
 					<div class="col-md-10">
 						<div class="form-group">
 							<input type="text" class="form-control" placeholder="주소" name="parkAddress" readonly="readonly" value="<%=parkingDto.getDetailAddr()%>">
-							<input type="text" class="form-control" name="coordinate" value="(<%=parkingDto.getLatitude()%> , <%=parkingDto.getLongitude()%>)">
+							<input type="hidden" class="form-control" name="coordinate" value="(<%=parkingDto.getLatitude()%> , <%=parkingDto.getLongitude()%>)">
 						</div>
 							<button type="button" class="btn btn-default" onclick="javascript:parkingSearchWindow();">검색</button>
 					</div>
@@ -258,7 +258,7 @@ if(0 == parkingDto.getPark_flag()) {
 				<div class="row">
 						<p align="center">
 		  					<button type="button" class="btn btn-primary btn-lg" onclick="javascript:parkingModify('<%=parkingDto.getPark_id()%>');">수정</button>
-		  					<button type="reset" class="btn btn-default btn-lg">취소</button>
+		  					<button type="button" class="btn btn-default btn-lg" onclick="javascript:parkingList('<%=pg%>');"> 취소 </button>
 						</p>
 				</div>
 			</div>

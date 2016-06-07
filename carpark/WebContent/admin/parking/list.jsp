@@ -3,7 +3,7 @@
     
 <%@include file="/common/common.jsp" %>
 <%@include file="/common/header/init.jsp" %> 
-<%@include file="/common/side.jsp" %>
+<%@include file="/admin/common/sidebar.jsp" %>
   
     
 <%
