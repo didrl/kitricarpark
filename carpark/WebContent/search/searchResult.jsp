@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.*,com.carpark.common.model.*"%>
 <%
-List<ParkingDto> list = (List<ParkingDto>)request.getAttribute("searchlist");
-
+List<ParkingDto> list = (List<ParkingDto>)session.getAttribute("searchlist");
+String city = (String)request.getParameter("city");
 %>    
 
 <%@include file="/common/common.jsp" %>
@@ -59,7 +59,8 @@ function goResultDetail() {
 		
 		<!-- Left List Group Strat -->
 		
-		<h3><b>도시이름 </b>&nbsp;&nbsp;검색 결과</h3>
+		<h3 align="left"><b>&nbsp;&nbsp;&nbsp;&nbsp;<%=city %> 
+		</b>&nbsp;&nbsp;검색 결과</h3>
 				
    		<div class="col-md-4" style="overflow:scroll ; height: 600px;">
 				<ul class="list-group">
@@ -114,7 +115,7 @@ for(int i =0;i<list.size();i++){
 		                <div class="panel panel-default">
 		
 							<div id="daumlistmap" style="width:100%;height:650px;"></div>
-							<script src="//apis.daum.net/maps/maps3.js?apikey=c2d873676f2c4854b2b2c62e165a629d"></script>
+							<script src="//apis.daum.net/maps/maps3.js?apikey=4763b9e0f6cbc4102f42cb9f7b0f9167"></script>
 							<script>
 								var mapContainer = document.getElementById('daumlistmap'), // 지도를 표시할 div 
 								    mapOption = {
@@ -229,11 +230,68 @@ for(int i =0;i<list.size();i++){
 	  
 	                </div>
                 </div>
+<<<<<<< HEAD
+=======
+<!-- 
+                <div class="well">
+
+                    <div class="text-right">
+                        <a class="btn btn-success">Leave a Review</a>
+                    </div>
+
+                    <hr>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star-empty"></span>
+                            Anonymous
+                            <span class="pull-right">10 days ago</span>
+                            <p>This product was great in terms of quality. I would definitely buy another!</p>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star-empty"></span>
+                            Anonymous
+                            <span class="pull-right">12 days ago</span>
+                            <p>I've alredy ordered another one!</p>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star-empty"></span>
+                            Anonymous
+                            <span class="pull-right">15 days ago</span>
+                            <p>I've seen some better than this, but not at this price. I definitely recommend this item.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+>>>>>>> 10bec1beb5ebf3872c9c60d378284e632465b454
             </div>
 
         </div>
 
-    </div>
+    </div> -->
     <!-- /.container -->
 
     <div class="container">

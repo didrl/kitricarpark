@@ -1,7 +1,16 @@
+<%@page import="com.carpark.member.model.MemberDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
+<<script type="text/javascript">
+function sendReviewList(pg) {
+	document.location.href = root+"/review?act=sendReviewList&pg="+pg;
+}
 
+function receiveReviewList(pg) {
+	document.location.href = root+"/review?act=receiveReviewList&pg="+pg;
+}
+</script>
 	<!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
 		<div class="collapse navbar-collapse navbar-ex1-collapse">
 			<ul class="nav navbar-nav side-nav">
@@ -30,18 +39,26 @@
 						<li><a href="javascript:messageSendList();">보낸 메세지</a></li>
 					</ul></li>
 					
+						<li><a href="javascript:;" data-toggle="collapse"
+					data-target="#review"><i class="fa fa-envelope"></i>
+						후기 <i class="fa fa-fw fa-caret-down"></i></a>
+					<ul id="review" class="collapse">
+						<li><a href="javascript:sendReviewList();">작성한 후기</a></li>
+						<li><a href="javascript:receiveReviewList();">받은 후기</a></li>
+					</ul></li>
+					
 				<li><a href="javascript:;" data-toggle="collapse"
 					data-target="#parking"><i class="fa fa-fw fa-wrench"></i>
 						주차장 <i class="fa fa-fw fa-caret-down"></i></a>
 					<ul id="parking" class="collapse">
-						<li><a href="javascript:myParking();">내 주차장</a></li>
-						<li><a href="javascript:myParkingRegister();">주차장 등록</a></li>
+						<li><a href="javascript:parkingList();">내 주차장</a></li>
+						<li><a href="<%=root %>/parking/register.jsp">주차장 등록</a></li>
 					</ul></li>
 					
 				<li><a href="javascript:mycoin();"><i class="fa fa-fw fa-file"></i>
 						My Coin</a></li>
 						
-				<li><a href="javascript:;"><i class="fa fa-fw fa-wrench"></i>
+				<li><a href="javascript:reportList('1');"><i class="fa fa-fw fa-wrench"></i>
 						신고내역 <i class="fa fa-fw fa-caret-down"></i></a>
 				</li>
 			</ul>

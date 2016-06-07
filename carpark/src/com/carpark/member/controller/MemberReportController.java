@@ -21,22 +21,34 @@ public class MemberReportController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		String act = request.getParameter("act");
+		int bcode = NumberCheck.nullToZero(request.getParameter("bcode"));
 		int pg = NumberCheck.nullToOne(request.getParameter("pg"));
 		String key = StringCheck.nullToBlank(request.getParameter("key"));
 		String word = StringCheck.nullToBlank(request.getParameter("word"));
 		
 		String path = "/index.jsp";
-		String queryString = "?&pg=" + pg + "&key=" + key + "&word=" + Encoder.isoToUtf(word);
+		String queryString = "?bcode=" + bcode + "&pg=" + pg + "&key=" + key + "&word=" + Encoder.isoToUtf(word);
 		
-		if("".equals(act)) {
+		if("reportWrite".equals(act)) {
+			path = MemberActionFactory.getMemberReportWriteAction().execute(request, response);
+			PageMove.forward(request, response, path + queryString);
 			
-		} else if("".equals(act)) {
+		} else if("reportList".equals(act)) {
+			path = MemberActionFactory.getMemberReportListAction().execute(request, response);
+			PageMove.forward(request, response, path + queryString);
 
-		} else if("".equals(act)) {
+		} else if("reportView".equals(act)) {
+			path = MemberActionFactory.getMemberReportViewAction().execute(request, response);
+			PageMove.forward(request, response, path + queryString);
 
-		} else if("".equals(act)) {
+		} else if("reportSearch".equals(act)) {
+			path = MemberActionFactory.getMemberReportListAction().execute(request, response);
+			PageMove.forward(request, response, path + queryString);
 
-		} else if("".equals(act)) {
+		} else if("reportDelete".equals(act)) {
+			MemberActionFactory.getMemberReportDeleteAction().execute(request, response);
+			path = MemberActionFactory.getMemberReportListAction().execute(request, response);
+			PageMove.forward(request, response, path + queryString);
 
 		} else if("".equals(act)) {
 

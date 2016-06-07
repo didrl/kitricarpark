@@ -2,72 +2,10 @@
     pageEncoding="UTF-8"%>
 
 <%@ include file="/common/common.jsp" %>
-<%@ include file="/common/header.jsp" %>
+<%@ include file="/common/header/init.jsp" %>
 <%@ include file="/common/side.jsp" %>
 
 <!-- ************************************************************************************ -->
-<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=c2d873676f2c4854b2b2c62e165a629d&libraries=services"></script>
-<script type="text/javascript">
-function parkingRegister() {
-	if(document.parkRegisterForm.parkType.value == ""){
-		alert("주차장 구분을 선택하세요");
-		return;
-	} else if(document.parkRegisterForm.parkName.value == ""){
-		alert("주차장 이름을 입력하세요");
-		return;
-	} else if(document.parkRegisterForm.payYn.value == ""){
-		alert("평일 유료/무료를 선택하세요");
-		return;
-	} else if(document.parkRegisterForm.saturPayYn.value == ""){
-		alert("토요일 유료/무료를 선택하세요");
-		return;
-	} else if(document.parkRegisterForm.holiPayYn.value == ""){
-		alert("공휴일 유료/무료를 선택하세요");
-		return;
-	} else if(document.parkRegisterForm.parkCapacity.value == ""){
-		alert("총 주차면수를 입력하세요");
-		return;
-	}  else if(document.parkRegisterForm.parkTimeRate.value == ""){
-		alert("기본 주차시간을 선택하세요");
-		return;
-	} else if(document.parkRegisterForm.parkRate.value == ""){
-		alert("기본 주차요금을 선택하세요");
-		return;
-	} else if(document.parkRegisterForm.addParkRate.value == ""){
-		alert("추가 단위요금을 선택하세요");
-		return;
-	} else if(document.parkRegisterForm.dayMaxPay.value == ""){
-		alert("하루 최대요금을 선택하세요");
-		return;
-	} else{
-		document.parkRegisterForm.action = "/carpark/memberparking";
-		document.parkRegisterForm.submit();
-	}
-}
-
-function parkSearchWindow() {
-	window.open( "<%=root%>/parking/parksearch.jsp", "newWindow", "top=100, left=400, width=500, height=400, scrollbars=yes" );
-}
-
-
-//주소-좌표 변환 객체를 생성합니다
-var geocoder = new daum.maps.services.Geocoder();
-
-// 주소로 좌표를 검색합니다
-function maptest(address) {
-	
-	geocoder.addr2coord(address, function(status, result) {
-
-	    // 정상적으로 검색이 완료됐으면 
-	    if (status === daum.maps.services.Status.OK) {
-	
-	        var coords = new daum.maps.LatLng(result.addr[0].lat, result.addr[0].lng);
-	        alert(coords);
-	
-	    } 
-	}); 
-}    
-</script>
 <!-- ************************************************************************************ -->	
 <%if(memberDto != null){ %>
 <div id="wrapper">
@@ -79,10 +17,8 @@ function maptest(address) {
 			<!-- 본문내용 -->
 			<div class="col-md-10">
 			<form name="parkRegisterForm" method="post" action="">
-				<input type="hidden" name="act" value="parkRegister">				
-				<input type="hidden" name="latitude" value="">
-				<input type="hidden" name="longtitude" value="">
-				<input type="hidden" name="emdCode" value="">
+				<input type="hidden" name="act" value="parkingRegister">				
+				
 				
 				<div class="row">
 					<div class="col-md-2">
@@ -90,10 +26,10 @@ function maptest(address) {
 					</div>
 					<div class="col-md-10">
 						<label class="radio-inline">
-						  <input type="radio" name="parkType" value="0"> 사설
+						  <input type="radio" name="parkType" value="0" checked="checked"> 개인
 						</label>
 						<label class="radio-inline">
-						  <input type="radio" name="parkType" value="1"> 개인
+						  <input type="radio" name="parkType" value="1"> 사설
 						</label>
 					</div>
 				</div><hr>
@@ -129,12 +65,12 @@ function maptest(address) {
 					</div>
 					<div class="col-md-10">
 						<div class="form-group">
-							<input type="text" class="form-control" placeholder="주소" name="parkAddress" readonly="readonly"><br>
+							<input type="text" name="parkAddress" readonly="readonly" class="form-control">
+							<input type="text" name="coordinate" readonly="readonly" class="form-control">
 						</div>
-							<button type="button" class="btn btn-default" onclick="javascript:parkSearchWindow();">검색</button>
+							<button type="button" class="btn btn-default" onclick="javascript:parkingSearchWindow();">검색</button>
 					</div>
 				</div><hr>
-				
 				
 				<div class="row">
 					<div class="col-md-2">
@@ -164,24 +100,21 @@ function maptest(address) {
 								<td width="90">평일</td>				
 								<td width="90">
 									<select class="form-control" name="payYn">
-									    <option value="" selected="selected">----</option>
-									    <option value="0">무료</option>
+									    <option value="0" selected="selected">무료</option>
 									    <option value="1">유료</option>
 									</select>
 								</td>				
 								<td width="90">토요일</td>				
 								<td width="90">
 									<select class="form-control" name="saturPayYn">
-										<option value="" selected="selected">----</option>
-									    <option value="0">무료</option>
+									    <option value="0" selected="selected">무료</option>
 									    <option value="1">유료</option>
 									</select>								
 								</td>				
 								<td width="90">공휴일</td>				 
 								<td width="90">
 									<select class="form-control" name="holiPayYn">
-									    <option value="" selected="selected">----</option>
-									    <option value="0">무료</option>
+									    <option value="0" selected="selected">무료</option>
 									    <option value="1">유료</option>
 									</select>								
 								</td>										
@@ -192,8 +125,7 @@ function maptest(address) {
 								<td width="90">기본주차시간</td>				
 								<td width="90">
 									<select class="form-control" name="parkTimeRate">
-									    <option value="" selected="selected">----</option>
-									    <option value="1">1시간</option>
+									    <option value="1" selected="selected">1시간</option>
 									    <option value="2">2시간</option>
 									    <option value="3">3시간</option>
 									    <option value="4">4시간</option>
@@ -210,8 +142,7 @@ function maptest(address) {
 								<td width="90">기본주차요금</td>				
 								<td width="90">
 									<select class="form-control" name="parkRate">
-										<option value="" selected="selected">----</option>
-									    <option value="1">1코인</option>
+									    <option value="1" selected="selected">1코인</option>
 									    <option value="2">2코인</option>
 									    <option value="3">3코인</option>
 									    <option value="4">4코인</option>
@@ -228,8 +159,7 @@ function maptest(address) {
 							<td width="90">추가단위요금</td>				
 								<td width="90">
 									<select class="form-control" name="addParkRate">
-										<option value="" selected="selected">----</option>
-									    <option value="1">1코인</option>
+									    <option value="1" selected="selected">1코인</option>
 									    <option value="2">2코인</option>
 									    <option value="3">3코인</option>
 									    <option value="4">4코인</option>
@@ -244,8 +174,7 @@ function maptest(address) {
 								<td width="90">하루최대요금</td>							
 								<td width="90">
 									<select class="form-control" name="dayMaxPay">
-										<option value="" selected="selected">----</option>
-									    <option value="1">10코인</option>
+									    <option value="1" selected="selected">10코인</option>
 									    <option value="2">20코인</option>
 									    <option value="3">30코인</option>
 									    <option value="4">40코인</option>
@@ -272,6 +201,15 @@ function maptest(address) {
 					    <input type="file" id="fileName">
 					    <p class="help-block">주차장 사진 등록</p>
 				</div>
+				
+				<div class="row">
+					<div class="col-md-2">
+						<b>주차장 설명</b><br>
+					</div>
+					<div class="col-md-10">
+						<textarea class="form-control" rows="3" name="content"></textarea>						
+					</div>
+				</div><br>
 			</form>
 	
 				<div class="row">

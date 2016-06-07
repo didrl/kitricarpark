@@ -18,6 +18,7 @@ public class MemberReportViewAction implements Action {
 			throws IOException, ServletException {
 
 		int seq = NumberCheck.nullToZero(request.getParameter("seq"));
+		System.out.println(seq);
 		if(seq != 0) {
 			ReportDto reportDto = MemberReportServiceImpl.getMemberReportService().viewArticle(seq);
 			request.setAttribute("reportView", reportDto);

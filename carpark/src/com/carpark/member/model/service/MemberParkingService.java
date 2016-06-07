@@ -2,15 +2,16 @@ package com.carpark.member.model.service;
 
 import java.util.List;
 
-import com.carpark.common.model.CitiesDto;
 import com.carpark.common.model.ParkingDetailDto;
+import com.carpark.common.model.ZipDto;
 
 public interface MemberParkingService {
 	
-	void MemberParkingRegister(ParkingDetailDto parkingDto);
-	void MemberParkingModify(ParkingDetailDto parkingDto);
-	List<ParkingDetailDto> MemberParkingList(String userId);
-	void MemberParkingDelete(int parkId);
-	List<CitiesDto> ParkSearch(String address);
+	void parkingRegister(ParkingDetailDto parkingDto);
+	void parkingModify(ParkingDetailDto parkingDto);
+	List<ParkingDetailDto> parkingList(String userId);
+	int parkingDelete(int parkId);
+	List<ZipDto> parkingSearch(String address, int pg);
+	ParkingDetailDto parkingView(int parkId);
 	
 }

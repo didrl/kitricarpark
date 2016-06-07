@@ -10,5 +10,6 @@ public interface MemberReportDao {
 	int writeArticle(ReportDto reportDto);
 	ReportDto viewArticle(int seq);
 	List<ReportDto> listArticle(Map<String, String> map);
+	void deleteArticle(int seq);
 
 }

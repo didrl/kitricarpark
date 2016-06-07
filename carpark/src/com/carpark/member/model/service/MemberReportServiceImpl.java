@@ -25,14 +25,12 @@ public class MemberReportServiceImpl implements MemberReportService {
 
 	@Override
 	public int writeArticle(ReportDto reportDto) {
-		// TODO Auto-generated method stub
-		return 0;
+		return MemberReportDaoImpl.getMemberReportDao().writeArticle(reportDto);
 	}
 
 	@Override
 	public ReportDto viewArticle(int seq) {
-		// TODO Auto-generated method stub
-		return null;
+		return MemberReportDaoImpl.getMemberReportDao().viewArticle(seq);
 	}
 
 	@Override
@@ -49,6 +47,11 @@ public class MemberReportServiceImpl implements MemberReportService {
 		map.put("word", word);
 		
 		return MemberReportDaoImpl.getMemberReportDao().listArticle(map);
+	}
+
+	@Override
+	public void deleteArticle(int seq) {
+		MemberReportDaoImpl.getMemberReportDao().deleteArticle(seq);
 	}
 	
 	

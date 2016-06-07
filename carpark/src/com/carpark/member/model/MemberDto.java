@@ -1,8 +1,10 @@
 package com.carpark.member.model;
 
+import java.io.Serializable;
+
 import com.carpark.admin.model.GradeDto;
 
-public class MemberDto extends GradeDto{
+public class MemberDto extends GradeDto implements Serializable{
 	private String user_name;
 	private String email;
 	private String tel;

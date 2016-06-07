@@ -9,7 +9,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.carpark.factory.MemberActionFactory;
 import com.carpark.util.BoardConstance;
+import com.carpark.util.Encoder;
+import com.carpark.util.NumberCheck;
 import com.carpark.util.PageMove;
+import com.carpark.util.StringCheck;
 
 @WebServlet("/memberparking")
 public class MemberParkingController extends HttpServlet {
@@ -17,32 +20,44 @@ public class MemberParkingController extends HttpServlet {
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String act = request.getParameter("act");
-		String path = "/index.jsp";
-		System.out.println("act>>>>>>>>>"+act);
+		int bcode = NumberCheck.nullToZero(request.getParameter("bcode"));
+		int pg = NumberCheck.nullToOne(request.getParameter("pg"));
+		String key = StringCheck.nullToBlank(request.getParameter("key"));
+		String word = StringCheck.nullToBlank(request.getParameter("word"));
+		String parkAddress = Encoder.isoToUtf(StringCheck.nullToBlank(request.getParameter("parkAddress")));
 		
-		if("parkRegister".equals(act)) {
+		String path = "/index.jsp";
+		String queryString = "?bcode=" + bcode + "&pg=" + pg + "&key=" + key + "&word=" + Encoder.isoToUtf(word);
+		
+		if("parkingRegister".equals(act)) {
 			path = MemberActionFactory.getMemberParkingRegisterAction().execute(request, response);
-			PageMove.forward(request, response, path);
+			PageMove.forward(request, response, path + queryString);
 			
-		} else if("parkSearch".equals(act)) {
+		} else if("parkingSearch".equals(act)) {
 			path = MemberActionFactory.getMemberParkingSearchAction().execute(request, response);
-			PageMove.forward(request, response, path);
+			PageMove.forward(request, response, path + "?pg=" + pg);
 			
-		} else if("parkList".equals(act)) {
+		} else if("parkingList".equals(act)) {
 			path = MemberActionFactory.getMemberParkingListAction().execute(request, response);
-			PageMove.forward(request, response, path);
+			PageMove.forward(request, response, path + queryString);
 			
-		} else if("parkModify".equals(act)) {
+		} else if("parkingModify".equals(act)) {
 			path = MemberActionFactory.getMemberParkingModifyAction().execute(request, response);
-			PageMove.forward(request, response, path);
+			PageMove.forward(request, response, path + queryString);
 			
-		} else if("parkDelete".equals(act)) {
-			path = MemberActionFactory.getMemberParkingDeleteAction().execute(request, response);
-			PageMove.forward(request, response, path);
+		} else if("parkingDelete".equals(act)) {
+			MemberActionFactory.getMemberParkingDeleteAction().execute(request, response);
+			path = MemberActionFactory.getMemberParkingListAction().execute(request, response);
+			PageMove.forward(request, response, path + queryString);
 			
-		} else if("".equals(act)) {
-			
-		} else if("".equals(act)) {
+		} else if("parkingView".equals(act)) {
+			path = MemberActionFactory.getMemberParkingViewAction().execute(request, response);
+			PageMove.forward(request, response, path + queryString);
+			 
+		} else if("parkingMvModify".equals(act)) {
+			MemberActionFactory.getMemberParkingViewAction().execute(request, response);
+			path = "/parking/modify.jsp";
+			PageMove.forward(request, response, path + queryString);
 			
 		} else if("".equals(act)) {
 			

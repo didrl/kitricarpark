@@ -33,8 +33,9 @@ public class MemberFavoriteController extends HttpServlet {
 		}else if("favoritelist".equals(act)){
 			path = MemberActionFactory.getMemberFavoriteListAction().execute(request, response);
 			PageMove.forward(request, response, path);
-		}else if("".equals(act)){
-			path = MemberActionFactory.getMemberFavoriteListAction().execute(request, response);
+		}else if("favoriteParkView".equals(act)){
+			path = MemberActionFactory.getMemberFavoriteViewAction().execute(request, response);
+			PageMove.forward(request, response, path);
 		}
 	}
 

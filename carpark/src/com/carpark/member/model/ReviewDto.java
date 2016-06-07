@@ -1,13 +1,51 @@
 package com.carpark.member.model;
 
-public class ReviewDto {
+import java.io.Serializable;
+
+public class ReviewDto implements Serializable{
 	private String content;
 	private String subject;
 	private String user_id;
+	private String avaled_id;
 	private int park_id;
 	private double avgPoint;
 	private String logtime;
+	private int host_flag;
+	private int seq; 
+	private int bcode;
+	private int rseq;
 	
+	
+	public String getAvaled_id() {
+		return avaled_id;
+	}
+	public void setAvaled_id(String avaled_id) {
+		this.avaled_id = avaled_id;
+	}
+	public int getBcode() {
+		return bcode;
+	}
+	public void setBcode(int bcode) {
+		this.bcode = bcode;
+	}
+	public int getRseq() {
+		return rseq;
+	}
+	public void setRseq(int rseq) {
+		this.rseq = rseq;
+	}
+	public int getSeq() {
+		return seq;
+	}
+	public void setSeq(int seq) {
+		this.seq = seq;
+	}
+	public int getHost_flag() {
+		return host_flag;
+	}
+	public void setHost_flag(int host_flag) {
+		this.host_flag = host_flag;
+	}
 	public String getLogtime() {
 		return logtime;
 	}
