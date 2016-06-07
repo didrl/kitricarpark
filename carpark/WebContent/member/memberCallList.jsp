@@ -19,10 +19,6 @@ if(memberDto != null) {
             <br><h3>제보 리스트</h3><br>
                
             <div class="btn-group" role="group" aria-label="...">
-
-                 <button type="button" class="btn btn-default" onclick="javascript:memberCallReceiveList('1');">
-                    받은쪽지함
-                 </button>
                  <button type="button" class="btn btn-default" onclick="javascript:memberCallSendList('1');">
                     보낸쪽지함
                  </button>   
@@ -58,11 +54,11 @@ if(size > 0) {
 			aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
-					<div class="modal-header">
+					<div class="modal-header" style="background: #00cc00" align="center">
 						<button type="button" class="close" data-dismiss="modal">
 							<span aria-hidden="true">×</span><span class="sr-only">Close</span>
 						</button>
-						<h4 class="" id="messageToWriteModal">쪽지 보내기</h4>
+						<h4 class="" id="messageToWriteModal" style="color: #FFFFFF;">제보하기</h4>
 					</div>
 					<div class="modal-body">
 
@@ -84,17 +80,17 @@ if(size > 0) {
 										<div class="form-group">
 											<label for="receiver">받는사람</label> <input type="text"
 												class="form-control" id="receiver" placeholder="받는사람"
-												name="receiver" readonly="true">
+												name="receiver" readonly="true" value="">
 										</div>
 										<div class="form-group">
 											<label for="subject">제목</label> <input type="text"
 												class="form-control" id="subject" placeholder="제목"
-												name="subject">
+												name="subject"  value="<%=callDto.getSubject()%>">
 										</div>
 										<div class="form-group">
 											<label for="content">내용</label>
 											<textarea class="form-control" rows="10" id="content"
-												name="content"></textarea>
+												name="content"><%=callDto.getContent() %></textarea>
 										</div>
 
 										<div class="form-group text-center">
@@ -124,7 +120,7 @@ if(callDto.getpCall_Flag() == 0) {
                   <td width="50">X</td>
                   <td width="50">
                   <button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#callModify">변경</button>
-                  <button type="button" class="btn btn-default btn-xs" onclick="javascript:memberCallReceiveDelete('<%=callDto.getSeq()%>');">삭제</button>
+                  <button type="button" class="btn btn-default btn-xs" onclick="javascript:memberCallDelete('<%=callDto.getSeq()%>');">삭제</button>
                   </td>
 <%
 } else {
@@ -132,7 +128,7 @@ if(callDto.getpCall_Flag() == 0) {
                   <td width="50">O</td>
                   <td width="50">
                   <button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#messageToWrite" onclick="javascript:toWriteInit('<%=callDto.getUserID()%>');">변경</button>
-                  <button type="button" class="btn btn-default btn-xs" onclick="javascript:memberCallReceiveDelete('<%=callDto.getSeq()%>');">삭제</button>
+                  <button type="button" class="btn btn-default btn-xs" onclick="javascript:memberCallDelete('<%=callDto.getSeq()%>');">삭제</button>
                   </td>
                </tr>
 <%
