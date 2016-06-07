@@ -10,7 +10,7 @@ import com.carpark.action.Action;
 import com.carpark.member.model.service.MemberReportServiceImpl;
 import com.carpark.util.NumberCheck;
 
-public class MemberReportDeleteAction implements Action {
+public class AdminReportDeleteAction implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)

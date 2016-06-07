@@ -22,6 +22,9 @@ import com.carpark.admin.parking.action.AdminParkingRegisterAction;
 import com.carpark.admin.parking.action.AdminParkingSearchAction;
 import com.carpark.admin.penalty.action.AdminPenaltyModifyAction;
 import com.carpark.admin.penalty.action.AdminPenaltyRegisterAction;
+import com.carpark.admin.report.action.AdminReportDeleteAction;
+import com.carpark.admin.report.action.AdminReportListAction;
+import com.carpark.admin.report.action.AdminReportViewAction;
 
 public class AdminActionFactory {
 	private static Action adminEvaluationDeleteAction;
@@ -56,6 +59,10 @@ public class AdminActionFactory {
 	
 	private static Action adminAllUserInfoAction;
 	
+	private static Action adminReportListAction;
+	private static Action adminReportViewAction;
+	private static Action adminReportDeleteAction;
+	
 	
 
 
@@ -86,6 +93,11 @@ public class AdminActionFactory {
 		adminCallModifyAction = new AdminCallModifyAction();
 		adminCallRegisterAction = new AdminCallRegisterAction();
 		adminCallViewAction = new AdminCallViewAction();	
+		
+		adminReportListAction = new AdminReportListAction();
+		adminReportViewAction = new AdminReportViewAction();
+		adminReportDeleteAction = new AdminReportDeleteAction();
+		
 		}
 
 	public static Action getAdminAllUserInfoAction() {
@@ -191,5 +203,19 @@ public class AdminActionFactory {
 	public static Action getAdminPenaltySearchAction() {
 		return adminPenaltySearchAction;
 	}
+
+	public static Action getAdminReportListAction() {
+		return adminReportListAction;
+	}
+
+	public static Action getAdminReportViewAction() {
+		return adminReportViewAction;
+	}
+
+	public static Action getAdminReportDeleteAction() {
+		return adminReportDeleteAction;
+	}
+	
+	
 	
 }

@@ -3,11 +3,11 @@
     
 <%@include file="/common/common.jsp" %>
 <%@include file="/common/header/init.jsp" %> 
-<%@include file="/admin/common/sidebar.jsp" %>%>
+<%@include file="/admin/common/sidebar.jsp" %>
 
 <%
 if(memberDto != null) {
-List<ReportDto> list = (List<ReportDto>) request.getAttribute("reportList");
+List<ReportDto> list = (List<ReportDto>) request.getAttribute("adminReportList");
 PageNavigator navigator = (PageNavigator) request.getAttribute("navigator");
 %>
 
@@ -20,19 +20,16 @@ PageNavigator navigator = (PageNavigator) request.getAttribute("navigator");
 				<br><h3>신고내역</h3><br>
 					
 				
-				<!-- 신고하기 모달창 -->
-				<%@ include file="/report/write.jsp" %>
-					
-				
 				<!-- 신고내역 -->
 				<div class="table">
 				  <table class="table table-hover" style="text-align:center">
 				  	<tr>
-				  		<td width="150"><b>신고대상</b></td>
+				  		<td width="150"><b>신고자</b></td>
 				  		<td><b>제목</b></td>
+				  		<td width="150"><b>신고대상</b></td>
 				  		<td width="80"><b>시간</b></td>
 				  		<td width="50">처리</td>
-				  		<td width="80"></td>
+				  		<td width="50"></td>
 				  	</tr>
 				
 <%
@@ -42,19 +39,20 @@ if(size > 0) {
 %>
 					<!-- 신고내역 -->
 					<tr>
-						<td width="150"><a href="javascript:reportView('<%=reportDto.getSeq() %>');"><%=reportDto.getReport_id() %></a></td>
-						<td><a href="javascript:reportView('<%=reportDto.getSeq() %>');"><%=reportDto.getSubject() %></a></td>
-						<td width="80"><%=reportDto.getLogtime() %></td>
+						<td><a href="javascript:adminReportView('<%=reportDto.getSeq() %>');"><%=reportDto.getUserID() %></a></td>
+						<td><a href="javascript:adminReportView('<%=reportDto.getSeq() %>');"><%=reportDto.getSubject() %></a></td>
+						<td><a href="javascript:adminReportView('<%=reportDto.getSeq() %>');"><%=reportDto.getReport_id() %></a></td>
+						<td><%=reportDto.getLogtime() %></td>
 <%
 		if(reportDto.getReport_flag() == 0) {
 %>
-						<td width="50"> X </td>
-						<td width="80"><input type="button" class="btn btn-default" value="취소" onclick="javascript:reportDelete('<%=reportDto.getSeq()%>');"></td>
+						<td> X </td>
+						<td></td>
 <%
 		} else {
 %>
-						<td width="50"> O </td>
-						<td width="80"></td>
+						<td> O </td>
+						<td></td>
 <%
 		}
 %>

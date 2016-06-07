@@ -18,7 +18,7 @@ import com.carpark.util.NumberCheck;
 import com.carpark.util.PageNavigator;
 import com.carpark.util.StringCheck;
 
-public class MemberParkingListAction implements Action {
+public class AdminParkingListAction implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)

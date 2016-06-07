@@ -12,7 +12,7 @@ import com.carpark.member.model.service.MemberParkingServiceImpl;
 import com.carpark.member.model.service.MemberReportServiceImpl;
 import com.carpark.util.NumberCheck;
 
-public class MemberParkingViewAction implements Action {
+public class AdminParkingViewAction implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)

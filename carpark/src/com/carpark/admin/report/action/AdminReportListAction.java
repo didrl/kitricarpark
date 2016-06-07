@@ -18,7 +18,7 @@ import com.carpark.util.NumberCheck;
 import com.carpark.util.PageNavigator;
 import com.carpark.util.StringCheck;
 
-public class MemberReportListAction implements Action {
+public class AdminReportListAction implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
@@ -29,19 +29,15 @@ public class MemberReportListAction implements Action {
 		String key = StringCheck.nullToBlank(request.getParameter("key"));
 		String word = StringCheck.nullToBlank(Encoder.isoToUtf(request.getParameter("word")));
 		
-		HttpSession session = request.getSession();
-		MemberDto memberDto = (MemberDto) session.getAttribute("memberInfo");
 		
-		String userId = memberDto.getUser_id();
-		if(userId != null) {
-			List<ReportDto> list = MemberReportServiceImpl.getMemberReportService().listArticle(userId, pg, key, word);
-			request.setAttribute("reportList", list);
-			//페이지
-			PageNavigator navigator = CommonServiceImpl.getCommonService().getPageNavigator(userId, bcode, pg, key, word);
-			navigator.setRoot(request.getContextPath());
-			navigator.setNavigator("reportList");
-			request.setAttribute("navigator", navigator);
-		}
+		List<ReportDto> list = MemberReportServiceImpl.getMemberReportService().listArticle(pg, key, word);
+		request.setAttribute("adminReportList", list);
+		
+		PageNavigator navigator = CommonServiceImpl.getCommonService().getPageNavigator(bcode, pg, key, word);
+		navigator.setRoot(request.getContextPath());
+		navigator.setNavigator("adminReportList");
+		request.setAttribute("navigator", navigator);
+		
 		
 		return "/admin/report/list.jsp";
 	}
