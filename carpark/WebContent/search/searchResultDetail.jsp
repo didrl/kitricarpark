@@ -33,7 +33,7 @@ System.out.println("<><><><content><><"+parkingDetail.getContent());
 //{ from: new Date(2013, 1, 1), to: newDate (2013, 2, 1) }
 StringBuffer sb =new StringBuffer("{ ");
 int size = availabledate.size();
-if(size<2){
+if(size<2 && size>0){
 	String tmp ="from : new Date("+availabledate.get(0).get("enddate")+")}";
 	sb.append(tmp);
 }else{
