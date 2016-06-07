@@ -175,9 +175,9 @@ public class MemberCallDaoImpl implements MemberCallDao {
 		try {
 			conn = DBConnection.makeConnection();
 			String sql = "";
-			sql+="update board";
-			sql+="set subject=?,contents=?";
-			sql+="where seq=?";			
+			sql+="update board \n";
+			sql+="set subject=?,contents=? \n";
+			sql+="where seq=? \n";			
 			pstmt = conn.prepareStatement(sql);
 			
 			int idx=1;
@@ -192,6 +192,12 @@ public class MemberCallDaoImpl implements MemberCallDao {
 			DBClose.close(conn, pstmt);
 		}
 		return count;
+	}
+
+	@Override
+	public int delete(int seq) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 

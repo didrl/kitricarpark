@@ -7,14 +7,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.carpark.action.Action;
+import com.carpark.member.model.service.MemberCallServiceImpl;
 
 public class MemberCallDeleteAction implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-		// TODO Auto-generated method stub
-		return null;
+		int seq = Integer.parseInt(request.getParameter("seq"));
+		int count = MemberCallServiceImpl.getMemberCallService().delete(seq);
+		return "/member/memberCallList.jsp";
 	}
 
 }

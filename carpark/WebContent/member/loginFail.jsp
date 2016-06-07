@@ -48,7 +48,7 @@ if(cookie!=null){
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
 							<div class="checkbox">
-								<label> <input type="checkbox" name="svid" value="idsave" <%=failCkid %>> Remember me
+								<label> <input type="checkbox" name="svid" value="idsave" <%=failCkid %>> 아이디 기억
 								</label>
 							</div>
 						</div>

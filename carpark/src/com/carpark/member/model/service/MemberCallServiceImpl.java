@@ -44,5 +44,10 @@ public class MemberCallServiceImpl implements MemberCallService {
 	public int modify(CallDto callDto) {
 		return MemberCallDaoImpl.getMemberCallDao().modify(callDto);
 	}
+
+	@Override
+	public int delete(int seq) {
+		return MemberCallDaoImpl.getMemberCallDao().delete(seq);
+	}
 	
 }
