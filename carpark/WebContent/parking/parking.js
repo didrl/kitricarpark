@@ -16,8 +16,9 @@ function parkingSearchWindow() {
 }
 
 
-function parkingList() {
+function parkingList(pg) {
 	document.common.act.value = "parkingList";
+	document.common.pg.value = pg;	
 	document.common.action = "/carpark/memberparking";
 	document.common.submit();
 	   
@@ -60,14 +61,14 @@ function selectAddress(address){
 	
 	        var coords = new daum.maps.LatLng(result.addr[0].lat, result.addr[0].lng);
 	        opener.document.parkRegisterForm.coordinate.value = coords;
+	        document.parkSearchForm.parkAddress.value = address;
+	        opener.document.parkRegisterForm.parkAddress.value = address;
+	        self.close();
 			
 	    } else {
 	    	alert("검색 실패");
 	    }
 	}); 
-	document.parkSearchForm.parkAddress.value = address;
-	opener.document.parkRegisterForm.parkAddress.value = address;
-	self.close();
 }
 
 function windowClose() {

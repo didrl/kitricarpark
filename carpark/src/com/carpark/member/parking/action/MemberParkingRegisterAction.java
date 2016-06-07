@@ -14,7 +14,9 @@ import com.carpark.common.model.ParkingDetailDto;
 import com.carpark.member.model.MemberDto;
 import com.carpark.member.model.service.CommonServiceImpl;
 import com.carpark.member.model.service.MemberParkingServiceImpl;
+import com.carpark.util.Encoder;
 import com.carpark.util.NumberCheck;
+import com.carpark.util.PageNavigator;
 import com.carpark.util.StringCheck;
 
 public class MemberParkingRegisterAction implements Action {
@@ -23,8 +25,13 @@ public class MemberParkingRegisterAction implements Action {
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 		
+		int pg = NumberCheck.nullToOne(request.getParameter("pg"));
+		String key = StringCheck.nullToBlank(request.getParameter("key"));
+		String word = StringCheck.nullToBlank(Encoder.isoToUtf(request.getParameter("word")));
+		
 		HttpSession session = request.getSession();
 		MemberDto memberDto = (MemberDto) session.getAttribute("memberInfo");
+		String ownerId = memberDto.getUser_id();
 		
 		int parkingId = CommonServiceImpl.getCommonService().getNextParkingId();
 		
@@ -47,7 +54,7 @@ public class MemberParkingRegisterAction implements Action {
 			return "/parking/register.jsp";
 		}
 		
-		parkingDto.setOwner_id(memberDto.getUser_id());
+		parkingDto.setOwner_id(ownerId);
 		
 		parkingDto.setFacility(request.getParameter("facility"));
 		parkingDto.setFeature(request.getParameter("feature").replace("\r\n", "<br>"));
@@ -68,8 +75,13 @@ public class MemberParkingRegisterAction implements Action {
 		
 		if(parkingId != 0) {
 			MemberParkingServiceImpl.getMemberParkingservice().parkingRegister(parkingDto);
-			List<ParkingDetailDto> list = MemberParkingServiceImpl.getMemberParkingservice().parkingList(memberDto.getUser_id());
+			List<ParkingDetailDto> list = MemberParkingServiceImpl.getMemberParkingservice().parkingList(ownerId, pg, key, word);
 			request.setAttribute("parkingList", list);
+			
+			PageNavigator navigator = CommonServiceImpl.getCommonService().getPageNavigatorParking(ownerId, pg, key, word);
+			navigator.setRoot(request.getContextPath());
+			navigator.setNavigator("parkingList");
+			request.setAttribute("navigator", navigator);
 		}
 		
 		

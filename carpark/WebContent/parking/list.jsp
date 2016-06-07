@@ -9,6 +9,7 @@
 <%
 if(memberDto != null) {
    List<ParkingDetailDto> list = (List<ParkingDetailDto>) request.getAttribute("parkingList");
+   PageNavigator navigator = (PageNavigator) request.getAttribute("navigator");
 %>
 <div id="wrapper" align="center">
 <!-- ****************************************************************************************************************** -->   
@@ -17,17 +18,14 @@ if(memberDto != null) {
       <div id="page-wrapper">
          <div class="container-fluid">
          <br><h3>나의 주차장</h3><br>   
-               
-            
+              
             <div class="table" style="width: 800px">
               <table  class="table table-hover" style="text-align:center">
                  <tr>
                     <td>주차장 이름</td>
                     <td width="50">평점</td>
                     <td width="80">사용가능</td>
-                    <td width="90"></td>
-                    <td width="60"></td>
-                    <td width="60"></td>
+                    <td width="150"></td>
                  </tr>
             
 <%
@@ -56,13 +54,9 @@ if(memberDto != null) {
 		}
 %>
                   <td>
-                  	<button type="button" class="btn btn-default btn-group-xs" onclick="javascript:parkingView('<%=parkingDetailDto.getPark_id()%>');"> 상세보기 </button>
-                  </td>
-                  <td>                  
-                  	<button type="button" class="btn btn-default btn-group-xs" onclick="javascript:parkingMvModify('<%=parkingDetailDto.getPark_id()%>');"> 수정 </button>
-                  </td>
-                  <td>	
-                  	<button type="button" class="btn btn-default btn-group-xs" onclick="javascript:parkingDelete('<%=parkingDetailDto.getPark_id()%>');"> 삭제 </button>
+                  	<button type="button" class="btn btn-default btn-xs" onclick="javascript:parkingView('<%=parkingDetailDto.getPark_id()%>');"> 상세보기 </button>
+                  	<button type="button" class="btn btn-default btn-xs" onclick="javascript:parkingMvModify('<%=parkingDetailDto.getPark_id()%>');"> 수정 </button>
+                  	<button type="button" class="btn btn-default btn-xs" onclick="javascript:parkingDelete('<%=parkingDetailDto.getPark_id()%>');"> 삭제 </button>
 				  </td>
 <%
       }
@@ -71,6 +65,14 @@ if(memberDto != null) {
               </table>
             </div>
             
+            <a class="btn btn-default" href="<%=root %>/parking/register.jsp"> 등록 </a>
+            
+            <nav align="center">
+				<ul class="pagination">
+				<%=navigator.getNavigator() %>
+				</ul>
+						
+			</nav>
 <%
    } else {
 %>
@@ -81,11 +83,7 @@ if(memberDto != null) {
 <%
    }
 %>
-
-
-
-
-               
+          
       </div>
    </div>
 <!-- ****************************************************************************************************************** -->   

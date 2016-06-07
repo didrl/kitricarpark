@@ -39,6 +39,9 @@ PageNavigator navigator = (PageNavigator) request.getAttribute("navigator");
 			<td>
 				<input type="text" class="form-control" name="parkAddress" value="<%=address%>">				
 			</td>
+<%
+session.removeAttribute("address");
+%>
 			<td width="60">
 				<button type="button" class="btn btn-default btn-group-xs" onclick="javascript:searchAddress('1');">검색</button>
 			</td>
