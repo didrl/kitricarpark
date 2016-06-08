@@ -16,7 +16,7 @@ public class AdminCallRegisterAction implements Action{
 			throws IOException, ServletException {
 		int seq = Integer.parseInt(request.getParameter("seq"));
 		AdminCallServiceImpl.getAdminCallService().viewArticle(seq);	
-		return null;
+		return "/admin/call/getInform.jsp";
 	}
 
 }
