@@ -5,7 +5,7 @@
 <%@include file="/common/header/init.jsp"%>
 <%@ include file="/admin/common/sidebar.jsp" %>
 <%
-
+if(memberDto!=null){
 List<CallDto> callList = (List<CallDto>)request.getAttribute("receiveList");
 %>
 
@@ -38,11 +38,11 @@ List<CallDto> callList = (List<CallDto>)request.getAttribute("receiveList");
 				<div class="table">
 				  <table class="table table-hover" style="text-align:center">
 				  	<tr>
-				  		<td width="200"><b>보낸사람</b></td>
-				  		<td><b>제목</b></td>
-				  		<td><b>시간</b></td>
-				  		<td width="50"><b>확인</b></td>
-				  		<td></td>
+				  		<td width="200" style="background: #00cc00" align="center"><b style="color: #FFFFFF;">보낸사람</b></td>
+				  		<td style="background: #00cc00" align="center"><b style="color: #FFFFFF;">제목</b></td>
+				  		<td style="background: #00cc00" align="center"><b style="color: #FFFFFF;">시간</b></td>
+				  		<td width="50" style="background: #00cc00" align="center"><b style="color: #FFFFFF;">확인</b></td>
+				  		<td style="background: #00cc00" align="center"></td>
 				  	</tr>
 				
 <%
@@ -130,6 +130,7 @@ if(callDto.getpCall_Ok() == 0) {
 						<button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#messageToWrite" onclick="toWriteInit('<%=callDto.getUserID()%>');">답장</button>
 						<button type="button" class="btn btn-default btn-xs" onclick="javascript:messageReceiveDelete('<%=callDto.getSeq()%>');">삭제</button>
 						</td>
+					</tr>
 <%
 } else {
 %>
@@ -200,13 +201,13 @@ if(callDto.getpCall_Ok() == 0) {
 <!-- ****************************************************************************************************************** -->	
 </div>
 <%
-
+}else{
 %>
 <center>
 <h3>로그인 후 이용해주세요</h3>
 </center>
 <%
-
+}
 %>
 
 <%@include file="/common/footer.jsp"%>

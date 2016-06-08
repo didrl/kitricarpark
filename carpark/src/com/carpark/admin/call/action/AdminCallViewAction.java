@@ -17,7 +17,7 @@ public class AdminCallViewAction implements Action{
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 		int seq = Integer.parseInt(request.getParameter("seq"));
-		CallDto callDto = AdminCallServiceImpl.getAdminCallService().viewArticle(seq);
+		
 		
 		return "";
 	}
