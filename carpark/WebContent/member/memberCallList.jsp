@@ -58,7 +58,10 @@ int idcount=0;
                   <td width="150"><a href="javascript:memberCallSendView('<%=callDto.getSeq()%>');"><%=callDto.getUserID()%></a></td>
                   <td><a href="javascript:memberCallSendView('<%=callDto.getSeq() %>');"><%=callDto.getSubject() %></a></td>
                   <td width="80"><%=callDto.getLogtime() %></td>  
-                  <!-- callModify Modal Start -->
+ 
+ 
+ 
+ <!-- callModify Modal Start -->
 		<div class="modal fade" id="callModify<%=idcount%>" tabindex="-1" role="dialog"
 			aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
@@ -118,7 +121,7 @@ int idcount=0;
 		<!-- callModify Modal End -->
                    
 <%
-if(callDto.getpCall_Flag() == 0) {
+if(callDto.getpCall_Ok() == 0) {
 %>               
                   <td width="50">X</td>
                   <td width="50">
@@ -126,15 +129,14 @@ if(callDto.getpCall_Flag() == 0) {
                   <button type="button" class="btn btn-default btn-xs" onclick="javascript:memberCallDelete('<%=callDto.getSeq()%>');">삭제</button>
                   </td>
                   
-                  
-                  
+                                  
                   
 <%
 } else {
 %>
                   <td width="50">O</td>
                   <td width="50">
-                  <button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#messageToWrite" onclick="javascript:toWriteInit('<%=callDto.getUserID()%>');">변경</button>
+                  <button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#callModify<%=idcount%>">변경</button>
                   <button type="button" class="btn btn-default btn-xs" onclick="javascript:memberCallDelete('<%=callDto.getSeq()%>');">삭제</button>
                   </td>
                </tr>
