@@ -41,7 +41,7 @@ String word = Encoder.isoToUtf(StringCheck.nullToBlank(request.getParameter("wor
 	var root = "<%=root%>";
 	</script>
 	<script type="text/javascript" src="<%=root%>/js/member/login.js"></script>
-	
+	<script type="text/javascript" src="<%=root%>/admin/js/adminCall.js"></script>
 	
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

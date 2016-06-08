@@ -31,7 +31,6 @@ public class AdminCallListAction implements Action {
 			System.out.println("CallListAction>>> "+ receiveId);
 			request.setAttribute("receiveList", receiveList);
 		}
-		
 		return "/admin/call/getInform.jsp";
 	}
 

@@ -109,4 +109,9 @@ function getAllUserInfo(){
 	document.location.href=root+"/admin?act=alluserinfo";
 }
 
+function callSendViewConfirm(seq) {
+	alert("방문예정이 확정되었습니다.");
+	self.close();
+	opener.document.location.href=root+"/admincall?act=adminCallConfirm&seq="+seq;
+}
 

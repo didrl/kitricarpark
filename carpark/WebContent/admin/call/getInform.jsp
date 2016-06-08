@@ -8,6 +8,7 @@
 
 List<CallDto> callList = (List<CallDto>)request.getAttribute("receiveList");
 %>
+
 <div id="wrapper">
 <!-- ****************************************************************************************************************** -->	
  
@@ -122,7 +123,7 @@ if(size > 0) {
 
 
 <%
-if(callDto.getpCall_Flag() == 0) {
+if(callDto.getpCall_Ok() == 0) {
 %>					
 						<td>X</td>
 						<td>

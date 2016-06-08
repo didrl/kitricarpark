@@ -15,9 +15,6 @@ import com.carpark.util.NumberCheck;
 import com.carpark.util.PageMove;
 import com.carpark.util.StringCheck;
 
-/**
- * Servlet implementation class AdminCallController
- */
 @WebServlet("/admincall")
 public class AdminCallController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -59,6 +56,14 @@ public class AdminCallController extends HttpServlet {
     		} else if("adminCallReceiveList".equals(act)) {//받은쪽지목록
     			path = AdminActionFactory.getAdminCallListAction().execute(request, response);
     			PageMove.forward(request, response, path + queryString);
+    			
+    		} else if("adminCallConfirm".equals(act)) {
+    			AdminActionFactory.getAdminCallConfirmAction().execute(request, response);
+    			path = AdminActionFactory.getAdminCallListAction().execute(request, response);
+    			PageMove.forward(request, response, path + queryString);
+    		} else if("".equals(act)) {
+    			
+    		} else if("".equals(act)) {
     			
     		} else if("".equals(act)) {
     			
