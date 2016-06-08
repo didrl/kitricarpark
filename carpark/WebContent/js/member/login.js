@@ -113,3 +113,10 @@ function memberCallDelete(seq) {
 	document.location.href=root+"/call?act=callSendDelete&seq="+seq;
 }
 
+function modifySeq(seq) {
+	document.common.seq.value=seq;
+	document.common.act.value="callSendView";
+	document.common.action=root+"/call";
+}
+
+

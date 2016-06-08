@@ -196,8 +196,39 @@ public class MemberCallDaoImpl implements MemberCallDao {
 
 	@Override
 	public int delete(int seq) {
-		// TODO Auto-generated method stub
-		return 0;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		int count = 0;
+		try {
+			conn = DBConnection.makeConnection();
+			conn.setAutoCommit(false);
+			String sql = "";
+			sql+="delete \n";
+			sql+="from call\n";
+			sql+="where pcall_id=? \n";			
+			int idx=1;
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(idx++, seq);
+			count = pstmt.executeUpdate();
+			conn.commit();
+			pstmt.close();
+			
+			sql="";
+			sql+="delete \n";
+			sql+="from board \n";
+			sql+="where seq=? \n";
+			idx=1;
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(idx++, seq);
+			count = pstmt.executeUpdate();
+			conn.commit();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			DBClose.close(conn, pstmt);
+		}
+		return count;
 	}
 
 
