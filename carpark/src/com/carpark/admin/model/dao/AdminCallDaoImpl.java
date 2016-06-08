@@ -76,7 +76,7 @@ public class AdminCallDaoImpl implements AdminCallDao {
 			sql += "		decode(to_char(logtime, 'yymmdd'), \n";
 			sql += "				to_char(sysdate, 'yymmdd'), to_char(b.logtime, 'hh24:mi:ss'), \n";
 			sql += "				to_char(b.logtime, 'yy.mm.dd')) logtime, \n";
-			sql += "pcseq, pcall_flag \n";
+			sql += "pcseq, pcall_flag , pcall_ok \n";
 			sql += "from board b, call c \n";
 			sql += "where b.seq = c.pcall_id \n";
 			sql += "and user_id= ? \n";
@@ -94,6 +94,7 @@ public class AdminCallDaoImpl implements AdminCallDao {
 				callDto.setSubject(rs.getString("subject"));
 				callDto.setContent(rs.getString("contents"));
 				callDto.setLogtime(rs.getString("logtime"));
+				callDto.setpCall_Ok(rs.getInt("pcall_ok"));
 				list.add(callDto);
 			}
 			

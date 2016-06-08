@@ -27,7 +27,7 @@ function ownCarView(park_id){
 				<!-- 메세지 리스트 -->
 				<div class="table">
 				  <table class="table table-hover" style="text-align:center">
-				  	<tr>
+				  	<tr style="background: #00cc00">
 				  		<td width="100"><b>차량 분류</b></td>
 				  		<td><b>등록 번호</b></td>
 				  		<td><b>차량 이름</b></td>
