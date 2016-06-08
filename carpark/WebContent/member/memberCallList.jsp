@@ -47,10 +47,19 @@ if(memberDto != null) {
 
 int size = callReceiveList.size();
 if(size > 0) {
+int idcount=0;
    for(CallDto callDto : callReceiveList) {
+	   idcount++;
 %>
-		<!-- callModify Modal Start -->
-		<div class="modal fade" id="callModify" tabindex="-1" role="dialog"
+	
+
+               <!-- 쪽지목록 -->
+               <tr > 
+                  <td width="150"><a href="javascript:memberCallSendView('<%=callDto.getSeq()%>');"><%=callDto.getUserID()%></a></td>
+                  <td><a href="javascript:memberCallSendView('<%=callDto.getSeq() %>');"><%=callDto.getSubject() %></a></td>
+                  <td width="80"><%=callDto.getLogtime() %></td>  
+                  <!-- callModify Modal Start -->
+		<div class="modal fade" id="callModify<%=idcount%>" tabindex="-1" role="dialog"
 			aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
@@ -106,22 +115,20 @@ if(size > 0) {
 				</div>
 			</div>
 		</div>
-		<!-- callModify Modal End -->	
-
-
-               <!-- 쪽지목록 -->
-               <tr > 
-                  <td width="150"><a href="javascript:memberCallSendView('<%=callDto.getSeq()%>');"><%=callDto.getUserID()%></a></td>
-                  <td><a href="javascript:memberCallSendView('<%=callDto.getSeq() %>');"><%=callDto.getSubject() %></a></td>
-                  <td width="80"><%=callDto.getLogtime() %></td>   
+		<!-- callModify Modal End -->
+                   
 <%
 if(callDto.getpCall_Flag() == 0) {
 %>               
                   <td width="50">X</td>
                   <td width="50">
-                  <button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#callModify">변경</button>
+                  <button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#callModify<%=idcount%>">변경</button>
                   <button type="button" class="btn btn-default btn-xs" onclick="javascript:memberCallDelete('<%=callDto.getSeq()%>');">삭제</button>
                   </td>
+                  
+                  
+                  
+                  
 <%
 } else {
 %>
@@ -132,12 +139,19 @@ if(callDto.getpCall_Flag() == 0) {
                   </td>
                </tr>
 <%
-   }   
+   }
+
 }
 %>
               </table>
             </div>
 
+	
+
+			
+			
+			
+			
 <%
 } else {
 %>

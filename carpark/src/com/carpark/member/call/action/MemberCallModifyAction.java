@@ -22,7 +22,12 @@ public class MemberCallModifyAction implements Action {
 		callDto.setSeq(Integer.parseInt(request.getParameter("seq")));
 		callDto.setSubject(request.getParameter("subject"));
 		callDto.setContent(request.getParameter("content"));
+		
+		System.out.println(Integer.parseInt(request.getParameter("seq")));
+		System.out.println(request.getParameter("subject"));
+		System.out.println(request.getParameter("content"));
 		int count = MemberCallServiceImpl.getMemberCallService().modify(callDto);
-		return "/member/memberCallList.jsp";
+		
+		return "";
 	}
 }

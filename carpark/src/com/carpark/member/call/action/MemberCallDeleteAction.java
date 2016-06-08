@@ -15,7 +15,9 @@ public class MemberCallDeleteAction implements Action {
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 		int seq = Integer.parseInt(request.getParameter("seq"));
+		System.out.println("delete seq"+seq);
 		int count = MemberCallServiceImpl.getMemberCallService().delete(seq);
+		System.out.println("삭제"+count);
 		return "/member/memberCallList.jsp";
 	}
 
