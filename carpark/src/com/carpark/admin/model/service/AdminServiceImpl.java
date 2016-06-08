@@ -1,7 +1,12 @@
 package com.carpark.admin.model.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import com.carpark.admin.model.StatsChangeUserDto;
+import com.carpark.admin.model.StatsGoodBehaviorUsersDto;
+import com.carpark.admin.model.StatsGoodUseUserDto;
+import com.carpark.admin.model.StatsPopularParkDto;
 import com.carpark.admin.model.dao.AdminDaoImpl;
 import com.carpark.member.model.MemberDto;
 
@@ -21,7 +26,26 @@ public class AdminServiceImpl implements AdminService {
 	
 	@Override
 	public ArrayList<MemberDto> allUserInfo() {
-		System.out.println("admin Service Imple" + AdminDaoImpl.getAdminDaoImpl().allUserInfo().size());
 		return AdminDaoImpl.getAdminDaoImpl().allUserInfo();
+	}
+
+	@Override
+	public List<StatsChangeUserDto> changeUserList() {
+		return AdminDaoImpl.getAdminDaoImpl().changeUserList();
+	}
+
+	@Override
+	public List<StatsGoodBehaviorUsersDto> goodBehaviorUserList() {
+		return AdminDaoImpl.getAdminDaoImpl().goodBehaviorUserList();
+	}
+
+	@Override
+	public List<StatsGoodUseUserDto> goodUseUserList() {
+		return AdminDaoImpl.getAdminDaoImpl().goodUseUserList();
+	}
+
+	@Override
+	public List<StatsPopularParkDto> popularParkList() {
+		return AdminDaoImpl.getAdminDaoImpl().popularParkList();
 	}
 }

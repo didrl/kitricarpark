@@ -2,6 +2,7 @@ package com.carpark.factory;
 
 import com.carpark.action.Action;
 import com.carpark.admin.action.AdminAllUserInfoAction;
+import com.carpark.admin.action.AdminLoginAction;
 import com.carpark.admin.call.action.AdminCallDeleteAction;
 import com.carpark.admin.call.action.AdminCallListAction;
 import com.carpark.admin.call.action.AdminCallModifyAction;
@@ -59,10 +60,14 @@ public class AdminActionFactory {
 	private static Action adminReportDeleteAction;
 	private static Action adminReportRegisterAction;
 	
+	private static Action adminLoginAction;
 	
 
 
 	static {
+		
+		adminLoginAction = new AdminLoginAction();
+		
 		adminAllUserInfoAction = new AdminAllUserInfoAction();
 		
 		adminEvaluationDeleteAction = new AdminEvaluationDeleteAction();
@@ -94,6 +99,9 @@ public class AdminActionFactory {
 		adminReportRegisterAction = new AdminReportRegisterAction();
 		
 		}
+	public static Action getAdminLoginAction() {
+		return adminLoginAction;
+	}
 
 	public static Action getAdminAllUserInfoAction() {
 		return adminAllUserInfoAction;

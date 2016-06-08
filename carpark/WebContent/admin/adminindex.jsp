@@ -4,6 +4,13 @@
 <%@include file="/common/header/init.jsp" %> 
 <%@include file="/admin/common/sidebar.jsp" %>
 
+<%
+List<StatsChangeUserDto> changeUserList = (List<StatsChangeUserDto>) session.getAttribute("changeUserList"); 
+List<StatsGoodBehaviorUsersDto> goodBehaviorUserList = (List<StatsGoodBehaviorUsersDto>) session.getAttribute("goodBehaviorUserList"); 
+List<StatsGoodUseUserDto> goodUseUserList = (List<StatsGoodUseUserDto>) session.getAttribute("goodUseUserList"); 
+List<StatsPopularParkDto> popularParkList = (List<StatsPopularParkDto>) session.getAttribute("popularParkList"); 
+
+%>
 <!-- for hide or show div -->
 <style>
 .hidden{display:none;}
@@ -34,22 +41,31 @@ function drawBestComplainChart() {
 }
 
 function drawPopularParkChart() {
-    // Some raw data (not necessarily accurate)
     var data = google.visualization.arrayToDataTable([
-     ['월', '가', 'Ecuador', 'Madagascar', 'Papua New Guinea', 'Rwanda', 'Average'],
-     ['2004/05',  165,      938,         522,             998,           450,      614.6],
-     ['2005/06',  135,      1120,        599,             1268,          288,      682],
-     ['2006/07',  157,      1167,        587,             807,           397,      623],
-     ['2007/08',  139,      1110,        615,             968,           215,      609.4],
-     ['2008/09',  136,      691,         629,             1026,          366,      569.6]
+     ['주차장 이름', '예약 횟수', '즐겨찾기 횟수', '평점'],
+<%
+	int ppsize=popularParkList.size();
+	int i=0;
+for(StatsPopularParkDto ppd : popularParkList){
+	i++;
+%>
+     ['<%=ppd.getPark_name()%>',<%=ppd.getRcount()%>,<%=ppd.getFcount()%>,<%=ppd.getPark_avgpoint()%>]
+<%
+	if(i<ppsize){
+		%>
+     	,
+     <%
+	}
+}
+%>
   ]);
 
 	var options = {
-	  title : 'Monthly Coffee Production by Country',
-	  vAxis: {title: '사용량'},
-	  hAxis: {title: '월'},
+	  title : '인기 주차장 통계정보',
+	  hAxis: {title: '주차장 이름'},
+	  vAxis: {title: '인기도'},
 	  seriesType: 'bars',
-	  series: {5: {type: 'line'}}
+	  series: {2: {type: 'line'}}
 	};
 	
 	var chart = new google.visualization.ComboChart(document.getElementById('popularPark'));
@@ -57,69 +73,88 @@ function drawPopularParkChart() {
 }
 
 function drawGoodUseCustomerChart() {
-	   var data = google.visualization.arrayToDataTable
-	   ([
-	   		["Element", "Density", { role: "style" } ],
-	        ["Copper", 8.94, "#b87333"],
-	        ["Silver", 10.49, "silver"],
-	        ["Gold", 19.30, "gold"],
-	        ["Platinum", 21.45, "color: #e5e4e2"]
-	   ]);
+    // Some raw data (not necessarily accurate)
+    var data = google.visualization.arrayToDataTable([
+     ['고객 아이디', '예약 횟수', '즐겨찾기 횟수', '평점'],
+<%
+	int uusize=goodUseUserList.size();
+	int j=0;
+for(StatsGoodUseUserDto sguu : goodUseUserList){
+	i++;
+%>
+     ['<%=sguu.getUser_id()%>',<%=sguu.getRcount()%>,<%=sguu.getFcount()%>,<%=sguu.getUser_avgpoint()%>]
+<%
+	if(j<uusize){
+		%>
+     	,
+     <%
+	}
+}
+%>
+  ]);
 
-	   var view = new google.visualization.DataView(data);
-	   view.setColumns
-	   ([0, 1,{ calc: "stringify", 
-		   sourceColumn: 1,
-			type: "string",
-	        role: "annotation" },
-	        2]);
-
-	   var options = {
-	   		title: "Density of Precious Metals, in g/cm^3",
-	        width: 600,
-	        height: 400,
-	        bar: {groupWidth: "95%"},
-	        legend: { position: "none" },
-	   };
-	   var chart = new google.visualization.BarChart(document.getElementById("goodUseCustomer"));
-	   chart.draw(view, options);
+	var options = {
+	  title : '우수 이용 고객 통계정보',
+	  hAxis: {title: '고객 아이디'},
+	  vAxis: {title: '사용률'},
+	  seriesType: 'bars',
+	  series: {2: {type: 'line'}}
+	};
+	
+	var chart = new google.visualization.ComboChart(document.getElementById('goodUseCustomer'));
+	chart.draw(data, options);
   }
   
 function drawGoodBehaviorCustomerChart() {
-	   var data = google.visualization.arrayToDataTable
-	   ([
-	   		["Element", "Density", { role: "style" } ],
-	        ["Copper", 8.94, "#b87333"],
-	        ["Silver", 10.49, "silver"],
-	        ["Gold", 19.30, "gold"],
-	        ["Platinum", 21.45, "color: #e5e4e2"]
-	   ]);
-	
-	  var view = new google.visualization.DataView(data);
-	  view.setColumns([0, 1,
-	  		{ calc: "stringify",
-	        sourceColumn: 1,
-	        type: "string",
-	        role: "annotation" },2]);
+    // Some raw data (not necessarily accurate)
+    var data = google.visualization.arrayToDataTable([
+     ['고객 아이디', '평점', '벌점'],
+<%
+	int busize=goodBehaviorUserList.size();
+	int k=0;
+for(StatsGoodBehaviorUsersDto bgu : goodBehaviorUserList){
+	i++;
+%>
+     ['<%=bgu.getUser_id()%>',<%=bgu.getUser_avgpoint()%>,<%=bgu.getPenalty()%>]
+<%
+	if(k<busize){
+		%>
+     	,
+     <%
+	}
+}
+%>
+  ]);
 
-	 var options = {
-	 	title: "Density of Precious Metals, in g/cm^3",
-	    width: 600,
-	    height: 400,
-	    bar: {groupWidth: "95%"},
-	    legend: { position: "none" },
-	 };
-	 var chart = new google.visualization.BarChart(document.getElementById("goodBehaviorCustomer"));
-	 chart.draw(view, options);
+	var options = {
+	  title : '우수 고객 통계정보',
+	  hAxis: {title: '고객 아이디'},
+	  vAxis: {title: '상벌점'},
+	  seriesType: 'bars'
+	};
+	
+	var chart = new google.visualization.ComboChart(document.getElementById('goodBehaviorCustomer'));
+	chart.draw(data, options);
   }
   
 function drawCustomerChangeChart() {
     var data = google.visualization.arrayToDataTable([
-      ['Year', 'Sales', 'Expenses'],
-      ['2004',  1000,      400],
-      ['2005',  1170,      460],
-      ['2006',  660,       1120],
-      ['2007',  1030,      540]
+      ['가입일', '누적 회원수'],
+      <%
+  	int cusize=changeUserList.size();
+  	int l=0;
+  for(StatsChangeUserDto cul : changeUserList){
+  	i++;
+  %>
+       ['<%=cul.getLogtime()%>',<%=cul.getSumover()%>]
+  <%
+  	if(l<cusize){
+  		%>
+       	,
+       <%
+  	}
+  }
+  %>
     ]);
 
     var options = {
@@ -292,5 +327,13 @@ order by  point desc) a
 where rownum <11
 //////////////////////////////////////////////////////////////
 
-
+//////// Customer Change ///////////////
+select rownum, a.logtime, a.sumover
+from(
+			select logtime,  sum(count(user_id)) over (order by logtime) as sumover
+			from member
+			group by logtime
+			order by logtime) a
+where rownum<16
+///////////////////////////////////////////////////////
  -->

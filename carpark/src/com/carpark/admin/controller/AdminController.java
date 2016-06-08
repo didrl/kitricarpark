@@ -35,10 +35,10 @@ public class AdminController extends HttpServlet {
     		
     		}else if("alluserinfo".equals(act)) {
     			path = AdminActionFactory.getAdminAllUserInfoAction().execute(request, response);
-    			System.out.println("aasdfasd@@"+path);
     			PageMove.forward(request, response, path);
-    		}else if("".equals(act)) {
-    			
+    		}else if("adminLogin".equals(act)) {
+    			path = AdminActionFactory.getAdminLoginAction().execute(request, response);
+    			PageMove.forward(request, response, path);
     		}else if("".equals(act)) {
     			
     		}else if("".equals(act)) {
