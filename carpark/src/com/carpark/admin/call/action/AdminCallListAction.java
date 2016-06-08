@@ -32,7 +32,7 @@ public class AdminCallListAction implements Action {
 			request.setAttribute("receiveList", receiveList);
 		}
 		
-		return "/admin/parklist/getInform.jsp";
+		return "/admin/call/getInform.jsp";
 	}
 
 }

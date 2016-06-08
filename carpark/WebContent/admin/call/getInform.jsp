@@ -46,15 +46,81 @@ List<CallDto> callList = (List<CallDto>)request.getAttribute("receiveList");
 				
 <%
 int size = callList.size();
-	
+int idcount=0;	
 if(size > 0) {
 	for(CallDto callDto : callList) {
+		idcount++;
 %>
 					<!-- 쪽지목록 -->
 					<tr >
 						<td><a href="javascript:adminMessageReceiveView('<%=callDto.getSeq()%>');"><%=callDto.getUserID() %></a></td>
-						<td><a href="javascript:adminMessageReceiveView('<%=callDto.getSeq() %>');"><%=callDto.getSubject() %></a></td>
+						<td><a href="javascript:adminMessageReceiveView('<%=callDto.getSeq()%>');"><%=callDto.getSubject() %></a></td>
 						<td><%=callDto.getLogtime() %></td>	
+
+
+
+<!-- callModify Modal Start -->
+		<div class="modal fade" id="callModify<%=idcount%>" tabindex="-1" role="dialog"
+			aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header" style="background: #00cc00" align="center">
+						<button type="button" class="close" data-dismiss="modal">
+							<span aria-hidden="true">×</span><span class="sr-only">Close</span>
+						</button>
+						<h4 class="" id="messageToWriteModal" style="color: #FFFFFF;">제보하기</h4>
+					</div>
+					<div class="modal-body">
+
+						<!-- main -->
+						<div id="page-wrapper">
+							<div class="container-fluid">
+
+								<!-- 변경 -->
+								<div class="form-group">
+									<form class="form-horizontal" name="callModifyForm" method="post" action="<%=root%>/call">
+										<input type="hidden" name="act" value="callViewModify">
+										<input type="hidden" name="bcode" value="1"> 
+										<input type="hidden" name="pg" value="1"> 
+										<input type="hidden" name="key" value=""> 
+										<input type="hidden" name="word" value="">
+										<input type="hidden" name="seq" value="<%=callDto.getSeq()%>">
+										
+
+										<div class="form-group">
+											<label for="receiver">받는사람</label> <input type="text"
+												class="form-control" id="receiver" placeholder="받는사람"
+												name="receiver" readonly="true" value="">
+										</div>
+										<div class="form-group">
+											<label for="subject">제목</label> <input type="text"
+												class="form-control" id="subject" placeholder="제목"
+												name="subject"  value="<%=callDto.getSubject()%>">
+										</div>
+										<div class="form-group">
+											<label for="content">내용</label>
+											<textarea class="form-control" rows="10" id="content"
+												name="content"><%=callDto.getContent() %></textarea>
+										</div>
+
+										<div class="form-group text-center">
+											<input class="btn btn-default" type="submit" value="변경">
+										</div>
+
+									</form>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- callModify Modal End -->
+                   
+
+
+
 <%
 if(callDto.getpCall_Flag() == 0) {
 %>					
