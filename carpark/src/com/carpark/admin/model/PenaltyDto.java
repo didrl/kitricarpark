@@ -6,6 +6,7 @@ public class PenaltyDto extends EvaluationDto {
 	private String user_id;
 	private String penalty_date;
 	private String penalty_content;
+	private int seq;//구분용
 	
 	public int getPenalty_num() {
 		return penalty_num;
@@ -30,6 +31,12 @@ public class PenaltyDto extends EvaluationDto {
 	}
 	public void setPenalty_content(String penalty_content) {
 		this.penalty_content = penalty_content;
+	}
+	public int getSeq() {
+		return seq;
+	}
+	public void setSeq(int seq) {
+		this.seq = seq;
 	}
 	
 

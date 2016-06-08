@@ -21,11 +21,14 @@ public class AdminReportRegisterAction implements Action {
 		String report_id = StringCheck.nullToBlank(request.getParameter("report_id"));
 		int penalty_code = NumberCheck.nullToZero(request.getParameter("penalty_code"));
 		String penalty_content = StringCheck.nullToBlank(request.getParameter("penalty_content").replace("\r\n", "<br>"));
+		int seq = NumberCheck.nullToZero(request.getParameter("seq"));
 		
 		PenaltyDto penaltyDto = new PenaltyDto();
 		penaltyDto.setUser_id(report_id);
 		penaltyDto.setPenalty_code(penalty_code);
 		penaltyDto.setPenalty_content(penalty_content);
+		penaltyDto.setSeq(seq);
+		System.out.println(seq);
 		
 		int cnt = AdminReportServiceImpl.getAdminReportService().writeArticle(penaltyDto);
 		if(cnt != 0)

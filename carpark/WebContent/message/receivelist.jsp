@@ -103,8 +103,8 @@ if(messageDto.getMsgFlag() == 0) {
 					<input type="hidden" name="pg" id="pg" value="<%=pg%>">
 					<select name="key">
 						<option value="subject">제목</option>
-						<option value="content">내용</option>
-						<option value="user_id">작성자</option>
+						<option value="contents">내용</option>
+						<option value="user_id">보낸사람</option>
 					</select>
 					<input type="text" name="word" id="word" value="">
 					<input type="button" class="btn btn-default" value="검색" onclick="javascript:messageSearch();">

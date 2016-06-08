@@ -37,11 +37,22 @@ public class AdminReportDaoImpl implements AdminReportDao {
 		try {
 			conn = DBConnection.makeConnection();
 			conn.setAutoCommit(false);
+			
 			String sql = "";
-			sql += "update table member \n";
-			sql += "set penalty = (select panel_point from evaluation where penal_code = ?) \n";
-			sql += "where user_id = ? \n";
-			System.out.println(sql);
+			sql += "insert into penalty (panel_num, user_id, panel_code, panel_date, panel_content) \n";
+			sql += "values (report_num_cseq.nextval, ?, ?, sysdate, ?)";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, penaltyDto.getUser_id());
+			pstmt.setInt(2, penaltyDto.getPenalty_code());
+			pstmt.setString(3, penaltyDto.getPenalty_content());
+			cnt = pstmt.executeUpdate();
+			conn.commit();
+			pstmt.close();
+			
+			sql = "";
+			sql += "update member \n";
+			sql += "set penalty = penalty + (select panel_point from evaluation where penal_code = ?) \n";
+			sql += "where user_id = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, penaltyDto.getPenalty_code());
 			pstmt.setString(2, penaltyDto.getUser_id());
@@ -50,14 +61,14 @@ public class AdminReportDaoImpl implements AdminReportDao {
 			pstmt.close();
 			
 			sql = "";
-			sql += "insert into penalty (panel_num, user_id, panel_code, panel_date, panel_content) \n";
-			sql += "values (report_num_cseq.nextval, ?, ?, sysdate, ?)";
+			sql += "update report \n";
+			sql += "set report_flag = 1 \n";
+			sql += "where seq = ?";
 			System.out.println(sql);
+			System.out.println(penaltyDto.getSeq());
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, penaltyDto.getUser_id());
-			pstmt.setInt(2, penaltyDto.getPenalty_code());
-			pstmt.setString(3, penaltyDto.getPenalty_content());
-			cnt = pstmt.executeUpdate();
+			pstmt.setInt(1, penaltyDto.getSeq());
+			pstmt.executeUpdate();
 			conn.commit();
 			
 		} catch (SQLException e) {
@@ -293,9 +304,9 @@ public class AdminReportDaoImpl implements AdminReportDao {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, userId);
 			rs = pstmt.executeQuery();
-			rs.next();
-			penalty = rs.getInt(1);
-			
+			if(rs.next()) {
+				penalty = rs.getInt(1);
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

@@ -11,6 +11,14 @@ List<ReportDto> list = (List<ReportDto>) request.getAttribute("adminReportList")
 PageNavigator navigator = (PageNavigator) request.getAttribute("navigator");
 %>
 
+<form name="adminReportViewForm" method="get" action="">
+	<input type="hidden" name="act" value="adminReportView">	
+	<input type="hidden" name="pg" id="pg" value="<%=pg%>">
+	<input type="hidden" name="key" value="">
+	<input type="hidden" name="word" value="">
+	<input type="hidden" name="seq" value="">
+</form>
+
 <div id="wrapper">
 <!-- ****************************************************************************************************************** -->	
 
@@ -42,6 +50,7 @@ PageNavigator navigator = (PageNavigator) request.getAttribute("navigator");
 				  		<td width="150"><b>신고대상</b></td>
 				  		<td width="80"><b>시간</b></td>
 				  		<td width="50">처리</td>
+				  		<td width="50"></td>
 				  	</tr>
 				
 <%
@@ -51,18 +60,28 @@ if(size > 0) {
 %>
 					<!-- 신고내역 -->
 					<tr>
-						<td><a href="javascript:adminReportView('<%=reportDto.getSeq() %>', '<%=reportDto.getReport_id() %>');"><%=reportDto.getUserID() %></a></td>
-						<td><a href="javascript:adminReportView('<%=reportDto.getSeq() %>', '<%=reportDto.getReport_id() %>');"><%=reportDto.getSubject() %></a></td>
-						<td><a href="javascript:adminReportView('<%=reportDto.getSeq() %>', '<%=reportDto.getReport_id() %>');"><%=reportDto.getReport_id() %></a></td>
+						<td><%=reportDto.getUserID() %></td>
+						<td><%=reportDto.getSubject() %></td>
+						<td><%=reportDto.getReport_id() %></td>
 						<td><%=reportDto.getLogtime() %></td>
 <%
 		if(reportDto.getReport_flag() == 0) {
 %>
 						<td> X </td>
+						<td>
+							<button type="button" class="btn btn-default" onclick="javascript:adminReportView('<%=reportDto.getSeq()%>');">
+	                			내용확인
+	                		</button>
+               			</td>
 <%
 		} else {
 %>
 						<td> O </td>
+						<td>
+							<button type="button" class="btn btn-default" onclick="javascript:adminReportView('<%=reportDto.getSeq()%>');">
+	                			내용확인
+	                		</button>
+						</td>
 <%
 		}
 %>
@@ -94,8 +113,8 @@ if(size > 0) {
 					<input type="hidden" name="pg" value="<%=pg%>">
 					<select name="key">
 						<option value="subject">제목</option>
-						<option value="content">내용</option>
-						<option value="user_id">신고대상</option>
+						<option value="contents">내용</option>
+						<option value="report_id">신고대상</option>
 					</select>
 					<input type="text" name="word" id="word" value="">
 					<input type="button" class="btn btn-default" value="검색" onclick="javascript:adminReportSearch();">

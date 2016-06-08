@@ -1,68 +1,90 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="com.carpark.member.model.*,com.carpark.util.*"%>  
+    
+<%@include file="/common/common.jsp" %>
+<%@include file="/common/header/init.jsp" %> 
+<%@include file="/admin/common/sidebar.jsp" %>
+
 <%
-String root = request.getContextPath();
-MemberDto memberDto = (MemberDto)session.getAttribute("memberInfo");
 ReportDto reportDto = (ReportDto) request.getAttribute("reportView");
-int penalty = (Integer) request.getAttribute("penalty");
-
-int pg = NumberCheck.nullToOne(request.getParameter("pg"));
-String key = StringCheck.nullToBlank(request.getParameter("key"));
-String word = Encoder.isoToUtf(StringCheck.nullToBlank(request.getParameter("word")));
 %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-	<link href="<%=root %>/css/bootstrap.min.css" rel="stylesheet">
-	<link href="<%=root %>/css/stylish-portfolio.css" rel="stylesheet">
-	<!-- jQuery -->
-    <script src="<%=root %>/js/jquery.js"></script>
-    <!-- Bootstrap Core JavaScript -->
-    <script src="<%=root %>/js/bootstrap.min.js"></script>
-    <!-- message.js -->
-    <script type="text/javascript" src="<%=root %>/admin/report/adminreport.js"></script>
-</head>
-<body>
 
-
-
-<br>
+<div id="wrapper">
 <div id="page-wrapper">
 <div class="container-fluid">
 <%
 if(memberDto != null) {
 	if(reportDto != null) {
 %>
+
+<center><h3>신고내용</h3></center><br>
+	<div class="row">
+		<div class="col-md-1"></div>
+		<div class="col-md-2">
+			<b>신고자</b><br>
+		</div>
+		<div class="col-md-8">
+			<%=reportDto.getUserID() %>
+		</div>
+	</div><hr>
+	
+	<div class="row">
+		<div class="col-md-1"></div>
+		<div class="col-md-2">
+			<b>시간</b><br>
+		</div>
+		<div class="col-md-8">
+			<%=reportDto.getLogtime() %>
+		</div>
+	</div><hr>
+
+	<div class="row">
+		<div class="col-md-1"></div>
+		<div class="col-md-2">
+			<b>신고대상</b><br>
+		</div>
+		<div class="col-md-8">
+			<%=reportDto.getReport_id() %>
+		</div>
+	</div><hr>
+
+	<div class="row">
+		<div class="col-md-1"></div>
+		<div class="col-md-2">
+			<b>신고제목</b><br>
+		</div>
+		<div class="col-md-8">
+			<%=reportDto.getSubject() %>
+		</div>
+	</div><hr>
+
+	<div class="row">
+		<div class="col-md-1"></div>
+		<div class="col-md-2">
+			<b>신고내용</b><br>
+		</div>
+		<div class="col-md-8">
+			<p><%=reportDto.getContent() %></p>
+		</div>
+	</div><hr>
+
+
 <form name="penaltyRegisterForm" method="post" action="">
-	<input type="hidden" name="act" value="penaltyRegister">	
+	<input type="hidden" name="act" value="">	
 	<input type="hidden" name="pg" id="pg" value="<%=pg%>">
 	<input type="hidden" name="key" value="">
 	<input type="hidden" name="word" value="">
 	<input type="hidden" name="report_id" value="">
-	<table class="table">
-		<tr>
-			<td width="100">신고자</td>
-			<td><%=reportDto.getUserID() %></td>
-			<td width="50">시간</td>
-			<td width="80"><%=reportDto.getLogtime() %></td>
-		</tr>
-		<tr>
-			<td>신고대상</td>
-			<td><%=reportDto.getReport_id() %></td>
-			<td>벌점</td>
-			<td><%=penalty %></td>
-		</tr>
-		<tr>
-			<td width="80">제목</td>
-			<td colspan="3"><%=reportDto.getSubject() %></td>
-		</tr>
-		<tr>
-			<td width="80">내용</td>
-			<td colspan="3" height="300"><p><%=reportDto.getContent() %></p></td>
-		</tr>
+	<input type="hidden" name="seq" value="">
 
-		<tr>
-			<td>
+<br><br>
+<center><h3>벌점주기</h3></center><br>
+	<div class="row">
+		<div class="col-md-1"></div>
+		<div class="col-md-2">
+			<b>벌점내용선택</b><br>
+		</div>
+		<div class="col-md-2">
 			<select class="form-control" name="penalty_code">
 				<option value="" selected="selected">-----</option>
 				<option value="10">욕설</option>
@@ -70,22 +92,28 @@ if(memberDto != null) {
 				<option value="30">계약위반</option>
 				<option value="40">사기</option>
 			</select>	
-			</td>
-			<td colspan="3">
-				<textarea class="form-control" rows="3" name="penalty_content"></textarea>	
-			</td>		
-		</tr>
+		</div>
+	</div><hr>
+	
+	<div class="row">
+		<div class="col-md-1"></div>
+		<div class="col-md-2">
+			<b>추가내용</b><br>
+		</div>
+		<div class="col-md-8">
+			<textarea class="form-control" rows="3" name="penalty_content"></textarea>
+		</div>
+	</div><hr>
+		
+</form>
 
-		<tr>
-			<td colspan="4" align="center">
-			<p>
-			<input type="button" class="btn btn-default" value="벌점주기" onclick="javascript:adminPenaltyRegister('<%=reportDto.getReport_id()%>');">
-			<input type="button" class="btn btn-default" value="닫기" onclick="javascript:adminReportClose();">
-			</p>
-		</td>
-		</tr>
-	</table>    
-	</form>
+	<div class="row">
+		<p align="center">
+			<input type="button" class="btn btn-default" value="벌점주기" onclick="javascript:adminPenaltyRegister('<%=reportDto.getReport_id()%>', '<%=reportDto.getSeq()%>');">
+			<input type="button" class="btn btn-default" value="닫기" onclick="javascript:adminReportList('<%=pg%>');">
+		</p>
+	</div>
+
 <%
 	} else {
 %>
@@ -103,7 +131,6 @@ if(memberDto != null) {
 %>
 </div>
 </div>
-</body>
-</html>
+</div>
 
-	
+<%@include file="/common/footer.jsp"%>

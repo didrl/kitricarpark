@@ -27,9 +27,15 @@ function adminReportId(id, parkId, parkName) {
 
 }
 
-function adminReportView(seq, reportId) {
-	window.open( "/carpark/adminreport?act=adminReportView&seq=" + seq + "&reportId=" + reportId, "newWindow", "top=100, left=400, width=550, height=620, scrollbars=yes" );
-	
+//function adminReportView(seq, reportId) {
+//	window.open( "/carpark/adminreport?act=adminReportView&seq=" + seq + "&reportId=" + reportId, "newWindow", "top=100, left=400, width=550, height=620, scrollbars=yes" );
+//	
+//}
+
+function adminReportView(seq) {
+	document.adminReportViewForm.seq.value = seq;
+	document.adminReportViewForm.action = "/carpark/adminreport";
+	document.adminReportViewForm.submit();
 }
 
 function adminReportDelete(seq) {
@@ -37,10 +43,6 @@ function adminReportDelete(seq) {
 	document.common.seq.value = seq;
 	document.common.action = "/carpark/adminreport";
 	document.common.submit();
-}
-
-function adminReportClose() {
-	window.close();
 }
 
 function adminReportSearch() {
@@ -53,14 +55,15 @@ function adminReportSearch() {
 	}
 }
 
-function adminPenaltyRegister(userId) {
+function adminPenaltyRegister(userId, seq) {
 	if(document.penaltyRegisterForm.penalty_code.value == "") {
 		alert("벌점목록을 선택하세요");
 		return;
 	} else {
-		document.penaltyRegisterForm.action.value = "/carpark/adminreport";
+		document.penaltyRegisterForm.action = "/carpark/adminreport";
 		document.penaltyRegisterForm.report_id.value = userId;
+		document.penaltyRegisterForm.seq.value = seq;
+		document.penaltyRegisterForm.act.value = "penaltyRegister";
 		document.penaltyRegisterForm.submit();
 	}
-	window.close();
 }

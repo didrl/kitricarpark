@@ -18,14 +18,9 @@ public class AdminReportViewAction implements Action {
 			throws IOException, ServletException {
 
 		int seq = NumberCheck.nullToZero(request.getParameter("seq"));
-		String userId = request.getParameter("reportId");
 		if(seq != 0) {
 			ReportDto reportDto = AdminReportServiceImpl.getAdminReportService().viewArticle(seq);
 			request.setAttribute("reportView", reportDto);
-			
-			int penalty = AdminReportServiceImpl.getAdminReportService().penaltyPoint(userId);
-			
-			request.setAttribute("penalty", penalty);
 			
 		}
 		return "/admin/report/view.jsp";

@@ -20,6 +20,7 @@ public class AdminReportController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		
 		String act = request.getParameter("act");
 		int bcode = NumberCheck.nullToZero(request.getParameter("bcode"));
 		int pg = NumberCheck.nullToOne(request.getParameter("pg"));
@@ -30,7 +31,6 @@ public class AdminReportController extends HttpServlet {
 		String queryString = "?bcode=" + bcode + "&pg=" + pg + "&key=" + key + "&word=" + Encoder.isoToUtf(word);
 		
 		if("penaltyRegister".equals(act)) {
-			System.out.println("컨트롤러");
 			AdminActionFactory.getAdminReportRegisterAction().execute(request, response);
 			path = AdminActionFactory.getAdminReportListAction().execute(request, response);
 			PageMove.forward(request, response, path + queryString);
