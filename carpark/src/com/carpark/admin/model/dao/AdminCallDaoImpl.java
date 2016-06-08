@@ -28,7 +28,46 @@ public class AdminCallDaoImpl implements AdminCallDao {
 	
 	@Override
 	public CallDto viewArticle(int seq) {
-		return null;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		CallDto callDto = null;
+	try {		
+			conn = DBConnection.makeConnection();
+			conn.setAutoCommit(false);
+			String sql = "";
+			sql+= "select b.seq, b.user_id,b.subject,b.logtime,b.contents,c.pcall_flag,c.pcall_ok \n";
+			sql+= "from board b, call c \n";
+			sql+= "where b.seq = c.pcall_id \n";
+			sql+= "and b.seq = ? \n";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, seq);
+			rs = pstmt.executeQuery();
+			while(rs.next()){
+				callDto = new CallDto();
+				callDto.setSeq(rs.getInt("seq"));
+				callDto.setUserID(rs.getString("user_id"));
+				callDto.setSubject(rs.getString("subject"));
+				callDto.setContent(rs.getString("contents"));
+				callDto.setLogtime(rs.getString("logtime"));
+				callDto.setpCall_Ok(rs.getInt("pcall_ok"));
+				callDto.setpCall_Flag(rs.getInt("pcall_flag"));
+			}
+			conn.commit();
+			pstmt.close();
+			
+			sql="";
+			sql+="update call \n";
+			sql+="set pcall_ok=1 \n";
+			sql+="where pcall_id=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, seq);
+			pstmt.executeUpdate();
+			conn.commit();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return callDto;
 	}
 
 	@Override

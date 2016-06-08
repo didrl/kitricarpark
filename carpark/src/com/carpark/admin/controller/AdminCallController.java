@@ -35,28 +35,28 @@ public class AdminCallController extends HttpServlet {
     		
     		if("".equals(act)) {
     			
-    		} else if("AdminCallWrite".equals(act)) {//쪽지보내기
+    		} else if("adminCallWrite".equals(act)) {//쪽지보내기
     			path = MemberActionFactory.getMemberMessageWriteAction().execute(request, response);
     			PageMove.forward(request, response, path + queryString);
 
-    		} else if("AdminCallSendView".equals(act)) {//보낸쪽지보기
+    		} else if("adminCallSendView".equals(act)) {//보낸쪽지보기
     			path = AdminActionFactory.getAdminCallViewAction().execute(request, response);
     			PageMove.forward(request, response, path + queryString);
     			
-    		} else if("AdminCallReceiveView".equals(act)) {//받은쪽지보기
+    		} else if("adminCallReceiveView".equals(act)) {//받은쪽지보기
     			path = AdminActionFactory.getAdminCallRegisterAction().execute(request, response);
     			PageMove.forward(request, response, path + queryString);
     			
-    		} else if("AdminCallSendDelete".equals(act)) {//보낸쪽지변경
+    		} else if("adminCallSendDelete".equals(act)) {//보낸쪽지변경
     			path = AdminActionFactory.getAdminCallModifyAction().execute(request, response);
     			PageMove.forward(request, response, path + queryString);
     			
-    		} else if("AdminCallReceiveDelete".equals(act)) {//받은쪽지삭제
+    		} else if("adminCallReceiveDelete".equals(act)) {//받은쪽지삭제
     			AdminActionFactory.getAdminCallDeleteAction().execute(request, response);
     			path = AdminActionFactory.getAdminCallListAction().execute(request, response);
     			PageMove.forward(request, response, path + queryString);
     			
-    		} else if("AdminCallReceiveList".equals(act)) {//받은쪽지목록
+    		} else if("adminCallReceiveList".equals(act)) {//받은쪽지목록
     			path = AdminActionFactory.getAdminCallListAction().execute(request, response);
     			PageMove.forward(request, response, path + queryString);
     			
