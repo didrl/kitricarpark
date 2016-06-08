@@ -161,19 +161,20 @@ public class CommonServiceImpl implements CommonService {
 	////////////////////////////메소드 통합중 ///////////////////////////////////////
 
 	@Override
-	public PageNavigator getPageNavigatorUser(String userId, int pg, String key, String word) {
+	public PageNavigator getPageNavigatorUser(String userId, int bcode, int pg, String key, String word) {
 		int listSize = BoardConstance.BOARD_LIST_SIZE;
 		int pageSize = BoardConstance.BOARD_PAGE_SIZE;
 		
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("userId", userId);
+		map.put("bcode", bcode + "");
 		map.put("key", key);
 		map.put("word", word);
 		
 		//순서 주의
 		PageNavigator navigator = new PageNavigator();
 		
-		int newArticleCount = CommonDaoImpl.getCommonDao().newArticleCountUser(userId);
+		int newArticleCount = CommonDaoImpl.getCommonDao().newArticleCountUser(userId, bcode);
 		int totalArticleCount = CommonDaoImpl.getCommonDao().totalArticleCountUser(map);
 		int totalPageCount = (totalArticleCount - 1) / listSize + 1;
 		

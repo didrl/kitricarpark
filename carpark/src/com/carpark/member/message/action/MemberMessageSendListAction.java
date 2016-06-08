@@ -25,6 +25,7 @@ public class MemberMessageSendListAction implements Action {
 		int pg = NumberCheck.nullToOne(request.getParameter("pg"));
 		String key = StringCheck.nullToBlank(request.getParameter("key"));
 		String word = Encoder.isoToUtf(StringCheck.nullToBlank(request.getParameter("word")));
+		int bcode = 2;
 
 		HttpSession session = request.getSession();
 		MemberDto memberDto = (MemberDto) session.getAttribute("memberInfo");
@@ -33,7 +34,7 @@ public class MemberMessageSendListAction implements Action {
 			if (userId != null) {
 				List<MessageDto> sendList = MemberMessageServiceImpl.getMemberMessageService().sendListArticle(userId,
 						pg, key, word);
-				PageNavigator navigator = CommonServiceImpl.getCommonService().getPageNavigatorUser(userId, pg, key,
+				PageNavigator navigator = CommonServiceImpl.getCommonService().getPageNavigatorUser(userId, bcode, pg, key,
 						word);
 				navigator.setRoot(request.getContextPath());
 				navigator.setNavigatorSend();
@@ -42,7 +43,7 @@ public class MemberMessageSendListAction implements Action {
 			}
 			return "/message/sendlist.jsp";
 		} else
-			return "";
+			return "index.jsp";
 	}
 
 }

@@ -162,7 +162,7 @@ public class PageNavigator {//Dto와 비슷하지만 조금 다름
 		int endPage = prePage + pageSize;
 		if(endPage > totalPageCount)
 			endPage = totalPageCount;
-		System.out.println("prePage:" + prePage + " pageSize:" + pageSize + " endPage:" + endPage);
+		
 		for (int i = startPage; i <= endPage; i++) {
 			if (pageNo == i) {//현재 페이지는 링크없고 강조 표시
 				tmpNavigator.append("  <li><a href=\"#\"><b> " + i + " </b></a></li> \n");
@@ -199,7 +199,7 @@ public class PageNavigator {//Dto와 비슷하지만 조금 다름
 		int endPage = prePage + pageSize;
 		if(endPage > totalPageCount)
 			endPage = totalPageCount;
-		System.out.println("prePage:" + prePage + " pageSize:" + pageSize + " endPage:" + endPage);
+		
 		for (int i = startPage; i <= endPage; i++) {
 			if (pageNo == i) {//현재 페이지는 링크없고 강조 표시
 				tmpNavigator.append("  <li><a href=\"#\"><b> " + i + " </b></a></li> \n");

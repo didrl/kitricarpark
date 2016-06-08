@@ -375,7 +375,7 @@ public class CommonDaoImpl implements CommonDao {
 	}
 	
 	@Override
-	public int newArticleCountUser(String userId) {
+	public int newArticleCountUser(String userId, int bcode) {
 		int count = 0;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -387,9 +387,11 @@ public class CommonDaoImpl implements CommonDao {
 			sql += "select count(seq) \n";
 			sql += "from board \n";
 			sql += "where user_id = ? \n";
+			sql += "and bcode = ? \n";
 			sql += "and to_char(logtime, 'yymmdd') = to_char(sysdate, 'yymmdd') \n";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, userId);
+			pstmt.setInt(2, bcode);
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()){
@@ -420,6 +422,7 @@ public class CommonDaoImpl implements CommonDao {
 			sql += "select count(seq) \n";
 			sql += "from board \n";
 			sql += "where user_id = ? \n";
+			sql += "and bcode = ? \n";
 			if(key != null && !key.isEmpty()) {
 				if(word != null && !word.isEmpty()) {
 					if("subject".equals(key))
@@ -430,9 +433,10 @@ public class CommonDaoImpl implements CommonDao {
 			}
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, map.get("userId"));
+			pstmt.setString(2, map.get("bcode"));
 			if(key != null && !key.isEmpty()) {
 				if(word != null && !word.isEmpty()) {
-					pstmt.setString(2, word);
+					pstmt.setString(3, word);
 				}
 			}
 			rs = pstmt.executeQuery();
