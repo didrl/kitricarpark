@@ -3,7 +3,6 @@
 <%
 String root = request.getContextPath();
 int pg = NumberCheck.nullToOne(request.getParameter("pg"));
-String address = StringCheck.nullToBlank((String) session.getAttribute("address"));
 List<ZipDto> list = (List<ZipDto>) request.getAttribute("addressList");
 PageNavigator navigator = (PageNavigator) request.getAttribute("navigator");
 %>
@@ -18,15 +17,15 @@ PageNavigator navigator = (PageNavigator) request.getAttribute("navigator");
     <script src="<%=root %>/js/bootstrap.min.js"></script>
     <!-- message.js -->
     <script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=4763b9e0f6cbc4102f42cb9f7b0f9167&libraries=services"></script>
-    <script type="text/javascript" src="<%=root %>/parking/parking.js"></script>
+    <script type="text/javascript" src="<%=root %>/admin/parking/adminparking.js"></script>
 </head>
 <body>
 <!-- main -->
 <div id="page-wrapper">
 	<div class="container-fluid">
 
-	<form name="parkSearchForm" method="get" action="">
-		<input type="hidden" name="act" value="parkingSearch">
+	<form name="adminParkSearchForm" method="get" action="">
+		<input type="hidden" name="act" value="adminParkingSearch">
 		<input type="hidden" name="pg" value="">
 										
 		<table class="table">
@@ -37,13 +36,11 @@ PageNavigator navigator = (PageNavigator) request.getAttribute("navigator");
 		
 		<tr>
 			<td>
-				<input type="text" class="form-control" name="parkAddress" value="<%=address%>">				
+				<input type="text" class="form-control" name="parkAddress" value="">				
 			</td>
-<%
-session.removeAttribute("address");
-%>
+
 			<td width="60">
-				<button type="button" class="btn btn-default btn-group-xs" onclick="javascript:searchAddress('1');">검색</button>
+				<button type="button" class="btn btn-default btn-group-xs" onclick="javascript:adminSearchAddress('1');">검색</button>
 			</td>
 			<td width="60">
 				<button type="button" class="btn btn-default btn-group-xs" onclick="javascript:windowClose();">사용</button>
@@ -69,9 +66,9 @@ if(list != null) {
 								
 		<tr>
 			<td align="center" colspan="3">
-				<a href="javascript:selectAddress('<%=zipDto.getSido() %> <%=zipDto.getGugun() %> <%=zipDto.getDong() %>');">
+				<a href="javascript:adminSelectAddress('<%=zipDto.getSido() %> <%=zipDto.getGugun() %> <%=zipDto.getDong() %>');">
 					<%=zipDto.getZip1() %> - <%=zipDto.getZip2() %> 
-					<%=zipDto.getSido() %> <%=zipDto.getGugun() %> <%=zipDto.getDong() %> 
+					<%=zipDto.getSido() %> <%=zipDto.getGugun() %> <%=zipDto.getDong() %> <%=zipDto.getBunji() %>
 				</a>
 			</td>
 		</tr>

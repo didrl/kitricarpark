@@ -78,6 +78,7 @@ String word = Encoder.isoToUtf(StringCheck.nullToBlank(request.getParameter("wor
 
     <!-- parking.js -->
     <script type="text/javascript" src="<%=root %>/parking/parking.js"></script> 
+    <script type="text/javascript" src="<%=root %>/admin/parking/adminparking.js"></script> 
     
     <!-- admincall.js -->
     <script type="text/javascript" src="<%=root %>/message/message.js"></script>

@@ -23,8 +23,8 @@ if(parkingDto != null) {
 			<br>
 			<!-- 본문내용 -->
 			<div class="col-md-10">
-			<form name="parkRegisterForm" method="post" action="">
-				<input type="hidden" name="act" value="parkingRegister">				
+			<form name="adminParkRegisterForm" method="post" action="">
+				<input type="hidden" name="act" value="adminParkingRegister">				
 				
 				
 				<div class="row">
@@ -204,9 +204,9 @@ if("0" == parkingDto.getHoli_pay_yn()) {
 	
 				<div class="row">
 						<p align="center">
-		  					<button type="button" class="btn btn-default btn-lg" onclick="javascript:parkingList('<%=pg%>');">목록</button>
-		  					<button type="button" class="btn btn-default btn-lg" onclick="javascript:parkingMvModify('<%=parkingDto.getPark_id()%>');">수정</button>
-		  					<button type="button" class="btn btn-default btn-lg" onclick="javascript:parkingDelete('<%=parkingDto.getPark_id()%>');">삭제</button>
+		  					<button type="button" class="btn btn-default btn-lg" onclick="javascript:adminParkingList('<%=pg%>');">목록</button>
+		  					<button type="button" class="btn btn-default btn-lg" onclick="javascript:adminParkingMvModify('<%=parkingDto.getPark_id()%>');">수정</button>
+		  					<button type="button" class="btn btn-default btn-lg" onclick="javascript:adminParkingDelete('<%=parkingDto.getPark_id()%>');">삭제</button>
 						</p>
 				</div>
 			</div>
