@@ -11,12 +11,12 @@ function adminMessageSearch() {
 
 //보낸쪽지보기
 function adminMessageSendView(seq) {
-	window.open( "/carpark/message?act=messageSendView&seq=" + seq, "newWindow", "top=100, left=400, width=500, height=600, scrollbars=yes" );
+	window.open( "/carpark/admincall?act=adminCallSendView&seq=" + seq, "newWindow", "top=100, left=400, width=500, height=600, scrollbars=yes" );
 }
 
 //받은쪽지보기
 function adminMessageReceiveView(seq) {
-	window.open( "/carpark/message?act=messageReceiveView&seq=" + seq, "newWindow", "top=100, left=400, width=500, height=600, scrollbars=yes" );
+	window.open( "/carpark/admincall?act=adminCallReceiveView&seq=" + seq, "newWindow", "top=100, left=400, width=500, height=600, scrollbars=yes" );
 }
 
 //보낸 쪽지 삭제(삭제 후 보낸 쪽지 리스트 출력)
@@ -109,4 +109,9 @@ function getAllUserInfo(){
 	document.location.href=root+"/admin?act=alluserinfo";
 }
 
+function callSendViewConfirm(seq) {
+	alert("방문예정이 확정되었습니다.");
+	self.close();
+	opener.document.location.href=root+"/admincall?act=adminCallConfirm&seq="+seq;
+}
 

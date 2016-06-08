@@ -20,8 +20,8 @@ if(memberDto != null){
 			<br>
 			<!-- 본문내용 -->
 			<div class="col-md-10">
-			<form name="parkingModifyForm" method="post" action="">
-				<input type="hidden" name="act" value="parkingModify">				
+			<form name="adminParkingModifyForm" method="post" action="">
+				<input type="hidden" name="act" value="adminParkingModify">				
 				<input type="hidden" name="parkId" value="<%=parkingDto.getPark_id()%>">				
 				
 				
@@ -257,8 +257,8 @@ if(0 == parkingDto.getPark_flag()) {
 	
 				<div class="row">
 						<p align="center">
-		  					<button type="button" class="btn btn-primary btn-lg" onclick="javascript:parkingModify('<%=parkingDto.getPark_id()%>');">수정</button>
-		  					<button type="button" class="btn btn-default btn-lg" onclick="javascript:parkingList('<%=pg%>');"> 취소 </button>
+		  					<button type="button" class="btn btn-primary btn-lg" onclick="javascript:adminParkingModify('<%=parkingDto.getPark_id()%>');">수정</button>
+		  					<button type="button" class="btn btn-default btn-lg" onclick="javascript:adminParkingList('<%=pg%>');"> 취소 </button>
 						</p>
 				</div>
 			</div>

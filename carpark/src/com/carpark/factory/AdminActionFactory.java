@@ -51,6 +51,8 @@ public class AdminActionFactory {
 	private static Action adminCallModifyAction;
 	private static Action adminCallRegisterAction;
 	private static Action adminCallViewAction;
+	private static Action adminCallConfirmAction;
+	
 	
 	private static Action adminAllUserInfoAction;
 	
@@ -91,6 +93,7 @@ public class AdminActionFactory {
 		adminCallModifyAction = new AdminCallModifyAction();
 		adminCallRegisterAction = new AdminCallRegisterAction();
 		adminCallViewAction = new AdminCallViewAction();	
+		adminCallConfirmAction = new AdminCallConfirmAction();
 		
 		adminReportListAction = new AdminReportListAction();
 		adminReportListFlagAction = new AdminReportListFlagAction();
@@ -101,6 +104,10 @@ public class AdminActionFactory {
 		}
 	public static Action getAdminLoginAction() {
 		return adminLoginAction;
+	}
+
+	public static Action getAdminCallConfirmAction() {
+		return adminCallConfirmAction;
 	}
 
 	public static Action getAdminAllUserInfoAction() {

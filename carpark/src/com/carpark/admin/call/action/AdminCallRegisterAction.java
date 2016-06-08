@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.carpark.action.Action;
 import com.carpark.admin.model.service.AdminCallServiceImpl;
+import com.carpark.common.model.CallDto;
 
 public class AdminCallRegisterAction implements Action{
 
@@ -15,8 +16,9 @@ public class AdminCallRegisterAction implements Action{
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 		int seq = Integer.parseInt(request.getParameter("seq"));
-		AdminCallServiceImpl.getAdminCallService().viewArticle(seq);	
-		return null;
+		CallDto callDto = AdminCallServiceImpl.getAdminCallService().viewArticle(seq);
+		request.setAttribute("adminCallReceiveView", callDto);
+		return "/admin/call/adminCallReceiveView.jsp";
 	}
 
 }

@@ -16,8 +16,8 @@
 			<br>
 			<!-- 본문내용 -->
 			<div class="col-md-10">
-			<form name="parkRegisterForm" method="post" action="">
-				<input type="hidden" name="act" value="parkingRegister">				
+			<form name="adminParkingRegisterForm" method="post" action="">
+				<input type="hidden" name="act" value="adminParkingRegister">				
 				
 				
 				<div class="row">
@@ -26,10 +26,10 @@
 					</div>
 					<div class="col-md-10">
 						<label class="radio-inline">
-						  <input type="radio" name="parkType" value="0" checked="checked"> 개인
+						  <input type="radio" name="parkType" value="1" checked="checked"> 사설
 						</label>
 						<label class="radio-inline">
-						  <input type="radio" name="parkType" value="1"> 사설
+						  <input type="radio" name="parkType" value="2"> 공용
 						</label>
 					</div>
 				</div><hr>
@@ -65,10 +65,32 @@
 					</div>
 					<div class="col-md-10">
 						<div class="form-group">
-							<input type="text" name="parkAddress" readonly="readonly" class="form-control">
-							<input type="hidden" name="coordinate" readonly="readonly" class="form-control">
+							<input type="text" name="parkAddress" class="form-control">
+							<input type="hidden" name="coordinate" class="form-control">  
 						</div>
-							<button type="button" class="btn btn-default" onclick="javascript:parkingSearchWindow();">검색</button>
+							<button type="button" class="btn btn-default" onclick="javascript:adminParkingSearchWindow();">검색</button>
+					</div>
+				</div><hr>
+				
+				<div class="row">
+					<div class="col-md-2">
+						<b>위도</b><br>
+					</div>
+					<div class="col-md-10">
+						<div class="form-group">
+							<input type="text" name="latitude" class="form-control">
+						</div>
+					</div>
+				</div><hr>
+				
+				<div class="row">
+					<div class="col-md-2">
+						<b>경도</b><br>
+					</div>
+					<div class="col-md-10">
+						<div class="form-group">
+							<input type="text" name="longitude" class="form-control">
+						</div>
 					</div>
 				</div><hr>
 				
@@ -192,15 +214,6 @@
 						</table>
 					</div>
 				</div>
-			
-				<div class="row">
-					<div class="col-md-2">
-						<b>사진</b><br>
-					</div>
-					<div class="col-md-10">
-					    <input type="file" id="fileName">
-					    <p class="help-block">주차장 사진 등록</p>
-				</div>
 				
 				<div class="row">
 					<div class="col-md-2">
@@ -214,8 +227,8 @@
 	
 				<div class="row">
 						<p align="center">
-		  					<button type="button" class="btn btn-default" onclick="javascript:parkingRegister();">등록</button>
-		  					<button type="button" class="btn btn-default" onclick="javascript:parkingList('<%=pg%>');">목록</button>
+		  					<button type="button" class="btn btn-default" onclick="javascript:adminParkingRegister();">등록</button>
+		  					<button type="button" class="btn btn-default" onclick="javascript:adminParkingList('<%=pg%>');">목록</button>
 						</p>
 				</div>
 			</div>

@@ -19,7 +19,7 @@ public class AdminParkingDeleteAction implements Action {
 		int parkId = NumberCheck.nullToZero(request.getParameter("parkId"));
 		MemberParkingServiceImpl.getMemberParkingservice().parkingDelete(parkId);
 		
-		return "index.jsp";
+		return "";
 	}
 
 }

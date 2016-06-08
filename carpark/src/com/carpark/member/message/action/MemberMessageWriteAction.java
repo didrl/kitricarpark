@@ -40,13 +40,14 @@ public class MemberMessageWriteAction implements Action {
 		messageDto.setMseq(seq);
 		messageDto.setReceiverId(request.getParameter("receiver"));
 		messageDto.setMsgFlag(0);
+		int bcode = 2;
 		
 		String userId = memberDto.getUser_id();
 		
 		MemberMessageServiceImpl.getMemberMessageService().writeArticle(messageDto);
 		List<MessageDto> list = MemberMessageServiceImpl.getMemberMessageService().sendListArticle(userId, pg, key, word);
 		request.setAttribute("sendList", list);
-		PageNavigator navigator = CommonServiceImpl.getCommonService().getPageNavigatorUser(userId, pg, key, word);
+		PageNavigator navigator = CommonServiceImpl.getCommonService().getPageNavigatorUser(userId, bcode, pg, key, word);
 		navigator.setRoot(request.getContextPath());
 		navigator.setNavigatorSend();
 		request.setAttribute("navigator", navigator);

@@ -1,9 +1,14 @@
 package com.carpark.admin.model.service;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 import com.carpark.admin.model.dao.AdminCallDaoImpl;
 import com.carpark.common.model.CallDto;
+import com.carpark.db.DBConnection;
 
 public class AdminCallServiceImpl implements AdminCallService {
 	
@@ -21,8 +26,7 @@ public class AdminCallServiceImpl implements AdminCallService {
 
 	@Override
 	public CallDto viewArticle(int seq) {
-		// TODO Auto-generated method stub
-		return null;
+		return AdminCallDaoImpl.getAdminCallDao().viewArticle(seq);
 	}
 
 	@Override
@@ -35,5 +39,11 @@ public class AdminCallServiceImpl implements AdminCallService {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public int callConfirm(int seq) {
+		return AdminCallDaoImpl.getAdminCallDao().callConfirm(seq);
+	}
+
 
 }

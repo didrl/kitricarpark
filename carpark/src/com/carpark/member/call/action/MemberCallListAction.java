@@ -27,6 +27,7 @@ public class MemberCallListAction implements Action {
 		MemberDto memberDto = (MemberDto)session.getAttribute("memberInfo");
 		String id = memberDto.getUser_id();
 		int seq = CommonServiceImpl.getCommonService().getNextSeq();
+		int bcode = NumberCheck.nullToZero(request.getParameter("bcode"));
 		int pg = NumberCheck.nullToOne(request.getParameter("pg"));
 		String key = StringCheck.nullToBlank(request.getParameter("key"));
 		String word = Encoder.isoToUtf(StringCheck.nullToBlank(request.getParameter("word")));
@@ -34,7 +35,7 @@ public class MemberCallListAction implements Action {
 		
 //		List<CallDto> list = (List<CallDto>)session.getAttribute("sendList");
 		
-		PageNavigator navigator = CommonServiceImpl.getCommonService().getPageNavigatorUser(id, pg, key, word);
+		PageNavigator navigator = CommonServiceImpl.getCommonService().getPageNavigator(id, bcode, pg, key, word);
 		navigator.setRoot(request.getContextPath());
 		navigator.setNavigatorSend();
 		

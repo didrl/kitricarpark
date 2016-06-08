@@ -30,9 +30,7 @@ public class AdminParkingRegisterAction implements Action {
 		String key = StringCheck.nullToBlank(request.getParameter("key"));
 		String word = StringCheck.nullToBlank(Encoder.isoToUtf(request.getParameter("word")));
 		
-		HttpSession session = request.getSession();
-		MemberDto memberDto = (MemberDto) session.getAttribute("memberInfo");
-		String ownerId = memberDto.getUser_id();
+		String ownerId = request.getParameter("ownerId");
 		
 		int parkingId = CommonServiceImpl.getCommonService().getNextParkingId();
 		
@@ -44,15 +42,16 @@ public class AdminParkingRegisterAction implements Action {
 		
 		String coordinate = request.getParameter("coordinate");//지도에서 가져온 좌표
 		if(coordinate != null) {
-		StringTokenizer st = new StringTokenizer(coordinate, ",");//lat, lng로 나눔
-		String latitude = st.nextToken().substring(1);// ( 제거 
-		String longitude = st.nextToken().replace(")", "").trim();// ) 제거
-		
-		parkingDto.setLatitude(Double.parseDouble(latitude));//dto에 넣기
-		parkingDto.setLongitude(Double.parseDouble(longitude));
+			StringTokenizer st = new StringTokenizer(coordinate, ",");//lat, lng로 나눔
+			String latitude = st.nextToken().substring(1);// ( 제거 
+			String longitude = st.nextToken().replace(")", "").trim();// ) 제거
+			
+			parkingDto.setLatitude(Double.parseDouble(latitude));//dto에 넣기
+			parkingDto.setLongitude(Double.parseDouble(longitude));
 		} else {
-			System.out.println("좌표가져오기 실패");
-			return "/parking/register.jsp";
+			System.out.println("좌표직접입력");
+			parkingDto.setLatitude(Double.parseDouble(request.getParameter("latitude")));
+			parkingDto.setLongitude(Double.parseDouble(request.getParameter("longitude")));
 		}
 		
 		parkingDto.setOwner_id(ownerId);

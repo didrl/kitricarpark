@@ -52,7 +52,7 @@ public class MemberCallRegisterAction implements Action {
 		List<CallDto> list = MemberCallServiceImpl.getMemberCallService().sendList(id);
 		session.setAttribute("sendList", list);
 		
-		PageNavigator navigator = CommonServiceImpl.getCommonService().getPageNavigatorUser(id, pg, key, word);
+		PageNavigator navigator = CommonServiceImpl.getCommonService().getPageNavigatorReceiver(id, pg, key, word);
 		navigator.setRoot(request.getContextPath());
 		navigator.setNavigatorSend();
 		session.setAttribute("navigator", navigator);

@@ -7,18 +7,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.carpark.action.Action;
-import com.carpark.admin.model.service.AdminCallService;
 import com.carpark.admin.model.service.AdminCallServiceImpl;
-import com.carpark.common.model.CallDto;
 
-public class AdminCallViewAction implements Action{
+public class AdminCallConfirmAction implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 		int seq = Integer.parseInt(request.getParameter("seq"));
-		CallDto callDto = AdminCallServiceImpl.getAdminCallService().viewArticle(seq);
-		
+		AdminCallServiceImpl.getAdminCallService().callConfirm(seq);
 		return "";
 	}
 
