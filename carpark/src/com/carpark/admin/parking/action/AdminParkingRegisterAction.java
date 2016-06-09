@@ -30,14 +30,16 @@ public class AdminParkingRegisterAction implements Action {
 		String key = StringCheck.nullToBlank(request.getParameter("key"));
 		String word = StringCheck.nullToBlank(Encoder.isoToUtf(request.getParameter("word")));
 		
-		String ownerId = request.getParameter("ownerId");
+		HttpSession session = request.getSession();
+		MemberDto memberDto = (MemberDto) session.getAttribute("memberInfo");
+		String ownerId = memberDto.getUser_id();
 		
 		int parkingId = CommonServiceImpl.getCommonService().getNextParkingId();
 		
 		ParkingDetailDto parkingDto = new ParkingDetailDto();
 		
 		parkingDto.setPark_id(parkingId);
-		parkingDto.setPark_type(request.getParameter("parkType"));
+		parkingDto.setPark_public(Integer.parseInt(request.getParameter("park_public")));
 		parkingDto.setPark_name(request.getParameter("parkName"));
 		
 		String coordinate = request.getParameter("coordinate");//지도에서 가져온 좌표
@@ -74,11 +76,11 @@ public class AdminParkingRegisterAction implements Action {
 		parkingDto.setEmd_code(11650101);
 		
 		if(parkingId != 0) {
-			MemberParkingServiceImpl.getMemberParkingservice().parkingRegister(parkingDto);
-			List<ParkingDetailDto> list = MemberParkingServiceImpl.getMemberParkingservice().parkingList(ownerId, pg, key, word);
+			AdminParkingServiceImpl.getAdminParkingService().parkingRegister(parkingDto);
+			List<ParkingDetailDto> list = AdminParkingServiceImpl.getAdminParkingService().parkingList(parkingDto.getPark_public(), pg, key, word);
 			request.setAttribute("parkingList", list);
 			
-			PageNavigator navigator = CommonServiceImpl.getCommonService().getPageNavigatorParking(ownerId, pg, key, word);
+			PageNavigator navigator = CommonServiceImpl.getCommonService().getPageNavigatorAdminParking();
 			navigator.setRoot(request.getContextPath());
 			navigator.setNavigator("parkingList");
 			request.setAttribute("navigator", navigator);

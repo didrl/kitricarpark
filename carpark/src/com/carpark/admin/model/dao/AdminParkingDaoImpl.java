@@ -80,21 +80,21 @@ public class AdminParkingDaoImpl implements AdminParkingDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String parkType = map.get("parkType");
+		String park_public = map.get("park_public");
 		String key = map.get("key");
 		String word = map.get("word");
 		
 		try {
 			conn = DBConnection.makeConnection();
 			String sql = "";
-			sql += "select b.rn, b.park_id, b.park_name, b.owner_id, b.park_type, b.park_flag, b.park_avgPoint \n";
+			sql += "select b.rn, b.park_id, b.park_name, b.owner_id, b.park_flag, b.park_avgPoint, b.park_public \n";
 			sql += "from \n";
-		    sql += "  		(select rownum rn, a.park_id, a.park_name, a.owner_id, a.park_type, a.park_flag, a.park_avgPoint \n"; 
+		    sql += "  		(select rownum rn, a.park_id, a.park_name, a.owner_id, a.park_flag, a.park_avgPoint, a.park_public \n"; 
 		    sql += "         from \n";
-		    sql += "     		  (select p.park_id, park_name, owner_id, park_type, park_flag, park_avgPoint \n";
+		    sql += "     		  (select p.park_id, park_name, owner_id, park_flag, park_avgPoint, park_public \n";
 		    sql += "               from parking p, parking_detail d \n";
 		    sql += "               where p.park_id = d.park_id \n";
-		    sql += "           	   and parkType = ? \n";
+		    sql += "           	   and park_public = ? \n";
 		    if(key != null && !key.isEmpty()) {
 		    	if(word != null && !word.isEmpty()) {
 		    		if("park_name".equals(key))
@@ -108,7 +108,7 @@ public class AdminParkingDaoImpl implements AdminParkingDao {
 		    sql += "where rn > ? \n";
 			pstmt = conn.prepareStatement(sql);
 			int idx = 0;
-			pstmt.setString(++idx, parkType);
+			pstmt.setString(++idx, park_public);
 			if(key != null && !key.isEmpty()) {
 				if(word != null && !word.isEmpty()) {
 					pstmt.setString(++idx, map.get("word"));				
@@ -122,9 +122,9 @@ public class AdminParkingDaoImpl implements AdminParkingDao {
 				parkingDto.setPark_id(rs.getInt("park_id"));
 				parkingDto.setPark_name(rs.getString("park_name"));
 				parkingDto.setOwner_id(rs.getString("owner_id"));
-				parkingDto.setPark_type(rs.getString("park_type"));
 				parkingDto.setPark_flag(rs.getInt("park_flag"));
 				parkingDto.setPark_avgPoint(rs.getInt("park_avgPoint"));
+				parkingDto.setPark_public(rs.getInt("park_public"));
 				
 				list.add(parkingDto);
 			}
@@ -134,6 +134,72 @@ public class AdminParkingDaoImpl implements AdminParkingDao {
 		}
 		
 		return list;
+	}
+
+	@Override
+	public void parkingRegister(ParkingDetailDto parkingDetailDto) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			conn = DBConnection.makeConnection();
+			String sql = "";
+			sql += "insert all \n";
+			sql += "	into parking (park_id, park_name, park_capacity, owner_id, latitude, "
+										+ "longitude, emd_code, content, detail_addr, park_public) \n";
+			sql += "	values (? ,? ,? ,? ,? ,?, ?, ?, ?, ?) \n";
+			sql += "	into parking_facility (park_id, facility, feature) \n";
+			sql += "	values (?, ?, ?) \n";
+			sql += "	into parking_img (park_id, file_name, file_path) \n";
+			sql += "	values (?, ?, ?) \n";
+			sql += "	into parking_detail (park_id, park_flag, PAY_YN, satur_pay_yn, holi_pay_yn, "
+												+ "fulltime_monthly_pay, park_rate, "
+												+ "park_time_rate, add_park_rate, day_max_pay) \n";
+			sql += "	values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			sql += "select * from dual";
+			
+			pstmt = conn.prepareStatement(sql);
+			int idx = 0;
+			//parking table
+			pstmt.setInt(++idx, parkingDetailDto.getPark_id());
+			pstmt.setString(++idx, parkingDetailDto.getPark_name());
+			pstmt.setInt(++idx, parkingDetailDto.getPark_capacity());
+			pstmt.setString(++idx, parkingDetailDto.getOwner_id());
+			pstmt.setDouble(++idx, parkingDetailDto.getLatitude());
+			pstmt.setDouble(++idx, parkingDetailDto.getLongitude());
+			pstmt.setInt(++idx, parkingDetailDto.getEmd_code());
+			pstmt.setString(++idx, parkingDetailDto.getContent());
+			pstmt.setString(++idx, parkingDetailDto.getDetailAddr());
+			pstmt.setInt(++idx, parkingDetailDto.getPark_public());
+			//parking_facility table
+			pstmt.setInt(++idx, parkingDetailDto.getPark_id());
+			pstmt.setString(++idx, parkingDetailDto.getFacility());
+			pstmt.setString(++idx, parkingDetailDto.getFeature());
+			//parking_img table
+			pstmt.setInt(++idx, parkingDetailDto.getPark_id());
+			pstmt.setString(++idx, parkingDetailDto.getImg_file_name());
+			pstmt.setString(++idx, parkingDetailDto.getImg_file_path());
+			//parking_detail table
+			pstmt.setInt(++idx, parkingDetailDto.getPark_id());
+			pstmt.setInt(++idx, parkingDetailDto.getPark_flag());
+			pstmt.setString(++idx, parkingDetailDto.getPay_yn());
+			pstmt.setString(++idx, parkingDetailDto.getSatur_pay_yn());
+			pstmt.setString(++idx, parkingDetailDto.getHoli_pay_yn());
+			pstmt.setInt(++idx, parkingDetailDto.getFulltime_monthly_pay());
+			pstmt.setInt(++idx, parkingDetailDto.getPark_rate());
+			pstmt.setInt(++idx, parkingDetailDto.getPark_time_rate());
+			pstmt.setInt(++idx, parkingDetailDto.getAdd_park_rate());
+			pstmt.setInt(++idx, parkingDetailDto.getDay_max_pay());
+
+			pstmt.executeUpdate();
+	
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose.close(conn, pstmt);
+		}
+
+		
 	}
 	
 	

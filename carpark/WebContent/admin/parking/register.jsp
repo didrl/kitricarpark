@@ -26,13 +26,10 @@
 					</div>
 					<div class="col-md-10">
 						<label class="radio-inline">
-						  <input type="radio" name="parkType" value="2"> 공용
+						  <input type="radio" name="park_public" value="0"> 공용
 						</label>
 						<label class="radio-inline">
-						  <input type="radio" name="parkType" value="1" checked="checked"> 사설
-						</label>
-						<label class="radio-inline">
-						  <input type="radio" name="parkType" value="0" checked="checked"> 개인
+						  <input type="radio" name="park_public" value="1" checked="checked"> 사설
 						</label>
 					</div>
 				</div><hr>
@@ -117,6 +114,15 @@
 				
 				<div class="row">
 					<div class="col-md-2">
+						<b>보유시설상세</b><br>
+					</div>
+					<div class="col-md-10">
+						<textarea class="form-control" rows="3" name="feature"></textarea>						
+					</div>
+				</div><br>
+				
+				<div class="row">
+					<div class="col-md-2">
 						<b>상세정보</b><br>
 					</div>
 					<div class="col-md-10">
@@ -167,16 +173,16 @@
 								<td width="90">기본주차요금</td>				
 								<td width="90">
 									<select class="form-control" name="parkRate">
-									    <option value="1" selected="selected">1코인</option>
-									    <option value="2">2코인</option>
-									    <option value="3">3코인</option>
-									    <option value="4">4코인</option>
-									    <option value="5">5코인</option>
-									    <option value="6">6코인</option>
-									    <option value="7">7코인</option>
-									    <option value="8">8코인</option>
-									    <option value="9">9코인</option>
-									    <option value="10">10코인</option>
+									    <option value="100" selected="selected">1코인</option>
+									    <option value="200">2코인</option>
+									    <option value="300">3코인</option>
+									    <option value="400">4코인</option>
+									    <option value="500">5코인</option>
+									    <option value="600">6코인</option>
+									    <option value="700">7코인</option>
+									    <option value="800">8코인</option>
+									    <option value="900">9코인</option>
+									    <option value="1000">10코인</option>
 									</select>
 								</td>				
 							</tr>
@@ -184,31 +190,31 @@
 							<td width="90">추가단위요금</td>				
 								<td width="90">
 									<select class="form-control" name="addParkRate">
-									    <option value="1" selected="selected">1코인</option>
-									    <option value="2">2코인</option>
-									    <option value="3">3코인</option>
-									    <option value="4">4코인</option>
-									    <option value="5">5코인</option>
-									    <option value="6">6코인</option>
-									    <option value="7">7코인</option>
-									    <option value="8">8코인</option>
-									    <option value="9">9코인</option>
-									    <option value="10">10코인</option>
+									    <option value="100" selected="selected">1코인</option>
+									    <option value="200">2코인</option>
+									    <option value="300">3코인</option>
+									    <option value="400">4코인</option>
+									    <option value="500">5코인</option>
+									    <option value="600">6코인</option>
+									    <option value="700">7코인</option>
+									    <option value="800">8코인</option>
+									    <option value="900">9코인</option>
+									    <option value="1000">10코인</option>
 									</select>
 								</td>				
 								<td width="90">하루최대요금</td>							
 								<td width="90">
 									<select class="form-control" name="dayMaxPay">
-									    <option value="1" selected="selected">10코인</option>
-									    <option value="2">20코인</option>
-									    <option value="3">30코인</option>
-									    <option value="4">40코인</option>
-									    <option value="5">50코인</option>
-									    <option value="6">60코인</option>
-									    <option value="7">70코인</option>
-									    <option value="8">80코인</option>
-									    <option value="9">90코인</option>
-									    <option value="10">100코인</option>
+									    <option value="1000" selected="selected">10코인</option>
+									    <option value="2000">20코인</option>
+									    <option value="3000">30코인</option>
+									    <option value="4000">40코인</option>
+									    <option value="5000">50코인</option>
+									    <option value="6000">60코인</option>
+									    <option value="7000">70코인</option>
+									    <option value="8000">80코인</option>
+									    <option value="9000">90코인</option>
+									    <option value="10000">100코인</option>
 									</select>
 								</td>	
 								<td width="90">월정기권</td>

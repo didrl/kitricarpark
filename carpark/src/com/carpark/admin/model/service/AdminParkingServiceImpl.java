@@ -34,13 +34,19 @@ public class AdminParkingServiceImpl implements AdminParkingService {
 	}
 
 	@Override
-	public List<ParkingDetailDto> parkingList(String parkType, int pg, String key, String word) {
+	public List<ParkingDetailDto> parkingList(int park_public, int pg, String key, String word) {
 		Map<String, String> map = new HashMap<String, String>();
-		map.put("parkType", parkType);
+		map.put("park_public", park_public + "");
 		map.put("pg", pg + "");
 		map.put("key", key);
 		map.put("word", word);
 		return AdminParkingDaoImpl.getAdminParkingDao().parkingList(map);
+	}
+
+	@Override
+	public void parkingRegister(ParkingDetailDto parkingDetailDto) {
+		AdminParkingDaoImpl.getAdminParkingDao().parkingRegister(parkingDetailDto);
+		
 	}
 
 
