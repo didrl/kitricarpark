@@ -92,5 +92,6 @@ String word = Encoder.isoToUtf(StringCheck.nullToBlank(request.getParameter("wor
 	<input type="hidden" name="seq" id="seq" value="">
 	<input type="hidden" name="parkId" id="parkId" value="">
 	<input type="hidden" name="flag" id="flag" value="">
+	<input type="hidden" name="park_visit" id="park_visit" value="">
 	</form>
     

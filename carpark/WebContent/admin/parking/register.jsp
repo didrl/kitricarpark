@@ -237,7 +237,7 @@
 				<div class="row">
 						<p align="center">
 		  					<button type="button" class="btn btn-default" onclick="javascript:adminParkingRegister();">등록</button>
-		  					<button type="button" class="btn btn-default" onclick="javascript:adminParkingList('<%=pg%>');">목록</button>
+		  					<button type="button" class="btn btn-default" onclick="javascript:adminParkingList('<%=pg%>','0');">목록</button>
 						</p>
 				</div>
 			</div>

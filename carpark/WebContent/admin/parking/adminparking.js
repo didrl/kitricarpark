@@ -16,9 +16,10 @@ function adminParkingSearchWindow() {
 }
 
 
-function adminParkingList(pg) {
+function adminParkingList(pg, park_public) {
 	document.common.act.value = "adminParkingList";
 	document.common.pg.value = pg;	
+	document.common.park_visit.value = park_visit;		
 	document.common.action = "/carpark/adminparking";
 	document.common.submit();
 	   

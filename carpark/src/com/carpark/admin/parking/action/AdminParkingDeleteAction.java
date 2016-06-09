@@ -17,6 +17,7 @@ public class AdminParkingDeleteAction implements Action {
 			throws IOException, ServletException {
 		
 		int parkId = NumberCheck.nullToZero(request.getParameter("parkId"));
+
 		MemberParkingServiceImpl.getMemberParkingservice().parkingDelete(parkId);
 		
 		return ""; 

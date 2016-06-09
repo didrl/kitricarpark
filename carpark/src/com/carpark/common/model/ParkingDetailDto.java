@@ -17,6 +17,7 @@ public class ParkingDetailDto extends ParkingFacilityDto implements Serializable
 	private String satur_pay_yn;			//토요일 유무료 구분
 	private String holi_pay_yn;				//공휴일 유무료 구분
 	private int emd_code;
+	private int visit;					//방문예정여부
 	
 	public int getEmd_code() {
 		return emd_code;
@@ -102,4 +103,12 @@ public class ParkingDetailDto extends ParkingFacilityDto implements Serializable
 	public void setHoli_pay_yn(String holi_pay_yn) {
 		this.holi_pay_yn = holi_pay_yn;
 	}
+	public int getVisit() {
+		return visit;
+	}
+	public void setVisit(int visit) {
+		this.visit = visit;
+	}
+	
+	
 }

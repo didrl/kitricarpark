@@ -224,7 +224,7 @@ if("0" == parkingDto.getHoli_pay_yn()) {
 	
 				<div class="row">
 						<p align="center">
-		  					<button type="button" class="btn btn-default btn-lg" onclick="javascript:adminParkingList('<%=pg%>');">목록</button>
+		  					<button type="button" class="btn btn-default btn-lg" onclick="javascript:adminParkingList('<%=pg%>', <%=parkingDto.getVisit()%>);">목록</button>
 		  					<button type="button" class="btn btn-default btn-lg" onclick="javascript:adminParkingMvModify('<%=parkingDto.getPark_id()%>');">수정</button>
 		  					<button type="button" class="btn btn-default btn-lg" onclick="javascript:adminParkingDelete('<%=parkingDto.getPark_id()%>');">삭제</button>
 						</p>

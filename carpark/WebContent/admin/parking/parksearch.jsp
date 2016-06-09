@@ -31,7 +31,7 @@ PageNavigator navigator = (PageNavigator) request.getAttribute("navigator");
 		<table class="table">
 										
 		<tr>
-			<td align="center" colspan="3">동을 입력해 주세요</td>
+			<td align="center" colspan="2">동을 입력해 주세요</td>
 		</tr>
 		
 		<tr>
@@ -42,9 +42,6 @@ PageNavigator navigator = (PageNavigator) request.getAttribute("navigator");
 			<td width="60">
 				<button type="button" class="btn btn-default btn-group-xs" onclick="javascript:adminSearchAddress('1');">검색</button>
 			</td>
-			<td width="60">
-				<button type="button" class="btn btn-default btn-group-xs" onclick="javascript:windowClose();">사용</button>
-			</td>
 		</tr>
 										
 <%
@@ -54,7 +51,7 @@ if(list != null) {
 %>
 								
 		<tr>
-			<td colspan="3">
+			<td colspan="2">
 				검색 결과가 없습니다
 			</td>		
 		</tr>
@@ -65,7 +62,7 @@ if(list != null) {
 %>
 								
 		<tr>
-			<td align="center" colspan="3">
+			<td align="center" colspan="2">
 				<a href="javascript:adminSelectAddress('<%=zipDto.getSido() %> <%=zipDto.getGugun() %> <%=zipDto.getDong() %>');">
 					<%=zipDto.getZip1() %> - <%=zipDto.getZip2() %> 
 					<%=zipDto.getSido() %> <%=zipDto.getGugun() %> <%=zipDto.getDong() %> <%=zipDto.getBunji() %>

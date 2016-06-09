@@ -17,7 +17,7 @@ if(memberDto != null) {
       <!-- main -->
       <div id="page-wrapper">
          <div class="container-fluid">
-         <br><h3>나의 주차장</h3><br>   
+         <br><h3>주차장 관리</h3><br>   
               
             <div class="table" style="width: 800px">
               <table  class="table table-hover" style="text-align:center">

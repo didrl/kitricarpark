@@ -106,12 +106,12 @@ public class CommonServiceImpl implements CommonService {
 	}
 	
 	@Override
-	public PageNavigator getPageNavigatorAdminParking(String parkType, int pg, String key, String word) {
+	public PageNavigator getPageNavigatorAdminParking(int park_public, int pg, String key, String word) {
 		int listSize = BoardConstance.BOARD_LIST_SIZE;
 		int pageSize = BoardConstance.BOARD_PAGE_SIZE;
 		
 		Map<String, String> map = new HashMap<String, String>();
-		map.put("parkType", parkType);
+		map.put("park_public", park_public + "");
 		map.put("key", key);
 		map.put("word", word);
 		
