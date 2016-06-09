@@ -14,7 +14,7 @@ List<MessageDto> list = (List<MessageDto>) request.getAttribute("receiveList");
 
 <script>
 function chargeCoin(){
-		document.chargeCoinForm.action = <%=root%>+"/member?act=mvChargeCoin";
+		document.chargeCoinForm.action = <%=root%>+"/coin?act=mvChargeCoin";
 		document.chargeCoinForm.submit();
 }
 

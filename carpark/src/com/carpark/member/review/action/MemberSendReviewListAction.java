@@ -34,11 +34,11 @@ public class MemberSendReviewListAction implements Action {
 		
 		if (memberDto != null) {
 			List<ReviewDto> list = MemberReviewServiceImpl.getMemberReviewService().sendListArticle(memberDto.getUser_id());
-			PageNavigator navigator = CommonServiceImpl.getCommonService().getPageNavigatorUser(memberDto.getUser_id(), pg, key,
-					word);
-			navigator.setRoot(request.getContextPath());
-			navigator.setNavigatorSend();
-			request.setAttribute("navigator", navigator);	
+//			PageNavigator navigator = CommonServiceImpl.getCommonService().getPageNavigatorUser(memberDto.getUser_id(), pg, key,
+//					word);
+//			navigator.setRoot(request.getContextPath());
+//			navigator.setNavigatorSend();
+//			request.setAttribute("navigator", navigator);	
 			session.setAttribute("sendReview", list);
 				return "/member/sendReviewList.jsp";
 		}else
