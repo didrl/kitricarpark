@@ -52,7 +52,9 @@ import com.carpark.member.reservation.action.MemberReservationViewAction;
 import com.carpark.member.review.action.MemberReviewDeleteAction;
 import com.carpark.member.review.action.MemberReceiveReviewListAction;
 import com.carpark.member.review.action.MemberReviewModifyAction;
+import com.carpark.member.review.action.MemberReviewReceiveViewAction;
 import com.carpark.member.review.action.MemberReviewRegisterAction;
+import com.carpark.member.review.action.MemberReviewSendViewAction;
 import com.carpark.member.review.action.MemberSendReviewListAction;
 
 public class MemberActionFactory {
@@ -110,7 +112,9 @@ public class MemberActionFactory {
 	private static Action memberReceiveReviewListAction;
 	private static Action memberReviewModifyAction;
 	private static Action memberReviewRegisterAction;
-	
+	private static Action memberReviewReceiveViewAction;
+	private static Action memberReviewSendViewAction;
+	 
 	private static Action memberParkingRegisterAction;
 	private static Action memberParkingSearchAction;
 	private static Action memberParkingModifyAction;
@@ -176,6 +180,8 @@ public class MemberActionFactory {
 		memberSendReviewListAction = new MemberSendReviewListAction();
 		memberReviewModifyAction = new MemberReviewModifyAction();
 		memberReviewRegisterAction = new MemberReviewRegisterAction();
+		memberReviewReceiveViewAction = new MemberReviewReceiveViewAction();
+		memberReviewSendViewAction = new MemberReviewSendViewAction();
 		
 		memberParkingRegisterAction = new MemberParkingRegisterAction();
 		memberParkingSearchAction = new MemberParkingSearchAction();
@@ -369,7 +375,14 @@ public class MemberActionFactory {
 	public static Action getMemberReviewRegisterAction() {
 		return memberReviewRegisterAction;
 	}
+	
+	public static Action getMemberReviewReceiveViewAction() {
+		return memberReviewReceiveViewAction;
+	}
 
+	public static Action getMemberReviewSendViewAction() {
+		return memberReviewSendViewAction;
+	}
 	public static Action getMemberParkingRegisterAction() {
 		return memberParkingRegisterAction;
 	}

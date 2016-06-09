@@ -407,7 +407,7 @@ if(reservationDto != null){
 				
 				var pay=0;
 					if(<%=parkingDetailDto.getDay_max_pay()%>==0)
-						pay=reserHours*<%=parkingDetailDto.getAdd_park_rate()%>/4;
+						pay=reserHours*<%=parkingDetailDto.getAdd_park_rate()/100%>/(4*reserDays);
 					else
 			        	pay =<%=parkingDetailDto.getDay_max_pay()/100%>*reserDays+(<%=parkingDetailDto.getAdd_park_rate()%>*reserExtraHours)/100;
 			        	

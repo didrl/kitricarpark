@@ -32,6 +32,12 @@ public class MemberReviewController extends HttpServlet {
 		}else if("receiveReviewList".equals(act)){
 			path = MemberActionFactory.getMemberReceiveReviewListAction().execute(request, response);
 			PageMove.forward(request, response, path);
+		}else if("receiveReview".equals(act)){
+			path = MemberActionFactory.getMemberReviewReceiveViewAction().execute(request, response);
+			PageMove.forward(request, response, path);
+		}else if("sendReview".equals(act)){
+			path = MemberActionFactory.getMemberReviewSendViewAction().execute(request, response);
+			PageMove.forward(request, response, path);
 		}
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

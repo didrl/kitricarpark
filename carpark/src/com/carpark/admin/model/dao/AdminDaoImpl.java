@@ -85,7 +85,7 @@ public class AdminDaoImpl implements AdminDao {
 			conn=DBConnection.makeConnection();
 			String sql="";
 			
-			sql += "select rownum, a.logtime, a.sumover\n";
+			sql += "select rownum, to_char(a.logtime,'yyyy-mm-dd') as logtime, a.sumover\n";
 			sql += "from(	select logtime,  sum(count(user_id)) over (order by logtime) as sumover \n"; 
 			sql += "			from member \n";
 			sql += "			group by logtime \n";

@@ -12,7 +12,7 @@ if(memberDto != null) {
 %>
 <script type="text/javascript">
 function myReservationView(park_id){
-	alert(park_id+" 눌렀다.");
+	document.location.href = "<%=root%>/member?act=mvSearchResultDetail&parkingid="+park_id;
 }
 </script>
 <div id="wrapper">
@@ -46,19 +46,19 @@ function myReservationView(park_id){
 
 					<!-- 쪽지목록 -->
 					<tr >
-						<td><label onclick="javascript:myReservationView('<%=reservationDto.getReser_id()%>');">
+						<td><label onclick="javascript:myReservationView('<%=reservationDto.getPark_id()%>');">
 						<%=reservationDto.getReser_id() %></label></td>
-						<td><label onclick="javascript:myReservationView('<%=reservationDto.getReser_id()%>');">
+						<td><label onclick="javascript:myReservationView('<%=reservationDto.getPark_id()%>');">
 						<%=reservationDto.getPark_name() %></label></td>
-						<td><label onclick="javascript:myReservationView('<%=reservationDto.getReser_id()%>');">
+						<td><label onclick="javascript:myReservationView('<%=reservationDto.getPark_id()%>');">
 						<%=reservationDto.getFromdate() %></label></td>
-						<td><label onclick="javascript:myReservationView('<%=reservationDto.getReser_id()%>');">
+						<td><label onclick="javascript:myReservationView('<%=reservationDto.getPark_id()%>');">
 						<%=reservationDto.getTodate() %></label></td>
-						<td><label onclick="javascript:myReservationView('<%=reservationDto.getReser_id()%>');">
+						<td><label onclick="javascript:myReservationView('<%=reservationDto.getPark_id()%>');">
 						<%=reservationDto.getPay() %></label></td>
-						<td><label onclick="javascript:myReservationView('<%=reservationDto.getReser_id()%>');">
+						<td><label onclick="javascript:myReservationView('<%=reservationDto.getPark_id()%>');">
 						<%=reservationDto.getHost_id() %></label></td>
-						<td><label onclick="javascript:myReservationView('<%=reservationDto.getReser_id()%>');">
+						<td><label onclick="javascript:myReservationView('<%=reservationDto.getPark_id()%>');">
 						<%=reservationDto.getReser_date() %></label></td>
 <%
 		}
@@ -79,7 +79,7 @@ function myReservationView(park_id){
 %>
 
 
-			<!-- 페이지 네비게이션/검색 -->
+			<!-- 페이지 네비게이션/검색 
 			<nav align="center">
 				<div class="form-group">
 				<form class="form-inline" name="searchForm" method="get" action="">
@@ -112,7 +112,7 @@ function myReservationView(park_id){
 					    </a>
 					</li>
 				</ul>
-			</nav>
+			</nav>-->
 
 					
 		</div>

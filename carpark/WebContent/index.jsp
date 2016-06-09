@@ -107,7 +107,7 @@ if(memberDto != null && 10 == memberDto.getUser_flag()) {
 <!-- Callout -->
 <aside class="callout">
 	<div class="text-vertical-center">
-		<h1>Vertically Centered Text</h1>
+		<h1></h1>
 	</div>
 </aside>
 
