@@ -144,7 +144,7 @@ public class MemberCallDaoImpl implements MemberCallDao {
 		CallDto callDto = null;
 	try {		
 			conn = DBConnection.makeConnection();
-			conn.setAutoCommit(false);
+			
 			String sql = "";
 			sql+= "select b.seq, b.user_id,b.subject,b.logtime,b.contents,c.pcall_flag,c.pcall_ok \n";
 			sql+= "from board b, call c \n";
@@ -163,19 +163,11 @@ public class MemberCallDaoImpl implements MemberCallDao {
 				callDto.setpCall_Ok(rs.getInt("pcall_ok"));
 				callDto.setpCall_Flag(rs.getInt("pcall_flag"));
 			}
-			conn.commit();
-			pstmt.close();
-			
-			sql="";
-			sql+="update call \n";
-			sql+="set pcall_ok=1 \n";
-			sql+="where pcall_id=?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, seq);
-			pstmt.executeUpdate();
-			conn.commit();
+		
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally{
+			DBClose.close(conn, pstmt, rs);
 		}
 		return callDto;
 	}
@@ -217,7 +209,7 @@ public class MemberCallDaoImpl implements MemberCallDao {
 			conn.setAutoCommit(false);
 			String sql = "";
 			sql+="delete \n";
-			sql+="from call\n";
+			sql+="from call \n";
 			sql+="where pcall_id=? \n";			
 			int idx=1;
 			pstmt = conn.prepareStatement(sql);
