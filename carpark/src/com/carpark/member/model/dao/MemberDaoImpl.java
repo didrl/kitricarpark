@@ -144,8 +144,108 @@ public class MemberDaoImpl implements MemberDao {
 
 	@Override
 	public int delete(String id) {
-		// TODO Auto-generated method stub
-		return 0;
+		int count=0;
+		Connection conn=null;
+		PreparedStatement pstmt =null;
+		try {
+			conn=DBConnection.makeConnection();
+			conn.setAutoCommit(false);
+		
+			String sql="";
+			sql+="delete \n";
+			sql+="from message \n";
+			sql+="where receiver_id = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);		
+			count=pstmt.executeUpdate();
+			conn.commit();
+			pstmt.close();
+			
+			sql="";
+			sql+="delete \n";
+			sql+="from board \n";
+			sql+="where user_id = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);		
+			count=pstmt.executeUpdate();
+			conn.commit();
+			pstmt.close();
+		
+			sql="";
+			sql+="delete \n";
+			sql+="from member_car \n";
+			sql+="where user_id = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);		
+			count=pstmt.executeUpdate();
+			conn.commit();
+			pstmt.close();
+			
+			sql="";
+			sql+="delete \n";
+			sql+="from penalty \n";
+			sql+="where user_id = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);		
+			count=pstmt.executeUpdate();
+			conn.commit();
+			pstmt.close();
+			
+			sql="";
+			sql+="delete \n";
+			sql+="from reservation \n";
+			sql+="where user_id = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);		
+			count=pstmt.executeUpdate();
+			conn.commit();
+			pstmt.close();
+			
+			sql="";
+			sql+="delete \n";
+			sql+="from coin \n";
+			sql+="where user_id = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);		
+			count=pstmt.executeUpdate();
+			conn.commit();
+			pstmt.close();
+			
+			sql="";
+			sql+="delete \n";
+			sql+="from parking \n";
+			sql+="where owner_id = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);		
+			count=pstmt.executeUpdate();
+			conn.commit();
+			pstmt.close();
+			
+			sql="";
+			sql+="delete \n";
+			sql+="from favorite \n";
+			sql+="where user_id = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);		
+			count=pstmt.executeUpdate();
+			conn.commit();
+			pstmt.close();
+			
+			sql="";
+			sql+="delete \n";
+			sql+="from member \n";
+			sql+="where user_id = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);		
+			count=pstmt.executeUpdate();
+			conn.commit();	
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			DBClose.close(conn, pstmt);
+		}	
+		return count;
 	}
 
 	@Override
@@ -340,6 +440,7 @@ public class MemberDaoImpl implements MemberDao {
 				parkingDetailDto.setPark_avgPoint(rs.getDouble("park_avgpoint"));
 				parkingDetailDto.setPark_flag(rs.getInt("park_flag"));
 				parkingDetailDto.setPark_rate(rs.getInt("park_rate"));
+				parkingDetailDto.setAdd_park_rate(rs.getInt("add_park_rate"));
 				parkingDetailDto.setPark_time_rate(rs.getInt("park_time_rate"));
 				parkingDetailDto.setPay_yn(rs.getString("pay_yn"));
 				parkingDetailDto.setSatur_pay_yn(rs.getString("satur_pay_yn"));

@@ -6,8 +6,7 @@ import java.util.List;
 
 import com.carpark.db.DBClose;
 import com.carpark.db.DBConnection;
-import com.carpark.member.model.MemberDto;
-import com.carpark.member.model.MessageDto;
+import com.carpark.member.model.*;
 
 public class MemberCoinDaoImpl implements MemberCoinDao{
 
@@ -51,4 +50,55 @@ public class MemberCoinDaoImpl implements MemberCoinDao{
 		}	
 			return coin;
 		}
+
+	@Override
+	public int chargeCoin(CoinDto coindto,int coin) {
+			int cid = 0;
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			//PreparedStatement pstmt2 = null;
+			coin += coindto.getCoin();
+			
+			try {
+				conn = DBConnection.makeConnection();
+				//conn.setAutoCommit(false);
+				String sql1 = "";
+				String sql2 = "";
+				
+				sql1 += "insert \n";
+				sql1 += "into coin (user_id,coin,cid,cflag,cdate) \n";
+				sql1 += "values (?, ?, ?,2,sysdate) \n";
+				pstmt = conn.prepareStatement(sql1);
+				int idx = 0;
+				pstmt.setString(++idx, coindto.getUser_id());
+				pstmt.setInt(++idx, coindto.getCoin());
+				pstmt.setInt(++idx, coindto.getCid());
+				pstmt.executeUpdate();
+				//conn.commit();
+				
+				pstmt = null;
+			
+				sql2 += "update member \n";
+				sql2 += "set coin = ? \n";
+				sql2 += "where user_id=?";
+				pstmt = conn.prepareStatement(sql2);
+				idx = 0;
+				pstmt.setInt(++idx, coin);
+				pstmt.setString(++idx, coindto.getUser_id());
+				pstmt.executeUpdate();
+				
+				//cid = coindto.getCid();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				DBClose.close(conn, pstmt);
+			}
+		return cid;
+	}
+
+	@Override
+	public List<CoinDto> coinList(String user_id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

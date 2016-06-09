@@ -28,7 +28,11 @@ if(map == null){
 }
 StringBuffer sb =new StringBuffer();
 int size = availabledate.size();
-if(size<2 && size>0){
+if(size==0){
+	String tmp ="{from : new Date()}";
+	sb.append(tmp);
+}
+else if(size<2 && size>0){
 	String tmp ="{from : new Date("+availabledate.get(0).get("enddate")+")}";
 	sb.append(tmp);
 }else{
@@ -135,13 +139,18 @@ function goReservation() {
 	var flagr=0;
 	flagr=<%=flagb%>
 	if(flagr!=0){
-		if(document.selectdateForm.fromdate.value == ""){
+		if($("#fromdate").val() == ""){
 			alert("대상을 입력하세요");
 			return;
-		} else if(document.selectdateForm.todate.value == "") {
+		} else if($("#todate").val()== "") {
 			alert("제목을 입력하세요");
 			return;	
-		} else{
+		}else if($("#fromdate").val()==$("#todate").val()){
+			if($("srfromTime").val()>$("srtoTime").val() || $("srfromTime option:selected").val()==$("srtoTime option:selected").val()){
+				alert("날짜를 확인하고 다시 시도해주세요.");
+				return;
+			}
+		}else{
 			document.selectdateForm.action = "/carpark/reservation";
 			document.selectdateForm.submit();
 		}
@@ -343,6 +352,21 @@ var mapContainer2 = document.getElementById('aroundmap'), // 지도를 표시할
 
 // 지도를 생성합니다    
 var aroundmap = new daum.maps.Map(mapContainer2, mapOption2); 
+
+//지도에 마커를 생성하고 표시한다
+var marker2 = new daum.maps.Marker({
+    position: new daum.maps.LatLng(<%=parkingDetail.getLatitude()%>, <%=parkingDetail.getLongitude()%>), // 마커의 좌표
+    map: aroundmap // 마커를 표시할 지도 객체
+});
+
+// 마커 위에 표시할 인포윈도우를 생성한다
+var infowindow2 = new daum.maps.InfoWindow({
+    content : '<div style="padding:5px;">찾으신 주차장 :D</div>' // 인포윈도우에 표시할 내용
+});
+
+// 인포윈도우를 지도에 표시한다
+infowindow2.open(aroundmap, marker2);
+
 
 // 장소 검색 객체를 생성합니다
 var ps = new daum.maps.services.Places(aroundmap); 

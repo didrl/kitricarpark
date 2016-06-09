@@ -6,7 +6,10 @@
 <%@include file="/common/side.jsp" %>
 <%
 MemberDto memberDetailInfo =(MemberDto)request.getAttribute("memberDetailInfo");
+int delete =  (Integer)request.getAttribute("delete");
 %>
+
+
 
 	<div id="wrapper">
 <!-- ****************************************************************************************************************** -->	
@@ -94,6 +97,7 @@ MemberDto memberDetailInfo =(MemberDto)request.getAttribute("memberDetailInfo");
 						<div class="form-group">
 							<button type="submit" class="btn btn-default">수정</button>
 							<button type="reset" class="btn btn-default">취소</button>
+							<button type="button" class="btn btn-default" onclick="javascript:secession('<%=memberDto.getUser_id()%>');">회원탈퇴</button>
 						</div>
 
 					</div>

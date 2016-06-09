@@ -12,6 +12,14 @@ if(memberDto != null) {
 List<MessageDto> list = (List<MessageDto>) request.getAttribute("receiveList");
 %>
 
+<script>
+function chargeCoin(){
+		document.chargeCoinForm.action = <%=root%>+"/member?act=mvChargeCoin";
+		document.chargeCoinForm.submit();
+}
+
+</script>
+
 <div id="wrapper">
 
 <!-- ****************************************************************************************************************** -->	
@@ -33,7 +41,6 @@ List<MessageDto> list = (List<MessageDto>) request.getAttribute("receiveList");
 
 				<div class="row">
 					<div class="col-lg-12">
-						<form role="form">
 							<!-- p1: my coin -->
 							<div class="form-group">
 
@@ -47,9 +54,50 @@ List<MessageDto> list = (List<MessageDto>) request.getAttribute("receiveList");
 								</div>
 							</div>
 							<!-- p1: my coin end-->
+							
+							
+							
+							<!-- 쪽지보내기 -->
+							<!-- 
+								<div class="form-group">
+									<form class="form-horizontal" name="leaveReviewForm" method="post" action="">
+										<input type="hidden" name="act" value="leaveReview">
+										<input type="hidden" name="bcode" value="2"> 
+										<input type="hidden" name="pg" value="1"> 
+										<input type="hidden" name="key" value=""> 
+										<input type="hidden" name="word" value="">
+
+										<div class="form-group">
+											<label for="reviewHost">리뷰 남길 주차장</label> <input type="text"
+												class="form-control" id="reviewHost" placeholder="리뷰남길주차장"
+												name="reviewHost">
+										</div>
+										<div class="form-group">
+											<label for="subject_review">제목</label> <input type="text"
+												class="form-control" id="subject_review" placeholder="제목"
+												name="subject_review">
+										</div>
+										<div class="form-group">
+											<label for="content_review">내용</label>
+											<textarea class="form-control" rows="10" id="content_review"
+												name="content_review"></textarea>
+										</div>
+
+										<div class="form-group text-center">
+											<input class="btn btn-default" type="button" value="보내기"
+												onclick="javascript:leaveReview();">
+										</div>
+
+									</form>
+								</div>
+							-->
+							
+							
 
 							<!-- p2: coin charge-->
 							<div class="form-group">
+							<form class="form-horizontal" name="chargeCoinForm" method="post" action="">
+							<input type="hidden" name="act" value="chargeCoin">
 								<div class="col-lg-4">
 									<label> 코인충전 </label>
 								</div>
@@ -62,18 +110,18 @@ List<MessageDto> list = (List<MessageDto>) request.getAttribute("receiveList");
 									</ol>
 									<div class="radio">
 										<label> <input type="radio" name="optionsRadios"
-											id="optionsRadios1" value="option1" checked>21코인
-											3900원
+											id="optionsRadios1" value="50" checked>50코인
+											5000원
 										</label>
 									</div>
 									<div class="radio">
 										<label> <input type="radio" name="optionsRadios"
-											id="optionsRadios2" value="option2">61코인 8900원
+											id="optionsRadios2" value="90">90코인 9000원
 										</label>
 									</div>
 									<div class="radio">
 										<label> <input type="radio" name="optionsRadios"
-											id="optionsRadios3" value="option3">100코인 15000원
+											id="optionsRadios3" value="100">100코인 10000원
 										</label>
 									</div>
 									</p>
@@ -86,24 +134,29 @@ List<MessageDto> list = (List<MessageDto>) request.getAttribute("receiveList");
 
 									<label class="radio-inline"> <input type="radio"
 										name="optionsRadiosInline" id="optionsRadiosInline1"
-										value="option1" checked> 신용카드
-									</label> <label class="radio-inline"> <input type="radio"
+										value="option1" checked> 신용카드 <img src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/cc-badges-ppppcmcvdam.png" alt="Pay with PayPal, PayPal Credit or any major credit card" />
+									</label> 
+									<!-- 
+									<label class="radio-inline"> <input type="radio"
 										name="optionsRadiosInline" id="optionsRadiosInline2"
-										value="option2"> 휴대폰 결제
-									</label> <label class="radio-inline"> <input type="radio"
+										value="option2"> 휴대폰 결제(사용불가)
+									</label>
+									 --> 
+									<label class="radio-inline"> <input type="radio"
 										name="optionsRadiosInline" id="optionsRadiosInline3"
-										value="option3"> 계좌이체
+										value="option3"> 계좌이체 <img src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/pp-acceptance-small.png" alt="Buy now with PayPal" />
 									</label>
 									</p>
 									<p>
-										<button type="submit" class="btn btn-default">결제요청</button>
-										<button type="reset" class="btn btn-default">취소</button>
+									<input class="btn btn-default" type="submit" value=결제하기 onclick="javascript:chargeCoin();">
+									<input type="reset" class="btn btn-default" value=취소>
 									</p>
 								</div>
+								</form>
 							</div>
 
 							<!-- p2: coin charge end -->
-						</form>
+						
 
 					</div>
 				</div>
