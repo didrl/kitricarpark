@@ -2,6 +2,7 @@ package com.carpark.admin.model.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -74,8 +75,65 @@ public class AdminParkingDaoImpl implements AdminParkingDao {
 
 	@Override
 	public List<ParkingDetailDto> parkingList(Map<String, String> map) {
-		// TODO Auto-generated method stub
-		return null;
+		List<ParkingDetailDto> list = new ArrayList<ParkingDetailDto>();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String parkType = map.get("parkType");
+		String key = map.get("key");
+		String word = map.get("word");
+		
+		try {
+			conn = DBConnection.makeConnection();
+			String sql = "";
+			sql += "select b.rn, b.park_id, b.park_name, b.owner_id, b.park_type, b.park_flag, b.park_avgPoint \n";
+			sql += "from \n";
+		    sql += "  		(select rownum rn, a.park_id, a.park_name, a.owner_id, a.park_type, a.park_flag, a.park_avgPoint \n"; 
+		    sql += "         from \n";
+		    sql += "     		  (select p.park_id, park_name, owner_id, park_type, park_flag, park_avgPoint \n";
+		    sql += "               from parking p, parking_detail d \n";
+		    sql += "               where p.park_id = d.park_id \n";
+		    sql += "           	   and parkType = ? \n";
+		    if(key != null && !key.isEmpty()) {
+		    	if(word != null && !word.isEmpty()) {
+		    		if("park_name".equals(key))
+		    			sql += "   and park_name like '%'||?||'%' \n";
+		    		else
+		    			sql += "   and " + key + " = ? \n";						
+		    	}
+		    }
+		    sql += "               order by park_name) a \n";
+		    sql += "         where rownum < ? ) b \n";
+		    sql += "where rn > ? \n";
+			pstmt = conn.prepareStatement(sql);
+			int idx = 0;
+			pstmt.setString(++idx, parkType);
+			if(key != null && !key.isEmpty()) {
+				if(word != null && !word.isEmpty()) {
+					pstmt.setString(++idx, map.get("word"));				
+				}
+			}
+			pstmt.setString(++idx, map.get("end"));
+			pstmt.setString(++idx, map.get("start"));
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				ParkingDetailDto parkingDto = new ParkingDetailDto();
+				parkingDto.setPark_id(rs.getInt("park_id"));
+				parkingDto.setPark_name(rs.getString("park_name"));
+				parkingDto.setOwner_id(rs.getString("owner_id"));
+				parkingDto.setPark_type(rs.getString("park_type"));
+				parkingDto.setPark_flag(rs.getInt("park_flag"));
+				parkingDto.setPark_avgPoint(rs.getInt("park_avgPoint"));
+				
+				list.add(parkingDto);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return list;
 	}
 	
 	

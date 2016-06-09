@@ -26,10 +26,13 @@
 					</div>
 					<div class="col-md-10">
 						<label class="radio-inline">
+						  <input type="radio" name="parkType" value="2"> 공용
+						</label>
+						<label class="radio-inline">
 						  <input type="radio" name="parkType" value="1" checked="checked"> 사설
 						</label>
 						<label class="radio-inline">
-						  <input type="radio" name="parkType" value="2"> 공용
+						  <input type="radio" name="parkType" value="0" checked="checked"> 개인
 						</label>
 					</div>
 				</div><hr>

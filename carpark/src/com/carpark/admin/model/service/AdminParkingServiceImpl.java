@@ -1,6 +1,7 @@
 package com.carpark.admin.model.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -33,8 +34,12 @@ public class AdminParkingServiceImpl implements AdminParkingService {
 	}
 
 	@Override
-	public List<ParkingDetailDto> parkingList(Map<String, String> map) {
-		
+	public List<ParkingDetailDto> parkingList(String parkType, int pg, String key, String word) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("parkType", parkType);
+		map.put("pg", pg + "");
+		map.put("key", key);
+		map.put("word", word);
 		return AdminParkingDaoImpl.getAdminParkingDao().parkingList(map);
 	}
 
