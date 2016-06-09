@@ -15,14 +15,14 @@ List<CallDto> callList = (List<CallDto>)request.getAttribute("receiveList");
 		<!-- main -->
 		<div id="page-wrapper">
 			<div class="container-fluid">
-				<br><h3>쪽지함</h3><br>
+				<br><h3>방문 예정 리스트</h3><br>
 					
 				<div class="btn-group" role="group" aria-label="...">
 	  				<button type="button" class="btn btn-default" onclick="javascript:adminMessageReceiveList();">
-	  					받은쪽지함
+	  					받은제보함
 	  				</button>
 	  				<button type="button" class="btn btn-default" onclick="javascript:adminMessageSendList();">
-	  					보낸쪽지함
+	  					보낸제보함
 	  				</button>	
 					<button type="button" class="btn btn-default"  data-toggle="modal" data-target="#messageWrite" onclick="javascript:init();">
                 		쪽지보내기
@@ -41,7 +41,7 @@ List<CallDto> callList = (List<CallDto>)request.getAttribute("receiveList");
 				  		<td width="200" style="background: #00cc00" align="center"><b style="color: #FFFFFF;">보낸사람</b></td>
 				  		<td style="background: #00cc00" align="center"><b style="color: #FFFFFF;">제목</b></td>
 				  		<td style="background: #00cc00" align="center"><b style="color: #FFFFFF;">시간</b></td>
-				  		<td width="50" style="background: #00cc00" align="center"><b style="color: #FFFFFF;">확인</b></td>
+				  		<td width="100" style="background: #00cc00" align="center"><b style="color: #FFFFFF;">방문예정</b></td>
 				  		<td style="background: #00cc00" align="center"></td>
 				  	</tr>
 				
@@ -128,7 +128,7 @@ if(callDto.getpCall_Ok() == 0) {
 						<td>X</td>
 						<td>
 						<button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#messageToWrite" onclick="toWriteInit('<%=callDto.getUserID()%>');">답장</button>
-						<button type="button" class="btn btn-default btn-xs" onclick="javascript:messageReceiveDelete('<%=callDto.getSeq()%>');">삭제</button>
+						<button type="button" class="btn btn-default btn-xs" onclick="javascript:adminCallReceiveDelete('<%=callDto.getSeq()%>');">삭제</button>
 						</td>
 					</tr>
 <%
@@ -137,7 +137,7 @@ if(callDto.getpCall_Ok() == 0) {
 						<td>O</td>
 						<td>
 						<button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#messageToWrite" onclick="javascript:toWriteInit('<%=callDto.getUserID()%>');">답장</button>
-						<button type="button" class="btn btn-default btn-xs" onclick="javascript:messageReceiveDelete('<%=callDto.getSeq()%>');">삭제</button>
+						<button type="button" class="btn btn-default btn-xs" onclick="javascript:adminCallReceiveDelete('<%=callDto.getSeq()%>');">삭제</button>
 						</td>
 					</tr>
 <%

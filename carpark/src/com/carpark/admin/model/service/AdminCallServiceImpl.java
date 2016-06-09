@@ -36,8 +36,7 @@ public class AdminCallServiceImpl implements AdminCallService {
 
 	@Override
 	public void deleteArticle(int seq) {
-		// TODO Auto-generated method stub
-		
+		AdminCallDaoImpl.getAdminCallDao().deleteArticle(seq);
 	}
 
 	@Override

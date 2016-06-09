@@ -203,6 +203,51 @@ public class CommonDaoImpl implements CommonDao {
 	}
 	
 	@Override
+	public int totalArticleCountAdminParking(Map<String, String> map) {
+		int count = 0;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String parkType = map.get("parkType");
+		String key = map.get("key");
+		String word = map.get("word");
+		
+		try {
+			conn = DBConnection.makeConnection();
+			String sql = "";
+			sql += "select count(park_id) \n";
+				sql += "from parking \n";
+				sql += "where parkType = ? \n";
+			if(key != null && !key.isEmpty()) {
+				if(word != null && !word.isEmpty()) {
+					if("park_name".equals(key))
+						sql += "and park_name like '%'||?||'%' \n";
+					else
+						sql += "and " + key + " = ? \n";						
+				}
+			}
+			pstmt = conn.prepareStatement(sql);
+			int idx = 0;
+			pstmt.setString(++idx, parkType);
+			if(key != null && !key.isEmpty()) {
+				if(word != null && !word.isEmpty()) {
+					pstmt.setString(++idx, word);
+				}
+			}
+			rs = pstmt.executeQuery();
+			rs.next();
+			count = rs.getInt(1);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose.close(conn, pstmt, rs);
+		}
+		
+		return count;
+	}
+	
+	@Override
 	public int totalArticleCountAdminReport(Map<String, String> map) {
 		int count = 0;
 		Connection conn = null;

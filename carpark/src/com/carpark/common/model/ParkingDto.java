@@ -14,6 +14,7 @@ public class ParkingDto implements Serializable{
 	private String content;
 	private String detailAddr;
 	private int emdCode;
+	private int park_public;
 	
 	
 	public int getEmdCode() {
@@ -82,6 +83,12 @@ public class ParkingDto implements Serializable{
 	}
 	public void setPark_type(String park_type) {
 		this.park_type = park_type;
+	}
+	public int getPark_public() {
+		return park_public;
+	}
+	public void setPark_public(int park_public) {
+		this.park_public = park_public;
 	}
 	
 	
