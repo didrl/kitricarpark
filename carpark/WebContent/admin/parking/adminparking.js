@@ -1,13 +1,13 @@
 function adminParkingRegister() {
-	if(document.adminParkRegisterForm.parkName.value == ""){
+	if(document.adminParkingRegisterForm.parkName.value == ""){
 		alert("주차장 이름을 입력하세요");
 		return;
-	} else if(document.parkRegisterForm.parkCapacity.value == ""){
+	} else if(document.adminParkingRegisterForm.parkCapacity.value == ""){
 		alert("총 주차면수를 입력하세요");
 		return;
 	} else {
-		document.adminParkRegisterForm.action = "/carpark/adminparking";
-		document.adminParkRegisterForm.submit();
+		document.adminParkingRegisterForm.action = "/carpark/adminparking";
+		document.adminParkingRegisterForm.submit();
 	}
 }
 
