@@ -12,7 +12,7 @@ if(memberDto != null) {
 %>
 <script type="text/javascript">
 function myReservationView(park_id){
-	alert(park_id+" 눌렀다.");
+//	alert(park_id+" 눌렀다.");
 }
 </script>
 <div id="wrapper">
@@ -45,6 +45,20 @@ function myReservationView(park_id){
 	if(size > 0) {
 		for(MemberDto allmemDto : list) {
 			//user_id, user_name, grade_name, host_flag,coin, user_avgpoint,penalty,user_flag,email,tel
+			String grade="";
+			if(allmemDto.getGrade_id()==0)
+				grade = "공영주차장";
+			else if(allmemDto.getGrade_id()==1)
+				grade = "민영주차장";
+			else if(allmemDto.getGrade_id()==2)
+				grade = "불량";
+			else if(allmemDto.getGrade_id()==3)
+				grade = "일반";
+			else if(allmemDto.getGrade_id()==4)
+				grade = "우수";
+			else if(allmemDto.getGrade_id()==5)
+				grade = "최우수";
+			
 %>
 
 					<!-- 쪽지목록 -->
@@ -54,9 +68,9 @@ function myReservationView(park_id){
 						<td><label onclick="javascript:selecteduserView('<%=allmemDto.getUser_id()%>');">
 						<%=allmemDto.getUser_name() %></label></td>
 						<td><label onclick="javascript:selecteduserView('<%=allmemDto.getUser_id()%>');">
-						<%=allmemDto.getGrade_id() %></label></td>
+						<%=grade%></label></td>
 						<td><label onclick="javascript:selecteduserView('<%=allmemDto.getUser_id()%>');">
-						<%=allmemDto.getHost_flag() %></label></td>
+						<%=allmemDto.getHost_flag()==0?"게스트":"호스트"%></label></td>
 						<td><label onclick="javascript:selecteduserView('<%=allmemDto.getUser_id()%>');">
 						<%=allmemDto.getCoin() %></label></td>
 						<td><label onclick="javascript:selecteduserView('<%=allmemDto.getUser_id()%>');">
@@ -64,7 +78,7 @@ function myReservationView(park_id){
 						<td><label onclick="javascript:selecteduserView('<%=allmemDto.getUser_id()%>');">
 						<%=allmemDto.getPenalty() %></label></td>
 						<td><label onclick="javascript:selecteduserView('<%=allmemDto.getUser_id()%>');">
-						<%=allmemDto.getUser_flag() %></label></td>
+						<%=allmemDto.getUser_flag()==0?"개인":"기업"%></label></td>
 						<td><label onclick="javascript:selecteduserView('<%=allmemDto.getUser_id()%>');">
 						<%=allmemDto.getEmail() %></label></td>
 						<td><label onclick="javascript:selecteduserView('<%=allmemDto.getUser_id()%>');">
@@ -88,7 +102,7 @@ function myReservationView(park_id){
 %>
 
 
-			<!-- 페이지 네비게이션/검색 -->
+			<!-- 페이지 네비게이션/검색 
 			<nav align="center">
 				<div class="form-group">
 				<form class="form-inline" name="searchForm" method="get" action="">
@@ -128,7 +142,7 @@ function myReservationView(park_id){
 
 					
 		</div>
-	</div>
+	</div>-->
 <!-- ****************************************************************************************************************** -->	
 </div>
 <%

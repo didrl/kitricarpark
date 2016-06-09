@@ -75,11 +75,13 @@ if(memberDto!=null){
 <%
 	}else{	//관리자
 		%>
-		<li class="dropdown"><a href="#" class="dropdown-toggle"
-			data-toggle="dropdown"><i class="fa fa-envelope"></i> <b
+		<li class="dropdown">
+		<!--<a href="#" class="dropdown-toggle"
+			data-toggle="dropdown">
+			<i class="fa fa-envelope"></i> <b
 				class="caret"></b></a>
 			<ul class="dropdown-menu message-dropdown">
-				<li class="message-preview"><a href="#">
+				 <li class="message-preview"><a href="#">
 						<div class="media">
 							<span class="pull-left"> <img class="media-object"
 								src="http://placehold.it/50x50" alt="">
@@ -97,6 +99,7 @@ if(memberDto!=null){
 							</div>
 						</div>
 				</a></li>
+				 
 				<li class="message-preview"><a href="#">
 						<div class="media">
 							<span class="pull-left"> <img class="media-object"
@@ -108,12 +111,13 @@ if(memberDto!=null){
 				</a></li>
 				<li class="message-footer"><a href="javascript:messageReceiveList();">Read All New
 						Messages</a></li>
-			</ul></li>
+			</ul>-->
+			</li>
 		
-		<li class="dropdown"><a href="#" class="dropdown-toggle"
+		<!--<li class="dropdown"><a href="#" class="dropdown-toggle"
 			data-toggle="dropdown"><i class="fa fa-bell"></i> <b
 				class="caret"></b></a>
-			<ul class="dropdown-menu alert-dropdown">
+			 <ul class="dropdown-menu alert-dropdown">
 				<li><a href="#" data-toggle="modal" data-target="#messageReply">제보하기 <span
 						class="label label-default">Alert Badge</span></a></li>
 				<li class="divider"></li>
@@ -121,17 +125,13 @@ if(memberDto!=null){
 						class="label label-primary">Alert Badge</span></a></li>
 			
 				
-			</ul></li>
+			</ul></li> -->
 					
 		<li class="dropdown"><a href="#" class="dropdown-toggle"
 			data-toggle="dropdown"><i class="fa fa-user"></i> <%=memberDto.getUser_id() %> <b
 				class="caret"></b></a>
 			<ul class="dropdown-menu">
-				<li><a href="<%=root%>/admin?act=mvprofile"><i class="fa fa-fw fa-user"></i> profile</a></li>
-				<li><a href="<%=root%>/member?act=mvmessage"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
-				</li>
-				<li><a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a></li>
-				<li class="divider"></li>
+				
 				<li><a href="<%=root%>/member?act=mvlogout"><i class="fa fa-fw fa-power-off"></i> Log
 						Out</a></li>
 			</ul></li>

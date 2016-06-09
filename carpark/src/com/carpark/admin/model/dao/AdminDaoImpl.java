@@ -127,7 +127,7 @@ public class AdminDaoImpl implements AdminDao {
 			sql += "select rownum, a.user_id, a.user_avgpoint, a.penalty\n";
 			sql += "from (select user_id, user_avgpoint, penalty \n"; 
 			sql += "			from member \n";
-			sql += "			order by user_avgpoint desc, penalty) a \n";
+			sql += "			order by user_avgpoint desc, penalty asc) a \n";
 			sql += "where rownum<11 \n";
 
 			pstmt = conn.prepareStatement(sql);
