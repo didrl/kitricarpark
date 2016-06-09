@@ -19,7 +19,7 @@ int delete =  (Integer)request.getAttribute("delete");
 				<!-- Page Heading -->
 				<div class="row">
 					<div class="col-lg-12">
-						<h1 class="page-header">상세프로필</h1>
+						<h1 class="page-header">프로필수정</h1>
 						<ol class="breadcrumb">
 							<li><i class="fa fa-dashboard"></i> <a href="index.html">Dashboard</a>
 							</li>
@@ -65,10 +65,6 @@ int delete =  (Integer)request.getAttribute("delete");
 					<!-- /.col-lg-6 -->
 
 					<div class="col-lg-6">
-						<div class="form-group">
-							<label class="checkbox-inline"> <input type="checkbox">사업자등록번호체크
-							</label>
-						</div>
 
 						<div class="form-group">
 							<label>프로필 사진 선택</label> <input type="file">

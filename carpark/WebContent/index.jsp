@@ -104,12 +104,6 @@ if(memberDto != null && 10 == memberDto.getUser_flag()) {
 	<!-- /.container -->
 </section>
 
-<!-- Callout -->
-<aside class="callout">
-	<div class="text-vertical-center">
-		<h1></h1>
-	</div>
-</aside>
 
 <!--  Map  -->
 <div class="panel panel-default">
