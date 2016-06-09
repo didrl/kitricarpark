@@ -353,6 +353,21 @@ var mapContainer2 = document.getElementById('aroundmap'), // 지도를 표시할
 // 지도를 생성합니다    
 var aroundmap = new daum.maps.Map(mapContainer2, mapOption2); 
 
+//지도에 마커를 생성하고 표시한다
+var marker2 = new daum.maps.Marker({
+    position: new daum.maps.LatLng(<%=parkingDetail.getLatitude()%>, <%=parkingDetail.getLongitude()%>), // 마커의 좌표
+    map: aroundmap // 마커를 표시할 지도 객체
+});
+
+// 마커 위에 표시할 인포윈도우를 생성한다
+var infowindow2 = new daum.maps.InfoWindow({
+    content : '<div style="padding:5px;">찾으신 주차장 :D</div>' // 인포윈도우에 표시할 내용
+});
+
+// 인포윈도우를 지도에 표시한다
+infowindow2.open(aroundmap, marker2);
+
+
 // 장소 검색 객체를 생성합니다
 var ps = new daum.maps.services.Places(aroundmap); 
 

@@ -3,7 +3,9 @@ package com.carpark.member.model.service;
 import java.util.List;
 import java.util.Map;
 
+import com.carpark.member.model.CoinDto;
 import com.carpark.member.model.dao.MemberCoinDaoImpl;
+import com.carpark.member.model.dao.MemberMessageDaoImpl;
 
 public class MemberCoinServiceImpl implements MemberCoinService {
 
@@ -25,8 +27,10 @@ public class MemberCoinServiceImpl implements MemberCoinService {
 		return 0;
 	}
 
-	
-
-
-	
+	@Override
+	public int chargeCoin(CoinDto coindto,int coin) {
+		
+		return MemberCoinDaoImpl.getMemberCoinDao().chargeCoin(coindto, coin);
+		
+	}
 }

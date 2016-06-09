@@ -22,6 +22,7 @@ import com.carpark.member.call.action.MemberCallModifyAction;
 import com.carpark.member.call.action.MemberCallMvZipAction;
 import com.carpark.member.call.action.MemberCallRegisterAction;
 import com.carpark.member.call.action.MemberCallViewAction;
+import com.carpark.member.coin.action.MemberChargeCoinAction;
 import com.carpark.member.favorite.action.MemberFavoriteDeleteAction;
 import com.carpark.member.favorite.action.MemberFavoriteListAction;
 import com.carpark.member.favorite.action.MemberFavoriteRegisterAction;
@@ -69,7 +70,6 @@ public class MemberActionFactory {
 	private static Action memberSearchDetailAction;
 	private static Action memberLogoutAction;
 	private static Action memberBenefitAction;
-	private static Action memberCoinAction;
 	
 	private static Action memberCallDeleteAction;
 	private static Action memberCallListAction;
@@ -120,6 +120,9 @@ public class MemberActionFactory {
 	
 	private static Action memberCarListAction;
 	
+	private static Action memberCoinAction;
+	private static Action memberChargeCoinAction;
+	
 
 	static {
 		memberDeleteAction = new MemberDeleteAction();
@@ -135,7 +138,6 @@ public class MemberActionFactory {
 		memberLogoutAction = new MemberLogoutAction();
 		memberAddCarAction = new MemberAddCarAction();
 		memberBenefitAction = new MemberBenefitAction();
-		memberCoinAction	= new MemberCoinAction();
 		
 		memberCallDeleteAction = new MemberCallDeleteAction();
 		memberCallListAction = new MemberCallListAction();
@@ -184,6 +186,9 @@ public class MemberActionFactory {
 		
 		memberCarListAction = new MemberCarListAction();
 		
+		memberCoinAction	= new MemberCoinAction();
+		memberChargeCoinAction	= new MemberChargeCoinAction();
+		
 	}
 	public static Action getMemberCallMvZipAction() {
 		return memberCallMvZipAction;
@@ -200,10 +205,6 @@ public class MemberActionFactory {
 
 	public static Action getMemberCarListAction() {
 		return memberCarListAction;
-	}
-
-	public static Action getMemberCoinAction() {
-		return memberCoinAction;
 	}
 
 	public static Action getMemberBenefitAction() {
@@ -393,5 +394,10 @@ public class MemberActionFactory {
 		return memberParkingViewAction;
 	}
 	
-	
+	public static Action getMemberCoinAction() {
+		return memberCoinAction;
+	}
+	public static Action getMemberChargeCoinAction() {
+		return memberChargeCoinAction;
+	}
 }

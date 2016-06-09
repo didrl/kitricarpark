@@ -14,7 +14,7 @@ public class MemberCoinAction implements Action {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-		return "/member/coin.jsp";
+		return "/coin/coin.jsp";
 	}
 
 }
