@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import com.carpark.common.model.ParkingDetailDto;
 import com.carpark.db.DBClose;
@@ -66,6 +68,12 @@ public class AdminParkingDaoImpl implements AdminParkingDao {
 
 	@Override
 	public ArrayList<ReservationDto> myReservationList(String user_id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<ParkingDetailDto> parkingList(Map<String, String> map) {
 		// TODO Auto-generated method stub
 		return null;
 	}

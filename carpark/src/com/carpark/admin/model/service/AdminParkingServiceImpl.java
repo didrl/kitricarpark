@@ -1,6 +1,8 @@
 package com.carpark.admin.model.service;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import com.carpark.admin.model.dao.AdminParkingDaoImpl;
 import com.carpark.common.model.ParkingDetailDto;
@@ -28,6 +30,12 @@ public class AdminParkingServiceImpl implements AdminParkingService {
 	@Override
 	public ArrayList<ReservationDto> myReservationList(String user_id) {
 		return AdminParkingDaoImpl.getAdminParkingDao().myReservationList(user_id);
+	}
+
+	@Override
+	public List<ParkingDetailDto> parkingList(Map<String, String> map) {
+		
+		return AdminParkingDaoImpl.getAdminParkingDao().parkingList(map);
 	}
 
 
