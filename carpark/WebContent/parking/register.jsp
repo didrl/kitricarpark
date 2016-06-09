@@ -24,10 +24,10 @@
 					</div>
 					<div class="col-md-10">
 						<label class="radio-inline">
-						  <input type="radio" name="parkFlag" value="0" checked="checked"> 사용가능
+						  <input type="radio" name="parkFlag" value="0" checked="checked"> 사용불가
 						</label>
 						<label class="radio-inline">
-						  <input type="radio" name="parkFlag" value="1"> 사용불가
+						  <input type="radio" name="parkFlag" value="1"> 사용가능
 						</label>
 					</div>
 				</div><hr>
@@ -49,8 +49,8 @@
 					</div>
 					<div class="col-md-10">
 						<div class="form-group">
-							<input type="text" name="parkAddress" readonly="readonly" class="form-control">
-							<input type="hidden" name="coordinate" readonly="readonly" class="form-control">
+							<input type="text" name="parkAddress" class="form-control">
+							<input type="hidden" name="coordinate" class="form-control">
 						</div>
 							<button type="button" class="btn btn-default" onclick="javascript:parkingSearchWindow();">검색</button>
 					</div>

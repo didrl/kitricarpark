@@ -53,7 +53,7 @@ if(memberDto != null) {
 	                 	<%=parkingDetailDto.getPark_id() %>
                   </td>
                   <td>
-                  	<a href="javascript:parkingView('<%=parkingDetailDto.getPark_id()%>');">
+                  	<a href="javascript:adminParkingView('<%=parkingDetailDto.getPark_id()%>');">
                   		<%=parkingDetailDto.getPark_name() %>
                   	</a>
                   </td>

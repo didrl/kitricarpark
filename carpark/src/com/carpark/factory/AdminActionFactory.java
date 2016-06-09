@@ -24,6 +24,7 @@ import com.carpark.admin.parking.action.AdminParkingListAction;
 import com.carpark.admin.parking.action.AdminParkingModifyAction;
 import com.carpark.admin.parking.action.AdminParkingRegisterAction;
 import com.carpark.admin.parking.action.AdminParkingSearchAction;
+import com.carpark.admin.parking.action.AdminParkingViewAction;
 import com.carpark.admin.report.action.AdminReportDeleteAction;
 import com.carpark.admin.report.action.AdminReportListAction;
 import com.carpark.admin.report.action.AdminReportListFlagAction;
@@ -49,6 +50,7 @@ public class AdminActionFactory {
 	private static Action adminParkingRegisterAction;
 	private static Action adminParkingSearchAction;
 	private static Action adminParkingAuthListAction;
+	private static Action adminParkingViewAction;
 	
 	private static Action adminCallDeleteAction;
 	private static Action adminCallListAction;
@@ -93,6 +95,7 @@ public class AdminActionFactory {
 		adminParkingSearchAction = new AdminParkingSearchAction();
 		adminParkingListAction = new AdminParkingListAction();
 		adminParkingAuthListAction = new AdminParkingAuthListAction();
+		adminParkingViewAction = new AdminParkingViewAction();
 		
 		adminCallDeleteAction = new AdminCallDeleteAction();
 		adminCallListAction = new AdminCallListAction();
@@ -222,6 +225,10 @@ public class AdminActionFactory {
 
 	public static Action getAdminParkingAuthListAction() {
 		return adminParkingAuthListAction;
+	}
+
+	public static Action getAdminParkingViewAction() {
+		return adminParkingViewAction;
 	}
 	
 	

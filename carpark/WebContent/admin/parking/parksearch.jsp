@@ -3,6 +3,7 @@
 <%
 String root = request.getContextPath();
 int pg = NumberCheck.nullToOne(request.getParameter("pg"));
+String address = StringCheck.nullToBlank((String) session.getAttribute("address"));
 List<ZipDto> list = (List<ZipDto>) request.getAttribute("addressList");
 PageNavigator navigator = (PageNavigator) request.getAttribute("navigator");
 %>
@@ -36,9 +37,11 @@ PageNavigator navigator = (PageNavigator) request.getAttribute("navigator");
 		
 		<tr>
 			<td>
-				<input type="text" class="form-control" name="parkAddress" value="">				
+				<input type="text" class="form-control" name="parkAddress" value="<%=address%>">				
 			</td>
-
+<%
+session.removeAttribute("address");
+%>
 			<td width="60">
 				<button type="button" class="btn btn-default btn-group-xs" onclick="javascript:adminSearchAddress('1');">검색</button>
 			</td>

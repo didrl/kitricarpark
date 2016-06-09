@@ -96,24 +96,6 @@
 				
 				<div class="row">
 					<div class="col-md-2">
-						<b>보유시설</b><br>
-					</div>
-					<div class="col-md-10">
-						<input type="text" class="form-control" name="facility">
-					</div>
-				</div><hr>
-				
-				<div class="row">
-					<div class="col-md-2">
-						<b>보유시설상세</b><br>
-					</div>
-					<div class="col-md-10">
-						<textarea class="form-control" rows="3" name="feature"></textarea>						
-					</div>
-				</div><br>
-				
-				<div class="row">
-					<div class="col-md-2">
 						<b>상세정보</b><br>
 					</div>
 					<div class="col-md-10">

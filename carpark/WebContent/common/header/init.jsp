@@ -54,9 +54,6 @@ if(memberDto!=null){
 			<ul class="dropdown-menu alert-dropdown">
 				<li><a href="<%=root%>/call?act=mvzip">제보하기 <span
 						class="label label-default">Alert Badge</span></a></li>
-				<li class="divider"></li>
-				<li><a href="<%=root%>/faq.jsp">  FAQ  <span
-						class="label label-primary">Alert Badge</span></a></li>
 				
 				
 			</ul></li>

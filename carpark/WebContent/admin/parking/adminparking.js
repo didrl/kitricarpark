@@ -133,7 +133,12 @@ function parkAuthList(pg) {
 	document.common.submit();
 }
 
-
+function adminParkingAuth(parkId) {
+	document.common.act.value = "adminParkingAuth";
+	document.common.parkId.value = parkId;
+	document.common.action = "/carpark/adminparking";
+	document.common.submit();
+}
 
 
 

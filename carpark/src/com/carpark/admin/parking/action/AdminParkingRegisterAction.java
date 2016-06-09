@@ -60,8 +60,6 @@ public class AdminParkingRegisterAction implements Action {
 			
 			parkingDto.setOwner_id(ownerId);
 			
-			parkingDto.setFacility(request.getParameter("facility"));
-			parkingDto.setFeature(request.getParameter("feature").replace("\r\n", "<br>"));
 			parkingDto.setPay_yn(request.getParameter("payYn"));
 			parkingDto.setSatur_pay_yn(request.getParameter("saturPayYn"));
 			parkingDto.setHoli_pay_yn(request.getParameter("holiPayYn"));
@@ -77,6 +75,14 @@ public class AdminParkingRegisterAction implements Action {
 			parkingDto.setVisit(0);
 			
 			parkingDto.setEmd_code(11650101);
+			
+			List<ParkingDetailDto> list = AdminParkingServiceImpl.getAdminParkingService().parkingList(1, key, word, "1");
+			request.setAttribute("parkingList", list);
+					
+			PageNavigator navigator = CommonServiceImpl.getCommonService().getPageNavigatorAdminParking(1, key, word, "1");
+			navigator.setRoot(request.getContextPath());
+			navigator.setNavigator("adminParkList");
+			request.setAttribute("navigator", navigator);
 			
 			return "/admin/parking/list.jsp";
 			

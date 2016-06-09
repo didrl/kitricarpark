@@ -21,9 +21,6 @@
                             <li>
                                 <a href="javascript:adminReportList('1')">신고내역</a>
                             </li>
-                            <li>
-                                <a href="<%=customerpath%>/rate.jsp">등급 및 혜택 설정</a>
-                            </li>
                         </ul>
                     </li>
                     
@@ -44,19 +41,7 @@
                             </li>
                         </ul>
                     </li>
-                    
-                    <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#qna"><i class="fa fa-fw fa-arrows-v"></i>QnA관리 <i class="fa fa-fw fa-caret-down"></i></a>
-                        <ul id="qna" class="collapse">
-                            <li>
-                                <a href="<%=qnapath%>/faq.jsp">FAQ 관리</a>
-                            </li>
-                            <li>
-                                <a href="<%=qnapath%>/message.jsp">쪽지 목록</a>
-                            </li>
-                       
-                        </ul>
-                    </li>
+                   
                 <li>
                         <a href="<%=root%>/admin/adminindex.jsp"><i class="fa fa-fw fa-bar-chart-o"></i> 사이트 통계 </a>
                 </li>

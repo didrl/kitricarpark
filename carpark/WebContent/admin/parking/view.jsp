@@ -33,9 +33,9 @@ if(parkingDto != null) {
 					</div>
 					<div class="col-md-10">
 <%
-if("0".equals(parkingDto.getPark_type())) {
+if(0 == parkingDto.getPark_public()) {
 %>
-	개인
+	공용
 <%
 } else {
 %>
@@ -52,17 +52,26 @@ if("0".equals(parkingDto.getPark_type())) {
 					</div>
 					<div class="col-md-10">
 <%
-if(0 == parkingDto.getPark_flag()) {
+if(parkingDto.getPark_flag() == 0) {
 %>
-	사용가능
+	사용불가
 <%
 } else {
 %>
-	사용불가
+	사용가능
 <%
 }
 %>
 					</div>
+				</div><hr>
+				
+				<div class="row">
+					<div class="col-md-2">
+						<b>주차장 아이디</b><br>
+					</div>
+					<div class="col-md-10">
+						<%=parkingDto.getPark_id() %>
+					</div><br>
 				</div><hr>
 				
 				<div class="row">
@@ -76,30 +85,22 @@ if(0 == parkingDto.getPark_flag()) {
 				
 				<div class="row">
 					<div class="col-md-2">
+						<b>소유주 아이디</b><br>
+					</div>
+					<div class="col-md-10">
+						<%=parkingDto.getOwner_id() %>
+					</div><br>
+				</div><hr>
+				
+				<div class="row">
+					<div class="col-md-2">
 						<b>위치</b><br>
 					</div>
 					<div class="col-md-10">
-						<%=parkingDto.getDetailAddr() %>
+						<%=parkingDto.getDetailAddr() %><br>
+						(<%=parkingDto.getLatitude() %> , <%=parkingDto.getLongitude() %>)
 					</div>
 				</div><hr>
-				
-				<div class="row">
-					<div class="col-md-2">
-						<b>보유시설</b><br>
-					</div>
-					<div class="col-md-10">
-						<%=parkingDto.getFacility() %>
-					</div>
-				</div><hr>
-				
-				<div class="row">
-					<div class="col-md-2">
-						<b>보유시설상세</b><br>
-					</div>
-					<div class="col-md-10">
-						<%=parkingDto.getFeature() %>
-					</div>
-				</div><br>
 				
 				<div class="row">
 					<div class="col-md-2">
@@ -224,8 +225,7 @@ if("0" == parkingDto.getHoli_pay_yn()) {
 	
 				<div class="row">
 						<p align="center">
-		  					<button type="button" class="btn btn-default btn-lg" onclick="javascript:adminParkingList('<%=pg%>', <%=parkingDto.getVisit()%>);">목록</button>
-		  					<button type="button" class="btn btn-default btn-lg" onclick="javascript:adminParkingMvModify('<%=parkingDto.getPark_id()%>');">수정</button>
+		  					<button type="button" class="btn btn-default btn-lg" onclick="javascript:adminParkList('<%=pg%>');">목록</button>
 		  					<button type="button" class="btn btn-default btn-lg" onclick="javascript:adminParkingDelete('<%=parkingDto.getPark_id()%>');">삭제</button>
 						</p>
 				</div>
