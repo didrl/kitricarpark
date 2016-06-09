@@ -340,6 +340,7 @@ public class MemberDaoImpl implements MemberDao {
 				parkingDetailDto.setPark_avgPoint(rs.getDouble("park_avgpoint"));
 				parkingDetailDto.setPark_flag(rs.getInt("park_flag"));
 				parkingDetailDto.setPark_rate(rs.getInt("park_rate"));
+				parkingDetailDto.setAdd_park_rate(rs.getInt("add_park_rate"));
 				parkingDetailDto.setPark_time_rate(rs.getInt("park_time_rate"));
 				parkingDetailDto.setPay_yn(rs.getString("pay_yn"));
 				parkingDetailDto.setSatur_pay_yn(rs.getString("satur_pay_yn"));

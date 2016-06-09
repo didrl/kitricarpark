@@ -117,9 +117,12 @@ public class MemberReservationDaoImpl implements MemberReservationDao {
 	public void registerReservation(ReservationDto reservationDto) {
 		Connection conn=null;
 		PreparedStatement pstmt =null;
+		ResultSet rs = null;
 		
 		try {
 			conn=DBConnection.makeConnection();
+			
+			conn.setAutoCommit(false);
 			String sql="";
 			sql += "insert into reservation (reser_id, park_id, user_id, start_date, end_date,rdate,pay) \n";
 			sql += "values(concat(to_char(systimestamp, 'yyyymmddhh24missFF3'),?),?,?,?,?,sysdate,?)\n"; 
@@ -131,14 +134,48 @@ public class MemberReservationDaoImpl implements MemberReservationDao {
 			pstmt.setString(idx++, reservationDto.getFromdate());
 			pstmt.setString(idx++, reservationDto.getTodate());
 			pstmt.setInt(idx++, reservationDto.getPay());
-
 			pstmt.executeUpdate();
+			
+//			conn.commit();
+			pstmt.close();
+			
+			int mycoin=0;
+			sql="";
+			sql+="select user_id, coin \n";
+			sql+="from member \n";
+			sql+="where user_id =?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, reservationDto.getUser_id());
+			rs = pstmt.executeQuery();
+			if(rs.next())
+				mycoin = rs.getInt("coin"); 
+			
+//			conn.commit();
+			pstmt.close();
+			idx=1;
+			sql="";
+			sql += "update member \n";
+			sql += "set coin=(?-?)\n"; 
+			sql += "where user_id =?\n"; 
+			pstmt = conn.prepareStatement(sql);//미리 sql 문장을 가져가서 검사하고 틀린게 없을 때 실행
+			idx =1;//중간에 없어지거나 추가될때 필요
+			pstmt.setInt(idx++, mycoin);
+			pstmt.setInt(idx++, reservationDto.getPay());
+			pstmt.setString(idx++, reservationDto.getUser_id());
+			pstmt.executeUpdate();
+			
+			conn.commit();
+			
 		} catch (SQLException e) {
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
 			e.printStackTrace();
 		}finally{
 			DBClose.close(conn, pstmt);
 		}	
-
 	}
 
 	@Override

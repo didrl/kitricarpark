@@ -28,7 +28,11 @@ if(map == null){
 }
 StringBuffer sb =new StringBuffer();
 int size = availabledate.size();
-if(size<2 && size>0){
+if(size==0){
+	String tmp ="{from : new Date()}";
+	sb.append(tmp);
+}
+else if(size<2 && size>0){
 	String tmp ="{from : new Date("+availabledate.get(0).get("enddate")+")}";
 	sb.append(tmp);
 }else{
@@ -135,13 +139,18 @@ function goReservation() {
 	var flagr=0;
 	flagr=<%=flagb%>
 	if(flagr!=0){
-		if(document.selectdateForm.fromdate.value == ""){
+		if($("#fromdate").val() == ""){
 			alert("대상을 입력하세요");
 			return;
-		} else if(document.selectdateForm.todate.value == "") {
+		} else if($("#todate").val()== "") {
 			alert("제목을 입력하세요");
 			return;	
-		} else{
+		}else if($("#fromdate").val()==$("#todate").val()){
+			if($("srfromTime").val()>$("srtoTime").val() || $("srfromTime option:selected").val()==$("srtoTime option:selected").val()){
+				alert("날짜를 확인하고 다시 시도해주세요.");
+				return;
+			}
+		}else{
 			document.selectdateForm.action = "/carpark/reservation";
 			document.selectdateForm.submit();
 		}
