@@ -39,13 +39,13 @@ PageNavigator navigator = (PageNavigator) request.getAttribute("navigator");
 				
 				<!-- 메세지 리스트 -->
 				<div class="table">
-				  <table class="table table-hover" style="text-align:center">
+				  <table class="table table-hover" style="text-align:center;">
 				  	<tr>
-				  		<td width="150"><b>받는사람</b></td>
-				  		<td><b>제목</b></td>
-				  		<td width="80"><b>시간</b></td>
-				  		<td width="50"><b>확인</b></td>
-				  		<td></td>
+				  		<td width="150" style="background: #00cc00" align="center"><b style="color: #FFFFFF;"> 받는사람</b></td>
+				  		<td style="background: #00cc00" align="center"><b style="color: #FFFFFF;">제목</b></td>
+				  		<td width="80" style="background: #00cc00" align="center"><b style="color: #FFFFFF;">시간</b></td>
+				  		<td width="50" style="background: #00cc00" align="center"><b style="color: #FFFFFF;">확인</b></td>
+				  		<td style="background: #00cc00" align="center"></td>
 				  	</tr>
 				
 <%

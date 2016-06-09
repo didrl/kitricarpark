@@ -80,7 +80,7 @@ MemberDto getmemberInfo = (MemberDto)session.getAttribute("getmemberInfo");
 						
 			<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
   				<div class="panel panel-default">
-				    <div class="panel-heading" role="tab" id="headingOne">
+				    <div class="panel-heading" role="tab" id="headingOne" align="center">
 				      <h4 class="panel-title">
 				        <a href="<%=root %>/member?act=mvbenefit" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
 				          	 <label><h4 style="color: #ff0033" align="center">고객님의 혜택정보</h4></label> 
@@ -95,8 +95,8 @@ if(getmemberInfo!=null){
 			        		
 			        		<label>등급 : <%=getmemberInfo.getGrade_name()%></label>  <br>
 			        		<label>포인트 : <%=getmemberInfo.getAvgpoint() %></label> <br>
-			        		<label>할인율 :<%=getmemberInfo.getBenefit() %> %</label> <br>
-			        		<label>벌점사항 :<%=getmemberInfo.getPenalty()%> </label> 
+			        		<label>할인율 : <%=getmemberInfo.getBenefit() %> %</label> <br>
+			        		<label>벌점사항 : <%=getmemberInfo.getPenalty()%> </label> 
 				      </div>
 				    </div>
 				  </div>

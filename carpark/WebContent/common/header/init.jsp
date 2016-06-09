@@ -229,11 +229,11 @@ if(memberDto!=null){
 	aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<div class="modal-header" align="center">
+			<div class="modal-header" style="background: #00cc00" align="center">
 				<button type="button" class="close" data-dismiss="modal" onclick="javascript:confirm();">
 					<span aria-hidden="true">x</span><span class="sr-only">Close</span>
 				</button>
-				<h2 class="modal-title" id="myModalLabel">회원가입</h2>
+				<h2 class="modal-title" id="myModalLabel" style="color: #FFFFFF">회원가입</h2>
 			</div>
 			<div class="modal-body">
 				<form class="form-signin" role="form" name="signUpForm"

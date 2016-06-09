@@ -13,8 +13,7 @@ if(memberDto != null) {
 %>
 <<script type="text/javascript">
 function receiveReviewView(seq) {
-	document.common.action = "/carpark/review?act=receiveReview&seq="+seq;
-	document.common.submit();
+	window.open( root+"/review?act=receiveReview&seq="+seq, "newWindow", "top=100, left=400, width=500, height=600, scrollbars=yes" );
 }
 function sendReviewList(pg) {
 	document.location.href = root+"/review?act=sendReviewList&pg="+pg;
@@ -60,10 +59,10 @@ if(size > 0) {
 %>
 					<!-- 쪽지목록 -->
 					<tr >
-						<td width="150"><a href="javascript:sendReviewView('<%=reviewDto.getSeq()%>');"><%=reviewDto.getAvaled_id() %></a></td>
-						<td><a href="javascript:sendReviewView('<%=reviewDto.getSeq() %>');"><%=reviewDto.getUser_id() %></a></td>
-						<td><a href="javascript:sendReviewView('<%=reviewDto.getSeq() %>');"><%=reviewDto.getPark_id() %></a></td>
-						<td><a href="javascript:sendReviewView('<%=reviewDto.getSeq() %>');"><%=reviewDto.getSubject() %></a></td>
+						<td width="150"><a href="javascript:receiveReviewView('<%=reviewDto.getSeq()%>');"><%=reviewDto.getAvaled_id() %></a></td>
+						<td><a href="javascript:receiveReviewView('<%=reviewDto.getSeq() %>');"><%=reviewDto.getUser_id() %></a></td>
+						<td><a href="javascript:receiveReviewView('<%=reviewDto.getSeq() %>');"><%=reviewDto.getPark_id() %></a></td>
+						<td><a href="javascript:receiveReviewView('<%=reviewDto.getSeq() %>');"><%=reviewDto.getSubject() %></a></td>
 						<td width="80"><%=reviewDto.getLogtime() %></td>						
 <%
 }
@@ -83,7 +82,7 @@ if(size > 0) {
 %>
 
 
-			<!-- 페이지 네비게이션/검색 -->
+			<!-- 페이지 네비게이션/검색 
 			<nav align="center">
 				<div class="form-group">
 				<form class="form-inline" name="searchForm" method="get" action="">
@@ -100,9 +99,9 @@ if(size > 0) {
 				</div>
 					
 				<ul class="pagination">
-				<%=navigator.getNavigator() %>
+				<navigator.getNavigator() %>
 				</ul>
-			</nav>
+			</nav>-->
 
 					
 		</div>

@@ -7,11 +7,11 @@
 			aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
-					<div class="modal-header">
+					<div class="modal-header" style="background: #00cc00" align="center">
 						<button type="button" class="close" data-dismiss="modal">
 							<span aria-hidden="true">×</span><span class="sr-only">Close</span>
 						</button>
-						<h4 class="messageWrite" id="messageWriteModal">쪽지 보내기</h4>
+						<h4 class="messageWrite" id="messageWriteModal" style="color: #FFFFFF">쪽지 보내기</h4>
 					</div>
 					<div class="modal-body">
 

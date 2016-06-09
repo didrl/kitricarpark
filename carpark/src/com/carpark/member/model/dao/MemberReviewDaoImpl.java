@@ -125,7 +125,7 @@ public class MemberReviewDaoImpl implements MemberReviewDao {
 			conn = DBConnection.makeConnection();
 			String sql = "";
 			
-			sql += "select b.user_id, b.subject, b.contents,r.aval_code, r.get_point, r.avaled_id,r.host_flag,b.logtime, r.resq \n";
+			sql += "select b.user_id, b.subject, b.contents,r.aval_code, r.get_point, r.avaled_id,r.host_flag,b.logtime, r.rseq,r.get_point\n";
 			sql += "from review r, board b \n";
 			sql += "where r.seq=b.seq \n";
 			sql += "and b.seq = ?";
@@ -135,6 +135,7 @@ public class MemberReviewDaoImpl implements MemberReviewDao {
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				reviewDto.setSeq(seq);
+				reviewDto.setAvgPoint(rs.getInt("get_point"));
 				reviewDto.setSubject(rs.getString("subject"));
 				reviewDto.setContent(rs.getString("contents"));
 				reviewDto.setUser_id(rs.getString("user_id"));
@@ -165,10 +166,10 @@ public class MemberReviewDaoImpl implements MemberReviewDao {
 		try {
 			conn=DBConnection.makeConnection();
 			String sql="";
-
-			sql +="select b.user_id, b.subject, b.contents,b.logtime,b.bcode,r.rseq,r.aval_code, r.get_point, r.avaled_id,r.host_flag \n";
-			sql +="from review r, board b\n";
+			sql +="select b.seq, ap.park_id, b.user_id, b.subject, b.contents,b.logtime,b.bcode,r.rseq,r.aval_code, r.get_point, r.avaled_id,r.host_flag \n";
+			sql +="from review r, board b, avgpoint ap\n";
 			sql +="where r.seq=b.seq\n";
+			sql +="and r.rseq = ap.rseq\n";
 			sql +="and b.user_id=?\n";
 		
 			pstmt =conn.prepareStatement(sql);
@@ -177,7 +178,9 @@ public class MemberReviewDaoImpl implements MemberReviewDao {
 			rs = pstmt.executeQuery();
 			while(rs.next()){
 				//이름,이메일,보유코인 필요
-				reviewDto =new ReviewDto();		
+				reviewDto =new ReviewDto();
+				reviewDto.setSeq(rs.getInt("seq"));
+				reviewDto.setPark_id(rs.getInt("park_id"));
 				reviewDto.setSubject(rs.getString("subject"));
 				reviewDto.setContent(rs.getString("contents"));
 				reviewDto.setUser_id(rs.getString("user_id"));
@@ -211,9 +214,10 @@ public class MemberReviewDaoImpl implements MemberReviewDao {
 			conn=DBConnection.makeConnection();
 			String sql="";
 
-			sql +="select b.user_id, b.subject, b.contents,b.logtime,b.bcode,r.rseq,r.aval_code, r.get_point, r.avaled_id,r.host_flag \n";
-			sql +="from review r, board b\n";
+			sql +="select b.seq, ap.park_id, b.user_id, b.subject, b.contents,b.logtime,b.bcode,r.rseq,r.aval_code, r.get_point, r.avaled_id,r.host_flag \n";
+			sql +="from review r, board b, avgpoint ap\n";
 			sql +="where r.seq=b.seq\n";
+			sql +="and r.rseq = ap.rseq\n";
 			sql +="and r.avaled_id=?\n";
 		
 			pstmt =conn.prepareStatement(sql);
@@ -223,6 +227,7 @@ public class MemberReviewDaoImpl implements MemberReviewDao {
 			while(rs.next()){
 				//이름,이메일,보유코인 필요
 				reviewDto =new ReviewDto();		
+				reviewDto.setSeq(rs.getInt("seq"));
 				reviewDto.setSubject(rs.getString("subject"));
 				reviewDto.setContent(rs.getString("contents"));
 				reviewDto.setUser_id(rs.getString("user_id"));

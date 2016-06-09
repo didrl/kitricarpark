@@ -42,11 +42,11 @@ PageNavigator navigator = (PageNavigator) request.getAttribute("navigator");
 				<div class="table">
 				  <table class="table table-hover" style="text-align:center">
 				  	<tr>
-				  		<td width="150"><b>보낸사람</b></td>
-				  		<td><b>제목</b></td>
-				  		<td width="80"><b>시간</b></td>
-				  		<td width="50"><b>확인</b></td>
-				  		<td width="50"></td>
+				  		<td width="150" style="background: #00cc00" align="center"><b style="color: #FFFFFF;">보낸사람</b></td>
+				  		<td style="background: #00cc00" align="center"><b style="color: #FFFFFF;">제목</b></td>
+				  		<td width="80" style="background: #00cc00" align="center"><b style="color: #FFFFFF;">시간</b></td>
+				  		<td width="50" style="background: #00cc00" align="center"><b style="color: #FFFFFF;">확인</b></td>
+				  		<td width="50" style="background: #00cc00" align="center"></td>
 				  	</tr>
 				
 <%
