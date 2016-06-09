@@ -78,15 +78,6 @@ public class AdminParkingRegisterAction implements Action {
 			
 			parkingDto.setEmd_code(11650101);
 			
-			AdminParkingServiceImpl.getAdminParkingService().parkingRegister(parkingDto);
-			List<ParkingDetailDto> list = AdminParkingServiceImpl.getAdminParkingService().parkingList(parkingDto.getPark_public(), pg, key, word);
-			request.setAttribute("parkingList", list);
-				
-			PageNavigator navigator = CommonServiceImpl.getCommonService().getPageNavigatorAdminParking(parkingDto.getPark_public(), pg, key, word);
-			navigator.setRoot(request.getContextPath());
-			navigator.setNavigator("AdminParkingList", parkingDto.getPark_public() + "");
-			request.setAttribute("navigator", navigator);
-			
 			return "/admin/parking/list.jsp";
 			
 		} else {

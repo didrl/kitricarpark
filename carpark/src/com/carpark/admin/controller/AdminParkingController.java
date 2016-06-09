@@ -33,7 +33,8 @@ public class AdminParkingController extends HttpServlet {
 			PageMove.forward(request, response, path + queryString);
 			
 		} else if("adminParkingRegister".equals(act)) {
-			path = AdminActionFactory.getAdminParkingRegisterAction().execute(request, response);
+			AdminActionFactory.getAdminParkingRegisterAction().execute(request, response);
+			path = AdminActionFactory.getAdminParkingListAction().execute(request, response);
 			PageMove.forward(request, response, path + queryString);
 			
 		} else if("adminParkingModify".equals(act)) {
@@ -44,11 +45,13 @@ public class AdminParkingController extends HttpServlet {
 			path = AdminActionFactory.getAdminParkingModifyAction().execute(request, response);
 			PageMove.forward(request, response, path + queryString);
 			
-		} else if("adminParkingList".equals(act)) {
+		} else if("adminParkList".equals(act)) {
 			path = AdminActionFactory.getAdminParkingListAction().execute(request, response);
 			PageMove.forward(request, response, path + queryString);
 			
-		} else if("".equals(act)) {
+		} else if("parkAuthList".equals(act)) {
+			path = AdminActionFactory.getAdminParkingAuthListAction().execute(request, response);
+			PageMove.forward(request, response, path + queryString);
 			
 		} else if("".equals(act)) {
 			

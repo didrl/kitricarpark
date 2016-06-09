@@ -40,10 +40,10 @@
 					</div>
 					<div class="col-md-10">
 						<label class="radio-inline">
-						  <input type="radio" name="parkFlag" value="0" checked="checked"> 사용가능
+						  <input type="radio" name="parkFlag" value="0" checked="checked"> 사용불가
 						</label>
 						<label class="radio-inline">
-						  <input type="radio" name="parkFlag" value="1"> 사용불가
+						  <input type="radio" name="parkFlag" value="1"> 사용가능
 						</label>
 					</div>
 				</div><hr>
@@ -102,15 +102,6 @@
 						<input type="text" class="form-control" name="facility">
 					</div>
 				</div><hr>
-				
-				<div class="row">
-					<div class="col-md-2">
-						<b>보유시설상세</b><br>
-					</div>
-					<div class="col-md-10">
-						<textarea class="form-control" rows="3" name="feature"></textarea>						
-					</div>
-				</div><br>
 				
 				<div class="row">
 					<div class="col-md-2">
@@ -237,7 +228,7 @@
 				<div class="row">
 						<p align="center">
 		  					<button type="button" class="btn btn-default" onclick="javascript:adminParkingRegister();">등록</button>
-		  					<button type="button" class="btn btn-default" onclick="javascript:adminParkingList('<%=pg%>','0');">목록</button>
+		  					<button type="button" class="btn btn-default" onclick="javascript:adminParkList('1');">목록</button>
 						</p>
 				</div>
 			</div>

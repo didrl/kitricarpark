@@ -258,7 +258,7 @@ if(0 == parkingDto.getPark_flag()) {
 				<div class="row">
 						<p align="center">
 		  					<button type="button" class="btn btn-primary btn-lg" onclick="javascript:adminParkingModify('<%=parkingDto.getPark_id()%>');">수정</button>
-		  					<button type="button" class="btn btn-default btn-lg" onclick="javascript:adminParkingList('<%=pg%>');"> 취소 </button>
+		  					<button type="button" class="btn btn-default btn-lg" onclick="javascript:adminParkList('<%=pg%>');"> 취소 </button>
 						</p>
 				</div>
 			</div>

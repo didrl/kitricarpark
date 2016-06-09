@@ -9,6 +9,6 @@ import com.carpark.member.model.ReservationDto;
 public interface AdminParkingService {
 	int registerReservation(ParkingDetailDto parkingDetailDto);
 	ArrayList<ReservationDto> myReservationList(String user_id); 
-	List<ParkingDetailDto> parkingList(int park_public, int pg, String key, String word);
+	List<ParkingDetailDto> parkingList(int pg, String key, String word, String auth);
 	void parkingRegister(ParkingDetailDto parkingDetailDto);
 }
