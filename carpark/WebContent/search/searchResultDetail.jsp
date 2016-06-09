@@ -26,19 +26,14 @@ if(map == null){
 	</script>
 	<%
 }
-System.out.println("<><><><><><><><"+parkingDetail.getPark_id());
-System.out.println("<><><><latitude><><><"+parkingDetail.getLatitude());
-System.out.println("<><><><longtitude><><"+parkingDetail.getLongitude());
-System.out.println("<><><><content><><"+parkingDetail.getContent());
-//{ from: new Date(2013, 1, 1), to: newDate (2013, 2, 1) }
-StringBuffer sb =new StringBuffer("{ ");
+StringBuffer sb =new StringBuffer();
 int size = availabledate.size();
 if(size<2 && size>0){
-	String tmp ="from : new Date("+availabledate.get(0).get("enddate")+")}";
+	String tmp ="{from : new Date("+availabledate.get(0).get("enddate")+")}";
 	sb.append(tmp);
 }else{
 	for(int i=0;i<size-1;++i){
-		String tmp ="from : new Date("+availabledate.get(i).get("enddate")+"),";
+		String tmp ="{from : new Date("+availabledate.get(i).get("enddate")+"),";
 		sb.append(tmp);
 		tmp ="to : new Date("+availabledate.get(i+1).get("startdate")+")},";
 		sb.append(tmp);
@@ -46,10 +41,6 @@ if(size<2 && size>0){
 		sb.append(tmp);
 	}
 }
-System.out.println(size+"><><><><><><"+sb);
-System.out.println(availabledate.get(0).get("enddate"));
-System.out.println(availabledate.get(1).get("startdate"));
-System.out.println(availabledate.get(1).get("enddate"));
 
 int flagrs=0;
 int flagb=0;

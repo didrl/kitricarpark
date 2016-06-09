@@ -15,14 +15,14 @@ ParkingDetailDto parkingDetailDto =(ParkingDetailDto) session.getAttribute("park
 ArrayList<ParkingDto> list = (ArrayList<ParkingDto>)session.getAttribute("searchlist");
 
 if(reservationDto != null){
-	StringBuffer sb =new StringBuffer("{ ");
+	StringBuffer sb =new StringBuffer();
 	int size = availabledate.size();
-	if(size<2){
-		String tmp ="from : new Date("+availabledate.get(0).get("enddate")+")}";
+	if(size<2 && size>0){
+		String tmp ="{from : new Date("+availabledate.get(0).get("enddate")+")}";
 		sb.append(tmp);
 	}else{
 		for(int i=0;i<size-1;++i){
-			String tmp ="from : new Date("+availabledate.get(i).get("enddate")+"),";
+			String tmp ="{from : new Date("+availabledate.get(i).get("enddate")+"),";
 			sb.append(tmp);
 			tmp ="to : new Date("+availabledate.get(i+1).get("startdate")+")},";
 			sb.append(tmp);
@@ -398,7 +398,7 @@ if(reservationDto != null){
 				
 				alert("days :"+ reserDays +"    hours :"+reserHours+"       ehours : "+reserExtraHours);
 				
-			        
+			        var pay =<%=parkingDetailDto.getDay_max_pay()/1000%>*reserDays+(<%=parkingDetailDto.getAdd_park_rate()%>*reserExtraHours)/1000;
 			        $("#paypark_id").val("<%=parkingDetailDto.getPark_id()%>");
 			        $("#payfromtime").val($("#rdfromTime").val());
 			        $("#paytotime").val($("#rdtoTime").val());
@@ -408,7 +408,7 @@ if(reservationDto != null){
 			        $("#selectedcarnum").val($("#mycarlist option:selected").val());
 			        $("#selectedcarname").val($("#mycarlist option:selected").text());
 			        $("#selectedcoin").val("<%=memberDto.getCoin()%>");
-			        $("#selectedprice").val("<%=parkingDetailDto.getDay_max_pay()%>");
+			        $("#selectedprice").val(pay);
 					//init price
 					
 
