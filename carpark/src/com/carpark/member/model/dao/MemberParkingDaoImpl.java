@@ -38,8 +38,8 @@ public class MemberParkingDaoImpl implements MemberParkingDao {
 			String sql = "";
 			sql += "insert all \n";
 			sql += "	into parking (park_id, park_name, park_capacity, owner_id, latitude, "
-										+ "longitude, park_type, emd_code, content, detail_addr) \n";
-			sql += "	values (? ,? ,? ,? ,? ,? ,?, ?, ?, ?) \n";
+										+ "longitude, emd_code, content, detail_addr, park_public) \n";
+			sql += "	values (? ,? ,? ,? ,? ,?, ?, ?, ?, ?) \n";
 			sql += "	into parking_facility (park_id, facility, feature) \n";
 			sql += "	values (?, ?, ?) \n";
 			sql += "	into parking_img (park_id, file_name, file_path) \n";
@@ -59,10 +59,10 @@ public class MemberParkingDaoImpl implements MemberParkingDao {
 			pstmt.setString(++idx, parkingDto.getOwner_id());
 			pstmt.setDouble(++idx, parkingDto.getLatitude());
 			pstmt.setDouble(++idx, parkingDto.getLongitude());
-			pstmt.setString(++idx, parkingDto.getPark_type());
 			pstmt.setInt(++idx, parkingDto.getEmd_code());
 			pstmt.setString(++idx, parkingDto.getContent());
 			pstmt.setString(++idx, parkingDto.getDetailAddr());
+			pstmt.setInt(++idx, parkingDto.getPark_public());
 			//parking_facility table
 			pstmt.setInt(++idx, parkingDto.getPark_id());
 			pstmt.setString(++idx, parkingDto.getFacility());
@@ -190,7 +190,9 @@ public class MemberParkingDaoImpl implements MemberParkingDao {
 		    sql += "     		  (select p.park_id, park_name, owner_id, park_type, park_flag, park_avgPoint \n";
 		    sql += "               from parking p, parking_detail d \n";
 		    sql += "               where p.park_id = d.park_id \n";
-		    sql += "               and owner_id = ? \n";
+		    if(ownerId != null && !ownerId.isEmpty()) {
+		    	sql += "           and owner_id = ? \n";
+		    }
 		    if(key != null && !key.isEmpty()) {
 		    	if(word != null && !word.isEmpty()) {
 		    		if("park_name".equals(key))
@@ -204,7 +206,9 @@ public class MemberParkingDaoImpl implements MemberParkingDao {
 		    sql += "where rn > ? \n";
 			pstmt = conn.prepareStatement(sql);
 			int idx = 0;
-			pstmt.setString(++idx, ownerId);
+			if(ownerId != null && !ownerId.isEmpty()) {
+				pstmt.setString(++idx, ownerId);
+			}
 			if(key != null && !key.isEmpty()) {
 				if(word != null && !word.isEmpty()) {
 					pstmt.setString(++idx, map.get("word"));				

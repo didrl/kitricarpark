@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.carpark.action.Action;
+import com.carpark.admin.model.service.AdminParkingServiceImpl;
 import com.carpark.common.model.ParkingDetailDto;
 import com.carpark.member.model.MemberDto;
 import com.carpark.member.model.service.CommonServiceImpl;
@@ -24,27 +25,28 @@ public class AdminParkingListAction implements Action {
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 
-//		int pg = NumberCheck.nullToOne(request.getParameter("pg"));
-//		String key = StringCheck.nullToBlank(request.getParameter("key"));
-//		String word = StringCheck.nullToBlank(Encoder.isoToUtf(request.getParameter("word")));
-//		
-//		HttpSession session = request.getSession();
-//		MemberDto memberDto = (MemberDto) session.getAttribute("memberInfo");
-//		if (memberDto != null) {
-//			String ownerId = memberDto.getUser_id();
-//			if (ownerId != null) {
-//				List<ParkingDetailDto> list = MemberParkingServiceImpl.getMemberParkingservice().parkingList(ownerId, pg, key, word);
-//				request.setAttribute("parkingList", list);
-//				
-//				PageNavigator navigator = CommonServiceImpl.getCommonService().getPageNavigatorParking(ownerId, pg, key, word);
-//				navigator.setRoot(request.getContextPath());
-//				navigator.setNavigator("parkingList");
-//				request.setAttribute("navigator", navigator);
-//			}
-//
-//			return "/admin/parking/list.jsp";
-//		} else
+		int pg = NumberCheck.nullToOne(request.getParameter("pg"));
+		String key = StringCheck.nullToBlank(request.getParameter("key"));
+		String word = StringCheck.nullToBlank(Encoder.isoToUtf(request.getParameter("word")));
+		
+		String parkType = request.getParameter("parkType");
+		
+		if (parkType != null) {
+			List<ParkingDetailDto> list = AdminParkingServiceImpl.getAdminParkingService().parkingList(parkType, pg, key, word);
+			request.setAttribute("parkingList", list);
+				
+			PageNavigator navigator = CommonServiceImpl.getCommonService().getPageNavigatorAdminParking(parkType, pg, key, word);
+			navigator.setRoot(request.getContextPath());
+			navigator.setNavigator("AdminParkingList");
+			request.setAttribute("navigator", navigator);
+			
+			return "/admin/parking/list.jsp";
+		
+		} else {
+			
 			return "index.jsp";
+		
+		}
 
 	}
 

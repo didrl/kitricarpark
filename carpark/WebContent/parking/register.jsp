@@ -15,24 +15,8 @@
 			<div class="container-fluid">
 			<br>
 			<!-- 본문내용 -->
-			<div class="col-md-10">
 			<form name="parkRegisterForm" method="post" action="">
 				<input type="hidden" name="act" value="parkingRegister">				
-				
-				
-				<div class="row">
-					<div class="col-md-2">
-						<b>주차장 구분</b><br>
-					</div>
-					<div class="col-md-10">
-						<label class="radio-inline">
-						  <input type="radio" name="parkType" value="0" checked="checked"> 개인
-						</label>
-						<label class="radio-inline">
-						  <input type="radio" name="parkType" value="1"> 사설
-						</label>
-					</div>
-				</div><hr>
 				
 				<div class="row">
 					<div class="col-md-2">
@@ -68,9 +52,9 @@
 							<input type="text" name="parkAddress" readonly="readonly" class="form-control">
 							<input type="hidden" name="coordinate" readonly="readonly" class="form-control">
 						</div>
+							<button type="button" class="btn btn-default" onclick="javascript:parkingSearchWindow();">검색</button>
 					</div>
 					<div class="form-group">
-							<button type="button" class="btn btn-default" onclick="javascript:parkingSearchWindow();">검색</button>
 					</div>
 				</div><hr>
 				
@@ -144,16 +128,16 @@
 								<td width="90">기본주차요금</td>				
 								<td width="90">
 									<select class="form-control" name="parkRate">
-									    <option value="1" selected="selected">1코인</option>
-									    <option value="2">2코인</option>
-									    <option value="3">3코인</option>
-									    <option value="4">4코인</option>
-									    <option value="5">5코인</option>
-									    <option value="6">6코인</option>
-									    <option value="7">7코인</option>
-									    <option value="8">8코인</option>
-									    <option value="9">9코인</option>
-									    <option value="10">10코인</option>
+									    <option value="100" selected="selected">1코인</option>
+									    <option value="200">2코인</option>
+									    <option value="300">3코인</option>
+									    <option value="400">4코인</option>
+									    <option value="500">5코인</option>
+									    <option value="600">6코인</option>
+									    <option value="700">7코인</option>
+									    <option value="800">8코인</option>
+									    <option value="900">9코인</option>
+									    <option value="1000">10코인</option>
 									</select>
 								</td>				
 							</tr>
@@ -161,31 +145,31 @@
 							<td width="90">추가단위요금</td>				
 								<td width="90">
 									<select class="form-control" name="addParkRate">
-									    <option value="1" selected="selected">1코인</option>
-									    <option value="2">2코인</option>
-									    <option value="3">3코인</option>
-									    <option value="4">4코인</option>
-									    <option value="5">5코인</option>
-									    <option value="6">6코인</option>
-									    <option value="7">7코인</option>
-									    <option value="8">8코인</option>
-									    <option value="9">9코인</option>
-									    <option value="10">10코인</option>
+									    <option value="100" selected="selected">1코인</option>
+									    <option value="200">2코인</option>
+									    <option value="300">3코인</option>
+									    <option value="400">4코인</option>
+									    <option value="500">5코인</option>
+									    <option value="600">6코인</option>
+									    <option value="700">7코인</option>
+									    <option value="800">8코인</option>
+									    <option value="900">9코인</option>
+									    <option value="1000">10코인</option>
 									</select>
 								</td>				
 								<td width="90">하루최대요금</td>							
 								<td width="90">
 									<select class="form-control" name="dayMaxPay">
-									    <option value="1" selected="selected">10코인</option>
-									    <option value="2">20코인</option>
-									    <option value="3">30코인</option>
-									    <option value="4">40코인</option>
-									    <option value="5">50코인</option>
-									    <option value="6">60코인</option>
-									    <option value="7">70코인</option>
-									    <option value="8">80코인</option>
-									    <option value="9">90코인</option>
-									    <option value="10">100코인</option>
+									    <option value="1000" selected="selected">10코인</option>
+									    <option value="2000">20코인</option>
+									    <option value="3000">30코인</option>
+									    <option value="4000">40코인</option>
+									    <option value="5000">50코인</option>
+									    <option value="6000">60코인</option>
+									    <option value="7000">70코인</option>
+									    <option value="8000">80코인</option>
+									    <option value="9000">90코인</option>
+									    <option value="10000">100코인</option>
 									</select>
 								</td>	
 								<td width="90">월정기권</td>
@@ -193,15 +177,6 @@
 							</tr>					
 						</table>
 					</div>
-				</div>
-			
-				<div class="row">
-					<div class="col-md-2">
-						<b>사진</b><br>
-					</div>
-					<div class="col-md-10">
-					    <input type="file" id="fileName">
-					    <p class="help-block">주차장 사진 등록</p>
 				</div>
 				
 				<div class="row">
@@ -226,7 +201,6 @@
 				
 			
 		</div>
-	</div>
 	</div>
 	
 <%@ include file="/common/footer.jsp" %>		

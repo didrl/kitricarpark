@@ -147,7 +147,7 @@ function goSearchResult() {
 
 								        // 인포윈도우로 장소에 대한 설명을 표시합니다
 								        var infowindow = new daum.maps.InfoWindow({
-								            content: '<div style="padding:5px;">우리회사</div>'
+								            content: '<div style="padding:5px;">제보주차장</div>'
 								        });
 								        infowindow.open(map, marker);
 								        

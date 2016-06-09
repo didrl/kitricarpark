@@ -200,9 +200,11 @@ function drawCustomerChangeChart() {
 	  				<button type="button" class="btn btn-default"  id="customerChangeBtn">
 	  					이용자 변동 현황
 	  				</button>		
+	  				<!-- 
 	  				<button type="button" class="btn btn-default"  id="bestComplainBtn">
 	  					불만사항
-	  				</button>	
+	  				</button>
+	  				 -->	
 				</div>
                 </div>
                 <!-- /.row -->

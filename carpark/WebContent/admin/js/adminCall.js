@@ -100,18 +100,25 @@ function adminToWriteInit(receiver) {
 	document.messageToWriteForm.reset();//폼 초기화
 	document.messageToWriteForm.receiver.value = receiver;//대상지정
 }
-
+//메세지 닫기
 function adminMessageClose() {
 	window.close();
 }
+
 function getAllUserInfo(){
 	alert("getalluserinfo 눌름!!!");
 	document.location.href=root+"/admin?act=alluserinfo";
 }
 
+//방문 확정
 function callSendViewConfirm(seq) {
 	alert("방문예정이 확정되었습니다.");
 	self.close();
 	opener.document.location.href=root+"/admincall?act=adminCallConfirm&seq="+seq;
+}
+
+//방문 확정
+function adminCallReceiveDelete(seq){
+	document.location.href=root+"/admincall?act=adminCallReceiveDelete&seq="+seq;
 }
 

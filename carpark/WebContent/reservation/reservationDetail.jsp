@@ -15,14 +15,18 @@ ParkingDetailDto parkingDetailDto =(ParkingDetailDto) session.getAttribute("park
 ArrayList<ParkingDto> list = (ArrayList<ParkingDto>)session.getAttribute("searchlist");
 
 if(reservationDto != null){
-	StringBuffer sb =new StringBuffer("{ ");
+	StringBuffer sb =new StringBuffer();
 	int size = availabledate.size();
-	if(size<2){
-		String tmp ="from : new Date("+availabledate.get(0).get("enddate")+")}";
+	if(size==0){
+		String tmp ="{from : new Date()}";
+		sb.append(tmp);
+	}
+	else if(size<2 && size>0){
+		String tmp ="{from : new Date("+availabledate.get(0).get("enddate")+")}";
 		sb.append(tmp);
 	}else{
 		for(int i=0;i<size-1;++i){
-			String tmp ="from : new Date("+availabledate.get(i).get("enddate")+"),";
+			String tmp ="{from : new Date("+availabledate.get(i).get("enddate")+"),";
 			sb.append(tmp);
 			tmp ="to : new Date("+availabledate.get(i+1).get("startdate")+")},";
 			sb.append(tmp);
@@ -190,7 +194,7 @@ if(reservationDto != null){
 							</div>
 					</div><!-- Select Reason div End--> <br>
 					</div><!--  Left panel body End -->
-							<button type="button" class="btn btn-success"  id="mvpaymodalbtn" data-toggle="modal" data-target="#payment">
+							<button type="button" class="btn btn-success"  id="mvpaymodalbtn" data-target="#payment">
                   				 결제하기 
                				</button>
 				</div><!--  Left panel div End -->
@@ -395,24 +399,36 @@ if(reservationDto != null){
 				var reserHours = (tdateDate-fdateDate)/hours;
 				var reserDays = (tdateDate-fdateDate)/days;
 				var reserExtraHours = $("#rdtoTime").val()-$("#rdfromTime").val();
-				
+				if(reserDays==0 && reserExtraHours==0){
+					alert("예약할 시간을 확인해주세요.");
+					return;
+				}else{
 				alert("days :"+ reserDays +"    hours :"+reserHours+"       ehours : "+reserExtraHours);
 				
-			        
-			        $("#paypark_id").val("<%=parkingDetailDto.getPark_id()%>");
-			        $("#payfromtime").val($("#rdfromTime").val());
-			        $("#paytotime").val($("#rdtoTime").val());
-			        
-			        $("#selectedid").val("<%=memberDto.getUser_id()%>");
-			        $("#selectedgrade").append("<%=memberDto.getGrade_id()%>");
-			        $("#selectedcarnum").val($("#mycarlist option:selected").val());
-			        $("#selectedcarname").val($("#mycarlist option:selected").text());
-			        $("#selectedcoin").val("<%=memberDto.getCoin()%>");
-			        $("#selectedprice").val("<%=parkingDetailDto.getDay_max_pay()%>");
-					//init price
-					
-
-			        $('#payment').show();
+				var pay=0;
+					if(<%=parkingDetailDto.getDay_max_pay()%>==0)
+						pay=reserHours*<%=parkingDetailDto.getAdd_park_rate()%>/4;
+					else
+			        	pay =<%=parkingDetailDto.getDay_max_pay()/100%>*reserDays+(<%=parkingDetailDto.getAdd_park_rate()%>*reserExtraHours)/100;
+			        	
+			        if(pay><%=memberDto.getCoin()%>){
+			        	alert("보유한 코인이 부족합니다. 코인 충전 후 다시 이용해주세요.");
+			        	document.location.href = "<%=root%>/member?act=mvcoin";
+			        }else{
+				        $("#paypark_id").val("<%=parkingDetailDto.getPark_id()%>");
+				        $("#payfromtime").val($("#rdfromTime").val());
+				        $("#paytotime").val($("#rdtoTime").val());
+				        
+				        $("#selectedid").val("<%=memberDto.getUser_id()%>");
+				        $("#selectedgrade").append("<%=memberDto.getGrade_id()%>");
+				        $("#selectedcarnum").val($("#mycarlist option:selected").val());
+				        $("#selectedcarname").val($("#mycarlist option:selected").text());
+				        $("#selectedcoin").val("<%=memberDto.getCoin()%>");
+				        $("#selectedprice").val(pay);
+	
+				        $('#payment').modal("show");
+			        }
+				}
 				})
 				
     </script>

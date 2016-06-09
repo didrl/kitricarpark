@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import com.carpark.action.Action;
 import com.carpark.admin.model.service.AdminCallServiceImpl;
 import com.carpark.common.model.CallDto;
+import com.carpark.member.model.MemberDto;
 
 
 public class AdminCallListAction implements Action {
@@ -20,11 +21,9 @@ public class AdminCallListAction implements Action {
 			throws IOException, ServletException {
 		
 		HttpSession session = request.getSession();
-//		MemberDto memberDto = (MemberDto) session.getAttribute("memberInfo");
+		MemberDto memberDto = (MemberDto) session.getAttribute("memberInfo");
 		
-//		String receiveId = memberDto.getUser_id();
-
-		String receiveId = "RgPark";
+		String receiveId = memberDto.getUser_id();
 		
 		if(receiveId != null) {
 			List<CallDto> receiveList = AdminCallServiceImpl.getAdminCallService().receiveListArticle(receiveId);

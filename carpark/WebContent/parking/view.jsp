@@ -103,13 +103,9 @@ if(0 == parkingDto.getPark_flag()) {
 				
 				<div class="row">
 					<div class="col-md-2">
-						<b>상세정보</b><br>
+						<b>평일</b><br>
 					</div>
 					<div class="col-md-10">
-						<table class="table">
-							<tr>
-								<td width="90">평일</td>				
-								<td width="90">
 <%
 if("0" == parkingDto.getPay_yn()) {
 %>
@@ -121,9 +117,14 @@ if("0" == parkingDto.getPay_yn()) {
 <%
 }
 %>
-								</td>				
-								<td width="90">토요일</td>				
-								<td width="90">
+					</div>
+				</div><br>		
+				
+				<div class="row">
+					<div class="col-md-2">
+						<b>토요일</b><br>
+					</div>
+					<div class="col-md-10">
 <%
 if("0" == parkingDto.getSatur_pay_yn()) {
 %>
@@ -134,10 +135,15 @@ if("0" == parkingDto.getSatur_pay_yn()) {
 	유료
 <%
 }
-%>								
-								</td>				
-								<td width="90">공휴일</td>				 
-								<td width="90">
+%>	
+					</div>
+				</div><br>			
+				
+				<div class="row">
+					<div class="col-md-2">
+						<b>공휴일</b><br>
+					</div>
+					<div class="col-md-10">
 <%
 if("0" == parkingDto.getHoli_pay_yn()) {
 %>
@@ -148,49 +154,63 @@ if("0" == parkingDto.getHoli_pay_yn()) {
 	유료
 <%
 }
-%>							
-								</td>										
-							</tr>							
-							<tr>
-								<td width="90">총 주차면수</td>				
-								<td width="90">
-									<%=parkingDto.getPark_capacity() %>
-								</td>			
-								<td width="90">기본주차시간</td>				
-								<td width="90">
-									<%=parkingDto.getPark_time_rate() %> 시간								
-								</td>				
-								<td width="90">기본주차요금</td>				
-								<td width="90">
-									<%=parkingDto.getPark_rate() %> 코인
-								</td>				
-							</tr>
-							<tr>
-							<td width="90">추가단위요금</td>				
-								<td width="90">
-									<%=parkingDto.getAdd_park_rate() %> 코인
-								</td>				
-								<td width="90">하루최대요금</td>							
-								<td width="90">
-									<%=parkingDto.getDay_max_pay() %> 코인
-								</td>	
-								<td width="90">월정기권</td>
-								<td>
-									<%=parkingDto.getFulltime_monthly_pay() %> 코인
-								</td>
-							</tr>					
-						</table>
+%>				
 					</div>
-				</div>
-			
+				</div><br>			
+				
 				<div class="row">
 					<div class="col-md-2">
-						<b>사진</b><br>
+						<b>총 주차면수</b><br>
 					</div>
 					<div class="col-md-10">
-						사진
+						<%=parkingDto.getPark_capacity() %>			
 					</div>
-				</div>
+				</div><br>			
+				
+				<div class="row">
+					<div class="col-md-2">
+						<b>기본주차시간</b><br>
+					</div>
+					<div class="col-md-10">
+						<%=parkingDto.getPark_time_rate() %> 시간			
+					</div>
+				</div><br>			
+				
+				<div class="row">
+					<div class="col-md-2">
+						<b>기본주차시간</b><br>
+					</div>
+					<div class="col-md-10">
+						<%=parkingDto.getPark_rate() %> 코인			
+					</div>
+				</div><br>			
+
+				<div class="row">
+					<div class="col-md-2">
+						<b>추가단위요금</b><br>
+					</div>
+					<div class="col-md-10">
+						<%=parkingDto.getAdd_park_rate() %> 코인			
+					</div>
+				</div><br>			
+									
+				<div class="row">
+					<div class="col-md-2">
+						<b>하루최대요금</b><br>
+					</div>
+					<div class="col-md-10">
+						<%=parkingDto.getDay_max_pay() %> 코인			
+					</div>
+				</div><br>			
+
+				<div class="row">
+					<div class="col-md-2">
+						<b>월정기권</b><br>
+					</div>
+					<div class="col-md-10">
+						<%=parkingDto.getFulltime_monthly_pay() %> 코인		
+					</div>
+				</div><br>			
 				
 				<div class="row">
 					<div class="col-md-2">

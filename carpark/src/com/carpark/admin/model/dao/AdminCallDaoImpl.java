@@ -79,11 +79,11 @@ public class AdminCallDaoImpl implements AdminCallDao {
 			sql += "pcseq, pcall_flag , pcall_ok \n";
 			sql += "from board b, call c \n";
 			sql += "where b.seq = c.pcall_id \n";
-			sql += "and user_id= ? \n";
+//			sql += "and user_id= ? \n";
 			sql += "order by logtime desc";
 			
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, receiveId);
+//			pstmt.setString(1, receiveId);
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()){
@@ -108,7 +108,37 @@ public class AdminCallDaoImpl implements AdminCallDao {
 
 	@Override
 	public void deleteArticle(int seq) {
-	
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		try {
+			conn = DBConnection.makeConnection();
+			conn.setAutoCommit(false);
+			String sql = "";
+			sql+="delete \n";
+			sql+="from call\n";
+			sql+="where pcall_id=? \n";			
+			int idx=1;
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(idx++, seq);
+			pstmt.executeUpdate();
+			conn.commit();
+			pstmt.close();
+			
+			sql="";
+			sql+="delete \n";
+			sql+="from board \n";
+			sql+="where seq=? \n";
+			idx=1;
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(idx++, seq);
+			pstmt.executeUpdate();
+			conn.commit();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			DBClose.close(conn, pstmt);
+		}
 	}
 
 	@Override
