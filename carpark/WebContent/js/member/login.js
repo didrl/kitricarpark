@@ -112,4 +112,7 @@ function modifySeq(seq) {
 	document.common.action=root+"/call";
 }
 
+function secession(id) {
+	document.location.href=root+"/member?act=memberSecession&id="+id;
+}
 
