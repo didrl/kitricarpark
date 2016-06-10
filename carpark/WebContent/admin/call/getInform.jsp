@@ -18,15 +18,15 @@ List<CallDto> callList = (List<CallDto>)request.getAttribute("receiveList");
 				<br><h3>방문 예정 리스트</h3><br>
 					
 				<div class="btn-group" role="group" aria-label="...">
-	  				<button type="button" class="btn btn-default" onclick="javascript:adminMessageReceiveList();">
+	  				<button type="button" class="btn btn-default">
 	  					받은제보함
 	  				</button>
-	  				<button type="button" class="btn btn-default" onclick="javascript:adminMessageSendList();">
+	  				<!--  <button type="button" class="btn btn-default" onclick="javascript:adminMessageSendList();">
 	  					보낸제보함
 	  				</button>	
 					<button type="button" class="btn btn-default"  data-toggle="modal" data-target="#messageWrite" onclick="javascript:init();">
                 		쪽지보내기
-               		</button>
+               		</button>-->
 				</div>
 				
 				<!-- 메세지 보내기 모달창 -->
@@ -127,7 +127,6 @@ if(callDto.getpCall_Ok() == 0) {
 %>					
 						<td>X</td>
 						<td>
-						<button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#messageToWrite" onclick="toWriteInit('<%=callDto.getUserID()%>');">답장</button>
 						<button type="button" class="btn btn-default btn-xs" onclick="javascript:adminCallReceiveDelete('<%=callDto.getSeq()%>');">삭제</button>
 						</td>
 					</tr>
@@ -136,7 +135,6 @@ if(callDto.getpCall_Ok() == 0) {
 %>
 						<td>O</td>
 						<td>
-						<button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#messageToWrite" onclick="javascript:toWriteInit('<%=callDto.getUserID()%>');">답장</button>
 						<button type="button" class="btn btn-default btn-xs" onclick="javascript:adminCallReceiveDelete('<%=callDto.getSeq()%>');">삭제</button>
 						</td>
 					</tr>

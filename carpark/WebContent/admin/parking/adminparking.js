@@ -15,15 +15,6 @@ function adminParkingSearchWindow() {
 	window.open( root + "/admin/parking/parksearch.jsp", "newWindow", "top=100, left=400, width=500, height=400, scrollbars=yes" );
 }
 
-
-function adminParkingList(pg) {
-	document.common.act.value = "adminParkingList";
-	document.common.pg.value = pg;	
-	document.common.action = "/carpark/adminparking";
-	document.common.submit();
-	   
-}
-
 function adminParkingView(parkId) {
 	document.common.act.value = "adminParkingView";
 	document.common.parkId.value = parkId;
@@ -102,3 +93,55 @@ function adminParkingMvModify(parkId) {
 	document.common.action = "/carpark/adminparking";
 	document.common.submit();
 }
+
+//전체 주차장 리스트
+function adminParkList(pg) {
+	document.common.act.value = "adminParkList";
+	document.common.pg.value = pg;
+	document.common.auth.value = "1";
+	document.common.action = "/carpark/adminparking";
+	document.common.submit();
+}
+
+//공용 주차장 리스트
+function adminParkListPublic(pg) {
+	document.common.act.value = "adminParkList";
+	document.common.pg.value = pg;
+	document.common.key.value = "park_public";
+	document.common.word.value = "0";
+	document.common.auth.value = "1";
+	document.common.action = "/carpark/adminparking";
+	document.common.submit();
+}
+
+function adminParkListPrivate(pg) {
+	document.common.act.value = "adminParkList";
+	document.common.pg.value = pg;
+	document.common.key.value = "park_public";
+	document.common.word.value = "1";
+	document.common.auth.value = "1";
+	document.common.action = "/carpark/adminparking";
+	document.common.submit();
+}
+
+function parkAuthList(pg) {
+	document.common.act.value = "parkAuthList";
+	document.common.pg.value = pg;
+	document.common.word.value = "0";
+	document.common.auth.value = "0";
+	document.common.action = "/carpark/adminparking";
+	document.common.submit();
+}
+
+function adminParkingAuth(parkId) {
+	document.common.act.value = "adminParkingAuth";
+	document.common.parkId.value = parkId;
+	document.common.action = "/carpark/adminparking";
+	document.common.submit();
+}
+
+
+
+
+
+

@@ -13,6 +13,7 @@ if(memberDto != null) {
 
 <script>
 function chargeCoin(){
+
 	document.chargeCoinForm.action = "/carpark/coin";
 	document.chargeCoinForm.submit();
 	

@@ -40,14 +40,14 @@ public class MemberParkingDaoImpl implements MemberParkingDao {
 			sql += "	into parking (park_id, park_name, park_capacity, owner_id, latitude, "
 										+ "longitude, emd_code, content, detail_addr, park_public) \n";
 			sql += "	values (? ,? ,? ,? ,? ,?, ?, ?, ?, ?) \n";
-			sql += "	into parking_facility (park_id, facility, feature) \n";
-			sql += "	values (?, ?, ?) \n";
-			sql += "	into parking_img (park_id, file_name, file_path) \n";
-			sql += "	values (?, ?, ?) \n";
+//			sql += "	into parking_facility (park_id, facility, feature) \n";
+//			sql += "	values (?, ?, ?) \n";
+//			sql += "	into parking_img (park_id, file_name, file_path) \n";
+//			sql += "	values (?, ?, ?) \n";
 			sql += "	into parking_detail (park_id, park_flag, PAY_YN, satur_pay_yn, holi_pay_yn, "
 												+ "fulltime_monthly_pay, park_rate, "
-												+ "park_time_rate, add_park_rate, day_max_pay) \n";
-			sql += "	values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+												+ "park_time_rate, add_park_rate, day_max_pay, park_visit) \n";
+			sql += "	values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			sql += "select * from dual";
 			
 			pstmt = conn.prepareStatement(sql);
@@ -64,13 +64,13 @@ public class MemberParkingDaoImpl implements MemberParkingDao {
 			pstmt.setString(++idx, parkingDto.getDetailAddr());
 			pstmt.setInt(++idx, parkingDto.getPark_public());
 			//parking_facility table
-			pstmt.setInt(++idx, parkingDto.getPark_id());
-			pstmt.setString(++idx, parkingDto.getFacility());
-			pstmt.setString(++idx, parkingDto.getFeature());
+//			pstmt.setInt(++idx, parkingDto.getPark_id());
+//			pstmt.setString(++idx, parkingDto.getFacility());
+//			pstmt.setString(++idx, parkingDto.getFeature());
 			//parking_img table
-			pstmt.setInt(++idx, parkingDto.getPark_id());
-			pstmt.setString(++idx, parkingDto.getImg_file_name());
-			pstmt.setString(++idx, parkingDto.getImg_file_path());
+//			pstmt.setInt(++idx, parkingDto.getPark_id());
+//			pstmt.setString(++idx, parkingDto.getImg_file_name());
+//			pstmt.setString(++idx, parkingDto.getImg_file_path());
 			//parking_detail table
 			pstmt.setInt(++idx, parkingDto.getPark_id());
 			pstmt.setInt(++idx, parkingDto.getPark_flag());
@@ -82,6 +82,7 @@ public class MemberParkingDaoImpl implements MemberParkingDao {
 			pstmt.setInt(++idx, parkingDto.getPark_time_rate());
 			pstmt.setInt(++idx, parkingDto.getAdd_park_rate());
 			pstmt.setInt(++idx, parkingDto.getDay_max_pay());
+			pstmt.setInt(++idx, parkingDto.getVisit());
 
 			pstmt.executeUpdate();
 	
@@ -104,31 +105,31 @@ public class MemberParkingDaoImpl implements MemberParkingDao {
 			String sql = "";
 			sql += "update parking \n";
 			sql += "set park_name = ?, park_capacity = ?, latitude = ?, \n";
-			sql += "longitude = ?, park_type = ?, detail_addr = ?, content = ? \n";
+			sql += "longitude = ?, detail_addr = ?, content = ?, park_public \n";
 			sql += "where park_id = ? \n";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, parkingDto.getPark_name());
 			pstmt.setInt(2, parkingDto.getPark_capacity());
 			pstmt.setDouble(3, parkingDto.getLatitude());
 			pstmt.setDouble(4, parkingDto.getLongitude());
-			pstmt.setString(5, parkingDto.getPark_type());
 			pstmt.setString(6, parkingDto.getDetailAddr());
 			pstmt.setString(7, parkingDto.getContent());
-			pstmt.setInt(8, parkingDto.getPark_id());
+			pstmt.setInt(8, parkingDto.getPark_public());
+			pstmt.setInt(9, parkingDto.getPark_id());
 			pstmt.executeUpdate();
 			conn.commit();
 			pstmt.close();
 			
-			sql = "update parking_facility \n";
-			sql += "set facility = ?, feature = ? \n";
-			sql += "where park_id = ? \n";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, parkingDto.getFacility());
-			pstmt.setString(2, parkingDto.getFeature());
-			pstmt.setInt(3, parkingDto.getPark_id());
-			pstmt.executeUpdate();
-			conn.commit();
-			pstmt.close();
+//			sql = "update parking_facility \n";
+//			sql += "set facility = ?, feature = ? \n";
+//			sql += "where park_id = ? \n";
+//			pstmt = conn.prepareStatement(sql);
+//			pstmt.setString(1, parkingDto.getFacility());
+//			pstmt.setString(2, parkingDto.getFeature());
+//			pstmt.setInt(3, parkingDto.getPark_id());
+//			pstmt.executeUpdate();
+//			conn.commit();
+//			pstmt.close();
 			
 //			sql = "update parking_img \n";
 //			sql += "set file_name = ?, file_path = ? \n";
@@ -255,21 +256,21 @@ public class MemberParkingDaoImpl implements MemberParkingDao {
 			conn.commit();
 			pstmt.close();
 			
-			sql = "delete parking_img \n";
-			sql += "where park_id = ?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, parkId);
-			pstmt.executeUpdate();
-			conn.commit();
-			pstmt.close();
-			
-			sql = "delete parking_facility \n";
-			sql += "where park_id = ?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, parkId);
-			pstmt.executeUpdate();
-			conn.commit();
-			pstmt.close();
+//			sql = "delete parking_img \n";
+//			sql += "where park_id = ?";
+//			pstmt = conn.prepareStatement(sql);
+//			pstmt.setInt(1, parkId);
+//			pstmt.executeUpdate();
+//			conn.commit();
+//			pstmt.close();
+//			
+//			sql = "delete parking_facility \n";
+//			sql += "where park_id = ?";
+//			pstmt = conn.prepareStatement(sql);
+//			pstmt.setInt(1, parkId);
+//			pstmt.executeUpdate();
+//			conn.commit();
+//			pstmt.close();
 			
 			sql = "delete parking \n";
 			sql += "where park_id = ?";
@@ -294,7 +295,6 @@ public class MemberParkingDaoImpl implements MemberParkingDao {
 		ResultSet rs = null;
 		
 		String address = map.get("address");
-		System.out.println(address);
 		
 		try {
 			conn = DBConnection.makeConnection();
@@ -344,18 +344,15 @@ public class MemberParkingDaoImpl implements MemberParkingDao {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
 		try {
 			conn = DBConnection.makeConnection();
 			String sql = "";
 			sql += "select p.park_id, park_name, park_capacity, owner_id, latitude, \n";
-			sql += "		longitude, park_type, emd_code, content, detail_addr, \n";
+			sql += "		longitude, content, detail_addr, \n";
 			sql += "		park_flag, park_avgPoint, get_status, cur_parking, PAY_YN, satur_pay_yn, holi_pay_yn,\n";
-			sql += "		fulltime_monthly_pay, park_rate, park_time_rate, add_park_rate, day_max_pay, \n";
-			sql += "		facility, feature \n";
-			sql += "from parking p, parking_detail d, parking_facility f \n";
+			sql += "		fulltime_monthly_pay, park_rate, park_time_rate, add_park_rate, day_max_pay \n";
+			sql += "from parking p, parking_detail d \n";
 			sql += "where p.park_id = d.park_id \n";
-			sql += "and p.park_id = f.park_id \n";
 			sql += "and p.park_id = ?";
 
 			pstmt = conn.prepareStatement(sql);
@@ -368,8 +365,6 @@ public class MemberParkingDaoImpl implements MemberParkingDao {
 				parkingDto.setOwner_id(rs.getString("owner_id"));
 				parkingDto.setLatitude(rs.getDouble("latitude"));
 				parkingDto.setLongitude(rs.getDouble("longitude"));
-				parkingDto.setPark_type(rs.getString("park_type"));
-				parkingDto.setEmd_code(rs.getInt("emd_code"));
 				parkingDto.setContent(rs.getString("content"));
 				parkingDto.setPark_flag(rs.getInt("park_flag"));
 				parkingDto.setPark_avgPoint(rs.getInt("park_avgPoint"));
@@ -384,8 +379,6 @@ public class MemberParkingDaoImpl implements MemberParkingDao {
 				parkingDto.setAdd_park_rate(rs.getInt("add_park_rate"));
 				parkingDto.setDay_max_pay(rs.getInt("day_max_pay"));
 				parkingDto.setDetailAddr(rs.getString("detail_addr"));
-				parkingDto.setFacility(rs.getString("facility"));
-				parkingDto.setFeature(rs.getString("feature"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

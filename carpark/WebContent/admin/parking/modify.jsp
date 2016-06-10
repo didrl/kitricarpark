@@ -27,35 +27,6 @@ if(memberDto != null){
 				
 				<div class="row">
 					<div class="col-md-2">
-						<b>주차장 구분</b><br>
-					</div>
-					<div class="col-md-10">
-<%
-if("0".equals(parkingDto.getPark_type())) {
-%>
-						<label class="radio-inline">
-						  <input type="radio" name="parkType" value="0" checked="checked"> 개인
-						</label>
-						<label class="radio-inline">
-						  <input type="radio" name="parkType" value="1"> 사설
-						</label>
-<%
-} else {
-%>
-						<label class="radio-inline">
-						  <input type="radio" name="parkType" value="0"> 개인
-						</label>
-						<label class="radio-inline">
-						  <input type="radio" name="parkType" value="1" checked="checked"> 사설
-						</label>
-<%
-}
-%>
-					</div>
-				</div><hr>
-				
-				<div class="row">
-					<div class="col-md-2">
 						<b>사용가능여부</b><br>
 					</div>
 					<div class="col-md-10">
@@ -63,19 +34,19 @@ if("0".equals(parkingDto.getPark_type())) {
 if(0 == parkingDto.getPark_flag()) {
 %>
 						<label class="radio-inline">
-						  <input type="radio" name="parkFlag" value="0" checked="checked"> 사용가능
+						  <input type="radio" name="parkFlag" value="0" checked="checked"> 사용불가
 						</label>
 						<label class="radio-inline">
-						  <input type="radio" name="parkFlag" value="1"> 사용불가
+						  <input type="radio" name="parkFlag" value="1"> 사용가능
 						</label>
 <%
 } else {
 %>
 						<label class="radio-inline">
-						  <input type="radio" name="parkFlag" value="0"> 사용가능
+						  <input type="radio" name="parkFlag" value="0"> 사용불가
 						</label>
 						<label class="radio-inline">
-						  <input type="radio" name="parkFlag" value="1" checked="checked"> 사용불가
+						  <input type="radio" name="parkFlag" value="1" checked="checked"> 사용가능
 						</label>
 <%
 }
@@ -107,24 +78,6 @@ if(0 == parkingDto.getPark_flag()) {
 							<button type="button" class="btn btn-default" onclick="javascript:parkingSearchWindow();">검색</button>
 					</div>
 				</div><hr>
-				
-				<div class="row">
-					<div class="col-md-2">
-						<b>보유시설</b><br>
-					</div>
-					<div class="col-md-10">
-						<input type="text" class="form-control" name="facility" value="<%=parkingDto.getFacility()%>">
-					</div>
-				</div><hr>
-				
-				<div class="row">
-					<div class="col-md-2">
-						<b>보유시설상세</b><br>
-					</div>
-					<div class="col-md-10">
-						<textarea class="form-control" rows="3" name="feature" value="<%=parkingDto.getFeature()%>"></textarea>						
-					</div>
-				</div><br>
 				
 				<div class="row">
 					<div class="col-md-2">
@@ -235,22 +188,13 @@ if(0 == parkingDto.getPark_flag()) {
 						</table>
 					</div>
 				</div>
-			
-				<div class="row">
-					<div class="col-md-2">
-						<b>사진</b><br>
-					</div>
-					<div class="col-md-10">
-					    <input type="file" id="fileName">
-					    <p class="help-block">주차장 사진 등록</p>
-				</div>
 				
 				<div class="row">
 					<div class="col-md-2">
 						<b>주차장 설명</b><br>
 					</div>
 					<div class="col-md-10">
-						<textarea class="form-control" rows="3" name="content" value="<%=parkingDto.getContent()%>"></textarea>						
+						<textarea class="form-control" rows="3" name="content"><%=parkingDto.getContent()%></textarea>						
 					</div>
 				</div><br>
 			</form>
@@ -258,7 +202,7 @@ if(0 == parkingDto.getPark_flag()) {
 				<div class="row">
 						<p align="center">
 		  					<button type="button" class="btn btn-primary btn-lg" onclick="javascript:adminParkingModify('<%=parkingDto.getPark_id()%>');">수정</button>
-		  					<button type="button" class="btn btn-default btn-lg" onclick="javascript:adminParkingList('<%=pg%>');"> 취소 </button>
+		  					<button type="button" class="btn btn-default btn-lg" onclick="javascript:adminParkList('<%=pg%>');"> 취소 </button>
 						</p>
 				</div>
 			</div>

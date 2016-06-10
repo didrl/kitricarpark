@@ -54,8 +54,6 @@ public class AdminParkingModifyAction implements Action {
 		
 		parkingDto.setOwner_id(ownerId);
 		
-		parkingDto.setFacility(request.getParameter("facility"));
-		parkingDto.setFeature(request.getParameter("feature").replace("\r\n", "<br>"));
 		parkingDto.setPay_yn(request.getParameter("payYn"));
 		parkingDto.setSatur_pay_yn(request.getParameter("saturPayYn"));
 		parkingDto.setHoli_pay_yn(request.getParameter("holiPayYn"));

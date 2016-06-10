@@ -80,27 +80,24 @@ public class AdminParkingDaoImpl implements AdminParkingDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String park_public = map.get("park_public");
 		String key = map.get("key");
 		String word = map.get("word");
+		String auth = map.get("auth");
 		
 		try {
 			conn = DBConnection.makeConnection();
 			String sql = "";
-			sql += "select b.rn, b.park_id, b.park_name, b.owner_id, b.park_flag, b.park_avgPoint, b.park_public \n";
+			sql += "select b.rn, b.park_id, b.park_name, b.owner_id, b.park_flag, b.park_avgPoint, b.park_public, b.park_visit \n";
 			sql += "from \n";
-		    sql += "  		(select rownum rn, a.park_id, a.park_name, a.owner_id, a.park_flag, a.park_avgPoint, a.park_public \n"; 
+		    sql += "  		(select rownum rn, a.park_id, a.park_name, a.owner_id, a.park_flag, a.park_avgPoint, a.park_public, a.park_visit \n"; 
 		    sql += "         from \n";
-		    sql += "     		  (select p.park_id, park_name, owner_id, park_flag, park_avgPoint, park_public \n";
+		    sql += "     		  (select p.park_id, park_name, owner_id, park_flag, park_avgPoint, park_public, park_visit \n";
 		    sql += "               from parking p, parking_detail d \n";
 		    sql += "               where p.park_id = d.park_id \n";
-		    sql += "           	   and park_public = ? \n";
+		    sql += "			   and d.park_visit = ? \n";
 		    if(key != null && !key.isEmpty()) {
 		    	if(word != null && !word.isEmpty()) {
-		    		if("park_name".equals(key))
-		    			sql += "   and park_name like '%'||?||'%' \n";
-		    		else
-		    			sql += "   and " + key + " = ? \n";						
+		    		sql += "   and " + key + " = ? \n";						
 		    	}
 		    }
 		    sql += "               order by park_name) a \n";
@@ -108,7 +105,7 @@ public class AdminParkingDaoImpl implements AdminParkingDao {
 		    sql += "where rn > ? \n";
 			pstmt = conn.prepareStatement(sql);
 			int idx = 0;
-			pstmt.setString(++idx, park_public);
+			pstmt.setString(++idx, auth);
 			if(key != null && !key.isEmpty()) {
 				if(word != null && !word.isEmpty()) {
 					pstmt.setString(++idx, map.get("word"));				
@@ -125,6 +122,7 @@ public class AdminParkingDaoImpl implements AdminParkingDao {
 				parkingDto.setPark_flag(rs.getInt("park_flag"));
 				parkingDto.setPark_avgPoint(rs.getInt("park_avgPoint"));
 				parkingDto.setPark_public(rs.getInt("park_public"));
+				parkingDto.setVisit(rs.getInt("park_visit"));
 				
 				list.add(parkingDto);
 			}
@@ -154,8 +152,8 @@ public class AdminParkingDaoImpl implements AdminParkingDao {
 			sql += "	values (?, ?, ?) \n";
 			sql += "	into parking_detail (park_id, park_flag, PAY_YN, satur_pay_yn, holi_pay_yn, "
 												+ "fulltime_monthly_pay, park_rate, "
-												+ "park_time_rate, add_park_rate, day_max_pay) \n";
-			sql += "	values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+												+ "park_time_rate, add_park_rate, day_max_pay, park_visit) \n";
+			sql += "	values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			sql += "select * from dual";
 			
 			pstmt = conn.prepareStatement(sql);
@@ -190,6 +188,7 @@ public class AdminParkingDaoImpl implements AdminParkingDao {
 			pstmt.setInt(++idx, parkingDetailDto.getPark_time_rate());
 			pstmt.setInt(++idx, parkingDetailDto.getAdd_park_rate());
 			pstmt.setInt(++idx, parkingDetailDto.getDay_max_pay());
+			pstmt.setInt(++idx, parkingDetailDto.getVisit());
 
 			pstmt.executeUpdate();
 	

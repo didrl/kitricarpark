@@ -34,7 +34,7 @@ public class AdminParkingSearchAction implements Action {
 		
 		PageNavigator navigator = CommonServiceImpl.getCommonService().getPageNavigatorAddress(parkAddress, pg);
 		navigator.setRoot(request.getContextPath());
-		navigator.setNavigator("searchAddress");
+		navigator.setNavigator("adminSearchAddress");
 		request.setAttribute("navigator", navigator);
 		
 		return "/admin/parking/parksearch.jsp";

@@ -31,7 +31,7 @@ function myParking(){
 }
 
 function infocheck(){
-	
+	var checkbox=document.getElementById("agree").checked;
 	if(document.getElementById("username").value == "") {
 		alert("이름 입력!");
 		return;
@@ -46,8 +46,7 @@ function infocheck(){
 	} else if(document.getElementById("InputPassword2").value != document.getElementById("InputPassword1").value) {
 		alert("비밀번호 확인!");
 		$("#InputPassword2").focus();
-		return;
-		
+		return;	
 	}else if(document.getElementById("InputEmail").value  == ""){
 		alert("이메일 입력!");
 		$("#InputEmail").focus();
@@ -56,6 +55,8 @@ function infocheck(){
 		alert("휴대폰 번호 입력!");
 		$("#userphone").focus();
 		return;
+	}else if(checkbox==""){
+		alert("약관동의를 읽어보고 체크해주세요!");
 	}else {
 		document.signUpForm.action=root+"/member?act=mvsignup";
 		document.signUpForm.submit();
@@ -112,4 +113,7 @@ function modifySeq(seq) {
 	document.common.action=root+"/call";
 }
 
+function secession(id) {
+	document.location.href=root+"/member?act=memberSecession&id="+id;
+}
 

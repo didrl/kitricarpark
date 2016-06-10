@@ -85,7 +85,7 @@ public class AdminDaoImpl implements AdminDao {
 			conn=DBConnection.makeConnection();
 			String sql="";
 			
-			sql += "select rownum, a.logtime, a.sumover\n";
+			sql += "select rownum, to_char(a.logtime,'yyyy-mm-dd') as logtime, a.sumover\n";
 			sql += "from(	select logtime,  sum(count(user_id)) over (order by logtime) as sumover \n"; 
 			sql += "			from member \n";
 			sql += "			group by logtime \n";
@@ -127,7 +127,7 @@ public class AdminDaoImpl implements AdminDao {
 			sql += "select rownum, a.user_id, a.user_avgpoint, a.penalty\n";
 			sql += "from (select user_id, user_avgpoint, penalty \n"; 
 			sql += "			from member \n";
-			sql += "			order by user_avgpoint desc, penalty) a \n";
+			sql += "			order by user_avgpoint desc, penalty asc) a \n";
 			sql += "where rownum<11 \n";
 
 			pstmt = conn.prepareStatement(sql);

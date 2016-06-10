@@ -17,20 +17,7 @@ if(memberDto != null) {
       <!-- main -->
       <div id="page-wrapper">
          <div class="container-fluid">
-        <center><br><h3>주차장 목록</h3><br></center>   
-              
-		<div class="btn-group text-align:left" role="group" aria-label="...">
-			<button type="button" class="btn btn-default" onclick="javascript:adminParkList('1');">
-				전체
-			</button>
-			<button type="button" class="btn btn-default" onclick="javascript:adminParkListPublic('1');">
-				공용주차장
-			</button>	
-			<button type="button" class="btn btn-default" onclick="javascript:adminParkListPrivate('1');">
-			    사설주차장
-			</button>
-			 <a class="btn btn-default" href="<%=root %>/admin/parking/register.jsp"> 등록 </a>
-		</div>
+        <center><br><h3>인증예정목록</h3><br></center>   
               
             <div class="table" style="width: 800px">
               <table  class="table table-hover">
@@ -38,7 +25,7 @@ if(memberDto != null) {
                     <td width="120">주차장 아이디</td>
                     <td>주차장 이름</td>
                     <td width="100">소유주</td>
-                    <td width="50">평점</td>
+                    <td width="50">구분</td>
                     <td width="80">사용가능</td>
                     <td width="150"></td>
                  </tr>
@@ -60,9 +47,18 @@ if(memberDto != null) {
                   <td>
 	                 	<%=parkingDetailDto.getOwner_id() %>
                   </td>
-                  <td>
-	                 	<%=parkingDetailDto.getPark_avgPoint() %>
-                  </td>
+
+<%
+				if(parkingDetailDto.getPark_public() == 0) {
+%>
+                  <td> 공용 </td>
+<%
+				} else {
+%>
+				  <td> 사설 </td>
+<%
+				}
+%>	
 
 <%
 				if(parkingDetailDto.getPark_flag() == 0) {
@@ -77,7 +73,7 @@ if(memberDto != null) {
 %>		
                   <td>
                   	<button type="button" class="btn btn-default btn-xs" onclick="javascript:adminParkingView('<%=parkingDetailDto.getPark_id()%>');"> 상세보기 </button>
-                  	<button type="button" class="btn btn-default btn-xs" onclick="javascript:adminParkingMvModify('<%=parkingDetailDto.getPark_id()%>');"> 수정 </button>
+                  	<button type="button" class="btn btn-default btn-xs" onclick="javascript:adminParkingAuth('<%=parkingDetailDto.getPark_id()%>');"> 인증 </button>
                   	<button type="button" class="btn btn-default btn-xs" onclick="javascript:adminParkingDelete('<%=parkingDetailDto.getPark_id()%>');"> 삭제 </button>
 				  </td>
 <%

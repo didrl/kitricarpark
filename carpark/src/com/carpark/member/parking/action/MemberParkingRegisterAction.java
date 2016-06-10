@@ -39,6 +39,7 @@ public class MemberParkingRegisterAction implements Action {
 		
 		parkingDto.setPark_id(parkingId);
 		parkingDto.setPark_public(1);
+		parkingDto.setVisit(0);
 		parkingDto.setPark_name(request.getParameter("parkName"));
 		
 		String coordinate = request.getParameter("coordinate");//지도에서 가져온 좌표
@@ -56,8 +57,6 @@ public class MemberParkingRegisterAction implements Action {
 		
 		parkingDto.setOwner_id(ownerId);
 		
-		parkingDto.setFacility(request.getParameter("facility"));
-		parkingDto.setFeature(request.getParameter("feature").replace("\r\n", "<br>"));
 		parkingDto.setPay_yn(request.getParameter("payYn"));
 		parkingDto.setSatur_pay_yn(request.getParameter("saturPayYn"));
 		parkingDto.setHoli_pay_yn(request.getParameter("holiPayYn"));

@@ -8,6 +8,7 @@ import java.util.Map;
 import com.carpark.admin.model.dao.AdminParkingDaoImpl;
 import com.carpark.common.model.ParkingDetailDto;
 import com.carpark.member.model.ReservationDto;
+import com.carpark.util.BoardConstance;
 
 public class AdminParkingServiceImpl implements AdminParkingService {
 
@@ -34,12 +35,17 @@ public class AdminParkingServiceImpl implements AdminParkingService {
 	}
 
 	@Override
-	public List<ParkingDetailDto> parkingList(int park_public, int pg, String key, String word) {
+	public List<ParkingDetailDto> parkingList(int pg, String key, String word, String auth) {
 		Map<String, String> map = new HashMap<String, String>();
-		map.put("park_public", park_public + "");
-		map.put("pg", pg + "");
+		
+		int end = BoardConstance.BOARD_LIST_SIZE * pg;
+		int start = end - BoardConstance.BOARD_LIST_SIZE;
+		
+		map.put("end", end + "");
+		map.put("start", start + "");
 		map.put("key", key);
 		map.put("word", word);
+		map.put("auth", auth);
 		return AdminParkingDaoImpl.getAdminParkingDao().parkingList(map);
 	}
 

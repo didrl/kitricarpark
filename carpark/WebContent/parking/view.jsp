@@ -26,26 +26,6 @@ if(parkingDto != null) {
 			<form name="parkRegisterForm" method="post" action="">
 				<input type="hidden" name="act" value="parkingRegister">				
 				
-				
-				<div class="row">
-					<div class="col-md-2">
-						<b>주차장 구분</b><br>
-					</div>
-					<div class="col-md-10">
-<%
-if("0".equals(parkingDto.getPark_type())) {
-%>
-	개인
-<%
-} else {
-%>
-	사설
-<%	
-}
-%>
-					</div>
-				</div><hr>
-				
 				<div class="row">
 					<div class="col-md-2">
 						<b>사용가능여부</b><br>
@@ -54,11 +34,11 @@ if("0".equals(parkingDto.getPark_type())) {
 <%
 if(0 == parkingDto.getPark_flag()) {
 %>
-	사용가능
+	사용불가
 <%
 } else {
 %>
-	사용불가
+	사용가능
 <%
 }
 %>
@@ -79,7 +59,8 @@ if(0 == parkingDto.getPark_flag()) {
 						<b>위치</b><br>
 					</div>
 					<div class="col-md-10">
-						<%=parkingDto.getDetailAddr() %>
+						<%=parkingDto.getDetailAddr() %><br>
+						(<%=parkingDto.getLatitude() %>, <%=parkingDto.getLongitude() %>)
 					</div>
 				</div><hr>
 				

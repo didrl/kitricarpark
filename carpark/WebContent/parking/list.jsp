@@ -45,11 +45,11 @@ if(memberDto != null) {
 <%
 		if(parkingDetailDto.getPark_flag() == 0) {
 %>
-                  <td> O </td>
+                  <td> X </td>
 <%
 		} else {
 %>
-				  <td> X </td>
+				  <td> O </td>
 <%
 		}
 %>

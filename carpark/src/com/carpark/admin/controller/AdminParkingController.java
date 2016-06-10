@@ -41,17 +41,24 @@ public class AdminParkingController extends HttpServlet {
 			PageMove.forward(request, response, path + queryString);
 			
 		} else if("adminParkingView".equals(act)) {
-			path = AdminActionFactory.getAdminParkingModifyAction().execute(request, response);
+			path = AdminActionFactory.getAdminParkingViewAction().execute(request, response);
 			PageMove.forward(request, response, path + queryString);
 			
-		} else if("adminParkingList".equals(act)) {
+		} else if("adminParkList".equals(act)) {
 			path = AdminActionFactory.getAdminParkingListAction().execute(request, response);
 			PageMove.forward(request, response, path + queryString);
 			
-		} else if("".equals(act)) {
+		} else if("parkAuthList".equals(act)) {
+			path = AdminActionFactory.getAdminParkingAuthListAction().execute(request, response);
+			PageMove.forward(request, response, path + queryString);
 			
-		} else if("".equals(act)) {
+		} else if("adminParkingMvModify".equals(act)) {
+			AdminActionFactory.getAdminParkingViewAction().execute(request, response);
+			path = "/admin/parking/modify.jsp";
+			PageMove.forward(request, response, path);
 			
+		} else if("adminParkingAuth".equals(act)) {
+			//인증
 		}
 	}
 

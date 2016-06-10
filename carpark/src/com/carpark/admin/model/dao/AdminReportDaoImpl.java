@@ -39,19 +39,20 @@ public class AdminReportDaoImpl implements AdminReportDao {
 			conn.setAutoCommit(false);
 			
 			String sql = "";
-			sql += "insert into penalty (panel_num, user_id, panel_code, panel_date, panel_content) \n";
+			sql += "insert into penalty (penalty_num, user_id, penalty_code, penalty_date, penalty_content, seq) \n";
 			sql += "values (report_num_cseq.nextval, ?, ?, sysdate, ?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, penaltyDto.getUser_id());
 			pstmt.setInt(2, penaltyDto.getPenalty_code());
 			pstmt.setString(3, penaltyDto.getPenalty_content());
+			pstmt.setInt(4, penaltyDto.getSeq());
 			cnt = pstmt.executeUpdate();
 			conn.commit();
 			pstmt.close();
 			
 			sql = "";
 			sql += "update member \n";
-			sql += "set penalty = penalty + (select panel_point from evaluation where penal_code = ?) \n";
+			sql += "set penalty = penalty + (select penalty_point from evaluation where penalty_point = ?) \n";
 			sql += "where user_id = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, penaltyDto.getPenalty_code());
@@ -64,8 +65,6 @@ public class AdminReportDaoImpl implements AdminReportDao {
 			sql += "update report \n";
 			sql += "set report_flag = 1 \n";
 			sql += "where seq = ?";
-			System.out.println(sql);
-			System.out.println(penaltyDto.getSeq());
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, penaltyDto.getSeq());
 			pstmt.executeUpdate();
@@ -172,6 +171,7 @@ public class AdminReportDaoImpl implements AdminReportDao {
 			while(rs.next()) {
 				ReportDto reportDto = new ReportDto();
 				reportDto.setSeq(rs.getInt("seq"));
+				reportDto.setUserID(rs.getString("user_id"));
 				reportDto.setBcode(rs.getInt("bcode"));
 				reportDto.setSubject(rs.getString("subject"));
 				reportDto.setContent(rs.getString("contents"));

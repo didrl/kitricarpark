@@ -24,30 +24,27 @@ public class AdminParkingListAction implements Action {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-
-		int pg = NumberCheck.nullToOne(request.getParameter("pg"));
-		String key = StringCheck.nullToBlank(request.getParameter("key"));
-		String word = StringCheck.nullToBlank(Encoder.isoToUtf(request.getParameter("word")));
 		
-		String parkType = request.getParameter("parkType");
-		
-		if (parkType != null) {
-			List<ParkingDetailDto> list = AdminParkingServiceImpl.getAdminParkingService().parkingList(parkType, pg, key, word);
+			int pg = NumberCheck.nullToOne(request.getParameter("pg"));
+			String key = StringCheck.nullToBlank(request.getParameter("key"));
+			String word = StringCheck.nullToBlank(Encoder.isoToUtf(request.getParameter("word")));
+			String auth = request.getParameter("auth");
+			
+			System.out.println("key : " + key);
+			System.out.println("word : " + word);
+			System.out.println("auth : " + auth);
+			
+			List<ParkingDetailDto> list = AdminParkingServiceImpl.getAdminParkingService().parkingList(pg, key, word, auth);
 			request.setAttribute("parkingList", list);
-				
-			PageNavigator navigator = CommonServiceImpl.getCommonService().getPageNavigatorAdminParking(parkType, pg, key, word);
+					
+			PageNavigator navigator = CommonServiceImpl.getCommonService().getPageNavigatorAdminParking(pg, key, word, auth);
 			navigator.setRoot(request.getContextPath());
-			navigator.setNavigator("AdminParkingList");
+			navigator.setNavigator("adminParkList");
 			request.setAttribute("navigator", navigator);
 			
-			return "/admin/parking/list.jsp";
-		
-		} else {
 			
-			return "index.jsp";
-		
-		}
-
+			return "/admin/parking/list.jsp";
+			
 	}
 
 }

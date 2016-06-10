@@ -17,8 +17,8 @@ public class AdminParkingViewAction implements Action {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-		
 		int parkId = NumberCheck.nullToZero(request.getParameter("parkId"));
+		System.out.println("parkid" + parkId);
 		if(parkId != 0) {
 			ParkingDetailDto parkingDto = MemberParkingServiceImpl.getMemberParkingservice().parkingView(parkId);
 			request.setAttribute("parkingView", parkingDto);

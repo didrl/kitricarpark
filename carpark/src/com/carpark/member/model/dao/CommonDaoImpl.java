@@ -209,30 +209,27 @@ public class CommonDaoImpl implements CommonDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String parkType = map.get("parkType");
 		String key = map.get("key");
 		String word = map.get("word");
+		String auth = map.get("auth");
 		
 		try {
 			conn = DBConnection.makeConnection();
 			String sql = "";
-			sql += "select count(park_id) \n";
-				sql += "from parking \n";
-				sql += "where parkType = ? \n";
+			sql += "select count(b.park_id) \n";
+				sql += "from parking b, parking_detail d \n";
+				sql += "where b.park_id = d.park_id \n";
+				sql += "and d.park_visit = ? \n";
 			if(key != null && !key.isEmpty()) {
 				if(word != null && !word.isEmpty()) {
-					if("park_name".equals(key))
-						sql += "and park_name like '%'||?||'%' \n";
-					else
-						sql += "and " + key + " = ? \n";						
+					sql += "and " + key + " = ? \n";						
 				}
 			}
 			pstmt = conn.prepareStatement(sql);
-			int idx = 0;
-			pstmt.setString(++idx, parkType);
+			pstmt.setString(1, auth);
 			if(key != null && !key.isEmpty()) {
 				if(word != null && !word.isEmpty()) {
-					pstmt.setString(++idx, word);
+					pstmt.setString(2, word);
 				}
 			}
 			rs = pstmt.executeQuery();
