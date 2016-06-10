@@ -27,6 +27,7 @@ public class MemberChargeCoinAction implements Action {
 		coindto.setUser_id(memberDto.getUser_id());
 		
 		int coin = memberDto.getCoin();
+		coin += coindto.getCoin();
 		
 		MemberCoinServiceImpl.getMemberCoinService().chargeCoin(coindto, coin);
 		

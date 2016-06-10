@@ -90,6 +90,7 @@ DROP TABLE parking_img
   drop sequence report_num_cseq;
   drop sequence review_num_rseq;
   drop sequence call_num_pcseq;
+  drop sequence coin_num_seq
 --------------------------------------------------------
 --  SEQUENCE created - 토요일-5월-21-2016   
 --------------------------------------------------------
@@ -108,7 +109,8 @@ DROP TABLE parking_img
   create sequence call_num_pcseq
   start with 1 increment by 1;
 
-
+  create sequence coin_num_seq
+  start with 1 increment by 1;
 
 
 create table zipcode(

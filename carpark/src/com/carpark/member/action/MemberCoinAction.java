@@ -16,18 +16,18 @@ public class MemberCoinAction implements Action {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-<<<<<<< HEAD
+
 		return "/coin/coin.jsp";
-=======
-		HttpSession session = request.getSession();
-		MemberDto memberDto = (MemberDto) session.getAttribute("memberInfo");
-		if (memberDto != null) {
-			MemberDto detailMemberDto = MemberServiceImpl.getMemberService().getMemberDetail(memberDto.getUser_id());
-			session.setAttribute("memberInfo", detailMemberDto);
-			return "/member/coin.jsp";
-		}else
-			return "";
->>>>>>> b8b3b98401af240ccf6cbd490924af0dcd017911
+
+//		HttpSession session = request.getSession();
+//		MemberDto memberDto = (MemberDto) session.getAttribute("memberInfo");
+//		if (memberDto != null) {
+//			MemberDto detailMemberDto = MemberServiceImpl.getMemberService().getMemberDetail(memberDto.getUser_id());
+//			session.setAttribute("memberInfo", detailMemberDto);
+//			return "/member/coin.jsp";
+//		}else
+//			return "";
+
 	}
 
 }

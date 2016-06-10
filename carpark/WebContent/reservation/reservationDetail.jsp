@@ -34,6 +34,8 @@ if(reservationDto != null){
 			sb.append(tmp);
 		}
 	}
+	int paypal_pay = 10;	
+
 %>
     <!-- For sendMsg Modal -->
    <%@include file="/reservation/sendMessageModal.jsp"%>
@@ -195,8 +197,21 @@ if(reservationDto != null){
 					</div><!-- Select Reason div End--> <br>
 					</div><!--  Left panel body End -->
 							<button type="button" class="btn btn-success"  id="mvpaymodalbtn" data-target="#payment">
-                  				 결제하기 
+                  				 코인으로 결제하기 
                				</button>
+               				<!-- 페이팔로 결제하기 -->
+               				
+               				<script async="async" src="https://www.paypalobjects.com/js/external/paypal-button.min.js?merchant=parkingc16+admin@gmail.com" 
+							    data-button="buynow" 
+							    data-name="1" 
+							    data-quantity="1" 
+							    data-amount= <%=paypal_pay%>
+							    data-currency="USD" 
+							    data-shipping="0" 
+							    data-tax="0" 
+							    data-callback="http://192.168.0.3:8080/carpark/coin/complete.jsp" 
+							    data-env="sandbox"
+							></script>
 				</div><!--  Left panel div End -->
 			</div> 
 			<!-- Left Section End -->
@@ -429,7 +444,7 @@ if(reservationDto != null){
 				        $('#payment').modal("show");
 			        }
 				}
-				})
+				});
 				
     </script>
 

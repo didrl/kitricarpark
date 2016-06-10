@@ -15,8 +15,15 @@ public class ParkingDto implements Serializable{
 	private String detailAddr;
 	private int emdCode;
 	private int park_public;
-	
-	
+	//parkingDetailDto
+//	private double park_avgPoint; 		//주차장 평점
+//	
+//	public double getPark_avgPoint() {
+//		return park_avgPoint;
+//	}
+//	public void setPark_avgPoint(double park_avgPoint) {
+//		this.park_avgPoint = park_avgPoint;
+//	}
 	public int getEmdCode() {
 		return emdCode;
 	}

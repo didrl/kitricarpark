@@ -20,9 +20,9 @@ public class MemberCoinController extends HttpServlet {
 		System.out.println("act>>>>>>>>>>>>>"+act);
 		String path ="/index.jsp";
 		
-		if("mvChargeCoin".equals(act)){
+		if("chargeCoin".equals(act)){
 			path = MemberActionFactory.getMemberChargeCoinAction().execute(request, response);
-			PageMove.redirect(response, root+path);
+			PageMove.forward(request, response, path);
 		}
 	}
 

@@ -14,6 +14,10 @@ String city = (String)request.getParameter("city");
 <script type="text/javascript" src="/carpark/js/calendar/calendar.js"></script>
 <!-- Simple Celander -->
 
+<!-- Damu map -->
+<link rel="stylesheet" href="/carpark/css/listmap.css">
+
+
 <!-- Custom CSS -->
 <link href="/carpark/css/shop-item.css" rel="stylesheet">
 <link
@@ -91,19 +95,28 @@ for(int i =0;i<list.size();i++){
 						<h4 class="list-group-item-heading"><%=i+1%>.<%=parkingDto.getPark_name()%></h4>
 						<div class="ratings">
                         <p class="pull-right">
+                        
+                        <div class="text-right">
+<!-- 평점정보 가져와야함 -->
+						
                         <script>
                         <%=parkingDetailDto.getPark_avgPoint()%>
                         </script>
+                        
                             <span class="glyphicon glyphicon-star"></span>
                             <span class="glyphicon glyphicon-star"></span>
                             <span class="glyphicon glyphicon-star"></span>
                             <span class="glyphicon glyphicon-star"></span>
                             <span class="glyphicon glyphicon-star-empty"></span>
                             (4점)
+                            </div>
                         </p>
                     </div>
-						<p class="list-group-item-text"><%=parkingDto.getContent()%></p>
+						<%=parkingDto.getContent()%>
 				</form>
+				
+
+				
 				
 				<script>
 				var getHref="<%=root%>/member?act=mvSearchResultDetail&parkingid=<%=parkingDto.getPark_id()%>&parkingname=<%=parkingDto.getPark_name()%>&latitude=<%=parkingDto.getLatitude()%>&longitude=<%=parkingDto.getLongitude()%>";
@@ -130,7 +143,7 @@ for(int i =0;i<list.size();i++){
 		                <div class="panel panel-default">
 		
 							<div id="daumlistmap" style="width:100%;height:650px;"></div>
-							<script src="//apis.daum.net/maps/maps3.js?apikey=4763b9e0f6cbc4102f42cb9f7b0f9167"></script>
+							<script src="//apis.daum.net/maps/maps3.js?apikey=c2d873676f2c4854b2b2c62e165a629d"></script>
 							<script>
 								var mapContainer = document.getElementById('daumlistmap'), // 지도를 표시할 div 
 								    mapOption = {
@@ -141,9 +154,13 @@ for(int i =0;i<list.size();i++){
 								// 지도를 생성한다 
 								var listmap = new daum.maps.Map(mapContainer, mapOption); 					
 								// 마우스 드래그와 모바일 터치를 이용한 지도 이동을 막는다
-								listmap.setDraggable(false);							
+								//listmap.setDraggable(false);							
 								// 마우스 휠과 모바일 터치를 이용한 지도 확대, 축소를 막는다
-								listmap.setZoomable(false);   					
+								listmap.setZoomable(false);   	
+								
+								// 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
+								var zoomControl = new daum.maps.ZoomControl();
+								listmap.addControl(zoomControl, daum.maps.ControlPosition.RIGHT);
 								
 								// 마커를 표시할 위치와 내용을 가지고 있는 객체 배열입니다 
 								var positions = new Array();
@@ -171,17 +188,62 @@ for(int i =0;i<list.size();i++){
 								        position: positions[i].latlng // 마커의 위치
 								    });
 								    var selectedMarker = null;
+								    var contentRemoveable = true;
+								    
+								    //<div style="padding:5px;">'+positions[i].content+'<br>'+content_link+'<br></div>
+								    
+								    var content_design2 = '<div class="wrap">' + 
+						            '    <div class="info">' + 
+						            '        <div class="title">' + 
+						            positions[i].content + 
+						            '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' + 
+						            '        </div>' + 
+						            '        <div class="body">' + 
+						            '            <div class="desc">' +
+						            '                <div>'+content_link+'</div>' + 
+						            '            </div>' + 
+						            '        </div>' + 
+						            '    </div>' +    
+						            '</div>';
+						            
+						            var content_design = 
+						            	'<div style="padding:5px;">'
+						            	+positions[i].content+'<br>'
+						            	+content_link+'<br>'
+						            	+'</div>';
 		
-								 	// 인포윈도우를 생성하고 지도에 표시합니다
-								    var infowindow = new daum.maps.InfoWindow({
+						         // 마커 위에 커스텀오버레이를 표시합니다
+						         // 마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
+						        // var overlay = new daum.maps.CustomOverlay({
+						          //   content: content_design,
+						            // map: listmap,
+						             //position: positions[i].latlng  
+						         //});
+						         
+						      // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+						         //daum.maps.event.addListener(marker, 'click', function() {
+						           /*   overlay.setMap(listmap);
+						         });
+ */
+						         // 커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
+	/* 					         function closeOverlay() {
+						             overlay.setMap(null);     
+						         }
+	 */					         
+
+						            
+					            // 인포윈도우를 생성하고 지도에 표시합니다
+								    /* var infowindow = new daum.maps.InfoWindow({
 								        map: listmap, // 인포윈도우가 표시될 지도
 								        position: positions[i].latlng, 
 								        //content: '<div>'+info_num+""+content_link+'</div>'
 								        content: '<div>'+info_num+""+'</div>'
-								    });
+								    }); */
 								 	
 								    var infowindow2 = new daum.maps.InfoWindow({
-								        content: '<div><p>'+positions[i].content+'</p><p>'+content_link+'</p></div>'
+								    	//content: '<div style="padding:5px;">'+positions[i].content+'<br>'+content_link+'<br></div>',
+								    	content: content_design
+								    	//removable : contentRemoveable
 								    });
 								   
 								    // 아래 코드는 인포윈도우를 지도에서 제거합니다
@@ -189,7 +251,7 @@ for(int i =0;i<list.size();i++){
 
 								    // 마커에 이벤트를 등록하는 함수 만들고 즉시 호출하여 클로저를 만듭니다
 								    // 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
-								    (function(marker, infowindow,infowindow2) {
+								    (function(marker,infowindow2) {
 								        /* // 마커에 mouseover 이벤트를 등록하고 마우스 오버 시 인포윈도우를 표시합니다 
 								        daum.maps.event.addListener(marker, 'mouseover', function() {
 								        	infowindow.close();
@@ -208,7 +270,7 @@ for(int i =0;i<list.size();i++){
 								            // 마커에 상세 인포윈도우를 보여줍니다. 
 								            if (!selectedMarker || selectedMarker !== marker) {
 								                // 현재 클릭된 마커에 상세인포윈도우를 띄웁니다
-								                infowindow.close();
+								                //infowindow.close();
 									        	infowindow2.open(listmap, marker);
 									        	// 클릭된 마커 객체가 null이 아니면
 									            // 클릭된 마커의 이미지를 기본 이미지로 변경하고
@@ -217,12 +279,12 @@ for(int i =0;i<list.size();i++){
 									            selectedMarker = marker;
 								            }else if(selectedMarker == marker){
 								            	infowindow2.close();
-									            infowindow.open(listmap,marker);
+									            //infowindow.open(listmap,marker);
 								            }
 								            
 								        });
 								        
-								    })(marker, infowindow,infowindow2); 
+								    })(marker, infowindow2); 
 								    
 								    info_num++;
 								}
