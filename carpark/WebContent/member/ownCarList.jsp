@@ -12,7 +12,7 @@ if(memberDto != null) {
 %>
 <script type="text/javascript">
 function ownCarView(park_id){
-	alert(park_id+" 눌렀다.");
+	//alert(park_id+" 눌렀다.");
 }
 </script>
 <div id="wrapper">
@@ -31,7 +31,6 @@ function ownCarView(park_id){
 				  		<td width="100" style="color: #FFFFFF"><b>차량 분류</b></td>
 				  		<td style="color: #FFFFFF"><b>등록 번호</b></td>
 				  		<td style="color: #FFFFFF"><b>차량 이름</b></td>
-				  		<td></td>
 				  	</tr>
 				
 <%
@@ -47,7 +46,6 @@ function ownCarView(park_id){
 						<%=memberCarDto.getReg_num() %></label></td>
 						<td><label onclick="javascript:ownCarView('<%=memberCarDto.getModel()%>');">
 						<%=memberCarDto.getModel() %></label></td>
-						<td></td>						
 <%
 		}
 %>

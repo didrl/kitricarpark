@@ -66,9 +66,9 @@ int delete =  (Integer)request.getAttribute("delete");
 
 					<div class="col-lg-6">
 
-						<div class="form-group">
+					<!-- 	<div class="form-group">
 							<label>프로필 사진 선택</label> <input type="file">
-						</div>
+						</div> -->
 
 
 						<div class="form-group">

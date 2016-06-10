@@ -18,7 +18,7 @@ ArrayList<Map<String,String>> availabledate = (ArrayList<Map<String,String>>)ses
 Map<String, String> map =(Map<String,String>)session.getAttribute("searchInfo"); 
 ArrayList<FavoriteDto> favoritelist;
 
-if(map == null){
+if(map == null || parkingDetail==null){
 	%>
 	<script>
 	alert("세션이 종료되었습니다. 다시 시도해주세요.");
