@@ -199,7 +199,7 @@ if(reservationDto != null){
 							<button type="button" class="btn btn-success"  id="mvpaymodalbtn" data-target="#payment">
                   				 코인으로 결제하기 
                				</button>
-               				<!-- 페이팔로 결제하기 -->
+               				<!-- 페이팔로 결제하기 
                				
                				<script async="async" src="https://www.paypalobjects.com/js/external/paypal-button.min.js?merchant=parkingc16+admin@gmail.com" 
 							    data-button="buynow" 
@@ -211,7 +211,7 @@ if(reservationDto != null){
 							    data-tax="0" 
 							    data-callback="http://192.168.0.3:8080/carpark/coin/complete.jsp" 
 							    data-env="sandbox"
-							></script>
+							></script>-->
 				</div><!--  Left panel div End -->
 			</div> 
 			<!-- Left Section End -->
