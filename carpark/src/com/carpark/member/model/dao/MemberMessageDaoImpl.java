@@ -236,7 +236,7 @@ public class MemberMessageDaoImpl implements MemberMessageDao {
 			sql += "mseq, receiver_id, msg_flag \n";
 			sql += "from board b, message m \n";
 			sql += "where b.seq = m.seq \n";
-			sql += "and user_id = ? \n";
+			sql += "and receiver_id = ? \n";
 			if(key != null && !key.isEmpty()) {
 				if(word != null && !word.isEmpty()) {
 					if("subject".equals(key))
