@@ -182,12 +182,11 @@ if(callDto.getpCall_Ok() == 0) {
             </form>
             </div>
             <ul class="pagination">
-            <%=navigator.getNavigator() %>
+            <=navigator.getNavigator() %>
             </ul>
                   
          </nav> -->
-			
-               
+          
       </div>
    </div>
 <!-- ****************************************************************************************************************** -->   

@@ -16,19 +16,15 @@ public class MemberCoinAction implements Action {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
+		HttpSession session = request.getSession();
+		MemberDto memberDto = (MemberDto) session.getAttribute("memberInfo");
+		if (memberDto != null) {
+			MemberDto detailMemberDto = MemberServiceImpl.getMemberService().getMemberDetail(memberDto.getUser_id());
+			session.setAttribute("memberInfo", detailMemberDto);
 
 		return "/coin/coin.jsp";
-
-//		HttpSession session = request.getSession();
-//		MemberDto memberDto = (MemberDto) session.getAttribute("memberInfo");
-//		if (memberDto != null) {
-//			MemberDto detailMemberDto = MemberServiceImpl.getMemberService().getMemberDetail(memberDto.getUser_id());
-//			session.setAttribute("memberInfo", detailMemberDto);
-//			return "/member/coin.jsp";
-//		}else
-//			return "";
-
-
+		}else
+			return "";
 	}
 
 }

@@ -10,7 +10,8 @@
 <%
 String paypal_business = "parkingc16+admin@gmail.com";
 String paypal_cmd = "_xclick";
-String success_url = "http://192.168.12.108/carpark/coin/complete.jsp";
+//String success_url = "http://192.168.12.108/carpark/coin/complete.jsp";
+String success_url = "http://192.168.12.108/carpark/member?act=mvcoin";
 String cancel_url = "http://192.168.12.108/carpark/coin/complete.jsp";
 //sandbox.paypal.com/ IPN setting 으로 대체 
 //String notify_url = "http://192.168.0.3:8080/carpark/coin/complete.jsp";

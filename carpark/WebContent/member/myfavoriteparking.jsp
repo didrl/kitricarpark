@@ -44,7 +44,6 @@ function parkingView(park_id){
 						<%=favoriteDto.getPark_name() %></label></td>
 						<td><label onclick="javascript:parkingView('<%=favoriteDto.getPark_id()%>');">
 						<%=favoriteDto.getOwner_id() %></label></td>
-						<td></td>						
 <%
 		}
 %>
@@ -64,7 +63,7 @@ function parkingView(park_id){
 %>
 
 
-			<!-- 페이지 네비게이션/검색 -->
+			<!-- 페이지 네비게이션/검색
 			<nav align="center">
 				<div class="form-group">
 				<form class="form-inline" name="searchForm" method="get" action="">
@@ -97,7 +96,7 @@ function parkingView(park_id){
 					    </a>
 					</li>
 				</ul>
-			</nav>
+			</nav> -->
 
 					
 		</div>
