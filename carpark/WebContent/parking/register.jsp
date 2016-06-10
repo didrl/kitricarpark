@@ -5,6 +5,8 @@
 <%@ include file="/common/header/init.jsp" %>
 <%@ include file="/common/side.jsp" %>
 
+ <script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=4763b9e0f6cbc4102f42cb9f7b0f9167&libraries=services"></script>
+
 <!-- ************************************************************************************ -->
 <!-- ************************************************************************************ -->	
 <%if(memberDto != null){ %>

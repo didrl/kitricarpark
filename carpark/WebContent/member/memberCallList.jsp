@@ -166,7 +166,7 @@ if(callDto.getpCall_Ok() == 0) {
 %>
 
 
-         <!-- 페이지 네비게이션/검색 -->
+         <!-- 페이지 네비게이션/검색
          <nav align="center">
             <div class="form-group">
             <form class="form-inline" name="searchForm" method="get" action="">
@@ -182,10 +182,10 @@ if(callDto.getpCall_Ok() == 0) {
             </form>
             </div>
             <ul class="pagination">
-            <%=navigator.getNavigator() %>
+            <=navigator.getNavigator() %>
             </ul>
                   
-         </nav>
+         </nav> -->
 
                
       </div>
