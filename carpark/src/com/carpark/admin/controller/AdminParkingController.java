@@ -20,24 +20,26 @@ public class AdminParkingController extends HttpServlet {
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String act = request.getParameter("act");
-		int bcode = NumberCheck.nullToZero(request.getParameter("bcode"));
+		String auth = StringCheck.nullToBlank(request.getParameter("auth"));
 		int pg = NumberCheck.nullToOne(request.getParameter("pg"));
 		String key = StringCheck.nullToBlank(request.getParameter("key"));
 		String word = StringCheck.nullToBlank(request.getParameter("word"));
 		
 		String path = "/index.jsp";
-		String queryString = "?bcode=" + bcode + "&pg=" + pg + "&key=" + key + "&word=" + Encoder.isoToUtf(word);
+		String queryString = "?auth=" + auth + "&pg=" + pg + "&key=" + key + "&word=" + Encoder.isoToUtf(word);
 		
 		if("adminParkingSearch".equals(act)) {
 			path = AdminActionFactory.getAdminParkingSearchAction().execute(request, response);
 			PageMove.forward(request, response, path + queryString);
 			
 		} else if("adminParkingRegister".equals(act)) {
-			path = AdminActionFactory.getAdminParkingRegisterAction().execute(request, response);
+			AdminActionFactory.getAdminParkingRegisterAction().execute(request, response);
+			path = AdminActionFactory.getAdminParkingListAction().execute(request, response);
 			PageMove.forward(request, response, path + queryString);
 			
 		} else if("adminParkingModify".equals(act)) {
-			path = AdminActionFactory.getAdminParkingModifyAction().execute(request, response);
+			AdminActionFactory.getAdminParkingModifyAction().execute(request, response);
+			path = AdminActionFactory.getAdminParkingListAction().execute(request, response);
 			PageMove.forward(request, response, path + queryString);
 			
 		} else if("adminParkingView".equals(act)) {
@@ -55,10 +57,16 @@ public class AdminParkingController extends HttpServlet {
 		} else if("adminParkingMvModify".equals(act)) {
 			AdminActionFactory.getAdminParkingViewAction().execute(request, response);
 			path = "/admin/parking/modify.jsp";
-			PageMove.forward(request, response, path);
+			PageMove.forward(request, response, path + queryString);
 			
 		} else if("adminParkingAuth".equals(act)) {
-			//인증
+			AdminActionFactory.getAdminParkingAuthAction().execute(request, response);
+			path = AdminActionFactory.getAdminParkingAuthListAction().execute(request, response);
+			PageMove.forward(request, response, path + queryString);
+		} else if("adminParkingDelete".equals(act)) {
+			AdminActionFactory.getAdminParkingDeleteAction().execute(request, response);
+			path = AdminActionFactory.getAdminParkingListAction().execute(request, response);
+			PageMove.forward(request, response, path + queryString);
 		}
 	}
 

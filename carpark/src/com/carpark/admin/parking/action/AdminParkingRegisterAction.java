@@ -45,7 +45,7 @@ public class AdminParkingRegisterAction implements Action {
 			parkingDto.setPark_name(request.getParameter("parkName"));
 			
 			String coordinate = request.getParameter("coordinate");//지도에서 가져온 좌표
-			if(coordinate != null) {
+			if(coordinate != null && !coordinate.isEmpty()) {
 				StringTokenizer st = new StringTokenizer(coordinate, ",");//lat, lng로 나눔
 				String latitude = st.nextToken().substring(1);// ( 제거 
 				String longitude = st.nextToken().replace(")", "").trim();// ) 제거
@@ -75,20 +75,11 @@ public class AdminParkingRegisterAction implements Action {
 			parkingDto.setVisit(0);
 			
 			parkingDto.setEmd_code(11650101);
-			
-			List<ParkingDetailDto> list = AdminParkingServiceImpl.getAdminParkingService().parkingList(1, key, word, "1");
-			request.setAttribute("parkingList", list);
-					
-			PageNavigator navigator = CommonServiceImpl.getCommonService().getPageNavigatorAdminParking(1, key, word, "1");
-			navigator.setRoot(request.getContextPath());
-			navigator.setNavigator("adminParkList");
-			request.setAttribute("navigator", navigator);
-			
-			return "/admin/parking/list.jsp";
-			
-		} else {
-			return "index.jsp";
+
+			AdminParkingServiceImpl.getAdminParkingService().parkingRegister(parkingDto);
 		}
+		
+		return "";
 	}
 
 }

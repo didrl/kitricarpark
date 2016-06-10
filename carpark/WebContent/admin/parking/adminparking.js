@@ -25,6 +25,9 @@ function adminParkingView(parkId) {
 function adminParkingDelete(parkId) {
 	document.common.act.value = "adminParkingDelete";
 	document.common.parkId.value = parkId;
+	document.common.key.value = "park_public";
+	document.common.word.value = "1";
+	document.common.auth.value = "1";
 	document.common.action = "/carpark/adminparking"
 	document.common.submit();
 	   
@@ -53,11 +56,11 @@ function adminSelectAddress(address){
 	        var coords = new daum.maps.LatLng(result.addr[0].lat, result.addr[0].lng);
 	        opener.document.adminParkingRegisterForm.coordinate.value = coords;
 	        opener.document.adminParkingRegisterForm.parkAddress.value = address;
-	        self.close();
 			
 	    } else {
-	    	alert("검색 실패");
+	    	
 	    }
+	    self.close();
 	}); 
 }
 
@@ -136,6 +139,9 @@ function parkAuthList(pg) {
 function adminParkingAuth(parkId) {
 	document.common.act.value = "adminParkingAuth";
 	document.common.parkId.value = parkId;
+	document.common.pg.value = pg;
+	document.common.word.value = "0";
+	document.common.auth.value = "0";
 	document.common.action = "/carpark/adminparking";
 	document.common.submit();
 }

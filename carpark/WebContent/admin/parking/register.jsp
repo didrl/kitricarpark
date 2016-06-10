@@ -5,6 +5,7 @@
 <%@ include file="/common/header/init.jsp" %>
 <%@include file="/admin/common/sidebar.jsp" %>
 
+
 <!-- ************************************************************************************ -->
 <!-- ************************************************************************************ -->	
 <%if(memberDto != null){ %>
@@ -18,7 +19,8 @@
 			<div class="col-md-10">
 			<form name="adminParkingRegisterForm" method="post" action="">
 				<input type="hidden" name="act" value="adminParkingRegister">				
-				
+				<input type="hidden" name="pg" value="<%=pg%>">				
+				<input type="hidden" name="auth" value="<%=auth%>">
 				
 				<div class="row">
 					<div class="col-md-2">

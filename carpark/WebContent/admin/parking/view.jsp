@@ -226,6 +226,18 @@ if("0" == parkingDto.getHoli_pay_yn()) {
 				<div class="row">
 						<p align="center">
 		  					<button type="button" class="btn btn-default btn-lg" onclick="javascript:adminParkList('<%=pg%>');">목록</button>
+<%
+if(parkingDto.getVisit() == 0) {
+%>
+							<button type="button" class="btn btn-default btn-lg" onclick="javascript:adminParkingAuth('<%=parkingDto.getPark_id()%>');"> 인증 </button>
+<%
+} else {
+%>
+							<button type="button" class="btn btn-default btn-lg" onclick="javascript:adminParkingMvModify('<%=parkingDto.getPark_id()%>');"> 수정 </button>
+<%
+}
+%>
+		  					
 		  					<button type="button" class="btn btn-default btn-lg" onclick="javascript:adminParkingDelete('<%=parkingDto.getPark_id()%>');">삭제</button>
 						</p>
 				</div>

@@ -22,7 +22,9 @@ if(memberDto != null){
 			<div class="col-md-10">
 			<form name="adminParkingModifyForm" method="post" action="">
 				<input type="hidden" name="act" value="adminParkingModify">				
-				<input type="hidden" name="parkId" value="<%=parkingDto.getPark_id()%>">				
+				<input type="hidden" name="parkId" value="<%=parkingDto.getPark_id()%>">	
+				<input type="hidden" name="pg" value="<%=pg%>">				
+				<input type="hidden" name="auth" value="<%=auth%>">			
 				
 				
 				<div class="row">

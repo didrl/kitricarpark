@@ -146,10 +146,6 @@ public class AdminParkingDaoImpl implements AdminParkingDao {
 			sql += "	into parking (park_id, park_name, park_capacity, owner_id, latitude, "
 										+ "longitude, emd_code, content, detail_addr, park_public) \n";
 			sql += "	values (? ,? ,? ,? ,? ,?, ?, ?, ?, ?) \n";
-			sql += "	into parking_facility (park_id, facility, feature) \n";
-			sql += "	values (?, ?, ?) \n";
-			sql += "	into parking_img (park_id, file_name, file_path) \n";
-			sql += "	values (?, ?, ?) \n";
 			sql += "	into parking_detail (park_id, park_flag, PAY_YN, satur_pay_yn, holi_pay_yn, "
 												+ "fulltime_monthly_pay, park_rate, "
 												+ "park_time_rate, add_park_rate, day_max_pay, park_visit) \n";
@@ -169,14 +165,6 @@ public class AdminParkingDaoImpl implements AdminParkingDao {
 			pstmt.setString(++idx, parkingDetailDto.getContent());
 			pstmt.setString(++idx, parkingDetailDto.getDetailAddr());
 			pstmt.setInt(++idx, parkingDetailDto.getPark_public());
-			//parking_facility table
-			pstmt.setInt(++idx, parkingDetailDto.getPark_id());
-			pstmt.setString(++idx, parkingDetailDto.getFacility());
-			pstmt.setString(++idx, parkingDetailDto.getFeature());
-			//parking_img table
-			pstmt.setInt(++idx, parkingDetailDto.getPark_id());
-			pstmt.setString(++idx, parkingDetailDto.getImg_file_name());
-			pstmt.setString(++idx, parkingDetailDto.getImg_file_path());
 			//parking_detail table
 			pstmt.setInt(++idx, parkingDetailDto.getPark_id());
 			pstmt.setInt(++idx, parkingDetailDto.getPark_flag());
@@ -198,6 +186,28 @@ public class AdminParkingDaoImpl implements AdminParkingDao {
 			DBClose.close(conn, pstmt);
 		}
 
+		
+	}
+
+	@Override
+	public void adminParkingAuth(String parkId) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			conn = DBConnection.makeConnection();
+			String sql = "";
+			sql += "update parking_detail \n";
+			sql += "set park_visit = 1 \n";
+			sql += "where park_id = ? ";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, parkId);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose.close(conn, pstmt);
+		}
 		
 	}
 	

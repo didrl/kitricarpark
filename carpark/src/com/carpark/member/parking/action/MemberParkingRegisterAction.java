@@ -43,7 +43,7 @@ public class MemberParkingRegisterAction implements Action {
 		parkingDto.setPark_name(request.getParameter("parkName"));
 		
 		String coordinate = request.getParameter("coordinate");//지도에서 가져온 좌표
-		if(coordinate != null) {
+		if(coordinate != null && !coordinate.isEmpty()) {
 		StringTokenizer st = new StringTokenizer(coordinate, ",");//lat, lng로 나눔
 		String latitude = st.nextToken().substring(1);// ( 제거 
 		String longitude = st.nextToken().replace(")", "").trim();// ) 제거
