@@ -107,7 +107,7 @@ if(messageDto.getMsgFlag() == 0) {
 						<option value="user_id">보낸사람</option>
 					</select>
 					<input type="text" name="word" id="word" value="">
-					<input type="button" class="btn btn-default" value="검색" onclick="javascript:messageSearch();">
+					<input type="button" class="btn btn-default" value="검색" onclick="javascript:messageSearchReceive();">
 				</form>
 				</div>
 				<ul class="pagination">
