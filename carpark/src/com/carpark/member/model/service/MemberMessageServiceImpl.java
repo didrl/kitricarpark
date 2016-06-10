@@ -59,6 +59,7 @@ public class MemberMessageServiceImpl implements MemberMessageService {
 		int start = end - BoardConstance.BOARD_LIST_SIZE;
 		
 		map.put("receiveId", receiveId);
+		System.out.println("controller" + receiveId);
 		map.put("start", start + "");
 		map.put("end", end + "");
 		map.put("key", key);
