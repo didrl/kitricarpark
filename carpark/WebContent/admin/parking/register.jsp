@@ -4,7 +4,7 @@
 <%@ include file="/common/common.jsp" %>
 <%@ include file="/common/header/init.jsp" %>
 <%@include file="/admin/common/sidebar.jsp" %>
-
+<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=4763b9e0f6cbc4102f42cb9f7b0f9167&libraries=services"></script>
 
 <!-- ************************************************************************************ -->
 <!-- ************************************************************************************ -->	
@@ -68,9 +68,9 @@
 					<div class="col-md-10">
 						<div class="form-group">
 							<input type="text" name="parkAddress" class="form-control">
-							<input type="hidden" name="coordinate" class="form-control">  
+							<input type="text" name="coordinate" class="form-control">  
 						</div>
-							<button type="button" class="btn btn-default" onclick="javascript:adminParkingSearchWindow();">검색</button>
+							<button type="button" class="btn btn-default" onclick="javascript:admintest();">검색</button>
 					</div>
 				</div><hr>
 				
