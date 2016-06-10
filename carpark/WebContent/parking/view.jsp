@@ -66,24 +66,6 @@ if(0 == parkingDto.getPark_flag()) {
 				
 				<div class="row">
 					<div class="col-md-2">
-						<b>보유시설</b><br>
-					</div>
-					<div class="col-md-10">
-						<%=parkingDto.getFacility() %>
-					</div>
-				</div><hr>
-				
-				<div class="row">
-					<div class="col-md-2">
-						<b>보유시설상세</b><br>
-					</div>
-					<div class="col-md-10">
-						<%=parkingDto.getFeature() %>
-					</div>
-				</div><br>
-				
-				<div class="row">
-					<div class="col-md-2">
 						<b>평일</b><br>
 					</div>
 					<div class="col-md-10">

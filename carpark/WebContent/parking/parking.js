@@ -103,3 +103,22 @@ function parkingMvModify(parkId) {
 	document.common.action = "/carpark/memberparking";
 	document.common.submit();
 }
+
+function test() {
+	var addr = document.parkRegisterForm.parkAddress.value;
+	var geocoder = new daum.maps.services.Geocoder();
+	
+	geocoder.addr2coord(addr, function(status, result) {
+
+	    // 정상적으로 검색이 완료됐으면 
+	    if (status === daum.maps.services.Status.OK) {
+	
+	        var coords = new daum.maps.LatLng(result.addr[0].lat, result.addr[0].lng);
+	        document.parkRegisterForm.coordinate.value = coords;
+			
+	    } else {
+	    	alert("주소를 정확하게 입력하세요");
+	    }
+	}); 
+}
+
