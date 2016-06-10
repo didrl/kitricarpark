@@ -8,37 +8,107 @@
 <%@include file="/common/side.jsp" %>
 
 <%
+String paypal_business = "parkingc16+admin@gmail.com";
+String paypal_cmd = "_xclick";
+String success_url = "http://192.168.0.3:8080/carpark/coin/complete.jsp";
+String cancel_url = "http://192.168.0.3:8080/carpark/coin/complete.jsp";
+//sandbox.paypal.com/ IPN setting 으로 대체 
+//String notify_url = "http://192.168.0.3:8080/carpark/coin/complete.jsp";
+String paypal_currencyType = "USD";
+double paypal_amount = 0;
+String paypal_itemName = "코인충전";
+String paypal_itemNumber = "";
+
+
 if(memberDto != null) {
-List<MessageDto> list = (List<MessageDto>) request.getAttribute("receiveList");
 CoinDto coindto = (CoinDto) request.getAttribute("coinChargeInfo");
+paypal_amount = coindto.getCoin()/10;
 %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-	<div id="order_container">
-        <form method="post" action="https://www.sandbox.paypal.com/cgi-bin/webscr">
-            구매요청 : <input type="index" name="cmd" value="_xclick" size="50" /><br />
-            상점계정 : <input type="index" name="business" value="parkingc16-facilitator@gmail.com" size="50" /><br />
-            금액 : <input type="index" name="amount" value=<%=coindto.getCoin()%> size="50" /><br />
-            상품이름 : <input type="index" name="item_name" value="parkTicket" size="50" /><br />
-            결제 후 이동되는 페이지 : <input type="index" name="return" value="http://localhost:8080/carpark/coin/coin.jsp" size="50" /><br />
-            IPN메세지 받을 페이지 : <input type="index" name="notify_url" value="http://localhost:8080/carpark/coin/complete.jsp" size="50" /><br />
-            결제 취소 페이지 : <input type="index" name="cancel_return" value="http://localhost:8080/carpark/coin/complete.jsp" size="50" /><br />
-            인코딩 : <input type="index" name="charset" value="UTF-8" size="50" /><br />
-            <input type="index" name="currency_type" value="USD" size="50" /><br />
-            <input type="submit" value="pay" size="50" />
-        </form>
-    </div>
-</body>
-</html>
+<script type="text/javascript">
+        function init_orderid()
+        {
+            var frm = document.paypal_form;
+            var url = "https://www.sandbox.paypal.com/cgi-bin/webscr";
+            frm.action = url;
+            frm.submit();
+        }
+</script>
+
+
+<div id="wrapper">
+
+<!-- ****************************************************************************************************************** -->	
+       
+        <div id="page-wrapper">
+
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <div class="row">
+					<div class="col-lg-12">
+						<h1 class="page-header">
+							코인 충전
+						</h1>
+
+					</div>
+				</div>
+
+
+				<div class="row">
+					<div class="col-lg-12">
+							<!-- p1: my coin -->
+							<div class="form-group">
+
+								<div class="col-lg-4">
+									<label><%=memberDto.getUser_id()%>님의 코인</label>
+								</div>
+								<div class="col-lg-6">
+									<p class="breadcrumb">보유한 코인</p>
+									<p class="form-control-static"><%=memberDto.getCoin()%> 코인</p>
+									<p class="help-block">코인 사용 안내</p>
+								</div>
+							</div>
+							<!-- p1: my coin end-->
+							<div class="form-group">
+							<div class="col-lg-4">
+									<label>충전할 코인</label>
+								</div>
+								<div class="col-lg-6">
+									<p class="breadcrumb">충전내역 확인</p>
+								
+								
+									<div id="order_container">
+								        <form class="form-horizontal" method="post" action="https://www.sandbox.paypal.com/cgi-bin/webscr">
+								        	<input type="hidden" name="charset" value="UTF-8" size="50" />
+								        	<input type="hidden" name="cmd" value=<%=paypal_cmd%> size="50" />
+								        	<input type="hidden" name="business" value=<%=paypal_business%> size="50" />
+								            <input type="hidden" name="return" value=<%=success_url%> size="50" />
+								            <input type="hidden" name="cancel_return" value=<%=cancel_url%> size="50" />         
+								            <input type="hidden" name="currency_type" value=<%=paypal_currencyType%> size="50" />
+								            <input type="hidden" name="amount" value=<%=paypal_amount%> size="50" />
+								            <input type="hidden" name="item_name" value=<%=paypal_itemName%> size="50" />
+								            <center>결 제 금 액 : USD <%=paypal_amount%></center>
+								            <br>
+								            <center>상 품 내 역 : <%=paypal_itemName%></center>
+								            <br>
+								            <center><input class="btn btn-default" type="submit" value="충전하기" size="50" /></center>
+								        </form>
+								    </div>
+								   </div>
+							    
+							 </div>
+							
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
   <!-- Footer -->
   <%@include file="/common/footer.jsp" %>
   <!-- /Footer -->
- <%
+
+<%
 }else{
 %>
 <script type="text/javascript">
@@ -46,5 +116,5 @@ alert("잘못된 접근입니다. 다시 시도해주세요.");
 document.location.href = "<%=root%>/index.jsp";
 </script>
 <%
-}
+} 
 %>

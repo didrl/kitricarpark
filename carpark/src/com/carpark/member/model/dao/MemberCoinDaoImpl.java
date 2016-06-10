@@ -56,27 +56,25 @@ public class MemberCoinDaoImpl implements MemberCoinDao{
 			int cid = 0;
 			Connection conn = null;
 			PreparedStatement pstmt = null;
-			//PreparedStatement pstmt2 = null;
-			coin += coindto.getCoin();
+			
 			
 			try {
 				conn = DBConnection.makeConnection();
-				//conn.setAutoCommit(false);
+				conn.setAutoCommit(false);
 				String sql1 = "";
 				String sql2 = "";
 				
 				sql1 += "insert \n";
 				sql1 += "into coin (user_id,coin,cid,cflag,cdate) \n";
-				sql1 += "values (?, ?, ?,2,sysdate) \n";
+				sql1 += "values (?, ?, coin_num_seq.nextval,2,sysdate) \n";
 				pstmt = conn.prepareStatement(sql1);
 				int idx = 0;
 				pstmt.setString(++idx, coindto.getUser_id());
 				pstmt.setInt(++idx, coindto.getCoin());
-				pstmt.setInt(++idx, coindto.getCid());
 				pstmt.executeUpdate();
 				//conn.commit();
 				
-				pstmt = null;
+				pstmt.close();
 			
 				sql2 += "update member \n";
 				sql2 += "set coin = ? \n";
@@ -87,7 +85,8 @@ public class MemberCoinDaoImpl implements MemberCoinDao{
 				pstmt.setString(++idx, coindto.getUser_id());
 				pstmt.executeUpdate();
 				
-				//cid = coindto.getCid();
+				conn.commit();
+				
 			} catch (SQLException e) {
 				e.printStackTrace();
 			} finally {

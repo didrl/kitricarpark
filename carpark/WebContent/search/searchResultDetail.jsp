@@ -103,7 +103,7 @@ if(memberDto != null){
 <!-- Damu map -->
 <link rel="stylesheet" href="/carpark/css/roadview.css">
 <link rel="stylesheet" href="/carpark/css/aroundinfo.css">
-<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=4763b9e0f6cbc4102f42cb9f7b0f9167&libraries=services"></script>
+<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=c2d873676f2c4854b2b2c62e165a629d&libraries=services"></script>
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -319,6 +319,35 @@ function setfavorite(){
 					<a href="원본사진"><img src="/carpark/img/tmpcar/car1.jpg"></a>
 					<a href="원본사진"><img src="/carpark/img/tmpcar/car2.jpg"></a>
 					<a href="원본사진"><img src="/carpark/img/tmpcar/car3.jpg"></a>
+					<!-- 
+					<div id="roadview" style="width:100%;height:300px"></div>
+					 -->
+					<script>
+					/* var rvContainer = document.getElementById('roadview'); //로드뷰를 표시할 div
+					var rv = new daum.maps.Roadview(rvContainer); //로드뷰 객체
+					var rvClient = new daum.maps.RoadviewClient(); //좌표로부터 로드뷰 파노ID를 가져올 로드뷰 helper객체
+
+					//지도의 중심좌표와 가까운 로드뷰의 panoId를 추출하여 로드뷰를 띄운다.
+					rvClient.getNearestPanoId(mapCenter, 50, function(panoId) {
+					    rv.setPanoId(panoId, mapCenter); //panoId와 중심좌표를 통해 로드뷰 실행
+					});
+					
+					daum.maps.event.addListener(rv, 'init', function() {
+
+					    
+
+					    //rvCustomOverlay.setAltitude(2); //커스텀 오버레이의 고도값을 설정합니다.(로드뷰 화면 중앙이 0입니다)
+					    rvCustomOverlay.setMap(rv);
+
+					    var projection = rv.getProjection(); // viewpoint(화면좌표)값을 추출할 수 있는 projection 객체를 가져옵니다.
+					    
+					    // 커스텀오버레이의 position과 altitude값을 통해 viewpoint값(화면좌표)를 추출합니다.
+					    var viewpoint = projection.viewpointFromCoords(rvCustomOverlay.getPosition(), rvCustomOverlay.getAltitude());
+
+					    rv.setViewpoint(viewpoint); //커스텀 오버레이를 로드뷰의 가운데에 오도록 로드뷰의 시점을 변화 시킵니다.
+					}); */
+					</script>
+					
 				</div>
 				
 						<div class="panel panel-default">
@@ -352,6 +381,9 @@ var mapContainer2 = document.getElementById('aroundmap'), // 지도를 표시할
 
 // 지도를 생성합니다    
 var aroundmap = new daum.maps.Map(mapContainer2, mapOption2); 
+
+var zoomControl2 = new daum.maps.ZoomControl();
+aroundmap.addControl(zoomControl2, daum.maps.ControlPosition.RIGHT);
 
 //지도에 마커를 생성하고 표시한다
 var marker2 = new daum.maps.Marker({

@@ -51,7 +51,6 @@ public class MemberReservationMoveAction implements Action {
 		reservationDto.setPark_id(park_id);
 		reservationDto.setPark_name(request.getParameter("park_name"));
 		ParkingDetailDto parkingDetailDto = MemberServiceImpl.getMemberService().getParkingDetail_info(request.getParameter("park_id"));
-		
 		 
 		session.setAttribute("reservationDto", reservationDto);
 		session.setAttribute("carinfo", carinfo);
