@@ -23,7 +23,7 @@ session.setAttribute("parkingDetailDto", parkingDetailDto);
     data-currency="USD" 
     data-shipping="0" 
     data-tax="0" 
-    data-callback="http://192.168.0.3:8080/carpark/coin/complete.jsp" 
+    data-callback="http://192.168.12.108/carpark/coin/complete.jsp" 
     data-env="sandbox"
 ></script>
 
