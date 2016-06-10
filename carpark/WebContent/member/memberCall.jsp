@@ -16,8 +16,8 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    
-    <script type="text/javascript">
+<script src="//apis.daum.net/maps/maps3.js?apikey=4763b9e0f6cbc4102f42cb9f7b0f9167&libraries=services"></script>    
+<script type="text/javascript">
 function goSearchResult() {
 	if(document.getElementById("citysearch").value  == "") {
 		alert("검색하실 도시의 이름을 입력해주세요.");
@@ -33,8 +33,6 @@ function goSearchResult() {
 	document.searchForm.submit();
 	}
 }
-
-
 </script>
 <br><br><br><br>
 	
@@ -113,8 +111,9 @@ function goSearchResult() {
                 <div class="thumbnail">
 		                <div class="panel panel-default">
 							<div id="daumlistmap" style="width:100%;height:650px;"></div>
-							<script src="//apis.daum.net/maps/maps3.js?apikey=4763b9e0f6cbc4102f42cb9f7b0f9167&libraries=services"></script>
+							<!--  <script src="//apis.daum.net/maps/maps3.js?apikey=4763b9e0f6cbc4102f42cb9f7b0f9167&libraries=services"></script>-->
 							<script>
+							//검색후 지도
 							function addrMap(data){
 								var mapContainer = document.getElementById('daumlistmap'), // 지도를 표시할 div 
 								    mapOption = {
@@ -128,7 +127,8 @@ function goSearchResult() {
 								
 								// 주소-좌표 변환 객체를 생성합니다
 								var geocoder = new daum.maps.services.Geocoder();
-
+								if(data!=null){
+									
 								// 주소로 좌표를 검색합니다
 								geocoder.addr2coord(data, function(status, result) {
 
@@ -154,20 +154,63 @@ function goSearchResult() {
 								     // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
 								        map.setCenter(coords);
 								    } 
-								});    
+								}); 
+								}
 							}
+							
+						//초기 지도
+						
+						var mapContainer = document.getElementById('daumlistmap'), // 지도를 표시할 div 
+						    mapOption = {
+						        center: new daum.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
+						        level: 6, // 지도의 확대 레벨
+						        mapTypeId : daum.maps.MapTypeId.ROADMAP // 지도종류
+						    }; 					
+
+						// 지도를 생성합니다    
+						var map = new daum.maps.Map(mapContainer, mapOption); 
+
+						// 주소-좌표 변환 객체를 생성합니다
+						var geocoder = new daum.maps.services.Geocoder();
+							
+						// 주소로 좌표를 검색합니다
+						geocoder.addr2coord('구로구 구로동', function(status, result) {
+
+						    // 정상적으로 검색이 완료됐으면 
+						     if (status === daum.maps.services.Status.OK) {
+
+						        var coords = new daum.maps.LatLng(result.addr[0].lat, result.addr[0].lng);
+								
+						  
+						        
+						        // 결과값으로 받은 위치를 마커로 표시합니다
+						        var marker = new daum.maps.Marker({
+						            map: map,
+						            position: coords
+						        });
+
+						        // 인포윈도우로 장소에 대한 설명을 표시합니다
+						        var infowindow = new daum.maps.InfoWindow({
+						            content: '<div style="padding:5px;">제보주차장</div>'
+						        });
+						        infowindow.open(map, marker);
+						        
+						     // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+						        map.setCenter(coords);
+						    } 
+						}); 
 							</script>
 						</div>
 						
 						
 	                    <div class="caption-full">
-	                        <h4><a href="#">Product Name</a>
+	                        <h4><a href="#">누구나 주차장 위치를 쉽게 찾아 제보할 수 있습니다.</a>
 	                        </h4>
 	                        <p>See more snippets like these online store reviews at <a target="_blank" href="http://bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.</p>
 	                        <p>Want to make these reviews work? Check out
-	                            <strong><a href="http://maxoffsky.com/code-blog/laravel-shop-tutorial-1-building-a-review-system/">this building a review system tutorial</a>
+	                            <strong><a href="http://carpark.com"></a>
 	                            </strong>over at maxoffsky.com!</p>
-	                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+	                       
 	                    </div>
 	                    <div class="ratings">
 	                        <p class="pull-right">3 reviews</p>
@@ -182,60 +225,6 @@ function goSearchResult() {
 	                    </div>
 	                </div>
                 </div>
-
-                <div class="well">
-
-                    <div class="text-right">
-                        <a class="btn btn-success">Leave a Review</a>
-                    </div>
-
-                    <hr>
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                            Anonymous
-                            <span class="pull-right">10 days ago</span>
-                            <p>This product was great in terms of quality. I would definitely buy another!</p>
-                        </div>
-                    </div>
-
-                    <hr>
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                            Anonymous
-                            <span class="pull-right">12 days ago</span>
-                            <p>I've alredy ordered another one!</p>
-                        </div>
-                    </div>
-
-                    <hr>
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                            Anonymous
-                            <span class="pull-right">15 days ago</span>
-                            <p>I've seen some better than this, but not at this price. I definitely recommend this item.</p>
-                        </div>
-                    </div>
-
-                </div>
-
             </div>
 
    
@@ -388,7 +377,8 @@ function selected(data){
 	$("#addrSearch").modal("hide");
 } 
 </script>
-			
+
+
 		
 		
 <%@ include file="/common/footer.jsp" %>	

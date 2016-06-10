@@ -269,6 +269,7 @@ public class AdminReportDaoImpl implements AdminReportDao {
 			while(rs.next()) {
 				ReportDto reportDto = new ReportDto();
 				reportDto.setSeq(rs.getInt("seq"));
+				reportDto.setUserID(rs.getString("user_id"));
 				reportDto.setBcode(rs.getInt("bcode"));
 				reportDto.setSubject(rs.getString("subject"));
 				reportDto.setContent(rs.getString("contents"));

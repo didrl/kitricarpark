@@ -36,11 +36,11 @@ if(memberDto != null) {
             <div class="table">
               <table class="table table-hover" style="text-align:center">
  					<tr>
-				  		<td width="150"><b>보낸사람</b></td>
-				  		<td><b>제목</b></td>
-				  		<td width="200"><b>시간</b></td>
-				  		<td width="50"><b>확인</b></td>
-				  		<td width="50"></td>
+				  		<td width="150" style="background-color: #00cc00" align="center"><b style="color: #FFFFFF">보낸사람</b></td>
+				  		<td style="background-color: #00cc00" align="center"><b style="color: #FFFFFF">제목</b></td>
+				  		<td width="200" style="background-color: #00cc00" align="center"><b style="color: #FFFFFF">시간</b></td>
+				  		<td width="50" style="background-color: #00cc00" align="center"><b style="color: #FFFFFF">확인</b></td>
+				  		<td width="50" style="background-color: #00cc00" align="center"></td>
 				  	</tr>
             
 <%

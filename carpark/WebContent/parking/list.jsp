@@ -24,7 +24,7 @@ if(memberDto != null) {
                  <tr>
                     <td>주차장 이름</td>
                     <td width="50">평점</td>
-                    <td width="80">사용가능</td>
+                    <td width="100">사용가능</td>
                     <td width="150"></td>
                  </tr>
             

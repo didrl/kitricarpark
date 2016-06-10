@@ -240,7 +240,7 @@ public class CommonDaoImpl implements CommonDao {
 		} finally {
 			DBClose.close(conn, pstmt, rs);
 		}
-		
+		System.out.println(count);
 		return count;
 	}
 	
