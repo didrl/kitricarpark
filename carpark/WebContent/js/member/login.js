@@ -114,6 +114,7 @@ function modifySeq(seq) {
 }
 
 function secession(id) {
+	alert("탈퇴되었습니다.");
 	document.location.href=root+"/member?act=memberSecession&id="+id;
 }
 
