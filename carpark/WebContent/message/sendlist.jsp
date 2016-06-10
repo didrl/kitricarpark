@@ -100,7 +100,7 @@ if(messageDto.getMsgFlag() == 0) {
 						<option value="receiver_id">받는사람</option>
 					</select>
 					<input type="text" name="word" id="word" value="">
-					<input type="button" class="btn btn-default" value="검색" onclick="javascript:messageSearch();">
+					<input type="button" class="btn btn-default" value="검색" onclick="javascript:messageSearchSend();">
 				</form>
 				</div>
 					
