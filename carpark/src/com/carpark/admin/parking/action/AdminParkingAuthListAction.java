@@ -36,7 +36,7 @@ public class AdminParkingAuthListAction implements Action {
 				
 		PageNavigator navigator = CommonServiceImpl.getCommonService().getPageNavigatorAdminParking(pg, key, word, auth);
 		navigator.setRoot(request.getContextPath());
-		navigator.setNavigator("adminParkList");
+		navigator.setNavigator("parkAuthList");
 		request.setAttribute("navigator", navigator);
 		
 		return "/admin/parking/authlist.jsp";

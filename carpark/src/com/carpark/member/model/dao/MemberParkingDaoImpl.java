@@ -256,21 +256,21 @@ public class MemberParkingDaoImpl implements MemberParkingDao {
 			conn.commit();
 			pstmt.close();
 			
-//			sql = "delete parking_img \n";
-//			sql += "where park_id = ?";
-//			pstmt = conn.prepareStatement(sql);
-//			pstmt.setInt(1, parkId);
-//			pstmt.executeUpdate();
-//			conn.commit();
-//			pstmt.close();
-//			
-//			sql = "delete parking_facility \n";
-//			sql += "where park_id = ?";
-//			pstmt = conn.prepareStatement(sql);
-//			pstmt.setInt(1, parkId);
-//			pstmt.executeUpdate();
-//			conn.commit();
-//			pstmt.close();
+			sql = "delete parking_img \n";
+			sql += "where park_id = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, parkId);
+			pstmt.executeUpdate();
+			conn.commit();
+			pstmt.close();
+			
+			sql = "delete parking_facility \n";
+			sql += "where park_id = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, parkId);
+			pstmt.executeUpdate();
+			conn.commit();
+			pstmt.close();
 			
 			sql = "delete parking \n";
 			sql += "where park_id = ?";
@@ -350,7 +350,7 @@ public class MemberParkingDaoImpl implements MemberParkingDao {
 			sql += "select p.park_id, park_name, park_capacity, owner_id, latitude, \n";
 			sql += "		longitude, content, detail_addr, \n";
 			sql += "		park_flag, park_avgPoint, get_status, cur_parking, PAY_YN, satur_pay_yn, holi_pay_yn,\n";
-			sql += "		fulltime_monthly_pay, park_rate, park_time_rate, add_park_rate, day_max_pay \n";
+			sql += "		fulltime_monthly_pay, park_rate, park_time_rate, add_park_rate, day_max_pay, park_visit \n";
 			sql += "from parking p, parking_detail d \n";
 			sql += "where p.park_id = d.park_id \n";
 			sql += "and p.park_id = ?";
@@ -379,6 +379,7 @@ public class MemberParkingDaoImpl implements MemberParkingDao {
 				parkingDto.setAdd_park_rate(rs.getInt("add_park_rate"));
 				parkingDto.setDay_max_pay(rs.getInt("day_max_pay"));
 				parkingDto.setDetailAddr(rs.getString("detail_addr"));
+				parkingDto.setVisit(rs.getInt("park_visit"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

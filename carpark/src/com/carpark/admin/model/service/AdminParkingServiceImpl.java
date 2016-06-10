@@ -55,5 +55,11 @@ public class AdminParkingServiceImpl implements AdminParkingService {
 		
 	}
 
+	@Override
+	public void adminParkingAuth(String parkId) {
+		AdminParkingDaoImpl.getAdminParkingDao().adminParkingAuth(parkId);
+		
+	}
+
 
 }

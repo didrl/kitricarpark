@@ -19,6 +19,7 @@ int bcode = NumberCheck.nullToZero(request.getParameter("bcode"));
 int pg = NumberCheck.nullToOne(request.getParameter("pg"));
 String key = StringCheck.nullToBlank(request.getParameter("key"));
 String word = Encoder.isoToUtf(StringCheck.nullToBlank(request.getParameter("word")));
+String auth = StringCheck.nullToBlank(request.getParameter("auth"));
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
