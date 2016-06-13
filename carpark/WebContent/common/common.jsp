@@ -6,15 +6,21 @@ com.carpark.util.*,java.util.*,com.carpark.common.model.*"%>
 String root = request.getContextPath();
 String commonpath = root + "/common";
 String headerpath = commonpath+ "/header";
-
 String adminpath = root + "/admin";
 String customerpath = adminpath +"/"+"customer";
 String parkingpath = adminpath +"/"+"parking";
 String qnapath = adminpath +"/"+"qna";
 String staticpath = adminpath +"/"+"static";
-
 MemberDto memberDto = (MemberDto)session.getAttribute("memberInfo"); 
+HttpSession loginSession = request.getSession();
+if(loginSession==null){
+	System.out.println("세션만료!~");
+%>
 
+<% 
+	response.sendRedirect(root+"/index.jsp");
+	return;
+}
 int bcode = NumberCheck.nullToZero(request.getParameter("bcode"));
 int pg = NumberCheck.nullToOne(request.getParameter("pg"));
 String key = StringCheck.nullToBlank(request.getParameter("key"));
@@ -36,7 +42,7 @@ String auth = StringCheck.nullToBlank(request.getParameter("auth"));
 	<link href="<%=root %>/css/custom_kitri.css" rel="stylesheet">
 	
 	<link rel="stylesheet" href="/carpark/css/normalize.css">
-<link rel="stylesheet" href="/carpark/css/style.css">
+	<link rel="stylesheet" href="/carpark/css/style.css">
 	<!-- login -->
 	<script type="text/javascript">
 	var root = "<%=root%>";
@@ -52,7 +58,7 @@ String auth = StringCheck.nullToBlank(request.getParameter("auth"));
     <![endif]-->
     
 </head>
-<body>
+<body onunload="javascript:closeWin();">
     <!-- jQuery -->
     <script src="<%=root %>/js/jquery.js"></script>
     <!-- Bootstrap Core JavaScript -->
