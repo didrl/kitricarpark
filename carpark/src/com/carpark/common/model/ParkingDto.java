@@ -3,46 +3,18 @@ package com.carpark.common.model;
 import java.io.Serializable;
 
 public class ParkingDto implements Serializable{
-	private int park_id;
-	private String park_name;
-	private String location;
-	private int park_capacity;
-	private String owner_id;
-	private double latitude;
-	private double longitude;
-	private String park_type;
-	private String content;
-	private String detailAddr;
-	private int emdCode;
-	private int park_public;
-	//parkingDetailDto
-//	private double park_avgPoint; 		//주차장 평점
-//	
-//	public double getPark_avgPoint() {
-//		return park_avgPoint;
-//	}
-//	public void setPark_avgPoint(double park_avgPoint) {
-//		this.park_avgPoint = park_avgPoint;
-//	}
-	public int getEmdCode() {
-		return emdCode;
-	}
-	public void setEmdCode(int emdCode) {
-		this.emdCode = emdCode;
-	}
-	public String getDetailAddr() {
-		return detailAddr;
-	}
-	public void setDetailAddr(String detailAddr) {
-		this.detailAddr = detailAddr;
-	}
-	public String getContent() {
-		return content;
-	}
-	public void setContent(String content) {
-		this.content = content;
-	}
-
+	private int park_id;		//주차장아이디
+	private String park_name;	//주차장이름
+	private int park_capacity;	//총주차면수
+	private String owner_id;	//소유주아이디
+	private double latitude;	//위도
+	private double longitude;	//경도
+	private String park_type;	//주차장종류
+	private String content;		//상세내용
+	private String detailAddr;	//상세주소
+	private int park_public;	//공용/사설
+	private int pic_seq;		//사진번호
+	
 	public int getPark_id() {
 		return park_id;
 	}
@@ -54,12 +26,6 @@ public class ParkingDto implements Serializable{
 	}
 	public void setPark_name(String park_name) {
 		this.park_name = park_name;
-	}
-	public String getLocation() {
-		return location;
-	}
-	public void setLocation(String location) {
-		this.location = location;
 	}
 	public int getPark_capacity() {
 		return park_capacity;
@@ -91,12 +57,31 @@ public class ParkingDto implements Serializable{
 	public void setPark_type(String park_type) {
 		this.park_type = park_type;
 	}
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
+	public String getDetailAddr() {
+		return detailAddr;
+	}
+	public void setDetailAddr(String detailAddr) {
+		this.detailAddr = detailAddr;
+	}
 	public int getPark_public() {
 		return park_public;
 	}
 	public void setPark_public(int park_public) {
 		this.park_public = park_public;
 	}
+	public int getPic_seq() {
+		return pic_seq;
+	}
+	public void setPic_seq(int pic_seq) {
+		this.pic_seq = pic_seq;
+	}
+
 	
 	
 }

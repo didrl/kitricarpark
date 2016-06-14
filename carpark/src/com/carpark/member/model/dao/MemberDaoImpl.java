@@ -324,7 +324,7 @@ public class MemberDaoImpl implements MemberDao {
 				parkingDto = new ParkingDto();
 				parkingDto.setPark_id(rs.getInt("park_id"));
 				parkingDto.setPark_name(rs.getString("park_name"));
-				parkingDto.setLocation(rs.getString("city")); 		
+//				parkingDto.setLocation(rs.getString("city")); 		
 				parkingDto.setPark_capacity(rs.getInt("park_capacity"));
 				parkingDto.setLongitude(rs.getDouble("longitude"));
 				parkingDto.setLatitude(rs.getDouble("latitude"));
@@ -367,7 +367,7 @@ public class MemberDaoImpl implements MemberDao {
 				parkingDto = new ParkingDto();
 				parkingDto.setPark_id(rs.getInt("park_id"));
 				parkingDto.setPark_name(rs.getString("park_name"));
-				parkingDto.setLocation(rs.getString("city")); 		
+//				parkingDto.setLocation(rs.getString("city")); 		
 				parkingDto.setPark_capacity(rs.getInt("park_capacity"));
 				parkingDto.setLongitude(rs.getDouble("longitude"));
 				parkingDto.setLatitude(rs.getDouble("latitude"));
