@@ -7,7 +7,6 @@ import java.util.Map;
 import com.carpark.admin.model.GradeDto;
 import com.carpark.common.model.ParkingDetailDto;
 import com.carpark.common.model.ParkingDto;
-import com.carpark.common.model.ParkingFacilityDto;
 import com.carpark.member.model.MemberCarDto;
 import com.carpark.member.model.MemberDto;
 import com.carpark.member.model.dao.MemberDaoImpl;
@@ -81,10 +80,6 @@ public class MemberServiceImpl implements MemberService {
 		return MemberDaoImpl.getMemberDao().getParkingDetail_info(park_id);
 	}
 
-	@Override
-	public ParkingFacilityDto getParkingFacility_info(String park_id) {
-		return MemberDaoImpl.getMemberDao().getParkingFacility_info(park_id);
-	}	
 	public int modify(MemberDto memberDto) {
 		return MemberDaoImpl.getMemberDao().modify(memberDto);
 	}
