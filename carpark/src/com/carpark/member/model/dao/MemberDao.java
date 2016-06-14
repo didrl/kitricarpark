@@ -21,6 +21,5 @@ public interface MemberDao {
 	ParkingDto parkingDetail(String parkingId);
 	int addNewCar(MemberCarDto memberCarDto);
 	ParkingDetailDto getParkingDetail_info(String park_id);
-	ParkingFacilityDto getParkingFacility_info(String park_id);
 	GradeDto gradeInfo(String id);
 }

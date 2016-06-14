@@ -456,45 +456,6 @@ public class MemberDaoImpl implements MemberDao {
 		return parkingDetailDto;
 	}
 
-	@Override
-	public ParkingFacilityDto getParkingFacility_info(String park_id) {
-		ParkingFacilityDto parkingFacilityDto=null;
-		Connection conn =null;
-		PreparedStatement pstmt =null;
-		ResultSet rs =null;
-	
-		try {
-			conn=DBConnection.makeConnection();
-			String sql="";
-			sql+="select pf.park_id, pf.facility, pf.feature, pi.file_name, \n";
-			sql+="pi.file_path, pi.file_num \n";
-			sql+="from parking_facility pf, parking_img pi \n";
-			sql+="where pf.park_id=pi.park_id \n";
-			sql+="and pf.park_id=? ";
-			int idx=1;
-			pstmt =conn.prepareStatement(sql);
-			pstmt.setString(idx++,park_id);
-
-			rs=pstmt.executeQuery();
-			while(rs.next()){
-				parkingFacilityDto = new ParkingFacilityDto();
-				parkingFacilityDto.setPark_id(rs.getInt("park_id"));
-				parkingFacilityDto.setFacility(rs.getString("facility"));
-				parkingFacilityDto.setFeature(rs.getString("feature")); 		
-				parkingFacilityDto.setImg_file_name(rs.getString("file_name"));
-				parkingFacilityDto.setImg_file_num(rs.getString("file_num"));
-				parkingFacilityDto.setImg_file_path(rs.getString("file_path"));
-				
-			}
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}finally{
-			DBClose.close(conn, pstmt, rs);
-		}
-		return parkingFacilityDto;	
-	}
-	
 	public int modify(MemberDto memberDto) {
 		int count=0;
 		Connection conn =null;

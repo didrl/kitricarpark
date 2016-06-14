@@ -32,13 +32,11 @@ public class MemberSearchDetailAction implements Action {
 		String park_id= request.getParameter("parkingid").trim();
 		ParkingDto parkingDto= MemberServiceImpl.getMemberService().parkingDetail(park_id);
 		ArrayList<ReviewDto> reviewlist = MemberReviewServiceImpl.getMemberReviewService().listReview(park_id);
-		ParkingFacilityDto parkingFacilityDto = MemberServiceImpl.getMemberService().getParkingFacility_info(park_id);
 		ArrayList<FavoriteDto> favoritelist;
 		ArrayList<Map<String,String>> availabledate =MemberReservationServiceImpl.getMemberReservationService().getAvailDate(Integer.parseInt(park_id));
 		
 		session.setAttribute("parkingDetail", parkingDto);
 		session.setAttribute("reviewlist", reviewlist);
-		session.setAttribute("parkingFacilityDto", parkingFacilityDto);
 		session.setAttribute("availabledate", availabledate);
 		
 		if(memberDto != null){

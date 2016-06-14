@@ -22,6 +22,5 @@ public interface MemberService {
 	ParkingDto parkingDetail(String parkingId);
 	ParkingDetailDto getParkingDetail_info(String park_id);
 	int addNewCar(MemberCarDto memberCarDto);
-	ParkingFacilityDto getParkingFacility_info(String park_id);
 	GradeDto gradeInfo(String id);
 }
