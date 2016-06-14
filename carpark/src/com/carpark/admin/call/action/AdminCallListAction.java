@@ -13,24 +13,25 @@ import com.carpark.admin.model.service.AdminCallServiceImpl;
 import com.carpark.common.model.CallDto;
 import com.carpark.member.model.MemberDto;
 
-
 public class AdminCallListAction implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-		
+
 		HttpSession session = request.getSession();
 		MemberDto memberDto = (MemberDto) session.getAttribute("memberInfo");
-		
+
 		String receiveId = memberDto.getUser_id();
-		
-		if(receiveId != null) {
+
+		if (receiveId != null) {
 			List<CallDto> receiveList = AdminCallServiceImpl.getAdminCallService().receiveListArticle(receiveId);
-			System.out.println("CallListAction>>> "+ receiveId);
+			System.out.println("CallListAction>>> " + receiveId);
 			request.setAttribute("receiveList", receiveList);
-		}
-		return "/admin/call/getInform.jsp";
+
+			return "/admin/call/getInform.jsp";
+		} else
+			return "";
 	}
 
 }
