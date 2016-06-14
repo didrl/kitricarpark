@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
 <script type="text/javascript">
 function reviewWrite(){
 	document.reviewWriteForm.action = "/carpark/review";
@@ -52,6 +52,14 @@ function reviewWrite(){
 									<input id="avg_point_review" name="avg_point_review" type="number" class="rating"  >
 									<textarea class="form-control" rows="10" id="content_review"
 										name="content_review"></textarea>
+<!--CKEditor -->
+									<script>
+										// Replace the <textarea id="editor1"> with a CKEditor
+										// instance, using default configuration.
+										CKEDITOR.replace( 'content_review', {
+										filebrowserUploadUrl: '${pageContext.request.contextPath}/file/ckeditorImageUpload.do'	
+										});
+									</script>
 								</div>
 								<div class="form-group">
 									<label for="fileinput" class="control-label">사진 등록하기</label>
