@@ -32,7 +32,7 @@ PageNavigator navigator = (PageNavigator) request.getAttribute("navigator");
 		<table class="table">
 										
 		<tr>
-			<td align="center" colspan="3">동을 입력해 주세요</td>
+			<td align="center" colspan="3">도로명 주소를 입력해 주세요</td>
 		</tr>
 		
 		<tr>
@@ -66,12 +66,11 @@ if(list != null) {
 } else {
 	for(ZipDto zipDto : list) {
 %>
-								
+<!-- 사용자 입력한 상세주소 추가 -->								
 		<tr>
 			<td align="center" colspan="3">
-				<a href="javascript:selectAddress('<%=zipDto.getSido() %> <%=zipDto.getGugun() %> <%=zipDto.getDong() %>');">
-					<%=zipDto.getZip1() %> - <%=zipDto.getZip2() %> 
-					<%=zipDto.getSido() %> <%=zipDto.getGugun() %> <%=zipDto.getDong() %> 
+				<a href="javascript:selectAddress('<%=zipDto.getSido() %><%=zipDto.getGugun() %><%=zipDto.getStreet() %>');"> 
+					<%=zipDto.getSido() %> <%=zipDto.getGugun() %> <%=zipDto.getStreet() %> 
 				</a>
 			</td>
 		</tr>

@@ -66,9 +66,8 @@ if(list != null) {
 								
 		<tr>
 			<td align="center" colspan="2">
-				<a href="javascript:adminSelectAddress('<%=zipDto.getSido() %> <%=zipDto.getGugun() %> <%=zipDto.getDong() %>');">
-					<%=zipDto.getZip1() %> - <%=zipDto.getZip2() %> 
-					<%=zipDto.getSido() %> <%=zipDto.getGugun() %> <%=zipDto.getDong() %> <%=zipDto.getBunji() %>
+				<a href="javascript:adminSelectAddress('<%=zipDto.getSido() %> <%=zipDto.getGugun() %> <%=zipDto.getStreet() %>');">
+					<%=zipDto.getSido() %> <%=zipDto.getGugun() %> <%=zipDto.getStreet() %>
 				</a>
 			</td>
 		</tr>

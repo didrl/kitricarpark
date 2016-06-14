@@ -66,7 +66,7 @@ function selectAddress(address){
 	        self.close();
 			
 	    } else {
-	    	alert("검색 실패");
+	    	alert("입력값이 없습니다. 다시 입력해주세요.");
 	    }
 	}); 
 }

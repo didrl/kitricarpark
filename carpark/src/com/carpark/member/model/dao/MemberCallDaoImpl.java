@@ -27,6 +27,41 @@ public class MemberCallDaoImpl implements MemberCallDao {
 	}
 
 	@Override
+	public List<ZipDto> zipSearchList(String street) {
+		List<ZipDto> list =new ArrayList<ZipDto>();
+		Connection conn =null;
+		PreparedStatement pstmt =null;
+		ResultSet rs =null;
+		try {
+			conn=DBConnection.makeConnection();
+			String sql="";
+			sql+="select \n";
+			sql+="sido,gugun,street\n"; 
+			sql+="from zipcode \n";
+			sql+="where street like '%'||?||'%' \n";
+			
+			//자바의 "%"+dong+"%" 와 비슷
+			pstmt =conn.prepareStatement(sql);
+			pstmt.setString(1,"street");
+			rs=pstmt.executeQuery();
+			while(rs.next()){
+				ZipDto zipDto =new ZipDto();
+				zipDto.setSido(rs.getString("sido"));
+				zipDto.setGugun(rs.getString("gugun"));
+				zipDto.setStreet(rs.getString("street"));
+				list.add(zipDto);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			DBClose.close(conn, pstmt, rs);
+		}
+		return list;
+	}
+	
+	
+	/*
+	@Override
 	public List<ZipDto> zipSearchList(String dong) {
 		List<ZipDto> list =new ArrayList<ZipDto>();
 		Connection conn =null;
@@ -63,7 +98,7 @@ public class MemberCallDaoImpl implements MemberCallDao {
 		}
 		return list;
 	}
-	
+	*/
 	
 	@Override
 	public int register(CallDto callDto) {
