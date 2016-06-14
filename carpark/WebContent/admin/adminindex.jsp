@@ -5,10 +5,10 @@
 <%@include file="/admin/common/sidebar.jsp" %>
 
 <%
-List<StatsChangeUserDto> changeUserList = (List<StatsChangeUserDto>) session.getAttribute("changeUserList"); 
-List<StatsGoodBehaviorUsersDto> goodBehaviorUserList = (List<StatsGoodBehaviorUsersDto>) session.getAttribute("goodBehaviorUserList"); 
-List<StatsGoodUseUserDto> goodUseUserList = (List<StatsGoodUseUserDto>) session.getAttribute("goodUseUserList"); 
-List<StatsPopularParkDto> popularParkList = (List<StatsPopularParkDto>) session.getAttribute("popularParkList"); 
+List<Map<String,String>> changeUserList = (List<Map<String,String>>) session.getAttribute("changeUserList"); 
+List<Map<String,String>> goodBehaviorUserList = (List<Map<String,String>>) session.getAttribute("goodBehaviorUserList"); 
+List<Map<String,String>> goodUseUserList = (List<Map<String,String>>) session.getAttribute("goodUseUserList"); 
+List<Map<String,String>> popularParkList = (List<Map<String,String>>) session.getAttribute("popularParkList"); 
 
 %>
 <!-- for hide or show div -->
@@ -46,10 +46,10 @@ function drawPopularParkChart() {
 <%
 	int ppsize=popularParkList.size();
 	int i=0;
-for(StatsPopularParkDto ppd : popularParkList){
+for(Map<String,String> ppd : popularParkList){
 	i++;
 %>
-     ['<%=ppd.getPark_name()%>',<%=ppd.getRcount()%>,<%=ppd.getFcount()%>,<%=ppd.getPark_avgpoint()%>]
+     ['<%=ppd.get("park_name")%>',<%=ppd.get("rcount")%>,<%=ppd.get("fcount")%>,<%=ppd.get("park_avgpoint")%>]
 <%
 	if(i<ppsize){
 		%>
@@ -79,10 +79,10 @@ function drawGoodUseCustomerChart() {
 <%
 	int uusize=goodUseUserList.size();
 	int j=0;
-for(StatsGoodUseUserDto sguu : goodUseUserList){
+for(Map<String,String> sguu : goodUseUserList){
 	i++;
 %>
-     ['<%=sguu.getUser_id()%>',<%=sguu.getRcount()%>,<%=sguu.getFcount()%>,<%=sguu.getUser_avgpoint()%>]
+     ['<%=sguu.get("user_id")%>',<%=sguu.get("rcount")%>,<%=sguu.get("fcount")%>,<%=sguu.get("user_avgpoint")%>]
 <%
 	if(j<uusize){
 		%>
@@ -112,10 +112,10 @@ function drawGoodBehaviorCustomerChart() {
 <%
 	int busize=goodBehaviorUserList.size();
 	int k=0;
-for(StatsGoodBehaviorUsersDto bgu : goodBehaviorUserList){
+for(Map<String,String> bgu : goodBehaviorUserList){
 	i++;
 %>
-     ['<%=bgu.getUser_id()%>',<%=bgu.getUser_avgpoint()%>,<%=bgu.getPenalty()%>]
+     ['<%=bgu.get("user_id")%>',<%=bgu.get("user_avgpoint")%>,<%=bgu.get("penalty")%>]
 <%
 	if(k<busize){
 		%>
@@ -143,10 +143,10 @@ function drawCustomerChangeChart() {
       <%
   	int cusize=changeUserList.size();
   	int l=0;
-  for(StatsChangeUserDto cul : changeUserList){
+  for(Map<String,String> cul : changeUserList){
   	i++;
   %>
-       ['<%=cul.getLogtime()%>',<%=cul.getSumover()%>]
+       ['<%=cul.get("logtime")%>',<%=cul.get("sumover")%>]
   <%
   	if(l<cusize){
   		%>

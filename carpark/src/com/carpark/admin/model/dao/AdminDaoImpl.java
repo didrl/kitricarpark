@@ -5,12 +5,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-import com.carpark.admin.model.StatsChangeUserDto;
-import com.carpark.admin.model.StatsGoodBehaviorUsersDto;
-import com.carpark.admin.model.StatsGoodUseUserDto;
-import com.carpark.admin.model.StatsPopularParkDto;
 import com.carpark.db.DBClose;
 import com.carpark.db.DBConnection;
 import com.carpark.member.model.MemberDto;
@@ -74,12 +72,12 @@ public class AdminDaoImpl implements AdminDao {
 	}
 
 	@Override
-	public List<StatsChangeUserDto> changeUserList() {
+	public List<Map<String,String>> changeUserList() {
 		Connection conn=null;
 		PreparedStatement pstmt =null;
 		ResultSet rs = null;
-		StatsChangeUserDto statsChangeUserDto;
-		ArrayList<StatsChangeUserDto> list = new ArrayList<StatsChangeUserDto>();
+		Map<String,String> map;
+		List<Map<String,String>> list = new ArrayList<Map<String,String>>();
 		
 		try {
 			conn=DBConnection.makeConnection();
@@ -97,12 +95,12 @@ public class AdminDaoImpl implements AdminDao {
 			rs=pstmt.executeQuery();
 
 			while(rs.next()){
-				statsChangeUserDto = new StatsChangeUserDto();
+				map = new HashMap<String,String>();
 				
-				statsChangeUserDto.setLogtime(rs.getString("logtime"));
-				statsChangeUserDto.setSumover(rs.getInt("sumover"));
+				map.put("logtime",rs.getString("logtime"));
+				map.put("sumover",rs.getString("sumover"));
 				
-				list.add(statsChangeUserDto);
+				list.add(map);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -113,12 +111,12 @@ public class AdminDaoImpl implements AdminDao {
 	}
 
 	@Override
-	public List<StatsGoodBehaviorUsersDto> goodBehaviorUserList() {
+	public List<Map<String,String>> goodBehaviorUserList() {
 		Connection conn=null;
 		PreparedStatement pstmt =null;
 		ResultSet rs = null;
-		StatsGoodBehaviorUsersDto statsGoodBehaviorUsersDto;
-		ArrayList<StatsGoodBehaviorUsersDto> list = new ArrayList<StatsGoodBehaviorUsersDto>();
+		Map<String,String> map;
+		List<Map<String,String>> list = new ArrayList<Map<String,String>>();
 		
 		try {
 			conn=DBConnection.makeConnection();
@@ -134,13 +132,13 @@ public class AdminDaoImpl implements AdminDao {
 			rs=pstmt.executeQuery();
 
 			while(rs.next()){
-				statsGoodBehaviorUsersDto = new StatsGoodBehaviorUsersDto();
+				map = new HashMap<String,String>();
 				
-				statsGoodBehaviorUsersDto.setUser_id(rs.getString("user_id"));
-				statsGoodBehaviorUsersDto.setPenalty(rs.getInt("penalty"));
-				statsGoodBehaviorUsersDto.setUser_avgpoint(rs.getInt("user_avgpoint"));
+				map.put("user_id",rs.getString("user_id"));
+				map.put("penalty",rs.getString("penalty"));
+				map.put("user_avgpoint",rs.getString("user_avgpoint"));
 				
-				list.add(statsGoodBehaviorUsersDto);
+				list.add(map);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -151,12 +149,12 @@ public class AdminDaoImpl implements AdminDao {
 	}
 
 	@Override
-	public List<StatsGoodUseUserDto> goodUseUserList() {
+	public List<Map<String,String>> goodUseUserList() {
 		Connection conn=null;
 		PreparedStatement pstmt =null;
 		ResultSet rs = null;
-		StatsGoodUseUserDto statsGoodUseUserDto;
-		ArrayList<StatsGoodUseUserDto> list = new ArrayList<StatsGoodUseUserDto>();
+		Map<String,String> map;
+		List<Map<String,String>> list = new ArrayList<Map<String,String>>();
 		
 		try {
 			conn=DBConnection.makeConnection();
@@ -182,14 +180,14 @@ public class AdminDaoImpl implements AdminDao {
 			rs=pstmt.executeQuery();
 
 			while(rs.next()){
-				statsGoodUseUserDto = new StatsGoodUseUserDto();
+				map = new HashMap<String,String>();
 				
-				statsGoodUseUserDto.setUser_id(rs.getString("user_id"));
-				statsGoodUseUserDto.setFcount(rs.getInt("fcount"));
-				statsGoodUseUserDto.setRcount(rs.getInt("rcount"));
-				statsGoodUseUserDto.setUser_avgpoint(rs.getDouble("user_avgpoint"));
+				map.put("user_id",rs.getString("user_id"));
+				map.put("fcount",rs.getString("fcount"));
+				map.put("rcount",rs.getString("rcount"));
+				map.put("user_avgpoint",rs.getString("user_avgpoint"));
 				
-				list.add(statsGoodUseUserDto);
+				list.add(map);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -200,12 +198,12 @@ public class AdminDaoImpl implements AdminDao {
 	}
 
 	@Override
-	public List<StatsPopularParkDto> popularParkList() {
+	public List<Map<String,String>> popularParkList() {
 		Connection conn=null;
 		PreparedStatement pstmt =null;
 		ResultSet rs = null;
-		StatsPopularParkDto statsPopularParkDto;
-		ArrayList<StatsPopularParkDto> list = new ArrayList<StatsPopularParkDto>();
+		Map<String,String> map;
+		List<Map<String,String>> list = new ArrayList<Map<String,String>>();
 		
 		try {
 			conn=DBConnection.makeConnection();
@@ -234,14 +232,14 @@ public class AdminDaoImpl implements AdminDao {
 			rs=pstmt.executeQuery();
 
 			while(rs.next()){
-				statsPopularParkDto = new StatsPopularParkDto();
+				map = new HashMap<String,String>();
 				
-				statsPopularParkDto.setFcount(rs.getInt("fcount"));
-				statsPopularParkDto.setPark_avgpoint(rs.getDouble("park_avgpoint"));
-				statsPopularParkDto.setPark_name(rs.getString("park_name"));
-				statsPopularParkDto.setRcount(rs.getInt("rcount"));
+				map.put("fcount",rs.getString("fcount"));
+				map.put("park_avgpoint",rs.getString("park_avgpoint"));
+				map.put("park_name",rs.getString("park_name"));
+				map.put("rcount",rs.getString("rcount"));
 				
-				list.add(statsPopularParkDto);
+				list.add(map);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

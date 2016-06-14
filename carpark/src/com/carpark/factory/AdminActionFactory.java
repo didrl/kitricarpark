@@ -18,12 +18,12 @@ import com.carpark.admin.grade.action.AdminGradeDeleteAction;
 import com.carpark.admin.grade.action.AdminGradeListAction;
 import com.carpark.admin.grade.action.AdminGradeModifyAction;
 import com.carpark.admin.grade.action.AdminGradeRegisterAction;
-import com.carpark.admin.parking.action.AdminParkingAuthAction;
-import com.carpark.admin.parking.action.AdminParkingAuthListAction;
+//import com.carpark.admin.parking.action.AdminParkingAuthAction;
+//import com.carpark.admin.parking.action.AdminParkingAuthListAction;
 import com.carpark.admin.parking.action.AdminParkingDeleteAction;
-import com.carpark.admin.parking.action.AdminParkingListAction;
+//import com.carpark.admin.parking.action.AdminParkingListAction;
 import com.carpark.admin.parking.action.AdminParkingModifyAction;
-import com.carpark.admin.parking.action.AdminParkingRegisterAction;
+//import com.carpark.admin.parking.action.AdminParkingRegisterAction;
 import com.carpark.admin.parking.action.AdminParkingSearchAction;
 import com.carpark.admin.parking.action.AdminParkingViewAction;
 import com.carpark.admin.report.action.AdminReportDeleteAction;
@@ -93,12 +93,12 @@ public class AdminActionFactory {
 		
 		adminParkingDeleteAction = new AdminParkingDeleteAction();
 		adminParkingModifyAction = new AdminParkingModifyAction();
-		adminParkingRegisterAction = new AdminParkingRegisterAction();
+//		adminParkingRegisterAction = new AdminParkingRegisterAction();
 		adminParkingSearchAction = new AdminParkingSearchAction();
-		adminParkingListAction = new AdminParkingListAction();
-		adminParkingAuthListAction = new AdminParkingAuthListAction();
+//		adminParkingListAction = new AdminParkingListAction();
+//		adminParkingAuthListAction = new AdminParkingAuthListAction();
 		adminParkingViewAction = new AdminParkingViewAction();
-		adminParkingAuthAction = new AdminParkingAuthAction();
+//		adminParkingAuthAction = new AdminParkingAuthAction();
 		
 		adminCallDeleteAction = new AdminCallDeleteAction();
 		adminCallListAction = new AdminCallListAction();
