@@ -56,7 +56,7 @@ if(size > 0) {
 %>
 					<!-- 쪽지목록 -->
 					<tr >
-						<td width="150"><a href="javascript:messageReceiveView('<%=messageDto.getSeq()%>');"><%=messageDto.getReceiverId() %></a></td>
+						<td width="150"><a href="javascript:messageReceiveView('<%=messageDto.getSeq()%>');"><%=messageDto.getUserID() %></a></td>
 						<td><a href="javascript:messageReceiveView('<%=messageDto.getSeq() %>');"><%=messageDto.getSubject() %></a></td>
 						<td width="80"><%=messageDto.getLogtime() %></td>	
 <%

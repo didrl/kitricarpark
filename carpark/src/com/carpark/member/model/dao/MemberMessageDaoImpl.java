@@ -220,7 +220,7 @@ public class MemberMessageDaoImpl implements MemberMessageDao {
 		
 		String key = map.get("key");
 		String word = map.get("word");
-		String receiver = map.get("receiver");
+		String receiveId = map.get("receiveId");
 		
 		try {
 			conn = DBConnection.makeConnection();
@@ -236,7 +236,7 @@ public class MemberMessageDaoImpl implements MemberMessageDao {
 			sql += "mseq, receiver_id, msg_flag \n";
 			sql += "from board b, message m \n";
 			sql += "where b.seq = m.seq \n";
-			sql += "and user_id = ? \n";
+			sql += "and receiver_id = ? \n";
 			if(key != null && !key.isEmpty()) {
 				if(word != null && !word.isEmpty()) {
 					if("subject".equals(key))
@@ -252,7 +252,7 @@ public class MemberMessageDaoImpl implements MemberMessageDao {
 			sql += "where b.rn > ? ";
 			pstmt = conn.prepareStatement(sql);
 			int idx = 0;
-			pstmt.setString(++idx, receiver);
+			pstmt.setString(++idx, receiveId);
 			if(key != null && !key.isEmpty()) {
 				if(word != null && !word.isEmpty()) {
 					pstmt.setString(++idx, map.get("word"));				
