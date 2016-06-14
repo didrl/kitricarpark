@@ -304,12 +304,11 @@ public class MemberDaoImpl implements MemberDao {
 
 			conn=DBConnection.makeConnection();
 			String sql="";
-			sql +="select distinct a.park_id, a.park_name,a.city, a.park_avgPoint, a.park_capacity, a.latitude, a.longitude,a.content\n";
-			sql +="from (select p.park_id, p.park_name,c.sgg_name ||' '|| c.emd_name as city, pd.park_avgPoint,p.park_capacity,p.latitude,p.longitude,p.content\n";
-			sql +="			from parking p , cities c, parking_detail pd\n";
-			sql +="			where p.emd_code = c.emd_code\n";
-			sql +="					and p.park_id = pd.park_id) a\n";
-			sql +="where a.city like '%'||?||'%'\n";
+			sql +="select distinct a.park_id, a.park_name,detail_addr, a.park_avgPoint, a.park_capacity, a.latitude, a.longitude,a.content\n";
+			sql +="from (select p.park_id, p.park_name,detail_addr, pd.park_avgPoint,p.park_capacity,p.latitude,p.longitude,p.content\n";
+			sql +="			from parking p , parking_detail pd\n";
+			sql +="			where p.park_id = pd.park_id) a\n";
+			sql +="where detail_addr like '%'||?||'%'\n";
 
 
 			int idx=1;
@@ -324,7 +323,7 @@ public class MemberDaoImpl implements MemberDao {
 				parkingDto = new ParkingDto();
 				parkingDto.setPark_id(rs.getInt("park_id"));
 				parkingDto.setPark_name(rs.getString("park_name"));
-//				parkingDto.setLocation(rs.getString("city")); 		
+				parkingDto.setDetailAddr(rs.getString("detail_addr")); 		
 				parkingDto.setPark_capacity(rs.getInt("park_capacity"));
 				parkingDto.setLongitude(rs.getDouble("longitude"));
 				parkingDto.setLatitude(rs.getDouble("latitude"));
@@ -350,11 +349,10 @@ public class MemberDaoImpl implements MemberDao {
 		try {
 			conn=DBConnection.makeConnection();
 			String sql="";
-			sql+="select p.park_id, p.park_name,c.sgg_name ||' '|| c.emd_name as city, pd.park_avgPoint,p.park_capacity, \n";
+			sql+="select p.park_id, p.park_name,detail_addr, pd.park_avgPoint,p.park_capacity, \n";
 			sql+="p.latitude,p.longitude,p.owner_id,p.content \n";
-			sql+="from parking p , cities c, parking_detail pd \n";
-			sql+="where p.emd_code = c.emd_code \n";
-			sql+="and p.park_id = pd.park_id \n";
+			sql+="from parking p , parking_detail pd \n";
+			sql+="where p.park_id = pd.park_id \n";
 			sql+="and p.park_id=? ";
 			int idx=1;
 			pstmt =conn.prepareStatement(sql);
@@ -367,7 +365,7 @@ public class MemberDaoImpl implements MemberDao {
 				parkingDto = new ParkingDto();
 				parkingDto.setPark_id(rs.getInt("park_id"));
 				parkingDto.setPark_name(rs.getString("park_name"));
-//				parkingDto.setLocation(rs.getString("city")); 		
+				parkingDto.setDetailAddr(rs.getString("detail_addr"));
 				parkingDto.setPark_capacity(rs.getInt("park_capacity"));
 				parkingDto.setLongitude(rs.getDouble("longitude"));
 				parkingDto.setLatitude(rs.getDouble("latitude"));
