@@ -117,6 +117,6 @@ function secession(id) {
 	document.location.href=root+"/member?act=memberSecession&id="+id;
 }
 
-function sessionExpire(){
-	alert("장시간 대기로 인해 연결이 종료되었습니다. 다시 로그인 해주세요!~");
-}
+
+
+
