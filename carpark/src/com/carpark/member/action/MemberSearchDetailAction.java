@@ -11,7 +11,6 @@ import javax.servlet.http.HttpSession;
 
 import com.carpark.action.Action;
 import com.carpark.common.model.ParkingDto;
-import com.carpark.common.model.ParkingFacilityDto;
 import com.carpark.member.model.FavoriteDto;
 import com.carpark.member.model.MemberDto;
 import com.carpark.member.model.ReviewDto;
