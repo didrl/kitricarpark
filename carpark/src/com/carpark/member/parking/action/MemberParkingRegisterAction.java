@@ -39,7 +39,7 @@ public class MemberParkingRegisterAction implements Action {
 		
 		parkingDto.setPark_id(parkingId);
 		parkingDto.setPark_public(1);
-		parkingDto.setVisit(0);
+		parkingDto.setPark_visit(0);
 		parkingDto.setPark_name(request.getParameter("parkName"));
 		
 		String coordinate = request.getParameter("coordinate");//지도에서 가져온 좌표
@@ -70,7 +70,7 @@ public class MemberParkingRegisterAction implements Action {
 		parkingDto.setContent(request.getParameter("content").replace("\r\n", "<br>"));
 		parkingDto.setDetailAddr(request.getParameter("parkAddress"));
 		
-		parkingDto.setEmd_code(11650101);
+//		parkingDto.setEmd_code(11650101);
 		
 		if(parkingId != 0) {
 			MemberParkingServiceImpl.getMemberParkingservice().parkingRegister(parkingDto);

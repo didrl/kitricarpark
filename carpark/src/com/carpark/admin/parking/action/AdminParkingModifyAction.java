@@ -67,7 +67,7 @@ public class AdminParkingModifyAction implements Action {
 		parkingDto.setContent(request.getParameter("content").replace("\r\n", "<br>"));
 		parkingDto.setDetailAddr(request.getParameter("parkAddress"));
 		
-		parkingDto.setEmd_code(11650101);
+//		parkingDto.setEmd_code(11650101);
 		
 		MemberParkingServiceImpl.getMemberParkingservice().parkingModify(parkingDto);
 		

@@ -72,9 +72,9 @@ public class AdminParkingRegisterAction implements Action {
 			parkingDto.setPark_flag(NumberCheck.nullToOne(request.getParameter("parkFlag")));
 			parkingDto.setContent(request.getParameter("content").replace("\r\n", "<br>"));
 			parkingDto.setDetailAddr(request.getParameter("parkAddress"));
-			parkingDto.setVisit(0);
+			parkingDto.setPark_visit(0);
 			
-			parkingDto.setEmd_code(11650101);
+//			parkingDto.setEmd_code(11650101);
 
 			AdminParkingServiceImpl.getAdminParkingService().parkingRegister(parkingDto);
 		}
