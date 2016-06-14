@@ -79,7 +79,6 @@ function addrSearch(){
 	}
 }
 
-
 function parkMessageRegister(){
 	document.writeForm.submit();
 }

@@ -80,9 +80,10 @@ function goSearchResult() {
 											</div>
 											<div class="col-md-10">
 												<input type="text" id="parkAddress" class="form-control" placeholder="주소" name="parkAddress" readonly="readonly"><br>
+												<input type="text" id="parkDetailAddress" class="form-control" placeholder="상세주소" name="parkDetailAddress"><br>
 												<button type="button" class="btn btn-default" data-toggle="modal" data-target="#addrSearch">검색</button>
 											</div>
-											</div><hr>
+										</div><hr>
 										
 										
 										<div class="form-group">

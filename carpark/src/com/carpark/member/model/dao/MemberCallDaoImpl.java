@@ -38,11 +38,11 @@ public class MemberCallDaoImpl implements MemberCallDao {
 			sql+="select \n";
 			sql+="sido,gugun,street\n"; 
 			sql+="from zipcode \n";
-			sql+="where street like '%'||?||'%' \n";
+			sql+="where gugun||street like '%'||?||'%' \n";
 			
 			//자바의 "%"+dong+"%" 와 비슷
 			pstmt =conn.prepareStatement(sql);
-			pstmt.setString(1,"street");
+			pstmt.setString(1,street);
 			rs=pstmt.executeQuery();
 			while(rs.next()){
 				ZipDto zipDto =new ZipDto();

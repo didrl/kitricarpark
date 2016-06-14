@@ -36,6 +36,8 @@ public class MemberCallRegisterAction implements Action {
 		String subject = request.getParameter("subject");
 		String content = request.getParameter("content");
 		String parkAddress = request.getParameter("parkAddress");
+		String parkDetailAddress = request.getParameter("parkDetailAddress");
+		
 //		String pCall_Latitude = "";
 //		String pCall_Longitude = "";
 		CallDto callDto = new CallDto();
@@ -46,6 +48,7 @@ public class MemberCallRegisterAction implements Action {
 		callDto.setSubject(subject);
 		callDto.setContent(content);	
 		callDto.setpCall_ADDR(parkAddress);
+		
 		callDto.setpCall_Flag(0);
 	
 		MemberCallServiceImpl.getMemberCallService().register(callDto);
