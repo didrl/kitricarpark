@@ -149,7 +149,7 @@ public class AdminParkingDaoImpl implements AdminParkingDao {
 			sql += "	into parking_detail (park_id, park_flag, PAY_YN, satur_pay_yn, holi_pay_yn, "
 												+ "fulltime_monthly_pay, park_rate, "
 												+ "park_time_rate, add_park_rate, day_max_pay, park_visit, facility) \n";
-			sql += "	values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			sql += "	values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			sql += "select * from dual";
 			
 			pstmt = conn.prepareStatement(sql);

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import com.carpark.action.Action;
 import com.carpark.common.model.ZipDto;
+import com.carpark.member.model.MemberDto;
 import com.carpark.member.model.service.CommonServiceImpl;
 import com.carpark.member.model.service.MemberParkingServiceImpl;
 import com.carpark.util.Encoder;
@@ -27,17 +28,20 @@ public class MemberParkingSearchAction implements Action {
 		
 		HttpSession session = request.getSession();
 		session.setAttribute("address", parkAddress);
-				
-		int pg = NumberCheck.nullToOne(request.getParameter("pg"));
-		List<ZipDto> list = MemberParkingServiceImpl.getMemberParkingservice().parkingSearch(parkAddress, pg);
-		request.setAttribute("addressList", list);
-		
-		PageNavigator navigator = CommonServiceImpl.getCommonService().getPageNavigatorAddress(parkAddress, pg);
-		navigator.setRoot(request.getContextPath());
-		navigator.setNavigator("searchAddress");
-		request.setAttribute("navigator", navigator);
-		
-		return "/parking/parksearch.jsp";
+		MemberDto memberDto = (MemberDto) session.getAttribute("memberInfo");
+		if (memberDto != null) {		
+			int pg = NumberCheck.nullToOne(request.getParameter("pg"));
+			List<ZipDto> list = MemberParkingServiceImpl.getMemberParkingservice().parkingSearch(parkAddress, pg);
+			request.setAttribute("addressList", list);
+			
+			PageNavigator navigator = CommonServiceImpl.getCommonService().getPageNavigatorAddress(parkAddress, pg);
+			navigator.setRoot(request.getContextPath());
+			navigator.setNavigator("searchAddress");
+			request.setAttribute("navigator", navigator);
+			
+			return "/parking/parksearch.jsp";
+		} else
+			return "index.jsp";
 	}
 
 }

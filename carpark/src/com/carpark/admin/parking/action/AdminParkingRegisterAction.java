@@ -71,7 +71,7 @@ public class AdminParkingRegisterAction implements Action {
 			parkingDto.setFulltime_monthly_pay(NumberCheck.nullToOne(request.getParameter("fullTimeMonthlyPay")));
 			parkingDto.setPark_flag(NumberCheck.nullToOne(request.getParameter("parkFlag")));
 			parkingDto.setContent(StringCheck.nullToBlank(request.getParameter("content").replace("\r\n", "<br>")));
-			parkingDto.setDetailAddr(StringCheck.nullToBlank(request.getParameter("parkAddress")));
+			parkingDto.setDetailAddr(StringCheck.nullToBlank(request.getParameter("parkAddress") + " " + request.getParameter("parkDetailAddress")));
 			parkingDto.setFacility(StringCheck.nullToBlank(request.getParameter("facility")));
 			parkingDto.setPark_visit(0);
 			

@@ -90,15 +90,6 @@ if(0 == parkingDto.getPark_flag()) {
 				
 				<div class="row">
 					<div class="col-md-2">
-						<b>보유시설상세</b><br>
-					</div>
-					<div class="col-md-10">
-						<textarea class="form-control" rows="3" name="feature"><%=parkingDto.getFeature()%></textarea>						
-					</div>
-				</div><br>
-				
-				<div class="row">
-					<div class="col-md-2">
 						<b>상세정보</b><br>
 					</div>
 					<div class="col-md-10">

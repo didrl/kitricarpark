@@ -256,7 +256,7 @@ public class MemberParkingDaoImpl implements MemberParkingDao {
 			sql += "      from \n";
 			sql += "            (select sido, gugun, street \n"; 
 			sql += "             from zipcode \n";
-			sql += "             where street like '%'||?||'%' \n";
+			sql += "             where sido || gugun || street like '%'||?||'%' \n";
 			sql += "             order by street) a \n";
 			sql += "      where rownum < ? \n";
 			sql += "      ) b \n";
@@ -296,7 +296,7 @@ public class MemberParkingDaoImpl implements MemberParkingDao {
 			sql += "select p.park_id, park_name, park_capacity, owner_id, latitude, \n";
 			sql += "		longitude, content, detail_addr, \n";
 			sql += "		park_flag, park_avgPoint, get_status, cur_parking, PAY_YN, satur_pay_yn, holi_pay_yn,\n";
-			sql += "		fulltime_monthly_pay, park_rate, park_time_rate, add_park_rate, day_max_pay, park_visit \n";
+			sql += "		fulltime_monthly_pay, park_rate, park_time_rate, add_park_rate, day_max_pay, park_visit, \n";
 			sql += " 		facility \n";
 			sql += "from parking p, parking_detail d \n";
 			sql += "where p.park_id = d.park_id \n";
@@ -327,7 +327,7 @@ public class MemberParkingDaoImpl implements MemberParkingDao {
 				parkingDto.setDay_max_pay(rs.getInt("day_max_pay"));
 				parkingDto.setDetailAddr(rs.getString("detail_addr"));
 				parkingDto.setPark_visit(rs.getInt("park_visit"));
-				parkingDto.setFacility(rs.getString("factility"));
+				parkingDto.setFacility(rs.getString("facility"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
