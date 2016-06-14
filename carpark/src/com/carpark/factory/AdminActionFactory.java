@@ -9,15 +9,6 @@ import com.carpark.admin.call.action.AdminCallListAction;
 import com.carpark.admin.call.action.AdminCallModifyAction;
 import com.carpark.admin.call.action.AdminCallRegisterAction;
 import com.carpark.admin.call.action.AdminCallViewAction;
-import com.carpark.admin.evaluation.action.AdminEvaluationDeleteAction;
-import com.carpark.admin.evaluation.action.AdminEvaluationListAction;
-import com.carpark.admin.evaluation.action.AdminEvaluationModifyAction;
-import com.carpark.admin.evaluation.action.AdminEvaluationRegisterAction;
-import com.carpark.admin.evaluation.action.AdminEvaluationSearchAction;
-import com.carpark.admin.grade.action.AdminGradeDeleteAction;
-import com.carpark.admin.grade.action.AdminGradeListAction;
-import com.carpark.admin.grade.action.AdminGradeModifyAction;
-import com.carpark.admin.grade.action.AdminGradeRegisterAction;
 
 import com.carpark.admin.parking.action.AdminParkingAuthAction;
 import com.carpark.admin.parking.action.AdminParkingAuthListAction;
@@ -34,17 +25,6 @@ import com.carpark.admin.report.action.AdminReportRegisterAction;
 import com.carpark.admin.report.action.AdminReportViewAction;
 
 public class AdminActionFactory {
-	private static Action adminEvaluationDeleteAction;
-	private static Action adminEvaluationListAction;
-	private static Action adminEvaluationModifyAction;
-	private static Action adminEvaluationRegisterAction;
-	private static Action adminEvaluationSearchAction;
-	
-	private static Action adminGradeDeleteAction;
-	private static Action adminGradeListAction;
-	private static Action adminGradeModifyAction;
-	private static Action adminGradeRegisterAction;
-	private static Action adminGradeSearchAction;
 	
 	private static Action adminParkingDeleteAction;
 	private static Action adminParkingListAction;
@@ -80,17 +60,6 @@ public class AdminActionFactory {
 		adminLoginAction = new AdminLoginAction();
 		
 		adminAllUserInfoAction = new AdminAllUserInfoAction();
-		
-		adminEvaluationDeleteAction = new AdminEvaluationDeleteAction();
-		adminEvaluationListAction = new AdminEvaluationListAction();
-		adminEvaluationModifyAction = new AdminEvaluationModifyAction();
-		adminEvaluationRegisterAction = new AdminEvaluationRegisterAction();
-		adminEvaluationSearchAction = new AdminEvaluationSearchAction();
-		
-		adminGradeDeleteAction = new AdminGradeDeleteAction();
-		adminGradeListAction = new AdminGradeListAction();
-		adminGradeModifyAction = new AdminGradeModifyAction();
-		adminGradeRegisterAction = new AdminGradeRegisterAction();
 		
 		adminParkingDeleteAction = new AdminParkingDeleteAction();
 		adminParkingModifyAction = new AdminParkingModifyAction();
@@ -145,46 +114,6 @@ public class AdminActionFactory {
 
 	public static Action getAdminCallViewAction() {
 		return adminCallViewAction;
-	}
-
-	public static Action getAdminEvaluationDeleteAction() {
-		return adminEvaluationDeleteAction;
-	}
-
-	public static Action getAdminEvaluationListAction() {
-		return adminEvaluationListAction;
-	}
-
-	public static Action getAdminEvaluationModifyAction() {
-		return adminEvaluationModifyAction;
-	}
-
-	public static Action getAdminEvaluationRegisterAction() {
-		return adminEvaluationRegisterAction;
-	}
-
-	public static Action getAdminEvaluationSearchAction() {
-		return adminEvaluationSearchAction;
-	}
-
-	public static Action getAdminGradeDeleteAction() {
-		return adminGradeDeleteAction;
-	}
-
-	public static Action getAdminGradeListAction() {
-		return adminGradeListAction;
-	}
-
-	public static Action getAdminGradeModifyAction() {
-		return adminGradeModifyAction;
-	}
-
-	public static Action getAdminGradeRegisterAction() {
-		return adminGradeRegisterAction;
-	}
-
-	public static Action getAdminGradeSearchAction() {
-		return adminGradeSearchAction;
 	}
 
 	public static Action getAdminParkingDeleteAction() {
