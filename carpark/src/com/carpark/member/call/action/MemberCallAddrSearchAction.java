@@ -22,20 +22,17 @@ public class MemberCallAddrSearchAction implements Action {
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 		
-		String dong = Encoder.isoToUtf(request.getParameter("dong"));
-		System.out.println(dong);
-		List<ZipDto> list = MemberCallServiceImpl.getMemberCallService().zipSearchList(dong);
+		String street = Encoder.isoToUtf(request.getParameter("street"));
+		System.out.println(street);
+		List<ZipDto> list = MemberCallServiceImpl.getMemberCallService().zipSearchList(street);
 		JSONObject json = new JSONObject();
 		JSONArray jArray = new JSONArray();
 		
 		for (ZipDto zipDto : list) {
 			JSONObject zip = new JSONObject();
-			zip.put("zip1", zipDto.getZip1());
-			zip.put("zip2", zipDto.getZip2());
 			zip.put("sido", zipDto.getSido());
 			zip.put("gugun", zipDto.getGugun());
-			zip.put("dong", zipDto.getDong());
-			zip.put("bungi", zipDto.getBunji());
+			zip.put("street", zipDto.getStreet());
 			jArray.add(zip);
 		}
 		json.put("ziplist", jArray);

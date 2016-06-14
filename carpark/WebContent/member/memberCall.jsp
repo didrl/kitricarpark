@@ -292,11 +292,11 @@ function goSearchResult() {
 		<div style="height: 300px; overflow: scroll;">
 		<table width="350">
 		<tr>
-			<td class="td3">검색할동을 입력하세요<br>(예: 역삼동, 신촌)</td>
+			<td class="td3">검색할 도로명주소를 입력하세요<br>(예: 강남대로)</td>
 		</tr>
 		<tr>
 			<td class="td4">
-				<input type="text" name="dong" id="dong">
+				<input type="text" name="street" id="street">
 				<input type="button" id="addrSearchBtn" value="검색">
 			</td>
 		</tr>
@@ -313,13 +313,13 @@ function goSearchResult() {
 
 <script type="text/javascript">
 $('#addrSearchBtn').click(function(){
-	var dong = document.getElementById("dong").value;
+	var street = document.getElementById("street").value;
 	$.ajax({
 		type :"GET",
 		url : "/carpark/call?act=addrSearch",
 			dataType : "json",
 			data : {
-				"dong" : dong
+				"street" : street
 			},
 			success : function(data) {
 				console.log('성공 - ', data);
@@ -339,28 +339,28 @@ function zipcodeView(data){
 	var len = data.ziplist.length;
 	clearData();
 	for(var i=0; i<len; i++){
-		var row = createRow(data.ziplist[i].zip1,data.ziplist[i].zip2,data.ziplist[i].sido,
-				  data.ziplist[i].gugun,data.ziplist[i].dong,data.ziplist[i].bungi);
+		var row = createRow(data.ziplist[i].sido,
+				  data.ziplist[i].gugun,data.ziplist[i].street);
 		ml.appendChild(row);
 	}
 }
 
-function createRow(zip1,zip2,sido,gugun,dong,bungi){
+function createRow(sido,gugun,street){
 	row = document.createElement("tr");
-	row.appendChild(createCell(zip1,zip2,sido,gugun,dong,bungi));
+	row.appendChild(createCell(sido,gugun,street));
 	return row;
 }
 
-function createCell(zip1,zip2,sido,gugun,dong,bungi){
+function createCell(sido,gugun,street){
 	cell = document.createElement("td");
-	cell.appendChild(createAtag(zip1,zip2,sido,gugun,dong,bungi));
+	cell.appendChild(createAtag(sido,gugun,street));
 	return cell;
 }
 
-function createAtag(zip1,zip2,sido,gugun,dong,bungi){
+function createAtag(sido,gugun,street){
 	aTag = document.createElement("a");
-	aTag.setAttribute("href","javascript:selected('"+sido+" "+gugun+" "+dong+" "+bungi+"');");
-	var textnode = document.createTextNode(sido+" "+gugun+" "+dong+" "+bungi);
+	aTag.setAttribute("href","javascript:selected('"+sido+" "+gugun+" "+street+"');");
+	var textnode = document.createTextNode(sido+" "+gugun+" "+street);
 	aTag.appendChild(textnode);
 	return aTag;
 }

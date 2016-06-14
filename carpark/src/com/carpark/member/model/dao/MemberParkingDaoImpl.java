@@ -286,6 +286,7 @@ public class MemberParkingDaoImpl implements MemberParkingDao {
 		
 		return cnt;
 	}
+	
 
 	@Override
 	public List<ZipDto> parkingSearch(Map<String, String> map) {
@@ -320,12 +321,9 @@ public class MemberParkingDaoImpl implements MemberParkingDao {
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				ZipDto zipDto = new ZipDto();
-				zipDto.setZip1(rs.getString("zip1"));
-				zipDto.setZip2(rs.getString("zip2"));
 				zipDto.setSido(rs.getString("sido"));
 				zipDto.setGugun(rs.getString("gugun"));
-				zipDto.setDong(rs.getString("dong"));
-				zipDto.setBunji(rs.getString("bunji"));
+				zipDto.setStreet(rs.getString("street"));
 				
 				list.add(zipDto);
 			}

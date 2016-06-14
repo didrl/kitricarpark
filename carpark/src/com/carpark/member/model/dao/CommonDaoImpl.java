@@ -140,9 +140,9 @@ public class CommonDaoImpl implements CommonDao {
 		try {
 			conn = DBConnection.makeConnection();
 			String sql = "";
-			sql += "select count(dong) \n";
+			sql += "select count(street) \n";
 				sql += "from zipcode \n";
-				sql += "where dong like '%'||?||'%' \n";
+				sql += "where street like '%'||?||'%' \n";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, address);
 			rs = pstmt.executeQuery();

@@ -21,8 +21,8 @@ public class MemberCallServiceImpl implements MemberCallService {
 	}
 
 	@Override
-	public List<ZipDto> zipSearchList(String dong) {
-		return MemberCallDaoImpl.getMemberCallDao().zipSearchList(dong);
+	public List<ZipDto> zipSearchList(String street) {
+		return MemberCallDaoImpl.getMemberCallDao().zipSearchList(street);
 	}
 
 	@Override
