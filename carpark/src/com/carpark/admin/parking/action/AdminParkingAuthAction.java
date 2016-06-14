@@ -19,7 +19,7 @@ public class AdminParkingAuthAction implements Action {
 		
 		AdminParkingServiceImpl.getAdminParkingService().adminParkingAuth(parkId);
 		
-		return "";
+		return "index.jsp";
 	}
 
 }

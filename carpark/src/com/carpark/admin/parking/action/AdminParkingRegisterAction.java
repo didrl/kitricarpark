@@ -60,9 +60,9 @@ public class AdminParkingRegisterAction implements Action {
 			
 			parkingDto.setOwner_id(ownerId);
 			
-			parkingDto.setPay_yn(request.getParameter("payYn"));
-			parkingDto.setSatur_pay_yn(request.getParameter("saturPayYn"));
-			parkingDto.setHoli_pay_yn(request.getParameter("holiPayYn"));
+			parkingDto.setPay_yn(StringCheck.nullToBlank(request.getParameter("payYn")));
+			parkingDto.setSatur_pay_yn(StringCheck.nullToBlank(request.getParameter("saturPayYn")));
+			parkingDto.setHoli_pay_yn(StringCheck.nullToBlank(request.getParameter("holiPayYn")));
 			parkingDto.setPark_capacity(NumberCheck.nullToOne(request.getParameter("parkCapacity")));
 			parkingDto.setPark_time_rate(NumberCheck.nullToOne(request.getParameter("parkTimeRate")));
 			parkingDto.setPark_rate(NumberCheck.nullToOne(request.getParameter("parkRate")));
@@ -70,16 +70,15 @@ public class AdminParkingRegisterAction implements Action {
 			parkingDto.setDay_max_pay(NumberCheck.nullToOne(request.getParameter("dayMaxPay")));
 			parkingDto.setFulltime_monthly_pay(NumberCheck.nullToOne(request.getParameter("fullTimeMonthlyPay")));
 			parkingDto.setPark_flag(NumberCheck.nullToOne(request.getParameter("parkFlag")));
-			parkingDto.setContent(request.getParameter("content").replace("\r\n", "<br>"));
-			parkingDto.setDetailAddr(request.getParameter("parkAddress"));
+			parkingDto.setContent(StringCheck.nullToBlank(request.getParameter("content").replace("\r\n", "<br>")));
+			parkingDto.setDetailAddr(StringCheck.nullToBlank(request.getParameter("parkAddress")));
+			parkingDto.setFacility(StringCheck.nullToBlank(request.getParameter("facility")));
 			parkingDto.setPark_visit(0);
 			
-//			parkingDto.setEmd_code(11650101);
-
 			AdminParkingServiceImpl.getAdminParkingService().parkingRegister(parkingDto);
 		}
 		
-		return "";
+		return "index.jsp";
 	}
 
 }

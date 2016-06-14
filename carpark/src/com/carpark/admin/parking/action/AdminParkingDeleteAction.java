@@ -20,7 +20,7 @@ public class AdminParkingDeleteAction implements Action {
 
 		MemberParkingServiceImpl.getMemberParkingservice().parkingDelete(parkId);
 		
-		return ""; 
+		return "index.jsp"; 
 	}
 
 }

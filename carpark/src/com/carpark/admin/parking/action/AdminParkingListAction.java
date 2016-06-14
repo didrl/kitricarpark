@@ -54,7 +54,7 @@ public class AdminParkingListAction implements Action {
 
 			return "/admin/parking/list.jsp";
 		} else
-			return "";
+			return "index.jsp";
 
 	}
 

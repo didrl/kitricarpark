@@ -48,7 +48,7 @@ public class AdminParkingAuthListAction implements Action {
 
 			return "/admin/parking/authlist.jsp";
 		} else
-			return "";
+			return "index.jsp";
 	}
 
 }
