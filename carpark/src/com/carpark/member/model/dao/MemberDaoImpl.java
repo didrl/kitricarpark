@@ -292,10 +292,10 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	@Override
-	public List<ParkingDto> list(Map<String, String> map) {
+	public List<ParkingDetailDto> list(Map<String, String> map) {
 		//지역정보,시작일,종료일 map에 담아옴
-		List<ParkingDto> list=new ArrayList<ParkingDto>();
-		ParkingDto parkingDto=null;
+		List<ParkingDetailDto> list=new ArrayList<ParkingDetailDto>();
+		ParkingDetailDto parkingDto=null;
 		Connection conn =null;
 		PreparedStatement pstmt =null;
 		ResultSet rs =null;
@@ -320,7 +320,7 @@ public class MemberDaoImpl implements MemberDao {
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 
-				parkingDto = new ParkingDto();
+				parkingDto = new ParkingDetailDto();
 				parkingDto.setPark_id(rs.getInt("park_id"));
 				parkingDto.setPark_name(rs.getString("park_name"));
 				parkingDto.setDetailAddr(rs.getString("detail_addr")); 		
@@ -328,6 +328,7 @@ public class MemberDaoImpl implements MemberDao {
 				parkingDto.setLongitude(rs.getDouble("longitude"));
 				parkingDto.setLatitude(rs.getDouble("latitude"));
 				parkingDto.setContent(rs.getString("content"));
+				parkingDto.setPark_avgPoint(rs.getDouble("park_avgPoint"));
 
 				list.add(parkingDto);	
 				}

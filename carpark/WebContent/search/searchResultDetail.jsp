@@ -715,13 +715,13 @@ if(reviewlist.size()>0){
                				</button>
                				
 <%
-//if(!"".equals(parkingDetail.getOwner_id())) {//공영주차장이 아닐때
+if(memberDto != null) {//공영주차장이 아닐때
 %>
 							 <button type="button" class="btn btn-success"  id="report" name="report" data-toggle="modal"  data-target="#reportWrite"  onclick="javascript:reportId('<%=parkingDetail.getOwner_id() %>', '<%=parkingDetail.getPark_id() %>', '<%=parkingDetail.getPark_name() %>');">
                   				신고하기
                				</button>
 <%
-//}
+}
 %>
 
 							</div>
