@@ -158,7 +158,6 @@ if(memberDto != null && 10 == memberDto.getUser_flag()) {
 
 
 
-
 <!-- Footer -->
 <%@include file="/common/footer.jsp"%>
 <!-- /Footer -->
