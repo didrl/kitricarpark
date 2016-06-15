@@ -32,7 +32,6 @@ public class AdminParkingViewAction implements Action {
 		MemberDto memberDto = (MemberDto) session.getAttribute("memberInfo");
 		if (memberDto != null) {
 			int parkId = NumberCheck.nullToZero(request.getParameter("parkId"));
-			System.out.println("parkid" + parkId);
 			if (parkId != 0) {
 				ParkingDetailDto parkingDto = MemberParkingServiceImpl.getMemberParkingservice().parkingView(parkId);
 				request.setAttribute("parkingView", parkingDto);

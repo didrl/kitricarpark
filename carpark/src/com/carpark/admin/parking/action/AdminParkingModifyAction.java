@@ -1,7 +1,9 @@
 package com.carpark.admin.parking.action;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.StringTokenizer;
 
 import javax.servlet.ServletException;
@@ -78,14 +80,15 @@ public class AdminParkingModifyAction implements Action {
 			List<ParkingDetailDto> list = AdminParkingServiceImpl.getAdminParkingService().parkingList(pg, flag, visit, key, word);
 			request.setAttribute("parkingList", list);
 
-			PageNavigator navigator = CommonServiceImpl.getCommonService().getPageNavigatorAdminParking(pg, key, word, visit, flag);
+			PageNavigator navigator = CommonServiceImpl.getCommonService().getPageNavigatorAdminParking(pg, flag, visit, key, word);
 			navigator.setRoot(request.getContextPath());
-			if ("0".equals(flag))
-				navigator.setNavigator("adminParkListPublic");
-			else if ("1".equals(flag))
-				navigator.setNavigator("adminParkListPrivate");
-			else
-				navigator.setNavigator("adminParkList");
+			Map<String, String> map = new HashMap<String, String>();
+			String javascript = "adminParkList";
+			map.put("javascript", javascript);
+			map.put("pg", pg + "");
+			map.put("flag", flag);
+			map.put("visit", visit);
+			navigator.setNavigator(map);
 			request.setAttribute("navigator", navigator);
 
 			return "/admin/parking/list.jsp";
