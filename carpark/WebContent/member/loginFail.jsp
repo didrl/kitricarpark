@@ -26,7 +26,7 @@ if(session.isNew()){
 				<button type="button" class="close" data-dismiss="modal">
 					<span aria-hidden="true"></span>
 				</button>
-				<h4 class="modal-title" id="myModalLabel" style="color: #FFFFFF">장시간 대기로 재로그인</h4>
+				<h4 class="modal-title" id="myModalLabel" style="color: #FFFFFF">세션 만료! 재로그인</h4>
 			</div>
 			<div class="modal-body">
 				
