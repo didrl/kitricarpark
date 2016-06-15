@@ -73,7 +73,7 @@ if(memberDto != null) {
 %>		
                   <td>
                   	<button type="button" class="btn btn-default btn-xs" onclick="javascript:adminParkingView('<%=parkingDetailDto.getPark_id()%>');"> 상세보기 </button>
-                  	<button type="button" class="btn btn-default btn-xs" onclick="javascript:adminParkingAuth('<%=parkingDetailDto.getPark_id()%>');"> 인증 </button>
+                  	<button type="button" class="btn btn-default btn-xs" onclick="javascript:adminParkingVisit('<%=parkingDetailDto.getPark_id()%>');"> 인증 </button>
                   	<button type="button" class="btn btn-default btn-xs" onclick="javascript:adminParkingDelete('<%=parkingDetailDto.getPark_id()%>');"> 삭제 </button>
 				  </td>
 <%

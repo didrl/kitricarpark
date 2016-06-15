@@ -27,7 +27,7 @@ function adminParkingDelete(parkId) {
 	document.common.parkId.value = parkId;
 	document.common.key.value = "park_public";
 	document.common.word.value = "1";
-	document.common.auth.value = "1";
+	document.common.visit.value = "1";
 	document.common.action = "/carpark/adminparking"
 	document.common.submit();
 	   
@@ -86,7 +86,7 @@ function adminParkingMvModify(parkId) {
 function adminParkList(pg) {
 	document.common.act.value = "adminParkList";
 	document.common.pg.value = pg;
-	document.common.auth.value = "1";
+	document.common.visit.value = "1";
 	document.common.action = "/carpark/adminparking";
 	document.common.submit();
 }
@@ -97,7 +97,7 @@ function adminParkListPublic(pg) {
 	document.common.pg.value = pg;
 	document.common.key.value = "park_public";
 	document.common.word.value = "0";
-	document.common.auth.value = "1";
+	document.common.visit.value = "1";
 	document.common.action = "/carpark/adminparking";
 	document.common.submit();
 }
@@ -107,26 +107,26 @@ function adminParkListPrivate(pg) {
 	document.common.pg.value = pg;
 	document.common.key.value = "park_public";
 	document.common.word.value = "1";
-	document.common.auth.value = "1";
+	document.common.visit.value = "1";
 	document.common.action = "/carpark/adminparking";
 	document.common.submit();
 }
 
-function parkAuthList(pg) {
-	document.common.act.value = "parkAuthList";
+function parkVisitList(pg) {
+	document.common.act.value = "parkVisitList";
 	document.common.pg.value = pg;
 	document.common.word.value = "0";
-	document.common.auth.value = "0";
+	document.common.visit.value = "0";
 	document.common.action = "/carpark/adminparking";
 	document.common.submit();
 }
 
-function adminParkingAuth(parkId) {
-	document.common.act.value = "adminParkingAuth";
+function adminParkingVisit(parkId) {
+	document.common.act.value = "adminParkingVisit";
 	document.common.parkId.value = parkId;
 	document.common.pg.value = pg;
 	document.common.word.value = "0";
-	document.common.auth.value = "0";
+	document.common.visit.value = "0";
 	document.common.action = "/carpark/adminparking";
 	document.common.submit();
 }

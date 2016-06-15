@@ -45,10 +45,10 @@ public class AdminParkingVisitListAction implements Action {
 			PageNavigator navigator = CommonServiceImpl.getCommonService().getPageNavigatorAdminParking(pg, key, word,
 					visit);
 			navigator.setRoot(request.getContextPath());
-			navigator.setNavigator("parkAuthList");
+			navigator.setNavigator("parkVisitList");
 			request.setAttribute("navigator", navigator);
 
-			return "/admin/parking/authlist.jsp";
+			return "/admin/parking/visitlist.jsp";
 		} else
 			return "index.jsp";
 	}

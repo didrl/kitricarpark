@@ -37,7 +37,7 @@
                                 <a href="<%=root%>/admincall?act=adminCallReceiveList">주차장 제보 목록</a>
                             </li>
                             <li>
-                                <a href="javascript:parkAuthList('1');">주차장 인증예정목록</a>
+                                <a href="javascript:parkVisitList('1');">주차장 인증예정목록</a>
                             </li>
                         </ul>
                     </li>

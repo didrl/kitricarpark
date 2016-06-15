@@ -82,7 +82,7 @@ public class AdminParkingDaoImpl implements AdminParkingDao {
 		
 		String key = map.get("key");
 		String word = map.get("word");
-		String auth = map.get("auth");
+		String visit = map.get("visit");
 		
 		try {
 			conn = DBConnection.makeConnection();
@@ -105,7 +105,7 @@ public class AdminParkingDaoImpl implements AdminParkingDao {
 		    sql += "where rn > ? \n";
 			pstmt = conn.prepareStatement(sql);
 			int idx = 0;
-			pstmt.setString(++idx, auth);
+			pstmt.setString(++idx, visit);
 			if(key != null && !key.isEmpty()) {
 				if(word != null && !word.isEmpty()) {
 					pstmt.setString(++idx, map.get("word"));				
@@ -191,7 +191,7 @@ public class AdminParkingDaoImpl implements AdminParkingDao {
 	}
 
 	@Override
-	public void adminParkingAuth(String parkId) {
+	public void adminParkingVisit(String parkId) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		

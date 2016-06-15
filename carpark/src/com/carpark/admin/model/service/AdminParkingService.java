@@ -11,5 +11,5 @@ public interface AdminParkingService {
 	ArrayList<ReservationDto> myReservationList(String user_id); 
 	List<ParkingDetailDto> parkingList(int pg, String key, String word, String auth);
 	void parkingRegister(ParkingDetailDto parkingDetailDto);
-	void adminParkingAuth(String parkId);
+	void adminParkingVisit(String parkId);
 }
