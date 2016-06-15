@@ -10,8 +10,8 @@ import com.carpark.admin.call.action.AdminCallModifyAction;
 import com.carpark.admin.call.action.AdminCallRegisterAction;
 import com.carpark.admin.call.action.AdminCallViewAction;
 
-import com.carpark.admin.parking.action.AdminParkingAuthAction;
-import com.carpark.admin.parking.action.AdminParkingAuthListAction;
+import com.carpark.admin.parking.action.AdminParkingVisitAction;
+import com.carpark.admin.parking.action.AdminParkingVisitListAction;
 import com.carpark.admin.parking.action.AdminParkingDeleteAction;
 import com.carpark.admin.parking.action.AdminParkingListAction;
 import com.carpark.admin.parking.action.AdminParkingModifyAction;
@@ -31,9 +31,9 @@ public class AdminActionFactory {
 	private static Action adminParkingModifyAction;
 	private static Action adminParkingRegisterAction;
 	private static Action adminParkingSearchAction;
-	private static Action adminParkingAuthListAction;
+	private static Action adminParkingVisitListAction;
 	private static Action adminParkingViewAction;
-	private static Action adminParkingAuthAction;
+	private static Action adminParkingVisitAction;
 	
 	private static Action adminCallDeleteAction;
 	private static Action adminCallListAction;
@@ -66,9 +66,9 @@ public class AdminActionFactory {
 		adminParkingRegisterAction = new AdminParkingRegisterAction();
 		adminParkingSearchAction = new AdminParkingSearchAction();
 		adminParkingListAction = new AdminParkingListAction();
-		adminParkingAuthListAction = new AdminParkingAuthListAction();
+		adminParkingVisitListAction = new AdminParkingVisitListAction();
 		adminParkingViewAction = new AdminParkingViewAction();
-		adminParkingAuthAction = new AdminParkingAuthAction();
+		adminParkingVisitAction = new AdminParkingVisitAction();
 		
 		adminCallDeleteAction = new AdminCallDeleteAction();
 		adminCallListAction = new AdminCallListAction();
@@ -156,16 +156,16 @@ public class AdminActionFactory {
 		return adminReportRegisterAction;
 	}
 
-	public static Action getAdminParkingAuthListAction() {
-		return adminParkingAuthListAction;
+	public static Action getAdminParkingVisitListAction() {
+		return adminParkingVisitListAction;
 	}
 
 	public static Action getAdminParkingViewAction() {
 		return adminParkingViewAction;
 	}
 
-	public static Action getAdminParkingAuthAction() {
-		return adminParkingAuthAction;
+	public static Action getAdminParkingVisitAction() {
+		return adminParkingVisitAction;
 	}
 	
 	

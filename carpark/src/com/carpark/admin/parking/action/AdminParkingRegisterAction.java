@@ -26,9 +26,12 @@ public class AdminParkingRegisterAction implements Action {
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 		
+		String act = request.getParameter("act");
+		String visit = StringCheck.nullToBlank(request.getParameter("visit"));
 		int pg = NumberCheck.nullToOne(request.getParameter("pg"));
 		String key = StringCheck.nullToBlank(request.getParameter("key"));
-		String word = StringCheck.nullToBlank(Encoder.isoToUtf(request.getParameter("word")));
+		String word = StringCheck.nullToBlank(request.getParameter("word"));
+		String flag = request.getParameter("flag");
 		
 		HttpSession session = request.getSession();
 		MemberDto memberDto = (MemberDto) session.getAttribute("memberInfo");

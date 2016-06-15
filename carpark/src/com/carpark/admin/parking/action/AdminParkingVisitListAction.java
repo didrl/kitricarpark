@@ -18,30 +18,32 @@ import com.carpark.util.NumberCheck;
 import com.carpark.util.PageNavigator;
 import com.carpark.util.StringCheck;
 
-public class AdminParkingAuthListAction implements Action {
+public class AdminParkingVisitListAction implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 
+		String act = request.getParameter("act");
+		String visit = StringCheck.nullToBlank(request.getParameter("visit"));
 		int pg = NumberCheck.nullToOne(request.getParameter("pg"));
 		String key = StringCheck.nullToBlank(request.getParameter("key"));
-		String word = StringCheck.nullToBlank(Encoder.isoToUtf(request.getParameter("word")));
-		String auth = request.getParameter("auth");
-
+		String word = StringCheck.nullToBlank(request.getParameter("word"));
+		String flag = request.getParameter("flag");
+		
 		System.out.println("key : " + key);
 		System.out.println("word : " + word);
-		System.out.println("auth : " + auth);
+		System.out.println("visit : " + visit);
 
 		HttpSession session = request.getSession();
 		MemberDto memberDto = (MemberDto) session.getAttribute("memberInfo");
 		if (memberDto != null) {
 			List<ParkingDetailDto> list = AdminParkingServiceImpl.getAdminParkingService().parkingList(pg, key, word,
-					auth);
+					visit);
 			request.setAttribute("parkingList", list);
 
 			PageNavigator navigator = CommonServiceImpl.getCommonService().getPageNavigatorAdminParking(pg, key, word,
-					auth);
+					visit);
 			navigator.setRoot(request.getContextPath());
 			navigator.setNavigator("parkAuthList");
 			request.setAttribute("navigator", navigator);

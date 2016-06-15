@@ -20,13 +20,14 @@ public class AdminParkingController extends HttpServlet {
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String act = request.getParameter("act");
-		String auth = StringCheck.nullToBlank(request.getParameter("auth"));
+		String visit = StringCheck.nullToBlank(request.getParameter("visit"));
 		int pg = NumberCheck.nullToOne(request.getParameter("pg"));
 		String key = StringCheck.nullToBlank(request.getParameter("key"));
 		String word = StringCheck.nullToBlank(request.getParameter("word"));
+		String flag = request.getParameter("flag");
 		
 		String path = "/index.jsp";
-		String queryString = "?auth=" + auth + "&pg=" + pg + "&key=" + key + "&word=" + Encoder.isoToUtf(word);
+		String queryString = "?visit=" + visit + "&flag=" + flag +  "&pg=" + pg + "&key=" + key + "&word=" + Encoder.isoToUtf(word);
 		
 		if("adminParkingSearch".equals(act)) {
 			path = AdminActionFactory.getAdminParkingSearchAction().execute(request, response);
@@ -51,7 +52,7 @@ public class AdminParkingController extends HttpServlet {
 			PageMove.forward(request, response, path + queryString);
 			
 		} else if("parkAuthList".equals(act)) {
-			path = AdminActionFactory.getAdminParkingAuthListAction().execute(request, response);
+			path = AdminActionFactory.getAdminParkingVisitListAction().execute(request, response);
 			PageMove.forward(request, response, path + queryString);
 			
 		} else if("adminParkingMvModify".equals(act)) {
@@ -60,8 +61,8 @@ public class AdminParkingController extends HttpServlet {
 			PageMove.forward(request, response, path + queryString);
 			
 		} else if("adminParkingAuth".equals(act)) {
-			AdminActionFactory.getAdminParkingAuthAction().execute(request, response);
-			path = AdminActionFactory.getAdminParkingAuthListAction().execute(request, response);
+			AdminActionFactory.getAdminParkingVisitAction().execute(request, response);
+			path = AdminActionFactory.getAdminParkingVisitListAction().execute(request, response);
 			PageMove.forward(request, response, path + queryString);
 		} else if("adminParkingDelete".equals(act)) {
 			AdminActionFactory.getAdminParkingDeleteAction().execute(request, response);

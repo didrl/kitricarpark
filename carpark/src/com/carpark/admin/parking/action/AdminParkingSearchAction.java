@@ -23,11 +23,17 @@ public class AdminParkingSearchAction implements Action {
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 
+		String act = request.getParameter("act");
+		String visit = StringCheck.nullToBlank(request.getParameter("visit"));
+		int pg = NumberCheck.nullToOne(request.getParameter("pg"));
+		String key = StringCheck.nullToBlank(request.getParameter("key"));
+		String word = StringCheck.nullToBlank(request.getParameter("word"));
+		String flag = request.getParameter("flag");
+		
 		String parkAddress = Encoder.isoToUtf(StringCheck.nullToBlank(request.getParameter("parkAddress")));
 
 		HttpSession session = request.getSession();
 		session.setAttribute("address", parkAddress);
-		int pg = NumberCheck.nullToOne(request.getParameter("pg"));
 		List<ZipDto> list = MemberParkingServiceImpl.getMemberParkingservice().parkingSearch(parkAddress, pg);
 		request.setAttribute("addressList", list);
 

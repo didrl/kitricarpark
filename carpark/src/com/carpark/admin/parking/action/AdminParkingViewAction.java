@@ -13,12 +13,21 @@ import com.carpark.member.model.MemberDto;
 import com.carpark.member.model.service.MemberParkingServiceImpl;
 import com.carpark.member.model.service.MemberReportServiceImpl;
 import com.carpark.util.NumberCheck;
+import com.carpark.util.StringCheck;
 
 public class AdminParkingViewAction implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
+		
+		String act = request.getParameter("act");
+		String visit = StringCheck.nullToBlank(request.getParameter("visit"));
+		int pg = NumberCheck.nullToOne(request.getParameter("pg"));
+		String key = StringCheck.nullToBlank(request.getParameter("key"));
+		String word = StringCheck.nullToBlank(request.getParameter("word"));
+		String flag = request.getParameter("flag");
+		
 		HttpSession session = request.getSession();
 		MemberDto memberDto = (MemberDto) session.getAttribute("memberInfo");
 		if (memberDto != null) {
