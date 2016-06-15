@@ -1,5 +1,7 @@
 package com.carpark.util;
 
+import java.util.Map;
+
 public class PageNavigator {//Dto와 비슷하지만 조금 다름
 	
 	private String root;
@@ -179,7 +181,6 @@ public class PageNavigator {//Dto와 비슷하지만 조금 다름
 
 		this.navigator = tmpNavigator.toString();
 
-
 	}
 	
 	public void setNavigator(String javascript, String flag) {
@@ -216,6 +217,46 @@ public class PageNavigator {//Dto와 비슷하지만 조금 다름
 
 		this.navigator = tmpNavigator.toString();
 
+	}
+	
+	public void setNavigator(Map<String, String> map) {
+		StringBuffer tmpNavigator = new StringBuffer();
+		
+		String javascript = map.get("javascript");
+		String pg = map.get("pg");
+		String flag = map.get("flag");
+		String visit = map.get("visit");
+		
+		int listSize = BoardConstance.BOARD_LIST_SIZE;
+		int pageSize = BoardConstance.BOARD_PAGE_SIZE;
+		int prePage = (pageNo - 1) / pageSize * pageSize;
+
+		if (this.isNowFirst()) {//첫번째 범위에 있을 때
+			tmpNavigator.append("  <li><a href='#' aria-label=\"Previous\"><span aria-hidden=\"true\">&laquo;</span></a></li> \n");
+		} else {//첫번째 범위에 없을 때
+			tmpNavigator.append(" <li><a href='javascript:" + javascript + "('" + prePage + "', '" + flag + "', '" + visit + "')' aria-label=\"Previous\"><span aria-hidden=\"true\">&laquo;</span></a></li> \n");
+		}
+		
+		int startPage = prePage + 1;
+		int endPage = prePage + pageSize;
+		if(endPage > totalPageCount)
+			endPage = totalPageCount;
+		
+		for (int i = startPage; i <= endPage; i++) {
+			if (pageNo == i) {//현재 페이지는 링크없고 강조 표시
+				tmpNavigator.append("  <li><a href=\"#\"><b> " + i + " </b></a></li> \n");
+			} else {//현재 페이지가 아닌것은 링크가 있고 강조 표시 없음
+				tmpNavigator.append("  <li><a href=\"javascript:" + javascript + "('" + i + "', '" + flag + "', '" + visit + "');\">" + i + "</a></li> \n");
+			}
+		}
+		
+		if (this.isNowEnd()) {
+			tmpNavigator.append(" <li><a href='#'><span aria-hidden=\"true\">&raquo;</span></a></li> \n");
+		} else {
+			tmpNavigator.append("  <li><a href=\"javascript:" + javascript + "('" + (endPage + 1) + "', '" + flag + "', '" + visit + "');\" aria-label=\"Next\"><span aria-hidden=\"true\">&raquo;</span></a></li> \n");
+		}
+
+		this.navigator = tmpNavigator.toString();
 
 	}
 	

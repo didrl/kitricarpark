@@ -24,10 +24,9 @@ public class MemberParkingController extends HttpServlet {
 		int pg = NumberCheck.nullToOne(request.getParameter("pg"));
 		String key = StringCheck.nullToBlank(request.getParameter("key"));
 		String word = StringCheck.nullToBlank(request.getParameter("word"));
-		String parkAddress = Encoder.isoToUtf(StringCheck.nullToBlank(request.getParameter("parkAddress")));
 		
 		String path = "/index.jsp";
-		String queryString = "?bcode=" + bcode + "&pg=" + pg + "&key=" + key + "&word=" + Encoder.isoToUtf(word);
+		String queryString = "?pg=" + pg + "&key=" + key + "&word=" + Encoder.isoToUtf(word);
 		
 		if("parkingRegister".equals(act)) {
 			path = MemberActionFactory.getMemberParkingRegisterAction().execute(request, response);
@@ -59,7 +58,9 @@ public class MemberParkingController extends HttpServlet {
 			path = "/parking/modify.jsp";
 			PageMove.forward(request, response, path + queryString);
 			
-		} else if("".equals(act)) {
+		} else if("parkSearch".equals(act)) {
+			path = MemberActionFactory.getMemberParkingListAction().execute(request, response);
+			PageMove.forward(request, response, path + queryString);
 			
 		} 
 	}

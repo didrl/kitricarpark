@@ -1,7 +1,9 @@
 package com.carpark.admin.parking.action;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -25,14 +27,11 @@ public class AdminParkingListAction implements Action {
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 
-		String act = request.getParameter("act");
 		String visit = StringCheck.nullToBlank(request.getParameter("visit"));
 		int pg = NumberCheck.nullToOne(request.getParameter("pg"));
 		String key = StringCheck.nullToBlank(request.getParameter("key"));
 		String word = StringCheck.nullToBlank(request.getParameter("word"));
 		String flag = request.getParameter("flag");
-
-		System.out.println("action = pg : " + pg + " , flag : " + flag + " , visit : " + visit + " , key : " + key + " , word : " + word);
 
 		HttpSession session = request.getSession();
 		MemberDto memberDto = (MemberDto) session.getAttribute("memberInfo");
@@ -42,12 +41,18 @@ public class AdminParkingListAction implements Action {
 
 			PageNavigator navigator = CommonServiceImpl.getCommonService().getPageNavigatorAdminParking(pg, flag, visit, key, word);
 			navigator.setRoot(request.getContextPath());
-			navigator.setNavigator("adminParkList");
+			Map<String, String> map = new HashMap<String, String>();
+			String javascript = "adminParkList";
+			map.put("javascript", javascript);
+			map.put("pg", pg + "");
+			map.put("flag", flag);
+			map.put("visit", visit);
+			navigator.setNavigator(map);
 			request.setAttribute("navigator", navigator);
 
 			return "/admin/parking/list.jsp";
 		} else
-			return "index.jsp";
+			return "/member/loginFail.jsp";
 
 	}
 

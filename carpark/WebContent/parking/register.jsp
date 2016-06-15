@@ -15,7 +15,8 @@
 			<br>
 			<!-- 본문내용 -->
 			<form name="parkRegisterForm" method="post" action="">
-				<input type="hidden" name="act" value="parkingRegister">				
+				<input type="hidden" name="act" value="parkingRegister">	
+				<input type="hidden" name="coordinate" value=""> 			
 				
 				<div class="row">
 					<div class="col-md-2">
@@ -46,12 +47,15 @@
 					<div class="col-md-2">
 						<b>주소</b><br>
 					</div>
-					<div class="col-md-10">
+					<div class="col-md-6">
 						<div class="form-group">
 							<input type="text" name="parkAddress" class="form-control">
-							
 						</div>
-							<button type="button" class="btn btn-default" onclick="javascript:">검색</button>
+					</div>
+					<div class="col-md-1">
+						<div class="form-group">
+							<button type="button" class="btn btn-default" onclick="javascript:parkingSearchWindow();">검색</button>
+						</div>
 					</div>
 				</div><hr>
 				
@@ -59,9 +63,14 @@
 					<div class="col-md-2">
 						<b>상세주소</b><br>
 					</div>
-					<div class="col-md-10">
+					<div class="col-md-6">
 						<div class="form-group">
 							<input type="text" name="parkDetailAddress" class="form-control">
+						</div>
+					</div>
+					<div class="col-md-1">
+						<div class="form-group">
+							<button type="button" class="btn btn-default" onclick="javascript:test();">확인</button>
 						</div>
 					</div>
 				</div><hr>

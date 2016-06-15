@@ -1,7 +1,9 @@
 package com.carpark.admin.parking.action;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.StringTokenizer;
 
 import javax.servlet.ServletException;
@@ -52,9 +54,6 @@ public class AdminParkingModifyAction implements Action {
 
 				parkingDto.setLatitude(Double.parseDouble(latitude));
 				parkingDto.setLongitude(Double.parseDouble(longitude));
-			} else {
-				System.out.println("좌표가져오기 실패");
-				return "/admin/parking/register.jsp";
 			}
 
 			parkingDto.setOwner_id(ownerId);
@@ -70,7 +69,7 @@ public class AdminParkingModifyAction implements Action {
 			parkingDto.setFulltime_monthly_pay(NumberCheck.nullToOne(request.getParameter("fullTimeMonthlyPay")));
 			parkingDto.setPark_flag(NumberCheck.nullToOne(request.getParameter("parkFlag")));
 			parkingDto.setContent(StringCheck.nullToBlank(request.getParameter("content").replace("\r\n", "<br>")));
-			parkingDto.setDetailAddr(StringCheck.nullToBlank(request.getParameter("parkAddress")));
+			parkingDto.setDetailAddr(StringCheck.nullToBlank(request.getParameter("parkDetailAddress")));
 			parkingDto.setFacility(StringCheck.nullToBlank(request.getParameter("facility")));
 
 			MemberParkingServiceImpl.getMemberParkingservice().parkingModify(parkingDto);
@@ -78,19 +77,20 @@ public class AdminParkingModifyAction implements Action {
 			List<ParkingDetailDto> list = AdminParkingServiceImpl.getAdminParkingService().parkingList(pg, flag, visit, key, word);
 			request.setAttribute("parkingList", list);
 
-			PageNavigator navigator = CommonServiceImpl.getCommonService().getPageNavigatorAdminParking(pg, key, word, visit, flag);
+			PageNavigator navigator = CommonServiceImpl.getCommonService().getPageNavigatorAdminParking(pg, flag, visit, key, word);
 			navigator.setRoot(request.getContextPath());
-			if ("0".equals(flag))
-				navigator.setNavigator("adminParkListPublic");
-			else if ("1".equals(flag))
-				navigator.setNavigator("adminParkListPrivate");
-			else
-				navigator.setNavigator("adminParkList");
+			Map<String, String> map = new HashMap<String, String>();
+			String javascript = "adminParkList";
+			map.put("javascript", javascript);
+			map.put("pg", pg + "");
+			map.put("flag", flag);
+			map.put("visit", visit);
+			navigator.setNavigator(map);
 			request.setAttribute("navigator", navigator);
 
 			return "/admin/parking/list.jsp";
 		} else
-			return "index.jsp";
+			return "/member/loginFail.jsp";
 	}
 
 }
