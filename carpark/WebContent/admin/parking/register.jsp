@@ -20,7 +20,7 @@
 			<form name="adminParkingRegisterForm" method="post" action="">
 				<input type="hidden" name="act" value="adminParkingRegister">				
 				<input type="hidden" name="pg" value="<%=pg%>">				
-				<input type="hidden" name="auth" value="<%=auth%>">
+				<input type="hidden" name="visit" value="<%=visit%>">
 				<input type="hidden" name="coordinate" value="">  
 				
 				<div class="row">

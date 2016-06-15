@@ -238,7 +238,7 @@ if("0" == parkingDto.getHoli_pay_yn()) {
 <%
 if(parkingDto.getPark_visit() == 0) {
 %>
-							<button type="button" class="btn btn-default btn-lg" onclick="javascript:adminParkingAuth('<%=parkingDto.getPark_id()%>');"> 인증 </button>
+							<button type="button" class="btn btn-default btn-lg" onclick="javascript:adminParkingVisit('<%=parkingDto.getPark_id()%>');"> 인증 </button>
 <%
 } else {
 %>

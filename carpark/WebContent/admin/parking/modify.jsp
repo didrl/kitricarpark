@@ -24,7 +24,7 @@ if(memberDto != null){
 				<input type="hidden" name="act" value="adminParkingModify">				
 				<input type="hidden" name="parkId" value="<%=parkingDto.getPark_id()%>">	
 				<input type="hidden" name="pg" value="<%=pg%>">				
-				<input type="hidden" name="auth" value="<%=auth%>">			
+				<input type="hidden" name="visit" value="<%=visit%>">			
 				
 				
 				<div class="row">

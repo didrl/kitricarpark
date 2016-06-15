@@ -35,7 +35,7 @@ public class AdminParkingServiceImpl implements AdminParkingService {
 	}
 
 	@Override
-	public List<ParkingDetailDto> parkingList(int pg, String key, String word, String auth) {
+	public List<ParkingDetailDto> parkingList(int pg, String key, String word, String visit) {
 		Map<String, String> map = new HashMap<String, String>();
 		
 		int end = BoardConstance.BOARD_LIST_SIZE * pg;
@@ -45,7 +45,7 @@ public class AdminParkingServiceImpl implements AdminParkingService {
 		map.put("start", start + "");
 		map.put("key", key);
 		map.put("word", word);
-		map.put("auth", auth);
+		map.put("visit", visit);
 		return AdminParkingDaoImpl.getAdminParkingDao().parkingList(map);
 	}
 
@@ -56,8 +56,8 @@ public class AdminParkingServiceImpl implements AdminParkingService {
 	}
 
 	@Override
-	public void adminParkingAuth(String parkId) {
-		AdminParkingDaoImpl.getAdminParkingDao().adminParkingAuth(parkId);
+	public void adminParkingVisit(String parkId) {
+		AdminParkingDaoImpl.getAdminParkingDao().adminParkingVisit(parkId);
 		
 	}
 

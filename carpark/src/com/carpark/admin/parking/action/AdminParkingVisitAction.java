@@ -26,7 +26,7 @@ public class AdminParkingVisitAction implements Action {
 		
 		String parkId = request.getParameter("parkId");
 		
-		AdminParkingServiceImpl.getAdminParkingService().adminParkingAuth(parkId);
+		AdminParkingServiceImpl.getAdminParkingService().adminParkingVisit(parkId);
 		
 		return "index.jsp";
 	}
