@@ -90,7 +90,7 @@ if(messageDto.getMsgFlag() == 0) {
 
 			<!-- 페이지 네비게이션/검색 -->
 			<nav align="center">
-				<div class="form-group">
+				<!--  <div class="form-group">
 				<form class="form-inline" name="searchForm" method="get" action="">
 					<input type="hidden" name="act" id="act" value="messageSearchSend">
 					<input type="hidden" name="pg" id="pg" value="<%=pg%>">
@@ -102,7 +102,7 @@ if(messageDto.getMsgFlag() == 0) {
 					<input type="text" name="word" id="word" value="">
 					<input type="button" class="btn btn-default" value="검색" onclick="javascript:messageSearchSend();">
 				</form>
-				</div>
+				</div>-->
 					
 				<ul class="pagination">
 				<%=navigator.getNavigator() %>
@@ -110,7 +110,6 @@ if(messageDto.getMsgFlag() == 0) {
 			</nav>
 
 					
-		</div>
 	</div>
 <!-- ****************************************************************************************************************** -->	
 </div>
