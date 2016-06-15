@@ -76,12 +76,27 @@ public class AdminParkingRegisterAction implements Action {
 			parkingDto.setContent(StringCheck.nullToBlank(request.getParameter("content").replace("\r\n", "<br>")));
 			parkingDto.setDetailAddr(StringCheck.nullToBlank(request.getParameter("parkAddress") + " " + request.getParameter("parkDetailAddress")));
 			parkingDto.setFacility(StringCheck.nullToBlank(request.getParameter("facility")));
+			parkingDto.setPark_avgPoint(3.0);
 			parkingDto.setPark_visit(0);
 			
 			AdminParkingServiceImpl.getAdminParkingService().parkingRegister(parkingDto);
+			
+			List<ParkingDetailDto> list = AdminParkingServiceImpl.getAdminParkingService().parkingList(1, "", "0", key, word);
+			request.setAttribute("parkingList", list);
+
+			PageNavigator navigator = CommonServiceImpl.getCommonService().getPageNavigatorAdminParking(pg, key, word, visit, flag);
+			navigator.setRoot(request.getContextPath());
+			if ("0".equals(flag))
+				navigator.setNavigator("adminParkListPublic");
+			else if ("1".equals(flag))
+				navigator.setNavigator("adminParkListPrivate");
+			else
+				navigator.setNavigator("adminParkList");
+			request.setAttribute("navigator", navigator);
+
+			return "/admin/parking/list.jsp";
+		} else
+			return "index.jsp";
 		}
-		
-		return "index.jsp";
-	}
 
 }

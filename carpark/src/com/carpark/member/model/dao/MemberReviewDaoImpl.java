@@ -44,6 +44,7 @@ public class MemberReviewDaoImpl implements MemberReviewDao {
 			sql +="			and r.rseq=a.rseq\n";
 			sql +="			and a.park_id = p.park_id\n";
 			sql +="			and a.park_id =?\n";
+			sql +="order by b.logtime desc\n";
 		
 			pstmt =conn.prepareStatement(sql);
 			pstmt.setString(1,park_id);
@@ -75,13 +76,28 @@ public class MemberReviewDaoImpl implements MemberReviewDao {
 		int seq = 0;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 		
 		try {
+			Double newAvgPoint =0.0;
 			conn = DBConnection.makeConnection();
 			String sql = "";
 			
+			sql += "select park_avgpoint \n";
+			sql += "from parking_detail \n";
+			sql += "where park_id=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, reviewDto.getPark_id());
+			rs = pstmt.executeQuery();
+			if(rs.next())
+				newAvgPoint = rs.getDouble("park_avgpoint");
+			pstmt.close();
+			newAvgPoint = (newAvgPoint + reviewDto.getAvgPoint())/2;
+			
+			conn.setAutoCommit(false);
+			
+			sql = "";
 			sql += "insert all \n";
-			//sql += "into board(seq, bcode, user_id, subject, contents, logtime, photo_key) \n";
 			sql += "into board(seq, bcode, user_id, subject, contents, logtime) \n";
 			sql += "values(board_num_seq.nextval,0,?,?,?,sysdate) \n";
 			sql += "into review(seq, rseq, aval_code, get_point, avaled_id, host_flag) \n";
@@ -101,15 +117,26 @@ public class MemberReviewDaoImpl implements MemberReviewDao {
 			
 			pstmt.setInt(++idx, reviewDto.getPark_id());
 			pstmt.setDouble(++idx, reviewDto.getAvgPoint());
-			System.out.println(sql);
 			
 			pstmt.executeUpdate();
 			seq = reviewDto.getSeq();
+			pstmt.close();
+			
+			sql = "update parking_detail \n";
+			sql +="set park_avgpoint = ? \n";
+			sql +="where park_id =?";
+			idx = 0;
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setDouble(++idx, newAvgPoint);
+			pstmt.setInt(++idx, reviewDto.getPark_id());
+			pstmt.executeUpdate();
+			
+			conn.commit();
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			DBClose.close(conn, pstmt);
+			DBClose.close(conn, pstmt,rs);
 		}
 		return seq;
 	}
@@ -125,9 +152,9 @@ public class MemberReviewDaoImpl implements MemberReviewDao {
 			conn = DBConnection.makeConnection();
 			String sql = "";
 			
-			sql += "select b.user_id, b.subject, b.contents,r.aval_code, r.get_point, r.avaled_id,r.host_flag,b.logtime, r.rseq,r.get_point\n";
-			sql += "from review r, board b \n";
-			sql += "where r.seq=b.seq \n";
+			sql += "select b.user_id, b.subject, b.contents,r.aval_code, r.get_point, r.avaled_id,r.host_flag,b.logtime, r.rseq,r.get_point, b.bcode, ap.park_id\n";
+			sql += "from review r, board b,avgpoint ap  \n";
+			sql += "where r.seq=b.seq and ap.seq=b.seq \n";
 			sql += "and b.seq = ?";
 			
 			pstmt = conn.prepareStatement(sql);
@@ -145,6 +172,7 @@ public class MemberReviewDaoImpl implements MemberReviewDao {
 				reviewDto.setRseq(rs.getInt("rseq"));
 				reviewDto.setAvgPoint(rs.getDouble("get_point"));
 				reviewDto.setHost_flag(rs.getInt("host_flag"));
+				reviewDto.setPark_id(rs.getInt("park_id"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -171,7 +199,8 @@ public class MemberReviewDaoImpl implements MemberReviewDao {
 			sql +="where r.seq=b.seq\n";
 			sql +="and r.rseq = ap.rseq\n";
 			sql +="and b.user_id=?\n";
-		
+			sql +="order by b.logtime desc\n";
+			
 			pstmt =conn.prepareStatement(sql);
 			pstmt.setString(1,userId);
 			
@@ -219,7 +248,8 @@ public class MemberReviewDaoImpl implements MemberReviewDao {
 			sql +="where r.seq=b.seq\n";
 			sql +="and r.rseq = ap.rseq\n";
 			sql +="and r.avaled_id=?\n";
-		
+			sql +="order by b.logtime desc\n";
+			
 			pstmt =conn.prepareStatement(sql);
 			pstmt.setString(1,receiveId);
 			

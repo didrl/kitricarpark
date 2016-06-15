@@ -41,7 +41,8 @@ public class MemberParkingSearchAction implements Action {
 			
 			return "/parking/parksearch.jsp";
 		} else
-			return "index.jsp";
+//			return "index.jsp";
+			return "/member/loginFail.jsp";
 	}
 
 }

@@ -44,7 +44,7 @@ function receiveReviewList(pg) {
 				<!-- 메세지 리스트 -->
 				<div class="table">
 				  <table class="table table-hover" style="text-align:center">
-				  	<tr>
+				  	<tr style="background: #00cc00">
 					  	<td width="150"><b>받은 사람</b></td>
 				  		<td width="150"><b>작성자</b></td>
 				  		<td width="100"><b>주차장 번호</b></td>

@@ -1,6 +1,7 @@
 package com.carpark.admin.parking.action;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -8,7 +9,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.carpark.action.Action;
 import com.carpark.admin.model.service.AdminParkingServiceImpl;
+import com.carpark.common.model.ParkingDetailDto;
+import com.carpark.member.model.service.CommonServiceImpl;
 import com.carpark.util.NumberCheck;
+import com.carpark.util.PageNavigator;
 import com.carpark.util.StringCheck;
 
 public class AdminParkingVisitAction implements Action {
@@ -26,9 +30,22 @@ public class AdminParkingVisitAction implements Action {
 		
 		String parkId = request.getParameter("parkId");
 		
-		AdminParkingServiceImpl.getAdminParkingService().adminParkingAuth(parkId);
+		AdminParkingServiceImpl.getAdminParkingService().adminParkingVisit(parkId);
 		
-		return "index.jsp";
+		List<ParkingDetailDto> list = AdminParkingServiceImpl.getAdminParkingService().parkingList(pg, flag, visit, key, word);
+		request.setAttribute("parkingList", list);
+
+		PageNavigator navigator = CommonServiceImpl.getCommonService().getPageNavigatorAdminParking(pg, key, word, visit, flag);
+		navigator.setRoot(request.getContextPath());
+		if ("0".equals(flag))
+			navigator.setNavigator("adminParkListPublic");
+		else if ("1".equals(flag))
+			navigator.setNavigator("adminParkListPrivate");
+		else
+			navigator.setNavigator("adminParkList");
+		request.setAttribute("navigator", navigator);
+
+		return "/admin/parking/list.jsp";
 	}
 
 }

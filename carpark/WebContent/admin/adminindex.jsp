@@ -158,7 +158,7 @@ function drawCustomerChangeChart() {
     ]);
 
     var options = {
-      title: 'Company Performance',
+      title: '이용자 변동 현황',
       curveType: 'function',
       legend: { position: 'bottom' }
     };
@@ -280,62 +280,3 @@ $('#customerChangeBtn').on('click', function (event) {
 </script>
 <%@include file="/common/footer.jsp"%>
 
-<!-- 
-/////For Popular Parking space//////
-
-select rownum, a.park_id,a.rcount,a.fcount,a.park_name,a.park_avgpoint
-from(
-select distinct pd.park_id, pd.park_avgpoint,nvl(r.rcount,0) rcount,nvl( f.fcount,0) fcount,nvl((r.rcount+f.fcount),0) point,p.park_name
-from (select park_id, count(park_id) rcount
-			from reservation
-			group by park_id
-			order by rcount desc) r,
-		(select park_id, count(park_id) fcount
-		from favorite
-		group by park_id
-		order by fcount desc) f, parking_detail pd,parking p
-where r.park_id(+)=pd.park_id and
-			f.park_id (+)= pd.park_id and
-			pd.park_id = p.park_id
-order by  point desc) a
-where rownum <11
-/////////////////////////////////////////////////////////////////////
-
-
-//////For Good Behavior Customer//////////////////////////////////
-select rownum, a.user_id, a.user_avgpoint, a.penalty
-from (select user_id, user_avgpoint, penalty
-			from member
-			order by user_avgpoint desc, penalty) a
-where rownum<11
-/////////////////////////////////////////////////////////////////////
-
-
-///////////// For Good Use Customer///////////////////////////////
-select rownum, a.user_id,a.rcount,a.fcount,a.user_avgpoint
-from(
-select distinct m.user_id, m.user_avgpoint,nvl(r.rcount,0) rcount,nvl( f.fcount,0) fcount,nvl((r.rcount+f.fcount),0) point
-from (select user_id, count(user_id) rcount
-			from reservation
-			group by user_id
-			order by rcount desc) r,
-		(select user_id, count(user_id) fcount
-			from favorite
-			group by user_id
-			order by fcount desc) f, member m
-where r.user_id(+)=m.user_id and
-			f.user_id (+)= m.user_id
-order by  point desc) a
-where rownum <11
-//////////////////////////////////////////////////////////////
-
-//////// Customer Change ///////////////
-select rownum, a.logtime, a.sumover
-from(
-			select logtime,  sum(count(user_id)) over (order by logtime) as sumover
-			from member
-			group by logtime
-			order by logtime) a
-where rownum<16
-///////////////////////////////////////////////////////
- -->

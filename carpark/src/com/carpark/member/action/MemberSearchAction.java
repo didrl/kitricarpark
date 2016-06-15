@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.carpark.action.Action;
-import com.carpark.common.model.ParkingDto;
+import com.carpark.common.model.ParkingDetailDto;
 import com.carpark.member.model.service.MemberServiceImpl;
 
 public class MemberSearchAction implements Action {
@@ -28,7 +28,7 @@ public class MemberSearchAction implements Action {
 		map.put("from", from);
 		map.put("to", to);
 		
-		List<ParkingDto> list = MemberServiceImpl.getMemberService().list(map);
+		List<ParkingDetailDto> list = MemberServiceImpl.getMemberService().list(map);
 		HttpSession session = request.getSession();
 		session.setAttribute("searchlist", list);
 		session.setAttribute("searchInfo", map);

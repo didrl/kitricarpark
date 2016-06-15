@@ -24,6 +24,6 @@ public class MemberInfoAction implements Action {
 			session.setAttribute("getmemberInfo", getmemberDto);
 			return "/member/info.jsp";
 		} else
-			return "";
+			return "/member/loginFail.jsp";
 	}
 }

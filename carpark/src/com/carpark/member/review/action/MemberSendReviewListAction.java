@@ -42,7 +42,8 @@ public class MemberSendReviewListAction implements Action {
 			session.setAttribute("sendReview", list);
 				return "/member/sendReviewList.jsp";
 		}else
-			return "";
+//			return "";
+			return "/member/loginFail.jsp";
 	}
 
 }

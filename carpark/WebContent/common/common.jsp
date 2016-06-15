@@ -13,10 +13,11 @@ String qnapath = adminpath +"/"+"qna";
 String staticpath = adminpath +"/"+"static";
 MemberDto memberDto = (MemberDto)session.getAttribute("memberInfo"); 
 int bcode = NumberCheck.nullToZero(request.getParameter("bcode"));
+String visit = StringCheck.nullToBlank(request.getParameter("visit"));
 int pg = NumberCheck.nullToOne(request.getParameter("pg"));
 String key = StringCheck.nullToBlank(request.getParameter("key"));
-String word = Encoder.isoToUtf(StringCheck.nullToBlank(request.getParameter("word")));
-String auth = StringCheck.nullToBlank(request.getParameter("auth"));
+String word = StringCheck.nullToBlank(request.getParameter("word"));
+String flag = request.getParameter("flag");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -85,12 +86,12 @@ String auth = StringCheck.nullToBlank(request.getParameter("auth"));
 	<input type="hidden" name="act" id="act" value="">
 	<input type="hidden" name="bcode" id="bcode" value="<%=bcode%>">
 	<input type="hidden" name="pg" id="pg" value="<%=pg%>">
-	<input type="hidden" name="key" id="key" value="">
-	<input type="hidden" name="word" id="word" value="">
+	<input type="hidden" name="key" id="key" value="<%=key%>">
+	<input type="hidden" name="word" id="word" value="<%=word%>">
 	<input type="hidden" name="seq" id="seq" value="">
 	<input type="hidden" name="parkId" id="parkId" value="">
-	<input type="hidden" name="flag" id="flag" value="">
-	<input type="hidden" name="auth" id="auth" value="">
+	<input type="hidden" name="flag" id="flag" value="<%=flag%>">
+	<input type="hidden" name="visit" id="visit" value="<%=visit%>">
 	</form>
 	
     

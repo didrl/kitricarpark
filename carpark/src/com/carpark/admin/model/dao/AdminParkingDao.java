@@ -12,5 +12,5 @@ public interface AdminParkingDao {
 	ArrayList<ReservationDto> myReservationList(String user_id); 
 	List<ParkingDetailDto> parkingList(Map<String, String> map);
 	void parkingRegister(ParkingDetailDto parkingDetailDto);
-	void adminParkingAuth(String parkId);
+	void adminParkingVisit(String parkId);
 }

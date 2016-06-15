@@ -20,7 +20,7 @@
 			<form name="adminParkingRegisterForm" method="post" action="">
 				<input type="hidden" name="act" value="adminParkingRegister">				
 				<input type="hidden" name="pg" value="<%=pg%>">				
-				<input type="hidden" name="auth" value="<%=auth%>">
+				<input type="hidden" name="visit" value="<%=visit%>">
 				<input type="hidden" name="coordinate" value="">  
 				
 				<div class="row">
@@ -220,8 +220,8 @@
 	
 				<div class="row">
 						<p align="center">
-		  					<button type="button" class="btn btn-default" onclick="javascript:adminParkingRegister();">등록</button>
-		  					<button type="button" class="btn btn-default" onclick="javascript:adminParkList('1');">목록</button>
+		  					<button type="button" class="btn btn-default" onclick="javascript:adminParkingRegister();"> 등록 </button>
+		  					<button type="button" class="btn btn-default" onclick="javascript:adminParkList('<%=pg %>', '<%=flag%>', '<%=visit%>');"> 취소 </button>
 						</p>
 				</div>
 			</div>
