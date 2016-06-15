@@ -13,7 +13,6 @@
 ParkingDto parkingDetail = (ParkingDto)session.getAttribute("parkingDetail");
 ArrayList<ReviewDto> reviewlist = (ArrayList<ReviewDto>)session.getAttribute("reviewlist");
 ParkingDetailDto parkingDetail_info = (ParkingDetailDto)session.getAttribute("parkingDetail_info");
-ParkingFacilityDto parkingFacilityDto = (ParkingFacilityDto)session.getAttribute("parkingFacilityDto");
 ArrayList<Map<String,String>> availabledate = (ArrayList<Map<String,String>>)session.getAttribute("availabledate");
 Map<String, String> map =(Map<String,String>)session.getAttribute("searchInfo"); 
 ArrayList<FavoriteDto> favoritelist;
@@ -216,7 +215,7 @@ function setfavorite(){
 					<div class="row" align="left">
 						<h3><b>&nbsp;&nbsp;&nbsp; <%=parkingDetail.getPark_name()%>  &nbsp;&nbsp;&nbsp; 
 							<i class = glyphicon glyphicon-star></i><i class = glyphicon glyphicon-star></i><i class = glyphicon glyphicon-star> </i><i class = glyphicon glyphicon-star></i><i class = glyphicon glyphicon-star-empty></i></b> 
-							<%=parkingDetail.getLocation() %>
+							<%=parkingDetail.getDetailAddr() %>
 							<a href="javascript:setfavorite();"><img height="25"  src="/carpark/img/green-heart.png"></a>
 						</h3>
 					</div>
