@@ -34,9 +34,10 @@ MemberDto getmemberInfo = (MemberDto)session.getAttribute("getmemberInfo");
 						<form role="form">
 						
 							<div class="form-group">
-									<label ><h3>내 사진</h3></label><br>
+								<label ><h3>내 사진</h3></label><br>
+								<div id="kakao-profile">
 									<img src="<%=root%>/img/bg.jpg" class="img-circle" width="200" height="200" border="5" align="middle">
-									
+								</div>
 							</div>
 							<div class="form-group">   
 							
@@ -185,5 +186,3 @@ $(document).ready(function(){
 	});
 
 </script>
-
-

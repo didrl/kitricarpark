@@ -2,8 +2,6 @@ package com.carpark.member.action;
 
 import java.io.IOException;
 import java.net.URLEncoder;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
@@ -26,8 +24,9 @@ public class MemberLoginAction implements Action{
 		String id = request.getParameter("id");
 		String pass = request.getParameter("pass");
 		String svid = request.getParameter("svid");
-		String failSvid=request.getParameter("failSvid");
-		
+		String failSvid = request.getParameter("failSvid");
+		String loginkey = request.getParameter("loginkey");
+		MemberDto memberDto = null;
 		if("idsave".equals(svid)||"idsave".equals(failSvid)){
 			Cookie cookie = new Cookie("myid", URLEncoder.encode(id,"UTF-8"));
 //			Cookie cookie = new Cookie("myid", id);
@@ -46,8 +45,11 @@ public class MemberLoginAction implements Action{
 				}
 			}
 		}
-		
-		MemberDto memberDto = MemberServiceImpl.getMemberService().login(id,pass);
+		if(loginkey!=null){
+			memberDto = MemberServiceImpl.getMemberService().login(loginkey,loginkey);
+		}else{
+			memberDto = MemberServiceImpl.getMemberService().login(id,pass);
+		}
 		session.setAttribute("memberInfo",memberDto);	
 		return memberDto==null ? "/member/loginFail.jsp":((memberDto.getUser_flag()!=10)?"/index.jsp":"/admin?act=adminLogin");
 	}
