@@ -234,7 +234,7 @@ if("0" == parkingDto.getHoli_pay_yn()) {
 	
 				<div class="row">
 						<p align="center">
-		  					<button type="button" class="btn btn-default btn-lg" onclick="javascript:adminParkList('<%=pg%>');">목록</button>
+		  					<button type="button" class="btn btn-default btn-lg" onclick="javascript:adminParkList('<%=pg %>', '<%=flag%>', '<%=visit%>');">목록</button>
 <%
 if(parkingDto.getPark_visit() == 0) {
 %>

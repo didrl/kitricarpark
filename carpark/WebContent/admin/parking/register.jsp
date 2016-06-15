@@ -220,8 +220,8 @@
 	
 				<div class="row">
 						<p align="center">
-		  					<button type="button" class="btn btn-default" onclick="javascript:adminParkingRegister();">등록</button>
-		  					<button type="button" class="btn btn-default" onclick="javascript:adminParkList('1');">목록</button>
+		  					<button type="button" class="btn btn-default" onclick="javascript:adminParkingRegister();"> 등록 </button>
+		  					<button type="button" class="btn btn-default" onclick="javascript:adminParkList('<%=pg %>', '<%=flag%>', '<%=visit%>');"> 취소 </button>
 						</p>
 				</div>
 			</div>

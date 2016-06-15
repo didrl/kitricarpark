@@ -32,23 +32,19 @@ public class AdminParkingListAction implements Action {
 		String word = StringCheck.nullToBlank(request.getParameter("word"));
 		String flag = request.getParameter("flag");
 
-		System.out.println("key : " + key);
-		System.out.println("word : " + word);
-		System.out.println("visit : " + visit);
+		System.out.println("action = pg : " + pg + " , flag : " + flag + " , visit : " + visit + " , key : " + key + " , word : " + word);
 
 		HttpSession session = request.getSession();
 		MemberDto memberDto = (MemberDto) session.getAttribute("memberInfo");
 		if (memberDto != null) {
-			List<ParkingDetailDto> list = AdminParkingServiceImpl.getAdminParkingService().parkingList(pg, key, word,
-					visit);
+			List<ParkingDetailDto> list = AdminParkingServiceImpl.getAdminParkingService().parkingList(pg, flag, visit, key, word);
 			request.setAttribute("parkingList", list);
 
-			PageNavigator navigator = CommonServiceImpl.getCommonService().getPageNavigatorAdminParking(pg, key, word,
-					visit);
+			PageNavigator navigator = CommonServiceImpl.getCommonService().getPageNavigatorAdminParking(pg, flag, visit, key, word);
 			navigator.setRoot(request.getContextPath());
-			if ("0".equals(word))
+			if ("0".equals(flag))
 				navigator.setNavigator("adminParkListPublic");
-			else if ("1".equals(word))
+			else if ("1".equals(flag))
 				navigator.setNavigator("adminParkListPrivate");
 			else
 				navigator.setNavigator("adminParkList");
