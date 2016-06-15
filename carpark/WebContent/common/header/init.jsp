@@ -2,6 +2,8 @@
 <%@page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" %>
 
+
+
 <%
 String svid="";
 String ckid="";
@@ -16,6 +18,63 @@ if(cookie!=null){
 	}
 }
 %>
+<!-- kakao Login -->
+<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			Kakao.init("fc8d34750e811639ad119ce8c9daeee1");
+			function getKakaotalkUserProfile(){
+				Kakao.API.request({
+					url: '/v1/user/me',
+					success: function(res) {
+						$("#kakao-profile").append(res.properties.nickname);
+						$("#kakao-profile").append($("<img/>",{"src":res.properties.profile_image,"alt":res.properties.nickname+"님의 프로필 사진"}));
+					},
+					fail: function(error) {
+						console.log(error);
+					}
+				});
+			}
+			function createKakaotalkLogin(){
+				$("#kakao-logged-group .kakao-logout-btn,#kakao-logged-group .kakao-login-btn").remove();
+				//var loginBtn = $("<a/>",{"class":"kakao-login-btn","text":"로그인"});
+				var loginBtn = document.getElementById("kakaologin");
+				
+					Kakao.Auth.login({
+						persistAccessToken: true,
+						persistRefreshToken: true,
+						success: function(authObj) {
+							getKakaotalkUserProfile();
+							createKakaotalkLogout();
+						},
+						fail: function(err) {
+							console.log(err);
+						}
+					});
+				
+				$("#kakao-logged-group").prepend(loginBtn)
+			}
+			function createKakaotalkLogout(){
+				$("#kakao-logged-group .kakao-logout-btn,#kakao-logged-group .kakao-login-btn").remove();
+				//var logoutBtn = $("<a/>",{"class":"kakao-logout-btn","text":"로그아웃"});
+				var logoutBtn = document.getElementById("logoutBtn");
+				logoutBtn.click(function(){
+					Kakao.Auth.logout();
+					createKakaotalkLogin();
+					$("#kakao-profile").text("");
+				});
+				$("#kakao-logged-group").prepend(logoutBtn);
+			}
+			if(Kakao.Auth.getRefreshToken()!=undefined&&Kakao.Auth.getRefreshToken().replace(/ /gi,"")!=""){
+				createKakaotalkLogout();
+				getKakaotalkUserProfile();
+			}else{
+				createKakaotalkLogin();
+			}
+		});
+</script>
+<!-- /kakao Login -->
+
 
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 	<!-- Brand and toggle get grouped for better mobile display -->
@@ -129,7 +188,7 @@ if(memberDto!=null){
 				class="caret"></b></a>
 			<ul class="dropdown-menu">
 				
-				<li><a href="<%=root%>/member?act=mvlogout"><i class="fa fa-fw fa-power-off"></i> Log
+				<li id="logoutBtn"><a href="<%=root%>/member?act=mvlogout"><i class="fa fa-fw fa-power-off"></i> Log
 						Out</a></li>
 			</ul></li>
 				
@@ -213,13 +272,16 @@ if(memberDto!=null){
 						<div class="col-sm-offset-2 col-sm-10">
 							<button type="submit" class="btn btn-default">Sign in</button>
 						</div>
+						<div class="col-sm-offset-2 col-sm-10">
+							<button type="button" class="btn btn-default" id=kakaologin onclick="javascript:createKakaotalkLogin();">kakao login</button>
+						</div>
 					</div>
 				</div>
 			</form>
 		</div>
 	</div>
 </div>
-
+<!-- /login modal popup -->
 
 <!-- join modal popup -->
 <div class="modal fade" id="mySignUp" tabindex="-1" role="dialog"
@@ -315,13 +377,12 @@ if(memberDto!=null){
 		</div>
 	</div>
 </div>
+<!-- /join modal popup -->
 
 
 
-
-
+<!-- ajax idcheck -->
 <script type="text/javascript">
-
 $('#idcheck').click(function(){
 var id = document.getElementById("userid").value; 
 	$.ajax({
@@ -350,3 +411,8 @@ function idcheck(data){
 }
 
 </script>
+<!-- /ajax idcheck -->
+
+
+
+
