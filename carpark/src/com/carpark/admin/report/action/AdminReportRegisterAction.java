@@ -34,7 +34,6 @@ public class AdminReportRegisterAction implements Action {
 			penaltyDto.setPenalty_code(penalty_code);
 			penaltyDto.setPenalty_content(penalty_content);
 			penaltyDto.setSeq(seq);
-			System.out.println(seq);
 
 			int cnt = AdminReportServiceImpl.getAdminReportService().writeArticle(penaltyDto);
 			if (cnt != 0)

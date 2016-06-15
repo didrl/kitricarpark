@@ -32,7 +32,6 @@ if(memberDto != null) {
 			 <a class="btn btn-default" href="javascript:moveRegister();"> 주차장등록 </a>
 		</div>
               
-            <div class="table" style="width: 800px">
               <table  class="table table-hover">
                  <tr style="background: #00cc00">
                     <td width="120">주차장 아이디</td>
@@ -96,25 +95,8 @@ if(parkingDetailDto.getPark_visit() == 0) {
 %>
                </tr>
               </table>
-            </div>
             
             <nav align="center">
-            	<div class="form-group">
-				<form class="form-inline" name="parkSearchForm" method="get" action="">
-					<input type="hidden" name="act" id="act" value="parkSearch">
-						<input type="hidden" name="pg" id="pg" value="<%=pg%>">
-						<input type="hidden" name="flag" id="flag" value="<%=flag%>">
-						<input type="hidden" name="visit" id="visit" value="<%=visit%>">
-						<input type="hidden" name="key" id="key" value="<%=key%>">
-						<input type="hidden" name="word" id="word" value="<%=word%>">
-					<select name="key">
-						<option value="park_name">주차장이름</option>
-						<option value="content">내용</option>
-					</select>
-					<input type="text" name="word" id="word" value="">
-					<input type="button" class="btn btn-default" value="검색" onclick="javascript:messageSearchSend();">
-				</form>
-				</div>
 				<ul class="pagination">
 				<%=navigator.getNavigator() %>
 				</ul>

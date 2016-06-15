@@ -38,7 +38,6 @@ public class MemberMessageReceiveListAction implements Action {
 		if (memberDto != null) {
 
 			String receiveId = memberDto.getUser_id();
-			System.out.println(receiveId);
 			if (receiveId != null) {
 				List<MessageDto> receiveList = MemberMessageServiceImpl.getMemberMessageService()
 						.receiveListArticle(receiveId, pg, key, word);

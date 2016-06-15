@@ -39,8 +39,8 @@ public class AdminReportDaoImpl implements AdminReportDao {
 			conn.setAutoCommit(false);
 			
 			String sql = "";
-			sql += "insert into penalty (penalty_num, user_id, penalty_code, penalty_date, penalty_content, seq) \n";
-			sql += "values (report_num_cseq.nextval, ?, ?, sysdate, ?)";
+			sql += "insert into penalty (penalty_num, user_id, penalty_code, penalty_date, penalty_memo, seq) \n";
+			sql += "values (report_num_cseq.nextval, ?, ?, sysdate, ?, ?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, penaltyDto.getUser_id());
 			pstmt.setInt(2, penaltyDto.getPenalty_code());
