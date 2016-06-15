@@ -24,7 +24,7 @@ public class MemberCoinAction implements Action {
 
 		return "/coin/coin.jsp";
 		}else
-			return "";
+			return "/member/loginFail.jsp";
 	}
 
 }

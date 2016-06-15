@@ -23,7 +23,7 @@ public class MemberFavoriteViewAction implements Action {
 			return "/member/myFavoriteParkingview.jsp";
 		}
 		else
-			return "";
+			return "/member/loginFail.jsp";
 	}
 
 }

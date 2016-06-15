@@ -27,7 +27,8 @@ public class MemberReservationListAction implements Action {
 			session.setAttribute("myreservationlist", list);
 			return "/member/myReservation.jsp";
 		} else
-			return "";
+//			return "";
+			return "/member/loginFail.jsp";
 	}
 
 }
