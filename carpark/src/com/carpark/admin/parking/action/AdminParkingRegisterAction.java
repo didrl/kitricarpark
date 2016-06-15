@@ -28,7 +28,6 @@ public class AdminParkingRegisterAction implements Action {
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 		
-		String act = request.getParameter("act");
 		String visit = StringCheck.nullToBlank(request.getParameter("visit"));
 		int pg = NumberCheck.nullToOne(request.getParameter("pg"));
 		String key = StringCheck.nullToBlank(request.getParameter("key"));
@@ -57,10 +56,6 @@ public class AdminParkingRegisterAction implements Action {
 				
 				parkingDto.setLatitude(Double.parseDouble(latitude));//dto에 넣기
 				parkingDto.setLongitude(Double.parseDouble(longitude));
-			} else {
-				System.out.println("좌표직접입력");
-				parkingDto.setLatitude(Double.parseDouble(request.getParameter("latitude")));
-				parkingDto.setLongitude(Double.parseDouble(request.getParameter("longitude")));
 			}
 			
 			parkingDto.setOwner_id(ownerId);
@@ -99,7 +94,7 @@ public class AdminParkingRegisterAction implements Action {
 
 			return "/admin/parking/list.jsp";
 		} else
-			return "index.jsp";
+			return "/member/loginFail.jsp";
 		}
 
 }

@@ -27,7 +27,6 @@ public class AdminParkingListAction implements Action {
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 
-		String act = request.getParameter("act");
 		String visit = StringCheck.nullToBlank(request.getParameter("visit"));
 		int pg = NumberCheck.nullToOne(request.getParameter("pg"));
 		String key = StringCheck.nullToBlank(request.getParameter("key"));
@@ -53,7 +52,7 @@ public class AdminParkingListAction implements Action {
 
 			return "/admin/parking/list.jsp";
 		} else
-			return "index.jsp";
+			return "/member/loginFail.jsp";
 
 	}
 

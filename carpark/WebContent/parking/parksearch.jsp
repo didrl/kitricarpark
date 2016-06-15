@@ -32,7 +32,7 @@ PageNavigator navigator = (PageNavigator) request.getAttribute("navigator");
 		<table class="table">
 										
 		<tr>
-			<td align="center" colspan="3">도로명 주소를 입력해 주세요</td>
+			<td align="center" colspan="3">동을 입력해 주세요</td>
 		</tr>
 		
 		<tr>
@@ -46,7 +46,7 @@ session.removeAttribute("address");
 				<button type="button" class="btn btn-default btn-group-xs" onclick="javascript:searchAddress('1');">검색</button>
 			</td>
 			<td width="60">
-				<button type="button" class="btn btn-default btn-group-xs" onclick="javascript:windowClose();">사용</button>
+				<button type="button" class="btn btn-default btn-group-xs" onclick="javascript:test();">사용</button>
 			</td>
 		</tr>
 										
@@ -69,7 +69,7 @@ if(list != null) {
 <!-- 사용자 입력한 상세주소 추가 -->								
 		<tr>
 			<td align="center" colspan="3">
-				<a href="javascript:selectAddress('<%=zipDto.getSido() %><%=zipDto.getGugun() %><%=zipDto.getStreet() %>');"> 
+				<a href="javascript:selectAddress('<%=zipDto.getSido() %> <%=zipDto.getGugun() %> <%=zipDto.getStreet() %>');"> 
 					<%=zipDto.getSido() %> <%=zipDto.getGugun() %> <%=zipDto.getStreet() %> 
 				</a>
 			</td>

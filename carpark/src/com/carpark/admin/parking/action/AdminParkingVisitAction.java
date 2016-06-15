@@ -23,7 +23,6 @@ public class AdminParkingVisitAction implements Action {
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 		
-		String act = request.getParameter("act");
 		String visit = StringCheck.nullToBlank(request.getParameter("visit"));
 		int pg = NumberCheck.nullToOne(request.getParameter("pg"));
 		String key = StringCheck.nullToBlank(request.getParameter("key"));

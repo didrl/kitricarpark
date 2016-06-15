@@ -24,25 +24,24 @@ public class MemberParkingSearchAction implements Action {
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 		
+		int pg = NumberCheck.nullToOne(request.getParameter("pg"));
+			
 		String parkAddress = Encoder.isoToUtf(StringCheck.nullToBlank(request.getParameter("parkAddress")));
-		
+
 		HttpSession session = request.getSession();
 		session.setAttribute("address", parkAddress);
-		MemberDto memberDto = (MemberDto) session.getAttribute("memberInfo");
-		if (memberDto != null) {		
-			int pg = NumberCheck.nullToOne(request.getParameter("pg"));
-			List<ZipDto> list = MemberParkingServiceImpl.getMemberParkingservice().parkingSearch(parkAddress, pg);
-			request.setAttribute("addressList", list);
+		List<ZipDto> list = MemberParkingServiceImpl.getMemberParkingservice().parkingSearch(parkAddress, pg);
+		request.setAttribute("addressList", list);
 			
-			PageNavigator navigator = CommonServiceImpl.getCommonService().getPageNavigatorAddress(parkAddress, pg);
-			navigator.setRoot(request.getContextPath());
-			navigator.setNavigator("searchAddress");
-			request.setAttribute("navigator", navigator);
 			
-			return "/parking/parksearch.jsp";
-		} else
-//			return "index.jsp";
-			return "/member/loginFail.jsp";
+			
+		PageNavigator navigator = CommonServiceImpl.getCommonService().getPageNavigatorAddress(parkAddress, pg);
+		navigator.setRoot(request.getContextPath());
+		navigator.setNavigator("searchAddress");
+		request.setAttribute("navigator", navigator);
+			
+		return "/parking/parksearch.jsp";
+
 	}
 
 }

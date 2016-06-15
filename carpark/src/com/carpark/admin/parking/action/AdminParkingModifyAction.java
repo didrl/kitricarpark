@@ -54,9 +54,6 @@ public class AdminParkingModifyAction implements Action {
 
 				parkingDto.setLatitude(Double.parseDouble(latitude));
 				parkingDto.setLongitude(Double.parseDouble(longitude));
-			} else {
-				System.out.println("좌표가져오기 실패");
-				return "/admin/parking/register.jsp";
 			}
 
 			parkingDto.setOwner_id(ownerId);
@@ -72,7 +69,7 @@ public class AdminParkingModifyAction implements Action {
 			parkingDto.setFulltime_monthly_pay(NumberCheck.nullToOne(request.getParameter("fullTimeMonthlyPay")));
 			parkingDto.setPark_flag(NumberCheck.nullToOne(request.getParameter("parkFlag")));
 			parkingDto.setContent(StringCheck.nullToBlank(request.getParameter("content").replace("\r\n", "<br>")));
-			parkingDto.setDetailAddr(StringCheck.nullToBlank(request.getParameter("parkAddress")));
+			parkingDto.setDetailAddr(StringCheck.nullToBlank(request.getParameter("parkDetailAddress")));
 			parkingDto.setFacility(StringCheck.nullToBlank(request.getParameter("facility")));
 
 			MemberParkingServiceImpl.getMemberParkingservice().parkingModify(parkingDto);
@@ -93,7 +90,7 @@ public class AdminParkingModifyAction implements Action {
 
 			return "/admin/parking/list.jsp";
 		} else
-			return "index.jsp";
+			return "/member/loginFail.jsp";
 	}
 
 }

@@ -28,6 +28,7 @@ if(memberDto != null){
 				<input type="hidden" name="visit" id="visit" value="<%=visit%>">		
 				<input type="hidden" name="key" id="key" value="<%=key%>">
 				<input type="hidden" name="word" id="word" value="<%=word%>">
+				<input type="hidden" class="form-control" name="coordinate" value="(<%=parkingDto.getLatitude()%> , <%=parkingDto.getLongitude()%>)">
 				
 				
 				<div class="row">
@@ -77,8 +78,7 @@ if(0 == parkingDto.getPark_flag()) {
 					</div>
 					<div class="col-md-10">
 						<div class="form-group">
-							<input type="text" class="form-control" placeholder="주소" name="parkAddress" readonly="readonly" value="<%=parkingDto.getDetailAddr()%>">
-							<input type="hidden" class="form-control" name="coordinate" value="(<%=parkingDto.getLatitude()%> , <%=parkingDto.getLongitude()%>)">
+							<input type="text" class="form-control" placeholder="주소" name="parkDetailAddress" value="<%=parkingDto.getDetailAddr()%>">
 						</div>
 							<button type="button" class="btn btn-default" onclick="javascript:parkingSearchWindow();">검색</button>
 					</div>
