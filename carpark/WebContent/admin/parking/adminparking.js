@@ -82,51 +82,20 @@ function adminParkingMvModify(parkId) {
 	document.common.submit();
 }
 
-//전체 주차장 리스트
-//function adminParkList(pg) {
-//	document.common.act.value = "adminParkList";
-//	document.common.pg.value = pg;
-//	document.common.action = "/carpark/adminparking";
-//	document.common.submit();
-//}
-
-//공용 주차장 리스트
-function adminParkListPublic(pg) {
+//주차장 리스트
+function adminParkList(pg, flag, visit) {
 	document.common.act.value = "adminParkList";
 	document.common.pg.value = pg;
-//	document.common.key.value = "park_public";
-	document.common.flag.value = "0";
-	document.common.visit.value = "1";
+	document.common.flag.value = flag;
+	document.common.visit.value = visit;
 	document.common.action = "/carpark/adminparking";
 	document.common.submit();
 }
 
-//사설 주차장 리스트
-function adminParkListPrivate(pg) {
-	document.common.act.value = "adminParkList";
-	document.common.pg.value = pg;
-//	document.common.key.value = "park_public";
-	document.common.flag.value = "1";
-	document.common.visit.value = "1";
-	document.common.action = "/carpark/adminparking";
-	document.common.submit();
-}
-
-function parkVisitList(pg) {
-	document.common.act.value = "adminParkList";
-	document.common.pg.value = pg;
-	document.common.word.value = "0";
-	document.common.visit.value = "0";
-	document.common.action = "/carpark/adminparking";
-	document.common.submit();
-}
 
 function adminParkingVisit(parkId) {
 	document.common.act.value = "adminParkingVisit";
 	document.common.parkId.value = parkId;
-	document.common.pg.value = pg;
-	document.common.word.value = "0";
-	document.common.visit.value = "0";
 	document.common.action = "/carpark/adminparking";
 	document.common.submit();
 }
@@ -151,6 +120,11 @@ function admintest() {
 	}); 
 }
 
+function moveRegister() {
+	document.common.act.value = "moveRegister";
+	document.common.action = "/carpark/adminparking";
+	document.common.submit();
+}
 
 
 

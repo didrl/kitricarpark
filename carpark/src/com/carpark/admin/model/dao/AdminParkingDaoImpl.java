@@ -95,23 +95,23 @@ public class AdminParkingDaoImpl implements AdminParkingDao {
 		    sql += "     		  (select p.park_id, park_name, owner_id, park_flag, park_avgPoint, park_public, park_visit \n";
 		    sql += "               from parking p, parking_detail d \n";
 		    sql += "               where p.park_id = d.park_id \n";
-		    sql += "			   and park_public = ? \n";	
+		    sql += "		       and d.park_visit = ? \n";
 		    if(flag != null && !flag.isEmpty()) {
-		    	sql += "		   and d.park_visit = ? \n";
+		    	sql += "			   and park_public = ? \n";	
 		    }
 		    if(key != null && !key.isEmpty()) {
 		    	if(word != null && !word.isEmpty()) {
 		    		sql += "   and " + key + " = ? \n";						
 		    	}
 		    }
-		    sql += "               order by park_name) a \n";
+		    sql += "               order by p.park_id desc) a \n";
 		    sql += "         where rownum < ? ) b \n";
 		    sql += "where rn > ? \n";
 			pstmt = conn.prepareStatement(sql);
 			int idx = 0;
-			pstmt.setString(++idx, flag);
+			pstmt.setString(++idx, visit);
 		    if(flag != null && !flag.isEmpty()) {
-		    	pstmt.setString(++idx, visit);
+		    	pstmt.setString(++idx, flag);
 		    }
 			if(key != null && !key.isEmpty()) {
 				if(word != null && !word.isEmpty()) {
@@ -155,8 +155,8 @@ public class AdminParkingDaoImpl implements AdminParkingDao {
 			sql += "	values (? ,? ,? ,? ,? ,?, ?, ?, ?, ?) \n";
 			sql += "	into parking_detail (park_id, park_flag, PAY_YN, satur_pay_yn, holi_pay_yn, "
 												+ "fulltime_monthly_pay, park_rate, "
-												+ "park_time_rate, add_park_rate, day_max_pay, park_visit, facility) \n";
-			sql += "	values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+												+ "park_time_rate, add_park_rate, day_max_pay, park_visit, facility, park_avgPoint) \n";
+			sql += "	values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			sql += "select * from dual";
 			
 			pstmt = conn.prepareStatement(sql);
@@ -185,6 +185,7 @@ public class AdminParkingDaoImpl implements AdminParkingDao {
 			pstmt.setInt(++idx, parkingDetailDto.getDay_max_pay());
 			pstmt.setInt(++idx, parkingDetailDto.getPark_visit());
 			pstmt.setString(++idx, parkingDetailDto.getFacility());
+			pstmt.setDouble(++idx, parkingDetailDto.getPark_avgPoint());
 
 			pstmt.executeUpdate();
 	

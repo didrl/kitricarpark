@@ -101,17 +101,17 @@ public class MemberParkingDaoImpl implements MemberParkingDao {
 			pstmt.setInt(2, parkingDto.getPark_capacity());
 			pstmt.setDouble(3, parkingDto.getLatitude());
 			pstmt.setDouble(4, parkingDto.getLongitude());
-			pstmt.setString(6, parkingDto.getDetailAddr());
-			pstmt.setString(7, parkingDto.getContent());
-			pstmt.setInt(8, parkingDto.getPic_seq());
-			pstmt.setInt(9, parkingDto.getPark_id());
+			pstmt.setString(5, parkingDto.getDetailAddr());
+			pstmt.setString(6, parkingDto.getContent());
+			pstmt.setInt(7, parkingDto.getPic_seq());
+			pstmt.setInt(8, parkingDto.getPark_id());
 			pstmt.executeUpdate();
 			conn.commit();
 			pstmt.close();
 			
 			sql = "update parking_detail \n";
 			sql += "set park_flag = ?, PAY_YN = ?, satur_pay_yn = ?, holi_pay_yn = ?, \n";
-			sql += "fulltime_monthly_pay = ?, park_rate = ?, facility, \n";
+			sql += "fulltime_monthly_pay = ?, park_rate = ?, facility = ?, \n";
 			sql += "park_time_rate = ?, add_park_rate = ?, day_max_pay = ? \n";
 			sql += "where park_id = ? \n";
 			pstmt = conn.prepareStatement(sql);
@@ -169,7 +169,7 @@ public class MemberParkingDaoImpl implements MemberParkingDao {
 		    			sql += "   and " + key + " = ? \n";						
 		    	}
 		    }
-		    sql += "               order by park_name) a \n";
+		    sql += "               order by p.park_id desc) a \n";
 		    sql += "         where rownum < ? ) b \n";
 		    sql += "where rn > ? \n";
 			pstmt = conn.prepareStatement(sql);

@@ -40,7 +40,7 @@ public class AdminParkingListAction implements Action {
 			List<ParkingDetailDto> list = AdminParkingServiceImpl.getAdminParkingService().parkingList(pg, flag, visit, key, word);
 			request.setAttribute("parkingList", list);
 
-			PageNavigator navigator = CommonServiceImpl.getCommonService().getPageNavigatorAdminParking(pg, key, word, visit, flag);
+			PageNavigator navigator = CommonServiceImpl.getCommonService().getPageNavigatorAdminParking(pg, flag, visit, key, word);
 			navigator.setRoot(request.getContextPath());
 			if ("0".equals(flag))
 				navigator.setNavigator("adminParkListPublic");

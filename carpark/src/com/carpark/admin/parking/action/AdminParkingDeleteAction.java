@@ -33,21 +33,19 @@ public class AdminParkingDeleteAction implements Action {
 
 		MemberParkingServiceImpl.getMemberParkingservice().parkingDelete(parkId);
 		
-		List<ParkingDetailDto> list = AdminParkingServiceImpl.getAdminParkingService().parkingList(pg, key, word, visit, flag);
+		List<ParkingDetailDto> list = AdminParkingServiceImpl.getAdminParkingService().parkingList(pg, flag, visit, key, word);
 		request.setAttribute("parkingList", list);
 
 		PageNavigator navigator = CommonServiceImpl.getCommonService().getPageNavigatorAdminParking(pg, key, word, visit, flag);
 		navigator.setRoot(request.getContextPath());
-		
 		if ("0".equals(flag))
 			navigator.setNavigator("adminParkListPublic");
 		else if ("1".equals(flag))
 			navigator.setNavigator("adminParkListPrivate");
 		else
 			navigator.setNavigator("adminParkList");
-		
 		request.setAttribute("navigator", navigator);
-		
+
 		return "/admin/parking/list.jsp";
 	}
 
