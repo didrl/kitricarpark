@@ -83,6 +83,7 @@ public class AdminParkingDaoImpl implements AdminParkingDao {
 		String key = map.get("key");
 		String word = map.get("word");
 		String visit = map.get("visit");
+		String flag = map.get("flag");
 		
 		try {
 			conn = DBConnection.makeConnection();
@@ -94,7 +95,10 @@ public class AdminParkingDaoImpl implements AdminParkingDao {
 		    sql += "     		  (select p.park_id, park_name, owner_id, park_flag, park_avgPoint, park_public, park_visit \n";
 		    sql += "               from parking p, parking_detail d \n";
 		    sql += "               where p.park_id = d.park_id \n";
-		    sql += "			   and d.park_visit = ? \n";
+		    sql += "			   and park_public = ? \n";	
+		    if(flag != null && !flag.isEmpty()) {
+		    	sql += "		   and d.park_visit = ? \n";
+		    }
 		    if(key != null && !key.isEmpty()) {
 		    	if(word != null && !word.isEmpty()) {
 		    		sql += "   and " + key + " = ? \n";						
@@ -105,7 +109,10 @@ public class AdminParkingDaoImpl implements AdminParkingDao {
 		    sql += "where rn > ? \n";
 			pstmt = conn.prepareStatement(sql);
 			int idx = 0;
-			pstmt.setString(++idx, visit);
+			pstmt.setString(++idx, flag);
+		    if(flag != null && !flag.isEmpty()) {
+		    	pstmt.setString(++idx, visit);
+		    }
 			if(key != null && !key.isEmpty()) {
 				if(word != null && !word.isEmpty()) {
 					pstmt.setString(++idx, map.get("word"));				

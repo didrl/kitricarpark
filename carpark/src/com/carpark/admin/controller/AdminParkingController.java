@@ -27,7 +27,9 @@ public class AdminParkingController extends HttpServlet {
 		String flag = request.getParameter("flag");
 		
 		String path = "/index.jsp";
-		String queryString = "?visit=" + visit + "&flag=" + flag +  "&pg=" + pg + "&key=" + key + "&word=" + Encoder.isoToUtf(word);
+		String queryString = "?pg=" + pg + "&flag=" + flag +  "&visit=" + visit + "&key=" + key + "&word=" + Encoder.isoToUtf(word);
+		
+		System.out.println("controller = pg : " + pg + " , flag : " + flag + " , visit : " + visit + " , key : " + key + " , word : " + word);
 		
 		if("adminParkingSearch".equals(act)) {
 			path = AdminActionFactory.getAdminParkingSearchAction().execute(request, response);

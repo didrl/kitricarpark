@@ -39,11 +39,11 @@ public class AdminParkingVisitListAction implements Action {
 		MemberDto memberDto = (MemberDto) session.getAttribute("memberInfo");
 		if (memberDto != null) {
 			List<ParkingDetailDto> list = AdminParkingServiceImpl.getAdminParkingService().parkingList(pg, key, word,
-					visit);
+					visit, flag);
 			request.setAttribute("parkingList", list);
 
 			PageNavigator navigator = CommonServiceImpl.getCommonService().getPageNavigatorAdminParking(pg, key, word,
-					visit);
+					visit, flag);
 			navigator.setRoot(request.getContextPath());
 			navigator.setNavigator("parkVisitList");
 			request.setAttribute("navigator", navigator);

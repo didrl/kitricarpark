@@ -20,16 +20,16 @@ if(memberDto != null) {
         <center><br><h3>주차장 목록</h3><br></center>   
               
 		<div class="btn-group text-align:left" role="group" aria-label="...">
-			<button type="button" class="btn btn-default" onclick="javascript:adminParkList('1');">
-				전체
-			</button>
 			<button type="button" class="btn btn-default" onclick="javascript:adminParkListPublic('1');">
 				공용주차장
 			</button>	
 			<button type="button" class="btn btn-default" onclick="javascript:adminParkListPrivate('1');">
 			    사설주차장
 			</button>
-			 <a class="btn btn-default" href="<%=root %>/admin/parking/register.jsp"> 등록 </a>
+			<button type="button" class="btn btn-default" onclick="javascript:adminParkingVisit('1');">
+				인증대기목록
+			</button>
+			 <a class="btn btn-default" href="<%=root %>/admin/parking/register.jsp"> 주차장등록 </a>
 		</div>
               
             <div class="table" style="width: 800px">
