@@ -15,6 +15,16 @@ List<Map<String,String>> popularParkList = (List<Map<String,String>>) session.ge
 <style>
 .hidden{display:none;}
 </style>
+<%
+if(changeUserList ==null || popularParkList==null){
+%>
+<script type="text/javascript">
+alert("잘못된 접근입니다. 다시 시도해주세요.");
+document.location.href = "<%=root%>/member/loginFail.jsp";
+</script>
+<%
+}
+%>
 
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
