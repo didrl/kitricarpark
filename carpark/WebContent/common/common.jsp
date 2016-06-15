@@ -12,15 +12,6 @@ String parkingpath = adminpath +"/"+"parking";
 String qnapath = adminpath +"/"+"qna";
 String staticpath = adminpath +"/"+"static";
 MemberDto memberDto = (MemberDto)session.getAttribute("memberInfo"); 
-HttpSession loginSession = request.getSession();
-if(loginSession==null){
-	System.out.println("세션만료!~");
-%>
-
-<% 
-	response.sendRedirect(root+"/index.jsp");
-	return;
-}
 int bcode = NumberCheck.nullToZero(request.getParameter("bcode"));
 int pg = NumberCheck.nullToOne(request.getParameter("pg"));
 String key = StringCheck.nullToBlank(request.getParameter("key"));

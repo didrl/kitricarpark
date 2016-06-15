@@ -6,9 +6,11 @@ import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.carpark.action.Action;
 import com.carpark.admin.model.service.AdminReportServiceImpl;
+import com.carpark.member.model.MemberDto;
 import com.carpark.member.model.ReportDto;
 import com.carpark.member.model.service.CommonServiceImpl;
 import com.carpark.util.Encoder;
@@ -28,6 +30,9 @@ public class AdminReportListFlagAction implements Action {
 		String word = StringCheck.nullToBlank(Encoder.isoToUtf(request.getParameter("word")));
 		String flag = request.getParameter("flag");
 		
+		HttpSession session = request.getSession();
+		MemberDto memberDto = (MemberDto) session.getAttribute("memberInfo");
+		if (memberDto != null) {
 		List<ReportDto> list = AdminReportServiceImpl.getAdminReportService().listFlagArticle(flag, pg, key, word);
 		
 		request.setAttribute("adminReportList", list);
@@ -39,6 +44,8 @@ public class AdminReportListFlagAction implements Action {
 		
 		
 		return "/admin/report/list.jsp";
+		} else
+			return "";
 	}
 
 }

@@ -21,6 +21,7 @@
 				<input type="hidden" name="act" value="adminParkingRegister">				
 				<input type="hidden" name="pg" value="<%=pg%>">				
 				<input type="hidden" name="auth" value="<%=auth%>">
+				<input type="hidden" name="coordinate" value="">  
 				
 				<div class="row">
 					<div class="col-md-2">
@@ -63,35 +64,43 @@
 				
 				<div class="row">
 					<div class="col-md-2">
-						<b>위치</b><br>
+						<b>주소</b><br>
 					</div>
-					<div class="col-md-10">
+					<div class="col-md-6">
 						<div class="form-group">
 							<input type="text" name="parkAddress" class="form-control">
-							<input type="text" name="coordinate" class="form-control">  
 						</div>
-							<button type="button" class="btn btn-default" onclick="javascript:admintest();">검색</button>
 					</div>
-				</div><hr>
-				
-				<div class="row">
-					<div class="col-md-2">
-						<b>위도</b><br>
-					</div>
-					<div class="col-md-10">
+					<div class="col-md-1">
 						<div class="form-group">
-							<input type="text" name="latitude" class="form-control">
+							<button type="button" class="btn btn-default" onclick="javascript:adminParkingSearchWindow();">검색</button>
 						</div>
 					</div>
 				</div><hr>
 				
 				<div class="row">
 					<div class="col-md-2">
-						<b>경도</b><br>
+						<b>상세주소</b><br>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+							<input type="text" name="parkDetailAddress" class="form-control">
+						</div>
+					</div>
+					<div class="col-md-1">
+						<div class="form-group">
+							<button type="button" class="btn btn-default" onclick="javascript:admintest();">확인</button>
+						</div>
+					</div>
+				</div><hr>
+				
+				<div class="row">
+					<div class="col-md-2">
+						<b>보유시설</b><br>
 					</div>
 					<div class="col-md-10">
 						<div class="form-group">
-							<input type="text" name="longitude" class="form-control">
+							<input type="text" name="facility" class="form-control">
 						</div>
 					</div>
 				</div><hr>

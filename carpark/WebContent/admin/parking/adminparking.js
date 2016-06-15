@@ -45,23 +45,8 @@ function adminSearchAddress(pg) {
 }
 
 function adminSelectAddress(address){
-	//주소-좌표 변환 객체를 생성합니다
-	var geocoder = new daum.maps.services.Geocoder();
-	
-	geocoder.addr2coord(address, function(status, result) {
-
-	    // 정상적으로 검색이 완료됐으면 
-	    if (status === daum.maps.services.Status.OK) {
-	
-	        var coords = new daum.maps.LatLng(result.addr[0].lat, result.addr[0].lng);
-	        opener.document.adminParkingRegisterForm.coordinate.value = coords;
-	        opener.document.adminParkingRegisterForm.parkAddress.value = address;
-			
-	    } else {
-	    	
-	    }
-	    self.close();
-	}); 
+	opener.document.adminParkingRegisterForm.parkAddress.value = address;
+	self.close();
 }
 
 function windowClose() {
@@ -148,7 +133,7 @@ function adminParkingAuth(parkId) {
 
 
 function admintest() {
-	var addr = document.adminParkingRegisterForm.parkAddress.value;
+	var addr = document.adminParkingRegisterForm.parkAddress.value + " " + document.adminParkingRegisterForm.parkDetailAddress.value;
 	var geocoder = new daum.maps.services.Geocoder();
 	
 	geocoder.addr2coord(addr, function(status, result) {
@@ -158,12 +143,14 @@ function admintest() {
 	
 	        var coords = new daum.maps.LatLng(result.addr[0].lat, result.addr[0].lng);
 	        document.adminParkingRegisterForm.coordinate.value = coords;
+	        alert("사용가능합니다");
 			
 	    } else {
 	    	alert("주소를 정확하게 입력하세요");
 	    }
 	}); 
 }
+
 
 
 

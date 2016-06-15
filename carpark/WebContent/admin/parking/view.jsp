@@ -104,6 +104,15 @@ if(parkingDto.getPark_flag() == 0) {
 				
 				<div class="row">
 					<div class="col-md-2">
+						<b>보유시설</b><br>
+					</div>
+					<div class="col-md-10">
+						<%=parkingDto.getFacility() %>
+					</div>
+				</div><hr>
+				
+				<div class="row">
+					<div class="col-md-2">
 						<b>평일</b><br>
 					</div>
 					<div class="col-md-10">
@@ -179,7 +188,7 @@ if("0" == parkingDto.getHoli_pay_yn()) {
 				
 				<div class="row">
 					<div class="col-md-2">
-						<b>기본주차시간</b><br>
+						<b>기본주차요금</b><br>
 					</div>
 					<div class="col-md-10">
 						<%=parkingDto.getPark_rate() %> 코인			
@@ -227,7 +236,7 @@ if("0" == parkingDto.getHoli_pay_yn()) {
 						<p align="center">
 		  					<button type="button" class="btn btn-default btn-lg" onclick="javascript:adminParkList('<%=pg%>');">목록</button>
 <%
-if(parkingDto.getVisit() == 0) {
+if(parkingDto.getPark_visit() == 0) {
 %>
 							<button type="button" class="btn btn-default btn-lg" onclick="javascript:adminParkingAuth('<%=parkingDto.getPark_id()%>');"> 인증 </button>
 <%
