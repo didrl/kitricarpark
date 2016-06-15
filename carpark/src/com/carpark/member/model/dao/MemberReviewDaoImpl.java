@@ -116,7 +116,6 @@ public class MemberReviewDaoImpl implements MemberReviewDao {
 			
 			pstmt.setInt(++idx, reviewDto.getPark_id());
 			pstmt.setDouble(++idx, reviewDto.getAvgPoint());
-			System.out.println(sql);
 			
 			pstmt.executeUpdate();
 			seq = reviewDto.getSeq();

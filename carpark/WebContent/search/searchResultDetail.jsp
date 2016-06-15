@@ -855,7 +855,7 @@ if(memberDto != null) {//공영주차장이 아닐때
 	 	}).glDatePicker(true);
 
 
-	 	var to = $('#todate').glDatePicker(
+	 	var tosr = $('#todate').glDatePicker(
 	 	{
 	 	    showAlways: false,
 	 	    onClick: function (target, cell, date, data) {
@@ -871,12 +871,12 @@ if(memberDto != null) {//공영주차장이 아닐때
 	 	    var fechaFrom = new Date($("#fromdate").val());
 	 	    var toLimit = new Date();
 	 	    toLimit.setDate(fechaFrom.getDate() + 31);
-	 	    to.options.selectableDateRange = [{
+	 	    tosr.options.selectableDateRange = [{
 	 	        from: fechaFrom,
 	 	        to: toLimit
 	 	    }, ],
-	 	    to.options.showAlways = false;
-	 	    to.render();
+	 	    tosr.options.showAlways = false;
+	 	    tosr.render();
 	 	});
 			
 		</script>
