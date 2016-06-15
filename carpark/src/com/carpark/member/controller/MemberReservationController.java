@@ -30,6 +30,8 @@ public class MemberReservationController extends HttpServlet {
 		}else if("reservationList".equals(act)){
 			path = MemberActionFactory.getMemberReservationListAction().execute(request, response);
 			PageMove.forward(request, response, path);
+		}else{
+			PageMove.redirect(response, root+path);
 		}
 	}
 
