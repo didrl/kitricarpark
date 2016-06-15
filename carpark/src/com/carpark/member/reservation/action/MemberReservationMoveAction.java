@@ -22,41 +22,46 @@ public class MemberReservationMoveAction implements Action {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-		
 
 		// if searchResultDetail can not give some info then get that info in DB
-		
-		// have to change when get some additional parking info 
-		//		ex) near landmarks, discount info . . .
-		
-		
-		//fromdate, fromtime
-		//todate, totime
+
+		// have to change when get some additional parking info
+		// ex) near landmarks, discount info . . .
+
+		// fromdate, fromtime
+		// todate, totime
 		HttpSession session = request.getSession();
-		MemberDto memberDto = (MemberDto)session.getAttribute("memberInfo");
-		ReservationDto reservationDto = new ReservationDto();
+		MemberDto memberDto = (MemberDto) session.getAttribute("memberInfo");
+		ReservationDto reservationDto = (ReservationDto) session.getAttribute("reservationDto");
+
 		String user_id = memberDto.getUser_id();
 		int park_id = Integer.parseInt(request.getParameter("park_id"));
-		 
-		reservationDto.setUser_id(user_id);
-		reservationDto.setHost_id(request.getParameter("host_id"));
-		ArrayList<MemberCarDto> carinfo=MemberReservationServiceImpl.getMemberReservationService().getCarInfo(user_id);
-		ArrayList<Map<String,String>> availabledate =MemberReservationServiceImpl.getMemberReservationService().getAvailDate(park_id);
-		reservationDto.setFromdate(request.getParameter("fromdate"));
-		reservationDto.setTodate(request.getParameter("todate"));
-		reservationDto.setFromtime(Integer.parseInt(request.getParameter("srfromTime")));
-		reservationDto.setTotime(Integer.parseInt(request.getParameter("srtoTime")));
-		
-		//parkingDto 
-		reservationDto.setPark_id(park_id);
-		reservationDto.setPark_name(request.getParameter("park_name"));
+
+		ArrayList<MemberCarDto> carinfo = MemberReservationServiceImpl.getMemberReservationService()
+				.getCarInfo(user_id);
+		ArrayList<Map<String, String>> availabledate = MemberReservationServiceImpl.getMemberReservationService()
+				.getAvailDate(park_id);
+
+		if (reservationDto == null) {
+			reservationDto = new ReservationDto();
+			reservationDto.setUser_id(user_id);
+			reservationDto.setHost_id(request.getParameter("host_id"));
+			reservationDto.setFromdate(request.getParameter("fromdate"));
+			reservationDto.setTodate(request.getParameter("todate"));
+			reservationDto.setFromtime(Integer.parseInt(request.getParameter("srfromTime")));
+			reservationDto.setTotime(Integer.parseInt(request.getParameter("srtoTime")));
+
+			// parkingDto
+			reservationDto.setPark_id(park_id);
+			reservationDto.setPark_name(request.getParameter("park_name"));
+		}
 		ParkingDetailDto parkingDetailDto = MemberServiceImpl.getMemberService().getParkingDetail_info(request.getParameter("park_id"));
-		 
+
 		session.setAttribute("reservationDto", reservationDto);
 		session.setAttribute("carinfo", carinfo);
 		session.setAttribute("availabledate", availabledate);
 		session.setAttribute("parkingDetailDto", parkingDetailDto);
-		
+
 		return "/reservation/reservationDetail.jsp";
 	}
 
