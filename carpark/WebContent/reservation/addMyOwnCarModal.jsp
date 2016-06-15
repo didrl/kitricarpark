@@ -32,6 +32,7 @@ function addNewCar(){
 				<form method="post" class="form-horizontal" id="addcarForm" name="addcarForm">
 				<input type="hidden" name="act" value="addcarok">
 				<input type="hidden" name="user_id"  id="addcaruser_id" value="">
+				<input type="hidden" name="park_id"  id="addcarpark_id" value="">
 				
 					<div class="form-group">
 						<label for="inputCarNum" class="col-sm-2 control-label">차량

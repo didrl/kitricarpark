@@ -114,6 +114,7 @@ public class MemberActionFactory {
 	private static Action memberReviewRegisterAction;
 	private static Action memberReviewReceiveViewAction;
 	private static Action memberReviewSendViewAction;
+	
 	 
 	private static Action memberParkingRegisterAction;
 	private static Action memberParkingSearchAction;
@@ -196,6 +197,7 @@ public class MemberActionFactory {
 		memberChargeCoinAction	= new MemberChargeCoinAction();
 		
 	}
+
 	public static Action getMemberCallMvZipAction() {
 		return memberCallMvZipAction;
 	}

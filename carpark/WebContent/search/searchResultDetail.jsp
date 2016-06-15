@@ -130,9 +130,6 @@ function messageWrite() {
 	}
 }
 
-function writeReview(){
-	
-}
 
 function goReservation() {
 	var flagr=0;
@@ -195,6 +192,7 @@ function setfavorite(){
 		return;
 	}
 }
+
 
 </script>
 

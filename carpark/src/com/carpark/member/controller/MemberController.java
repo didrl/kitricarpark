@@ -66,15 +66,11 @@ public class MemberController extends HttpServlet {
 		}else if("memberSecession".equals(act)){
 			path = MemberActionFactory.getMemberDeleteAction().execute(request, response);
 			PageMove.forward(request, response, path);
-		}else if("".equals(act)){
-			  
-		}else if("".equals(act)){
-			
 		}else if("mvMyOwnCar".equals(act)){
 			path = MemberActionFactory.getMemberCarListAction().execute(request, response);
 			PageMove.forward(request, response, path);
-		}else if("".equals(act)){
-			
+		}else if(act == null){
+			PageMove.redirect(response, root+path);
 		}else{
 			PageMove.redirect(response, root+path);
 		}
