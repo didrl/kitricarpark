@@ -27,7 +27,7 @@ public class MemberFavoriteListAction implements Action {
 
 			return "/member/myfavoriteparking.jsp";
 		} else
-			return "";
+			return "/member/loginFail.jsp";
 	}
 
 }
