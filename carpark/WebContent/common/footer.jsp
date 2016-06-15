@@ -29,7 +29,7 @@
                         </li>
                     </ul>
                     <hr class="small">
-                    <p class="text-muted">Copyright &copy; All reserved Car Park</p>
+                    <p class="text-muted">Copyright &copy; All rights reserved Car Park</p>
                 </div>
             </div>
         </div>

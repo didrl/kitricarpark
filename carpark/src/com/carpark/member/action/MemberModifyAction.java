@@ -35,6 +35,6 @@ public class MemberModifyAction implements Action {
 			int count = MemberDaoImpl.getMemberDao().modify(memberDto);
 			return "/member/info.jsp";
 		} else
-			return "";
+			return "/member/loginFail.jsp";
 	}
 }

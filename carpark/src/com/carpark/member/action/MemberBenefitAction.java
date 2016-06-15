@@ -29,8 +29,7 @@ public class MemberBenefitAction implements Action {
 		PrintWriter out = response.getWriter();
 		out.print(json.toJSONString());
 		return "";
-//		request.setAttribute("gradeInfo", gradeDto);
-//		return "/member/info.jsp";
+
 	}
 
 }

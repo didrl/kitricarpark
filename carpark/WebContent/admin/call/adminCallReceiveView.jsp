@@ -14,7 +14,7 @@ if(memberDto != null) {
 %>
 <form action="">
 	<table class="table">
-		<tr>
+		<tr style="background: #00cc00">
 			<td width="90" style="text-align: center; vertical-align: middle;">받는사람</td>
 			<td style="text-align: center; vertical-align: middle;"><%=callDto.getUserID() %></td>
 			<td width="50" style="text-align: center; vertical-align: middle;">시간</td>

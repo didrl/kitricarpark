@@ -42,7 +42,8 @@ public class MemberReceiveReviewListAction implements Action {
 			session.setAttribute("receiveReview", list);
 				return "/member/receiveReviewList.jsp";
 		}else
-			return "";
+//			return "";
+			return "/member/loginFail.jsp";
 	}
 
 }

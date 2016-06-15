@@ -27,7 +27,7 @@ public class MemberCarListAction implements Action {
 
 			return "/member/ownCarList.jsp";
 		} else
-			return "";
+			return "/member/loginFail.jsp";
 	}
 
 }

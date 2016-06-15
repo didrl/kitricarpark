@@ -52,7 +52,7 @@ if(memberDto != null) {
 		
 		<tr>
 				<td>작성일</td>
-				<td><p><%=reviewDto.getLogtime() %></p></td>
+				<td colspan="3"><p><%=reviewDto.getLogtime() %></p></td>
 		</tr>
 		<tr>
 				<td width="80">제목</td>

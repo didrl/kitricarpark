@@ -43,7 +43,7 @@ public class MemberMessageSendListAction implements Action {
 			}
 			return "/message/sendlist.jsp";
 		} else
-			return "index.jsp";
+			return "/member/loginFail.jsp";
 	}
 
 }
