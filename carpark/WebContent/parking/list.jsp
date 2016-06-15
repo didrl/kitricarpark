@@ -21,7 +21,7 @@ if(memberDto != null) {
               
             <div class="table" style="width: 800px">
               <table  class="table table-hover" style="text-align:center">
-                 <tr>
+                 <tr style="background: #00cc00">
                     <td>주차장 이름</td>
                     <td width="50">평점</td>
                     <td width="100">사용가능</td>

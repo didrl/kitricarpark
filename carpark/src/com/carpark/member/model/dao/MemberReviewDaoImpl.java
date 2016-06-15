@@ -44,6 +44,7 @@ public class MemberReviewDaoImpl implements MemberReviewDao {
 			sql +="			and r.rseq=a.rseq\n";
 			sql +="			and a.park_id = p.park_id\n";
 			sql +="			and a.park_id =?\n";
+			sql +="order by b.logtime desc\n";
 		
 			pstmt =conn.prepareStatement(sql);
 			pstmt.setString(1,park_id);
@@ -151,9 +152,9 @@ public class MemberReviewDaoImpl implements MemberReviewDao {
 			conn = DBConnection.makeConnection();
 			String sql = "";
 			
-			sql += "select b.user_id, b.subject, b.contents,r.aval_code, r.get_point, r.avaled_id,r.host_flag,b.logtime, r.rseq,r.get_point\n";
-			sql += "from review r, board b \n";
-			sql += "where r.seq=b.seq \n";
+			sql += "select b.user_id, b.subject, b.contents,r.aval_code, r.get_point, r.avaled_id,r.host_flag,b.logtime, r.rseq,r.get_point, b.bcode, ap.park_id\n";
+			sql += "from review r, board b,avgpoint ap  \n";
+			sql += "where r.seq=b.seq and ap.seq=b.seq \n";
 			sql += "and b.seq = ?";
 			
 			pstmt = conn.prepareStatement(sql);
@@ -171,6 +172,7 @@ public class MemberReviewDaoImpl implements MemberReviewDao {
 				reviewDto.setRseq(rs.getInt("rseq"));
 				reviewDto.setAvgPoint(rs.getDouble("get_point"));
 				reviewDto.setHost_flag(rs.getInt("host_flag"));
+				reviewDto.setPark_id(rs.getInt("park_id"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -197,7 +199,8 @@ public class MemberReviewDaoImpl implements MemberReviewDao {
 			sql +="where r.seq=b.seq\n";
 			sql +="and r.rseq = ap.rseq\n";
 			sql +="and b.user_id=?\n";
-		
+			sql +="order by b.logtime desc\n";
+			
 			pstmt =conn.prepareStatement(sql);
 			pstmt.setString(1,userId);
 			
@@ -245,7 +248,8 @@ public class MemberReviewDaoImpl implements MemberReviewDao {
 			sql +="where r.seq=b.seq\n";
 			sql +="and r.rseq = ap.rseq\n";
 			sql +="and r.avaled_id=?\n";
-		
+			sql +="order by b.logtime desc\n";
+			
 			pstmt =conn.prepareStatement(sql);
 			pstmt.setString(1,receiveId);
 			

@@ -28,7 +28,7 @@ function parkingView(park_id){
 				<!-- 메세지 리스트 -->
 				<div class="table" style="width: 600px">
 				  <table class="table table-hover" style="text-align:center">
-				  	<tr>
+				  	<tr style="background: #00cc00">
 				  		<td width="300"><b>주차장 이름</b></td>
 				  		<td colspan="2"><b>관리자 아이디</b></td>
 				  	</tr>

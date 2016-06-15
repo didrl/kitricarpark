@@ -34,7 +34,7 @@ if(memberDto != null) {
               
             <div class="table" style="width: 800px">
               <table  class="table table-hover">
-                 <tr>
+                 <tr style="background: #00cc00">
                     <td width="120">주차장 아이디</td>
                     <td>주차장 이름</td>
                     <td width="100">소유주</td>
