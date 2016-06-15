@@ -4,16 +4,23 @@
  */
 
 CKEDITOR.editorConfig = function( config ) {
-	// Define changes to default configuration here. For example:
-	// config.language = 'fr';
-	// config.uiColor = '#AADC6E';
-	config.toolbar =[
-	                 ['Source','-','Cut','Copy','Paste','PasteText','PasteFromWord','Undo','Redo','SelectAll','RemoveFormat'],
-	                 '/',
-	                 ['Bold','Italic','Underline','Strike', 'Subscript','Superscript'],
-	                 ['JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'],
-	                 ['NumberedList','BulletedList','Outdent','Indent','Blockquote','CreateDiv'],
-	                 ['Image','Table','HorizontalRule','Smiley','SpecialChar','PageBreak'],
-	                 ['Styles','Format','Font','FontSize','TextColor','BGColor','Maximize', 'ShowBlocks']
-	             ];
+	config.toolbarGroups = [
+		{ name: 'document', groups: [ 'mode', 'document', 'doctools' ] },
+		{ name: 'clipboard', groups: [ 'clipboard', 'undo' ] },
+		{ name: 'editing', groups: [ 'find', 'selection', 'spellchecker', 'editing' ] },
+		{ name: 'forms', groups: [ 'forms' ] },
+		'/',
+		{ name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
+		{ name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi', 'paragraph' ] },
+		{ name: 'links', groups: [ 'links' ] },
+		{ name: 'insert', groups: [ 'insert' ] },
+		'/',
+		{ name: 'styles', groups: [ 'styles' ] },
+		{ name: 'colors', groups: [ 'colors' ] },
+		{ name: 'tools', groups: [ 'tools' ] },
+		{ name: 'others', groups: [ 'others' ] },
+		{ name: 'about', groups: [ 'about' ] }
+	];
+
+	config.removeButtons = 'Styles,Format,Font,FontSize,TextColor,BGColor,ShowBlocks,Maximize,About,Flash,Table,HorizontalRule,SpecialChar,PageBreak,Iframe,Anchor,BidiLtr,BidiRtl,JustifyLeft,JustifyCenter,JustifyRight,JustifyBlock,Blockquote,CreateDiv,Indent,Outdent,RemoveFormat,Underline,Strike,Subscript,Superscript,Form,Checkbox,Radio,TextField,Textarea,Select,Button,ImageButton,HiddenField,Scayt,SelectAll,Find,Replace,Paste,PasteText,PasteFromWord,Copy,Cut,Undo,Redo,Templates,Save,Source,NewPage,Preview,Print';
 };
