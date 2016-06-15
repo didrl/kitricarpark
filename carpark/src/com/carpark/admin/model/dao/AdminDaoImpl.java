@@ -171,7 +171,7 @@ public class AdminDaoImpl implements AdminDao {
 			sql += "						order by fcount desc) f, member m \n";
 			sql += "			where r.user_id(+)=m.user_id and \n";
 			sql += "						f.user_id (+)= m.user_id \n";
-			sql += "			order by  point desc) a \n";
+			sql += "			order by  point desc, user_avgpoint desc) a \n";
 			sql += "where rownum <11 \n";
 
 			pstmt = conn.prepareStatement(sql);

@@ -80,9 +80,9 @@ function myReservationView(park_id){
 						<td><label onclick="javascript:selecteduserView('<%=allmemDto.getUser_id()%>');">
 						<%=allmemDto.getUser_flag()==0?"개인":"기업"%></label></td>
 						<td><label onclick="javascript:selecteduserView('<%=allmemDto.getUser_id()%>');">
-						<%=allmemDto.getEmail() %></label></td>
+						<%=allmemDto.getEmail()!=null?allmemDto.getEmail():"미등록" %></label></td>
 						<td><label onclick="javascript:selecteduserView('<%=allmemDto.getUser_id()%>');">
-						<%=allmemDto.getTel() %></label></td>
+						<%=allmemDto.getTel()!=null?allmemDto.getTel():"미등록" %></label></td>
 <%
 		}
 %>
