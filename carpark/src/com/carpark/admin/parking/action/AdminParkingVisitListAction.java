@@ -13,13 +13,12 @@ import com.carpark.admin.model.service.AdminParkingServiceImpl;
 import com.carpark.common.model.ParkingDetailDto;
 import com.carpark.member.model.MemberDto;
 import com.carpark.member.model.service.CommonServiceImpl;
-import com.carpark.member.model.service.MemberParkingServiceImpl;
 import com.carpark.util.Encoder;
 import com.carpark.util.NumberCheck;
 import com.carpark.util.PageNavigator;
 import com.carpark.util.StringCheck;
 
-public class AdminParkingListAction implements Action {
+public class AdminParkingVisitListAction implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
@@ -31,7 +30,7 @@ public class AdminParkingListAction implements Action {
 		String key = StringCheck.nullToBlank(request.getParameter("key"));
 		String word = StringCheck.nullToBlank(request.getParameter("word"));
 		String flag = request.getParameter("flag");
-
+		
 		System.out.println("key : " + key);
 		System.out.println("word : " + word);
 		System.out.println("visit : " + visit);
@@ -46,18 +45,12 @@ public class AdminParkingListAction implements Action {
 			PageNavigator navigator = CommonServiceImpl.getCommonService().getPageNavigatorAdminParking(pg, key, word,
 					visit);
 			navigator.setRoot(request.getContextPath());
-			if ("0".equals(word))
-				navigator.setNavigator("adminParkListPublic");
-			else if ("1".equals(word))
-				navigator.setNavigator("adminParkListPrivate");
-			else
-				navigator.setNavigator("adminParkList");
+			navigator.setNavigator("parkAuthList");
 			request.setAttribute("navigator", navigator);
 
-			return "/admin/parking/list.jsp";
+			return "/admin/parking/authlist.jsp";
 		} else
 			return "index.jsp";
-
 	}
 
 }

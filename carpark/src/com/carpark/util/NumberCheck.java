@@ -9,7 +9,7 @@ public class NumberCheck {
 		}
 		
 		return num;
-	}
+	} 
 	
 	public static int nullToOne(String tmp) {
 		int num = 1;

@@ -44,16 +44,25 @@
 				
 				<div class="row">
 					<div class="col-md-2">
-						<b>위치</b><br>
+						<b>주소</b><br>
 					</div>
 					<div class="col-md-10">
 						<div class="form-group">
 							<input type="text" name="parkAddress" class="form-control">
-							<input type="text" name="coordinate" class="form-control">
+							
 						</div>
-							<button type="button" class="btn btn-default" onclick="javascript:test();">확인</button>
+							<button type="button" class="btn btn-default" onclick="javascript:">검색</button>
 					</div>
-					<div class="form-group">
+				</div><hr>
+				
+				<div class="row">
+					<div class="col-md-2">
+						<b>상세주소</b><br>
+					</div>
+					<div class="col-md-10">
+						<div class="form-group">
+							<input type="text" name="parkDetailAddress" class="form-control">
+						</div>
 					</div>
 				</div><hr>
 				
@@ -65,15 +74,6 @@
 						<input type="text" class="form-control" name="facility">
 					</div>
 				</div><hr>
-				
-				<div class="row">
-					<div class="col-md-2">
-						<b>보유시설상세</b><br>
-					</div>
-					<div class="col-md-10">
-						<textarea class="form-control" rows="3" name="feature"></textarea>						
-					</div>
-				</div><br>
 				
 				<div class="row">
 					<div class="col-md-2">

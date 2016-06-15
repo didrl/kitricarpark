@@ -3,34 +3,21 @@ package com.carpark.common.model;
 import java.io.Serializable;
 
 public class ParkingDetailDto extends ParkingDto implements Serializable {
-	private int park_id;						//주차장 아이디
 	private int park_flag;					// 주차장 사용가능 여부
 	private double park_avgPoint; 		//주차장 평점
 	private int get_status;					//실시간 정보제공 여부
+	private String facility;			//시설정보
 	private int cur_parking;					//현재 주차중인 차량 수
+	private String pay_yn;					//평일 유무료 구분
+	private String satur_pay_yn;			//토요일 유무료 구분
+	private String holi_pay_yn;				//공휴일 유무료 구분
 	private int fulltime_monthly_pay;	//월 정기권 금액
 	private int park_rate;					//기본 주차요금
 	private int park_time_rate;			//기본 주차시간
 	private int add_park_rate;				//추가단위 요금
 	private int day_max_pay;				//하루 최대 요금
-	private String pay_yn;					//평일 유무료 구분
-	private String satur_pay_yn;			//토요일 유무료 구분
-	private String holi_pay_yn;				//공휴일 유무료 구분
-	private int emd_code;
-	private int visit;					//방문예정여부
+	private int park_visit;					//방문예정여부
 	
-	public int getEmd_code() {
-		return emd_code;
-	}
-	public void setEmd_code(int emd_code) {
-		this.emd_code = emd_code;
-	}
-	public int getPark_id() {
-		return park_id;
-	}
-	public void setPark_id(int park_id) {
-		this.park_id = park_id;
-	}
 	public int getPark_flag() {
 		return park_flag;
 	}
@@ -49,11 +36,35 @@ public class ParkingDetailDto extends ParkingDto implements Serializable {
 	public void setGet_status(int get_status) {
 		this.get_status = get_status;
 	}
+	public String getFacility() {
+		return facility;
+	}
+	public void setFacility(String facility) {
+		this.facility = facility;
+	}
 	public int getCur_parking() {
 		return cur_parking;
 	}
 	public void setCur_parking(int cur_parking) {
 		this.cur_parking = cur_parking;
+	}
+	public String getPay_yn() {
+		return pay_yn;
+	}
+	public void setPay_yn(String pay_yn) {
+		this.pay_yn = pay_yn;
+	}
+	public String getSatur_pay_yn() {
+		return satur_pay_yn;
+	}
+	public void setSatur_pay_yn(String satur_pay_yn) {
+		this.satur_pay_yn = satur_pay_yn;
+	}
+	public String getHoli_pay_yn() {
+		return holi_pay_yn;
+	}
+	public void setHoli_pay_yn(String holi_pay_yn) {
+		this.holi_pay_yn = holi_pay_yn;
 	}
 	public int getFulltime_monthly_pay() {
 		return fulltime_monthly_pay;
@@ -85,30 +96,13 @@ public class ParkingDetailDto extends ParkingDto implements Serializable {
 	public void setDay_max_pay(int day_max_pay) {
 		this.day_max_pay = day_max_pay;
 	}
-	public String getPay_yn() {
-		return pay_yn;
+	public int getPark_visit() {
+		return park_visit;
 	}
-	public void setPay_yn(String pay_yn) {
-		this.pay_yn = pay_yn;
+	public void setPark_visit(int park_visit) {
+		this.park_visit = park_visit;
 	}
-	public String getSatur_pay_yn() {
-		return satur_pay_yn;
-	}
-	public void setSatur_pay_yn(String satur_pay_yn) {
-		this.satur_pay_yn = satur_pay_yn;
-	}
-	public String getHoli_pay_yn() {
-		return holi_pay_yn;
-	}
-	public void setHoli_pay_yn(String holi_pay_yn) {
-		this.holi_pay_yn = holi_pay_yn;
-	}
-	public int getVisit() {
-		return visit;
-	}
-	public void setVisit(int visit) {
-		this.visit = visit;
-	}
+	
 	
 	
 }
