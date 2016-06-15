@@ -39,9 +39,9 @@ public class MemberReviewRegisterAction implements Action {
 		
 		MemberReviewServiceImpl.getMemberReviewService().writeArticle(reviewDto);
 		
-		ArrayList<ReviewDto> reviewlist = MemberReviewServiceImpl.getMemberReviewService().listReview(request.getParameter("review_park_id"));
+		ArrayList<ReviewDto> reviewlist = MemberReviewServiceImpl.getMemberReviewService().listReview(request.getParameter("park_id"));
 		session.setAttribute("reviewlist", reviewlist);
 		
-		return "/search/searchResultDetail.jsp";
+		return "/member?act=mvSearchResultDetail&parkingid="+request.getParameter("park_id");
 	}
 }
