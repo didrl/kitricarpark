@@ -211,25 +211,33 @@ public class CommonDaoImpl implements CommonDao {
 		
 		String key = map.get("key");
 		String word = map.get("word");
-		String auth = map.get("auth");
+		String visit = map.get("visit");
+		String flag = map.get("flag");
 		
 		try {
 			conn = DBConnection.makeConnection();
 			String sql = "";
 			sql += "select count(b.park_id) \n";
-				sql += "from parking b, parking_detail d \n";
-				sql += "where b.park_id = d.park_id \n";
-				sql += "and d.park_visit = ? \n";
+			sql += "from parking b, parking_detail d \n";
+			sql += "where b.park_id = d.park_id \n";
+			sql += "and d.park_visit = ? \n";
+			if(flag != null && !flag.isEmpty()) {
+				sql += "and park_public = ? \n";	
+			}
 			if(key != null && !key.isEmpty()) {
-				if(word != null && !word.isEmpty()) {
-					sql += "and " + key + " = ? \n";						
-				}
+			    if(word != null && !word.isEmpty()) {
+			    	sql += "and " + key + " = ? \n";						
+			    }
 			}
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, auth);
+			int idx = 0;
+			pstmt.setString(++idx, visit);
+			if(flag != null && !flag.isEmpty()) {
+				pstmt.setString(++idx, flag);
+			}
 			if(key != null && !key.isEmpty()) {
 				if(word != null && !word.isEmpty()) {
-					pstmt.setString(2, word);
+					pstmt.setString(++idx, word);
 				}
 			}
 			rs = pstmt.executeQuery();
@@ -240,7 +248,7 @@ public class CommonDaoImpl implements CommonDao {
 		} finally {
 			DBClose.close(conn, pstmt, rs);
 		}
-		System.out.println(count);
+		System.out.println("totaladminpark : " + count);
 		return count;
 	}
 	

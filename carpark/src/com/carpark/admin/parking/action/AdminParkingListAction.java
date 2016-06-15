@@ -42,12 +42,7 @@ public class AdminParkingListAction implements Action {
 
 			PageNavigator navigator = CommonServiceImpl.getCommonService().getPageNavigatorAdminParking(pg, flag, visit, key, word);
 			navigator.setRoot(request.getContextPath());
-			if ("0".equals(flag))
-				navigator.setNavigator("adminParkListPublic");
-			else if ("1".equals(flag))
-				navigator.setNavigator("adminParkListPrivate");
-			else
-				navigator.setNavigator("adminParkList");
+			navigator.setNavigator("adminParkList");
 			request.setAttribute("navigator", navigator);
 
 			return "/admin/parking/list.jsp";

@@ -106,7 +106,7 @@ public class CommonServiceImpl implements CommonService {
 	}
 	
 	@Override
-	public PageNavigator getPageNavigatorAdminParking(int pg, String key, String word, String visit, String flag) {
+	public PageNavigator getPageNavigatorAdminParking(int pg, String flag, String visit, String key, String word) {
 		int listSize = BoardConstance.BOARD_LIST_SIZE;
 		int pageSize = BoardConstance.BOARD_PAGE_SIZE;
 		
