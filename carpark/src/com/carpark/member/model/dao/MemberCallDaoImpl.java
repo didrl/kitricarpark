@@ -182,7 +182,8 @@ public class MemberCallDaoImpl implements MemberCallDao {
 			conn = DBConnection.makeConnection();
 			
 			String sql = "";
-			sql+= "select b.seq, b.user_id,b.subject,b.logtime,b.contents,c.pcall_flag,c.pcall_ok \n";
+			sql+= "select b.seq, b.user_id,b.subject,b.logtime,b.contents,";
+			sql+= "c.pcall_flag,c.pcall_ok, c.pcall_addr \n";
 			sql+= "from board b, call c \n";
 			sql+= "where b.seq = c.pcall_id \n";
 			sql+= "and b.seq = ? \n";
@@ -198,6 +199,7 @@ public class MemberCallDaoImpl implements MemberCallDao {
 				callDto.setLogtime(rs.getString("logtime"));
 				callDto.setpCall_Ok(rs.getInt("pcall_ok"));
 				callDto.setpCall_Flag(rs.getInt("pcall_flag"));
+				callDto.setpCall_ADDR(rs.getString("pcall_addr"));
 			}
 		
 		} catch (SQLException e) {
