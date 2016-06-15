@@ -43,7 +43,10 @@ PageNavigator navigator = (PageNavigator) request.getAttribute("navigator");
 session.removeAttribute("address");
 %>
 			<td width="60">
-				<button type="button" class="btn btn-default btn-group-xs" onclick="javascript:adminSearchAddress('1');">검색</button>
+				<button type="button" class="btn btn-default btn-group-xs" onclick="javascript:searchAddress('1');">검색</button>
+			</td>
+			<td width="60">
+				<button type="button" class="btn btn-default btn-group-xs" onclick="javascript:windowClose();">사용</button>
 			</td>
 		</tr>
 										

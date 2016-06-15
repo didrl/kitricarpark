@@ -41,10 +41,10 @@ public class MemberParkingListAction implements Action {
 				navigator.setNavigator("parkingList");
 				request.setAttribute("navigator", navigator);
 			}
-
 			return "/parking/list.jsp";
+			
 		} else
-			return "index.jsp";
+			return "/member/loginFail.jsp";
 
 	}
 

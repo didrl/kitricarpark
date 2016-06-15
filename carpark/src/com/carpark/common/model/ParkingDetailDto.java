@@ -17,7 +17,7 @@ public class ParkingDetailDto extends ParkingDto implements Serializable {
 	private int add_park_rate;				//추가단위 요금
 	private int day_max_pay;				//하루 최대 요금
 	private int park_visit;					//방문예정여부
-	
+	 
 	public int getPark_flag() {
 		return park_flag;
 	}

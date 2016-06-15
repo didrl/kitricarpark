@@ -20,14 +20,11 @@ public class MemberInfoDetailAction implements Action {
 		MemberDto memberDto = (MemberDto) session.getAttribute("memberInfo");
 		if (memberDto != null) {
 			MemberDto detailMemberDto = MemberServiceImpl.getMemberService().getMemberDetail(memberDto.getUser_id());
-			// memberDto =
-			// MemberServiceImpl.getMemberService().getMemberDetail(memberDto.getUser_id());
 			System.out.println("memberinfodetailaction>>>>>>>>>>>>" + detailMemberDto.getUser_id());
 			request.setAttribute("memberDetailInfo", detailMemberDto);
-
 			return "/member/detailInfo.jsp";
 		} else
-			return "";
+			return "/member/loginFail.jsp";
 	}
 
 }

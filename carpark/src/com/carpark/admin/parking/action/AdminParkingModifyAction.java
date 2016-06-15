@@ -1,6 +1,9 @@
 package com.carpark.admin.parking.action;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.StringTokenizer;
 
 import javax.servlet.ServletException;
@@ -9,11 +12,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.carpark.action.Action;
+import com.carpark.admin.model.service.AdminParkingServiceImpl;
 import com.carpark.common.model.ParkingDetailDto;
 import com.carpark.member.model.MemberDto;
+import com.carpark.member.model.service.CommonServiceImpl;
 import com.carpark.member.model.service.MemberParkingServiceImpl;
-import com.carpark.util.Encoder;
 import com.carpark.util.NumberCheck;
+import com.carpark.util.PageNavigator;
 import com.carpark.util.StringCheck;
 
 public class AdminParkingModifyAction implements Action {
@@ -22,7 +27,6 @@ public class AdminParkingModifyAction implements Action {
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 
-		String act = request.getParameter("act");
 		String visit = StringCheck.nullToBlank(request.getParameter("visit"));
 		int pg = NumberCheck.nullToOne(request.getParameter("pg"));
 		String key = StringCheck.nullToBlank(request.getParameter("key"));
@@ -50,9 +54,6 @@ public class AdminParkingModifyAction implements Action {
 
 				parkingDto.setLatitude(Double.parseDouble(latitude));
 				parkingDto.setLongitude(Double.parseDouble(longitude));
-			} else {
-				System.out.println("좌표가져오기 실패");
-				return "/admin/parking/register.jsp";
 			}
 
 			parkingDto.setOwner_id(ownerId);
@@ -68,14 +69,28 @@ public class AdminParkingModifyAction implements Action {
 			parkingDto.setFulltime_monthly_pay(NumberCheck.nullToOne(request.getParameter("fullTimeMonthlyPay")));
 			parkingDto.setPark_flag(NumberCheck.nullToOne(request.getParameter("parkFlag")));
 			parkingDto.setContent(StringCheck.nullToBlank(request.getParameter("content").replace("\r\n", "<br>")));
-			parkingDto.setDetailAddr(StringCheck.nullToBlank(request.getParameter("parkAddress")));
+			parkingDto.setDetailAddr(StringCheck.nullToBlank(request.getParameter("parkDetailAddress")));
 			parkingDto.setFacility(StringCheck.nullToBlank(request.getParameter("facility")));
 
 			MemberParkingServiceImpl.getMemberParkingservice().parkingModify(parkingDto);
 
+			List<ParkingDetailDto> list = AdminParkingServiceImpl.getAdminParkingService().parkingList(pg, flag, visit, key, word);
+			request.setAttribute("parkingList", list);
+
+			PageNavigator navigator = CommonServiceImpl.getCommonService().getPageNavigatorAdminParking(pg, flag, visit, key, word);
+			navigator.setRoot(request.getContextPath());
+			Map<String, String> map = new HashMap<String, String>();
+			String javascript = "adminParkList";
+			map.put("javascript", javascript);
+			map.put("pg", pg + "");
+			map.put("flag", flag);
+			map.put("visit", visit);
+			navigator.setNavigator(map);
+			request.setAttribute("navigator", navigator);
+
 			return "/admin/parking/list.jsp";
 		} else
-			return "index.jsp";
+			return "/member/loginFail.jsp";
 	}
 
 }

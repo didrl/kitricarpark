@@ -67,7 +67,6 @@ public class AdminDaoImpl implements AdminDao {
 		}finally{
 			DBClose.close(conn, pstmt, rs);
 		}	
-		System.out.println(">>>>>>>><<<<<<<<<<<>>>>>>>>>>><<<<<"+list.size());
 		return list;
 	}
 
@@ -172,7 +171,7 @@ public class AdminDaoImpl implements AdminDao {
 			sql += "						order by fcount desc) f, member m \n";
 			sql += "			where r.user_id(+)=m.user_id and \n";
 			sql += "						f.user_id (+)= m.user_id \n";
-			sql += "			order by  point desc) a \n";
+			sql += "			order by  point desc, user_avgpoint desc) a \n";
 			sql += "where rownum <11 \n";
 
 			pstmt = conn.prepareStatement(sql);
@@ -223,7 +222,7 @@ public class AdminDaoImpl implements AdminDao {
 			sql += " 			where r.park_id(+)=pd.park_id and\n";
 			sql += "						f.park_id (+)= pd.park_id and \n";
 			sql += "						pd.park_id = p.park_id \n";
-			sql += " order by  point desc) a\n";
+			sql += " order by  point desc, park_avgpoint desc) a\n";
 			sql += " where rownum <11 \n";
 			
 

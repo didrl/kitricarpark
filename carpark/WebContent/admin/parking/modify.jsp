@@ -24,7 +24,11 @@ if(memberDto != null){
 				<input type="hidden" name="act" value="adminParkingModify">				
 				<input type="hidden" name="parkId" value="<%=parkingDto.getPark_id()%>">	
 				<input type="hidden" name="pg" value="<%=pg%>">				
-				<input type="hidden" name="auth" value="<%=auth%>">			
+				<input type="hidden" name="flag" id="flag" value="<%=flag%>">
+				<input type="hidden" name="visit" id="visit" value="<%=visit%>">		
+				<input type="hidden" name="key" id="key" value="<%=key%>">
+				<input type="hidden" name="word" id="word" value="<%=word%>">
+				<input type="hidden" class="form-control" name="coordinate" value="(<%=parkingDto.getLatitude()%> , <%=parkingDto.getLongitude()%>)">
 				
 				
 				<div class="row">
@@ -74,10 +78,20 @@ if(0 == parkingDto.getPark_flag()) {
 					</div>
 					<div class="col-md-10">
 						<div class="form-group">
-							<input type="text" class="form-control" placeholder="주소" name="parkAddress" readonly="readonly" value="<%=parkingDto.getDetailAddr()%>">
-							<input type="hidden" class="form-control" name="coordinate" value="(<%=parkingDto.getLatitude()%> , <%=parkingDto.getLongitude()%>)">
+							<input type="text" class="form-control" placeholder="주소" name="parkDetailAddress" value="<%=parkingDto.getDetailAddr()%>">
 						</div>
 							<button type="button" class="btn btn-default" onclick="javascript:parkingSearchWindow();">검색</button>
+					</div>
+				</div><hr>
+				
+				<div class="row">
+					<div class="col-md-2">
+						<b>보유시설</b><br>
+					</div>
+					<div class="col-md-10">
+						<div class="form-group">
+							<input type="text" name="facility" class="form-control" value="<%=parkingDto.getFacility()%>">
+						</div>
 					</div>
 				</div><hr>
 				
@@ -204,7 +218,7 @@ if(0 == parkingDto.getPark_flag()) {
 				<div class="row">
 						<p align="center">
 		  					<button type="button" class="btn btn-primary btn-lg" onclick="javascript:adminParkingModify('<%=parkingDto.getPark_id()%>');">수정</button>
-		  					<button type="button" class="btn btn-default btn-lg" onclick="javascript:adminParkList('<%=pg%>');"> 취소 </button>
+		  					<button type="button" class="btn btn-default btn-lg" onclick="javascript:adminParkList('<%=pg %>', '<%=flag%>', '<%=visit%>');"> 취소 </button>
 						</p>
 				</div>
 			</div>

@@ -107,7 +107,7 @@ if(parkingDto.getPark_flag() == 0) {
 						<b>보유시설</b><br>
 					</div>
 					<div class="col-md-10">
-						<%=parkingDto.getFacility() %>
+						<%=parkingDto.getFacility()!=null?parkingDto.getFacility():"없음" %>
 					</div>
 				</div><hr>
 				
@@ -191,7 +191,7 @@ if("0" == parkingDto.getHoli_pay_yn()) {
 						<b>기본주차요금</b><br>
 					</div>
 					<div class="col-md-10">
-						<%=parkingDto.getPark_rate() %> 코인			
+						<%=parkingDto.getPark_rate()/100 %> 코인			
 					</div>
 				</div><br>			
 
@@ -200,7 +200,7 @@ if("0" == parkingDto.getHoli_pay_yn()) {
 						<b>추가단위요금</b><br>
 					</div>
 					<div class="col-md-10">
-						<%=parkingDto.getAdd_park_rate() %> 코인			
+						<%=parkingDto.getAdd_park_rate()/100 %> 코인			
 					</div>
 				</div><br>			
 									
@@ -209,7 +209,7 @@ if("0" == parkingDto.getHoli_pay_yn()) {
 						<b>하루최대요금</b><br>
 					</div>
 					<div class="col-md-10">
-						<%=parkingDto.getDay_max_pay() %> 코인			
+						<%=parkingDto.getDay_max_pay()/100 %> 코인			
 					</div>
 				</div><br>			
 
@@ -218,7 +218,7 @@ if("0" == parkingDto.getHoli_pay_yn()) {
 						<b>월정기권</b><br>
 					</div>
 					<div class="col-md-10">
-						<%=parkingDto.getFulltime_monthly_pay() %> 코인		
+						<%=parkingDto.getFulltime_monthly_pay()/100 %> 코인		
 					</div>
 				</div><br>	
 				
@@ -234,11 +234,11 @@ if("0" == parkingDto.getHoli_pay_yn()) {
 	
 				<div class="row">
 						<p align="center">
-		  					<button type="button" class="btn btn-default btn-lg" onclick="javascript:adminParkList('<%=pg%>');">목록</button>
+		  					<button type="button" class="btn btn-default btn-lg" onclick="javascript:adminParkList('<%=pg %>', '<%=flag%>', '<%=visit%>');">목록</button>
 <%
 if(parkingDto.getPark_visit() == 0) {
 %>
-							<button type="button" class="btn btn-default btn-lg" onclick="javascript:adminParkingAuth('<%=parkingDto.getPark_id()%>');"> 인증 </button>
+							<button type="button" class="btn btn-default btn-lg" onclick="javascript:adminParkingVisit('<%=parkingDto.getPark_id()%>');"> 인증 </button>
 <%
 } else {
 %>

@@ -31,60 +31,57 @@ public class MemberParkingRegisterAction implements Action {
 		
 		HttpSession session = request.getSession();
 		MemberDto memberDto = (MemberDto) session.getAttribute("memberInfo");
-		String ownerId = memberDto.getUser_id();
-		
-		int parkingId = CommonServiceImpl.getCommonService().getNextParkingId();
-		
-		ParkingDetailDto parkingDto = new ParkingDetailDto();
-		
-		parkingDto.setPark_id(parkingId);
-		parkingDto.setPark_public(1);
-		parkingDto.setPark_visit(0);
-		parkingDto.setPark_name(request.getParameter("parkName"));
-		
-		String coordinate = request.getParameter("coordinate");//지도에서 가져온 좌표
-		if(coordinate != null && !coordinate.isEmpty()) {
-		StringTokenizer st = new StringTokenizer(coordinate, ",");//lat, lng로 나눔
-		String latitude = st.nextToken().substring(1);// ( 제거 
-		String longitude = st.nextToken().replace(")", "").trim();// ) 제거
-		
-		parkingDto.setLatitude(Double.parseDouble(latitude));//dto에 넣기
-		parkingDto.setLongitude(Double.parseDouble(longitude));
-		} else {
-			System.out.println("좌표가져오기 실패");
-			return "/parking/register.jsp";
-		}
-		
-		parkingDto.setOwner_id(ownerId);
-		
-		parkingDto.setPay_yn(request.getParameter("payYn"));
-		parkingDto.setSatur_pay_yn(request.getParameter("saturPayYn"));
-		parkingDto.setHoli_pay_yn(request.getParameter("holiPayYn"));
-		parkingDto.setPark_capacity(NumberCheck.nullToOne(request.getParameter("parkCapacity")));
-		parkingDto.setPark_time_rate(NumberCheck.nullToOne(request.getParameter("parkTimeRate")));
-		parkingDto.setPark_rate(NumberCheck.nullToOne(request.getParameter("parkRate")));
-		parkingDto.setAdd_park_rate(NumberCheck.nullToOne(request.getParameter("addParkRate")));
-		parkingDto.setDay_max_pay(NumberCheck.nullToOne(request.getParameter("dayMaxPay")));
-		parkingDto.setFulltime_monthly_pay(NumberCheck.nullToOne(request.getParameter("fullTimeMonthlyPay")));
-		parkingDto.setPark_flag(NumberCheck.nullToOne(request.getParameter("parkFlag")));
-		parkingDto.setContent(request.getParameter("content").replace("\r\n", "<br>"));
-		parkingDto.setDetailAddr(request.getParameter("parkAddress"));
-		
-//		parkingDto.setEmd_code(11650101);
-		
-		if(parkingId != 0) {
+		if(memberDto != null) {
+			String ownerId = memberDto.getUser_id();
+			
+			int parkingId = CommonServiceImpl.getCommonService().getNextParkingId();
+			
+			ParkingDetailDto parkingDto = new ParkingDetailDto();
+			
+			parkingDto.setPark_id(parkingId);
+			parkingDto.setPark_public(1);
+			parkingDto.setPark_visit(0);
+			parkingDto.setPark_name(request.getParameter("parkName"));
+			
+			String coordinate = request.getParameter("coordinate");//지도에서 가져온 좌표
+			if(coordinate != null && !coordinate.isEmpty()) {
+				StringTokenizer st = new StringTokenizer(coordinate, ",");//lat, lng로 나눔
+				String latitude = st.nextToken().substring(1);// ( 제거 
+				String longitude = st.nextToken().replace(")", "").trim();// ) 제거
+				
+				parkingDto.setLatitude(Double.parseDouble(latitude));//dto에 넣기
+				parkingDto.setLongitude(Double.parseDouble(longitude));
+			}
+			
+			parkingDto.setOwner_id(ownerId);
+			
+			parkingDto.setPay_yn(StringCheck.nullToBlank(request.getParameter("payYn")));
+			parkingDto.setSatur_pay_yn(StringCheck.nullToBlank(request.getParameter("saturPayYn")));
+			parkingDto.setHoli_pay_yn(StringCheck.nullToBlank(request.getParameter("holiPayYn")));
+			parkingDto.setPark_capacity(NumberCheck.nullToOne(request.getParameter("parkCapacity")));
+			parkingDto.setPark_time_rate(NumberCheck.nullToOne(request.getParameter("parkTimeRate")));
+			parkingDto.setPark_rate(NumberCheck.nullToOne(request.getParameter("parkRate")));
+			parkingDto.setAdd_park_rate(NumberCheck.nullToOne(request.getParameter("addParkRate")));
+			parkingDto.setDay_max_pay(NumberCheck.nullToOne(request.getParameter("dayMaxPay")));
+			parkingDto.setFulltime_monthly_pay(NumberCheck.nullToOne(request.getParameter("fullTimeMonthlyPay")));
+			parkingDto.setPark_flag(NumberCheck.nullToOne(request.getParameter("parkFlag")));
+			parkingDto.setContent(StringCheck.nullToBlank(request.getParameter("content").replace("\r\n", "<br>")));
+			parkingDto.setDetailAddr(StringCheck.nullToBlank(request.getParameter("parkAddress") + " " + request.getParameter("parkDetailAddress")));
+			parkingDto.setFacility(StringCheck.nullToBlank(request.getParameter("facility")));
+			parkingDto.setPark_avgPoint(3.0);
+			
 			MemberParkingServiceImpl.getMemberParkingservice().parkingRegister(parkingDto);
 			List<ParkingDetailDto> list = MemberParkingServiceImpl.getMemberParkingservice().parkingList(ownerId, pg, key, word);
 			request.setAttribute("parkingList", list);
-			
+				
 			PageNavigator navigator = CommonServiceImpl.getCommonService().getPageNavigatorParking(ownerId, pg, key, word);
 			navigator.setRoot(request.getContextPath());
 			navigator.setNavigator("parkingList");
 			request.setAttribute("navigator", navigator);
-		}
-		
-		
-		return "/parking/list.jsp";
+			
+			return "/parking/list.jsp";
+		} else
+			return "/member/loginFail.jsp";
 	}
 
 }

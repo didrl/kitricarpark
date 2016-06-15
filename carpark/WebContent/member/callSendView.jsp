@@ -24,6 +24,9 @@ if(memberDto != null) {
 			<td width="90" style="text-align: center; vertical-align: middle;">제목</td>
 				<td colspan="3" style="text-align: center; vertical-align: middle;"><%=callDto.getSubject()%></td>
 			</tr>
+			<td width="90" style="text-align: center; vertical-align: middle;">주소</td>
+				<td colspan="3" style="text-align: center; vertical-align: middle;"><%=callDto.getpCall_ADDR()%></td>
+			</tr>
 			<tr>
 			<td width="90" style="text-align: center; vertical-align: middle;">내용</td>
 			<td colspan="3" height="350" style="text-align: center; vertical-align: middle;">

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.*,com.carpark.common.model.*"%>
 <%
-List<ParkingDto> list = (List<ParkingDto>)session.getAttribute("searchlist");
+List<ParkingDetailDto> list = (List<ParkingDetailDto>)session.getAttribute("searchlist");
 String city = (String)request.getParameter("city");
 %>    
 
@@ -71,7 +71,7 @@ function goResultDetail() {
 				<!--  for-->
 			
 <%
-ParkingDto parkingDto = new ParkingDto();
+ParkingDetailDto parkingDto = new ParkingDetailDto();
 ParkingDetailDto parkingDetailDto = new ParkingDetailDto();
 %>
 <script>
@@ -81,6 +81,7 @@ var hrefs = new Array();
 <%
 for(int i =0;i<list.size();i++){
 	parkingDto = list.get(i);
+	int avgpoint = (int) parkingDto.getPark_avgPoint();
 //for(ParkingDto parkingDto :list){
 %>
 				<a href="<%=root%>/member?act=mvSearchResultDetail&parkingid=<%=parkingDto.getPark_id()%> &parkingname=<%=parkingDto.getPark_name()%>&latitude=<%=parkingDto.getLatitude()%>&longitude=<%=parkingDto.getLongitude()%>" class="list-group-item">					
@@ -99,16 +100,20 @@ for(int i =0;i<list.size();i++){
                         <div class="text-right">
 <!-- 평점정보 가져와야함 -->
 						
-                        <script>
-                        <%=parkingDetailDto.getPark_avgPoint()%>
-                        </script>
-                        
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                            (4점)
+<% 
+		for(int k = 0;k<avgpoint;++k){
+%>
+									<span class="glyphicon glyphicon-star"></span>
+<% 
+		}
+		for(int k = 0;k<5-avgpoint;++k){
+%>
+									<span class="glyphicon glyphicon-star-empty"></span>
+<% 
+		}
+%> 
+
+                            (<%=parkingDto.getPark_avgPoint()%>점)
                             </div>
                         </p>
                     </div>

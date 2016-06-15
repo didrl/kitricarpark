@@ -21,7 +21,7 @@ if(memberDto != null) {
               
             <div class="table" style="width: 800px">
               <table  class="table table-hover" style="text-align:center">
-                 <tr>
+                 <tr style="background: #00cc00">
                     <td>주차장 이름</td>
                     <td width="50">평점</td>
                     <td width="100">사용가능</td>
@@ -68,6 +68,16 @@ if(memberDto != null) {
             <a class="btn btn-default" href="<%=root %>/parking/register.jsp"> 등록 </a>
             
             <nav align="center">
+            		<form class="form-inline" name="parkSearchForm" method="get" action="">
+					<input type="hidden" name="act" id="act" value="parkSearch">
+						<input type="hidden" name="pg" id="pg" value="<%=pg%>">
+					<select name="key">
+						<option value="park_name">주차장이름</option>
+						<option value="content">내용</option>
+					</select>
+					<input type="text" name="word" id="word" value="">
+					<input type="button" class="btn btn-default" value="검색" onclick="javascript:parkingList('1');">
+				</form>
 				<ul class="pagination">
 				<%=navigator.getNavigator() %>
 				</ul>

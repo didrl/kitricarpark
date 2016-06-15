@@ -61,13 +61,13 @@ function reviewWrite(){
 										});
 									</script>
 								</div>
-								<div class="form-group">
+								<!-- <div class="form-group">
 									<label for="fileinput" class="control-label">사진 등록하기</label>
 
 									<input type="file" id="fileinput" name="fileinput" readonly="">
 
 
-								</div>
+								</div> -->
 								<div class="form-group text-center">
 									<input class="btn btn-default" type="button" value="등록하기"
 										onclick="javascript:reviewWrite();"> <input

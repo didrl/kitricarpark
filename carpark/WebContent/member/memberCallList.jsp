@@ -35,7 +35,7 @@ if(memberDto != null) {
             <!-- 메세지 리스트 -->
             <div class="table">
               <table class="table table-hover" style="text-align:center">
- 					<tr>
+ 					<tr style="background: #00cc00">
 				  		<td width="150" style="background-color: #00cc00" align="center"><b style="color: #FFFFFF">보낸사람</b></td>
 				  		<td style="background-color: #00cc00" align="center"><b style="color: #FFFFFF">제목</b></td>
 				  		<td width="200" style="background-color: #00cc00" align="center"><b style="color: #FFFFFF">시간</b></td>

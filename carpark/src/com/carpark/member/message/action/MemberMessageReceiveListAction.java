@@ -54,7 +54,7 @@ public class MemberMessageReceiveListAction implements Action {
 	
 			return "/message/receivelist.jsp";
 		} else
-			return "";
+			return "/member/loginFail.jsp";
 	}
 
 }

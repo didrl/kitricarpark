@@ -27,7 +27,7 @@ function myReservationView(park_id){
 				<!-- 메세지 리스트 -->
 				<div class="table">
 				  <table class="table table-hover" style="text-align:center">
-				  	<tr>
+				  	<tr style="background: #00cc00">
 				  		<td width="100"><b>회원 아이디</b></td>
 				  		<td><b>회원 이름</b></td>
 				  		<td><b>회원 등급</b></td>
@@ -80,9 +80,9 @@ function myReservationView(park_id){
 						<td><label onclick="javascript:selecteduserView('<%=allmemDto.getUser_id()%>');">
 						<%=allmemDto.getUser_flag()==0?"개인":"기업"%></label></td>
 						<td><label onclick="javascript:selecteduserView('<%=allmemDto.getUser_id()%>');">
-						<%=allmemDto.getEmail() %></label></td>
+						<%=allmemDto.getEmail()!=null?allmemDto.getEmail():"미등록" %></label></td>
 						<td><label onclick="javascript:selecteduserView('<%=allmemDto.getUser_id()%>');">
-						<%=allmemDto.getTel() %></label></td>
+						<%=allmemDto.getTel()!=null?allmemDto.getTel():"미등록" %></label></td>
 <%
 		}
 %>

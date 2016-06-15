@@ -27,7 +27,7 @@ function myReservationView(park_id){
 				<!-- 메세지 리스트 -->
 				<div class="table">
 				  <table class="table table-hover" style="text-align:center">
-				  	<tr>
+				  	<tr style="background: #00cc00">
 				  		<td width="100"><b>예약번호</b></td>
 				  		<td><b>주차장 이름</b></td>
 				  		<td><b>예약 시작일</b></td>

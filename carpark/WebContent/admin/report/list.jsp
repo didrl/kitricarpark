@@ -44,7 +44,7 @@ PageNavigator navigator = (PageNavigator) request.getAttribute("navigator");
 				<!-- 신고내역 -->
 				<div class="table">
 				  <table class="table table-hover" style="text-align:center">
-				  	<tr>
+				  	<tr style="background: #00cc00">
 				  		<td width="150"><b>신고자</b></td>
 				  		<td><b>제목</b></td>
 				  		<td width="150"><b>신고대상</b></td>

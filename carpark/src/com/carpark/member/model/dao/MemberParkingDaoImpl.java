@@ -38,12 +38,12 @@ public class MemberParkingDaoImpl implements MemberParkingDao {
 			String sql = "";
 			sql += "insert all \n";
 			sql += "	into parking (park_id, park_name, park_capacity, owner_id, latitude, "
-										+ "longitude, content, detail_addr, park_public, pic_seq) \n";
-			sql += "	values (? ,? ,? ,? ,? ,?, ?, ?, ?, ?) \n";
+										+ "longitude, content, detail_addr, park_public) \n";
+			sql += "	values (? ,? ,? ,? ,? ,?, ?, ?, ?) \n";
 			sql += "	into parking_detail (park_id, park_flag, PAY_YN, satur_pay_yn, holi_pay_yn, "
 												+ "fulltime_monthly_pay, park_rate, "
-												+ "park_time_rate, add_park_rate, day_max_pay, park_visit, facility) \n";
-			sql += "	values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+												+ "park_time_rate, add_park_rate, day_max_pay, park_visit, facility, park_avgPoint) \n";
+			sql += "	values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			sql += "select * from dual";
 			
 			pstmt = conn.prepareStatement(sql);
@@ -58,7 +58,6 @@ public class MemberParkingDaoImpl implements MemberParkingDao {
 			pstmt.setString(++idx, parkingDetailDto.getContent());
 			pstmt.setString(++idx, parkingDetailDto.getDetailAddr());
 			pstmt.setInt(++idx, parkingDetailDto.getPark_public());
-			pstmt.setInt(++idx, parkingDetailDto.getPic_seq());
 			//parking_detail table
 			pstmt.setInt(++idx, parkingDetailDto.getPark_id());
 			pstmt.setInt(++idx, parkingDetailDto.getPark_flag());
@@ -72,6 +71,7 @@ public class MemberParkingDaoImpl implements MemberParkingDao {
 			pstmt.setInt(++idx, parkingDetailDto.getDay_max_pay());
 			pstmt.setInt(++idx, parkingDetailDto.getPark_visit());
 			pstmt.setString(++idx, parkingDetailDto.getFacility());
+			pstmt.setDouble(++idx, parkingDetailDto.getPark_avgPoint());
 
 			pstmt.executeUpdate();
 	
@@ -94,24 +94,23 @@ public class MemberParkingDaoImpl implements MemberParkingDao {
 			String sql = "";
 			sql += "update parking \n";
 			sql += "set park_name = ?, park_capacity = ?, latitude = ?, \n";
-			sql += "longitude = ?, detail_addr = ?, content = ?, pic_seq = ? \n";
+			sql += "longitude = ?, detail_addr = ?, content = ? \n";
 			sql += "where park_id = ? \n";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, parkingDto.getPark_name());
 			pstmt.setInt(2, parkingDto.getPark_capacity());
 			pstmt.setDouble(3, parkingDto.getLatitude());
 			pstmt.setDouble(4, parkingDto.getLongitude());
-			pstmt.setString(6, parkingDto.getDetailAddr());
-			pstmt.setString(7, parkingDto.getContent());
-			pstmt.setInt(8, parkingDto.getPic_seq());
-			pstmt.setInt(9, parkingDto.getPark_id());
+			pstmt.setString(5, parkingDto.getDetailAddr());
+			pstmt.setString(6, parkingDto.getContent());
+			pstmt.setInt(7, parkingDto.getPark_id());
 			pstmt.executeUpdate();
 			conn.commit();
 			pstmt.close();
 			
 			sql = "update parking_detail \n";
 			sql += "set park_flag = ?, PAY_YN = ?, satur_pay_yn = ?, holi_pay_yn = ?, \n";
-			sql += "fulltime_monthly_pay = ?, park_rate = ?, facility, \n";
+			sql += "fulltime_monthly_pay = ?, park_rate = ?, facility = ?, \n";
 			sql += "park_time_rate = ?, add_park_rate = ?, day_max_pay = ? \n";
 			sql += "where park_id = ? \n";
 			pstmt = conn.prepareStatement(sql);
@@ -169,7 +168,7 @@ public class MemberParkingDaoImpl implements MemberParkingDao {
 		    			sql += "   and " + key + " = ? \n";						
 		    	}
 		    }
-		    sql += "               order by park_name) a \n";
+		    sql += "               order by p.park_id desc) a \n";
 		    sql += "         where rownum < ? ) b \n";
 		    sql += "where rn > ? \n";
 			pstmt = conn.prepareStatement(sql);

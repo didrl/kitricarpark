@@ -22,7 +22,8 @@ if(memberDto != null){
 			<div class="col-md-10">
 			<form name="parkingModifyForm" method="post" action="">
 				<input type="hidden" name="act" value="parkingModify">				
-				<input type="hidden" name="parkId" value="<%=parkingDto.getPark_id()%>">				
+				<input type="hidden" name="parkId" value="<%=parkingDto.getPark_id()%>">	
+				<input type="hidden" class="form-control" name="coordinate" value="(<%=parkingDto.getLatitude()%> , <%=parkingDto.getLongitude()%>)">			
 				
 				
 				<div class="row">
@@ -64,18 +65,21 @@ if(0 == parkingDto.getPark_flag()) {
 							<input type="text" class="form-control" name="parkName" value="<%=parkingDto.getPark_name()%>">
 						</div>
 					</div><br>
-				</div><hr>
+				</div><hr>	
 				
 				<div class="row">
 					<div class="col-md-2">
-						<b>위치</b><br>
+						<b>주소</b><br>
 					</div>
-					<div class="col-md-10">
+					<div class="col-md-6">
 						<div class="form-group">
-							<input type="text" class="form-control" placeholder="주소" name="parkAddress" readonly="readonly" value="<%=parkingDto.getDetailAddr()%>">
-							<input type="hidden" class="form-control" name="coordinate" value="(<%=parkingDto.getLatitude()%> , <%=parkingDto.getLongitude()%>)">
+							<input type="text" name="parkDetailAddress" class="form-control" value="<%=parkingDto.getDetailAddr()%>">
 						</div>
-							<button type="button" class="btn btn-default" onclick="javascript:parkingSearchWindow();">검색</button>
+					</div>
+					<div class="col-md-1">
+						<div class="form-group">
+							<button type="button" class="btn btn-default" onclick="javascript:test();">확인</button>
+						</div>
 					</div>
 				</div><hr>
 				

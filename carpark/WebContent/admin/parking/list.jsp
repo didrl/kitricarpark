@@ -20,21 +20,21 @@ if(memberDto != null) {
         <center><br><h3>주차장 목록</h3><br></center>   
               
 		<div class="btn-group text-align:left" role="group" aria-label="...">
-			<button type="button" class="btn btn-default" onclick="javascript:adminParkList('1');">
-				전체
-			</button>
-			<button type="button" class="btn btn-default" onclick="javascript:adminParkListPublic('1');">
+			<button type="button" class="btn btn-default" onclick="javascript:adminParkList('1', '0', '1');">
 				공용주차장
 			</button>	
-			<button type="button" class="btn btn-default" onclick="javascript:adminParkListPrivate('1');">
+			<button type="button" class="btn btn-default" onclick="javascript:adminParkList('1', '1', '1');">
 			    사설주차장
 			</button>
-			 <a class="btn btn-default" href="<%=root %>/admin/parking/register.jsp"> 등록 </a>
+			<button type="button" class="btn btn-default" onclick="javascript:adminParkList('1', '', '0');">
+				인증대기목록
+			</button>
+			 <a class="btn btn-default" href="javascript:moveRegister();"> 주차장등록 </a>
 		</div>
               
             <div class="table" style="width: 800px">
               <table  class="table table-hover">
-                 <tr>
+                 <tr style="background: #00cc00">
                     <td width="120">주차장 아이디</td>
                     <td>주차장 이름</td>
                     <td width="100">소유주</td>
@@ -77,7 +77,18 @@ if(memberDto != null) {
 %>		
                   <td>
                   	<button type="button" class="btn btn-default btn-xs" onclick="javascript:adminParkingView('<%=parkingDetailDto.getPark_id()%>');"> 상세보기 </button>
-                  	<button type="button" class="btn btn-default btn-xs" onclick="javascript:adminParkingMvModify('<%=parkingDetailDto.getPark_id()%>');"> 수정 </button>
+<%
+if(parkingDetailDto.getPark_visit() == 0) {
+%>
+					<button type="button" class="btn btn-default btn-xs" onclick="javascript:adminParkingVisit('<%=parkingDetailDto.getPark_id()%>');"> 인증 </button>
+<%
+} else {
+%>
+					<button type="button" class="btn btn-default btn-xs" onclick="javascript:adminParkingMvModify('<%=parkingDetailDto.getPark_id()%>');"> 수정 </button>
+<%
+}
+%>
+                  	
                   	<button type="button" class="btn btn-default btn-xs" onclick="javascript:adminParkingDelete('<%=parkingDetailDto.getPark_id()%>');"> 삭제 </button>
 				  </td>
 <%
@@ -88,6 +99,22 @@ if(memberDto != null) {
             </div>
             
             <nav align="center">
+            	<div class="form-group">
+				<form class="form-inline" name="parkSearchForm" method="get" action="">
+					<input type="hidden" name="act" id="act" value="parkSearch">
+						<input type="hidden" name="pg" id="pg" value="<%=pg%>">
+						<input type="hidden" name="flag" id="flag" value="<%=flag%>">
+						<input type="hidden" name="visit" id="visit" value="<%=visit%>">
+						<input type="hidden" name="key" id="key" value="<%=key%>">
+						<input type="hidden" name="word" id="word" value="<%=word%>">
+					<select name="key">
+						<option value="park_name">주차장이름</option>
+						<option value="content">내용</option>
+					</select>
+					<input type="text" name="word" id="word" value="">
+					<input type="button" class="btn btn-default" value="검색" onclick="javascript:messageSearchSend();">
+				</form>
+				</div>
 				<ul class="pagination">
 				<%=navigator.getNavigator() %>
 				</ul>

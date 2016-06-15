@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 import com.carpark.action.Action;
 import com.carpark.common.model.ParkingDetailDto;
 import com.carpark.member.model.service.MemberParkingServiceImpl;
-import com.carpark.member.model.service.MemberReportServiceImpl;
 import com.carpark.util.NumberCheck;
 
 public class MemberParkingViewAction implements Action {
@@ -24,6 +23,7 @@ public class MemberParkingViewAction implements Action {
 			request.setAttribute("parkingView", parkingDto);
 		}
 		return "/parking/view.jsp";
+		
 	}
 
 }
