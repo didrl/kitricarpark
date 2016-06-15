@@ -90,11 +90,8 @@ public class MemberReviewDaoImpl implements MemberReviewDao {
 			rs = pstmt.executeQuery();
 			if(rs.next())
 				newAvgPoint = rs.getDouble("park_avgpoint");
-			System.out.println("@@@@@@@@@@@@@@@@@@@  "+newAvgPoint);
 			pstmt.close();
 			newAvgPoint = (newAvgPoint + reviewDto.getAvgPoint())/2;
-			System.out.println("@@@@@@@@@@@@@@@@@@@  2222"+newAvgPoint);
-			
 			
 			conn.setAutoCommit(false);
 			
