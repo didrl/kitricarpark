@@ -18,62 +18,6 @@ if(cookie!=null){
 	}
 }
 %>
-<!-- kakao Login -->
-<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
-	<script>
-		$(document).ready(function(){
-			Kakao.init("fc8d34750e811639ad119ce8c9daeee1");
-			function getKakaotalkUserProfile(){
-				Kakao.API.request({
-					url: '/v1/user/me',
-					success: function(res) {
-						$("#kakao-profile").append(res.properties.nickname);
-						$("#kakao-profile").append($("<img/>",{"src":res.properties.profile_image,"alt":res.properties.nickname+"님의 프로필 사진"}));
-					},
-					fail: function(error) {
-						console.log(error);
-					}
-				});
-			}
-			function createKakaotalkLogin(){
-				$("#kakao-logged-group .kakao-logout-btn,#kakao-logged-group .kakao-login-btn").remove();
-				//var loginBtn = $("<a/>",{"class":"kakao-login-btn","text":"로그인"});
-				var loginBtn = document.getElementById("kakaologin");
-				
-					Kakao.Auth.login({
-						persistAccessToken: true,
-						persistRefreshToken: true,
-						success: function(authObj) {
-							getKakaotalkUserProfile();
-							createKakaotalkLogout();
-						},
-						fail: function(err) {
-							console.log(err);
-						}
-					});
-				
-				$("#kakao-logged-group").prepend(loginBtn)
-			}
-			function createKakaotalkLogout(){
-				$("#kakao-logged-group .kakao-logout-btn,#kakao-logged-group .kakao-login-btn").remove();
-				//var logoutBtn = $("<a/>",{"class":"kakao-logout-btn","text":"로그아웃"});
-				var logoutBtn = document.getElementById("logoutBtn");
-				logoutBtn.click(function(){
-					Kakao.Auth.logout();
-					createKakaotalkLogin();
-					$("#kakao-profile").text("");
-				});
-				$("#kakao-logged-group").prepend(logoutBtn);
-			}
-			if(Kakao.Auth.getRefreshToken()!=undefined&&Kakao.Auth.getRefreshToken().replace(/ /gi,"")!=""){
-				createKakaotalkLogout();
-				getKakaotalkUserProfile();
-			}else{
-				createKakaotalkLogin();
-			}
-		});
-</script>
-<!-- /kakao Login -->
 
 
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -197,7 +141,7 @@ if(memberDto!=null){
 }else{
 %>
 		<li>
-			<button type="button" class="btn btn-default navbar-btn"
+			<button type="button" class="btn btn-default navbar-btn" id="login"
 				data-toggle="modal" data-target="#myLogin">Login</button>
 			&nbsp;&nbsp;
 		</li>
@@ -269,13 +213,12 @@ if(memberDto!=null){
 						</div>
 					</div>
 					<div class="form-group">
-						<div class="col-sm-offset-2 col-sm-10">
-							<button type="submit" class="btn btn-default">Sign in</button>
-						</div>
-						<div class="col-sm-offset-2 col-sm-10">
-							<button type="button" class="btn btn-default" id=kakaologin onclick="javascript:createKakaotalkLogin();">kakao login</button>
+						<div class="col-sm-offset-2 col-sm-10 form-inline">
+							<button type="submit" class="btn btn-default">Sign in</button><br>
+							<div id="kakao-logged-group" style="padding-top: 5px;"></div><br>
 						</div>
 					</div>
+					
 				</div>
 			</form>
 		</div>
@@ -412,7 +355,3 @@ function idcheck(data){
 
 </script>
 <!-- /ajax idcheck -->
-
-
-
-

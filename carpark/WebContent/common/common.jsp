@@ -81,7 +81,10 @@ String flag = request.getParameter("flag");
     
     <!-- admincall.js -->
     <script type="text/javascript" src="<%=root %>/message/message.js"></script>
-       
+  
+    <!-- kakao.js -->
+    <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>  
+    
     <form name="common" method="get" action="">
 	<input type="hidden" name="act" id="act" value="">
 	<input type="hidden" name="bcode" id="bcode" value="<%=bcode%>">
