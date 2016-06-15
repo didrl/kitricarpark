@@ -301,22 +301,22 @@ public class MemberDaoImpl implements MemberDao {
 		ResultSet rs =null;
 	
 		try {
-
 			conn=DBConnection.makeConnection();
 			String sql="";
-			sql +="select distinct a.park_id, a.park_name,detail_addr, a.park_avgPoint, a.park_capacity, a.latitude, a.longitude,a.content\n";
-			sql +="from (select p.park_id, p.park_name,detail_addr, pd.park_avgPoint,p.park_capacity,p.latitude,p.longitude,p.content\n";
-			sql +="			from parking p , parking_detail pd\n";
-			sql +="			where p.park_id = pd.park_id) a\n";
+			sql +="select distinct a.park_id, a.park_name,detail_addr, a.park_avgPoint,a.park_capacity,a.latitude,a.longitude,a.content\n";
+			sql +="from(select p.park_id, p.park_name,detail_addr, pd.park_avgPoint,p.park_capacity,p.latitude,p.longitude,p.content, to_char(start_date,'yyyy/mm/dd') start_date,to_char(end_date,'yyyy/mm/dd') end_date\n";
+			sql +="			from parking p , parking_detail pd, reservation r\n";
+			sql +="			where p.park_id = pd.park_id and p.park_id = r.park_id(+))a\n";
 			sql +="where detail_addr like '%'||?||'%'\n";
-
+			sql +="  	 and ?>a.end_date or ?<a.start_date\n";
 
 			int idx=1;
 			pstmt =conn.prepareStatement(sql);
 			pstmt.setString(idx++,map.get("city").trim());
-//			pstmt.setString(idx++,map.get("from"));
-//			pstmt.setString(idx++,map.get("to"));
+			pstmt.setString(idx++,map.get("from"));
+			pstmt.setString(idx++,map.get("to"));
 
+			System.out.println("from :   "+map.get("from")+"\t to :   "+map.get("to"));
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 
