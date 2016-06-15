@@ -1,4 +1,4 @@
-<%@page import="com.carpark.member.model.MessageDto"%>
+<%@page import="com.carpark.member.model.MessageDto, java.net.URLDecoder"%>
 <%@page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" %>
 
@@ -10,7 +10,7 @@ if(cookie!=null){
 	int len = cookie.length;
 	for(int i=0;i<len;i++){
 		if("myid".equals(cookie[i].getName())){
-			svid = cookie[i].getValue(); 
+			svid = URLDecoder.decode(cookie[i].getValue(),"UTF-8"); 
 			ckid = "checked=\"checked\"";
 		}
 	}

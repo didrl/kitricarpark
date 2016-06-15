@@ -82,10 +82,9 @@ public class MemberReservationDaoImpl implements MemberReservationDao {
 		try {
 			conn=DBConnection.makeConnection();
 			String sql="";
-						
 			sql += "select a.park_id, a.start_date, a.end_date \n";
 			sql += "from(select to_number(to_char(start_date,'mm')) start_month, to_number(to_char(end_date,'mm')) end_month,park_id, \n";
-			sql += "	to_char(add_months((start_date),-1),'yyyy,mm,dd') start_date, to_char(add_months((start_date),-1),'yyyy,mm,dd') end_date \n"; 
+			sql += "	to_char(add_months((start_date-1),-1),'yyyy,mm,dd') start_date, to_char(add_months((end_date+1),-1),'yyyy,mm,dd') end_date   \n"; 
 			sql += "from reservation)a \n"; 
 			sql += "where to_number(to_char(sysdate,'mm')) in (a.start_month ,a.end_month,to_number(to_char(sysdate,'mm')))";
 			sql += "and park_id=? \n";

@@ -1,6 +1,7 @@
 package com.carpark.member.action;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,7 +29,8 @@ public class MemberLoginAction implements Action{
 		String failSvid=request.getParameter("failSvid");
 		
 		if("idsave".equals(svid)||"idsave".equals(failSvid)){
-			Cookie cookie = new Cookie("myid", id);
+			Cookie cookie = new Cookie("myid", URLEncoder.encode(id,"UTF-8"));
+//			Cookie cookie = new Cookie("myid", id);
 			cookie.setPath(root);
 			cookie.setMaxAge(60 * 60 * 24);
 			response.addCookie(cookie);
