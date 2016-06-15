@@ -29,7 +29,8 @@ public class MemberReviewSendViewAction implements Action {
 			}
 			return "/member/sendReviewView.jsp";
 		}else
-			return "";
+//			return "";
+			return "/member/loginFail.jsp";
 	}
 
 }

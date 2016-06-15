@@ -61,7 +61,8 @@ public class MemberReportWriteAction implements Action {
 			}
 			return "/search/searchResultDetail.jsp";
 		} else {
-			return "index.jsp";
+//			return "index.jsp";
+			return "/member/loginFail.jsp";
 		}
 
 	}
