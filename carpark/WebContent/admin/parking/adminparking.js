@@ -6,7 +6,7 @@ function adminParkingRegister() {
 		alert("총 주차면수를 입력하세요");
 		return;
 	} else {
-		document.adminParkingRegisterForm.action = "/carpark/adminparking";
+		document.adminParkingRegisterForm.action = root + "/adminparking";
 		document.adminParkingRegisterForm.submit();
 	}
 }
@@ -18,7 +18,7 @@ function adminParkingSearchWindow() {
 function adminParkingView(parkId) {
 	document.common.act.value = "adminParkingView";
 	document.common.parkId.value = parkId;
-	document.common.action = "/carpark/adminparking";
+	document.common.action = root + "/adminparking";
 	document.common.submit();
 }  
 
@@ -28,7 +28,7 @@ function adminParkingDelete(parkId) {
 	document.common.key.value = "park_public";
 	document.common.word.value = "1";
 	document.common.visit.value = "1";
-	document.common.action = "/carpark/adminparking"
+	document.common.action = root + "/adminparking"
 	document.common.submit();
 	   
 }
@@ -38,7 +38,7 @@ function adminSearchAddress(pg) {
 		alert("주소를 입력하세요");
 		return;
 	} else {
-		document.adminParkSearchForm.action = "/carpark/adminparking";
+		document.adminParkSearchForm.action = root + "/adminparking";
 		document.adminParkSearchForm.pg.value = pg;
 		document.adminParkSearchForm.submit();
 	}
@@ -69,7 +69,7 @@ function adminParkingModify() {
 	} else if(document.adminParkingModifyForm.dayMaxPay.value == "") {
 		alert("하루 최대 요금을 선택하세요")
 	} else {
-		document.adminParkingModifyForm.action = "/carpark/adminparking";
+		document.adminParkingModifyForm.action = root + "/adminparking";
 		document.adminParkingModifyForm.submit();
 				
 	}
@@ -78,7 +78,7 @@ function adminParkingModify() {
 function adminParkingMvModify(parkId) {
 	document.common.act.value = "adminParkingMvModify";
 	document.common.parkId.value = parkId;
-	document.common.action = "/carpark/adminparking";
+	document.common.action = root + "/adminparking";
 	document.common.submit();
 }
 
@@ -88,7 +88,7 @@ function adminParkList(pg, flag, visit) {
 	document.common.pg.value = pg;
 	document.common.flag.value = flag;
 	document.common.visit.value = visit;
-	document.common.action = "/carpark/adminparking";
+	document.common.action = root + "/adminparking";
 	document.common.submit();
 }
 
@@ -96,7 +96,7 @@ function adminParkList(pg, flag, visit) {
 function adminParkingVisit(parkId) {
 	document.common.act.value = "adminParkingVisit";
 	document.common.parkId.value = parkId;
-	document.common.action = "/carpark/adminparking";
+	document.common.action = root + "/adminparking";
 	document.common.submit();
 }
 
@@ -122,7 +122,7 @@ function admintest() {
 
 function moveRegister() {
 	document.common.act.value = "moveRegister";
-	document.common.action = "/carpark/adminparking";
+	document.common.action = root + "/adminparking";
 	document.common.submit();
 }
 

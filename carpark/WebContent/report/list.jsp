@@ -78,7 +78,7 @@ if(size > 0) {
 
 			<!-- 페이지 네비게이션/검색 -->
 			<nav align="center">
-				<div class="form-group">
+				<!-- <div class="form-group">
 				<form class="form-inline" name="reportSearchForm" method="get" action="">
 					<input type="hidden" name="act" value="reportSearch">
 					<input type="hidden" name="bcode" value="3">
@@ -92,7 +92,7 @@ if(size > 0) {
 					<input type="button" class="btn btn-default" value="검색" onclick="javascript:reportSearch();">
 					<input type="button" class="btn btn-default" value="전체목록" onclick="javascript:reportList('1');">
 				</form>
-				</div>
+				</div> -->
 				<ul class="pagination">
 				<%=navigator.getNavigator() %>
 				</ul>

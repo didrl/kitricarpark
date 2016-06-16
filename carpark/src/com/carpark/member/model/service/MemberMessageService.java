@@ -12,5 +12,7 @@ public interface MemberMessageService {
 	List<MessageDto> sendListArticle(String userId, int pg, String key, String word);
 	List<MessageDto> receiveListArticle(String receiveId, int pg, String key, String word);	
 	void deleteArticle(int seq);
+	void deleteSendUpdate(int seq);
+	void deleteReceiUpdate(int seq);
 	
 }

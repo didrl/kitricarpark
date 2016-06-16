@@ -32,18 +32,18 @@ public class AdminReportListAction implements Action {
 		HttpSession session = request.getSession();
 		MemberDto memberDto = (MemberDto) session.getAttribute("memberInfo");
 		if (memberDto != null) {
-		List<ReportDto> list = AdminReportServiceImpl.getAdminReportService().listArticle(pg, key, word);
-		
-		request.setAttribute("adminReportList", list);
-		
-		PageNavigator navigator = CommonServiceImpl.getCommonService().getPageNavigatorAdminReport(bcode, pg, key, word);
-		navigator.setRoot(request.getContextPath());
-		navigator.setNavigator("adminReportList");
-		request.setAttribute("navigator", navigator);
-		
-		return "/admin/report/list.jsp";
+			List<ReportDto> list = AdminReportServiceImpl.getAdminReportService().listArticle(pg, key, word);
+			
+			request.setAttribute("adminReportList", list);
+			
+			PageNavigator navigator = CommonServiceImpl.getCommonService().getPageNavigatorAdminReport(bcode, pg, key, word);
+			navigator.setRoot(request.getContextPath());
+			navigator.setNavigator("adminReportList");
+			request.setAttribute("navigator", navigator);
+			
+			return "/admin/report/list.jsp";
 		} else
-			return "";
+			return "/member/loginFail.jsp";
 	}
 
 }

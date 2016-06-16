@@ -37,13 +37,13 @@ public class AdminReportRegisterAction implements Action {
 
 			int cnt = AdminReportServiceImpl.getAdminReportService().writeArticle(penaltyDto);
 			if (cnt != 0)
-				System.out.println("성공?");
+				System.out.println("성공");
 			else
 				System.out.println("실패");
 
 			return "/admin/report/list.jsp";
 		} else
-			return "";
+			return "/member/loginFail.jsp";
 	}
 
 }

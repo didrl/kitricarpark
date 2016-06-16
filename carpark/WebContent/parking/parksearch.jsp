@@ -19,6 +19,9 @@ PageNavigator navigator = (PageNavigator) request.getAttribute("navigator");
     <!-- message.js -->
     <script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=4763b9e0f6cbc4102f42cb9f7b0f9167&libraries=services"></script>
     <script type="text/javascript" src="<%=root %>/parking/parking.js"></script>
+    <script type="text/javascript">
+	var root = "<%=root%>";
+	</script>
 </head>
 <body>
 <!-- main -->

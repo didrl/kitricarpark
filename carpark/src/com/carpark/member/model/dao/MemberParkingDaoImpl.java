@@ -150,11 +150,11 @@ public class MemberParkingDaoImpl implements MemberParkingDao {
 		try {
 			conn = DBConnection.makeConnection();
 			String sql = "";
-			sql += "select b.rn, b.park_id, b.park_name, b.owner_id, b.park_flag, b.park_avgPoint \n";
+			sql += "select b.rn, b.park_id, b.park_name, b.owner_id, b.park_flag, b.park_avgPoint, b.park_visit \n";
 			sql += "from \n";
-		    sql += "  		(select rownum rn, a.park_id, a.park_name, a.owner_id, a.park_type, a.park_flag, a.park_avgPoint \n"; 
+		    sql += "  		(select rownum rn, a.park_id, a.park_name, a.owner_id, a.park_type, a.park_flag, a.park_avgPoint, a.park_visit \n"; 
 		    sql += "         from \n";
-		    sql += "     		  (select p.park_id, park_name, owner_id, park_type, park_flag, park_avgPoint \n";
+		    sql += "     		  (select p.park_id, park_name, owner_id, park_type, park_flag, park_avgPoint, park_visit \n";
 		    sql += "               from parking p, parking_detail d \n";
 		    sql += "               where p.park_id = d.park_id \n";
 		    if(ownerId != null && !ownerId.isEmpty()) {
@@ -191,6 +191,7 @@ public class MemberParkingDaoImpl implements MemberParkingDao {
 				parkingDto.setOwner_id(rs.getString("owner_id"));
 				parkingDto.setPark_flag(rs.getInt("park_flag"));
 				parkingDto.setPark_avgPoint(rs.getInt("park_avgPoint"));
+				parkingDto.setPark_visit(rs.getInt("park_visit"));
 				
 				list.add(parkingDto);
 			}

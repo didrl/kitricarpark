@@ -67,5 +67,14 @@ public class MemberMessageServiceImpl implements MemberMessageService {
 		return MemberMessageDaoImpl.getMemberMessageDao().receiveListArticle(map);
 	}
 	
+	@Override
+	public void deleteSendUpdate(int seq) {
+		MemberMessageDaoImpl.getMemberMessageDao().deleteSendUpdate(seq);
+	}
+
+	@Override
+	public void deleteReceiUpdate(int seq) {
+		MemberMessageDaoImpl.getMemberMessageDao().deleteReceiUpdate(seq);
+	}
 	
 }

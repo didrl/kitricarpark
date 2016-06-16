@@ -3,7 +3,7 @@ function adminReportList(pg) {
 	document.getElementById("bcode").value = 3;
 	document.getElementById("pg").value = pg;
 		
-	document.common.action = "/carpark/adminreport";
+	document.common.action = root + "/adminreport";
 	document.common.submit();
 	
 }
@@ -14,7 +14,7 @@ function adminReportListFlag(pg, flag) {
 	document.getElementById("pg").value = pg;
 	document.getElementById("flag").value = flag;
 		
-	document.common.action = "/carpark/adminreport";
+	document.common.action = root + "/adminreport";
 	document.common.submit();
 	
 }
@@ -34,14 +34,14 @@ function adminReportId(id, parkId, parkName) {
 
 function adminReportView(seq) {
 	document.adminReportViewForm.seq.value = seq;
-	document.adminReportViewForm.action = "/carpark/adminreport";
+	document.adminReportViewForm.action = root + "/adminreport";
 	document.adminReportViewForm.submit();
 }
 
 function adminReportDelete(seq) {
 	document.common.act.value = "adminReportDelete";
 	document.common.seq.value = seq;
-	document.common.action = "/carpark/adminreport";
+	document.common.action = root + "/adminreport";
 	document.common.submit();
 }
 
@@ -50,7 +50,7 @@ function adminReportSearch() {
 		alert("내용을 입력하세요");
 		return;
 	} else{
-		document.reportSearchForm.action = "/carpark/adminreport";
+		document.reportSearchForm.action = root + "/adminreport";
 		document.reportSearchForm.submit();
 	}
 }
@@ -60,7 +60,7 @@ function adminPenaltyRegister(userId, seq) {
 		alert("벌점목록을 선택하세요");
 		return;
 	} else {
-		document.penaltyRegisterForm.action = "/carpark/adminreport";
+		document.penaltyRegisterForm.action = root + "/adminreport";
 		document.penaltyRegisterForm.report_id.value = userId;
 		document.penaltyRegisterForm.seq.value = seq;
 		document.penaltyRegisterForm.act.value = "penaltyRegister";

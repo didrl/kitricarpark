@@ -30,7 +30,7 @@ public class AdminReportViewAction implements Action {
 			}
 			return "/admin/report/view.jsp";
 		} else
-			return "";
+			return "/member/loginFail.jsp";
 	}
 
 }

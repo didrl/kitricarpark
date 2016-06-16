@@ -21,9 +21,13 @@ public class MemberMessageReceiveDeleteAction implements Action {
 			throws IOException, ServletException {
 		
 		int seq = NumberCheck.nullToZero(request.getParameter("seq"));
-		if(seq != 0) {
+		String delete_send = request.getParameter("delete_send");
+		if(delete_send.equals("0")) {
+			MemberMessageServiceImpl.getMemberMessageService().deleteReceiUpdate(seq);
+		} else {
 			MemberMessageServiceImpl.getMemberMessageService().deleteArticle(seq);
 		}
+
 		return "/message/receivelist.jsp";
 	}
 

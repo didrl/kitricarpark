@@ -29,6 +29,7 @@ if(memberDto != null) {
                     <td>주차장 이름</td>
                     <td width="50">평점</td>
                     <td width="100">사용가능</td>
+                    <td width="50">인증</td>
                     <td width="150"></td>
                  </tr>
             
@@ -48,6 +49,17 @@ if(memberDto != null) {
                   </td>
 <%
 		if(parkingDetailDto.getPark_flag() == 0) {
+%>
+                  <td> X </td>
+<%
+		} else {
+%>
+				  <td> O </td>
+<%
+		}
+%>
+<%
+		if(parkingDetailDto.getPark_visit() == 0) {
 %>
                   <td> X </td>
 <%

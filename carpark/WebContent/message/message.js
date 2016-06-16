@@ -4,7 +4,7 @@ function messageSearchSend() {
 		alert("내용을 입력하세요");
 		return;
 	} else{
-		document.searchForm.action = "/carpark/message";
+		document.searchForm.action = root + "/message";
 		document.searchForm.submit();
 	}
 }
@@ -14,38 +14,38 @@ function messageSearchReceive() {
 		alert("내용을 입력하세요");
 		return;
 	} else{
-		document.searchForm.action = "/carpark/message";
+		document.searchForm.action = root + "/message";
 		document.searchForm.submit();
 	}
 }
 
 //보낸쪽지보기
 function messageSendView(seq) {
-	window.open( "/carpark/message?act=messageSendView&seq=" + seq, "newWindow", "top=100, left=400, width=500, height=600, scrollbars=yes" );
+	window.open( root + "/message?act=messageSendView&seq=" + seq, "newWindow", "top=100, left=400, width=500, height=600, scrollbars=yes" );
 }
 
 //받은쪽지보기
 function messageReceiveView(seq) {
-	window.open( "/carpark/message?act=messageReceiveView&seq=" + seq, "newWindow", "top=100, left=400, width=500, height=600, scrollbars=yes" );
+	window.open( root + "/message?act=messageReceiveView&seq=" + seq, "newWindow", "top=100, left=400, width=500, height=600, scrollbars=yes" );
 }
 
 //보낸 쪽지 삭제(삭제 후 보낸 쪽지 리스트 출력)
-function messageSendDelete(seq) {
+function messageSendDelete(seq, delete_recei) {
 	document.common.act.value = "messageSendDelete";
 	document.common.seq.value = seq;
-			
-	document.common.action = "/carpark/message";
+	document.common.delete_recei.value = delete_recei;
+	document.common.action = root + "/message";
 	document.common.submit();
 	
 	alert("메세지가 삭제되었습니다");
 }
 
 //받은 쪽지 삭제(삭제 후 받은 쪽지 리스트 출력)
-function messageReceiveDelete(seq) {
+function messageReceiveDelete(seq, delete_send) {
 	document.common.act.value = "messageReceiveDelete";
 	document.common.seq.value = seq;
-			
-	document.common.action = "/carpark/message";
+	document.common.delete_send.value = delete_send;
+	document.common.action = root + "/message";
 	document.common.submit();
 	
 	alert("메세지가 삭제되었습니다");
@@ -56,7 +56,7 @@ function messageSendList(pg) {
 	document.getElementById("act").value = "messageSendList";
 	document.getElementById("pg").value = pg;
 		
-	document.common.action = "/carpark/message";
+	document.common.action = root + "/message";
 	document.common.submit();
 }
 
@@ -65,7 +65,7 @@ function messageReceiveList(pg) {
 	document.getElementById("act").value = "messageReceiveList";
 	document.getElementById("pg").value = pg;
 		
-	document.common.action = "/carpark/message";
+	document.common.action = root + "/message";
 	document.common.submit();
 }
 
@@ -81,7 +81,7 @@ function messageWrite() {
 		alert("내용을 입력하세요");
 		return;
 	} else{
-		document.messageWriteForm.action = "/carpark/message";
+		document.messageWriteForm.action = root + "/message";
 		document.messageWriteForm.submit();
 	}
 }
@@ -98,7 +98,7 @@ function messageToWrite() {
 		alert("내용을 입력하세요");
 		return;
 	} else{
-		document.messageToWriteForm.action = "/carpark/message";
+		document.messageToWriteForm.action = root + "/message";
 		document.messageToWriteForm.submit();
 	}
 }
@@ -120,6 +120,6 @@ function messageClose() {
 function firstList() {
 	document.getElementById("act").value = "messageSendList";
 	
-	document.common.action = "/carpark/message";
+	document.common.action = root + "/message";
 	document.common.submit();
 }

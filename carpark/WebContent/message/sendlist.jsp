@@ -53,25 +53,27 @@ int size = list.size();
 if(size > 0) {
 	for(MessageDto messageDto : list) {
 %>
-					<!-- 쪽지목록 -->
-					<tr >
-						<td width="150"><a href="javascript:messageSendView('<%=messageDto.getSeq()%>');"><%=messageDto.getReceiverId() %></a></td>
-						<td><a href="javascript:messageSendView('<%=messageDto.getSeq() %>');"><%=messageDto.getSubject() %></a></td>
-						<td width="80"><%=messageDto.getLogtime() %></td>						
+				<!-- 쪽지목록 -->
+				<tr >
+					<td width="150"><a href="javascript:messageSendView('<%=messageDto.getSeq()%>');"><%=messageDto.getReceiverId() %></a></td>
+					<td><a href="javascript:messageSendView('<%=messageDto.getSeq() %>');"><%=messageDto.getSubject() %></a></td>
+					<td width="80"><%=messageDto.getLogtime() %></td>						
+					
 <%
-if(messageDto.getMsgFlag() == 0) {
+		if(messageDto.getMsgFlag() == 0) {
 %>					
-						<td width="50">X</td>
-						<td width="50"><input type="button" class="btn btn-default btn-xs" value="삭제" onclick="javascript:messageSendDelete('<%=messageDto.getSeq()%>');"></td>
+					<td width="50">X</td>
+					<td width="50"><input type="button" class="btn btn-default btn-xs" value="삭제" onclick="javascript:messageSendDelete('<%=messageDto.getSeq()%>', '<%=messageDto.getDelete_recei()%>');"></td>
+
 <%
-} else {
+		} else {
 %>
-						<td width="50">O</td>
-						<td width="50"><input type="button" class="btn btn-default btn-xs" value="삭제" onclick="javascript:messageSendDelete('<%=messageDto.getSeq()%>');"></td>
-					</tr>
+					<td width="50">O</td>
+					<td width="50"><input type="button" class="btn btn-default btn-xs" value="삭제" onclick="javascript:messageSendDelete('<%=messageDto.getSeq()%>', '<%=messageDto.getDelete_recei()%>');"></td>
+				</tr>
 <%
-	}	
-}
+		}	
+	}
 %>
 				  </table>
 				</div>

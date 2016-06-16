@@ -46,7 +46,6 @@ public class MemberReportWriteAction implements Action {
 			reportDto.setReport_id(request.getParameter("report_id"));
 			
 			int cnt = MemberReportServiceImpl.getMemberReportService().writeArticle(reportDto);
-			System.out.println("cnt : " + cnt);
 			if(cnt != 0) {
 				List<ReportDto> list = MemberReportServiceImpl.getMemberReportService().listArticle(userId, pg, key, word);
 				request.setAttribute("reportList", list);
@@ -61,7 +60,6 @@ public class MemberReportWriteAction implements Action {
 			}
 			return "/search/searchResultDetail.jsp";
 		} else {
-//			return "index.jsp";
 			return "/member/loginFail.jsp";
 		}
 

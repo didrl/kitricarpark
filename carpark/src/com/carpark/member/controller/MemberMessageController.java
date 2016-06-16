@@ -44,6 +44,7 @@ public class MemberMessageController extends HttpServlet {
 		} else if("messageReceiveDelete".equals(act)) {//받은쪽지삭제
 			MemberActionFactory.getMemberMessageReceiveDeleteAction().execute(request, response);
 			path = MemberActionFactory.getMemberMessageReceiveListAction().execute(request, response);
+			PageMove.forward(request, response, path + queryString);
 	
 		} else if("messageSendList".equals(act)) {//보낸쪽지목록
 			path = MemberActionFactory.getMemberMessageSendListAction().execute(request, response);
