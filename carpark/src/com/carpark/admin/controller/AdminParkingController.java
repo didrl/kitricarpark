@@ -19,6 +19,7 @@ public class AdminParkingController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String root = request.getContextPath();
 		String act = request.getParameter("act");
 		String visit = StringCheck.nullToBlank(request.getParameter("visit"));
 		int pg = NumberCheck.nullToOne(request.getParameter("pg"));
@@ -63,6 +64,8 @@ public class AdminParkingController extends HttpServlet {
 		} else if("moveRegister".equals(act)) {
 			path = "admin/parking/register.jsp";
 			PageMove.redirect(response, path + queryString);
+		}else {
+			PageMove.redirect(response, root + path);
 		}
 	}
 

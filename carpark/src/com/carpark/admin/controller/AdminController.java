@@ -39,12 +39,8 @@ public class AdminController extends HttpServlet {
     		}else if("adminLogin".equals(act)) {
     			path = AdminActionFactory.getAdminLoginAction().execute(request, response);
     			PageMove.forward(request, response, path);
-    		}else if("".equals(act)) {
-    			
-    		}else if("".equals(act)) {
-    			
-    		}else if("".equals(act)) {
-    			
+    		}else {
+    			PageMove.redirect(response, root + path);
     		}
     		
     	}

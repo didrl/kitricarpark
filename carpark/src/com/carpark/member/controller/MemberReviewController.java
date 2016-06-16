@@ -38,6 +38,8 @@ public class MemberReviewController extends HttpServlet {
 		}else if("sendReview".equals(act)){
 			path = MemberActionFactory.getMemberReviewSendViewAction().execute(request, response);
 			PageMove.forward(request, response, path);
+		}else {
+			PageMove.redirect(response, root + path);
 		}
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -23,6 +23,8 @@ public class MemberCoinController extends HttpServlet {
 		if("chargeCoin".equals(act)){
 			path = MemberActionFactory.getMemberChargeCoinAction().execute(request, response);
 			PageMove.forward(request, response, path);
+		}else {
+			PageMove.redirect(response, root + path);
 		}
 	}
 

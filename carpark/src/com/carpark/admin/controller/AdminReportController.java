@@ -19,7 +19,7 @@ public class AdminReportController extends HttpServlet {
 	private static final long serialVersionUID = 1L; 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		String root = request.getContextPath();
 		
 		String act = request.getParameter("act");
 		int bcode = NumberCheck.nullToZero(request.getParameter("bcode"));
@@ -51,11 +51,9 @@ public class AdminReportController extends HttpServlet {
 			path = AdminActionFactory.getAdminReportListFlagAction().execute(request, response);
 			PageMove.forward(request, response, path + queryString);
 
-		} else if("".equals(act)) {
-
-		} else if("".equals(act)) {
-
-		} 
+		} else {
+			PageMove.redirect(response, root + path);
+		}
 		
 	}
 

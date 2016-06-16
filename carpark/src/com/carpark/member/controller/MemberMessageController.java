@@ -15,6 +15,7 @@ public class MemberMessageController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String root = request.getContextPath();
 		String act = request.getParameter("act");
 		int pg = NumberCheck.nullToOne(request.getParameter("pg"));
 		String key = StringCheck.nullToBlank(request.getParameter("key"));
@@ -23,9 +24,7 @@ public class MemberMessageController extends HttpServlet {
 		String path = "/index.jsp";
 		String queryString = "?&pg=" + pg + "&key=" + key + "&word=" + Encoder.isoToUtf(word);
 		
-		if("".equals(act)) {
-			
-		} else if("messageWrite".equals(act)) {//쪽지보내기
+		if("messageWrite".equals(act)) {//쪽지보내기
 			path = MemberActionFactory.getMemberMessageWriteAction().execute(request, response);
 			PageMove.forward(request, response, path + queryString);
 
@@ -62,6 +61,8 @@ public class MemberMessageController extends HttpServlet {
 			path = MemberActionFactory.getMemberMessageReceiveListAction().execute(request, response);
 			PageMove.forward(request, response, path + queryString);
 			
+		}else {
+			PageMove.redirect(response, root + path);
 		}
 		
 	}

@@ -19,6 +19,7 @@ public class MemberParkingController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String root = request.getContextPath();
 		String act = request.getParameter("act");
 		int pg = NumberCheck.nullToOne(request.getParameter("pg"));
 		String key = StringCheck.nullToBlank(request.getParameter("key"));
@@ -61,7 +62,9 @@ public class MemberParkingController extends HttpServlet {
 			path = MemberActionFactory.getMemberParkingListAction().execute(request, response);
 			PageMove.forward(request, response, path + queryString);
 			
-		} 
+		} else {
+			PageMove.redirect(response, root + path);
+		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

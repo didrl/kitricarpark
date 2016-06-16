@@ -21,6 +21,7 @@ public class AdminCallController extends HttpServlet {
            
       
     	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    		String root = request.getContextPath();
     		String act = request.getParameter("act");
     		System.out.println("adminCallAct>>>>>>>>>"+act);
     		int bcode = NumberCheck.nullToZero(request.getParameter("bcode"));
@@ -30,43 +31,31 @@ public class AdminCallController extends HttpServlet {
     		String path = "/index.jsp";
     		String queryString = "?bcode=" + bcode + "&pg=" + pg + "&key=" + key + "&word=" + Encoder.isoToUtf(word);
     		
-    		if("".equals(act)) {
-    			
-    		} else if("adminCallWrite".equals(act)) {//쪽지보내기
+    		if("adminCallWrite".equals(act)) {//쪽지보내기
     			path = MemberActionFactory.getMemberMessageWriteAction().execute(request, response);
     			PageMove.forward(request, response, path + queryString);
-
     		} else if("adminCallSendView".equals(act)) {//보낸쪽지보기
     			path = AdminActionFactory.getAdminCallViewAction().execute(request, response);
     			PageMove.forward(request, response, path + queryString);
-    			
     		} else if("adminCallReceiveView".equals(act)) {//받은쪽지보기
     			path = AdminActionFactory.getAdminCallRegisterAction().execute(request, response);
     			PageMove.forward(request, response, path + queryString);
-    			
     		} else if("adminCallSendDelete".equals(act)) {//보낸쪽지변경
     			path = AdminActionFactory.getAdminCallModifyAction().execute(request, response);
     			PageMove.forward(request, response, path + queryString);
-    			
     		} else if("adminCallReceiveDelete".equals(act)) {//받은쪽지삭제
     			AdminActionFactory.getAdminCallDeleteAction().execute(request, response);
     			path = AdminActionFactory.getAdminCallListAction().execute(request, response);
     			PageMove.forward(request, response, path + queryString);
-    			
     		} else if("adminCallReceiveList".equals(act)) {//받은쪽지목록
     			path = AdminActionFactory.getAdminCallListAction().execute(request, response);
     			PageMove.forward(request, response, path + queryString);
-    			
     		} else if("adminCallConfirm".equals(act)) {
     			AdminActionFactory.getAdminCallConfirmAction().execute(request, response);
     			path = AdminActionFactory.getAdminCallListAction().execute(request, response);
     			PageMove.forward(request, response, path + queryString);
-    		} else if("".equals(act)) {
-    			
-    		} else if("".equals(act)) {
-    			
-    		} else if("".equals(act)) {
-    			
+    		} else {
+    			PageMove.redirect(response, root+path);
     		}
     	}
 

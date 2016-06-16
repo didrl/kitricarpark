@@ -52,10 +52,8 @@ public class MemberCallController extends HttpServlet {
 			MemberActionFactory.getMemberCallDeleteAction().execute(request, response);
 			path = MemberActionFactory.getMemberCallListAction().execute(request, response);
 			PageMove.forward(request, response, path+queryString);
-		}else if("".equals(act)){
-			
-		}else if("".equals(act)){
-			
+		}else {
+			PageMove.redirect(response, root + path);
 		}
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
