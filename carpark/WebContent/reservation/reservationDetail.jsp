@@ -15,39 +15,40 @@ ParkingDetailDto parkingDetailDto =(ParkingDetailDto) session.getAttribute("park
 ArrayList<ParkingDto> list = (ArrayList<ParkingDto>)session.getAttribute("searchlist");
 
 if(reservationDto != null){
-	   StringBuffer sb =new StringBuffer();
-	   Date nowDate = new Date();
-	   Date lastDate = new Date();
-	   SimpleDateFormat transFormat = new SimpleDateFormat("yyyy/MM/dd");
-	   int size = availabledate.size();
-	   String tmp ="";
-	   if(size==0){
-	      tmp ="{from : new Date()}";
-	      sb.append(tmp);
-	   }else if(size<2 && size>0){
-	      Date td = transFormat.parse(availabledate.get(0).get("startdate"));
-	      if(nowDate.before(td)){            //가져온 첫 예약일의 시작일이 오늘보다 나중일 때
-	         tmp ="{from : new Date(), to : new Date("+availabledate.get(0).get("startdate")+")},";
+	StringBuffer sb =new StringBuffer();
+	SimpleDateFormat transFormat = new SimpleDateFormat("yyyy/MM/dd");
+	Calendar cal = Calendar.getInstance();
+	Date nowDate = transFormat.parse(cal.get(Calendar.YEAR)+"/"+cal.get(Calendar.MONTH)+"/"+cal.get(Calendar.DATE));
+	Date lDate = transFormat.parse(cal.get(Calendar.YEAR)+"/"+(cal.get(Calendar.MONTH)+1)+"/"+cal.get(Calendar.DATE));
+	String lastDate = transFormat.format(lDate);
+	int size = availabledate.size();
+	String tmp ="";
+	if(size==0){
+	    tmp ="{from : new Date(), to :new Date("+lastDate.replace("/", ",")+")}";
+	    sb.append(tmp);
+	}else if(size<2 && size>0){
+	    Date td = transFormat.parse(availabledate.get(0).get("startdate"));
+	    if(nowDate.before(td)){            //가져온 첫 예약일의 시작일이 오늘보다 나중일 때
+	       tmp ="{from : new Date(), to : new Date("+availabledate.get(0).get("startdate").replace("/", ",")+")},";
+	       sb.append(tmp);
+	    }
+	    tmp ="{from : new Date("+availabledate.get(0).get("enddate").replace("/", ",")+"), to :new Date("+lastDate.replace("/", ",")+")}";
+	    sb.append(tmp);
+	}else{
+		 Date td = transFormat.parse(availabledate.get(0).get("startdate"));
+	     if(nowDate.before(td)){            //가져온 첫 예약일의 시작일이 오늘보다 나중일 때
+	        tmp ="{from : new Date(), to : new Date("+availabledate.get(0).get("startdate").replace("/", ",")+")},";
+	        sb.append(tmp);
+	     }
+	     tmp ="{from : new Date("+availabledate.get(0).get("enddate").replace("/", ",")+")";
+	     sb.append(tmp);
+	     for(int i=1;i<size;++i){   // 두번째 예약부터
+	         tmp =",to : new Date("+availabledate.get(i).get("startdate").replace("/", ",")+")},";
 	         sb.append(tmp);
-	      }
-	      tmp ="{from : new Date("+availabledate.get(0).get("enddate")+"), to : new Date()+31}";
-	      sb.append(tmp);
-	   }else{
-	      Date td = transFormat.parse(availabledate.get(0).get("startdate"));
-	      if(nowDate.before(td)){            //가져온 첫 예약일의 시작일이 오늘보다 나중일 때
-	         tmp ="{from : new Date(), to : new Date("+availabledate.get(0).get("startdate")+")},";
-	         sb.append(tmp);
-	      }
-	      tmp ="{from : new Date("+availabledate.get(0).get("enddate")+")";
-	      sb.append(tmp);
-	      
-	      for(int i=1;i<size;++i){   // 두번째 예약부터
-	         tmp =",to : new Date("+availabledate.get(i).get("startdate")+")},";
-	         sb.append(tmp);
-	         tmp ="{from : new Date("+availabledate.get(i).get("enddate")+")";
+	         tmp ="{from : new Date("+availabledate.get(i).get("enddate").replace("/", ",")+")";
 	         sb.append(tmp);
 	         if(i==size-1)
-	            sb.append("}");
+	            sb.append(", to :new Date("+lastDate.replace("/", ",")+")}");
 	      }
 	   }
 	int paypal_pay = 10;	
@@ -360,7 +361,7 @@ if(reservationDto != null){
 			
 		 	var today = new Date();
 		 	var datelimit = new Date(today);
-		 	datelimit.setDate(today.getDate() + 62);
+		 	datelimit.setDate(today.getDate() + 31);
 
 		 	$('#rdfromdate').glDatePicker({
 		 	    showAlways: false,
@@ -403,8 +404,8 @@ if(reservationDto != null){
 		 	    toLimit.setDate(fechaFrom.getDate() + 31);
 		 	    to.options.selectableDateRange = [{
 		 	        from: fechaFrom,
-		 	        to: toLimit
-		 	    }, ],
+		 	        //to: toLimit
+		 	    },<%=sb.toString()%> ],
 		 	    to.options.showAlways = false;
 		 	    to.render();
 		 	});

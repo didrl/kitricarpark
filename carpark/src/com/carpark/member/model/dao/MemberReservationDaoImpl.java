@@ -90,7 +90,7 @@ public class MemberReservationDaoImpl implements MemberReservationDao {
          conn=DBConnection.makeConnection();
          String sql="";
          sql += "select a.park_id, a.start_date, a.end_date \n";
-         sql += "from(select park_id, to_char(add_months((start_date-1),-1),'yyyy,mm,dd') start_date, to_char(add_months((end_date+1),-1),'yyyy,mm,dd') end_date  \n";
+         sql += "from(select park_id, to_char(add_months((start_date-1),-1),'yyyy/mm/dd') start_date, to_char(add_months((end_date+1),-1),'yyyy/mm/dd') end_date  \n";
          sql += "        from reservation)a\n"; 
          sql += "where (to_char(add_months(sysdate,-1),'yyyy,mm,dd')<=a.start_date or to_char(add_months(sysdate,-1),'yyyy,mm,dd')<=a.end_date) \n";
          sql += "         and park_id=? \n";
