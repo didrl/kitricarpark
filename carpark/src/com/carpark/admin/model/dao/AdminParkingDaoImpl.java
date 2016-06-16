@@ -28,52 +28,6 @@ public class AdminParkingDaoImpl implements AdminParkingDao {
 	}
 
 	@Override
-	public int registerReservation(ParkingDetailDto parkingDetailDto) {
-		Connection conn=null;
-		PreparedStatement pstmt =null;
-		int count = 0;
-		try {
-			conn=DBConnection.makeConnection();
-			String sql="";
-			sql += "insert all \n";
-			sql += "into parking \n";
-			sql += "values(?,?,?) \n";
-			sql += "into parking_detail \n";
-			sql += "values(?,?,?,?,?,?,?,?) \n";
-			sql += "into parking_img \n";
-			sql += "values(?) \n";
-			pstmt = conn.prepareStatement(sql);//미리 sql 문장을 가져가서 검사하고 틀린게 없을 때 실행
-			int idx =1;//중간에 없어지거나 추가될때 필요
-			pstmt.setString(idx++, parkingDetailDto.getPark_type());
-			pstmt.setString(idx++, parkingDetailDto.getPark_name());
-			pstmt.setString(idx++, parkingDetailDto.getDetailAddr());
-			pstmt.setString(idx++, parkingDetailDto.getPay_yn());
-			pstmt.setString(idx++, parkingDetailDto.getSatur_pay_yn());
-			pstmt.setString(idx++, parkingDetailDto.getHoli_pay_yn());
-			pstmt.setInt(idx++,parkingDetailDto.getDay_max_pay());
-			pstmt.setInt(idx++, parkingDetailDto.getPark_rate());
-			pstmt.setInt(idx++,parkingDetailDto.getAdd_park_rate());
-			pstmt.setInt(idx++, parkingDetailDto.getPark_time_rate());
-			pstmt.setInt(idx++,parkingDetailDto.getFulltime_monthly_pay());
-//			pstmt.setString(idx++, parkingDetailDto.getImg_file_name());
-		
-			count =pstmt.executeUpdate();
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}finally{
-			DBClose.close(conn, pstmt);
-		}	
-		return count;
-	}
-
-	@Override
-	public ArrayList<ReservationDto> myReservationList(String user_id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public List<ParkingDetailDto> parkingList(Map<String, String> map) {
 		List<ParkingDetailDto> list = new ArrayList<ParkingDetailDto>();
 		Connection conn = null;
@@ -151,8 +105,8 @@ public class AdminParkingDaoImpl implements AdminParkingDao {
 			String sql = "";
 			sql += "insert all \n";
 			sql += "	into parking (park_id, park_name, park_capacity, owner_id, latitude, "
-										+ "longitude, content, detail_addr, park_public, pic_seq) \n";
-			sql += "	values (? ,? ,? ,? ,? ,?, ?, ?, ?, ?) \n";
+										+ "longitude, content, detail_addr, park_public) \n";
+			sql += "	values (? ,? ,? ,? ,? ,?, ?, ?, ?) \n";
 			sql += "	into parking_detail (park_id, park_flag, PAY_YN, satur_pay_yn, holi_pay_yn, "
 												+ "fulltime_monthly_pay, park_rate, "
 												+ "park_time_rate, add_park_rate, day_max_pay, park_visit, facility, park_avgPoint) \n";
@@ -171,7 +125,6 @@ public class AdminParkingDaoImpl implements AdminParkingDao {
 			pstmt.setString(++idx, parkingDetailDto.getContent());
 			pstmt.setString(++idx, parkingDetailDto.getDetailAddr());
 			pstmt.setInt(++idx, parkingDetailDto.getPark_public());
-			pstmt.setInt(++idx, parkingDetailDto.getPic_seq());
 			//parking_detail table
 			pstmt.setInt(++idx, parkingDetailDto.getPark_id());
 			pstmt.setInt(++idx, parkingDetailDto.getPark_flag());

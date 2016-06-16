@@ -8,11 +8,6 @@ import com.carpark.member.model.MemberDto;
 
 public interface AdminDao {
 	ArrayList<MemberDto> allUserInfo();
-
-//	List<StatsChangeUserDto> changeUserList();
-//	List<StatsGoodBehaviorUsersDto> goodBehaviorUserList();
-//	List<StatsGoodUseUserDto> goodUseUserList();
-//	List<StatsPopularParkDto> popularParkList();
 	
 	List<Map<String,String>> changeUserList();
 	List<Map<String,String>> goodBehaviorUserList();

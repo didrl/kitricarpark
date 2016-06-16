@@ -25,16 +25,6 @@ public class AdminParkingServiceImpl implements AdminParkingService {
 	}
 
 	@Override
-	public int registerReservation(ParkingDetailDto parkingDetailDto) {
-		return AdminParkingDaoImpl.getAdminParkingDao().registerReservation(parkingDetailDto);
-	}
-
-	@Override
-	public ArrayList<ReservationDto> myReservationList(String user_id) {
-		return AdminParkingDaoImpl.getAdminParkingDao().myReservationList(user_id);
-	}
-
-	@Override
 	public List<ParkingDetailDto> parkingList(int pg, String flag, String visit, String key, String word) {
 		Map<String, String> map = new HashMap<String, String>();
 		
