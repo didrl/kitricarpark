@@ -6,7 +6,7 @@ function parkingRegister() {
 		alert("총 주차면수를 입력하세요");
 		return;
 	} else {
-		document.parkRegisterForm.action = "/carpark/memberparking";
+		document.parkRegisterForm.action = root + "/memberparking";
 		document.parkRegisterForm.submit();
 	}
 }
@@ -19,7 +19,7 @@ function parkingSearchWindow() {
 function parkingList(pg) {
 	document.common.act.value = "parkingList";
 	document.common.pg.value = pg;	
-	document.common.action = "/carpark/memberparking";
+	document.common.action = root + "/memberparking";
 	document.common.submit();
 	   
 }
@@ -27,14 +27,14 @@ function parkingList(pg) {
 function parkingView(parkId) {
 	document.common.act.value = "parkingView";
 	document.common.parkId.value = parkId;
-	document.common.action = "/carpark/memberparking";
+	document.common.action = root + "/memberparking";
 	document.common.submit();
 }  
 
 function parkingDelete(parkId) {
 	document.common.act.value = "parkingDelete";
 	document.common.parkId.value = parkId;
-	document.common.action = "/carpark/memberparking"
+	document.common.action = root + "/memberparking"
 	document.common.submit();
 	   
 }
@@ -44,7 +44,7 @@ function searchAddress(pg) {
 		alert("주소를 입력하세요");
 		return;
 	} else {
-		document.parkSearchForm.action = "/carpark/memberparking";
+		document.parkSearchForm.action = root + "/memberparking";
 		document.parkSearchForm.pg.value = pg;
 		document.parkSearchForm.submit();
 	}
@@ -75,7 +75,7 @@ function parkingModify() {
 	} else if(document.parkingModifyForm.dayMaxPay.value == "") {
 		alert("하루 최대 요금을 선택하세요")
 	} else {
-		document.parkingModifyForm.action = "/carpark/memberparking";
+		document.parkingModifyForm.action = root + "/memberparking";
 		document.parkingModifyForm.submit();
 				
 	}
@@ -84,7 +84,7 @@ function parkingModify() {
 function parkingMvModify(parkId) {
 	document.common.act.value = "parkingMvModify";
 	document.common.parkId.value = parkId;
-	document.common.action = "/carpark/memberparking";
+	document.common.action = root + "/memberparking";
 	document.common.submit();
 }
 
