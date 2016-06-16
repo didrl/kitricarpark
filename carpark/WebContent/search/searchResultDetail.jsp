@@ -1,8 +1,6 @@
-<%@page import="org.json.simple.JSONObject"%>
-<%@page import="com.carpark.member.model.FavoriteDto"%>
-<%@page import="com.carpark.member.model.ReviewDto"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="com.carpark.common.model.*"%>
+<%@page import="com.carpark.member.model.*"%>
+<%@page import="java.util.ArrayList,java.text.SimpleDateFormat"%>
+<%@page import="com.carpark.common.model.*,org.json.simple.JSONObject"%>
 <%@page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
@@ -25,24 +23,40 @@ if(map == null || parkingDetail==null){
 	</script>
 	<%
 }
+
 StringBuffer sb =new StringBuffer();
+Date nowDate = new Date();
+Date lastDate = new Date();
+SimpleDateFormat transFormat = new SimpleDateFormat("yyyy/MM/dd");
 int size = availabledate.size();
+String tmp ="";
 if(size==0){
-	String tmp ="{from : new Date()}";
-	sb.append(tmp);
-}
-else if(size<2 && size>0){
-	String tmp ="{from : new Date("+availabledate.get(0).get("enddate")+")}";
-	sb.append(tmp);
+    tmp ="{from : new Date()}";
+    sb.append(tmp);
+}else if(size<2 && size>0){
+    Date td = transFormat.parse(availabledate.get(0).get("startdate"));
+    if(nowDate.before(td)){            //가져온 첫 예약일의 시작일이 오늘보다 나중일 때
+       tmp ="{from : new Date(), to : new Date("+availabledate.get(0).get("startdate")+")},";
+       sb.append(tmp);
+    }
+    tmp ="{from : new Date("+availabledate.get(0).get("enddate")+"), to : new Date()+31}";
+    sb.append(tmp);
 }else{
-	for(int i=0;i<size-1;++i){
-		String tmp ="{from : new Date("+availabledate.get(i).get("enddate")+"),";
-		sb.append(tmp);
-		tmp ="to : new Date("+availabledate.get(i+1).get("startdate")+")},";
-		sb.append(tmp);
-		tmp ="{from : new Date("+availabledate.get(i+1).get("enddate")+")},";
-		sb.append(tmp);
-	}
+	 Date td = transFormat.parse(availabledate.get(0).get("startdate"));
+     if(nowDate.before(td)){            //가져온 첫 예약일의 시작일이 오늘보다 나중일 때
+        tmp ="{from : new Date(), to : new Date("+availabledate.get(0).get("startdate")+")},";
+        sb.append(tmp);
+     }
+     tmp ="{from : new Date("+availabledate.get(0).get("enddate")+")";
+     sb.append(tmp);
+     for(int i=1;i<size;++i){   // 두번째 예약부터
+         tmp =",to : new Date("+availabledate.get(i).get("startdate")+")},";
+         sb.append(tmp);
+         tmp ="{from : new Date("+availabledate.get(i).get("enddate")+")";
+         sb.append(tmp);
+         if(i==size-1)
+            sb.append("}");
+      }
 }
 
 int flagrs=0;

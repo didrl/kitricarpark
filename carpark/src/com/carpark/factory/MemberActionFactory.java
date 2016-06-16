@@ -42,16 +42,12 @@ import com.carpark.member.parking.action.MemberParkingSearchAction;
 import com.carpark.member.parking.action.MemberParkingViewAction;
 import com.carpark.member.report.action.MemberReportDeleteAction;
 import com.carpark.member.report.action.MemberReportListAction;
-import com.carpark.member.report.action.MemberReportWriteAction;
 import com.carpark.member.report.action.MemberReportViewAction;
-import com.carpark.member.reservation.action.MemberReservationDeleteAction;
+import com.carpark.member.report.action.MemberReportWriteAction;
 import com.carpark.member.reservation.action.MemberReservationListAction;
 import com.carpark.member.reservation.action.MemberReservationMoveAction;
 import com.carpark.member.reservation.action.MemberReservationRegisterAction;
-import com.carpark.member.reservation.action.MemberReservationViewAction;
-import com.carpark.member.review.action.MemberReviewDeleteAction;
 import com.carpark.member.review.action.MemberReceiveReviewListAction;
-import com.carpark.member.review.action.MemberReviewModifyAction;
 import com.carpark.member.review.action.MemberReviewReceiveViewAction;
 import com.carpark.member.review.action.MemberReviewRegisterAction;
 import com.carpark.member.review.action.MemberReviewSendViewAction;
@@ -170,16 +166,12 @@ public class MemberActionFactory {
 		memberReportViewAction = new MemberReportViewAction();
 		memberReportDeleteAction = new MemberReportDeleteAction();
 		
-		memberReservationDeleteAction = new MemberReservationDeleteAction();
 		memberReservationListAction = new MemberReservationListAction();
 		memberReservationRegisterAction = new MemberReservationRegisterAction();
-		memberReservationViewAction = new MemberReservationViewAction();
 		memberReservationMoveAction= new MemberReservationMoveAction();
 		
-		memberReviewDeleteAction = new MemberReviewDeleteAction();
 		memberReceiveReviewListAction = new MemberReceiveReviewListAction();
 		memberSendReviewListAction = new MemberSendReviewListAction();
-		memberReviewModifyAction = new MemberReviewModifyAction();
 		memberReviewRegisterAction = new MemberReviewRegisterAction();
 		memberReviewReceiveViewAction = new MemberReviewReceiveViewAction();
 		memberReviewSendViewAction = new MemberReviewSendViewAction();
