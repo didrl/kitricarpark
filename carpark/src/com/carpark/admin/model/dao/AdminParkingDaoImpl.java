@@ -90,6 +90,8 @@ public class AdminParkingDaoImpl implements AdminParkingDao {
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			DBClose.close(conn, pstmt, rs);
 		}
 		
 		return list;

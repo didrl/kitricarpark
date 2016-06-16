@@ -71,14 +71,9 @@ if(0 == parkingDto.getPark_flag()) {
 					<div class="col-md-2">
 						<b>주소</b><br>
 					</div>
-					<div class="col-md-6">
+					<div class="col-md-10">
 						<div class="form-group">
-							<input type="text" name="parkDetailAddress" class="form-control" value="<%=parkingDto.getDetailAddr()%>">
-						</div>
-					</div>
-					<div class="col-md-1">
-						<div class="form-group">
-							<button type="button" class="btn btn-default" onclick="javascript:test();">확인</button>
+							<input type="text" name="parkDetailAddress" class="form-control" value="<%=parkingDto.getDetailAddr()%>" readonly="readonly">
 						</div>
 					</div>
 				</div><hr>
