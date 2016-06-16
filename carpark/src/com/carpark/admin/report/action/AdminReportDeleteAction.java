@@ -27,7 +27,7 @@ public class AdminReportDeleteAction implements Action {
 			}
 			return "/admin/report/list.jsp";
 		} else
-			return "";
+			return "/member/loginFail.jsp";
 	}
 
 }
