@@ -85,6 +85,41 @@ String flag = request.getParameter("flag");
     <!-- kakao.js -->
     <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>  
     
+<script type="text/javascript">
+Kakao.init('fc8d34750e811639ad119ce8c9daeee1');
+function loginWithKakao() {
+  // 로그인 창을 띄웁니다.
+  $("#custom-login-btn").remove();
+  Kakao.Auth.login({
+  	persistAccessToken: false,
+	persistRefreshToken: true,
+    success: function(authObj) {
+		logincarpark();
+      alert(JSON.stringify(authObj));
+    	Kakao.Auth.cleanup();
+  		Kakao.Auth.logout();
+    },
+    fail: function(err) {
+      alert(JSON.stringify(err));
+    }
+  });
+  
+  function logincarpark(){
+  	Kakao.API.request({
+			url: '/v1/user/me',
+			success: function(res) {
+				document.location.href="<%=root%>/member?act=mvlogin&loginkey="+res.id;
+			},
+			fail: function(error) {
+				console.log(error);
+			}
+		});
+   }
+  
+};
+
+</script>
+    
     <form name="common" method="get" action="">
 	<input type="hidden" name="act" id="act" value="">
 	<input type="hidden" name="bcode" id="bcode" value="<%=bcode%>">

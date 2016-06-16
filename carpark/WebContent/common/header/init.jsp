@@ -2,8 +2,6 @@
 <%@page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" %>
 
-
-
 <%
 String svid="";
 String ckid="";
@@ -18,7 +16,13 @@ if(cookie!=null){
 	}
 }
 %>
-
+<!-- kakao.js -->
+<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>  
+<script>
+function logout(){
+	document.location.href=root+"/member?act=mvlogout";
+}
+</script>
 
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 	<!-- Brand and toggle get grouped for better mobile display -->
@@ -69,7 +73,7 @@ if(memberDto!=null){
 				</li>
 				<li><a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a></li>
 				<li class="divider"></li>
-				<li><a href="<%=root%>/member?act=mvlogout"><i class="fa fa-fw fa-power-off"></i> Log
+				<li><a id="logout" href="javascript:logout();"><i class="fa fa-fw fa-power-off"></i> Log
 						Out</a></li>
 			</ul></li>		
 <%
@@ -146,7 +150,7 @@ if(memberDto!=null){
 			&nbsp;&nbsp;
 		</li>
 		<li>
-			<button type="button" class="btn btn-default navbar-btn"
+			<button type="button" class="btn btn-default navbar-btn" 
 				data-toggle="modal" data-target="#mySignUp">SignUp</button>
 		</li>
 		<li class="dropdown"><a href="#" class="dropdown-toggle"
@@ -213,9 +217,11 @@ if(memberDto!=null){
 						</div>
 					</div>
 					<div class="form-group">
-						<div class="col-sm-offset-2 col-sm-10 form-inline">
+						<div class="col-sm-offset-2 col-sm-10 form-inline" >
 							<button type="submit" class="btn btn-default">Sign in</button><br>
-							<div id="kakao-logged-group" style="padding-top: 5px;"></div><br>
+							<a id="custom-login-btn" href="javascript:loginWithKakao();">
+								<img src="http://mud-kage.kakao.co.kr/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg" width="300"/>
+							</a>
 						</div>
 					</div>
 					
@@ -352,6 +358,8 @@ function idcheck(data){
 		document.getElementById("chid").innerHTML ="아이디를 사용할 수 없습니다.";
 	}
 }
-
 </script>
 <!-- /ajax idcheck -->
+
+
+

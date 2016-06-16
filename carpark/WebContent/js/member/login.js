@@ -117,7 +117,3 @@ function secession(id) {
 	document.location.href=root+"/member?act=memberSecession&id="+id;
 }
 
-
-
-
-

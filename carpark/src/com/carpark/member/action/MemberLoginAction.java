@@ -46,7 +46,7 @@ public class MemberLoginAction implements Action{
 			}
 		}
 		if(loginkey!=null){
-			memberDto = MemberServiceImpl.getMemberService().login(loginkey,loginkey);
+			memberDto = MemberServiceImpl.getMemberService().kakaologin(loginkey);
 		}else{
 			memberDto = MemberServiceImpl.getMemberService().login(id,pass);
 		}

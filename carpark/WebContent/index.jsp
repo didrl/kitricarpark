@@ -115,8 +115,8 @@ if(memberDto != null && 10 == memberDto.getUser_flag()) {
 		</section>
 	</div>
 </div>
-
 <!-- Custom Theme JavaScript -->
+
 <script>
 	// Closes the sidebar menu
 	$("#menu-close").click(function(e) {
@@ -156,63 +156,6 @@ if(memberDto != null && 10 == memberDto.getUser_flag()) {
 		return false;
 	});
 </script>
-
-<!-- kakao Login -->
-	<script>
-		$('#login').click(function(){
-			Kakao.init("fc8d34750e811639ad119ce8c9daeee1");
-		
-			function getKakaotalkUserProfile(){
-				Kakao.API.request({
-					url: '/v1/user/me',
-					success: function(res) {
-						
-					},
-					fail: function(error) {
-						console.log(error);
-					}
-				});
-			}
-			
-			function createKakaotalkLogin(){
-				$("#kakao-logged-group .kakao-logout-btn,#kakao-logged-group .kakao-login-btn").remove();
-				var loginBtn = $("<input/>",{"class":"kakao-login-btn","value":"카카오로그인","type":"button"});
-				loginBtn.click(function(){
-					Kakao.Auth.login({
-						persistAccessToken: true,
-						persistRefreshToken: true,
-						success: function(authObj) {
-							createKakaotalkLogout();
-							getKakaotalkUserProfile();
-						},
-						fail: function(err) {
-							console.log(err);
-						}
-					});
-				});
-				$("#kakao-logged-group").prepend(loginBtn)
-			}
-			function createKakaotalkLogout(){
-				$("#kakao-logged-group .kakao-logout-btn,#kakao-logged-group .kakao-login-btn").remove();
-				var logoutBtn = $("<a/>",{"class":"kakao-logout-btn","text":"로그아웃"});
-				logoutBtn.click(function(){
-					Kakao.Auth.logout();
-					createKakaotalkLogin();
-					$("#kakao-profile").text("");
-				});
-				$("#kakao-logged-group").prepend(logoutBtn);
-			}
-			if(Kakao.Auth.getRefreshToken()!=undefined&&Kakao.Auth.getRefreshToken().replace(/ /gi,"")!=""){
-				createKakaotalkLogout();
-				document.location.href="<%=root%>/member?act=mvlogin&loginkey="+res.properties.id;
-			}else{
-				createKakaotalkLogin();
-			}
-		});
-	</script>
-<!-- /kakao Login -->
-
-<div id="kakao-profile"></div>
 
 <!-- Footer -->
 <%@include file="/common/footer.jsp"%>

@@ -524,4 +524,46 @@ public class MemberDaoImpl implements MemberDao {
 		}
 		return gradeDto;
 	}
+
+	@Override
+	public MemberDto kakaologin(String loginkey) {
+		MemberDto memberDto = null;
+		Connection conn =null;
+		PreparedStatement pstmt =null;
+		ResultSet rs =null;
+		
+		try {
+			conn=DBConnection.makeConnection();
+			String sql="";
+			sql+="select user_id,coin,grade_id,user_name,user_avgpoint,email,tel,user_pass,login_key, host_flag, profile_image, penalty, user_flag \n";
+			sql+="from member \n";
+			sql+="where login_key=?";
+		
+			pstmt =conn.prepareStatement(sql);
+			pstmt.setString(1,loginkey);
+			rs=pstmt.executeQuery();
+			if(rs.next()){
+				//이름,이메일,보유코인 필요
+				memberDto =new MemberDto();				
+				memberDto.setUser_id(rs.getString("user_id"));
+				memberDto.setCoin(rs.getInt("coin"));
+				memberDto.setGrade_id(rs.getInt("grade_id"));
+				memberDto.setUser_name(rs.getString("user_name"));
+				memberDto.setUser_avgPoint(rs.getInt("user_avgpoint"));
+				memberDto.setHost_flag(rs.getInt("host_flag"));
+				memberDto.setPenalty(rs.getInt("penalty"));
+				memberDto.setUser_flag(rs.getInt("user_flag"));
+				memberDto.setEmail(rs.getString("email"));
+				memberDto.setTel(rs.getString("tel"));
+				memberDto.setUser_pass(rs.getString("user_pass"));
+				memberDto.setLogin_key(rs.getString("login_key"));
+				memberDto.setProfile_image(rs.getString("profile_image"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			DBClose.close(conn, pstmt, rs);
+		}
+		return memberDto;
+	}
 }

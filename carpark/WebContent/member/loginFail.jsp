@@ -57,8 +57,10 @@ if(session.isNew()){
 					</div>
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
-							<button type="submit" class="btn btn-default"
-							>Sign in</button>
+							<button type="submit" class="btn btn-default">Sign in</button>
+							<a id="custom-login-btn" href="javascript:loginWithKakao();">
+								<img src="http://mud-kage.kakao.co.kr/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg" width="300"/>
+							</a>
 						</div>
 					</div>
 				</form>
@@ -107,8 +109,10 @@ if(session.isNew()){
 					</div>
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
-							<button type="submit" class="btn btn-default"
-							>Sign in</button>
+							<button type="submit" class="btn btn-default">Sign in</button>
+							<a id="custom-login-btn" href="javascript:loginWithKakao();">
+								<img src="http://mud-kage.kakao.co.kr/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg" width="300"/>
+							</a>
 						</div>
 					</div>
 				</form>

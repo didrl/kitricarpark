@@ -89,4 +89,9 @@ public class MemberServiceImpl implements MemberService {
 		return MemberDaoImpl.getMemberDao().gradeInfo(id);
 	}
 
+	@Override
+	public MemberDto kakaologin(String loginkey) {
+		return MemberDaoImpl.getMemberDao().kakaologin(loginkey);
+	}
+
 }

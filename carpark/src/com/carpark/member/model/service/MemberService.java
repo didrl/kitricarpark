@@ -16,7 +16,8 @@ public interface MemberService {
 	MemberDto getMemberDetail(String id);	
 	int modify(MemberDto memberDto);
 	int delete(String id);
-	MemberDto login(String id ,String pass);	
+	MemberDto login(String id ,String pass);
+	MemberDto kakaologin(String loginkey);
 	List<ParkingDetailDto>list(Map<String,String> map);
 	ParkingDto parkingDetail(String parkingId);
 	ParkingDetailDto getParkingDetail_info(String park_id);

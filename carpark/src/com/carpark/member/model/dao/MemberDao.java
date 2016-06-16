@@ -13,6 +13,7 @@ public interface MemberDao {
 	int register(MemberDto memberDto);
 	int idcheck(String id);
 	MemberDto getMember(String id);
+	MemberDto kakaologin(String loginkey);
 	int modify(MemberDto memberDto);
 	int delete(String id);
 	MemberDto login(Map<String ,String> map);
