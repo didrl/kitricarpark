@@ -30,10 +30,10 @@ function messageReceiveView(seq) {
 }
 
 //보낸 쪽지 삭제(삭제 후 보낸 쪽지 리스트 출력)
-function messageSendDelete(seq) {
+function messageSendDelete(seq, delete_recei) {
 	document.common.act.value = "messageSendDelete";
 	document.common.seq.value = seq;
-			
+	document.common.delete_recei.value = delete_recei;
 	document.common.action = "/carpark/message";
 	document.common.submit();
 	
@@ -41,10 +41,10 @@ function messageSendDelete(seq) {
 }
 
 //받은 쪽지 삭제(삭제 후 받은 쪽지 리스트 출력)
-function messageReceiveDelete(seq) {
+function messageReceiveDelete(seq, delete_send) {
 	document.common.act.value = "messageReceiveDelete";
 	document.common.seq.value = seq;
-			
+	document.common.delete_send.value = delete_send;
 	document.common.action = "/carpark/message";
 	document.common.submit();
 	

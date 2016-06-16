@@ -31,6 +31,8 @@ String word = Encoder.isoToUtf(StringCheck.nullToBlank(request.getParameter("wor
 	<input type="hidden" name="key" id="key" value="">
 	<input type="hidden" name="word" id="word" value="">
 	<input type="hidden" name="seq" id="seq" value="">
+	<input type="hidden" name="delete_send" id="delete_send" value="">
+	<input type="hidden" name="delete_recei" id="delete_recei" value="">
 </form>
 
 <br>

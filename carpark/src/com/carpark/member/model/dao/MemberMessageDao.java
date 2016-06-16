@@ -12,5 +12,7 @@ public interface MemberMessageDao {
 	List<MessageDto> sendListArticle(Map<String, String> map);
 	List<MessageDto> receiveListArticle(Map<String, String> map);
 	void deleteArticle(int seq);
+	void deleteSendUpdate(int seq);
+	void deleteReceiUpdate(int seq);
 	
 }

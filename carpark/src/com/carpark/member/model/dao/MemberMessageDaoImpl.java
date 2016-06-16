@@ -33,8 +33,8 @@ public class MemberMessageDaoImpl implements MemberMessageDao {
 			sql += "insert all \n";
 			sql += "into board (seq, user_id, subject, contents, bcode, logtime) \n";
 			sql += "values (?, ?, ?, ?, ?, sysdate) \n";
-			sql += "into message (mseq, seq, receiver_id, msg_flag) \n";
-			sql += "values (message_num_mseq.nextval, ?, ?, ?) \n";
+			sql += "into message (mseq, seq, receiver_id, msg_flag, delete_send, delete_recei) \n";
+			sql += "values (message_num_mseq.nextval, ?, ?, ?, 0, 0) \n";
 			sql += "select * from dual";
 			pstmt = conn.prepareStatement(sql);
 			int idx = 0;
@@ -76,8 +76,7 @@ public class MemberMessageDaoImpl implements MemberMessageDao {
 			pstmt.executeUpdate();
 			pstmt.close();
 			
-			
-			sql = "select b.seq, bcode, user_id, subject, contents, \n";
+			sql = "select b.seq, bcode, user_id, subject, contents, delete_send, delete_recei, \n";
 			sql += "		decode(to_char(logtime, 'yymmdd'), \n";
 			sql += "				to_char(sysdate, 'yymmdd'), to_char(b.logtime, 'hh24:mi:ss'), \n";
 			sql += "				to_char(b.logtime, 'yy.mm.dd')) logtime, \n";
@@ -99,6 +98,9 @@ public class MemberMessageDaoImpl implements MemberMessageDao {
 				messageDto.setMseq(rs.getInt("mseq"));
 				messageDto.setReceiverId(rs.getString("receiver_id"));
 				messageDto.setMsgFlag(rs.getInt("msg_flag"));
+				messageDto.setDelete_send(rs.getInt("delete_send"));
+				messageDto.setDelete_recei(rs.getInt("delete_recei"));
+
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -156,13 +158,14 @@ public class MemberMessageDaoImpl implements MemberMessageDao {
 			sql += "from ( \n";
 			sql += "select rownum rn, a.* \n";
 			sql += "from ( \n";
-			sql += "select b.seq, bcode, user_id, subject, contents, \n";
+			sql += "select b.seq, bcode, user_id, subject, contents, delete_send, delete_recei, \n";
 			sql += "		decode(to_char(logtime, 'yymmdd'), \n";
 			sql += "				to_char(sysdate, 'yymmdd'), to_char(b.logtime, 'hh24:mi:ss'), \n";
 			sql += "				to_char(b.logtime, 'yy.mm.dd')) logtime, \n";
 			sql += "mseq, receiver_id, msg_flag \n";
 			sql += "from board b, message m \n";
 			sql += "where b.seq = m.seq \n";
+			sql += "and delete_send = 0 \n";
 			sql += "and user_id = ? \n";
 			if(key != null && !key.isEmpty()) {
 				if(word != null && !word.isEmpty()) {
@@ -199,6 +202,8 @@ public class MemberMessageDaoImpl implements MemberMessageDao {
 				messageDto.setMseq(rs.getInt("mseq"));
 				messageDto.setReceiverId(rs.getString("receiver_id"));
 				messageDto.setMsgFlag(rs.getInt("msg_flag"));
+				messageDto.setDelete_send(rs.getInt("delete_send"));
+				messageDto.setDelete_recei(rs.getInt("delete_recei"));
 				
 				sendList.add(messageDto);
 			}
@@ -229,13 +234,14 @@ public class MemberMessageDaoImpl implements MemberMessageDao {
 			sql += "from ( \n";
 			sql += "select rownum rn, a.* \n";
 			sql += "from ( \n";
-			sql += "select b.seq, bcode, user_id, subject, contents, \n";
+			sql += "select b.seq, bcode, user_id, subject, contents, delete_send, delete_recei, \n";
 			sql += "		decode(to_char(logtime, 'yymmdd'), \n";
 			sql += "				to_char(sysdate, 'yymmdd'), to_char(b.logtime, 'hh24:mi:ss'), \n";
 			sql += "				to_char(b.logtime, 'yy.mm.dd')) logtime, \n";
 			sql += "mseq, receiver_id, msg_flag \n";
 			sql += "from board b, message m \n";
 			sql += "where b.seq = m.seq \n";
+			sql += "and delete_recei = 0 \n";
 			sql += "and receiver_id = ? \n";
 			if(key != null && !key.isEmpty()) {
 				if(word != null && !word.isEmpty()) {
@@ -272,6 +278,8 @@ public class MemberMessageDaoImpl implements MemberMessageDao {
 				messageDto.setMseq(rs.getInt("mseq"));
 				messageDto.setReceiverId(rs.getString("receiver_id"));
 				messageDto.setMsgFlag(rs.getInt("msg_flag"));
+				messageDto.setDelete_send(rs.getInt("delete_send"));
+				messageDto.setDelete_recei(rs.getInt("delete_recei"));
 				
 				receiveList.add(messageDto);
 			}
@@ -284,5 +292,49 @@ public class MemberMessageDaoImpl implements MemberMessageDao {
 		return receiveList;
 	}
 	
-	
+	@Override
+	public void deleteSendUpdate(int seq) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			conn = DBConnection.makeConnection();
+			String sql = "";
+			sql += "update message \n";
+			sql += "set delete_send = 1 \n";
+			sql += "where seq = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, seq);
+			pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose.close(conn, pstmt);
+		}
+		
+	}
+
+	@Override
+	public void deleteReceiUpdate(int seq) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			conn = DBConnection.makeConnection();
+			String sql = "";
+			sql += "update message \n";
+			sql += "set delete_recei = 1 \n";
+			sql += "where seq = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, seq);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose.close(conn, pstmt);
+		}
+		
+	}
+
 }
