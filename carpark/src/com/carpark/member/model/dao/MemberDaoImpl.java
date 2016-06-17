@@ -41,18 +41,15 @@ public class MemberDaoImpl implements MemberDao {
       try {
          conn=DBConnection.makeConnection();
          String sql="";
-         sql += "insert into member(user_name,user_id,user_pass,email,tel,grade_id,user_avgpoint,coin,host_flag,login_key,logtime,coin) \n";
-         sql += "values(?,?,?,?,?,3,0,0,0,null,sysdate,150)";//치환변수 
+         sql += "insert into member(user_name,user_id,user_pass,email,tel,grade_id,user_avgpoint,host_flag,login_key,logtime,coin) \n";
+         sql += "values(?,?,?,?,?,3,0,0,null,sysdate,150)";//치환변수 
          pstmt = conn.prepareStatement(sql);//미리 sql 문장을 가져가서 검사하고 틀린게 없을 때 실행
          int idx =1;//중간에 없어지거나 추가될때 필요
          pstmt.setString(idx++, memberDto.getUser_name());
          pstmt.setString(idx++, memberDto.getUser_id());
          pstmt.setString(idx++, memberDto.getUser_pass());
          pstmt.setString(idx++, memberDto.getEmail());
-         pstmt.setString(idx++, memberDto.getTel());
-         
-         System.out.println("id"+memberDto.getUser_id());
-         System.out.println("pass"+memberDto.getUser_pass());
+         pstmt.setInt(idx++, Integer.parseInt(memberDto.getTel()));
          
          count=pstmt.executeUpdate();
          
