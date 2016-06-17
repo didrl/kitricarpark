@@ -1,3 +1,4 @@
+<%@page import="com.carpark.member.model.MemberDto"%>
 <%@page import="com.carpark.member.model.MessageDto, java.net.URLDecoder"%>
 <%@page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" %>
@@ -216,13 +217,15 @@ if(memberDto!=null){
 							</div>
 						</div>
 					</div>
-					<div class="form-group">
-						<div class="col-sm-offset-2 col-sm-10 form-inline" >
-							<button type="submit" class="btn btn-default">Sign in</button><br>
-							<a id="custom-login-btn" href="javascript:loginWithKakao();">
-								<img src="http://mud-kage.kakao.co.kr/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg" width="300"/>
-							</a>
+					<div class="form-group" align="center">
+						<div class="col-sm-offset-2 col-sm-10 form-inline" style="padding-right: 100px">
+							<button type="submit" class="btn btn-default" style="width: 50%;">Sign in</button><br>
 						</div>
+					</div>
+					<div align="center">
+						<a id="custom-login-btn" href="javascript:loginWithKakao();">
+								<img src="http://mud-kage.kakao.co.kr/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg" width="300"/>
+						</a>
 					</div>
 					
 				</div>
@@ -321,6 +324,7 @@ if(memberDto!=null){
 							가입취소<i class="fa fa-times spaceLeft"></i>
 						</button>
 					</div>
+					
 				</form>
 			</div>
 		</div>

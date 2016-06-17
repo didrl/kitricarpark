@@ -1,6 +1,7 @@
 package com.carpark.member.action;
 
 import java.io.IOException;
+import java.net.URLDecoder;
 import java.net.URLEncoder;
 
 import javax.servlet.ServletException;
@@ -23,6 +24,7 @@ public class MemberLoginAction implements Action{
 		String root = request.getContextPath();
 		String id = request.getParameter("id");
 		String pass = request.getParameter("pass");
+		String name = URLDecoder.decode(request.getParameter("name"), "UTF-8");
 		String svid = request.getParameter("svid");
 		String failSvid = request.getParameter("failSvid");
 		String loginkey = request.getParameter("loginkey");
@@ -46,7 +48,18 @@ public class MemberLoginAction implements Action{
 			}
 		}
 		if(loginkey!=null){
-			memberDto = MemberServiceImpl.getMemberService().kakaologin(loginkey);
+//			memberDto = MemberServiceImpl.getMemberService().kakaologin(loginkey);
+			memberDto = new MemberDto();
+			memberDto.setUser_name("kakao"+name);
+			memberDto.setUser_id(loginkey);
+			memberDto.setUser_pass("P"+loginkey);
+			memberDto.setEmail("Kakao@email.com");
+			memberDto.setTel("010111111");
+			MemberDto kakaomember= MemberServiceImpl.getMemberService().getMember(loginkey);
+			if(kakaomember==null){
+				MemberServiceImpl.getMemberService().register(memberDto);
+			}
+//			session.setAttribute("memberInfo",memberDto);
 		}else{
 			memberDto = MemberServiceImpl.getMemberService().login(id,pass);
 		}
