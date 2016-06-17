@@ -1,0 +1,12 @@
+시연용 데이터 
+아이디 
+- 카카오톡 실제 아이디
+- 사용자1 (id/pwd): IUGuest/iuguest
+- 사용자2(id/pwd) : Rgpark/rgpark
+- 관리자(id/pwd): admin/admin
+- 페이팔 아이디(소비자) IUGuest@IUGuest.com / iuguest
+
+데이터 검색
+ 주차장 검색어 + 날짜 : 강남 + ’16/ 6/21 ~ 16/6/22’ 
+ 주차장이름 : 강남대치민자
+ 주차장 등록 주소 : 서울시 구로구 구로동 / 187-10 코오롱싸이언스밸리1차
