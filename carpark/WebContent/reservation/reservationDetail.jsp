@@ -107,7 +107,7 @@ if(reservationDto != null){
 			<div class="col-md-7 col-lg-7 col-sm-7">
 				<div class="panel panel-default"> <!--  Left panel div Start -->
 				<div class="panel-body"> <!--  Left panel body Start -->
-				<div>	<h3><a href="" ><%=reservationDto.getPark_name() %></a></h3></div>
+				<div>	<h3><%=reservationDto.getPark_name()%></h3></div>
 				<div><%=reservationDto.getHost_id() %>
 				</div><br><br><br><br>
 				<div><h3>언제 주차를 하길 원하십니까?</h3></div><br>
@@ -436,8 +436,6 @@ if(reservationDto != null){
 					alert("예약할 시간을 확인해주세요.");
 					return;
 				}else{
-				alert("days :"+ reserDays +"    hours :"+reserHours+"       ehours : "+reserExtraHours);
-				
 				var pay=0;
 					if(<%=parkingDetailDto.getDay_max_pay()%>==0)
 						pay=reserHours*<%=parkingDetailDto.getAdd_park_rate()/100%>/(4*reserDays);

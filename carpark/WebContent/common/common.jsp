@@ -95,7 +95,6 @@ function loginWithKakao() {
 	persistRefreshToken: true,
     success: function(authObj) {
 		logincarpark();
-      alert(JSON.stringify(authObj));
     	Kakao.Auth.cleanup();
   		Kakao.Auth.logout();
     },

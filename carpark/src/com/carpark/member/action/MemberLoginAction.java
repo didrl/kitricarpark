@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import com.carpark.action.Action;
 import com.carpark.member.model.MemberDto;
 import com.carpark.member.model.service.MemberServiceImpl;
+import com.carpark.util.Encoder;
 
 public class MemberLoginAction implements Action{
 
@@ -27,7 +28,8 @@ public class MemberLoginAction implements Action{
 		String loginkey = request.getParameter("loginkey");
 		String name = null;
 		if(loginkey != null)
-			name = URLDecoder.decode(request.getParameter("name"), "UTF-8");
+			name =  Encoder.isoToUtf(request.getParameter("name"));
+//			name = URLDecoder.decode(request.getParameter("name"), "UTF-8");
 		String svid = request.getParameter("svid");
 		String failSvid = request.getParameter("failSvid");
 		MemberDto memberDto = null;

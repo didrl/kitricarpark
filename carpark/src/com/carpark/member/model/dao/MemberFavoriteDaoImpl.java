@@ -121,7 +121,7 @@ public class MemberFavoriteDaoImpl implements MemberFavoriteDao {
 			conn=DBConnection.makeConnection();
 			String sql="";
 			
-			sql += "select p.park_name, p.owner_id, p.detailaddr, pd.park_avgpoint, pd.park_flag, pd.fulltime_monthly_pay \n";
+			sql += "select p.park_name, p.owner_id, p.detail_addr, pd.park_avgpoint, pd.park_flag, pd.fulltime_monthly_pay \n";
 			sql += "from parking_detail pd, parking p \n"; 
 			sql += "where pd.park_id = p.park_id \n";
 			sql += "			and p.park_id = ? \n";
@@ -137,7 +137,7 @@ public class MemberFavoriteDaoImpl implements MemberFavoriteDao {
 				parkingViewDto.setAvg_point(rs.getDouble("park_avgpoint"));
 				parkingViewDto.setFulltime_monthly_pay(rs.getInt("fulltime_monthly_pay"));
 				parkingViewDto.setOwner_id(rs.getString("owner_id"));
-				parkingViewDto.setLocation(rs.getString("detailaddr"));
+				parkingViewDto.setLocation(rs.getString("detail_addr"));
 				parkingViewDto.setPark_flag(rs.getInt("park_flag"));
 			}
 		} catch (SQLException e) {
