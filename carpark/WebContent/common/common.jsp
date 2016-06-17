@@ -99,7 +99,7 @@ function loginWithKakao() {
   		Kakao.Auth.logout();
     },
     fail: function(err) {
-      alert(JSON.stringify(err));
+      //alert(JSON.stringify(err));
     }
   });
   
@@ -108,7 +108,7 @@ function loginWithKakao() {
 			url: '/v1/user/me',
 			success: function(res) {
 				document.location.href="<%=root%>/member?act=mvlogin&loginkey="+
-				res.id+"&name="+ encodeURI(res.properties.nickname);
+				res.id+"&name="+ encodeURI(res.properties.nickname)+"&profileImage="+res.properties.thumbnail_image;
 			
 			},
 			fail: function(error) {

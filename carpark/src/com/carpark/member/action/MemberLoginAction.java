@@ -26,6 +26,8 @@ public class MemberLoginAction implements Action{
 		String id = request.getParameter("id");
 		String pass = request.getParameter("pass");
 		String loginkey = request.getParameter("loginkey");
+		String profile_image=request.getParameter("profileImage");
+		System.out.println("profile"+profile_image);
 		String name = null;
 		if(loginkey != null)
 			name =  Encoder.isoToUtf(request.getParameter("name"));
@@ -59,6 +61,8 @@ public class MemberLoginAction implements Action{
 			memberDto.setUser_pass("P"+loginkey);
 			memberDto.setEmail("Kakao@email.com");
 			memberDto.setTel("010111111");
+			memberDto.setProfile_image(profile_image);
+			
 			MemberDto kakaomember= MemberServiceImpl.getMemberService().getMember(loginkey);
 			if(kakaomember==null){
 				MemberServiceImpl.getMemberService().register(memberDto);
