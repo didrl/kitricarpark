@@ -6,10 +6,12 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.List;
 
+import com.amazonaws.AmazonClientException;
 import com.amazonaws.ClientConfiguration;
 import com.amazonaws.Protocol;
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.auth.profile.ProfileCredentialsProvider;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.Bucket;
@@ -20,14 +22,26 @@ import com.amazonaws.services.s3.model.PutObjectRequest;
 
 public class S3Util {
 	
-	private String accessKey = "AKIAIRAHSSU3XESUQNBQ";
-	private String secretKey = "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";
+	private static AWSCredentials credentials = null;
+	
 	private String endpoint = "s3.ap-northeast-2.amazonaws.com";
 	
 	private AmazonS3 conn;
 	
 	public S3Util() {
-		AWSCredentials credentials = new BasicAWSCredentials(accessKey, secretKey);
+		
+		try {
+            credentials = new ProfileCredentialsProvider().getCredentials();
+        } catch (Exception e) {
+            throw new AmazonClientException(
+                    "Cannot load the credentials from the credential profiles file. " +
+                    "Please make sure that your credentials file is at the correct " +
+                    "location (~/.aws/credentials), and is in valid format.",
+                    e);
+        }
+		
+		
+		//AWSCredentials credentials = new BasicAWSCredentials(accessKey, secretKey);
 		ClientConfiguration clientConfig = new ClientConfiguration();
 		clientConfig.setProtocol(Protocol.HTTP);
 		this.conn = new AmazonS3Client(credentials, clientConfig);
