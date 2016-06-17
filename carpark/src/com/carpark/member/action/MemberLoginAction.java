@@ -24,10 +24,12 @@ public class MemberLoginAction implements Action{
 		String root = request.getContextPath();
 		String id = request.getParameter("id");
 		String pass = request.getParameter("pass");
-		String name = URLDecoder.decode(request.getParameter("name"), "UTF-8");
+		String loginkey = request.getParameter("loginkey");
+		String name = null;
+		if(loginkey != null)
+			name = URLDecoder.decode(request.getParameter("name"), "UTF-8");
 		String svid = request.getParameter("svid");
 		String failSvid = request.getParameter("failSvid");
-		String loginkey = request.getParameter("loginkey");
 		MemberDto memberDto = null;
 		if("idsave".equals(svid)||"idsave".equals(failSvid)){
 			Cookie cookie = new Cookie("myid", URLEncoder.encode(id,"UTF-8"));

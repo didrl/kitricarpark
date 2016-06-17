@@ -7,6 +7,9 @@ String address = StringCheck.nullToBlank((String) session.getAttribute("address"
 List<ZipDto> list = (List<ZipDto>) request.getAttribute("addressList");
 PageNavigator navigator = (PageNavigator) request.getAttribute("navigator");
 %>
+	<script type="text/javascript">
+	var root = "<%=root%>";
+	</script>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
