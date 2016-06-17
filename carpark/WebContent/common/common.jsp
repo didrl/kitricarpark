@@ -131,6 +131,8 @@ function loginWithKakao() {
 	<input type="hidden" name="parkId" id="parkId" value="">
 	<input type="hidden" name="flag" id="flag" value="<%=flag%>">
 	<input type="hidden" name="visit" id="visit" value="<%=visit%>">
+	<input type="hidden" name="delete_send" id="delete_send" value="">
+   <input type="hidden" name="delete_recei" id="delete_recei" value="">
 	</form>
 	
     
