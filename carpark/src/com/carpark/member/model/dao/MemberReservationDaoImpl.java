@@ -80,20 +80,22 @@ public class MemberReservationDaoImpl implements MemberReservationDao {
       ArrayList<Map<String,String>> list = new ArrayList<Map<String,String>>();
        
       try {
-//         select a.park_id, a.start_date, a.end_date 
-//         from(select park_id, to_char(add_months((start_date-1),-1),'yyyy,mm,dd') start_date, to_char(add_months((end_date+1),-1),'yyyy,mm,dd') end_date 
-//                from reservation)a
-//         where to_char(add_months(sysdate,-1),'yyyy,mm,dd')<=a.start_date or to_char(add_months(sysdate,-1),'yyyy,mm,dd')<=a.end_date
-//                  and park_id=? 
-//         order by start_date
+    	   //            select a.park_id, a.start_date, a.end_date 
+    	   //            from(select park_id, to_char(add_months((start_date-1),-1),'yyyy,mm,dd') start_date, to_char(add_months((end_date+1),-1),'yyyy,mm,dd') end_date 
+    	   //                     from reservation)a
+    	   //            where to_char(add_months(sysdate,-1),'yyyy,mm,dd')<=a.start_date or to_char(add_months(sysdate,-1),'yyyy,mm,dd')<=a.end_date
+    	   //                        and park_id=? 
+    	             
+
+
          
          conn=DBConnection.makeConnection();
          String sql="";
          sql += "select a.park_id, a.start_date, a.end_date \n";
          sql += "from(select park_id, to_char(add_months((start_date-1),-1),'yyyy/mm/dd') start_date, to_char(add_months((end_date+1),-1),'yyyy/mm/dd') end_date  \n";
-         sql += "        from reservation)a\n"; 
+         sql += "          from reservation)a\n"; 
          sql += "where (to_char(add_months(sysdate,-1),'yyyy,mm,dd')<=a.start_date or to_char(add_months(sysdate,-1),'yyyy,mm,dd')<=a.end_date) \n";
-         sql += "         and park_id=? \n";
+         sql += "            and park_id=? \n";
          sql += "order by start_date";
          pstmt = conn.prepareStatement(sql);//미리 sql 문장을 가져가서 검사하고 틀린게 없을 때 실행
          int idx =1;//중간에 없어지거나 추가될때 필요

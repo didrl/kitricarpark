@@ -23,7 +23,6 @@ if(map == null || parkingDetail==null){
 	</script>
 	<%
 }
-
 StringBuffer sb =new StringBuffer();
 SimpleDateFormat transFormat = new SimpleDateFormat("yyyy/MM/dd");
 Calendar cal = Calendar.getInstance();
@@ -44,7 +43,7 @@ if(size==0){
     tmp ="{from : new Date("+availabledate.get(0).get("enddate").replace("/", ",")+"), to :new Date("+lastDate.replace("/", ",")+")}";
     sb.append(tmp);
 }else{
-	 Date td = transFormat.parse(availabledate.get(0).get("startdate"));
+    Date td = transFormat.parse(availabledate.get(0).get("startdate"));
      if(nowDate.before(td)){            //가져온 첫 예약일의 시작일이 오늘보다 나중일 때
         tmp ="{from : new Date(), to : new Date("+availabledate.get(0).get("startdate").replace("/", ",")+")},";
         sb.append(tmp);
