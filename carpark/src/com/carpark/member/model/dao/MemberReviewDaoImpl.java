@@ -258,6 +258,7 @@ public class MemberReviewDaoImpl implements MemberReviewDao {
 				//이름,이메일,보유코인 필요
 				reviewDto =new ReviewDto();		
 				reviewDto.setSeq(rs.getInt("seq"));
+				reviewDto.setPark_id(rs.getInt("park_id"));
 				reviewDto.setSubject(rs.getString("subject"));
 				reviewDto.setContent(rs.getString("contents"));
 				reviewDto.setUser_id(rs.getString("user_id"));
