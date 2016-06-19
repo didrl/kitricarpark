@@ -60,8 +60,7 @@ if(memberDto!=null){
 			data-toggle="dropdown"><i class="fa fa-bell"></i> <b
 				class="caret"></b></a>
 			<ul class="dropdown-menu alert-dropdown">
-				<li><a href="<%=root%>/call?act=mvzip">제보하기 <span
-						class="label label-default">Alert Badge</span></a></li>
+				<li><a href="<%=root%>/call?act=mvzip">제보하기</a></li>
 				
 				
 			</ul></li>
