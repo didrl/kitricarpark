@@ -14,10 +14,10 @@ function receiveReviewList(pg) {
 
 	
 	<!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
-		<div class="collapse navbar-collapse navbar-ex1-collapse" style="background-color: #45c327">
+		<div class="collapse navbar-collapse navbar-ex1-collapse" >
 
 
-			<ul class="nav navbar-nav side-nav" style="color: #fff; background-color: #45c327" >
+			<ul class="nav navbar-nav side-nav" >
 				<li><a href="<%=root%>/member?act=mvprofile"><i class="fa fa-fw fa-dashboard"></i>
 						Dashboard</a></li>
 						
