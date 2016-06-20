@@ -99,9 +99,9 @@ public class MemberReviewDaoImpl implements MemberReviewDao {
 			sql = "";
 			sql += "insert all \n";
 			sql += "into board(seq, bcode, user_id, subject, contents, logtime) \n";
-			sql += "values(board_num_seq.nextval,0,?,?,?,sysdate) \n";
+			sql += "values(board_seq.nextval,0,?,?,?,sysdate) \n";
 			sql += "into review(seq, rseq, aval_code, get_point, avaled_id, host_flag) \n";
-			sql += "values(board_num_seq.currval,review_num_rseq.nextval,0,?,?,?) \n";
+			sql += "values(board_seq.currval,review_num_rseq.nextval,0,?,?,?) \n";
 			sql += "into AVGPOINT (RSEQ, SEQ, PARK_ID, AVGPOINT)\n";
 			sql += "values(review_num_rseq.currval,board_num_seq.currval,?,?)\n";
 			sql += "SELECT * FROM dual";
