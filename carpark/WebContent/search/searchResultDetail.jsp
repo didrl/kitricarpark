@@ -679,6 +679,7 @@ if(reviewlist.size()>0){
 					<label>
 									From : 
 									<input id="fromdate" name="fromdate" type="text" />
+									<!-- 
 									<select readonly="readonly" id="srfromTime" name="srfromTime">
 									  <option value="0">00:00</option><option value="1">01:00</option><option value="2">02:00</option>
 									  <option value="3">03:00</option> <option value="4">04:00</option><option value="5">05:00</option>
@@ -688,12 +689,13 @@ if(reviewlist.size()>0){
 									  <option value="15">15:00</option> <option value="16">16:00</option><option value="17">17:00</option>
 									  <option value="18">18:00</option><option value="19">19:00</option> <option value="20">20:00</option>
 									  <option value="21">21:00</option><option value="22">22:00</option><option value="23">23:00</option>
-									</select>
+									</select> -->
 								</label>
 						</div><!-- From Choice End -->
 						<div class="row"><!-- To Choice Start -->
 								<label>	T &nbsp;&nbsp;   o :  
 								<input readonly="readonly" id="todate"   name="todate" type="text" />
+								<!-- 
 								<select id="srtoTime" name="srtoTime">
 								  <option value="0">00:00</option><option value="1">01:00</option><option value="2">02:00</option>
 								  <option value="3">03:00</option> <option value="4">04:00</option><option value="5">05:00</option>
@@ -703,7 +705,7 @@ if(reviewlist.size()>0){
 								  <option value="15">15:00</option> <option value="16">16:00</option><option value="17">17:00</option>
 								  <option value="18">18:00</option><option value="19">19:00</option> <option value="20">20:00</option>
 								  <option value="21">21:00</option><option value="22">22:00</option><option value="23">23:00</option>
-								</select>
+								</select> -->
 								</label>
 					</div>	<!-- To Choice End --><br>
 

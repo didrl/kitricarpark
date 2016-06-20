@@ -126,7 +126,7 @@ if(reservationDto != null){
 								<label>
 								From : 
 								<input readonly="readonly" id="rdfromdate" name="rdfromdate" type="text"  />
-								<select id="rdfromTime" name="rdfromTime">
+								<!-- <select id="rdfromTime" name="rdfromTime">
 								  <option value="0">00:00</option><option value="1">01:00</option><option value="2">02:00</option>
 								  <option value="3">03:00</option> <option value="4">04:00</option><option value="5">05:00</option>
 								  <option value="6">06:00</option><option value="7">07:00</option><option value="8">08:00</option>
@@ -135,14 +135,14 @@ if(reservationDto != null){
 								  <option value="15">15:00</option> <option value="16">16:00</option><option value="17">17:00</option>
 								  <option value="18">18:00</option><option value="19">19:00</option> <option value="20">20:00</option>
 								  <option value="21">21:00</option><option value="22">22:00</option><option value="23">23:00</option>
-								</select>
+								</select> -->
 								</label>
 					</div><!-- From Choice End -->
 					<div class="row"><!-- To Choice Start -->
 								<label>
 								T &nbsp;&nbsp; o : 
 								<input readonly="readonly" id="rdtodate" name="rdtodate" type="text" />
-								<select id="rdtoTime" name="rdtoTime">
+								<!-- <select id="rdtoTime" name="rdtoTime">
 								  <option value="0">00:00</option><option value="1">01:00</option><option value="2">02:00</option>
 								  <option value="3">03:00</option> <option value="4">04:00</option><option value="5">05:00</option>
 								  <option value="6">06:00</option><option value="7">07:00</option><option value="8">08:00</option>
@@ -151,7 +151,7 @@ if(reservationDto != null){
 								  <option value="15">15:00</option> <option value="16">16:00</option><option value="17">17:00</option>
 								  <option value="18">18:00</option><option value="19">19:00</option> <option value="20">20:00</option>
 								  <option value="21">21:00</option><option value="22">22:00</option><option value="23">23:00</option>
-								</select>
+								</select> -->
 								</label>
 					</div>	<!-- To Choice End -->	
 					</div> <!--  radio button에 의한 Multi reservation End-->
@@ -160,7 +160,7 @@ if(reservationDto != null){
 								<label>
 								Date : 
 								<input  readonly="readonly" id="singledate"  name="singledate"  type="text"  />
-								<select id="datefromTime" name="datefromTime">
+								<!-- <select id="datefromTime" name="datefromTime">
 								  <option value="0">00:00</option><option value="1">01:00</option><option value="2">02:00</option>
 								  <option value="3">03:00</option> <option value="4">04:00</option><option value="5">05:00</option>
 								  <option value="6">06:00</option><option value="7">07:00</option><option value="8">08:00</option>
@@ -179,7 +179,7 @@ if(reservationDto != null){
 								  <option value="15">15:00</option> <option value="16">16:00</option><option value="17">17:00</option>
 								  <option value="18">18:00</option><option value="19">19:00</option> <option value="20">20:00</option>
 								  <option value="21">21:00</option><option value="22">22:00</option><option value="23">23:00</option>
-								</select>
+								</select> -->
 								</label>
 					</div><!--  radio button에 의한 Single reservation End--> <br>
 					<div><h3>어떤 차량을 주차 하길 원하십니까?</h3></div><br>
@@ -318,11 +318,11 @@ if(reservationDto != null){
 				//init time
 				$("#rdfromdate").val(fdate);
 				$("#rdtodate").val(tdate);
-				$("#rdtoTime").val("<%=reservationDto.getTotime()%>");
-				$("#rdfromTime").val("<%=reservationDto.getFromtime()%>");
+				//$("#rdtoTime").val("<=reservationDto.getTotime()%>");
+				//$("#rdfromTime").val("<=reservationDto.getFromtime()%>");
 				
-				$("#datefromTime").val("<%=reservationDto.getFromtime()%>");
-				$("#datetoTime").val("<%=reservationDto.getTotime()%>");
+				//$("#datefromTime").val("<=reservationDto.getFromtime()%>");
+				//$("#datetoTime").val("<=reservationDto.getTotime()%>");
 				$("#singledate").val(ddate);
 //				});
 				 $("#selectedfromdate").val(fdate);

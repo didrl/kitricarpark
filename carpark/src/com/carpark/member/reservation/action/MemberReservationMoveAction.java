@@ -48,8 +48,8 @@ public class MemberReservationMoveAction implements Action {
 			reservationDto.setHost_id(request.getParameter("host_id"));
 			reservationDto.setFromdate(request.getParameter("fromdate"));
 			reservationDto.setTodate(request.getParameter("todate"));
-			reservationDto.setFromtime(Integer.parseInt(request.getParameter("srfromTime")));
-			reservationDto.setTotime(Integer.parseInt(request.getParameter("srtoTime")));
+//			reservationDto.setFromtime(Integer.parseInt(request.getParameter("srfromTime")));
+//			reservationDto.setTotime(Integer.parseInt(request.getParameter("srtoTime")));
 
 			// parkingDto
 			reservationDto.setPark_id(park_id);
