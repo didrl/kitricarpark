@@ -103,7 +103,7 @@ public class MemberReviewDaoImpl implements MemberReviewDao {
 			sql += "into review(seq, rseq, aval_code, get_point, avaled_id, host_flag) \n";
 			sql += "values(board_seq.currval,review_num_rseq.nextval,0,?,?,?) \n";
 			sql += "into AVGPOINT (RSEQ, SEQ, PARK_ID, AVGPOINT)\n";
-			sql += "values(review_num_rseq.currval,board_num_seq.currval,?,?)\n";
+			sql += "values(review_num_rseq.currval,board_seq.currval,?,?)\n";
 			sql += "SELECT * FROM dual";
 			pstmt = conn.prepareStatement(sql);
 			int idx = 0;
