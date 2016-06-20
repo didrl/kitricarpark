@@ -68,6 +68,7 @@ public class MemberLoginAction implements Action{
             MemberServiceImpl.getMemberService().register(memberDto);
          }
 //         session.setAttribute("memberInfo",memberDto);
+        
       }else{
          memberDto = MemberServiceImpl.getMemberService().login(id,pass);
       }

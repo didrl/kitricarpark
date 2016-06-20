@@ -36,7 +36,7 @@ MemberDto getmemberInfo = (MemberDto)session.getAttribute("getmemberInfo");
 							<div class="form-group">
 								<label ><h3>내 사진</h3></label><br>
 <% 
-if(memberDto.getLogin_key()!=null){
+if(memberDto.getProfile_image()!=null){
 %>
 								<div id="kakao-profile">
 									<img src="<%=memberDto.getProfile_image()%>" class="img-circle" width="200" height="200" border="5" align="middle">
@@ -44,7 +44,7 @@ if(memberDto.getLogin_key()!=null){
 <%
 }else{
 %>		
-								<div id="kakao-profile">
+								<div id="profile">
 									<img src="<%=root%>/img/bg_orign.jpg" class="img-circle" width="200" height="200" border="5" align="middle">
 								</div>
 <%
