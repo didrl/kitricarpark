@@ -25,6 +25,8 @@ function logout(){
 }
 </script>
 
+<div class=justpark_color>
+
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 	<!-- Brand and toggle get grouped for better mobile display -->
 	<div class="navbar-header">
@@ -170,7 +172,7 @@ if(memberDto!=null){
 
 	<!-- /.navbar-collapse -->
 </nav>
-
+</div>
 
 
 
