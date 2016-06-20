@@ -25,7 +25,7 @@ if(memberDto != null && 10 == memberDto.getUser_flag()) {
 <header id="top" class="header">
 	<div class="text-vertical-center">
 		<div class="center-block">
-			<h1>CPark</h1>
+			<h1>Car Park</h1>
 			<h3>Parking Share</h3>
 			<br>
 <%@include file="/common/searchBar.jsp"%>
@@ -36,8 +36,8 @@ if(memberDto != null && 10 == memberDto.getUser_flag()) {
 
 <!-- Services -->
 <!-- The circle icons use Font Awesome's stacked icon classes. For more information, visit http://fontawesome.io/examples/ -->
-<section id="services" class="services bg-primary">
-	<div class="container">
+<section id="services" class="services bg-primary" >
+	<div class="container" >
 		<div class="row text-center">
 			<div class="col-lg-10 col-lg-offset-1">
 				<h2>Our Services</h2>
