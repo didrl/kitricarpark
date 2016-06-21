@@ -13,7 +13,6 @@ public class ParkingDto implements Serializable{
 	private String content;		//상세내용
 	private String detailAddr;	//상세주소
 	private int park_public;	//공용/사설
-	private int pic_seq;		//사진번호
 	
 	public int getPark_id() {
 		return park_id;
@@ -75,13 +74,4 @@ public class ParkingDto implements Serializable{
 	public void setPark_public(int park_public) {
 		this.park_public = park_public;
 	}
-	public int getPic_seq() {
-		return pic_seq;
-	}
-	public void setPic_seq(int pic_seq) {
-		this.pic_seq = pic_seq;
-	}
-
-	
-	
 }

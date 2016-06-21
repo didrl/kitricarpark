@@ -25,6 +25,11 @@ function logout(){
 }
 </script>
 
+<<<<<<< HEAD
+=======
+<div class=justpark_color>
+
+>>>>>>> 09eeeb831d1546b4a4ccf3afc7eb25f95c547f6c
 <nav id="justpark_color" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 	<!-- Brand and toggle get grouped for better mobile display -->
 	<div class="navbar-header">
@@ -60,8 +65,7 @@ if(memberDto!=null){
 			data-toggle="dropdown"><i class="fa fa-bell"></i> <b
 				class="caret"></b></a>
 			<ul class="dropdown-menu alert-dropdown">
-				<li><a href="<%=root%>/call?act=mvzip">제보하기 <span
-						class="label label-default">Alert Badge</span></a></li>
+				<li><a href="<%=root%>/call?act=mvzip">제보하기</a></li>
 				
 				
 			</ul></li>
@@ -171,7 +175,7 @@ if(memberDto!=null){
 
 	<!-- /.navbar-collapse -->
 </nav>
-
+</div>
 
 
 

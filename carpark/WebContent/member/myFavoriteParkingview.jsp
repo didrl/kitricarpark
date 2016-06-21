@@ -53,9 +53,9 @@ if(memberDto != null) {
 		</tr>
 		<tr>
 				<td width="80">사용가능 여부</td>
-				<td><p><%=parkingViewDto.getPark_flag() %></p></td>
+				<td><p><%=parkingViewDto.getPark_flag()!=0?"사용 가능":"사용 불가" %></p></td>
 				<td>월 정기권</td>
-				<td><p><%=parkingViewDto.getFulltime_monthly_pay() %></p></td>
+				<td><p><%=parkingViewDto.getFulltime_monthly_pay()/100 %></p></td>
 		</tr>
 		<tr>
 			<td colspan="4" align="center">

@@ -4,7 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -127,13 +129,17 @@ public class MemberReservationDaoImpl implements MemberReservationDao {
       try {
          conn=DBConnection.makeConnection();
          
+         Calendar calendar = Calendar.getInstance();
+         java.util.Date date = calendar.getTime();
+         String reser_id = (new SimpleDateFormat("yyyyMMddHHmmssSSS").format(date));
+         
          conn.setAutoCommit(false);
          String sql="";
          sql += "insert into reservation (reser_id, park_id, user_id, start_date, end_date,rdate,pay) \n";
-         sql += "values(concat(to_char(systimestamp, 'yyyymmddhh24missFF3'),?),?,?,?,?,sysdate,?)\n"; 
+         sql += "values(?,?,?,?,?,sysdate,?)\n"; 
          pstmt = conn.prepareStatement(sql);//미리 sql 문장을 가져가서 검사하고 틀린게 없을 때 실행
          int idx =1;//중간에 없어지거나 추가될때 필요
-         pstmt.setInt(idx++, reservationDto.getPark_id());
+         pstmt.setString(idx++, reser_id);
          pstmt.setInt(idx++, reservationDto.getPark_id());
          pstmt.setString(idx++, reservationDto.getUser_id());
          pstmt.setString(idx++, reservationDto.getFromdate());
@@ -168,6 +174,21 @@ public class MemberReservationDaoImpl implements MemberReservationDao {
          pstmt.setInt(idx++, reservationDto.getPay());
          pstmt.setString(idx++, reservationDto.getUser_id());
          pstmt.executeUpdate();
+         
+         pstmt.close();
+         
+         idx=1;
+         sql="";
+         sql += "insert \n";
+		 sql += "into coin (user_id,coin,cid,cflag,cdate,reser_id) \n";
+		 sql += "values (?, ?, coin_num_seq.nextval,1,sysdate,?) \n";
+			pstmt = conn.prepareStatement(sql);
+			idx = 1;
+			
+			pstmt.setString(idx++, reservationDto.getUser_id());
+			pstmt.setInt(idx++, reservationDto.getPay());
+			pstmt.setString(idx++, reser_id);
+			pstmt.executeUpdate();
          
          conn.commit();
          
