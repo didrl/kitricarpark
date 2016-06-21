@@ -82,12 +82,13 @@ public class AdminDaoImpl implements AdminDao {
 			conn=DBConnection.makeConnection();
 			String sql="";
 			
-			sql += "select rownum, to_char(a.logtime,'yyyy-mm-dd') as logtime, a.sumover\n";
-			sql += "from(	select logtime,  sum(count(user_id)) over (order by logtime) as sumover \n"; 
-			sql += "			from member \n";
-			sql += "			group by logtime \n";
-			sql += "			order by logtime) a \n";
-			sql += "where rownum<16 \n";
+			sql += "select rownum, a.logtime, a.sumover\n";
+			sql += "from(	select b.logtime,  sum(count(b.user_id)) over (order by logtime) as sumover  \n"; 
+			sql += "			from (select to_char(logtime,'yyyy-mm-dd') logtime, user_id \n";
+			sql += "				  from member) b \n";
+			sql += "			group by b.logtime \n";
+			sql += "order by b.logtime) a  \n";
+			sql += "where rownum<16  \n";
 
 			pstmt = conn.prepareStatement(sql);//미리 sql 문장을 가져가서 검사하고 틀린게 없을 때 실행
 
