@@ -24,13 +24,7 @@ function logout(){
 	document.location.href=root+"/member?act=mvlogout";
 }
 </script>
-
-<<<<<<< HEAD
-=======
-<div class=justpark_color>
-
->>>>>>> 09eeeb831d1546b4a4ccf3afc7eb25f95c547f6c
-<nav id="justpark_color" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 	<!-- Brand and toggle get grouped for better mobile display -->
 	<div class="navbar-header">
 		<button type="button" class="navbar-toggle" data-toggle="collapse"
