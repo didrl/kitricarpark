@@ -27,7 +27,7 @@
 	 	<script>
 	 	var today = new Date();
 	 	var datelimit = new Date(today);
-	 	datelimit.setDate(today.getDate() + 62);
+	 	datelimit.setDate(today.getDate() + 31);
 
 
 
@@ -64,8 +64,9 @@
 
 	 	$('#todatesearch').click(function() {
 	 	    var fechaFrom = new Date($("#fromdatesearch").val());
-	 	    var toLimit = new Date();
+	 	    var toLimit = new Date(fechaFrom);
 	 	    toLimit.setDate(fechaFrom.getDate() + 31);
+	 	    
 	 	    to.options.selectableDateRange = [{
 	 	        from: fechaFrom,
 	 	        to: toLimit

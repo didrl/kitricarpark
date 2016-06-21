@@ -13,8 +13,9 @@ ArrayList<MemberCarDto> carInfo = (ArrayList<MemberCarDto>) session.getAttribute
 ArrayList<Map<String,String>> availabledate = (ArrayList<Map<String,String>>)session.getAttribute("availabledate");
 ParkingDetailDto parkingDetailDto =(ParkingDetailDto) session.getAttribute("parkingDetailDto");
 ArrayList<ParkingDto> list = (ArrayList<ParkingDto>)session.getAttribute("searchlist");
-
+int carNum=0;
 if(reservationDto != null){
+	   carNum = carInfo.size();
 	   StringBuffer sb =new StringBuffer();
 	   SimpleDateFormat transFormat = new SimpleDateFormat("yyyy/MM/dd");
 	   Calendar cal = Calendar.getInstance();
@@ -425,7 +426,7 @@ if(reservationDto != null){
 				var minutes = 1000 * 60;
 				var hours = minutes * 60;
 				var days = hours * 24;
-							
+				var numcar = <%=carNum%>;							
 				var fdateDate = Date.parseExact(fdate,"yyyy/M/d");
 				var tdateDate = Date.parseExact(tdate,"yyyy/M/d");
 				
@@ -446,6 +447,9 @@ if(reservationDto != null){
 			        if(pay><%=memberDto.getCoin()%>){
 			        	alert("보유한 코인이 부족합니다. 코인 충전 후 다시 이용해주세요.");
 			        	document.location.href = "<%=root%>/member?act=mvcoin";
+			        }else if(numcar==0){
+			        	alert("차량 등록 후 이용할 수 있습니다. 차량을 등록해주세요.");
+			        	return;
 			        }else{
 				        $("#paypark_id").val("<%=parkingDetailDto.getPark_id()%>");
 				        $("#payfromtime").val($("#rdfromTime").val());
