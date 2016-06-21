@@ -42,7 +42,7 @@ public class MemberReservationMoveAction implements Action {
 		ArrayList<Map<String, String>> availabledate = MemberReservationServiceImpl.getMemberReservationService()
 				.getAvailDate(park_id);
 
-		if (reservationDto == null) {
+//		if (reservationDto == null) {
 			reservationDto = new ReservationDto();
 			reservationDto.setUser_id(user_id);
 			reservationDto.setHost_id(request.getParameter("host_id"));
@@ -54,7 +54,7 @@ public class MemberReservationMoveAction implements Action {
 			// parkingDto
 			reservationDto.setPark_id(park_id);
 			reservationDto.setPark_name(request.getParameter("park_name"));
-		}
+//		}
 		ParkingDetailDto parkingDetailDto = MemberServiceImpl.getMemberService().getParkingDetail_info(request.getParameter("park_id"));
 
 		session.setAttribute("reservationDto", reservationDto);

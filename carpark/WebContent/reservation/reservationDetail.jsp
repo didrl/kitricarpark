@@ -431,7 +431,7 @@ if(reservationDto != null){
 				
 				var reserHours = (tdateDate-fdateDate)/hours;
 				var reserDays = (tdateDate-fdateDate)/days;
-				var reserExtraHours = $("#rdtoTime").val()-$("#rdfromTime").val();
+				//var reserExtraHours = $("#rdtoTime").val()-$("#rdfromTime").val();
 				if(reserDays==0 && reserExtraHours==0){
 					alert("예약할 시간을 확인해주세요.");
 					return;
@@ -440,7 +440,8 @@ if(reservationDto != null){
 					if(<%=parkingDetailDto.getDay_max_pay()%>==0)
 						pay=reserHours*<%=parkingDetailDto.getAdd_park_rate()/100%>/(4*reserDays);
 					else
-			        	pay =<%=parkingDetailDto.getDay_max_pay()/100%>*reserDays+(<%=parkingDetailDto.getAdd_park_rate()%>*reserExtraHours)/100;
+			        	pay =<%=parkingDetailDto.getDay_max_pay()/100%>*reserDays;
+			        	//pay =<=parkingDetailDto.getDay_max_pay()/100%>*reserDays+(<=parkingDetailDto.getAdd_park_rate()%>*reserExtraHours)/100;
 			        	
 			        if(pay><%=memberDto.getCoin()%>){
 			        	alert("보유한 코인이 부족합니다. 코인 충전 후 다시 이용해주세요.");
