@@ -28,8 +28,8 @@ public class MemberReservationRegisterAction implements Action {
 		reservationDto.setPark_id(Integer.parseInt(request.getParameter("park_id")));
 		reservationDto.setFromdate(request.getParameter("selectedfromdate"));
 		reservationDto.setTodate(request.getParameter("selectedtodate"));
-		reservationDto.setFromtime(Integer.parseInt(request.getParameter("payfromtime")));
-		reservationDto.setTotime(Integer.parseInt(request.getParameter("paytotime")));
+//		reservationDto.setFromtime(Integer.parseInt(request.getParameter("payfromtime")));
+//		reservationDto.setTotime(Integer.parseInt(request.getParameter("paytotime")));
 		reservationDto.setPay(Integer.parseInt(request.getParameter("selectedprice")));
 		
 		MemberReservationServiceImpl.getMemberReservationService().registerReservation(reservationDto);
