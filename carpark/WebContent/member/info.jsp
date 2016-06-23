@@ -45,7 +45,7 @@ if(memberDto.getProfile_image()!=null){
 }else{
 %>		
 								<div id="profile">
-									<img src="<%=root%>/img/bg_orign.jpg" class="img-circle" width="200" height="200" border="5" align="middle">
+									<img src="<%=root%>/img/IUprofile.png" class="img-circle" width="200" height="200" border="5" align="middle">
 								</div>
 <%
 }

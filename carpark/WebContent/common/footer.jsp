@@ -16,20 +16,20 @@
                     <br>
                     <ul class="list-inline">
                         <li>
-                            <a href="http://www.daum.net/"><img src="/carpark/img/footerlogo/DAUM.jpg" width="90" height="50"></a>
-                        </li>
-                        <li>
-                            <a href="https://www.google.co.kr/webhp?hl=ko"><img src="/carpark/img/footerlogo/google.jpg" width="90" height="50"></a>
-                        </li>
-                        <li>
                             <a href="http://www.kitri.re.kr/kitri/main/main.web"><img src="/carpark/img/footerlogo/kitri.png" width="90" height="40"></a>
                         </li>
                         <li>
                             <a href="http://www.oracle.com/index.html"><img src="/carpark/img/footerlogo/oracle.png" width="90" height="50"></a>
                         </li>
+                        <li>
+                            <a href="http://www.paypal.com/index.html"><img src="/carpark/img/footerlogo/paypal_logo.jpg" width="90" height="50"></a>
+                        </li>
+                        <li>
+                            <a href="http://www.git-scm.com/"><img src="/carpark/img/footerlogo/git_logo.png" width="90" height="50"></a>
+                        </li>
                     </ul>
                     <hr class="small">
-                    <p class="text-muted">Copyright &copy; All rights reserved Car Park</p>
+                    <p class="text-muted">Copyright &copy; Car Park All rights reserved</p>
                 </div>
             </div>
         </div>
