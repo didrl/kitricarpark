@@ -139,7 +139,7 @@ if(getmemberInfo!=null){
 
                                                 
                         	<div class="form-group" align="center"> 
-                           	 	<button type="submit" class="btn btn-default">상세정보 보기</button>
+                           	 	<button type="submit" class="btn btn-default">프로필 수정</button>
                   			</div>
 						</form>
 					</div>
