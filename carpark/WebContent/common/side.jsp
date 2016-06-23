@@ -37,10 +37,10 @@ function receiveReviewList(pg) {
 					
 				<li><a href="javascript:;" data-toggle="collapse"
 					data-target="#message"><i class="fa fa-envelope"></i>
-						메세지 <i class="fa fa-fw fa-caret-down"></i></a>
+						쪽지 <i class="fa fa-fw fa-caret-down"></i></a>
 					<ul id="message" class="collapse">
-						<li><a href="javascript:messageReceiveList();">받은 메세지</a></li>
-						<li><a href="javascript:messageSendList();">보낸 메세지</a></li>
+						<li><a href="javascript:messageReceiveList();">받은 쪽지함</a></li>
+						<li><a href="javascript:messageSendList();">보낸 쪽지함</a></li>
 					</ul></li>
 					
 						<li><a href="javascript:;" data-toggle="collapse"
@@ -61,7 +61,7 @@ function receiveReviewList(pg) {
 					</ul></li>
 					
 				<li><a href="javascript:mycoin();"><i class="fa fa-fw fa-file"></i>
-						My Coin</a></li>
+						코인</a></li>
 						
 				<li><a href="javascript:reportList('1');"><i class="fa fa-fw fa-wrench"></i>
 						신고내역 <i class="fa fa-fw fa-caret-down"></i></a>
