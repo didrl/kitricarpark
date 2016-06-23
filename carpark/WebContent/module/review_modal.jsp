@@ -20,7 +20,7 @@ function reviewWrite(){
 				<button type="button" class="close" data-dismiss="modal">
 					<span aria-hidden="true">×</span><span class="sr-only">Close</span>
 				</button>
-				<h4 class="reviewToParking" id="reviewToPark">리뷰 남기기</h4>
+				<h4 class="reviewToParking" id="reviewToPark">후기 남기기</h4>
 			</div>
 			<div class="modal-body">
 

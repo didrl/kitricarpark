@@ -15,6 +15,9 @@ function ownCarView(park_id){
 	//alert(park_id+" 눌렀다.");
 }
 </script>
+<!-- For addCar Modal -->
+   <%@include file="/reservation/addMyOwnCarModal.jsp"%>
+   <!-- For addCar Modal -->
 <div id="wrapper">
 <!-- ****************************************************************************************************************** -->	
 
@@ -22,6 +25,9 @@ function ownCarView(park_id){
 		<div id="page-wrapper">
 			<div class="container-fluid">
 				<br><h3>내 등록된 차량</h3><br>
+				<button type="button" class="btn btn-default"  id="addcarbt" data-toggle="modal" data-target="#addCar">
+                  				 + 차량 등록 
+               				</button><br>
 					
 				
 				<!-- 메세지 리스트 -->
