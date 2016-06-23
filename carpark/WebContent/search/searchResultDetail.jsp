@@ -745,7 +745,7 @@ if(memberDto != null) {//공영주차장이 아닐때
 						<!-- host info panel End -->
 					<!--  clelander panel  -->
 					<div class="panel panel-default" align="center">
-					<h3>사용 가능 일</h3>
+					<h3>예약 가능 일</h3>
 						<div class="panel-body" id="datepanelbody">
     						</div>
 						</div>

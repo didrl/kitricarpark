@@ -255,7 +255,7 @@ if(reservationDto != null){
 					<div class="panel panel-default">
 					<!-- clelander panel  -->
 						<div class="panel-body" id="rdcalendar">
-						<h3>사용 가능 일</h3>
+						<h3>예약 가능 일</h3>
 						</div>
 					</div>
 					<!-- clelander panel End -->
