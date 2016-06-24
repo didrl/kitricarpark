@@ -104,7 +104,7 @@ for(Map<String,String> sguu : goodUseUserList){
   ]);
 
 	var options = {
-	  title : '우수 이용 고객 통계정보',
+	  title : '우수이용 고객 통계정보',
 	  hAxis: {title: '고객 아이디'},
 	  vAxis: {title: '사용률'},
 	  seriesType: 'bars',
@@ -137,7 +137,7 @@ for(Map<String,String> bgu : goodBehaviorUserList){
   ]);
 
 	var options = {
-	  title : '우수 고객 통계정보',
+	  title : '우수활동 고객 통계정보',
 	  hAxis: {title: '고객 아이디'},
 	  vAxis: {title: '상벌점'},
 	  seriesType: 'bars'

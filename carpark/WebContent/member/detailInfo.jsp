@@ -20,11 +20,7 @@ int delete =  (Integer)request.getAttribute("delete");
 				<div class="row">
 					<div class="col-lg-12">
 						<h1 class="page-header">프로필수정</h1>
-						<ol class="breadcrumb">
-							<li><i class="fa fa-dashboard"></i> <a href="index.html">Dashboard</a>
-							</li>
-							<li class="active"><i class="fa fa-edit"></i> Forms</li>
-						</ol>
+						
 					</div>
 				</div>
 				<!-- /.row -->
@@ -37,7 +33,6 @@ int delete =  (Integer)request.getAttribute("delete");
 							<div class="form-group">
 								<label>이름</label> <input class="form-control"
 									value="<%=memberDetailInfo.getUser_name()%>" name="modifyname">
-								<p class="help-block">Example block-level help text here.</p>
 							</div>
 
 							<div class="form-group">

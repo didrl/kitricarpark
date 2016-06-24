@@ -64,7 +64,7 @@ function receiveReviewList(pg) {
 						코인</a></li>
 						
 				<li><a href="javascript:reportList('1');"><i class="fa fa-fw fa-wrench"></i>
-						신고내역 <i class="fa fa-fw fa-caret-down"></i></a>
+						신고내역 </a>
 				</li>
 			</ul>
 		</div>
