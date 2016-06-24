@@ -60,6 +60,12 @@ int delete =  (Integer)request.getAttribute("delete");
 								<label for="exampleInputEmail2">이메일</label> <input
 									type="email" class="form-control" id="exampleInputEmail2" name="modifyemail"
 									value="<%=memberDetailInfo.getEmail() %>">
+							
+							
+							<div class="form-group">
+								<button type="submit" class="btn btn-default">수정</button>
+								<button type="reset" class="btn btn-default">취소</button>
+								<button type="button" class="btn btn-default" onclick="javascript:secession('<%=memberDto.getUser_id()%>');">회원탈퇴</button>
 							</div>
 					</div>
 					<!-- /.col-lg-6 -->
@@ -70,7 +76,7 @@ int delete =  (Integer)request.getAttribute("delete");
 							<label>프로필 사진 선택</label> <input type="file">
 						</div> -->
 
-
+<!-- 
 						<div class="form-group">
 							<label>회사 선택</label> <label class="radio-inline">
 								<input type="radio" name="optionsRadiosInline"
@@ -89,12 +95,10 @@ int delete =  (Integer)request.getAttribute("delete");
 								value="option3">없음
 							</label>
 						</div>
-
-						<div class="form-group">
-							<button type="submit" class="btn btn-default">수정</button>
-							<button type="reset" class="btn btn-default">취소</button>
-							<button type="button" class="btn btn-default" onclick="javascript:secession('<%=memberDto.getUser_id()%>');">회원탈퇴</button>
-						</div>
+ -->
+						
+							
+						
 
 					</div>
 					</form>
