@@ -10,22 +10,23 @@
                     <p>서울시 구로구 디지털로 34길 43<br>코오롱사이언스밸리 1차 4층</p>
                     <ul class="list-unstyled">
                         <li><i class="fa fa-phone fa-fw"></i> (02) 869-8301</li>
-                        <li><i class="fa fa-envelope-o fa-fw"></i>  <a href="mailto:cpark@google.com">cpark@google.com</a>
+                        <li><i class="fa fa-envelope-o fa-fw"></i>  <a href="mailto:parkingc16@gmail.com">parkingc16@gmail.com</a>
                         </li>
                     </ul>
                     <br>
                     <ul class="list-inline">
                         <li>
-                            <a href="http://www.kitri.re.kr/kitri/main/main.web"><img src="/carpark/img/footerlogo/kitri.png" width="90" height="40"></a>
+                            <a href="http://www.kitri.re.kr/kitri/main/main.web"><img src="/carpark/img/footerlogo/re_kitri.png"  height="20"></a>
                         </li>
                         <li>
-                            <a href="http://www.oracle.com/index.html"><img src="/carpark/img/footerlogo/oracle.png" width="90" height="50"></a>
+                            <a href="http://www.oracle.com/index.html"><img src="/carpark/img/footerlogo/re_oracle.png"  height="20"></a>
+                        </li>
+                        
+                        <li>
+                            <a href="http://www.git-scm.com/"><img src="/carpark/img/footerlogo/re_git.png" height="20"></a>
                         </li>
                         <li>
-                            <a href="http://www.paypal.com/index.html"><img src="/carpark/img/footerlogo/paypal_logo.jpg" width="90" height="50"></a>
-                        </li>
-                        <li>
-                            <a href="http://www.git-scm.com/"><img src="/carpark/img/footerlogo/git_logo.png" width="90" height="50"></a>
+                            <a href="http://www.paypal.com/index.html"><img src="/carpark/img/footerlogo/re_Paypal.png" height="20"></a>
                         </li>
                     </ul>
                     <hr class="small">
