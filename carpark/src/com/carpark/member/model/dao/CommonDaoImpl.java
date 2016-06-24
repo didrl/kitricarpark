@@ -361,6 +361,7 @@ public class CommonDaoImpl implements CommonDao {
 			sql += "select count(b.seq) \n";
 			sql += "from board b, message m \n";
 			sql += "where b.seq = m.seq \n";
+			sql += "and delete_recei = 0 \n";
 			sql += "and receiver_id = ? \n";
 			sql += "and to_char(logtime, 'yymmdd') = to_char(sysdate, 'yymmdd') \n";
 			pstmt = conn.prepareStatement(sql);
@@ -395,6 +396,7 @@ public class CommonDaoImpl implements CommonDao {
 			sql += "select count(b.seq) \n";
 			sql += "from board b, message m \n";
 			sql += "where b.seq = m.seq \n";
+			sql += "and delete_recei = 0 \n";
 			sql += "and receiver_id = ? \n";
 			if(key != null && !key.isEmpty()) {
 				if(word != null && !word.isEmpty()) {
@@ -433,10 +435,12 @@ public class CommonDaoImpl implements CommonDao {
 		try {
 			conn = DBConnection.makeConnection();
 			String sql = "";
-			sql += "select count(seq) \n";
-			sql += "from board \n";
-			sql += "where user_id = ? \n";
-			sql += "and bcode = ? \n";
+			sql += "select count(b.seq) \n";
+			sql += "from board b, message m \n";
+			sql += "where delete_send = 0 \n";
+			sql += "and b.seq = m.seq \n";
+			sql += "and user_id = ? \n";
+			sql += "and b.bcode = ? \n";
 			sql += "and to_char(logtime, 'yymmdd') = to_char(sysdate, 'yymmdd') \n";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, userId);
@@ -468,10 +472,12 @@ public class CommonDaoImpl implements CommonDao {
 		try {
 			conn = DBConnection.makeConnection();
 			String sql = "";
-			sql += "select count(seq) \n";
-			sql += "from board \n";
-			sql += "where user_id = ? \n";
-			sql += "and bcode = ? \n";
+			sql += "select count(b.seq) \n";
+			sql += "from board b, message m \n";
+			sql += "where delete_send = 0 \n";
+			sql += "and b.seq = m.seq \n";
+			sql += "and user_id = ? \n";
+			sql += "and b.bcode = ? \n";
 			if(key != null && !key.isEmpty()) {
 				if(word != null && !word.isEmpty()) {
 					if("subject".equals(key))
