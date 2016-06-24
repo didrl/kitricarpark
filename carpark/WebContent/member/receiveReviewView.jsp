@@ -38,13 +38,13 @@ if(memberDto != null) {
 %>
 	<table class="table">
 		<tr>
-				<td width="120">주차장 번호</td>
+				<td width="60">주차장 번호</td>
 				<td ><%=reviewDto.getPark_id()%></td>
 				<td width="50">평가대상</td>
 				<td width="100"><%=reviewDto.getAvaled_id() %></td>
 		</tr>
 		<tr>
-				<td width="50">평가자</td>
+				<td>평가자</td>
 				<td width="100"><%=reviewDto.getUser_id() %></td>
 				<td >받은 평점</td>
 				<td ><%=reviewDto.getAvgPoint()%></td>
@@ -55,12 +55,12 @@ if(memberDto != null) {
 				<td colspan="3"><p><%=reviewDto.getLogtime() %></p></td>
 		</tr>
 		<tr>
-				<td width="80">제목</td>
+				<td>제목</td>
 				<td colspan="3"><%=reviewDto.getSubject() %></td>
 		</tr>
 		<tr>
-				<td width="80">내용</td>
-				<td colspan="3"><p><%=reviewDto.getContent()%></p></td>
+				<td>내용</td>
+				<td colspan="3" height="300px"><p><%=reviewDto.getContent()%></p></td>
 		</tr>
 		<tr>
 			<td colspan="4" align="center">
