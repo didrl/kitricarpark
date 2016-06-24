@@ -1,0 +1,4092 @@
+--------------------------------------------------------
+--  File created - 금요일-6월-24-2016   
+--------------------------------------------------------
+  DROP TABLE "AVGPOINT" cascade constraints;
+  DROP TABLE "BOARD" cascade constraints;
+  DROP TABLE "BOARDTYPE" cascade constraints;
+  DROP TABLE "CALL" cascade constraints;
+  DROP TABLE "CAR_INFO" cascade constraints;
+  DROP TABLE "CITIES" cascade constraints;
+  DROP TABLE "COIN" cascade constraints;
+  DROP TABLE "EVALUATION" cascade constraints;
+  DROP TABLE "FAQ" cascade constraints;
+  DROP TABLE "FAVORITE" cascade constraints;
+  DROP TABLE "GRADE" cascade constraints;
+  DROP TABLE "MEMBER" cascade constraints;
+  DROP TABLE "MEMBER_CAR" cascade constraints;
+  DROP TABLE "MESSAGE" cascade constraints;
+  DROP TABLE "PARKING" cascade constraints;
+  DROP TABLE "PARKING_DETAIL" cascade constraints;
+  DROP TABLE "PENALTY" cascade constraints;
+  DROP TABLE "PICTURE" cascade constraints;
+  DROP TABLE "REPORT" cascade constraints;
+  DROP TABLE "RESERVATION" cascade constraints;
+  DROP TABLE "REVIEW" cascade constraints;
+  DROP TABLE "ZIPCODE" cascade constraints;
+  DROP SEQUENCE "BOARD_SEQ";
+  DROP SEQUENCE "CALL_NUM_PCSEQ";
+  DROP SEQUENCE "COIN_NUM_SEQ";
+  DROP SEQUENCE "MESSAGE_NUM_MSEQ";
+  DROP SEQUENCE "PIC_SEQ";
+  DROP SEQUENCE "REPORT_NUM_CSEQ";
+  DROP SEQUENCE "REVIEW_NUM_RSEQ";
+--------------------------------------------------------
+--  DDL for Sequence BOARD_SEQ
+--------------------------------------------------------
+
+   CREATE SEQUENCE  "BOARD_SEQ"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 882 CACHE 20 NOORDER  NOCYCLE
+--------------------------------------------------------
+--  DDL for Sequence CALL_NUM_PCSEQ
+--------------------------------------------------------
+
+   CREATE SEQUENCE  "CALL_NUM_PCSEQ"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 401 CACHE 20 NOORDER  NOCYCLE
+--------------------------------------------------------
+--  DDL for Sequence COIN_NUM_SEQ
+--------------------------------------------------------
+
+   CREATE SEQUENCE  "COIN_NUM_SEQ"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 221 CACHE 20 NOORDER  NOCYCLE
+--------------------------------------------------------
+--  DDL for Sequence MESSAGE_NUM_MSEQ
+--------------------------------------------------------
+
+   CREATE SEQUENCE  "MESSAGE_NUM_MSEQ"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 381 CACHE 20 NOORDER  NOCYCLE
+--------------------------------------------------------
+--  DDL for Sequence PIC_SEQ
+--------------------------------------------------------
+
+   CREATE SEQUENCE  "PIC_SEQ"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 1 CACHE 20 NOORDER  NOCYCLE
+--------------------------------------------------------
+--  DDL for Sequence REPORT_NUM_CSEQ
+--------------------------------------------------------
+
+   CREATE SEQUENCE  "REPORT_NUM_CSEQ"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 61 CACHE 20 NOORDER  NOCYCLE
+--------------------------------------------------------
+--  DDL for Sequence REVIEW_NUM_RSEQ
+--------------------------------------------------------
+
+   CREATE SEQUENCE  "REVIEW_NUM_RSEQ"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 281 CACHE 20 NOORDER  NOCYCLE
+--------------------------------------------------------
+--  DDL for Table AVGPOINT
+--------------------------------------------------------
+
+  CREATE TABLE "AVGPOINT" ("RSEQ" NUMBER, "SEQ" NUMBER, "PARK_ID" NUMBER, "AVGPOINT" NUMBER)
+--------------------------------------------------------
+--  DDL for Table BOARD
+--------------------------------------------------------
+
+  CREATE TABLE "BOARD" ("SEQ" NUMBER, "BCODE" NUMBER, "USER_ID" VARCHAR2(16), "SUBJECT" VARCHAR2(100), "CONTENTS" VARCHAR2(1000), "LOGTIME" DATE)
+--------------------------------------------------------
+--  DDL for Table BOARDTYPE
+--------------------------------------------------------
+
+  CREATE TABLE "BOARDTYPE" ("BCODE" NUMBER, "BNAME" VARCHAR2(20))
+--------------------------------------------------------
+--  DDL for Table CALL
+--------------------------------------------------------
+
+  CREATE TABLE "CALL" ("PCALL_ID" NUMBER, "PCSEQ" NUMBER, "PCALL_ADDR" VARCHAR2(100), "PCALL_IMG" VARCHAR2(100), "PCALL_FLAG" NUMBER, "PCALL_NUM" NUMBER, "PCALL_OK" NUMBER DEFAULT 0, "pcall_latitude" NUMBER, "pcall_longtitude" NUMBER)
+--------------------------------------------------------
+--  DDL for Table CAR_INFO
+--------------------------------------------------------
+
+  CREATE TABLE "CAR_INFO" ("CAR_ID" VARCHAR2(20), "MAKER" VARCHAR2(20), "MODEL" VARCHAR2(20))
+--------------------------------------------------------
+--  DDL for Table CITIES
+--------------------------------------------------------
+
+  CREATE TABLE "CITIES" ("SGG_CODE" NUMBER, "EMD_CODE" NUMBER, "SGG_NAME" VARCHAR2(20), "EMD_NAME" VARCHAR2(20), "LAT" NUMBER, "LNG" NUMBER)
+--------------------------------------------------------
+--  DDL for Table COIN
+--------------------------------------------------------
+
+  CREATE TABLE "COIN" ("USER_ID" VARCHAR2(16), "CDATE" DATE, "COIN" NUMBER, "CFLAG" NUMBER, "CID" NUMBER, "RESER_ID" VARCHAR2(50))
+--------------------------------------------------------
+--  DDL for Table EVALUATION
+--------------------------------------------------------
+
+  CREATE TABLE "EVALUATION" ("PENALTY_CODE" NUMBER, "PENALTY_NAME" VARCHAR2(100), "PENALTY_CONTENT" VARCHAR2(100), "PENALTY_POINT" NUMBER)
+--------------------------------------------------------
+--  DDL for Table FAQ
+--------------------------------------------------------
+
+  CREATE TABLE "FAQ" ("FSEQ" NUMBER, "SUBJECT" VARCHAR2(100), "CONTET" CLOB)
+--------------------------------------------------------
+--  DDL for Table FAVORITE
+--------------------------------------------------------
+
+  CREATE TABLE "FAVORITE" ("PARK_ID" NUMBER, "USER_ID" VARCHAR2(16))
+--------------------------------------------------------
+--  DDL for Table GRADE
+--------------------------------------------------------
+
+  CREATE TABLE "GRADE" ("GRADE_ID" NUMBER, "GRADE_NAME" VARCHAR2(20), "AVGPOINT" NUMBER DEFAULT 0, "BENEFIT" NUMBER DEFAULT 0, "PENALTY" NUMBER DEFAULT 0)
+--------------------------------------------------------
+--  DDL for Table MEMBER
+--------------------------------------------------------
+
+  CREATE TABLE "MEMBER" ("USER_ID" VARCHAR2(16), "USER_PASS" VARCHAR2(20), "GRADE_ID" NUMBER DEFAULT 3, "LOGIN_KEY" VARCHAR2(50), "HOST_FLAG" NUMBER DEFAULT 0, "COIN" NUMBER DEFAULT 0, "USER_AVGPOINT" NUMBER DEFAULT 0, "PENALTY" NUMBER DEFAULT 0, "USER_FLAG" NUMBER DEFAULT 0, "USER_NAME" VARCHAR2(40), "EMAIL" VARCHAR2(100), "TEL" NUMBER, "PROFILE_IMAGE" VARCHAR2(1000), "LOGTIME" DATE) 
+
+   COMMENT ON COLUMN "MEMBER"."USER_FLAG" IS '0=personal 1=Enterprise 2=admin'
+--------------------------------------------------------
+--  DDL for Table MEMBER_CAR
+--------------------------------------------------------
+
+  CREATE TABLE "MEMBER_CAR" ("CATEGORY" VARCHAR2(10), "REG_NUM" VARCHAR2(14), "CAR_ID" VARCHAR2(20), "USER_ID" VARCHAR2(16), "CAR_NAME" VARCHAR2(100))
+--------------------------------------------------------
+--  DDL for Table MESSAGE
+--------------------------------------------------------
+
+  CREATE TABLE "MESSAGE" ("MSEQ" NUMBER, "SEQ" NUMBER, "RECEIVER_ID" VARCHAR2(16), "MSG_FLAG" NUMBER DEFAULT 0, "DELETE_SEND" NUMBER, "DELETE_RECEI" NUMBER)
+--------------------------------------------------------
+--  DDL for Table PARKING
+--------------------------------------------------------
+
+  CREATE TABLE "PARKING" ("PARK_ID" NUMBER, "PARK_NAME" VARCHAR2(100), "PARK_CAPACITY" NUMBER, "OWNER_ID" VARCHAR2(16), "LATITUDE" NUMBER, "LONGITUDE" NUMBER, "PARK_TYPE" VARCHAR2(6), "EMD_CODE" NUMBER, "CONTENT" VARCHAR2(400), "DETAIL_ADDR" VARCHAR2(100), "PARK_PUBLIC" NUMBER)
+--------------------------------------------------------
+--  DDL for Table PARKING_DETAIL
+--------------------------------------------------------
+
+  CREATE TABLE "PARKING_DETAIL" ("PARK_ID" NUMBER, "PARK_FLAG" NUMBER DEFAULT 1, "PARK_AVGPOINT" NUMBER DEFAULT 0, "GET_STATUS" NUMBER, "CUR_PARKING" NUMBER, "PAY_YN" VARCHAR2(4), "SATUR_PAY_YN" VARCHAR2(4), "HOLI_PAY_YN" VARCHAR2(4), "FULLTIME_MONTHLY_PAY" NUMBER, "PARK_RATE" NUMBER, "PARK_TIME_RATE" NUMBER, "ADD_PARK_RATE" NUMBER, "DAY_MAX_PAY" NUMBER, "PARK_VISIT" NUMBER, "FACILITY" VARCHAR2(100))
+--------------------------------------------------------
+--  DDL for Table PENALTY
+--------------------------------------------------------
+
+  CREATE TABLE "PENALTY" ("PENALTY_NUM" NUMBER, "USER_ID" VARCHAR2(20), "PENALTY_CODE" NUMBER, "PENALTY_DATE" DATE, "PENALTY_MEMO" VARCHAR2(100), "SEQ" NUMBER)
+--------------------------------------------------------
+--  DDL for Table PICTURE
+--------------------------------------------------------
+
+  CREATE TABLE "PICTURE" ("PIC_SEQ" NUMBER, "PIC_NAME" VARCHAR2(100), "PIC_PATH" VARCHAR2(1000), "PIC_SAVEFOLDER" VARCHAR2(100), "PARK_ID" NUMBER, "USER_ID" VARCHAR2(16), "SEQ" NUMBER)
+--------------------------------------------------------
+--  DDL for Table REPORT
+--------------------------------------------------------
+
+  CREATE TABLE "REPORT" ("SEQ" NUMBER, "CSEQ" NUMBER, "PARK_ID" NUMBER, "USER_ID" VARCHAR2(16), "REPORT_FLAG" NUMBER(1,0))
+--------------------------------------------------------
+--  DDL for Table RESERVATION
+--------------------------------------------------------
+
+  CREATE TABLE "RESERVATION" ("RESER_ID" VARCHAR2(50), "PARK_ID" NUMBER, "USER_ID" VARCHAR2(16), "START_DATE" DATE, "END_DATE" DATE, "PAY" NUMBER, "RDATE" DATE)
+--------------------------------------------------------
+--  DDL for Table REVIEW
+--------------------------------------------------------
+
+  CREATE TABLE "REVIEW" ("RSEQ" NUMBER, "SEQ" NUMBER, "AVAL_CODE" NUMBER, "GET_POINT" NUMBER, "AVALED_ID" VARCHAR2(16), "HOST_FLAG" NUMBER DEFAULT 0)
+--------------------------------------------------------
+--  DDL for Table ZIPCODE
+--------------------------------------------------------
+
+  CREATE TABLE "ZIPCODE" ("CODE" NUMBER, "SIDO" VARCHAR2(100), "GUGUN" VARCHAR2(100), "STREET" VARCHAR2(200))
+
+---------------------------------------------------
+--   DATA FOR TABLE AVGPOINT
+--   FILTER = none used
+---------------------------------------------------
+REM INSERTING into AVGPOINT
+Insert into AVGPOINT (RSEQ,SEQ,PARK_ID,AVGPOINT) values (65,45,1371666,3.5);
+Insert into AVGPOINT (RSEQ,SEQ,PARK_ID,AVGPOINT) values (103,83,781512,4);
+Insert into AVGPOINT (RSEQ,SEQ,PARK_ID,AVGPOINT) values (123,103,1371306,1.5);
+Insert into AVGPOINT (RSEQ,SEQ,PARK_ID,AVGPOINT) values (162,142,1371306,4);
+Insert into AVGPOINT (RSEQ,SEQ,PARK_ID,AVGPOINT) values (163,143,1371306,4.25);
+Insert into AVGPOINT (RSEQ,SEQ,PARK_ID,AVGPOINT) values (164,144,173578,5);
+Insert into AVGPOINT (RSEQ,SEQ,PARK_ID,AVGPOINT) values (167,147,130531,3.5);
+Insert into AVGPOINT (RSEQ,SEQ,PARK_ID,AVGPOINT) values (168,148,173333,3.5);
+Insert into AVGPOINT (RSEQ,SEQ,PARK_ID,AVGPOINT) values (169,149,130531,4);
+Insert into AVGPOINT (RSEQ,SEQ,PARK_ID,AVGPOINT) values (181,161,173359,4);
+Insert into AVGPOINT (RSEQ,SEQ,PARK_ID,AVGPOINT) values (222,202,173359,4.5);
+Insert into AVGPOINT (RSEQ,SEQ,PARK_ID,AVGPOINT) values (42,25,173530,4);
+Insert into AVGPOINT (RSEQ,SEQ,PARK_ID,AVGPOINT) values (66,46,1367666,3.5);
+Insert into AVGPOINT (RSEQ,SEQ,PARK_ID,AVGPOINT) values (67,47,1367666,3.5);
+Insert into AVGPOINT (RSEQ,SEQ,PARK_ID,AVGPOINT) values (68,48,1367666,4);
+Insert into AVGPOINT (RSEQ,SEQ,PARK_ID,AVGPOINT) values (104,84,1042405,2.5);
+Insert into AVGPOINT (RSEQ,SEQ,PARK_ID,AVGPOINT) values (141,121,1366394,4);
+Insert into AVGPOINT (RSEQ,SEQ,PARK_ID,AVGPOINT) values (161,141,1371306,5);
+Insert into AVGPOINT (RSEQ,SEQ,PARK_ID,AVGPOINT) values (170,150,135938,3.5);
+Insert into AVGPOINT (RSEQ,SEQ,PARK_ID,AVGPOINT) values (171,151,135938,3);
+Insert into AVGPOINT (RSEQ,SEQ,PARK_ID,AVGPOINT) values (172,152,173591,4);
+Insert into AVGPOINT (RSEQ,SEQ,PARK_ID,AVGPOINT) values (30,13,173530,5);
+Insert into AVGPOINT (RSEQ,SEQ,PARK_ID,AVGPOINT) values (31,14,111804,4);
+Insert into AVGPOINT (RSEQ,SEQ,PARK_ID,AVGPOINT) values (32,15,173530,4);
+Insert into AVGPOINT (RSEQ,SEQ,PARK_ID,AVGPOINT) values (33,16,173530,4);
+Insert into AVGPOINT (RSEQ,SEQ,PARK_ID,AVGPOINT) values (34,17,173530,4);
+Insert into AVGPOINT (RSEQ,SEQ,PARK_ID,AVGPOINT) values (35,18,173530,5);
+Insert into AVGPOINT (RSEQ,SEQ,PARK_ID,AVGPOINT) values (36,19,173530,5);
+Insert into AVGPOINT (RSEQ,SEQ,PARK_ID,AVGPOINT) values (37,20,173530,4);
+Insert into AVGPOINT (RSEQ,SEQ,PARK_ID,AVGPOINT) values (39,22,173530,5);
+Insert into AVGPOINT (RSEQ,SEQ,PARK_ID,AVGPOINT) values (40,23,173530,5);
+Insert into AVGPOINT (RSEQ,SEQ,PARK_ID,AVGPOINT) values (41,24,173530,5);
+Insert into AVGPOINT (RSEQ,SEQ,PARK_ID,AVGPOINT) values (61,41,173530,5);
+Insert into AVGPOINT (RSEQ,SEQ,PARK_ID,AVGPOINT) values (62,42,173530,4);
+Insert into AVGPOINT (RSEQ,SEQ,PARK_ID,AVGPOINT) values (63,43,173530,4);
+Insert into AVGPOINT (RSEQ,SEQ,PARK_ID,AVGPOINT) values (64,44,173530,4);
+Insert into AVGPOINT (RSEQ,SEQ,PARK_ID,AVGPOINT) values (101,81,1371666,3);
+Insert into AVGPOINT (RSEQ,SEQ,PARK_ID,AVGPOINT) values (102,82,1371666,3.5);
+Insert into AVGPOINT (RSEQ,SEQ,PARK_ID,AVGPOINT) values (108,88,1366794,3);
+Insert into AVGPOINT (RSEQ,SEQ,PARK_ID,AVGPOINT) values (109,89,173691,4);
+Insert into AVGPOINT (RSEQ,SEQ,PARK_ID,AVGPOINT) values (121,101,173468,3);
+Insert into AVGPOINT (RSEQ,SEQ,PARK_ID,AVGPOINT) values (122,102,173468,3);
+Insert into AVGPOINT (RSEQ,SEQ,PARK_ID,AVGPOINT) values (166,146,111804,4.5);
+Insert into AVGPOINT (RSEQ,SEQ,PARK_ID,AVGPOINT) values (173,153,173591,3.5);
+Insert into AVGPOINT (RSEQ,SEQ,PARK_ID,AVGPOINT) values (174,154,173440,3);
+Insert into AVGPOINT (RSEQ,SEQ,PARK_ID,AVGPOINT) values (241,843,1371306,4);
+Insert into AVGPOINT (RSEQ,SEQ,PARK_ID,AVGPOINT) values (81,61,1371666,3.5);
+Insert into AVGPOINT (RSEQ,SEQ,PARK_ID,AVGPOINT) values (165,145,173329,3);
+Insert into AVGPOINT (RSEQ,SEQ,PARK_ID,AVGPOINT) values (223,813,1366394,4);
+Insert into AVGPOINT (RSEQ,SEQ,PARK_ID,AVGPOINT) values (224,815,1366394,4);
+Insert into AVGPOINT (RSEQ,SEQ,PARK_ID,AVGPOINT) values (225,817,173359,4);
+Insert into AVGPOINT (RSEQ,SEQ,PARK_ID,AVGPOINT) values (105,85,173447,4);
+Insert into AVGPOINT (RSEQ,SEQ,PARK_ID,AVGPOINT) values (106,86,173359,3);
+Insert into AVGPOINT (RSEQ,SEQ,PARK_ID,AVGPOINT) values (107,87,173359,3);
+Insert into AVGPOINT (RSEQ,SEQ,PARK_ID,AVGPOINT) values (261,866,1366394,5);
+
+---------------------------------------------------
+--   END DATA FOR TABLE AVGPOINT
+---------------------------------------------------
+
+---------------------------------------------------
+--   DATA FOR TABLE MEMBER_CAR
+--   FILTER = none used
+---------------------------------------------------
+REM INSERTING into MEMBER_CAR
+Insert into MEMBER_CAR (CATEGORY,REG_NUM,CAR_ID,USER_ID,CAR_NAME) values ('소형','44너4444','sm_001','IUGuest','MyCar');
+Insert into MEMBER_CAR (CATEGORY,REG_NUM,CAR_ID,USER_ID,CAR_NAME) values ('중형','88나8888','md_004','IUGuest','MyCar');
+Insert into MEMBER_CAR (CATEGORY,REG_NUM,CAR_ID,USER_ID,CAR_NAME) values ('대형','55구5959','bg_003','SZGuest','MyCar');
+Insert into MEMBER_CAR (CATEGORY,REG_NUM,CAR_ID,USER_ID,CAR_NAME) values ('화물','88바2288','tr_004','SZGuest','MyCar');
+Insert into MEMBER_CAR (CATEGORY,REG_NUM,CAR_ID,USER_ID,CAR_NAME) values ('대형','94너4944','bg_003','GdGuest','MyCar');
+Insert into MEMBER_CAR (CATEGORY,REG_NUM,CAR_ID,USER_ID,CAR_NAME) values ('대형','11일8888','bg_004','GdGuest','MyCar');
+Insert into MEMBER_CAR (CATEGORY,REG_NUM,CAR_ID,USER_ID,CAR_NAME) values ('소형','77오5559','sm_003','TopGuest','MyCar');
+Insert into MEMBER_CAR (CATEGORY,REG_NUM,CAR_ID,USER_ID,CAR_NAME) values ('특수','88군2988','sp_001','TopGuest','MyCar');
+Insert into MEMBER_CAR (CATEGORY,REG_NUM,CAR_ID,USER_ID,CAR_NAME) values ('소형','31구2393',null,'SZGuest','쉐보레 스파크');
+Insert into MEMBER_CAR (CATEGORY,REG_NUM,CAR_ID,USER_ID,CAR_NAME) values ('소형','99구9999',null,'IUGuest','쉐보레 스파크');
+Insert into MEMBER_CAR (CATEGORY,REG_NUM,CAR_ID,USER_ID,CAR_NAME) values ('소형','99구9988',null,'IUGuest','현대 엑센트');
+Insert into MEMBER_CAR (CATEGORY,REG_NUM,CAR_ID,USER_ID,CAR_NAME) values ('소형','78팔7878',null,'참치회','현대 엑센트');
+Insert into MEMBER_CAR (CATEGORY,REG_NUM,CAR_ID,USER_ID,CAR_NAME) values ('소형','09공0909',null,'IUGuest','쉐보레 트랙스');
+Insert into MEMBER_CAR (CATEGORY,REG_NUM,CAR_ID,USER_ID,CAR_NAME) values ('소형','10수1010',null,'PublicPark','쉐보레 스파크');
+Insert into MEMBER_CAR (CATEGORY,REG_NUM,CAR_ID,USER_ID,CAR_NAME) values ('소형','22이2323',null,'suk','쉐보레 트랙스');
+Insert into MEMBER_CAR (CATEGORY,REG_NUM,CAR_ID,USER_ID,CAR_NAME) values ('소형','10십1918',null,'SZGuest','쉐보레 트랙스');
+Insert into MEMBER_CAR (CATEGORY,REG_NUM,CAR_ID,USER_ID,CAR_NAME) values ('소형','10십1919',null,'SZGuest','쉐보레 스파크');
+Insert into MEMBER_CAR (CATEGORY,REG_NUM,CAR_ID,USER_ID,CAR_NAME) values ('대형','11대9999',null,'봉','JEEP 컴패스');
+Insert into MEMBER_CAR (CATEGORY,REG_NUM,CAR_ID,USER_ID,CAR_NAME) values ('소형','99고9999',null,'IUGuest','쉐보레 스파크');
+Insert into MEMBER_CAR (CATEGORY,REG_NUM,CAR_ID,USER_ID,CAR_NAME) values ('소형','98구8989',null,'봉','쉐보레 트랙스');
+Insert into MEMBER_CAR (CATEGORY,REG_NUM,CAR_ID,USER_ID,CAR_NAME) values ('소형','12봉1212',null,'봉','현대 엑센트');
+Insert into MEMBER_CAR (CATEGORY,REG_NUM,CAR_ID,USER_ID,CAR_NAME) values ('소형','44샤4444',null,'봉','현대 엑센트');
+Insert into MEMBER_CAR (CATEGORY,REG_NUM,CAR_ID,USER_ID,CAR_NAME) values ('소형','88팔8888',null,'매너좋은놈','현대 엑센트');
+Insert into MEMBER_CAR (CATEGORY,REG_NUM,CAR_ID,USER_ID,CAR_NAME) values ('소형','11구9999',null,'SZGuest','쉐보레 스파크');
+Insert into MEMBER_CAR (CATEGORY,REG_NUM,CAR_ID,USER_ID,CAR_NAME) values ('대형','31구2323',null,'SZGuest','JEEP 컴패스');
+Insert into MEMBER_CAR (CATEGORY,REG_NUM,CAR_ID,USER_ID,CAR_NAME) values ('특수','19수1919',null,'Jennifer200','현대 쏠라티');
+Insert into MEMBER_CAR (CATEGORY,REG_NUM,CAR_ID,USER_ID,CAR_NAME) values ('중형','56고5645',null,'IUGuest','K5');
+Insert into MEMBER_CAR (CATEGORY,REG_NUM,CAR_ID,USER_ID,CAR_NAME) values ('대형','48가1535',null,'IUGuest','BMW720D');
+
+---------------------------------------------------
+--   END DATA FOR TABLE MEMBER_CAR
+---------------------------------------------------
+
+---------------------------------------------------
+--   DATA FOR TABLE EVALUATION
+--   FILTER = none used
+---------------------------------------------------
+REM INSERTING into EVALUATION
+Insert into EVALUATION (PENALTY_CODE,PENALTY_NAME,PENALTY_CONTENT,PENALTY_POINT) values (10,'불친절','불친절에 대한 모든 것',1);
+Insert into EVALUATION (PENALTY_CODE,PENALTY_NAME,PENALTY_CONTENT,PENALTY_POINT) values (20,'욕설','욕설에 대한 모든 것',3);
+Insert into EVALUATION (PENALTY_CODE,PENALTY_NAME,PENALTY_CONTENT,PENALTY_POINT) values (30,'계약위반','계약위반에 대한 모든 것',5);
+Insert into EVALUATION (PENALTY_CODE,PENALTY_NAME,PENALTY_CONTENT,PENALTY_POINT) values (40,'사기','사기에 대한 모든 것',10);
+
+---------------------------------------------------
+--   END DATA FOR TABLE EVALUATION
+---------------------------------------------------
+
+---------------------------------------------------
+--   DATA FOR TABLE REPORT
+--   FILTER = none used
+---------------------------------------------------
+REM INSERTING into REPORT
+Insert into REPORT (SEQ,CSEQ,PARK_ID,USER_ID,REPORT_FLAG) values (619,191,1366394,'PublicPark',0);
+Insert into REPORT (SEQ,CSEQ,PARK_ID,USER_ID,REPORT_FLAG) values (630,201,1371306,'PublicPark',1);
+Insert into REPORT (SEQ,CSEQ,PARK_ID,USER_ID,REPORT_FLAG) values (621,193,173468,'PublicPark',1);
+Insert into REPORT (SEQ,CSEQ,PARK_ID,USER_ID,REPORT_FLAG) values (847,341,1371306,'PublicPark',0);
+Insert into REPORT (SEQ,CSEQ,PARK_ID,USER_ID,REPORT_FLAG) values (620,192,173139,'PublicPark',0);
+
+---------------------------------------------------
+--   END DATA FOR TABLE REPORT
+---------------------------------------------------
+
+---------------------------------------------------
+--   DATA FOR TABLE CALL
+--   FILTER = none used
+---------------------------------------------------
+REM INSERTING into CALL
+Insert into CALL (PCALL_ID,PCSEQ,PCALL_ADDR,PCALL_IMG,PCALL_FLAG,PCALL_NUM,PCALL_OK,"pcall_latitude","pcall_longtitude") values (521,186,'서울 강동구 천호1동 106-(8)',null,0,null,1,null,null);
+Insert into CALL (PCALL_ID,PCSEQ,PCALL_ADDR,PCALL_IMG,PCALL_FLAG,PCALL_NUM,PCALL_OK,"pcall_latitude","pcall_longtitude") values (524,189,'서울 강동구 성내동  ',null,0,null,1,null,null);
+Insert into CALL (PCALL_ID,PCSEQ,PCALL_ADDR,PCALL_IMG,PCALL_FLAG,PCALL_NUM,PCALL_OK,"pcall_latitude","pcall_longtitude") values (685,271,'서울특별시 강남구 자곡동 120-20',null,0,null,0,null,null);
+Insert into CALL (PCALL_ID,PCSEQ,PCALL_ADDR,PCALL_IMG,PCALL_FLAG,PCALL_NUM,PCALL_OK,"pcall_latitude","pcall_longtitude") values (582,208,'서울 강동구 천호1동 106-(8)',null,0,null,0,null,null);
+Insert into CALL (PCALL_ID,PCSEQ,PCALL_ADDR,PCALL_IMG,PCALL_FLAG,PCALL_NUM,PCALL_OK,"pcall_latitude","pcall_longtitude") values (575,204,'서울 강동구 천호1동 106-(2)',null,0,null,0,null,null);
+Insert into CALL (PCALL_ID,PCSEQ,PCALL_ADDR,PCALL_IMG,PCALL_FLAG,PCALL_NUM,PCALL_OK,"pcall_latitude","pcall_longtitude") values (688,283,'서울특별시 송파구 방이동 38-1',null,0,null,1,null,null);
+Insert into CALL (PCALL_ID,PCSEQ,PCALL_ADDR,PCALL_IMG,PCALL_FLAG,PCALL_NUM,PCALL_OK,"pcall_latitude","pcall_longtitude") values (826,342,'서울특별시 강동구 성내동 혜림주택',null,0,null,0,null,null);
+Insert into CALL (PCALL_ID,PCSEQ,PCALL_ADDR,PCALL_IMG,PCALL_FLAG,PCALL_NUM,PCALL_OK,"pcall_latitude","pcall_longtitude") values (827,344,'서울특별시 송파구 신천동 29번지',null,0,null,0,null,null);
+Insert into CALL (PCALL_ID,PCSEQ,PCALL_ADDR,PCALL_IMG,PCALL_FLAG,PCALL_NUM,PCALL_OK,"pcall_latitude","pcall_longtitude") values (641,221,'서울 구로구 구로1동  ',null,0,null,0,null,null);
+Insert into CALL (PCALL_ID,PCSEQ,PCALL_ADDR,PCALL_IMG,PCALL_FLAG,PCALL_NUM,PCALL_OK,"pcall_latitude","pcall_longtitude") values (828,347,'서울특별시 송파구 잠실동 120-7',null,0,null,0,null,null);
+
+---------------------------------------------------
+--   END DATA FOR TABLE CALL
+---------------------------------------------------
+
+---------------------------------------------------
+--   DATA FOR TABLE PARKING
+--   FILTER = none used
+---------------------------------------------------
+REM INSERTING into PARKING
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (781512,'곰달래 문화복지센터 공영주차장(구)',211,'PublicPark',37.52904612,126.8488608,'NW',1150010300,'공영주차장','강서구 화곡동 890-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (968514,'색동공원 공영주차장(구)',80,'PublicPark',37.63322721,127.0207105,'NW',1130510300,'공영주차장','강북구 수유동 49-7',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (75612,'아카데미 노상공영(구)',71,'PublicPark',37.64275111,127.0026298,'NS',1130510300,'공영주차장','강북구 수유동 535-76',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (112411,'렉싱턴호텔뒤 노상주차장(구)',12,'PublicPark',37.52941646,126.9221318,'NS',1156011000,'공영주차장','영등포구 여의도동 13-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1372454,'대림노외(시)',93,'PublicPark',37.4928472,126.8943315,'NW',1153010200,'공영주차장','구로구 구로동 120-5',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1373998,'남대문시장2번게이트앞 이륜자동차주차장(시)',9,'PublicPark',37.56079136,126.9775538,'NS',1114011700,'공영주차장, 이륜차 주차장','중구 남대문로4가 3-6',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1374127,'영등포역 이륜자동차주차장(구)',1,'PublicPark',37.5162643,126.9067409,'NS',1156010400,'공영주차장, 이륜차 주차장','영등포구 영등포동3가 618-496',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1374138,'영등포역 이륜자동차주차장(구)',1,'PublicPark',37.51631506,126.9068755,'NS',1156010400,'공영주차장, 이륜차 주차장','영등포구 영등포동3가 618-496',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1377975,'동작대교(시)',50,'PublicPark',37.50515806,126.9807414,'NS',1159010600,'공영주차장','동작구 동작동 316-3',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1380767,'창신쌍용2지구 북측 이륜차주차장(구)',1,'PublicPark',37.5804908,127.0106024,'NS',1111017400,'공영주차장, 이륜차 주차장','종로구 창신동 37-16',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1384198,'동대문주차장(시)',1103,'PublicPark',37.56729802,127.0114499,'NW',1114016200,'공영주차장','중구 신당동 251-7',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1392010,'test(구)',1,'PublicPark',0,0,'NS',1114011800,'공영주차장','중구 남대문로5가 459-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1398740,'신교공영(구)',158,'PublicPark',37.58411794,126.9698478,'NW',1111010200,'공영주차장','종로구 신교동 66-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1410226,'중곡시장주차장(구)',19,'PublicPark',37.56401514,127.0818405,'NW',1121510100,'공영주차장','광진구 중곡동 221-15',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1025717,'양재역환승주차장(시)',894,'PublicPark',37.48352522,127.034342,'NW',1165010200,'공영주차장, 환승시설 주변','서초구 양재동 23-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1040011,'상계2동 공영주차장(구)',108,'PublicPark',37.6567376,127.067531,'NW',1135010500,'공영주차장','노원구 상계동 373-13',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1041839,'신당동 공영주차장(구)',24,'PublicPark',37.56204618,127.0144272,'NW',1114016200,'공영주차장','중구 신당동 300-11',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1051019,'서신초교지하공동주차장(구)',110,'PublicPark',37.59220373,126.9066978,'NW',1138010900,'공영주차장','은평구 신사동 193-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1079122,'길음역환승주차장(구)',147,'PublicPark',37.60423761,127.0258183,'NW',1129013600,'공영주차장, 환승시설 주변','성북구 하월곡동 104-112',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1163648,'봉천복개3(시)',74,'PublicPark',37.48815235,126.9302768,'NS',1162010200,'공영주차장','관악구 신림동 1467-3',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1167439,'삼환아파트(구)',1,'PublicPark',37.46482966,126.8916081,'NS',1154510200,'공영주차장','금천구 독산동 1004-6',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1167707,'삼환아파트(구)',1,'PublicPark',37.46479292,126.8906687,'NS',1154510200,'공영주차장','금천구 독산동 1004-6',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1247678,'망원1-2 공영주차장(구)',150,'PublicPark',37.55558459,126.9058731,'NW',1144012300,'공영주차장','마포구 망원동 403-2',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1167764,'유진골프장(구)',40,'PublicPark',37.4695239,126.8881527,'NS',1154510200,'공영주차장','금천구 독산동 1081-2',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1167823,'가산중앞(구)',30,'PublicPark',37.46919643,126.8949944,'NS',1154510200,'공영주차장','금천구 독산동 300-26',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1167832,'덕성엔앰피(구)',30,'PublicPark',37.47250848,126.8831407,'NS',1154510100,'공영주차장','금천구 가산동 345-15',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1167932,'삼성물산~마이크로오피스(구)',28,'PublicPark',37.47394953,126.8817762,'NS',1154510100,'공영주차장','금천구 가산동 345-26',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1167961,'요업기술원-LG전자뒤(구)',52,'PublicPark',37.47452057,126.890578,'NS',1154510100,'공영주차장','금천구 가산동 237-101',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1168323,'모아래5길~천주교성당뒤(구)',11,'PublicPark',37.47353664,126.8907592,'NS',1154510100,'공영주차장','금천구 가산동 237-123',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1168498,'삼환아파트(구)',1,'PublicPark',37.46482287,126.8913749,'NS',1154510200,'공영주차장','금천구 독산동 1004-6',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1168606,'삼환아파트(구)',1,'PublicPark',37.46520196,126.8919153,'NS',1154510200,'공영주차장','금천구 독산동 1004-6',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1168658,'서광모드(구)',17,'PublicPark',37.47477744,126.8859948,'NS',1154510100,'공영주차장','금천구 가산동 60-33',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1168804,'삼환아파트(구)',1,'PublicPark',37.46524701,126.8919038,'NS',1154510200,'공영주차장','금천구 독산동 1004-6',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1168852,'삼환아파트(구)',1,'PublicPark',37.46529223,126.8918924,'NS',1154510200,'공영주차장','금천구 독산동 1004-6',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1168928,'SJ테크노빌(구)',37,'PublicPark',37.47963781,126.8837038,'NS',1154510100,'공영주차장','금천구 가산동 60-19',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1168986,'삼환아파트(구)',1,'PublicPark',37.46492033,126.8918331,'NS',1154510200,'공영주차장','금천구 독산동 1004-6',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1169034,'삼환아파트(구)',1,'PublicPark',37.4648245,126.8914321,'NS',1154510200,'공영주차장','금천구 독산동 1004-6',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1169081,'삼환아파트(구)',1,'PublicPark',37.46622271,126.8918229,'NS',1154510200,'공영주차장','금천구 독산동 1004-6',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1169082,'삼환아파트(구)',1,'PublicPark',37.4661765,126.8918222,'NS',1154510200,'공영주차장','금천구 독산동 1004-6',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1169256,'기륭전자(구)',31,'PublicPark',37.47318065,126.8877596,'NS',1154510100,'공영주차장','금천구 가산동 219-7',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1169364,'대륭2차(구)',45,'PublicPark',37.46917581,126.8857062,'NS',1154510100,'공영주차장','금천구 가산동 338-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1169370,'수출의다리(시)',14,'PublicPark',37.47641341,126.8830443,'NS',1154510100,'공영주차장','금천구 가산동 371-31',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1169373,'대륭1차~아톰(구)',40,'PublicPark',37.46939239,126.8836362,'NS',1154510100,'공영주차장','금천구 가산동 345-48',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1169446,'삼환아파트(구)',1,'PublicPark',37.46497787,126.891925,'NS',1154510200,'공영주차장','금천구 독산동 1004-6',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1169490,'가산중뒤(구)',45,'PublicPark',37.46802676,126.8941181,'NS',1154510200,'공영주차장','금천구 독산동 300-21',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1169706,'가산동금천교(시)',50,'PublicPark',37.46577177,126.8871264,'NS',1154510100,'공영주차장','금천구 가산동 691-3',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1169723,'서부간선도로(구)',83,'PublicPark',37.47193628,126.8810481,'NS',1154510100,'공영주차장','금천구 가산동 557-4',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1169896,'범일운수~신세계물류센터(구)',42,'PublicPark',37.46795327,126.8900681,'NS',1154510200,'공영주차장','금천구 독산동 1001-2',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1169936,'사조냉장-무등실업(구)',27,'PublicPark',37.47123772,126.8916713,'NS',1154510200,'공영주차장','금천구 독산동 303-2',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1169981,'화곡4동배다리동길노상주차장(구)',90,'PublicPark',37.52992373,126.8588959,'NS',1150010300,'공영주차장','강서구 화곡동 842-11',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1170433,'구암길 노상주차장(구)',52,'PublicPark',37.56101193,126.8460011,'NS',1150010200,'공영주차장','강서구 등촌동 695-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1172364,'삼환아파트(구)',1,'PublicPark',37.46479865,126.8908846,'NS',1154510200,'공영주차장','금천구 독산동 1004-6',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1172612,'삼환아파트(구)',1,'PublicPark',37.46478992,126.8904856,'NS',1154510200,'공영주차장','금천구 독산동 1004-6',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1173072,'신학대길 노상주차장(구)',62,'PublicPark',37.55055737,126.8502119,'NS',1150010300,'공영주차장','강서구 화곡동 980-19',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1174174,'방신시장 고객주차장(구)',10,'PublicPark',37.57196725,126.8133448,'NS',1150010900,'공영주차장','강서구 방화동 858-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1174223,'화곡1동배다리서길노상주차장(구)',295,'PublicPark',37.52827327,126.8420064,'NS',1150010300,'공영주차장','강서구 화곡동 914-3',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1174233,'황금내공원길(구)',81,'PublicPark',37.56277437,126.8622457,'NS',1150010400,'공영주차장','강서구 가양동 1485-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1175069,'제물포로(시)',88,'PublicPark',37.5289583,126.8554943,'NS',1150010300,'공영주차장','강서구 화곡동 947-3',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1175418,'화곡2동배다리동길노상주차장(구)',201,'PublicPark',37.52987006,126.8575907,'NS',1150010300,'공영주차장','강서구 화곡동 881-14',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1177715,'달구지길 노상주차장(구)',29,'PublicPark',37.53298446,126.8369446,'NS',1150010300,'공영주차장','강서구 화곡동 361-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1180082,'망원 노상 공영주차장(구)',92,'PublicPark',37.55344227,126.9027908,'NS',1144012300,'공영주차장','마포구 망원동 397-20',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1180193,'용강동 노상 공영주차장(구)',77,'PublicPark',37.54126245,126.9415381,'NS',1144010500,'공영주차장','마포구 용강동 122-15',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1180642,'당인 노상 공영주차장(구)',47,'PublicPark',37.54646105,126.9176589,'NS',1144012200,'공영주차장','마포구 합정동 362-22',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1180721,'합정 노상 공영주차장(구)',23,'PublicPark',37.54909204,126.9156279,'NS',1144012000,'공영주차장','마포구 서교동 394-22',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1180833,'연남 노상 공영주차장(구)',74,'PublicPark',37.56244533,126.9245432,'NS',1144012400,'공영주차장','마포구 연남동 229-10',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1180914,'청기와 노상 공영주차장(구)',86,'PublicPark',37.5565457,126.914407,'NS',1144012000,'공영주차장','마포구 서교동 457-25',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1180915,'경남 노상 공영주차장 (구)',22,'PublicPark',37.55414318,126.9191948,'NS',1144012000,'공영주차장','마포구 서교동 353-7',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1184061,'홍대서측 노상 공영주차장(구)',174,'PublicPark',37.54901424,126.9206327,'NS',1144012000,'공영주차장','마포구 서교동 366-19',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1188260,'신일피혁노상(구)',17,'PublicPark',37.56531716,127.0678192,'NS',1123010600,'공영주차장','동대문구 장안동 436-3',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1189080,'동서울 호텔길(A) 공영주차장(자양동)(구)',46,'PublicPark',37.52974227,127.0902243,'NS',1121510500,'공영주차장','광진구 자양동 695-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1191037,'동부청과 노상(시)',25,'PublicPark',37.57743669,127.0445453,'NS',1123010200,'공영주차장','동대문구 용두동 38-5',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1191239,'동서울 호텔길 공영주차장(자양동)(구)',8,'PublicPark',37.54031631,127.0650544,'NS',1121510500,'공영주차장','광진구 자양동 695-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1191352,'신성시장길(구)',1,'PublicPark',37.5548457,127.0934725,'NS',1121510300,'공영주차장','광진구 구의동 558-11',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1192697,'중곡복개천 공영주차장(B)(구)',37,'PublicPark',37.56017837,127.086011,'NS',1121510100,'공영주차장','광진구 중곡동 277-20',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1193050,'신성시장 노상(구)',1,'PublicPark',37.55730537,127.0900425,'NS',1121510100,'공영주차장','광진구 중곡동 83-23',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1193127,'장안보성연립노상주차장(구)',12,'PublicPark',37.56602954,127.0657129,'NS',1123010600,'공영주차장','동대문구 장안동 427-4',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1193858,'중곡복개천 공영주차장(구)',41,'PublicPark',37.56048678,127.0858892,'NS',1121510100,'공영주차장','광진구 중곡동 150-196',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1195466,'동서울 호텔길 공영주차장(B)(구)',31,'PublicPark',37.53152342,127.091742,'NS',1121510500,'공영주차장','광진구 자양동 735-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1197273,'뚝도시장 노상공영주차장(구)',17,'PublicPark',37.53786712,127.0545095,'NS',1120011500,'공영주차장','성동구 성수동2가 335-60',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1199786,'성동노인복지회관 앞 노상공영주차장(구)',69,'PublicPark',37.56517761,127.0404795,'NS',1120010500,'공영주차장','성동구 마장동 812-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1201024,'KT 성수분국 앞 노상공영주차장(구)',202,'PublicPark',37.54396898,127.0608259,'NS',1120011500,'공영주차장','성동구 성수동2가 277-43',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1203053,'효창공원1(구)',61,'PublicPark',37.5456828,126.9589008,'NS',1117011900,'공영주차장','용산구 효창동 3-151',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1203572,'삼청공원앞 유료(구)',16,'PublicPark',37.58752476,126.9831718,'NS',1111014000,'공영주차장','종로구 삼청동 25-11',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1203624,'용산등기소(시)',16,'PublicPark',37.5370422,126.9695609,'NS',1117012200,'공영주차장','용산구 문배동 12-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1204439,'충신교회(구)',23,'PublicPark',37.5201708,126.967087,'NS',1117012900,'공영주차장','용산구 이촌동 302-31',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1205225,'한강로2가동(구)',24,'PublicPark',37.52956909,126.9694862,'NS',1117012500,'공영주차장','용산구 한강로2가 412-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1206059,'삼각지역(구)',12,'PublicPark',37.53456874,126.9737372,'NS',1117012400,'공영주차장','용산구 한강로1가 138-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1206133,'청계1-1(시)',12,'PublicPark',37.56942229,126.9923412,'NS',1111015400,'공영주차장','종로구 장사동 236-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1206427,'탑골공원(구)',15,'PublicPark',37.57172112,126.9877906,'NS',1111013800,'공영주차장','종로구 종로2가 38-5',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1206606,'청계6가(북)(시)',33,'PublicPark',37.56997993,127.0121639,'NS',1111017400,'공영주차장','종로구 창신동 490-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1206688,'원서공원(구)',3,'PublicPark',37.57836684,126.9893319,'NS',1111014900,'공영주차장','종로구 원서동 206-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1207170,'효창공원2(구)',83,'PublicPark',37.54465658,126.9579624,'NS',1117011900,'공영주차장','용산구 효창동 255-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1207907,'광화문빌딩(구)',19,'PublicPark',37.57136605,126.9741163,'NS',1111011700,'공영주차장','종로구 당주동 40-9',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1207934,'종로3가역(구)',6,'PublicPark',37.57261866,126.9933833,'NS',1111015000,'공영주차장','종로구 훈정동 38-2',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1208740,'청계5가(북)(시)',32,'PublicPark',37.56982801,127.0058559,'NS',1111016300,'공영주차장','종로구 종로5가 490-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1210054,'태화관(구)',16,'PublicPark',37.57231272,126.9846183,'NS',1111013600,'공영주차장','종로구 인사동 194-27',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1210056,'낙원상가(시)',20,'PublicPark',37.5732577,126.9879898,'NS',1111013700,'공영주차장','종로구 낙원동 284-5',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1210451,'청계4가(북)(시)',22,'PublicPark',37.56925787,126.9989798,'NS',1111015800,'공영주차장','종로구 예지동 249-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1211476,'세운상가밑(구)',34,'PublicPark',37.56954051,126.9949831,'NS',1111015400,'공영주차장','종로구 장사동 116-3',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1211874,'청계7가(시)',42,'PublicPark',0,0,'NS',1111017500,'공영주차장','종로구 숭인동 233-8',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1216630,'조양화학(구)',36,'PublicPark',37.47368562,126.8863109,'NS',1154510100,'공영주차장','금천구 가산동 336-25',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1219269,'한강쇼핑(구)',15,'PublicPark',37.5206328,126.9714416,'NS',1117012900,'공영주차장','용산구 이촌동 301-5',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1219453,'원서공원(구)',14,'PublicPark',37.5782594,126.9893581,'NS',1111013000,'공영주차장','종로구 와룡동 206-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1219470,'이태원로(시)',40,'PublicPark',37.53421992,126.99072,'NS',1117013000,'공영주차장','용산구 이태원동 58-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1219530,'이경시장 공영주차장(구)',27,'PublicPark',37.59561139,127.06506,'NS',1123011000,'공영주차장','동대문구 이문동 86-52',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1219995,'낙성대제2공영(구)',25,'PublicPark',37.47446983,126.9599805,'NS',1162010100,'공영주차장','관악구 봉천동 220-8',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1221864,'크라운호텔(구)',61,'PublicPark',37.53169553,126.9932325,'NS',1117013000,'공영주차장','용산구 이태원동 34-22',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1226038,'강동구청 옆 노상주차장(구)',19,'PublicPark',37.53051357,127.1234771,'NS',1174010800,'공영주차장','강동구 성내동 540-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1228189,'주양쇼핑앞(구)',51,'PublicPark',37.55175646,127.1546494,'NS',1174010100,'공영주차장','강동구 명일동 51-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1230128,'주양쇼핑옆 노상주차장(구)',45,'PublicPark',37.5526646,127.1529044,'NS',1174010100,'공영주차장','강동구 명일동 47-21',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1232331,'온수역(북)노상(시)',44,'PublicPark',37.49274293,126.8214429,'NS',1153011000,'공영주차장','구로구 온수동 20-10',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1232531,'온수역(남)노상(시)',29,'PublicPark',37.49174292,126.8243285,'NS',1153011000,'공영주차장','구로구 온수동 51-26',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1233443,'개봉역(남단)(시)',34,'PublicPark',37.49352048,126.8560621,'NS',1153010700,'공영주차장','구로구 개봉동 403-31',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1234228,'가마산고가밑(시)',24,'PublicPark',37.49228707,126.8822879,'NS',1153010200,'공영주차장','구로구 구로동 414-13',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1234393,'구로고가밑(시)',11,'PublicPark',37.47942217,126.8894618,'NS',1153010300,'공영주차장','구로구 가리봉동 127-30',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1234449,'제방도로(시)',16,'PublicPark',37.49945907,126.8928604,'NS',1153010200,'공영주차장','구로구 구로동 69-5',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1235178,'청계8가(남)공단(시)',19,'PublicPark',37.56985846,127.016945,'NS',1114016300,'공영주차장','중구 흥인동 162-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1235360,'청계3-2(시)',12,'PublicPark',37.56745128,126.9980225,'NS',1114015200,'공영주차장','중구 주교동 123-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1235414,'한국관광공사옆 노상공영주차장(구)',9,'PublicPark',37.56821708,126.9820245,'NS',1114010200,'공영주차장','중구 다동 18-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (345,'63빌딩 주변 주차장',50,'RgPark',37.51983461850408,126.94007379028848,null,null,'63빌딩 주변 주차장 입니다.<br><br>역과 가깝고 63빌딩과도 가깝습니다^^','서울특별시 영등포구 여의도동 60',1);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (343,'강동 성내동 주차장',15,'봉',37.5344685492413,127.13292782990625,null,null,'깔끔하고 조용한 곳에 위치해 있으며 주변 방범용 CCTV가 있습니다.^^<br><br>역과도 가까워 좋은 주차장입니다.','서울특별시 강동구 성내동 강동구 성내동 196-5',1);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (348,'강동 성내동 풍납 주차장',25,'RgPark',37.539693133993865,127.12063096784918,null,null,'강동 성내동 풍납 주차장입니다.','서울특별시 송파구 풍납동 72-1',1);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (349,'강동구 천호 주차장',35,'RgPark',37.54437948347269,127.12641855552424,null,null,'강동구 천호 주차장입니다^^','서울특별시 강동구 천호동 360 ',1);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (350,'강서구 우장산 주차장',30,'RgPark',37.550881891078355,126.84966519878489,null,null,'강서구 우장산 주차장입니다^^','서울특별시 강서구 화곡동 980-16',1);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (361,'강서구 백연 주차장',40,'admin',37.550903484796414,126.85249884178761,null,null,'강서구 백연 주차장입니다^^','서울특별시 강서구 화곡동 1002-3',1);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (0,'관악구 낙성대 주차장',50,'RgPark',37.45334044062785,126.95714759056402,null,null,'관악구 낙성대 주차장입니다^^','서울특별시 관악구 신림동 산56-1',1);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (383,'가산디지털단지 대륭 주차장',5,'IUGuest',37.47722188409218,126.88374752921575,null,null,'친절하게 모십니다. 역세권 주차장. 주차장관리인이 24시간 상주하고 있습니다.','서울특별시 금천구 가산동 1',1);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (346,'강동 성내동 해양 주차장',30,'RgPark',37.52835731734359,127.13508460019317,null,null,'강동 성내동 해양 주차장입니다.<br><br>주차면이 넓고 잘 관리되고 있습니다.','서울특별시 강동구 성내동 416-11 ',1);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1235434,'청계5가(남)5-2(시)',13,'PublicPark',37.56947833,127.0028182,'NS',1114015300,'공영주차장','중구 방산동 5-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1235457,'청계2-1(시)',13,'PublicPark',37.56684412,126.9926535,'NS',1114015600,'공영주차장','중구 입정동 199-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1235467,'마른내길(시)',41,'PublicPark',37.56431447,126.9937159,'NS',1114016000,'공영주차장','중구 인현동1가 87-10',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1235668,'청계6가(남)(시)',24,'PublicPark',37.56958176,127.013032,'NS',1114016200,'공영주차장','중구 신당동 217-91',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1235696,'한국은행뒤 노상공영주차장(구)',22,'PublicPark',37.56238512,126.9790833,'NS',1114011300,'공영주차장','중구 북창동 93-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1235715,'청계4가(남)(시)',23,'PublicPark',37.56878808,126.9983756,'NS',1114015200,'공영주차장','중구 주교동 51-3',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1235721,'배오개길(시)',13,'PublicPark',37.56591795,126.9981258,'NS',1114013500,'공영주차장','중구 예관동 22-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1235943,'청계3-1(시)',25,'PublicPark',37.56873782,127.0022466,'NS',1114015300,'공영주차장','중구 방산동 4-47',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1236067,'국립의료원옆 노상공영주차장(구)',1,'PublicPark',37.56663102,127.0060269,'NS',1114014800,'공영주차장','중구 을지로6가 18-79',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1236068,'국립의료원옆 노상공영주차장(구)',1,'PublicPark',37.56668132,127.0060408,'NS',1114014800,'공영주차장','중구 을지로6가 18-79',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1236120,'청계5-2(남)(시)',1,'PublicPark',37.56950204,127.0073071,'NS',1114015300,'공영주차장','중구 방산동 52-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1236139,'돈화문로(시)',50,'PublicPark',37.56551242,126.9928189,'NS',1114015500,'공영주차장','중구 을지로3가 296-24',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1236165,'을지로(시)',110,'PublicPark',37.56618265,126.990359,'NS',1114015000,'공영주차장','중구 을지로4가 187-17',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1236213,'국립의료원옆 노상공영주차장(구)',1,'PublicPark',37.56678501,127.0060678,'NS',1114014800,'공영주차장','중구 을지로6가 18-79',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1236214,'국립의료원옆 노상공영주차장(구)',1,'PublicPark',37.56699599,127.0061208,'NS',1114014800,'공영주차장','중구 을지로6가 18-79',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1236215,'국립의료원옆 노상공영주차장(구)',1,'PublicPark',37.56704819,127.0061343,'NS',1114014800,'공영주차장','중구 을지로6가 18-79',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1236218,'국립의료원옆 노상공영주차장(구)',1,'PublicPark',37.56709968,127.0061478,'NS',1114014800,'공영주차장','중구 을지로6가 18-79',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1236219,'국립의료원옆 노상공영주차장(구)',1,'PublicPark',37.56715117,127.0061604,'NS',1114014800,'공영주차장','중구 을지로6가 18-79',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1236221,'국립의료원옆 노상공영주차장(구)',1,'PublicPark',37.56716016,127.0065355,'NS',1114014800,'공영주차장','중구 을지로6가 18-79',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1236222,'국립의료원옆 노상공영주차장(구)',1,'PublicPark',37.56719381,127.0063344,'NS',1114014800,'공영주차장','중구 을지로6가 18-79',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1236223,'국립의료원옆 노상공영주차장(구)',1,'PublicPark',37.56712612,127.0067433,'NS',1114014800,'공영주차장','중구 을지로6가 18-79',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1236224,'국립의료원옆 노상공영주차장(구)',1,'PublicPark',37.56717136,127.006467,'NS',1114014800,'공영주차장','중구 을지로6가 18-79',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1236225,'국립의료원옆 노상공영주차장(구)',1,'PublicPark',37.56718258,127.0064002,'NS',1114014800,'공영주차장','중구 을지로6가 18-79',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1236226,'국립의료원옆 노상공영주차장(구)',1,'PublicPark',37.56714901,127.0066077,'NS',1114014800,'공영주차장','중구 을지로6가 18-79',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1236227,'국립의료원옆 노상공영주차장(구)',1,'PublicPark',37.56713828,127.0066741,'NS',1114014800,'공영주차장','중구 을지로6가 18-79',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1236309,'청계2가(남)(시)',17,'PublicPark',37.56800977,126.990053,'NS',1114011000,'공영주차장','중구 수표동 65-4',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1236338,'청계5-2(남)(시)',36,'PublicPark',37.56948107,127.005121,'NS',1114015300,'공영주차장','중구 방산동 52-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1236500,'남산케이블카(시)',18,'PublicPark',37.55581513,126.9838329,'NS',1114012100,'공영주차장','중구 회현동1가 1-19',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1236545,'이화여고앞 노상공영주차장(구)',13,'PublicPark',37.56503787,126.9686066,'NS',1114016800,'공영주차장','중구 순화동 1-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1236552,'남산케이블카 앞(시)',3,'PublicPark',37.55557752,126.9838505,'NS',1114012100,'공영주차장','중구 회현동1가 1-15',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1236616,'남대문 화물조업 주차장(시)',9,'PublicPark',37.56092391,126.9779415,'NS',1114011600,'공영주차장','중구 남대문로3가 30-15',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1236620,'중림동(우리은행)(시)',19,'PublicPark',37.55668833,126.9684045,'NS',1114017300,'공영주차장','중구 만리동1가 33-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1236728,'다동쉼터 노상공영주차장(구)',7,'PublicPark',37.56794535,126.9800734,'NS',1114010200,'공영주차장','중구 다동 46-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1236747,'중앙일보사(시)',6,'PublicPark',37.56130762,126.9718927,'NS',1114016800,'공영주차장','중구 순화동 84-2',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1237137,'한진면세점앞 노상공영주차장(구)',18,'PublicPark',37.55614508,126.9751734,'NS',1114011800,'공영주차장','중구 남대문로5가 533-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1237146,'그린빌딩옆 노상공영주차장(구)',33,'PublicPark',37.55704862,126.9762476,'NS',1114011800,'공영주차장','중구 남대문로5가 267-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1237532,'청소년회관뒤 노상공영주차장(구)',9,'PublicPark',37.56722965,126.9903572,'NS',1114011000,'공영주차장','중구 수표동 50-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1237609,'해운센터빌딩앞 노상공영주차장(구)',9,'PublicPark',37.56302684,126.9807022,'NS',1114011100,'공영주차장','중구 소공동 59-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1237813,'남대문피혁상가 남측 노상공영주차장(구)',23,'PublicPark',37.55941884,126.974039,'NS',1114011900,'공영주차장','중구 봉래동1가 83-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1237987,'수락산디자인서울거리(구)',73,'PublicPark',37.6748631,127.0582494,'NS',1135010500,'공영주차장','노원구 상계동 1120',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1238115,'당고개전철밑(시)',90,'PublicPark',37.66636014,127.0759503,'NS',1135010500,'공영주차장','노원구 상계동 140-66',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1238138,'구청사주변(구)',82,'PublicPark',37.65485548,127.0565208,'NS',1135010500,'공영주차장','노원구 상계동 701-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1238166,'가압장앞(구)',25,'PublicPark',37.66573551,127.0756822,'NS',1135010500,'공영주차장','노원구 상계동 117-6',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1238209,'주공12단지상가뒤(구)',22,'PublicPark',37.66691768,127.0578659,'NS',1135010500,'공영주차장','노원구 상계동 649-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1238304,'한신동성아파트옆(구)',16,'PublicPark',37.64000984,127.0741016,'NS',1135010400,'공영주차장','노원구 하계동 256-7',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1238356,'주공1~3단지주변(구)',44,'PublicPark',37.65038533,127.0610432,'NS',1135010500,'공영주차장','노원구 상계동 765-2',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1238469,'(구)북부지법주변(구)',19,'PublicPark',37.61944961,127.0774617,'NS',1135010300,'공영주차장','노원구 공릉동 622-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1238542,'유경백화점뒤(구)',34,'PublicPark',37.65025059,127.0777959,'NS',1135010600,'공영주차장','노원구 중계동 364-16',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1238565,'주공11단지상가뒤(구)',26,'PublicPark',37.666977,127.0565842,'NS',1135010500,'공영주차장','노원구 상계동 652-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1238808,'주공5단지옆(구)',31,'PublicPark',37.65172544,127.0764874,'NS',1135010600,'공영주차장','노원구 중계동 359-16',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1238846,'주공7단지옆(구)',17,'PublicPark',37.65630312,127.0609682,'NS',1135010500,'공영주차장','노원구 상계동 692-2',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1238902,'당고개위(시)',35,'PublicPark',37.6704423,127.0804534,'NS',1135010500,'공영주차장','노원구 상계동 111-568',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1238941,'주공4~6단지주변(구)',23,'PublicPark',37.65143663,127.0620319,'NS',1135010500,'공영주차장','노원구 상계동 720-4',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1240475,'신한증권옆(구)',31,'PublicPark',37.65139135,127.0775338,'NS',1135010600,'공영주차장','노원구 중계동 366-14',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1247641,'천호2동노외주차장(구)',13,'PublicPark',37.54032781,127.1230483,'NW',1174010900,'공영주차장','강동구 천호동 457-7',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1247661,'광진광장공영(구)',30,'PublicPark',37.54764828,127.0740918,'NW',1121510900,'공영주차장','광진구 군자동 374-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1247675,'암사1동(구)',112,'PublicPark',37.55284955,127.1380234,'NW',1174010700,'공영주차장','강동구 암사동 59-2',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1368570,'교보생명 앞 노상주차장(구)',1,'PublicPark',37.52089663,126.8919885,'NS',1156011200,'공영주차장','영등포구 당산동2가 71-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1368575,'교보생명 앞 노상주차장(구)',1,'PublicPark',37.5207704,126.8921188,'NS',1156011200,'공영주차장','영등포구 당산동2가 71-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1368576,'교보생명 앞 노상주차장(구)',1,'PublicPark',37.52072872,126.8921638,'NS',1156011200,'공영주차장','영등포구 당산동2가 71-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1368577,'교보생명 앞 노상주차장(구)',1,'PublicPark',37.52138646,126.8917257,'NS',1156011200,'공영주차장','영등포구 당산동2가 71-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1368626,'도림고가 노상주차장(구)',42,'PublicPark',37.51230671,126.8976897,'NS',1156011900,'공영주차장','영등포구 문래동1가 39-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1368658,'유진상가앞공영주차장(구)',33,'PublicPark',37.59166103,126.9439029,'NS',1141011100,'공영주차장','서대문구 홍제동 294-46 서울시 서대문구 홍제동 294-4',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1368670,'인왕시장앞공영주차장(구)',28,'PublicPark',37.59099808,126.9423688,'NS',1141011100,'공영주차장','서대문구 홍제동 294-46 서울시 서대문구 홍제동 294-4',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1368688,'유진상가앞공영주차장(구)',1,'PublicPark',37.59136985,126.9436099,'NS',1141011100,'공영주차장','서대문구 홍제동 294-46 서울시 서대문구 홍제동 294-4',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1368698,'SK리더스뷰도로변 노상주차장(구)',30,'PublicPark',37.51840733,126.900372,'NS',1156012100,'공영주차장','영등포구 문래동3가 55-13',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1368701,'유진상가앞공영주차장(구)',1,'PublicPark',37.59156323,126.9442157,'NS',1141011100,'공영주차장','서대문구 홍제동 294-46 서울시 서대문구 홍제동 294-4',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1368749,'신길5동공영(구)',27,'PublicPark',37.50214567,126.9048479,'NW',1156013200,'공영주차장','영등포구 신길동 400-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1368765,'삼환아파트 앞 노상주차장(구)',27,'PublicPark',37.5148844,126.8881935,'NS',1156012200,'공영주차장','영등포구 문래동4가 41-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1368782,'벽산디지털밸리앞 노상주차장(구)',33,'PublicPark',37.51506465,126.8852977,'NS',1156012300,'공영주차장','영등포구 문래동5가 5-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1368816,'영국대사관옆 공영주차장(구)',13,'PublicPark',37.56660034,126.9756854,'NS',1114016700,'공영주차장','중구 정동 5-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1368833,'양남사거리 앞 노상주차장(구)',1,'PublicPark',37.52268925,126.8916422,'NS',1156011200,'공영주차장','영등포구 당산동2가 30-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1368838,'양남사거리 앞 노상주차장(구)',8,'PublicPark',37.52226096,126.8913456,'NS',1156012500,'공영주차장','영등포구 양평동1가 30-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1368841,'경남아파트 앞 노상주차장(구)',1,'PublicPark',37.52435028,126.9020211,'NS',1156011300,'공영주차장','영등포구 당산동3가 56-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1368849,'경남아파트 앞 노상주차장(구)',19,'PublicPark',37.52362876,126.9020218,'NS',1156010800,'공영주차장','영등포구 영등포동7가 56-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1368870,'국제화재빌딩옆 노상공영주차장(구)',13,'PublicPark',37.5581772,126.9759947,'NS',1114011800,'공영주차장','중구 남대문로5가 145-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1368885,'뉴국제호텔앞 노상공영주차장(구)',16,'PublicPark',37.56817545,126.9786215,'NS',1114010300,'공영주차장','중구 태평로1가 18-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1368948,'조선호텔앞 노상공영주차장(구)',12,'PublicPark',37.56389935,126.9800032,'NS',1114011100,'공영주차장','중구 소공동 87-3',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1369035,'삼풍상가노상공영주차장(구)',102,'PublicPark',37.5663183,126.995769,'NS',1114013400,'공영주차장','중구 인현동2가 56-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1369044,'남산소파길(구)',13,'PublicPark',37.55668332,126.9853324,'NS',1114014200,'공영주차장','중구 예장동 8-172',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1369093,'진주아파트 옆 노상주차장(구)',56,'PublicPark',37.51887945,126.9328883,'NS',1156011000,'공영주차장','영등포구 여의도동 54-4',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1369233,'대림상가노상공영주차장(구)',66,'PublicPark',37.56741605,126.9956481,'NS',1114015700,'공영주차장','중구 산림동 174-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1369246,'화재보험협회 앞 노상주차장(구)',16,'PublicPark',37.52113141,126.9264017,'NS',1156011000,'공영주차장','영등포구 여의도동 35-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1369265,'KBS별관옆 노상주차장(구)',21,'PublicPark',37.51939762,126.9300556,'NS',1156011000,'공영주차장','영등포구 여의도동 46-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1369351,'한진해운 앞 노상주차장(구)',14,'PublicPark',37.52298583,126.9252869,'NS',1156011000,'공영주차장','영등포구 여의도동 25-11',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1369380,'국민은행앞 노상주차장(구)',15,'PublicPark',37.52815206,126.919455,'NS',1156011000,'공영주차장','영등포구 여의도동 15-22',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1369631,'금천구청 임시주차장(구)',120,'PublicPark',37.45682326,126.8952551,'NW',1154510300,'공영주차장','금천구 시흥동 1020-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1369672,'진양상가노상공영주차장(구)',102,'PublicPark',37.56316121,126.9960495,'NS',1114013400,'공영주차장','중구 인현동2가 181-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1369741,'웅진코웨이~sk트윈타워(구)',50,'PublicPark',37.47568219,126.8837707,'NS',1154510100,'공영주차장','금천구 가산동 345-2',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1369853,'신정4동길(구)',154,'PublicPark',37.52692115,126.8596533,'NS',1147010100,'공영주차장','양천구 신정동 902',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1369928,'송림 기사식당길 공영주차장(C)(구)',32,'PublicPark',37.53711781,127.0769313,'NS',1121510500,'공영주차장','광진구 자양동 794-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1370000,'화곡8동배다리동길노상주차장(구)',106,'PublicPark',37.52898504,126.8505675,'NS',1150010300,'공영주차장','강서구 화곡동 890-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1370001,'청계산근린광장(구)',89,'PublicPark',37.44649527,127.056152,'NW',1165010400,'공영주차장','서초구 원지동 355-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1370023,'LG텔레콤(구)',43,'PublicPark',37.47438266,126.8866104,'NS',1154510100,'공영주차장','금천구 가산동 60-36',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1370082,'곰달래길(구)',59,'PublicPark',37.52683805,126.8368152,'NS',1147010300,'공영주차장','양천구 신월동 217-25',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1370100,'강일동공영주차장(구)',72,'PublicPark',37.56645809,127.1722653,'NW',1174011000,'공영주차장','강동구 강일동 292-2',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1370196,'봉은사로43길(구)',35,'PublicPark',37.50967071,127.0398423,'NS',1168010800,'공영주차장','강남구 논현동 276-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1370240,'삼희상가 노상(구)',19,'PublicPark',37.56627759,127.054056,'NS',1123010500,'공영주차장','동대문구 답십리동 530-14',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1370284,'동대문소방서노상(구)',15,'PublicPark',37.56368548,127.0667544,'NS',1123010600,'공영주차장','동대문구 장안동 434-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1370392,'정릉천변 공영주차장(구)',64,'PublicPark',37.58215416,127.0357136,'NS',1123010300,'공영주차장','동대문구 제기동 1159-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1370446,'답십리 부품상가 노상(구)',75,'PublicPark',37.5645291,127.0585499,'NS',1123010500,'공영주차장','동대문구 답십리동 959-10',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1370637,'번동 햇살 주차장(구)',168,'PublicPark',37.62514878,127.0336482,'NW',1130510200,'공영주차장','강북구 번동 148-376',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1370767,'정화여상주변 공영주차장(구)',95,'PublicPark',37.58501075,127.0403308,'NS',1123010300,'공영주차장','동대문구 제기동 293-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1370819,'중마루공원앞 노상주차장(구)',34,'PublicPark',37.51997612,126.9107131,'NS',1156010300,'공영주차장','영등포구 영등포동2가 222-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1370857,'봉수대공영주차장(구)',31,'PublicPark',0,0,'NW',1126010600,'공영주차장','중랑구 신내동 123-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1370858,'동서시장 식품 공영주차장(구)',62,'PublicPark',37.58227903,127.0405169,'NS',1123010300,'공영주차장','동대문구 제기동 846-38',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1370919,'동서시장 과일채소부 공영주차장(구)',94,'PublicPark',37.58099119,127.0405066,'NS',1123010300,'공영주차장','동대문구 제기동 992-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1371037,'마장축산물시장 현대아파트 앞 노상공영주차장(구)',29,'PublicPark',37.57030446,127.0429822,'NS',1120010500,'공영주차장','성동구 마장동 804-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1371281,'개봉1동노상주차장(구)',105,'PublicPark',37.49693614,126.8542333,'NW',1153010700,'공영주차장','구로구 개봉동 416-175',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1371306,'대치동507-3(구)',27,'PublicPark',37.4935772,127.0632256,'NS',1168010600,'공영주차장','강남구 대치동 506',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1371375,'송림 기사식당길 공영주차장(A)(구)',52,'PublicPark',37.53436938,127.075961,'NS',1121510500,'공영주차장','광진구 자양동 227-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1371458,'마장축산물시장 남문 노상공영주차장(구)',76,'PublicPark',37.56638246,127.0391585,'NS',1120010500,'공영주차장','성동구 마장동 805-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1371575,'한전변전소 뒤 노상공영주차장(구)',105,'PublicPark',37.56944562,127.0397026,'NS',1120010500,'공영주차장','성동구 마장동 494-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1371615,'마장주민센터 앞 노상공영주차장(구)',55,'PublicPark',37.56538182,127.046962,'NS',1120010500,'공영주차장','성동구 마장동 783-7',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1371666,'GS타임즈 영동프라자(구)',121,'PublicPark',37.50995115,127.0236997,'NW',1168010800,'공영주차장','강남구 논현동 140-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1371671,'GS타임즈 논현동(구)',19,'PublicPark',37.51251031,127.041695,'NW',1168010800,'공영주차장','강남구 논현동 266-16',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1371688,'공단본부(구)',23,'PublicPark',37.53034734,126.8713663,'NW',1147010200,'공영주차장','양천구 목동 919-5',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1371689,'양천사회단체봉사센터(구)',22,'PublicPark',37.53187194,126.875464,'NW',1147010200,'공영주차장','양천구 목동 905-29',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1371690,'목동타운홀(구)',25,'PublicPark',37.53292894,126.8768775,'NW',1147010200,'공영주차장','양천구 목동 905-21',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1371733,'용두동청계 공영주차장(구)',52,'PublicPark',37.57161153,127.0279777,'NS',1123010200,'공영주차장','동대문구 용두동 255-13',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1371776,'헌릉로745길(구)',246,'PublicPark',37.46870915,127.1194622,'NS',1168011300,'공영주차장','강남구 율현동 101-13',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1371992,'서서울호수공원(시)',57,'PublicPark',37.52850706,126.8321635,'NW',1147010300,'공영주차장','양천구 신월동 268-19',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1372066,'대치유수지체육공원(구)',99,'PublicPark',37.50443395,127.0685225,'NS',1168010600,'공영주차장','강남구 대치동 78-24',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1372128,'마천동3공영주차장(구)',47,'PublicPark',37.49615427,127.1498486,'NW',1171011400,'공영주차장','송파구 마천동 128-4',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1372154,'문정 공영주차장(구)',110,'PublicPark',37.49122463,127.1346929,'NW',1171010800,'공영주차장','송파구 문정동 2-5',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1372161,'위례성길공영주차장(구)',37,'PublicPark',37.51347,127.1233614,'NS',1171011100,'공영주차장','송파구 방이동 12-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1372243,'위례성길공영주차장(구)',48,'PublicPark',37.51568888,127.1171637,'NS',1171011100,'공영주차장','송파구 방이동 12-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1372264,'교통공원길 공영주차장(구)',96,'PublicPark',37.51575435,127.1039661,'NS',1171010200,'공영주차장','송파구 신천동 10-2',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1372289,'비석거리 공영주차장(구)',30,'PublicPark',37.49694733,127.1167277,'NS',1171010700,'공영주차장','송파구 가락동 95-6',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1265901,'방배복개도로제2지역 노상공영주차장(구)',99,'PublicPark',37.48347477,126.9825909,'NS',1165010100,'공영주차장','서초구 방배동 439-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1277150,'화랑대역 환승주차장(시)',280,'PublicPark',37.61997867,127.0866958,'NW',1126010400,'공영주차장, 환승시설 주변','중랑구 묵동 28-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1282112,'묵중안공영주차장(구)',207,'PublicPark',37.61133346,127.0759693,'NS',1126010400,'공영주차장','중랑구 묵동 250-39',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1423770,'남부초등학교(지하주차장)(구)',135,'PublicPark',37.48490117,126.9221154,'NW',1162010200,'공영주차장','관악구 신림동 467-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1424710,'창경궁로1(시)',11,'PublicPark',37.58027818,126.9963581,'NS',1111013000,'공영주차장','종로구 와룡동 2-86 (종로구 창경궁로(창경궁 주차장 ~ 창경궁 홍화문))',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1430967,'한전뒷길(구)',24,'PublicPark',37.52033683,126.8690879,'NS',1147010100,'공영주차장','양천구 신정동 319-25',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1431652,'올리브타워 옆(구)',1,'PublicPark',37.56151205,126.9727173,'NS',1114016600,'공영주차장','중구 서소문동 135-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1431661,'올리브타워 옆(구)',1,'PublicPark',37.56164468,126.9730532,'NS',1114016600,'공영주차장','중구 서소문동 135-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1168040,'협동봉제조합(구)',11,'PublicPark',37.47896464,126.8886263,'NS',1154510100,'공영주차장','금천구 가산동 139-31',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1169033,'통일중공업~천지산업(구)',9,'PublicPark',37.47816474,126.882671,'NS',1154510100,'공영주차장','금천구 가산동 371-57',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1169462,'모아래5길~천주교성당뒤(구)',23,'PublicPark',37.47120485,126.8891467,'NS',1154510200,'공영주차장','금천구 독산동 336-3',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1172984,'방죽길 노상주차장(구)',67,'PublicPark',37.55260283,126.8512851,'NS',1150010300,'공영주차장','강서구 화곡동 1112-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1180535,'동교동 노상 공영주차장(구)',74,'PublicPark',37.5559566,126.9271355,'NS',1144012000,'공영주차장','마포구 서교동 332-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1190582,'성북천 제방 공영주차장(구)',19,'PublicPark',37.57517648,127.0281309,'NS',1123010200,'공영주차장','동대문구 용두동 239-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1199510,'청계8가(남3)(시)',21,'PublicPark',37.57111555,127.0244304,'NS',1120010100,'공영주차장','성동구 상왕십리동 12-47',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1206362,'열린마당(구)',13,'PublicPark',37.57536163,126.9787049,'NS',1111012500,'공영주차장','종로구 중학동 111-0 옆',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1209617,'종로3가역(구)',5,'PublicPark',37.57262866,126.9919872,'NS',1111015100,'공영주차장','종로구 묘동 21-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1220136,'새물결 노상 공영주차장(구)',17,'PublicPark',37.55678542,126.9244292,'NS',1144012100,'공영주차장','마포구 동교동 165-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1234251,'대림역2(시)',35,'PublicPark',37.4963164,126.8935591,'NS',1153010200,'공영주차장','구로구 구로동 73-9',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1235505,'개봉역(중앙)(시)',29,'PublicPark',37.49422253,126.856264,'NS',1153010700,'공영주차장','구로구 개봉동 403-10',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1236088,'청계3가(남)(시)',25,'PublicPark',37.56825056,126.9931294,'NS',1114015600,'공영주차장','중구 입정동 185-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1236220,'국립의료원옆 노상공영주차장(구)',1,'PublicPark',37.56720506,127.0062694,'NS',1114014800,'공영주차장','중구 을지로6가 18-79',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1236472,'연세세브란스빌딩뒤 노상공영주차장(구)',18,'PublicPark',37.55738418,126.9745041,'NS',1114011800,'공영주차장','중구 남대문로5가 217-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1237723,'맑은내길 노상공영주차장(구)',16,'PublicPark',37.56881712,127.0121712,'NS',1114016200,'공영주차장','중구 신당동 213-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1238382,'주공3단지상가주변(구)',45,'PublicPark',37.65296625,127.0601911,'NS',1135010500,'공영주차장','노원구 상계동 735-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1247659,'구의3동 공영주차장(구)',160,'PublicPark',37.5391245,127.0913897,'NW',1121510300,'공영주차장','광진구 구의동 219-15',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1368572,'교보생명 앞 노상주차장(구)',1,'PublicPark',37.52080969,126.8920724,'NS',1156011200,'공영주차장','영등포구 당산동2가 71-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1368745,'문래동주민센터 앞 노상주차장(구)',13,'PublicPark',37.5168354,126.9001876,'NS',1156012100,'공영주차장','영등포구 문래동3가 55-16',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1368937,'남평화시장앞 노상공영주차장(구)',28,'PublicPark',37.56903171,127.0115027,'NS',1114016200,'공영주차장','중구 신당동 779-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1369485,'청와대 버스전용 주차장(구)',11,'PublicPark',37.5839096,126.9707367,'NS',1111010300,'공영주차장','종로구 궁정동 12-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1370056,'창동역(구)구청별관(구)',30,'PublicPark',37.65249733,127.0498862,'NS',1132010700,'공영주차장','도봉구 창동 6-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1370659,'회기역주변 공영주차장(구)',89,'PublicPark',37.59033244,127.060383,'NS',1123010900,'공영주차장','동대문구 휘경동 262-2',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1371454,'송림기사식당길(B) 공영주차장(구)',17,'PublicPark',37.53105597,127.0749743,'NS',1121510500,'공영주차장','광진구 자양동 601-9',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1371916,'성수역3번출구 앞 노상공영주차장(구)',91,'PublicPark',37.54350228,127.0568768,'NS',1120011500,'공영주차장','성동구 성수동2가 276-5',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1374134,'영등포역 이륜자동차주차장(구)',1,'PublicPark',37.51629595,126.9068261,'NS',1156010400,'공영주차장, 이륜차 주차장','영등포구 영등포동3가 618-496',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1374135,'영등포역 이륜자동차주차장(구)',1,'PublicPark',37.51630013,126.9068388,'NS',1156010400,'공영주차장, 이륜차 주차장','영등포구 영등포동3가 618-496',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1374136,'영등포역 이륜자동차주차장(구)',1,'PublicPark',37.51630432,126.9068508,'NS',1156010400,'공영주차장, 이륜차 주차장','영등포구 영등포동3가 618-496',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1374137,'영등포역 이륜자동차주차장(구)',1,'PublicPark',37.51630969,126.9068628,'NS',1156010400,'공영주차장, 이륜차 주차장','영등포구 영등포동3가 618-496',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1374139,'영등포역 이륜자동차주차장(구)',1,'PublicPark',37.51631984,126.9068882,'NS',1156010400,'공영주차장, 이륜차 주차장','영등포구 영등포동3가 618-496',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1374140,'영등포역 이륜자동차주차장(구)',1,'PublicPark',37.51632402,126.9069009,'NS',1156010400,'공영주차장, 이륜차 주차장','영등포구 영등포동3가 618-496',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1374294,'영등포역 이륜자동차주차장(구)',1,'PublicPark',37.51632821,126.9069144,'NS',1156010400,'공영주차장, 이륜차 주차장','영등포구 영등포동3가 618-496',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1374326,'당산역 이륜자동차주차장(구)',33,'PublicPark',37.53359474,126.9017541,'NS',1156011500,'공영주차장, 이륜차 주차장','영등포구 당산동5가 14-4',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1374473,'남대문시장알파문구앞 이륜자동차주차장(시)',50,'PublicPark',37.56042639,126.976493,'NS',1114011700,'공영주차장, 이륜차 주차장','중구 남대문로4가 3-6',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1375052,'장한평자동차시장 노상공영주차장(구)',318,'PublicPark',37.55973425,127.065059,'NS',1120012200,'공영주차장','성동구 용답동 225-13',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1376334,'천호제2동제2주차장(구)',7,'PublicPark',37.53992877,127.1228238,'NS',1174010900,'공영주차장','강동구 천호동 457-11 천호동 456-16',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1377117,'동순라길(시)',8,'PublicPark',37.57267895,126.9967579,'NS',1111015700,'공영주차장','종로구 인의동 107-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1377393,'보신각아래(구)',13,'PublicPark',37.56956316,126.9833711,'NS',1111013500,'공영주차장','종로구 관철동 45-9',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1377416,'신촌역동측광장공영주차장(구)',30,'PublicPark',37.55933566,126.9427449,'NW',1141011200,'공영주차장','서대문구 대현동 121-9',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1380362,'낙산성곽길 이륜자동차주차장(구)',7,'PublicPark',37.57169872,127.0096868,'NS',1111017400,'공영주차장, 이륜차 주차장','종로구 창신동 7-22',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1380394,'낙산성곽길 이륜자동차주차장(구)',24,'PublicPark',37.57214991,127.009611,'NS',1111017400,'공영주차장, 이륜차 주차장','종로구 창신동 67-2',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1380556,'종로40길 이륜자동차주차장(구)',73,'PublicPark',37.57098421,127.0072876,'NS',1111016400,'공영주차장, 이륜차 주차장','종로구 종로6가 318-3',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1380638,'경복궁역 이륜차주차장(구)',5,'PublicPark',37.57620702,126.9723179,'NS',1111011400,'공영주차장, 이륜차 주차장','종로구 내자동 67-2',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1380752,'창신쌍용2지구 북측 이륜차주차장(구)',1,'PublicPark',37.58041273,127.0105492,'NS',1111017400,'공영주차장, 이륜차 주차장','종로구 창신동 37-16',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1380762,'창신쌍용2지구 북측 이륜차주차장(구)',1,'PublicPark',37.58045206,127.0105769,'NS',1111017400,'공영주차장, 이륜차 주차장','종로구 창신동 37-16',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1380764,'창신쌍용2지구 북측 이륜차주차장(구)',1,'PublicPark',37.5804324,127.0105635,'NS',1111017400,'공영주차장, 이륜차 주차장','종로구 창신동 37-16',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1380768,'창신쌍용2지구 북측 이륜차주차장(구)',1,'PublicPark',37.58051106,127.0106159,'NS',1111017400,'공영주차장, 이륜차 주차장','종로구 창신동 37-16',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1380769,'창신쌍용2지구 북측 이륜차주차장(구)',1,'PublicPark',37.58053132,127.0106301,'NS',1111017400,'공영주차장, 이륜차 주차장','종로구 창신동 37-16',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1380770,'창신쌍용2지구 북측 이륜차주차장(구)',1,'PublicPark',37.58055159,127.0106436,'NS',1111017400,'공영주차장, 이륜차 주차장','종로구 창신동 37-16',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1380772,'창신쌍용2지구 북측 이륜차주차장(구)',1,'PublicPark',37.58057125,127.0106571,'NS',1111017400,'공영주차장, 이륜차 주차장','종로구 창신동 37-16',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1382791,'광진구 구의동 241-12(시)',1,'PublicPark',37.54052806,127.0870818,'NW',1121510300,'공영주차장','광진구 구의동 241-12',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1382971,'꿈나무길 노상주차장(구)',59,'PublicPark',37.56086181,126.8470627,'NS',1150010200,'공영주차장','강서구 등촌동 701-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1384005,'남부골목 전통시장 고객주차장(구)',17,'PublicPark',37.53229671,126.8608012,'NW',1150010300,'공영주차장','강서구 화곡동 797-7',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1384007,'까치산 전통시장 고객주차장(구)',19,'PublicPark',37.53155891,126.847911,'NW',1150010300,'공영주차장','강서구 화곡동 342-16',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1384008,'송화골목 전통시장 고객주차장(구)',24,'PublicPark',37.54902277,126.8345687,'NW',1150010600,'공영주차장','강서구 내발산동 720-4',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1384016,'가로공원길지하 주차장(구)',501,'PublicPark',37.53780425,126.8397599,'NW',1150010300,'공영주차장','강서구 화곡동 379-14',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1384440,'힐스테이트옆 이륜차 주차장(구)(구)',5,'PublicPark',37.5752189,127.0209494,'NS',1111017500,'공영주차장, 이륜차 주차장','종로구 숭인동 766-2',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1384451,'종로63가길 이륜자동차주차장(구)',4,'PublicPark',37.57725587,127.0186748,'NS',1111017500,'공영주차장, 이륜차 주차장','종로구 숭인동 58-2',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1385009,'교육청길(구)',95,'PublicPark',37.62149652,127.0288796,'NS',1130510100,'공영주차장','강북구 미아동 137-19',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1385304,'청계5-2(시)',24,'PublicPark',37.57061436,126.9983341,'NS',1111015800,'공영주차장','종로구 예지동 2-2',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1385457,'신문로 노외주차장(시)',22,'PublicPark',37.57107424,126.9731669,'NW',1111012000,'공영주차장','종로구 신문로1가 58-36',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1385828,'나들목공영주차장(구)',128,'PublicPark',37.59662013,127.0759318,'NS',1126010300,'공영주차장','중랑구 중화동 304-36',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1386536,'서린노외(글로벌센터)주차장(시)',45,'PublicPark',37.56972415,126.9815292,'NW',1111012300,'공영주차장','종로구 서린동 63-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1387193,'독립문고가밑(시)',11,'PublicPark',37.57150771,126.9595036,'NS',1141010800,'공영주차장','서대문구 영천동 54-11',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1393591,'남산공원 소월로(시)',12,'PublicPark',37.55445944,126.9782972,'NS',1114011800,'공영주차장','중구 남대문로5가 450-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1395163,'상봉복개(시)',63,'PublicPark',37.59567835,127.0896941,'NS',1126010200,'공영주차장','중랑구 상봉동 399-4',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1395291,'옥수역(시)',48,'PublicPark',37.54249491,127.0172126,'NS',1120011300,'공영주차장','성동구 옥수동 343-4',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1396128,'동대문비즈센터앞 이륜자동차 주차장(구)',10,'PublicPark',37.56646847,127.0128116,'NS',1114016200,'공영주차장, 이륜차 주차장','중구 신당동 200-5',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1397591,'용답토속공원(평면)(구)',159,'PublicPark',37.56156118,127.0553363,'NW',1120012200,'공영주차장','성동구 용답동 180-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1397945,'마장동축산물시장 북문 노상공영주차장(구)',32,'PublicPark',37.57053707,127.0423898,'NS',1120010500,'공영주차장','성동구 마장동 84-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1401516,'관철동 주차장(구)',7,'PublicPark',37.56854885,126.985901,'NS',1111013500,'공영주차장','종로구 관철동 13-14',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1404649,'오류텃골 마을 주차장(구)',84,'PublicPark',37.4954652,126.8392484,'NW',1153010800,'공영주차장','구로구 오류동 6-11',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1405474,'신성시장길(구)',1,'PublicPark',37.55467809,127.0937297,'NS',1121510300,'공영주차장','광진구 구의동 558-11',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1405476,'신성시장길(구)',1,'PublicPark',37.55464708,127.0937925,'NS',1121510300,'공영주차장','광진구 구의동 558-11',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1405477,'신성시장길(구)',1,'PublicPark',37.55461606,127.0938824,'NS',1121510300,'공영주차장','광진구 구의동 558-11',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1405614,'공영노상주차장(구)',26,'PublicPark',37.55613128,127.091637,'NS',1121510100,'공영주차장','광진구 중곡동 88-21',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1406805,'삼환아파트(구)',1,'PublicPark',37.46564906,126.8918297,'NS',1154510200,'공영주차장','금천구 독산동 1004-6',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1407803,'한미빌딩옆(구)',10,'PublicPark',37.57149196,126.98461,'NS',1111012700,'공영주차장','종로구 공평동 283-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1412826,'매바위공영주차장(구)',80,'PublicPark',37.58652245,126.9210871,'NW',1138010700,'공영주차장','은평구 응암동 747-8',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1412862,'아차산 공영주차장(시)',39,'PublicPark',37.55163204,127.1008538,'NW',1121510400,'공영주차장','광진구 광장동 369-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1413181,'성북구 길음동 1070-23(구)',12,'PublicPark',37.60512964,127.025378,'NW',1129013400,'공영주차장','성북구 길음동 1070-23',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1415250,'창동역 노원세무서앞 공영주차장(구)',28,'PublicPark',37.65309366,127.0517197,'NS',1132010700,'공영주차장','도봉구 창동 15-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1415512,'견인보관소(구)',40,'PublicPark',37.58901131,127.0691229,'NW',1123010900,'공영주차장','동대문구 휘경동 361-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1415929,'다목적 공영주차장(구)',48,'PublicPark',37.47633196,126.9018971,'NW',1154510200,'공영주차장','금천구 독산동 971-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1416322,'영등포본동제2공영(구신길2동)(구)',61,'PublicPark',37.51332538,126.9140778,'NW',1156013200,'공영주차장','영등포구 신길동 186-355',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1416339,'남부여성발전센터(시)',129,'PublicPark',37.47997647,126.8880114,'NW',1154510300,'공영주차장','금천구 시흥동 139-2',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1028245,'방학동 도깨비시장 공영주차장(구)',81,'PublicPark',37.6645806,127.0339057,'NW',1132010600,'공영주차장','도봉구 방학동 632-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1032247,'은평평화공원(구)',143,'PublicPark',37.60573659,126.9231083,'NW',1138010200,'공영주차장','은평구 녹번동 153-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1033590,'신림동공영주차장(구)',191,'PublicPark',37.48736246,126.9234342,'NW',1162010200,'공영주차장','관악구 신림동 1456-3',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1033754,'포이초교(구)',194,'PublicPark',37.47564571,127.052365,'NW',1168010300,'공영주차장','강남구 개포동 1273-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1034344,'수유2동 공영주차장(구)',62,'PublicPark',37.64603214,127.0219081,'NW',1130510300,'공영주차장','강북구 수유동 660-30',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1034345,'송중동(임시)공영주차장(구)',6,'PublicPark',37.61105539,127.0334978,'NW',1130510100,'공영주차장','강북구 미아동 860-123',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1037569,'바람개비주차장(구)',186,'PublicPark',37.53033824,126.8742749,'NW',1147010200,'공영주차장','양천구 목동 919-8',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1037932,'구로디지털단지역 환승주차장(시)',90,'PublicPark',37.48543179,126.9012433,'NW',1153010200,'공영주차장, 환승시설 주변','구로구 구로동 810-3',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1040225,'논현로22길(구)',100,'PublicPark',37.48150119,127.0478133,'NW',1168010300,'공영주차장','강남구 개포동 1266-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1040346,'신영시장 공동주차장(구)',23,'PublicPark',37.53302124,126.8362542,'NW',1147010300,'공영주차장','양천구 신월동 114-16',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1040347,'단지주차장(구)',40,'PublicPark',37.51808843,126.8534823,'NW',1147010100,'공영주차장','양천구 신정동 1182-9',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1040348,'문화회관 지하주차장(구)',93,'PublicPark',37.5165589,126.8632978,'NW',1147010100,'공영주차장','양천구 신정동 322-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1040414,'신월2동복개노상(구)',10,'PublicPark',37.52261138,126.8499601,'NS',1147010300,'공영주차장','양천구 신월동 503-3',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1040508,'신월1동저지복개1구역(구)',61,'PublicPark',37.52837281,126.838519,'NS',1147010300,'공영주차장','양천구 신월동 228-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1040564,'신월1동저지복개2구역(구)',42,'PublicPark',37.53569096,126.8340656,'NS',1147010300,'공영주차장','양천구 신월동 90-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1040665,'신월5동복개주차장(구)',66,'PublicPark',37.53726549,126.8282626,'NS',1147010300,'공영주차장','양천구 신월동 53-2',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1040712,'신월1동 걷고싶은거리(구)',33,'PublicPark',37.5322909,126.8333739,'NS',1147010300,'공영주차장','양천구 신월동 126-36',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1041840,'남산동 공영주차장(구)',49,'PublicPark',37.55923691,126.985624,'NW',1114012900,'공영주차장','중구 남산동2가 30-4',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1041991,'불암산(구)',61,'PublicPark',37.66192599,127.0793403,'NW',1135010600,'공영주차장','노원구 중계동 26-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1042402,'역삼1동 문화센터(구)',118,'PublicPark',37.49534845,127.0332376,'NW',1168010100,'공영주차장','강남구 역삼동 829-20',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1042406,'삼성1동 문화센터(구)',70,'PublicPark',37.51432707,127.0625522,'NW',1168010500,'공영주차장','강남구 삼성동 161-2',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1042410,'논현초교(구)',192,'PublicPark',37.50822463,127.0262625,'NW',1168010800,'공영주차장','강남구 논현동 168-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1042421,'언주초교(구)',191,'PublicPark',37.48664435,127.0370504,'NW',1168011800,'공영주차장','강남구 도곡동 922-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1042423,'개포로24길33(구)',36,'PublicPark',37.47716566,127.049807,'NW',1168010300,'공영주차장','강남구 개포동 1204-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1051018,'연광초교지하공동주차장(구)',152,'PublicPark',37.62387156,126.9242215,'NW',1138010300,'공영주차장','은평구 불광동 400-6',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1051043,'구파발역 환승주차장(시)',401,'PublicPark',37.63800702,126.9193218,'NW',1138011400,'공영주차장, 환승시설 주변','은평구 진관동 66-30',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1052723,'살곶이(평면)(구)',103,'PublicPark',37.55384954,127.0482917,'NW',1120010600,'공영주차장','성동구 사근동 104-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1052725,'행당동(평면) 주차장(구)',22,'PublicPark',37.55464494,127.0388249,'NW',1120010700,'공영주차장','성동구 행당동 104-8',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1052737,'응봉동(평면)(구)',73,'PublicPark',37.55039155,127.0344811,'NW',1120010800,'공영주차장','성동구 응봉동 3-11',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1052741,'마장동축산물(평면)(구)',35,'PublicPark',37.57156287,127.0395315,'NW',1120010500,'공영주차장','성동구 마장동 525-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1053712,'볏골공원 지하공영주차장(구)',233,'PublicPark',37.54149242,126.844396,'NW',1150010300,'공영주차장','강서구 화곡동 98-99',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1056832,'한누리(구)',44,'PublicPark',37.47743578,126.9770784,'NW',1159010700,'공영주차장','동작구 사당동 1046-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1056834,'동작주차공원(구)',147,'PublicPark',37.50309257,126.9782686,'NW',1159010600,'공영주차장','동작구 동작동 326-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1059009,'신사동 제1공영주차장(구)',41,'PublicPark',37.4844443,126.915461,'NW',1162010200,'공영주차장','관악구 신림동 511-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1140909,'잠원동방음언덕형공영주차장(구)',95,'PublicPark',37.51638775,127.0163891,'NW',1165010600,'공영주차장','서초구 잠원동 10-33',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1140910,'반포2동 공영주차장(구)',135,'PublicPark',37.50421414,126.9954231,'NW',1165010700,'공영주차장','서초구 반포동 5-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1140911,'반포서래(구)',8,'PublicPark',37.49814931,126.9978319,'NW',1165010700,'공영주차장','서초구 반포동 95-13',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1144569,'이화공영주차장(구)',101,'PublicPark',37.5766117,127.00553,'NW',1111016500,'공영주차장','종로구 이화동 13-2',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1155460,'신림10동복개로공영주차장(구)',106,'PublicPark',37.46700135,126.9303556,'NS',1162010200,'공영주차장','관악구 신림동 808-638',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1155752,'조원동제2공영(구)',15,'PublicPark',37.4836479,126.9030268,'NS',1162010200,'공영주차장','관악구 신림동 1675-8',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1155759,'서원제1공영(구)',38,'PublicPark',37.48309314,126.927491,'NS',1162010200,'공영주차장','관악구 신림동 1642-8',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1159004,'관악산(임시폐쇄)(구)',183,'PublicPark',37.46808488,126.9470172,'NS',1162010200,'공영주차장','관악구 신림동 808-123',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1165319,'한강대교(남)(시)',24,'PublicPark',37.5133751,126.9566804,'NS',1159010400,'공영주차장','동작구 본동 5-5',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1165941,'보라매병원앞(구)',39,'PublicPark',37.49200184,126.9229383,'NS',1159010900,'공영주차장','동작구 신대방동 395-61',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1166037,'갯마을공영주차장(구)',52,'PublicPark',37.49612362,126.9826102,'NS',1159010600,'공영주차장','동작구 동작동 102-65',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1167311,'두산공원A~B(구)',19,'PublicPark',37.47361614,126.8933543,'NS',1154510100,'공영주차장','금천구 가산동 153-18',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1167315,'가산디지털환승(구)',41,'PublicPark',37.48377106,126.8818697,'NS',1154510100,'공영주차장, 환승시설 주변','금천구 가산동 35-2',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1167394,'삼환아파트(구)',1,'PublicPark',37.46482619,126.8914899,'NS',1154510200,'공영주차장','금천구 독산동 1004-6',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1167437,'삼환아파트(구)',1,'PublicPark',37.46486348,126.8917424,'NS',1154510200,'공영주차장','금천구 독산동 1004-6',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1167438,'삼환아파트(구)',1,'PublicPark',37.46483708,126.8916677,'NS',1154510200,'공영주차장','금천구 독산동 1004-6',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1167440,'삼환아파트(구)',1,'PublicPark',37.46482789,126.891548,'NS',1154510200,'공영주차장','금천구 독산동 1004-6',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1167443,'우리은행(구)',12,'PublicPark',37.47694387,126.8902889,'NS',1154510100,'공영주차장','금천구 가산동 140-41',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1167444,'교학사~대동전자(구)',45,'PublicPark',37.46806486,126.8869772,'NS',1154510100,'공영주차장','금천구 가산동 660-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1167445,'신천지(구)',22,'PublicPark',37.4728004,126.8975624,'NS',1154510200,'공영주차장','금천구 독산동 152-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1167450,'세일철강~LG전자연구소(구)',25,'PublicPark',37.47218477,126.8851572,'NS',1154510100,'공영주차장','금천구 가산동 319-15',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1167633,'삼환아파트(구)',1,'PublicPark',37.46479622,126.8908266,'NS',1154510200,'공영주차장','금천구 독산동 1004-6',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1167691,'삼환아파트(구)',1,'PublicPark',37.46494902,126.8918789,'NS',1154510200,'공영주차장','금천구 독산동 1004-6',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1167706,'삼환아파트(구)',1,'PublicPark',37.46479461,126.8907412,'NS',1154510200,'공영주차장','금천구 독산동 1004-6',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1167709,'삼환아파트(구)',1,'PublicPark',37.46479102,126.8905528,'NS',1154510200,'공영주차장','금천구 독산동 1004-6',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1167710,'삼환아파트(구)',1,'PublicPark',37.4648919,126.8917877,'NS',1154510200,'공영주차장','금천구 독산동 1004-6',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1167736,'조양화학(구)',16,'PublicPark',37.47144382,126.8873049,'NS',1154510200,'공영주차장','금천구 독산동 336-25',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1247677,'양화진 공영주차장(구)',133,'PublicPark',37.545733,126.9112039,'NW',1144012200,'공영주차장','마포구 합정동 139-21',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1247680,'휘경유수지 공영주차장(구)',90,'PublicPark',37.58908686,127.0697738,'NW',1123010900,'공영주차장','동대문구 휘경동 348-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1247683,'덕원주차장(구)',77,'PublicPark',37.5623712,127.0687626,'NW',1123010600,'공영주차장','동대문구 장안동 458-8',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1247684,'청계주차장(구)',122,'PublicPark',37.57223438,127.0342946,'NW',1123010200,'공영주차장','동대문구 용두동 129-4',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1254863,'영등포동제3공영(구)',172,'PublicPark',37.51707492,126.9033429,'NW',1156010500,'공영주차장','영등포구 영등포동4가 442-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1255517,'국민대앞북악주차(구)',50,'PublicPark',37.6098523,126.9951151,'NS',1129013300,'공영주차장','성북구 정릉동 880-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1262521,'방배중앙로 노상공영주차장(구)',54,'PublicPark',37.49616103,126.9855885,'NS',1165010100,'공영주차장','서초구 방배동 760-3',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1264599,'반포복개천 노상공영주차장(구)',39,'PublicPark',37.50440194,127.0099553,'NS',1165010700,'공영주차장','서초구 반포동 57-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1265250,'서초초교앞 노상공영주차장(구)',10,'PublicPark',37.49924383,127.0258934,'NS',1165010800,'공영주차장','서초구 서초동 1310-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1266311,'방배복개도로 제1지역 노상공영주차장(구)',118,'PublicPark',37.48071164,126.9825295,'NS',1165010100,'공영주차장','서초구 방배동 443-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1267813,'법원입구도로 노상공영주차장(구)',27,'PublicPark',37.49329947,127.010736,'NS',1165010800,'공영주차장','서초구 서초동 1704-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1268780,'청파동1마을공원(구)',105,'PublicPark',37.54294114,126.9684714,'NW',1117011100,'공영주차장','용산구 청파동3가 118-102',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1268812,'청파동청사(구)',32,'PublicPark',37.54549939,126.9699178,'NW',1117011000,'공영주차장','용산구 청파동2가 91-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1268813,'용산전자상가4(구)',114,'PublicPark',37.53388844,126.9600572,'NW',1117011700,'공영주차장','용산구 원효로3가 51-5',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1268816,'후암동주차장(구)',39,'PublicPark',37.55048874,126.9764859,'NW',1117010100,'공영주차장','용산구 후암동 65-4',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1276799,'천마공영주차장(구)',139,'PublicPark',37.50153445,127.1559879,'NW',1171011400,'공영주차장','송파구 마천동 2-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1277144,'영등포구청역(시)',193,'PublicPark',37.52490727,126.8951624,'NW',1156011300,'공영주차장','영등포구 당산동3가 370-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1277145,'잠실역(시)',346,'PublicPark',37.5144736,127.1045577,'NW',1171010200,'공영주차장','송파구 신천동 29-5',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1277146,'장안2동 노외주차장(시)',80,'PublicPark',37.5782752,127.070619,'NW',1123010600,'공영주차장','동대문구 장안동 286-9',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1277151,'봉화산역(북) 환승주차장(시)',165,'PublicPark',37.61702687,127.092907,'NW',1126010600,'공영주차장, 환승시설 주변','중랑구 신내동 640-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1277152,'평창동 주차장(시)',38,'PublicPark',37.60749827,126.9716793,'NW',1111018300,'공영주차장','종로구 평창동 148-18',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1277157,'해방촌노외(시)',24,'PublicPark',37.54438297,126.9843042,'NW',1117010200,'공영주차장','용산구 용산동2가 1-1497',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1277158,'광운대입구(구)',18,'PublicPark',37.61714694,127.0562518,'NW',1129013800,'공영주차장','성북구 장위동 135-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1277160,'당산노외(시)',237,'PublicPark',37.52625064,126.8994538,'NW',1156011300,'공영주차장','영등포구 당산동3가 2-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1277163,'명일동(시)',11,'PublicPark',37.55361065,127.1559121,'NW',1174010100,'공영주차장','강동구 명일동 47-9',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1278470,'동부갯 공영주차장(구)',74,'PublicPark',37.59945988,127.095702,'NS',1126010500,'공영주차장','중랑구 망우동 487-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1280770,'매화공영주차장(구)',30,'PublicPark',37.59502548,127.0893095,'NS',1126010200,'공영주차장','중랑구 상봉동 85-41',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1418248,'방배열린문화센터(구)',109,'PublicPark',37.48895873,126.9923298,'NW',1165010100,'공영주차장','서초구 방배동 852-14',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1421476,'풍납유수지공영주차장(구)',234,'PublicPark',37.52529597,127.1060433,'NW',1171010300,'공영주차장','송파구 풍납동 387-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1421499,'벽산 노상공영(구)',45,'PublicPark',37.64219198,127.0218598,'NS',1130510300,'공영주차장','강북구 수유동 36-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1422117,'영동대교(북) 노상공영주차장(시)',1,'PublicPark',37.53807905,127.0615982,'NS',1120011500,'공영주차장','성동구 성수동2가 231-24',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1422436,'동서울길(A) 공영주차장(구)',1,'PublicPark',37.53376703,127.0915421,'NS',1121510300,'공영주차장','광진구 구의동 695-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1422437,'동서울 호텔길 공영주차장(자양동)(구)',1,'PublicPark',37.53376703,127.0915421,'NS',1121510500,'공영주차장','광진구 자양동 695-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1423412,'테헤란로26길(구)',13,'PublicPark',37.49939254,127.0362257,'NS',1168010100,'공영주차장','강남구 역삼동 737-0 역삼동 737',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1423650,'신촌 임시 공영주차장(구)',81,'PublicPark',37.55471517,126.9347023,'NW',1144011000,'공영주차장','마포구 노고산동 49-55',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1423651,'서강대역 환승 공영주차장(구)',98,'PublicPark',37.55102716,126.9364628,'NW',1144011100,'공영주차장, 환승시설 주변','마포구 신수동 93-35',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1424206,'다산아트공영주차장(구)',76,'PublicPark',37.55167324,127.0047041,'NW',1114016200,'공영주차장','중구 신당동 432-612',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1424463,'DDP북측 마장로(시)',4,'PublicPark',37.56819448,127.0109259,'NS',1114016200,'공영주차장','중구 신당동 222-3 (맥스타일 맞은편)',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1424465,'DDP유어스빌딩앞(시)',2,'PublicPark',37.56776634,127.0116634,'NS',1114016200,'공영주차장','중구 신당동 204-92 (중구 마장로 유어스빌딩 앞)',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1424585,'이태원로(시)',20,'PublicPark',37.53605046,126.9998797,'NS',1117013100,'공영주차장','용산구 한남동 738-29 (이태원로 제일기획 삼거리 ~ 리움미술관 삼거리 양측)',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1424603,'소파로TBS앞(시)',4,'PublicPark',37.55984682,126.9895662,'NS',1114014200,'공영주차장','중구 예장동 4-7 (서울시청 남산2청사 및 TBS 앞)',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1424640,'창의문로(시)',40,'PublicPark',37.59153528,126.9685204,'NS',1111010100,'공영주차장','종로구 청운동 15-57 (벽산빌리지 9동 앞 ~ 청운중학교 100m 앞)',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1424675,'사직로3(시)',6,'PublicPark',37.57477165,126.9680541,'NS',1111011500,'공영주차장','종로구 사직동 240-0 (남양빌딜 ~ 풍림스페이스본 버스정류장)',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1424677,'사직로2(시)',9,'PublicPark',37.57591236,126.9705612,'NS',1111011400,'공영주차장','종로구 내자동 131-0 (내자동131 미유 ~ 내자 R)',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1424692,'사직로1(시)',15,'PublicPark',37.57615099,126.9707468,'NS',1111011400,'공영주차장','종로구 내자동 20-0 (내자 R ~ 필운동 227 금고)',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1425391,'영등포구청별관청사(구)',77,'PublicPark',37.528464,126.89437,'NW',1156011300,'공영주차장','영등포구 당산동3가 560',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1425816,'동국제강(시)',14,'PublicPark',37.56733736,126.9834345,'NW',1114010700,'공영주차장','중구 삼각동 111-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1427620,'DDP동측(시)',21,'PublicPark',37.56629306,127.0114605,'NS',1114016200,'공영주차장','중구 신당동 2-36 (한양공고 뒷편)',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1427676,'코오롱빌딩옆 노상공영주차장(구)',20,'PublicPark',37.5680535,126.9783736,'NS',1114010300,'공영주차장','중구 태평로1가 82-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1427774,'새문안로2길(노상주차장)(시)',8,'PublicPark',37.56892823,126.9716575,'NS',1111012100,'공영주차장','종로구 신문로2가 106-9 (새문안로 2길(씨티은행 옆 ~ 씨네큐브 맞은편))',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1429954,'장충단로(시)',5,'PublicPark',37.54735334,127.0026562,'NS',1117013100,'공영주차장','용산구 한남동 9-19',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1430037,'남대문 초입(시)',3,'PublicPark',37.5595425,126.9756064,'NS',1114011200,'공영주차장','중구 남창동 282-10 (남대문로 숭례문 광장옆)',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1430045,'남대문시장(시)',4,'PublicPark',37.55962034,126.9759897,'NS',1114011200,'공영주차장','중구 남창동 51-4',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1430344,'남부여성발전센터(시)',129,'PublicPark',0,0,'NW',1154510300,'공영주차장','금천구 시흥동 139-2',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1430643,'남산공원 소파로(시)',22,'PublicPark',37.55556498,126.9800707,'NS',1114011200,'공영주차장','중구 남창동 205-107',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1430676,'성산로(시)',8,'PublicPark',37.56596397,126.9140316,'NS',1144012500,'공영주차장','마포구 성산동 117-1 (모래내로 고가차로 하부 ~ 성산2교 버스정류소)',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1430941,'현대41타워앞(구)',24,'PublicPark',37.52771987,126.8758523,'NS',1147010200,'공영주차장','양천구 목동 917-2',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1431018,'양천공원옆(구)',11,'PublicPark',37.51895511,126.868601,'NS',1147010100,'공영주차장','양천구 신정동 320-3',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1431644,'황학어린이공원지하주차장(구)',113,'PublicPark',37.56754712,127.0181331,'NW',1114016500,'공영주차장','중구 황학동 755-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1431647,'올리브타워 옆(구)',1,'PublicPark',37.56147499,126.9726222,'NS',1114016600,'공영주차장','중구 서소문동 135-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1431648,'올리브타워 옆(구)',1,'PublicPark',37.56148405,126.9726444,'NS',1114016600,'공영주차장','중구 서소문동 135-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1431649,'올리브타워 옆(구)',1,'PublicPark',37.5614936,126.9726671,'NS',1114016600,'공영주차장','중구 서소문동 135-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1431650,'올리브타워 옆(구)',1,'PublicPark',37.56151205,126.9727173,'NS',1114016600,'공영주차장','중구 서소문동 135-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1431651,'올리브타워 옆(구)',1,'PublicPark',37.56150218,126.9726923,'NS',1114016600,'공영주차장','중구 서소문동 135-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1431653,'올리브타워 옆(구)',1,'PublicPark',37.56153066,126.972761,'NS',1114016600,'공영주차장','중구 서소문동 135-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1431654,'올리브타워 옆(구)',1,'PublicPark',37.56153972,126.9727838,'NS',1114016600,'공영주차장','중구 서소문동 135-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1431655,'올리브타워 옆(구)',1,'PublicPark',37.56158409,126.9729047,'NS',1114016600,'공영주차장','중구 서소문동 135-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1431656,'올리브타워 옆(구)',1,'PublicPark',37.56159411,126.9729305,'NS',1114016600,'공영주차장','중구 서소문동 135-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1431657,'올리브타워 옆(구)',1,'PublicPark',37.5616046,126.9729568,'NS',1114016600,'공영주차장','중구 서소문동 135-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1431658,'올리브타워 옆(구)',1,'PublicPark',37.5616151,126.972982,'NS',1114016600,'공영주차장','중구 서소문동 135-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1431659,'올리브타워 옆(구)',1,'PublicPark',37.56162512,126.9730059,'NS',1114016600,'공영주차장','중구 서소문동 135-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1431660,'올리브타워 옆(구)',1,'PublicPark',37.56163513,126.9730299,'NS',1114016600,'공영주차장','중구 서소문동 135-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1431662,'올리브타워 옆(구)',1,'PublicPark',37.56165422,126.9730778,'NS',1114016600,'공영주차장','중구 서소문동 135-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1431734,'진양상가인공도로노상공영주차장(구)',57,'PublicPark',37.56222654,126.995853,'NS',1114013400,'공영주차장','중구 인현동2가 181-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1431739,'가락몰 공영주차장(시)',2066,'PublicPark',37.49342938,127.1111612,'NW',1171010700,'공영주차장','송파구 가락동 600-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1432333,'서울역 서부 관광버스 주차장(시)',33,'PublicPark',37.55783875,126.9703091,'NW',1114012000,'공영주차장','중구 봉래동2가 122-15',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1432682,'구로4동 주택가 공동 주차장(구)',198,'PublicPark',37.48968656,126.886952,'NW',1153010200,'공영주차장','구로구 구로동 741-44',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1433547,'한남동공영주차장(구)',250,'PublicPark',37.53496611,127.0001918,'NW',1117013100,'공영주차장','용산구 한남동 685-46',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (171953,'서소문 삼성생명뒤 공영주차장(구)',51,'PublicPark',37.56174725,126.9743227,'NW',1114016600,'공영주차장','중구 서소문동 122-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172936,'광장주차장(구)',46,'PublicPark',37.53545496,126.8793819,'NW',1147010200,'공영주차장','양천구 목동 907-19',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173474,'구룡산1(구)',94,'PublicPark',0,0,'NW',1168010300,'공영주차장','강남구 개포동 567-25',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (112413,'국민일보사옥앞 노상주차장(구)',21,'PublicPark',37.52940604,126.9245189,'NS',1156011000,'공영주차장','영등포구 여의도동 12-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1167708,'삼환아파트(구)',1,'PublicPark',37.46479198,126.8906111,'NS',1154510200,'공영주차장','금천구 독산동 1004-6',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1208944,'청계3가 (북)(시)',25,'PublicPark',37.56894623,126.9973307,'NS',1111015400,'공영주차장','종로구 장사동 47-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1238938,'주공6단지상가주변(구)',41,'PublicPark',37.65326495,127.0616501,'NS',1135010500,'공영주차장','노원구 상계동 720-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (122514,'여의도공원(임시폐쇄)(시)',64,'PublicPark',37.52296053,126.9166289,'NS',1156011000,'공영주차장','영등포구 여의도동 2-11',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (135938,'테헤란로69길(구)',29,'PublicPark',37.50604338,127.0527194,'NS',1168010500,'공영주차장','강남구 삼성동 142-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (171941,'다산동 공영주차장(구)',86,'PublicPark',37.55454233,127.0085243,'NW',1114016200,'공영주차장','중구 신당동 432-1584',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172052,'하왕십리동(건물)(구)',101,'PublicPark',37.56039538,127.0279149,'NW',1120010200,'공영주차장','성동구 하왕십리동 955-34',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172540,'동방고개(구)',66,'PublicPark',37.61469255,127.0410032,'NW',1129013800,'공영주차장','성북구 장위동 230-110',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172892,'당곡주차장(구)',45,'PublicPark',37.52437054,126.8450986,'NW',1147010300,'공영주차장','양천구 신월동 482-11',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172957,'등촌 2-1주택가공영주차장(구)',91,'PublicPark',37.54982067,126.8613437,'NW',1150010200,'공영주차장','강서구 등촌동 531-5',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173093,'구로리공원지하주차장(구)',203,'PublicPark',37.4908967,126.8916049,'NW',1153010200,'공영주차장','구로구 구로동 139-82',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173277,'대림어린이공원지하공영(구)',198,'PublicPark',37.49120884,126.9034886,'NW',1156013300,'공영주차장','영등포구 대림동 870-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1366395,'개봉1동 노외주차장(시)',134,'PublicPark',37.50001376,126.8510351,'NW',1153010700,'공영주차장','구로구 개봉동 134-8',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1367264,'적선동 주차장(시)',19,'PublicPark',37.57449014,126.9741859,'NW',1111010700,'공영주차장','종로구 적선동 140-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1368529,'교보생명 앞 노상주차장(구)',1,'PublicPark',37.52159254,126.8913949,'NS',1156012500,'공영주차장','영등포구 양평동1가 71-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173573,'서초역공영주차빌딩(기계식)(구)',102,'PublicPark',37.49053768,127.0089788,'NW',1165010800,'공영주차장','서초구 서초동 1542-12',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173876,'거여 1공영주차장(구)',146,'PublicPark',37.49559091,127.1424683,'NW',1171011300,'공영주차장','송파구 거여동 12-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1013181,'마장동(건물)(구)',55,'PublicPark',37.56993875,127.0351452,'NW',1120010500,'공영주차장','성동구 마장동 463-2',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1374119,'영등포역 이륜자동차주차장(구)',1,'PublicPark',37.51625116,126.9067035,'NS',1156010400,'공영주차장, 이륜차 주차장','영등포구 영등포동3가 618-496',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1380766,'창신쌍용2지구 북측 이륜차주차장(구)',1,'PublicPark',37.58047113,127.0105897,'NS',1111017400,'공영주차장, 이륜차 주차장','종로구 창신동 37-16',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1412893,'자양전통시장 공영주차장(구)',24,'PublicPark',37.53380375,127.0816039,'NW',1121510500,'공영주차장','광진구 자양동 631-18',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1042405,'언북초교(구)',226,'PublicPark',37.51999434,127.0456589,'NW',1168010400,'공영주차장','강남구 청담동 27-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1155939,'신림동제2공영(구)',33,'PublicPark',37.48427865,126.92552,'NS',1162010200,'공영주차장','관악구 신림동 1472-4',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1247682,'장안1동민자유치(장안주차장)(시)',77,'PublicPark',37.56942934,127.0670228,'NW',1123010600,'공영주차장','동대문구 장안동 392-11',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1421560,'나눔터길 노상공영(구)',54,'PublicPark',37.63561554,127.0195223,'NS',1130510300,'공영주차장','강북구 수유동 605-185',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1430933,'부영그린(시)',16,'PublicPark',37.53705061,126.8813275,'NS',1147010200,'공영주차장','양천구 목동 908-27',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1167762,'독산동 금천교(시)',25,'PublicPark',37.46658332,126.8900979,'NS',1154510200,'공영주차장','금천구 독산동 181-4',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1169670,'두산공원A~B(구)',14,'PublicPark',37.47324683,126.8942071,'NS',1154510200,'공영주차장','금천구 독산동 298-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1184355,'걷고싶은거리 노상 공영주차장(구)',14,'PublicPark',37.55557105,126.923807,'NS',1144012000,'공영주차장','마포구 서교동 345-6',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1209555,'종로3가역(구)',48,'PublicPark',37.57262406,126.9925913,'NS',1111015200,'공영주차장','종로구 봉익동 36-11',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1219434,'장미예식장 노상(구)',27,'PublicPark',37.5693013,127.0507527,'NS',1123010500,'공영주차장','동대문구 답십리동 530-6',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1235875,'청계5가(5-1)(시)',17,'PublicPark',37.56957005,127.0086598,'NS',1114014800,'공영주차장','중구 을지로6가 17-442',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1236558,'남산파출소앞(시)',13,'PublicPark',37.55482813,126.9820832,'NS',1114012100,'공영주차장','중구 회현동1가 147-32',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1247636,'신설동(시)',102,'PublicPark',37.57252061,127.0242568,'NW',1123010100,'공영주차장','동대문구 신설동 114-29',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1368573,'교보생명 앞 노상주차장(구)',1,'PublicPark',37.52085376,126.8920304,'NS',1156011200,'공영주차장','영등포구 당산동2가 71-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1369476,'탑골공원(시)',4,'PublicPark',37.57120031,126.9878016,'NS',1111013800,'공영주차장','종로구 종로2가 38-4',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1370975,'우림시장공영주차장(구)',53,'PublicPark',37.59584824,127.0997506,'NS',1126010500,'공영주차장','중랑구 망우동 486-10',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (118477,'경도상가앞 노상주차장(구)',17,'PublicPark',37.51994739,126.9305195,'NS',1156011000,'공영주차장','영등포구 여의도동 44-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (120789,'경남아파트 앞 노상주차장(구)',1,'PublicPark',37.52467882,126.9021361,'NS',1156011300,'공영주차장','영등포구 당산동3가 56-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (122062,'교보생명 앞 노상주차장(구)',1,'PublicPark',37.52143768,126.8914592,'NS',1156012500,'공영주차장','영등포구 양평동1가 71-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (124068,'신풍로(시)',100,'PublicPark',37.50015077,126.9139362,'NS',1156013200,'공영주차장','영등포구 신길동 3641-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (127129,'동호대교(남)(시)',30,'PublicPark',37.53090302,127.0248662,'NS',1168011000,'공영주차장','강남구 압구정동 434-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (132787,'남부순환로397길(구)',87,'PublicPark',37.49290842,127.0580781,'NS',1168010600,'공영주차장','강남구 대치동 623-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (150259,'양천경찰서(시)',33,'PublicPark',37.51714151,126.8647397,'NS',1147010100,'공영주차장','양천구 신정동 321-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (171802,'창신1동공영주차장(창일공영)(구)',89,'PublicPark',37.57488143,127.0150838,'NW',1111017400,'공영주차장','종로구 창신동 82-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (171945,'동산공영주차장(구)',83,'PublicPark',37.55634366,127.0159761,'NW',1114016200,'공영주차장','중구 신당동 333-260',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (171956,'문화공영주차장(구)',31,'PublicPark',37.55654107,127.0109609,'NW',1114016200,'공영주차장','중구 신당동 425-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172021,'용산전자상가2(구)',196,'PublicPark',37.53266756,126.9630887,'NW',1117012800,'공영주차장','용산구 한강로3가 14-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172083,'응봉동(건물)(구)',73,'PublicPark',37.55334376,127.0307424,'NW',1120010700,'공영주차장','성동구 행당동 341-59',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172149,'용답동(건물)(구)',158,'PublicPark',37.56458022,127.0543217,'NW',1120012200,'공영주차장','성동구 용답동 4-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172321,'까치공원공영주차장(구)',180,'PublicPark',37.58344393,127.0873474,'NW',1126010100,'공영주차장','중랑구 면목동 570-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172580,'인수동 공영주차장(구)',89,'PublicPark',37.63608367,127.0184499,'NW',1130510300,'공영주차장','강북구 수유동 126-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172650,'창1동1공영주차장(구)',42,'PublicPark',37.64713168,127.0371994,'NW',1132010700,'공영주차장','도봉구 창동 657-37',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172874,'미근동노외(시)',27,'PublicPark',37.56225368,126.9683494,'NW',1141010400,'공영주차장','서대문구 미근동 267-3',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172908,'능골주차장(구)',61,'PublicPark',37.533186,126.8245522,'NW',1147010300,'공영주차장','양천구 신월동 152-38',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172923,'성산2-1 공영주차장(구)',59,'PublicPark',37.56479289,126.9067217,'NW',1144012500,'공영주차장','마포구 성산동 199-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172947,'한서 공영주차장(구)',113,'PublicPark',37.552871,126.9493333,'NW',1144010900,'공영주차장','마포구 염리동 24-170',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172971,'방화역(동)(시)',66,'PublicPark',37.57730116,126.8133148,'NW',1150010900,'공영주차장','강서구 방화동 830-4',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173005,'가양3동(시)',54,'PublicPark',37.56033753,126.8597755,'NW',1150010400,'공영주차장','강서구 가양동 1488-12',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173047,'영보빌딩(시)',79,'PublicPark',37.56332959,126.8530818,'NW',1150010400,'공영주차장','강서구 가양동 1480-10',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173123,'독산1동공영주차장(구)',66,'PublicPark',37.46497295,126.8948092,'NW',1154510200,'공영주차장','금천구 독산동 1006-94',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173185,'문래동공영(구)',69,'PublicPark',37.51631443,126.8877957,'NW',1156012300,'공영주차장','영등포구 문래동5가 3-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173235,'신길4동공영(구)',28,'PublicPark',37.50528074,126.9120866,'NW',1156013200,'공영주차장','영등포구 신길동 236-10',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173289,'서광주차장(구)',60,'PublicPark',37.48879884,126.9078418,'NW',1159010900,'공영주차장','동작구 신대방동 607-45',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173362,'행운동제1공영주차장(舊 봉천6동 까치공영주차장)(구)',79,'PublicPark',37.47993264,126.9606751,'NW',1162010100,'공영주차장','관악구 봉천동 1677-10',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1284070,'경찰서(구중랑경찰서)(구)',1,'PublicPark',37.60560212,127.0769277,'NS',1126010400,'공영주차장','중랑구 묵동 250-39',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1359629,'로데오길 공영주차장(구)',12,'PublicPark',37.49100492,127.1251197,'NS',1171010700,'공영주차장','송파구 가락동 107-18',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1366489,'반포4동 주민센터 공영주차장(구)',51,'PublicPark',37.497486,127.0003389,'NW',1165010700,'공영주차장','서초구 반포동 74-7',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1366602,'일원터널(시)',26,'PublicPark',37.48285728,127.079372,'NW',1168011400,'공영주차장','강남구 일원동 722-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1366794,'미아동공영주차장(구)',155,'PublicPark',37.6285679,127.0223596,'NW',1130510100,'공영주차장','강북구 미아동 222-100',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1367534,'증가로(구)',7,'PublicPark',37.58385232,126.9111327,'NS',1141011900,'공영주차장','서대문구 북가좌동 329-35',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1367883,'청계8가(남2)(시)',44,'PublicPark',37.57001582,127.0282785,'NS',1120010200,'공영주차장','성동구 하왕십리동 291-11',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1368453,'동서울 호텔길 공영주차장(B)(구)',30,'PublicPark',37.53174471,127.091915,'NS',1121510300,'공영주차장','광진구 구의동 735-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1368544,'교보생명 앞 노상주차장(구)',1,'PublicPark',37.52154194,126.8916522,'NS',1156011200,'공영주차장','영등포구 당산동2가 71-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1368554,'교보생명 앞 노상주차장(구)',1,'PublicPark',37.5209165,126.8922113,'NS',1156011200,'공영주차장','영등포구 당산동2가 71-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173498,'구룡공원구립주차장(구)',132,'PublicPark',37.47153994,127.0487626,'NW',1165010200,'공영주차장','서초구 양재동 399-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173590,'구룡공영주차빌딩(구)',107,'PublicPark',37.47419614,127.0459555,'NW',1165010200,'공영주차장','서초구 양재동 301-6',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173696,'미도아파트앞주차빌딩(구)',182,'PublicPark',37.50003784,127.0104628,'NW',1165010700,'공영주차장','서초구 반포동 49-8',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173779,'천호3동 제2주차장(구)',92,'PublicPark',37.54075002,127.1340836,'NW',1174010900,'공영주차장','강동구 천호동 174-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173877,'송파동 공영주차장(구)',86,'PublicPark',37.50704487,127.1133641,'NW',1171010400,'공영주차장','송파구 송파동 128-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172602,'창2동4공영주차장(구)',82,'PublicPark',37.64124421,127.0362985,'NW',1132010700,'공영주차장','도봉구 창동 582-22',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172605,'우이동 공영주차장(구)',82,'PublicPark',37.65671789,127.011637,'NW',1130510400,'공영주차장','강북구 우이동 105-2',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172607,'석계역앞(구)',29,'PublicPark',37.61572968,127.0651839,'NW',1135010200,'공영주차장','노원구 월계동 60-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172632,'동막골 (구)',57,'PublicPark',37.67528134,127.086413,'NW',1135010500,'공영주차장','노원구 상계동 31-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172634,'수락산역 환승주차장(시)',159,'PublicPark',37.67902582,127.0559142,'NW',1135010500,'공영주차장, 환승시설 주변','노원구 상계동 1268-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172643,'수색동공영주차장(구)',108,'PublicPark',37.58049896,126.8989315,'NW',1138010100,'공영주차장','은평구 수색동 78-2',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172647,'창동역(동)(시)',549,'PublicPark',37.6543748,127.0490621,'NW',1132010700,'공영주차장','도봉구 창동 1-9',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172660,'공릉동 노외주차장(구)',17,'PublicPark',37.62012931,127.0774361,'NW',1135010300,'공영주차장','노원구 공릉동 633-19',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172683,'새장골공영주차장(구)',40,'PublicPark',37.62446275,126.9235464,'NW',1138010300,'공영주차장','은평구 불광동 480-352',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172695,'건영백화점앞(구)',137,'PublicPark',37.63958481,127.0651987,'NW',1135010600,'공영주차장','노원구 중계동 507-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172696,'등나무근린공원(구)',151,'PublicPark',37.64027756,127.0676992,'NW',1135010600,'공영주차장','노원구 중계동 508-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172703,'응암3동공동주차장(구)',160,'PublicPark',37.59345156,126.9153949,'NW',1138010700,'공영주차장','은평구 응암동 580-4',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172777,'갈현1동공영주차장(구)',61,'PublicPark',37.62648828,126.915338,'NW',1138010400,'공영주차장','은평구 갈현동 9-112',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172840,'공덕1-1 공영주차장(구)',82,'PublicPark',37.54738044,126.9609133,'NW',1144010200,'공영주차장','마포구 공덕동 11-243',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172844,'마포유수지(시)',508,'PublicPark',37.53890027,126.9426686,'NW',1144010700,'공영주차장','마포구 마포동 36-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172881,'상암1 공영주차장(구)',141,'PublicPark',37.57727445,126.8972079,'NW',1144012700,'공영주차장','마포구 상암동 1621-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172900,'누리주차장(구)',20,'PublicPark',37.51540127,126.8627138,'NW',1147010100,'공영주차장','양천구 신정동 323-13',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172901,'밝은빛주차장(구)',23,'PublicPark',37.51619431,126.8613528,'NW',1147010100,'공영주차장','양천구 신정동 323-18',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172902,'문화회관서측(구)',23,'PublicPark',37.51635934,126.8625557,'NW',1147010100,'공영주차장','양천구 신정동 323-25',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172903,'하늘주차장(구)',30,'PublicPark',37.51523307,126.8615113,'NW',1147010100,'공영주차장','양천구 신정동 323-33',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172904,'목동공영주차장(구)',1092,'PublicPark',37.52769445,126.8780567,'NW',1147010200,'공영주차장','양천구 목동 915-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172907,'망원1-1 공영주차장(구)',69,'PublicPark',37.55602414,126.9000466,'NW',1144012300,'공영주차장','마포구 망원동 418-39',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172909,'어울림주차장(구)',32,'PublicPark',37.52216678,126.869297,'NW',1147010100,'공영주차장','양천구 신정동 318-2',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172912,'염리 공영주차장(구)',135,'PublicPark',37.54199792,126.9452373,'NW',1144010900,'공영주차장','마포구 염리동 174-3',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172914,'문화회관동측(구)',112,'PublicPark',37.51706546,126.8638425,'NW',1147010100,'공영주차장','양천구 신정동 322-5',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172916,'목2동 월촌(구)',79,'PublicPark',37.54595116,126.874623,'NW',1147010200,'공영주차장','양천구 목동 525-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172917,'법마을주차장(구)',18,'PublicPark',37.52165189,126.8605661,'NW',1147010100,'공영주차장','양천구 신정동 1018-3',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172918,'마을마당주차장(구)',114,'PublicPark',37.53065845,126.8332183,'NW',1147010300,'공영주차장','양천구 신월동 129-6',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172919,'양동북주차장(구)',15,'PublicPark',37.52770881,126.8507388,'NW',1147010100,'공영주차장','양천구 신정동 935-17',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172921,'신남주차장(구)',50,'PublicPark',37.51759953,126.845883,'NW',1147010300,'공영주차장','양천구 신월동 595-14',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172927,'한두공영주차장(구)',39,'PublicPark',37.54881413,126.8662059,'NW',1147010200,'공영주차장','양천구 목동 610-5',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172928,'다락골주차장(구)',102,'PublicPark',37.51614281,126.8496672,'NW',1147010100,'공영주차장','양천구 신정동 1158-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172934,'우리주차장(구)',45,'PublicPark',37.53665073,126.8791772,'NW',1147010200,'공영주차장','양천구 목동 907-8',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172935,'웃우물 주차장(시)',79,'PublicPark',37.52379759,126.8514175,'NW',1147010100,'공영주차장','양천구 신정동 943-25',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172937,'목동체비지(시)',50,'PublicPark',37.53679353,126.8806468,'NW',1147010200,'공영주차장','양천구 목동 908-26',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172941,'달마을주차장(구)',30,'PublicPark',37.54437302,126.8716376,'NW',1147010200,'공영주차장','양천구 목동 532-18',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172943,'망원2-1 공영주차장(구)',62,'PublicPark',37.55778757,126.9015162,'NW',1144012300,'공영주차장','마포구 망원동 428-5',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172945,'신정7동 한사랑교회 앞(구)',125,'PublicPark',37.51483512,126.8601753,'NW',1147010100,'공영주차장','양천구 신정동 324-11',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172952,'목3동 해운주차장(구)',64,'PublicPark',37.54193427,126.8651302,'NW',1147010200,'공영주차장','양천구 목동 711-6',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172956,'대아아파트(시)',49,'PublicPark',37.57155732,126.8416529,'NW',1150010400,'공영주차장','강서구 가양동 1457-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172962,'화곡7-1 주택가공영주차장(구)',86,'PublicPark',37.53601946,126.8391666,'NW',1150010300,'공영주차장','강서구 화곡동 370-63',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172965,'곰달래주차장(구)',107,'PublicPark',37.52954694,126.8360691,'NW',1147010300,'공영주차장','양천구 신월동 226-9',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172967,'한울주차장(구)',21,'PublicPark',37.51995355,126.8317642,'NW',1147010300,'공영주차장','양천구 신월동 957-10',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172968,'방화우체국(시)',18,'PublicPark',37.57955362,126.8146378,'NW',1150010900,'공영주차장','강서구 방화동 824-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172969,'오솔길주차장(구)',16,'PublicPark',37.52220036,126.8348431,'NW',1147010300,'공영주차장','양천구 신월동 963-2',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172970,'방화역(서)(시)',66,'PublicPark',37.57757395,126.8121746,'NW',1150010900,'공영주차장','강서구 방화동 829-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172972,'계남주차장(구)',22,'PublicPark',37.51541161,126.8415256,'NW',1147010300,'공영주차장','양천구 신월동 562-7',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172974,'신월7동(구)',7,'PublicPark',37.5224254,126.8354223,'NW',1147010300,'공영주차장','양천구 신월동 964-11',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172979,'개화산역환승(시)',331,'PublicPark',37.57224302,126.8051898,'NW',1150010900,'공영주차장, 환승시설 주변','강서구 방화동 845-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172983,'신우주차장(구)',107,'PublicPark',37.53444512,126.8285528,'NW',1147010300,'공영주차장','양천구 신월동 166-23',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172992,'신곡주차장(구)',18,'PublicPark',37.5170616,126.8410381,'NW',1147010300,'공영주차장','양천구 신월동 549-18',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172993,'화곡5-1 주택가공영주차장(구)',27,'PublicPark',37.54391908,126.8397247,'NW',1150010300,'공영주차장','강서구 화곡동 1030-33',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173001,'공항동(송정역)(시)',11,'PublicPark',37.56034439,126.8106649,'NW',1150010800,'공영주차장','강서구 공항동 42-8',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173009,'화곡2-1 주택가공영주차장(구)',60,'PublicPark',37.53604907,126.8524573,'NW',1150010300,'공영주차장','강서구 화곡동 167-10',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173013,'화곡6-1주택가공영주차장(구)',300,'PublicPark',37.55298682,126.8484342,'NW',1150010300,'공영주차장','강서구 화곡동 1103-6',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173014,'화곡5-2 주택가공영주차장(구)',25,'PublicPark',37.54423955,126.8407541,'NW',1150010300,'공영주차장','강서구 화곡동 1056-2',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173018,'화곡본-2 주택가공영주차장(구)',100,'PublicPark',37.54432744,126.8484532,'NW',1150010300,'공영주차장','강서구 화곡동 46-127',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173019,'화곡본-1 주택가공영주차장(구)',99,'PublicPark',37.53975106,126.8497943,'NW',1150010300,'공영주차장','강서구 화곡동 56-127',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173020,'화곡8-2 주택가공영주차장(구)',84,'PublicPark',37.53771095,126.8503608,'NW',1150010300,'공영주차장','강서구 화곡동 410-4',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173021,'화곡 8-1 주택가공영주차장(구)',53,'PublicPark',37.53851801,126.8488947,'NW',1150010300,'공영주차장','강서구 화곡동 410-60',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173028,'화곡5-3 주택가공영주차장(구)',17,'PublicPark',37.54338824,126.8423255,'NW',1150010300,'공영주차장','강서구 화곡동 1060-18',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173048,'구름다리주차장(구)',52,'PublicPark',37.52421803,126.8328852,'NW',1147010300,'공영주차장','양천구 신월동 915-4',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173073,'구로5동마을공동주차장(구)',81,'PublicPark',37.50085863,126.8860481,'NW',1153010200,'공영주차장','구로구 구로동 549-73',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173077,'구로3동마을주차장(구)',20,'PublicPark',37.48502453,126.8884429,'NW',1153010200,'공영주차장','구로구 구로동 797-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173089,'가리봉마을주차장(구)',37,'PublicPark',37.48257121,126.8897318,'NW',1153010300,'공영주차장','구로구 가리봉동 118-11',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173091,'효봉공영주차장(구)',69,'PublicPark',37.46077721,126.9109648,'NW',1154510300,'공영주차장','금천구 시흥동 3-129',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173104,'고척1동마을공영주차장(구)',88,'PublicPark',37.50228328,126.8639327,'NW',1153010600,'공영주차장','구로구 고척동 52-54',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173117,'가산디지털 서측노외(구)',176,'PublicPark',37.48487296,126.8803933,'NW',1154510100,'공영주차장','금천구 가산동 505-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173129,'독산3동공영주차장(구)',50,'PublicPark',37.4794979,126.9063548,'NW',1154510200,'공영주차장','금천구 독산동 898-24',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173139,'구로2동마을주차장(구)',81,'PublicPark',37.4914815,126.8883121,'NW',1153010200,'공영주차장','구로구 구로동 317-187',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173141,'시흥1동 공영주차장(구)',81,'PublicPark',37.45065275,126.8967259,'NW',1154510300,'공영주차장','금천구 시흥동 555-3',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173142,'독산2동 공영주차장(구)',66,'PublicPark',37.46385909,126.9000615,'NW',1154510200,'공영주차장','금천구 독산동 1050-17',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173150,'신길환승(5호선)(구)',88,'PublicPark',37.51775233,126.9146039,'NW',1156010200,'공영주차장, 환승시설 주변','영등포구 영등포동1가 35-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173152,'영등포본동제1공영(구)',194,'PublicPark',37.51440196,126.9091795,'NW',1156010100,'공영주차장','영등포구 영등포동 592-10',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173153,'시흥3동 공영주차장(구)',44,'PublicPark',37.44294834,126.9057481,'NW',1154510300,'공영주차장','금천구 시흥동 942-6',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173160,'가산동공영주차장(구)',130,'PublicPark',37.47666086,126.8955775,'NW',1154510100,'공영주차장','금천구 가산동 148-28',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173184,'문래근린공원공영(구)',50,'PublicPark',37.51544615,126.8937947,'NW',1156012100,'공영주차장','영등포구 문래동3가 60-2',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173186,'영등포동제1공영(구)',34,'PublicPark',37.52091713,126.910092,'NW',1156010300,'공영주차장','영등포구 영등포동2가 230-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173187,'양평2동공영(구)',75,'PublicPark',37.53644937,126.8941338,'NW',1156012800,'공영주차장','영등포구 양평동4가 96-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173192,'영등포구청환승(구)',66,'PublicPark',37.52462558,126.8956473,'NW',1156011300,'공영주차장, 환승시설 주변','영등포구 당산동3가 370-4',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173193,'당산1동공영(구)',91,'PublicPark',37.52376124,126.8996074,'NW',1156011300,'공영주차장','영등포구 당산동3가 6-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173196,'신길역사(1호선)(구)',25,'PublicPark',37.5160019,126.91747,'NW',1156013200,'공영주차장','영등포구 신길동 54-2',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173208,'당산2동(구)',30,'PublicPark',37.52824898,126.9077945,'NW',1156011700,'공영주차장','영등포구 당산동 121-105',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173218,'영등포동제2공영(구)',28,'PublicPark',37.52378399,126.9085816,'NW',1156010800,'공영주차장','영등포구 영등포동7가 29-122',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173229,'신길6동공영(구)',132,'PublicPark',37.50267008,126.9113672,'NW',1156013200,'공영주차장','영등포구 신길동 3203-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173238,'대림3동공영(구)',105,'PublicPark',37.4980273,126.9004971,'NW',1156013300,'공영주차장','영등포구 대림동 745-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173245,'대림2동공영(구)',154,'PublicPark',37.49153125,126.8997271,'NW',1156013300,'공영주차장','영등포구 대림동 1072-25',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173246,'도림초등학교공영(구)',145,'PublicPark',37.50810149,126.9074586,'NW',1156013200,'공영주차장','영등포구 신길동 285-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173250,'대림1동공영(구)',155,'PublicPark',37.49314103,126.9016337,'NW',1156013300,'공영주차장','영등포구 대림동 834-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173261,'유수지 (빗물 펌프장 공영 노외 주차장)(구)',47,'PublicPark',37.50858008,126.9629759,'NW',1159010500,'공영주차장','동작구 흑석동 105-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173262,'도림동공영(구)',26,'PublicPark',37.50834696,126.8967964,'NW',1156011800,'공영주차장','영등포구 도림동 226-13',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173285,'구릉주차장(구)',22,'PublicPark',37.49873369,126.9274502,'NW',1159010900,'공영주차장','동작구 신대방동 351-14',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173291,'대방생태주차장(구)',40,'PublicPark',37.50018478,126.9262925,'NW',1159010800,'공영주차장','동작구 대방동 395-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173299,'신길4동1마을공원지하공영(구)',130,'PublicPark',37.50718232,126.9117476,'NW',1156013200,'공영주차장','영등포구 신길동 232-20',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173317,'보라매상업(시)',78,'PublicPark',37.49039184,126.9234059,'NW',1159010900,'공영주차장','동작구 신대방동 431-3',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173329,'원신공영주차장(구)',174,'PublicPark',37.469935,126.9292853,'NW',1162010200,'공영주차장','관악구 신림동 366-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173333,'조원동 제1공영주차장(구)',108,'PublicPark',37.48108305,126.9057404,'NW',1162010200,'공영주차장','관악구 신림동 571-6',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173350,'도산대로25길32(구)',26,'PublicPark',0,0,'NW',1168010700,'공영주차장','강남구 신사동 564-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173353,'보라매제1공영주차장(구)',133,'PublicPark',37.48858808,126.9345485,'NW',1162010100,'공영주차장','관악구 봉천동 110-4',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173359,'대치2문화센터(구)',159,'PublicPark',37.50227954,127.0642044,'NW',1168010600,'공영주차장','강남구 대치동 980-9',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173364,'남현동제1공영주차장(舊남현동 거주자우선주차장)(구)',65,'PublicPark',37.47570005,126.9792942,'NW',1162010300,'공영주차장','관악구 남현동 1063-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173389,'구룡산2(구)',132,'PublicPark',37.47725982,127.0664774,'NW',1168010300,'공영주차장','강남구 개포동 126-2',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173405,'양재주차빌딩(구)',98,'PublicPark',37.47860952,127.0413691,'NW',1165010200,'공영주차장','서초구 양재동 90-2',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173424,'일원역(시)',67,'PublicPark',37.48468629,127.0840899,'NW',1168011400,'공영주차장','강남구 일원동 716-2',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173437,'탄천주차장(구)',996,'PublicPark',37.51443201,127.0662917,'NW',1168010500,'공영주차장','강남구 삼성동 171-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173440,'논현로32길15(구)',21,'PublicPark',37.48430646,127.0434181,'NW',1168011800,'공영주차장','강남구 도곡동 516-2',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173447,'도곡로 421(구)',29,'PublicPark',37.49782255,127.0564863,'NW',1168010600,'공영주차장','강남구 대치동 939-21',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173452,'사당역 노외주차장(시)',207,'PublicPark',37.47543791,126.9837737,'NW',1165010100,'공영주차장','서초구 방배동 507-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173468,'개포동공원(구)',149,'PublicPark',37.48949036,127.0662384,'NW',1168010300,'공영주차장','강남구 개포동 183-2',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173472,'대청역(구)',169,'PublicPark',37.49495555,127.0793237,'NW',1168010300,'공영주차장','강남구 개포동 13-2',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173485,'이수공영주차장(구)',162,'PublicPark',37.49609844,126.9852359,'NW',1165010100,'공영주차장','서초구 방배동 761-3',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1283042,'주막거리공영주차장(구)',26,'PublicPark',37.59382361,127.0776319,'NS',1126010200,'공영주차장','중랑구 상봉동 127-19',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1284245,'맛솜씨공영주차장(구)',67,'PublicPark',37.59767034,127.0936699,'NS',1126010500,'공영주차장','중랑구 망우동 490-21',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1344768,'연희사러가쇼핑센터앞공영주차장(구)',8,'PublicPark',37.56819143,126.9310626,'NS',1141011700,'공영주차장','서대문구 연희동 131-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1356076,'성내천변 공영주차장(구)',77,'PublicPark',37.50728487,127.1362386,'NS',1171011200,'공영주차장','송파구 오금동 97-68',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1359444,'봉 상시길 주차장(구)',54,'PublicPark',37.50917165,127.0797426,'NS',1171010100,'공영주차장','송파구 잠실동 177-8',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1362843,'로데오길 공영주차장(구)',37,'PublicPark',37.48931787,127.1223528,'NS',1171010800,'공영주차장','송파구 문정동 3-2',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1364466,'도곡로21길7(구)',78,'PublicPark',0,0,'NW',1168010100,'공영주차장','강남구 역삼동 795-38',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1364468,'탄천제2호(구)',314,'PublicPark',0,0,'NW',1168011400,'공영주차장','강남구 일원동 4-47',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1364472,'영희초교(구)',187,'PublicPark',37.49192117,127.0812916,'NW',1168011400,'공영주차장','강남구 일원동 617-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1368548,'교보생명 앞 노상주차장(구)',1,'PublicPark',37.52121178,126.8918577,'NS',1156011200,'공영주차장','영등포구 당산동2가 71-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1368549,'교보생명 앞 노상주차장(구)',1,'PublicPark',37.52116533,126.8918981,'NS',1156011200,'공영주차장','영등포구 당산동2가 71-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1368550,'교보생명 앞 노상주차장(구)',1,'PublicPark',37.52112008,126.8919416,'NS',1156011200,'공영주차장','영등포구 당산동2가 71-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1368551,'교보생명 앞 노상주차장(구)',1,'PublicPark',37.52101768,126.892063,'NS',1156011200,'공영주차장','영등포구 당산동2가 71-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1368552,'교보생명 앞 노상주차장(구)',1,'PublicPark',37.52098435,126.8921079,'NS',1156011200,'공영주차장','영등포구 당산동2가 71-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1368553,'교보생명 앞 노상주차장(구)',1,'PublicPark',37.52094983,126.8921588,'NS',1156011200,'공영주차장','영등포구 당산동2가 71-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1368557,'교보생명 앞 노상주차장(구)',1,'PublicPark',37.52088675,126.8922637,'NS',1156011200,'공영주차장','영등포구 당산동2가 71-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1368558,'교보생명 앞 노상주차장(구)',1,'PublicPark',37.520857,126.8923191,'NS',1156011200,'공영주차장','영등포구 당산동2가 71-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1368559,'교보생명 앞 노상주차장(구)',1,'PublicPark',37.52083201,126.892367,'NS',1156011200,'공영주차장','영등포구 당산동2가 71-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1368568,'교보생명 앞 노상주차장(구)',1,'PublicPark',37.52093831,126.8919435,'NS',1156011200,'공영주차장','영등포구 당산동2가 71-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173488,'시민의숲동측(양재천주차장 포함) 공영주차장(구)',149,'PublicPark',37.4723039,127.0382265,'NW',1165010200,'공영주차장','서초구 양재동 237-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173499,'도곡로 327(구)',22,'PublicPark',37.496258,127.0517404,'NW',1168010100,'공영주차장','강남구 역삼동 765-22',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173521,'반포동방음언덕형구립주차장(구)',94,'PublicPark',37.50486336,127.0183587,'NW',1165010700,'공영주차장','서초구 반포동 730-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173522,'중앙로공영주차빌딩(구)',50,'PublicPark',37.48225393,126.9920358,'NW',1165010100,'공영주차장','서초구 방배동 977-17',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173528,'언남문화체육센터(구)',93,'PublicPark',37.47217874,127.0443181,'NW',1165010200,'공영주차장','서초구 양재동 310-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173530,'강남구 민자유치 대치주차장(구)',86,'PublicPark',37.50184688,127.0597343,'NW',1168010600,'공영주차장','강남구 대치동 962-23',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173534,'치매지원센터(구)',115,'PublicPark',37.5102479,127.0464583,'NW',1168010500,'공영주차장','강남구 삼성동 113-26',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173553,'수서역북 환승주차장(시)',656,'PublicPark',37.48801285,127.09995,'NW',1168011500,'공영주차장, 환승시설 주변','강남구 수서동 735-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173578,'난곡동제1공영주차장(舊신림3동 공영주차장)(구)',119,'PublicPark',37.47220821,126.9231583,'NW',1162010200,'공영주차장','관악구 신림동 626-82',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173582,'언구비주차빌딩(구)',58,'PublicPark',37.50474149,127.0209818,'NW',1165010700,'공영주차장','서초구 반포동 741-3',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173591,'천호유수지 주차장(구)',178,'PublicPark',37.54482977,127.1218993,'NW',1174010900,'공영주차장','강동구 천호동 329-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173646,'신천유수지주차장(시)',222,'PublicPark',37.52231457,127.1029033,'NW',1171010200,'공영주차장','송파구 신천동 14-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173665,'무궁화공영주차장(구)',69,'PublicPark',37.49237053,127.0167808,'NW',1165010800,'공영주차장','서초구 서초동 1666-17',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173673,'문정근린공원(구)',286,'PublicPark',37.48599491,127.1246487,'NW',1171010800,'공영주차장','송파구 문정동 38-3',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173685,'교대역동측주차장(구)',32,'PublicPark',37.49383778,127.0155087,'NW',1165010800,'공영주차장','서초구 서초동 1673-7',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173686,'천호1동(구)',192,'PublicPark',37.54490883,127.1364169,'NW',1174010900,'공영주차장','강동구 천호동 221-3',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173691,'해공공영주차장(구)',342,'PublicPark',37.54119808,127.128712,'NW',1174010900,'공영주차장','강동구 천호동 404-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173692,'마천동1 공영주차장(구)',220,'PublicPark',37.49512534,127.1556049,'NW',1171011400,'공영주차장','송파구 마천동 214-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173698,'동산마을구립주차장(구)',122,'PublicPark',37.47009388,127.0443261,'NW',1165010200,'공영주차장','서초구 양재동 370-5',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173701,'서래마을공영주차장(구)',79,'PublicPark',37.49715662,126.9987789,'NW',1165010700,'공영주차장','서초구 반포동 90-7',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173740,'천호3동(구)',190,'PublicPark',37.53890256,127.1332549,'NW',1174010900,'공영주차장','강동구 천호동 167-195',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173749,'방이동 공영주차장(구)',119,'PublicPark',37.51375908,127.1137851,'NW',1171011100,'공영주차장','송파구 방이동 52-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173750,'명일동(구)',254,'PublicPark',37.55097027,127.1429222,'NW',1174010100,'공영주차장','강동구 명일동 312-250',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173752,'복정역 환승주차장(시)',367,'PublicPark',37.4702319,127.1285805,'NW',1171010900,'공영주차장, 환승시설 주변','송파구 장지동 561-9',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173754,'아시아주차장(공영주차장)(구)',108,'PublicPark',37.5102769,127.0762463,'NW',1171010100,'공영주차장','송파구 잠실동 84-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173759,'온조옆 공영주차장(구)',25,'PublicPark',37.55756224,127.1571764,'NW',1174010200,'공영주차장','강동구 고덕동 300-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173776,'가락1동공영(구)',54,'PublicPark',37.4944248,127.1188451,'NW',1171010700,'공영주차장','송파구 가락동 98-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173810,'일원1동(구)',64,'PublicPark',37.48948769,127.0817655,'NW',1168011400,'공영주차장','강남구 일원동 684-8',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173821,'마천동2공영주차장(구)',113,'PublicPark',37.49436437,127.1561092,'NW',1171011400,'공영주차장','송파구 마천동 364-5',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173828,'남산한옥마을(시)',19,'PublicPark',37.56005799,126.9931608,'NW',1114013800,'공영주차장','중구 필동2가 83-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173831,'도봉산(시)',186,'PublicPark',37.68764419,127.0406603,'NW',1132010800,'공영주차장','도봉구 도봉동 282-26',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173864,'필동 공영주차장(구)',48,'PublicPark',37.5566019,126.9958942,'NW',1114013900,'공영주차장','중구 필동3가 62-12',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173867,'천호역(시)',1430,'PublicPark',37.53693126,127.129051,'NW',1174010800,'공영주차장','강동구 성내동 18-4',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173870,'삼전동공영주차장(구)',198,'PublicPark',37.50025109,127.0958954,'NW',1171010600,'공영주차장','송파구 삼전동 175-8',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173874,'안말(구)',174,'PublicPark',37.53150994,127.1299606,'NW',1174010800,'공영주차장','강동구 성내동 512-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173880,'석촌고분 주차장(구)',62,'PublicPark',37.5019629,127.1022954,'NW',1171010500,'공영주차장','송파구 석촌동 248-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173885,'가락2동 공영(구)',91,'PublicPark',37.49483782,127.119624,'NW',1171010700,'공영주차장','송파구 가락동 80-2',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173890,'풍납2 공영주차장(구)',81,'PublicPark',37.53604678,127.116075,'NW',1171010300,'공영주차장','송파구 풍납동 175-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173891,'풍납1공영주차장(구)',65,'PublicPark',37.53551936,127.1202916,'NW',1171010300,'공영주차장','송파구 풍납동 154-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (173896,'송파근린공원 주차장(구)',187,'PublicPark',37.50635304,127.1100041,'NW',1171010400,'공영주차장','송파구 송파동 113-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (781508,'화곡3-1주택가공영주차장(구)',99,'PublicPark',37.54177892,126.8347325,'NW',1150010300,'공영주차장','강서구 화곡동 1045-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (781509,'화곡4-1주택가공영주차장(구)',138,'PublicPark',37.53431225,126.8610576,'NW',1150010300,'공영주차장','강서구 화곡동 809-26',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (781511,'화곡1-1 주택가공영주차장(구)',98,'PublicPark',37.53142687,126.839887,'NW',1150010300,'공영주차장','강서구 화곡동 424-94',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (782904,'홍은 1동 제4 공영 주차장(구)',105,'PublicPark',37.60142195,126.9489426,'NW',1141011800,'공영주차장','서대문구 홍은동 11-23',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (788447,'창천중교 공영주차장(구)',280,'PublicPark',37.55473789,126.9394374,'NW',1144011000,'공영주차장','마포구 노고산동 33-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (789092,'동개울주차장(구)',40,'PublicPark',37.52726441,126.855633,'NW',1147010100,'공영주차장','양천구 신정동 919-6',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (790441,'도화 공영주차장(구)',66,'PublicPark',37.54155295,126.9499337,'NW',1144010400,'공영주차장','마포구 도화동 557-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (881056,'도서관주차장(구)',48,'PublicPark',37.53344049,126.8766097,'NW',1147010200,'공영주차장','양천구 목동 905-32',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (892053,'도화공영주차장(구)',64,'PublicPark',37.49982342,126.9355137,'NW',1159010200,'공영주차장','동작구 상도동 244-183',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (911542,'구산동마을공원지하공동주차장(구)',77,'PublicPark',37.61475594,126.9084534,'NW',1138010500,'공영주차장','은평구 구산동 340-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (968455,'구세군길 공영주차장(구)',87,'PublicPark',37.62617605,127.0134424,'NW',1130510100,'공영주차장','강북구 미아동 791-1360',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (968483,'가오리 공영주차장(구)',120,'PublicPark',37.64161672,127.0150126,'NW',1130510300,'공영주차장','강북구 수유동 349-3',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (968503,'삼양마을공원지하 공영주차장(구)',95,'PublicPark',37.62274538,127.0184279,'NW',1130510100,'공영주차장','강북구 미아동 748-2',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (980509,'비봉주차장(구)',37,'PublicPark',37.61217998,126.9565353,'NW',1111018200,'공영주차장','종로구 구기동 139-9',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (984617,'신도림역환승주차장(구)',65,'PublicPark',37.50733447,126.8916532,'NW',1153010200,'공영주차장, 환승시설 주변','구로구 구로동 1-4',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (984688,'구로아트밸리 지하주차장(구)',245,'PublicPark',37.4969958,126.8895983,'NW',1153010200,'공영주차장','구로구 구로동 102-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1010089,'초안산근린공원주차장(구)',68,'PublicPark',37.64823358,127.0410103,'NW',1132010700,'공영주차장','도봉구 창동 48-4',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1012254,'마들스타디움(근린공원)(구)',167,'PublicPark',37.64391748,127.0585674,'NW',1135010500,'공영주차장','노원구 상계동 770-2',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1025695,'영등포여자고등학교지하공영(구)',98,'PublicPark',37.51520496,126.915116,'NW',1156013200,'공영주차장','영등포구 신길동 184-3',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1025696,'당산근린공원지하공영(구)',190,'PublicPark',37.52552609,126.8957941,'NW',1156011300,'공영주차장','영등포구 당산동3가 385-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1025697,'대림운동장(구)',192,'PublicPark',37.49965667,126.8948384,'NW',1156013300,'공영주차장','영등포구 대림동 780-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (76357,'큰마을길(구)',43,'PublicPark',37.62355035,127.0250239,'NS',1130510100,'공영주차장','강북구 미아동 309-14',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (77533,'가오천 노상공영(구)',69,'PublicPark',37.64366774,127.0245742,'NS',1130510300,'공영주차장','강북구 수유동 181-40',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (110855,'여의도공원앞3 노상주차장(구)',6,'PublicPark',37.52806593,126.9240465,'NS',1156011000,'공영주차장','영등포구 여의도동 16-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (111189,'여의도공원앞2 노상주차장(구)',14,'PublicPark',37.52739599,126.9229692,'NS',1156011000,'공영주차장','영등포구 여의도동 16-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (111283,'산업은행앞 노상주차장(구)',11,'PublicPark',37.5272794,126.9198031,'NS',1156011000,'공영주차장','영등포구 여의도동 16-0 서울특별시 영등포구시설관리공단',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (111643,'세우빌딩 앞노상주차장(구)',13,'PublicPark',37.53016114,126.925017,'NS',1156011000,'공영주차장','영등포구 여의도동 10',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (111804,'동아빌딩앞 노상주차장(구)',10,'PublicPark',37.52951529,126.9201422,'NS',1156011000,'공영주차장','영등포구 여의도동 14-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (112111,'중소기업협동조합앞 노상주차장(구)',5,'PublicPark',37.52840888,126.9216278,'NS',1156011000,'공영주차장','영등포구 여의도동 16-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (113205,'경남아파트 앞 노상주차장(구)',1,'PublicPark',37.52456958,126.9020972,'NS',1156011300,'공영주차장','영등포구 당산동3가 56-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (113229,'경남아파트 앞 노상주차장(구)',1,'PublicPark',37.52451496,126.9020778,'NS',1156011300,'공영주차장','영등포구 당산동3가 56-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (114389,'경남아파트 앞 노상주차장(구)',1,'PublicPark',37.52446034,126.9020584,'NS',1156011300,'공영주차장','영등포구 당산동3가 56-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (114486,'경남아파트 앞 노상주차장(구)',1,'PublicPark',37.52440572,126.902039,'NS',1156011300,'공영주차장','영등포구 당산동3가 56-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (116070,'롯데캐슬앞 노상주차장(구)',9,'PublicPark',37.52036023,126.9269076,'NS',1156011000,'공영주차장','영등포구 여의도동 36',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (116072,'당산고가밑(시)',23,'PublicPark',37.53249683,126.900769,'NS',1156011500,'공영주차장','영등포구 당산동5가 4-9',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1372387,'문정골길 공영주차장(구)',79,'PublicPark',37.48672823,127.1248481,'NS',1171010800,'공영주차장','송파구 문정동 39-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1372518,'구기동139(구)',19,'PublicPark',37.61431133,126.9551308,'NS',1111018200,'공영주차장','종로구 구기동 139-28',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1372581,'구기빌라앞(구)',15,'PublicPark',37.61115994,126.9569011,'NS',1111018200,'공영주차장','종로구 구기동 139-28',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1372649,'낙산성곽 버스전용 주차장(구)',9,'PublicPark',37.58044952,127.0091014,'NS',1111017400,'공영주차장','종로구 창신동 615-62',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1372691,'청계5가(북)-화물차주차장(구)',4,'PublicPark',37.5702697,127.0068391,'NS',1111016400,'공영주차장','종로구 종로6가 315-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1372873,'도봉산역 환승주차장(시)',364,'PublicPark',37.68972069,127.0448386,'NW',1132010800,'공영주차장, 환승시설 주변','도봉구 도봉동 288-19',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1373954,'구민회관앞 이륜자동차주차장(구)',20,'PublicPark',37.56825454,127.0061965,'NS',1114014800,'공영주차장, 이륜차 주차장','중구 을지로6가 18-14',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1373985,'중앙의료원옆 이륜자동차 주차장(구)',12,'PublicPark',37.56733814,127.007245,'NS',1114014800,'공영주차장, 이륜차 주차장','중구 을지로6가 18-79',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1374001,'남대문시장3번게이트 이륜자동차주차장(시)',9,'PublicPark',37.56095726,126.9783051,'NS',1114011600,'공영주차장, 이륜차 주차장','중구 남대문로3가 13-3',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1374036,'남대문시장자유상가앞 이륜차주차장(시)',14,'PublicPark',37.5611823,126.9796944,'NS',1114011600,'공영주차장, 이륜차 주차장','중구 남대문로3가 13-3',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1374070,'남대문시장연세상가앞 이륜자동차주차장(시)',19,'PublicPark',37.55769657,126.9765723,'NS',1114011200,'공영주차장, 이륜차 주차장','중구 남창동 235-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1374088,'서울스퀘어빌딩앞 이륜자동차주차장(시)',10,'PublicPark',37.55583139,126.9732847,'NS',1114012000,'공영주차장, 이륜차 주차장','중구 봉래동2가 125-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1374090,'수서역남 환승주차장(시)',81,'PublicPark',37.4868589,127.1011147,'NW',1168011500,'공영주차장, 환승시설 주변','강남구 수서동 727-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1374110,'중앙우체국옆 이륜자동차주차장(구)',19,'PublicPark',37.56198039,126.9818433,'NS',1114012400,'공영주차장, 이륜차 주차장','중구 충무로1가 15-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1374115,'영등포역 이륜자동차주차장(구)',1,'PublicPark',37.51623742,126.9066653,'NS',1156010400,'공영주차장, 이륜차 주차장','영등포구 영등포동3가 618-496',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1374116,'영등포역 이륜자동차주차장(구)',1,'PublicPark',37.5162416,126.906678,'NS',1156010400,'공영주차장, 이륜차 주차장','영등포구 영등포동3가 618-496',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1374118,'영등포역 이륜자동차주차장(구)',1,'PublicPark',37.51624638,126.9066915,'NS',1156010400,'공영주차장, 이륜차 주차장','영등포구 영등포동3가 618-496',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1374120,'영등포역 이륜자동차주차장(구)',1,'PublicPark',37.51625534,126.9067162,'NS',1156010400,'공영주차장, 이륜차 주차장','영등포구 영등포동3가 618-496',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1374126,'영등포역 이륜자동차주차장(구)',1,'PublicPark',37.51626012,126.9067289,'NS',1156010400,'공영주차장, 이륜차 주차장','영등포구 영등포동3가 618-496',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1374128,'영등포역 이륜자동차주차장(구)',1,'PublicPark',37.51626848,126.9067536,'NS',1156010400,'공영주차장, 이륜차 주차장','영등포구 영등포동3가 618-496',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1374129,'영등포역 이륜자동차주차장(구)',1,'PublicPark',37.51627326,126.9067655,'NS',1156010400,'공영주차장, 이륜차 주차장','영등포구 영등포동3가 618-496',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1374130,'영등포역 이륜자동차주차장(구)',1,'PublicPark',37.51627804,126.9067775,'NS',1156010400,'공영주차장, 이륜차 주차장','영등포구 영등포동3가 618-496',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1374131,'영등포역 이륜자동차주차장(구)',1,'PublicPark',37.51628222,126.9067902,'NS',1156010400,'공영주차장, 이륜차 주차장','영등포구 영등포동3가 618-496',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1374132,'영등포역 이륜자동차주차장(구)',1,'PublicPark',37.5162864,126.9068022,'NS',1156010400,'공영주차장, 이륜차 주차장','영등포구 영등포동3가 618-496',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1374133,'영등포역 이륜자동차주차장(구)',1,'PublicPark',37.51629177,126.9068134,'NS',1156010400,'공영주차장, 이륜차 주차장','영등포구 영등포동3가 618-496',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1366393,'하늘공원주차장(구)',198,'PublicPark',37.48713079,126.8808015,'NW',1153010300,'공영주차장','구로구 가리봉동 1-11',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1366394,'개봉1동마을주차장(구)',111,'PublicPark',37.50455714,126.8460846,'NW',1153010700,'공영주차장','구로구 개봉동 416-2',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1366430,'가로공원주차장(구)',376,'PublicPark',37.5371074,126.8290595,'NW',1147010300,'공영주차장','양천구 신월동 263-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1366487,'양재시민의숲(매헌)역 공영주차장(구)',50,'PublicPark',37.47037133,127.0385513,'NW',1165010200,'공영주차장','서초구 양재동 237-2',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1366504,'송정동공영주차장(구)',122,'PublicPark',37.549976,127.0680728,'NW',1120011800,'공영주차장','성동구 송정동 68-57',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1366527,'동작대교(시)',93,'PublicPark',37.5186554,126.9830878,'NW',1117012900,'공영주차장','용산구 이촌동 301-160',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1366541,'당고개아래(시)',130,'PublicPark',37.6687411,127.0778095,'NW',1135010500,'공영주차장','노원구 상계동 65-40',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1366575,'망원동 노외 공영주차장(시)',13,'PublicPark',37.55955924,126.9066011,'NW',1144012300,'공영주차장','마포구 망원동 478-10',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1366576,'개화역 환승주차장(시)',399,'PublicPark',37.57645065,126.7985426,'NW',1150011000,'공영주차장, 환승시설 주변','강서구 개화동 663-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1366590,'신대방역노외(시)',62,'PublicPark',37.4869656,126.9130705,'NW',1162010200,'공영주차장','관악구 신림동 498-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1366593,'구로디지털단지역(상)(시)',33,'PublicPark',37.48481135,126.9032339,'NW',1162010200,'공영주차장','관악구 신림동 1677-5',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1366600,'학여울역 환승주차장(시)',182,'PublicPark',37.49705092,127.0723954,'NW',1168010600,'공영주차장, 환승시설 주변','강남구 대치동 514-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1366601,'일원동(시)',21,'PublicPark',37.49134485,127.0884278,'NW',1168011400,'공영주차장','강남구 일원동 711-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1366720,'도봉2동제2공영주차장(구)',58,'PublicPark',37.67187408,127.0444086,'NW',1132010800,'공영주차장','도봉구 도봉동 637-115',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1366722,'도봉견인보관소(구)',23,'PublicPark',37.67457411,127.045399,'NW',1132010800,'공영주차장','도봉구 도봉동 637-74',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1366729,'강남구민자유치논현1호주차장(구)',100,'PublicPark',37.5107062,127.0246145,'NW',1168010800,'공영주차장','강남구 논현동 123-11',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1366731,'강남구민자유치논현3호주차장(구)',214,'PublicPark',37.5169618,127.0385816,'NW',1168010800,'공영주차장','강남구 논현동 117-7',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1366732,'강남구 민자유치 청담주차장(구)',84,'PublicPark',37.52371281,127.0486412,'NW',1168010400,'공영주차장','강남구 청담동 49-3',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1366757,'동서울 호텔길(A) 공영주차장(자양동)(구)',1,'PublicPark',37.53072104,127.0915836,'NS',1121510500,'공영주차장','광진구 자양동 695-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1366791,'송천동공영주차장(구)',59,'PublicPark',37.61458475,127.0251644,'NW',1130510100,'공영주차장','강북구 미아동 439-138',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1366792,'수유일공원공영주차장(구)',91,'PublicPark',37.63061186,127.0174307,'NW',1130510300,'공영주차장','강북구 수유동 605-407',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1366795,'수유동쌈지마당공영주차장(구)',19,'PublicPark',37.63207449,127.0236192,'NW',1130510300,'공영주차장','강북구 수유동 612-6',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1366869,'당곡중학교공영 (지하주차장)(구)',159,'PublicPark',37.49190539,126.9330035,'NW',1162010100,'공영주차장','관악구 봉천동 682-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1366894,'회현롯데캐슬옆 공영주차장(구)',27,'PublicPark',37.55894473,126.9822538,'NW',1114012200,'공영주차장','중구 회현동2가 88-3',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1366903,'석계역(시)',73,'PublicPark',37.61548758,127.0623719,'NW',1135010200,'공영주차장','노원구 월계동 50-9',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1367218,'한마음주차장(구)',474,'PublicPark',37.53067739,126.8778804,'NW',1147010200,'공영주차장','양천구 목동 914-5',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1367258,'열린마당 버스전용 주차장(시)',9,'PublicPark',37.57487794,126.9780136,'NW',1111011900,'공영주차장','종로구 세종로 76-14',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1367347,'청계 2가(북)(시)',11,'PublicPark',37.56829211,126.9885708,'NS',1111013500,'공영주차장','종로구 관철동 25-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1367460,'성내역(임시폐쇄)(시)',31,'PublicPark',37.51796508,127.105013,'NS',1171010200,'공영주차장','송파구 신천동 11-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1367579,'해군본부앞(시)',24,'PublicPark',37.50428864,126.9209204,'NS',1156013200,'공영주차장','영등포구 신길동 812-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1367625,'법안정사(시)',38,'PublicPark',37.53532648,126.878161,'NS',1147010200,'공영주차장','양천구 목동 907-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1367666,'영동6교밑(시)',39,'PublicPark',37.49438672,127.0711345,'NS',1168010600,'공영주차장','강남구 대치동 513-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1367686,'파리공원(시)',42,'PublicPark',37.53396081,126.8761556,'NS',1147010200,'공영주차장','양천구 목동 906-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1367709,'원효대교남단(시)',18,'PublicPark',37.52225515,126.9368413,'NS',1156011000,'공영주차장','영등포구 여의도동 5-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1367753,'중화동(임시폐쇄)(시)',35,'PublicPark',37.59441807,127.0726059,'NS',1126010300,'공영주차장','중랑구 중화동 61-2',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1367801,'양평동(동)(시)',9,'PublicPark',37.53964752,126.8903106,'NS',1156012900,'공영주차장','영등포구 양평동5가 44-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1367842,'청계8가(북)(시)',22,'PublicPark',37.57181765,127.0240901,'NS',1123010100,'공영주차장','동대문구 신설동 109-2',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1368281,'매화공영주차장(구)',4,'PublicPark',0,0,'NS',1126010200,'공영주차장','중랑구 상봉동 85',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1368329,'동서울길(A) 공영주차장(구)',14,'PublicPark',37.53413509,127.0915612,'NS',1121510300,'공영주차장','광진구 구의동 695-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1368353,'동서울길(A) 공영주차장(자양동)(구)',46,'PublicPark',37.53335132,127.0917525,'NS',1121510500,'공영주차장','광진구 자양동 695-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1368357,'동서울길 공영주차장(B)(구)',1,'PublicPark',37.53315717,127.0915778,'NS',1121510300,'공영주차장','광진구 구의동 695-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1368359,'동서울길 공영주차장(B)(구)',31,'PublicPark',37.5330472,127.0915882,'NS',1121510500,'공영주차장','광진구 자양동 735-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1368440,'동서울 호텔길 공영주차장(자양동)(구)',1,'PublicPark',37.53141346,127.0917531,'NS',1121510500,'공영주차장','광진구 자양동 695-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1368441,'동서울 호텔길 공영주차장(자양동)(구)',1,'PublicPark',37.53135862,127.0917587,'NS',1121510500,'공영주차장','광진구 자양동 695-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1368446,'동서울길 공영주차장(B)(구)',30,'PublicPark',37.5325392,127.0918327,'NS',1121510300,'공영주차장','광진구 구의동 735-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1368482,'청구건영아파트옆(구)',44,'PublicPark',37.65034494,127.0754639,'NS',1135010600,'공영주차장','노원구 중계동 360-2',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1368504,'연신중학교지하공동주차장(구)',137,'PublicPark',37.6232864,126.9250857,'NW',1138010300,'공영주차장','은평구 불광동 400-4',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1368507,'국민일보사옥앞(구)',1,'PublicPark',37.52944116,126.9245749,'NS',1156011000,'공영주차장','영등포구 여의도동 1-2',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1368516,'구청앞(구)',20,'PublicPark',37.63875947,127.0252192,'NS',1130510300,'공영주차장','강북구 수유동 191-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1368534,'교보생명 앞 노상주차장(구)',1,'PublicPark',37.52181005,126.8915635,'NS',1156011200,'공영주차장','영등포구 당산동2가 71-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1368540,'교보생명 앞 노상주차장(구)',1,'PublicPark',37.52170041,126.8915906,'NS',1156011200,'공영주차장','영등포구 당산동2가 71-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1368541,'교보생명 앞 노상주차장(구)',1,'PublicPark',37.52175523,126.891574,'NS',1156011200,'공영주차장','영등포구 당산동2가 71-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1368542,'교보생명 앞 노상주차장(구)',1,'PublicPark',37.52164679,126.8916101,'NS',1156011200,'공영주차장','영등포구 당산동2가 71-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1368543,'교보생명 앞 노상주차장(구)',1,'PublicPark',37.52159437,126.8916311,'NS',1156011200,'공영주차장','영등포구 당산동2가 71-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1368545,'교보생명 앞 노상주차장(구)',1,'PublicPark',37.52148952,126.8916747,'NS',1156011200,'공영주차장','영등포구 당산동2가 71-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1368546,'교보생명 앞 노상주차장(구)',1,'PublicPark',37.52143829,126.8916987,'NS',1156011200,'공영주차장','영등포구 당산동2가 71-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (1368547,'교보생명 앞 노상주차장(구)',1,'PublicPark',37.52125704,126.8918187,'NS',1156011200,'공영주차장','영등포구 당산동2가 71-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (116359,'호성빌딩앞 노상주차장(구)',22,'PublicPark',37.52014323,126.9293498,'NS',1156011000,'공영주차장','영등포구 여의도동 44-22',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (117301,'KBS연구관앞 노상주차장(구)',59,'PublicPark',37.5264928,126.9147403,'NS',1156011000,'공영주차장','영등포구 여의도동 18-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (117304,'KBS본관 앞 노상주차장(구)',64,'PublicPark',37.52646975,126.9169996,'NS',1156011000,'공영주차장','영등포구 여의도동 17-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (117849,'MBC방송국뒤 노상주차장(구)',58,'PublicPark',37.52402273,126.9309071,'NS',1156011000,'공영주차장','영등포구 여의도동 31-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (117851,'여의도공원앞1 노상주차장(구)',14,'PublicPark',37.52401149,126.9175287,'NS',1156011000,'공영주차장','영등포구 여의도동 17-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (117856,'신흥증권앞 노상주차장(구)',15,'PublicPark',37.52398214,126.9270137,'NS',1156011000,'공영주차장','영등포구 여의도동 24-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (118387,'가든예식장 앞 노상주차장(구)',7,'PublicPark',37.5200086,126.928245,'NS',1156011000,'공영주차장','영등포구 여의도동 45-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (118701,'여의서로(시)',107,'PublicPark',37.53330826,126.9118122,'NS',1156011000,'공영주차장','영등포구 여의도동 8-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (119300,'양남사거리 앞 노상주차장(구)',1,'PublicPark',37.52241801,126.8915761,'NS',1156011200,'공영주차장','영등포구 당산동2가 30-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (119528,'교보생명 앞 노상주차장(구)',1,'PublicPark',37.52157165,126.8914055,'NS',1156012500,'공영주차장','영등포구 양평동1가 71-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (119538,'교보생명 앞 노상주차장(구)',1,'PublicPark',37.52154932,126.8914145,'NS',1156012500,'공영주차장','영등포구 양평동1가 71-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (119730,'양남사거리 앞 노상주차장(구)',1,'PublicPark',37.52274409,126.8916541,'NS',1156011200,'공영주차장','영등포구 당산동2가 30-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (120258,'문래1동(시)',11,'PublicPark',37.51354019,126.896996,'NS',1156012100,'공영주차장','영등포구 문래동3가 54-12',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (120343,'홍우빌딩앞 노상주차장(구)',11,'PublicPark',37.52139515,126.9300739,'NS',1156011000,'공영주차장','영등포구 여의도동 43-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (120687,'성애병원 앞 노상주차장(구)',16,'PublicPark',37.51183873,126.9226111,'NS',1156013200,'공영주차장','영등포구 신길동 451-2',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (120736,'대림역(시)',17,'PublicPark',37.49300061,126.8954249,'NS',1156013300,'공영주차장','영등포구 대림동 1053-21',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (120935,'경남아파트 앞 노상주차장(구)',1,'PublicPark',37.5246242,126.9021167,'NS',1156011300,'공영주차장','영등포구 당산동3가 56-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (121146,'경호빌딩앞 노상주차장(구)',10,'PublicPark',37.52371925,126.9258851,'NS',1156011000,'공영주차장','영등포구 여의도동 25-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (121751,'영등포로타리(시)',13,'PublicPark',37.51809596,126.9113409,'NS',1156010400,'공영주차장','영등포구 영등포동3가 1-22',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (121824,'대신시장 노상주차장(구)',33,'PublicPark',37.51079268,126.917207,'NS',1156013200,'공영주차장','영등포구 신길동 116-15',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (121955,'KBS별관뒤 노상주차장(구)',26,'PublicPark',37.51940108,126.9293286,'NS',1156011000,'공영주차장','영등포구 여의도동 45-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (122011,'미래에셋빌딩 앞 노상주차장(구)',23,'PublicPark',37.51920124,126.9280645,'NS',1156011000,'공영주차장','영등포구 여의도동 45-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (122027,'교보생명 앞 노상주차장(구)',1,'PublicPark',37.52150467,126.8914324,'NS',1156012500,'공영주차장','영등포구 양평동1가 71-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (122038,'교보생명 앞 노상주차장(구)',1,'PublicPark',37.52148234,126.8914413,'NS',1156012500,'공영주차장','영등포구 양평동1가 71-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (122052,'교보생명 앞 노상주차장(구)',1,'PublicPark',37.52146001,126.8914503,'NS',1156012500,'공영주차장','영등포구 양평동1가 71-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (122602,'양남사거리 앞 노상주차장(구)',1,'PublicPark',37.52290803,126.8916921,'NS',1156011200,'공영주차장','영등포구 당산동2가 30-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (122610,'양남사거리 앞 노상주차장(구)',1,'PublicPark',37.52285339,126.8916803,'NS',1156011200,'공영주차장','영등포구 당산동2가 30-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (122621,'양남사거리 앞 노상주차장(구)',1,'PublicPark',37.52279873,126.8916673,'NS',1156011200,'공영주차장','영등포구 당산동2가 30-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (122652,'교보생명옆 노상주차장(구)',13,'PublicPark',37.52103085,126.8924946,'NS',1156011200,'공영주차장','영등포구 당산동2가 21-26',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (122662,'태양빌딩앞 노상주차장(구)',11,'PublicPark',37.52101906,126.9294632,'NS',1156011000,'공영주차장','영등포구 여의도동 44-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (122663,'여의도백화점 앞 노상주차장(구)',19,'PublicPark',37.52101603,126.9272812,'NS',1156011000,'공영주차장','영등포구 여의도동 36-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (122669,'교보생명 앞 노상주차장(구)',1,'PublicPark',37.5209471,126.8917164,'NS',1156012500,'공영주차장','영등포구 양평동1가 71-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (122758,'교보생명 앞 노상주차장(구)',1,'PublicPark',37.52089562,126.8917049,'NS',1156012500,'공영주차장','영등포구 양평동1가 71-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (123621,'한국거래소앞 노상주차장(구)',33,'PublicPark',37.52214771,126.9278991,'NS',1156011000,'공영주차장','영등포구 여의도동 33-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (124423,'양남사거리 앞 노상주차장(구)',1,'PublicPark',37.52236224,126.8915625,'NS',1156011200,'공영주차장','영등포구 당산동2가 30-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (124434,'양남사거리 앞 노상주차장(구)',1,'PublicPark',37.52230644,126.8915491,'NS',1156011200,'공영주차장','영등포구 당산동2가 30-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (124525,'영등포중앙시장 노상주차장(구)',8,'PublicPark',37.52228468,126.9085015,'NS',1156010800,'공영주차장','영등포구 영등포동7가 5-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (124830,'선릉로146길(구)',33,'PublicPark',37.52172937,127.0400925,'NS',1168010400,'공영주차장','강남구 청담동 23-3',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (125895,'도산대로45길(구)',46,'PublicPark',37.52376646,127.0353884,'NS',1168010700,'공영주차장','강남구 신사동 651-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (126607,'선릉로132길(구)',17,'PublicPark',37.51824654,127.0429996,'NS',1168010400,'공영주차장','강남구 청담동 42-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (126730,'논현로131길(구)',22,'PublicPark',37.51431964,127.0292681,'NS',1168010800,'공영주차장','강남구 논현동 58-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (126804,'언주로171길(구)',27,'PublicPark',37.52759995,127.0319899,'NS',1168010700,'공영주차장','강남구 신사동 621-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (127356,'압구정고가2(시)',19,'PublicPark',37.52572441,127.0283609,'NS',1168010700,'공영주차장','강남구 신사동 581-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (129301,'압구정고가1(시)',21,'PublicPark',37.52611867,127.0283832,'NS',1168010700,'공영주차장','강남구 신사동 581-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (129703,'언주로147길(구)',13,'PublicPark',37.51983461,127.0333997,'NS',1168010800,'공영주차장','강남구 논현동 63-16',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (130531,'강남대로150길(구)',9,'PublicPark',37.51567989,127.0201682,'NS',1168010800,'공영주차장','강남구 논현동 1-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (131151,'테헤란로64길(구)',12,'PublicPark',37.50373864,127.0515014,'NS',1168010600,'공영주차장','강남구 대치동 890-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (131640,'개포로109길(구)',39,'PublicPark',37.49372649,127.0766328,'NS',1168010300,'공영주차장','강남구 개포동 14-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (132111,'영동대로106길(구)',63,'PublicPark',37.5134226,127.0620536,'NS',1168010500,'공영주차장','강남구 삼성동 162-23',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (132897,'영동대로85길(구)',96,'PublicPark',37.50653998,127.0608139,'NS',1168010600,'공영주차장','강남구 대치동 942-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (135714,'영동대로96길(구)',81,'PublicPark',37.51031084,127.0641485,'NS',1168010500,'공영주차장','강남구 삼성동 169-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (136358,'논현로28길(구)',70,'PublicPark',37.4839636,127.0449667,'NS',1168011800,'공영주차장','강남구 도곡동 517-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (140146,'양평고가밑(시)',29,'PublicPark',37.53884451,126.8850227,'NS',1147010200,'공영주차장','양천구 목동 900-8',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (140610,'신정4동 로데오길(구)',56,'PublicPark',37.52845783,126.8609125,'NS',1147010100,'공영주차장','양천구 신정동 890',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (144303,'월드상가공영주차장(구)',17,'PublicPark',37.66825197,127.0464457,'NS',1132010600,'공영주차장','도봉구 방학동 720-33',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (144474,'한국통신(시)',28,'PublicPark',37.52831161,126.8715192,'NS',1147010200,'공영주차장','양천구 목동 924-5',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (146238,'양천구청(시)',76,'PublicPark',37.51784578,126.8667965,'NS',1147010100,'공영주차장','양천구 신정동 321-4',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (151725,'신정3동학마을노상(구)',31,'PublicPark',37.50696808,126.8446118,'NS',1147010100,'공영주차장','양천구 신정동 857-3',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (167964,'빨래골 노상공영(구)',34,'PublicPark',37.63325719,127.0191783,'NS',1130510300,'공영주차장','강북구 수유동 49-27',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (170995,'봉은사로68길(구)',78,'PublicPark',37.50957029,127.0517672,'NS',1168010500,'공영주차장','강남구 삼성동 123-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (171467,'압구정로29길(구)',175,'PublicPark',37.53028089,127.0278227,'NS',1168011000,'공영주차장','강남구 압구정동 445-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (171721,'세종로주차장(시)',1164,'PublicPark',37.57340269,126.9758843,'NW',1111011900,'공영주차장','종로구 세종로 80-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (171724,'서인사마당공영(구)',45,'PublicPark',37.57352191,126.9838041,'NW',1111012900,'공영주차장','종로구 견지동 85-18',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (171730,'종묘주차장(시)',1418,'PublicPark',37.57150398,126.9949689,'NW',1111015000,'공영주차장','종로구 훈정동 2-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (171778,'명광교회공영주차장(구)',9,'PublicPark',37.58674056,126.9964757,'NW',1111017300,'공영주차장','종로구 명륜3가 12-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (171830,'다동공원 제4부지 공영주차장(구)',15,'PublicPark',37.56823533,126.9802511,'NW',1114010200,'공영주차장','중구 다동 39-3',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (171901,'묵정공원지하 공영주차장(구)',502,'PublicPark',37.56379141,126.9997956,'NW',1114013300,'공영주차장','중구 충무로5가 21-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (171914,'초동 공영주차장(구)',73,'PublicPark',37.56416856,126.9921356,'NW',1114015900,'공영주차장','중구 초동 64-11',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (171924,'동화동공영주차장(구)',129,'PublicPark',37.56137409,127.0190004,'NW',1114016200,'공영주차장','중구 신당동 52-7',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (171931,'신당역공영주차장(구)',26,'PublicPark',37.56535145,127.0206965,'NW',1114016200,'공영주차장','중구 신당동 140-29',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (171932,'성곽공영주차장(구)',46,'PublicPark',37.55054127,127.0048432,'NW',1114016200,'공영주차장','중구 신당동 432-2026',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (171933,'청구공영주차장(구)',51,'PublicPark',37.55897429,127.0134054,'NW',1114016200,'공영주차장','중구 신당동 330-17',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (171939,'충현공영주차장(구)',111,'PublicPark',37.55220869,127.0056811,'NW',1114016200,'공영주차장','중구 신당동 432-462',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (171944,'버티 공영주차장(구)',92,'PublicPark',37.54909105,127.0059107,'NW',1114016200,'공영주차장','중구 신당동 432-1693',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (171950,'서소문 공원(구)',898,'PublicPark',37.56089537,126.9694414,'NW',1114017200,'공영주차장','중구 의주로2가 16-72',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (171965,'신당사거리공영주차장(구)',45,'PublicPark',37.56512357,127.0170201,'NW',1114016200,'공영주차장','중구 신당동 110-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (171966,'약수동공영주차장(구)',90,'PublicPark',37.55222214,127.0133576,'NW',1114016200,'공영주차장','중구 신당동 349-234',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (171971,'장충공영주차장(구)',106,'PublicPark',37.56001,127.0013165,'NW',1114014400,'공영주차장','중구 장충동2가 193-39',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (171975,'손기정체육공원 공영주차장(구)',162,'PublicPark',37.55559696,126.9649733,'NW',1114017400,'공영주차장','중구 만리동2가 6-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172005,'신창동(구)',112,'PublicPark',37.5353106,126.9552132,'NW',1117011400,'공영주차장','용산구 신창동 53-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172007,'용문동주차장(구)',42,'PublicPark',37.53894931,126.9575677,'NW',1117012000,'공영주차장','용산구 도원동 4-5',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172015,'용산전자상가3(구)',158,'PublicPark',37.53258192,126.9603249,'NW',1117012800,'공영주차장','용산구 한강로3가 19-2',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172018,'용산전자상가5(구)',42,'PublicPark',37.53381412,126.9634154,'NW',1117012800,'공영주차장','용산구 한강로3가 2-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172027,'용산전자상가1(구)',202,'PublicPark',37.53204956,126.96478,'NW',1117012800,'공영주차장','용산구 한강로3가 12-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172041,'이태원2동 공영주차장(구)',112,'PublicPark',37.54036638,126.9926584,'NW',1117013000,'공영주차장','용산구 이태원동 227-9',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172051,'한강진역(시)',181,'PublicPark',37.53952175,127.0025796,'NW',1117013100,'공영주차장','용산구 한남동 728-27',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172059,'종합행정타운(구)',487,'PublicPark',37.53251996,126.9899031,'NW',1117013000,'공영주차장','용산구 이태원동 34-87',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172065,'용산주차빌딩(시)',595,'PublicPark',37.53436379,126.9654182,'NW',1117012500,'공영주차장','용산구 한강로2가 12-9',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172068,'용산2가소월주차장(구)',56,'PublicPark',37.54621474,126.9855822,'NW',1117010200,'공영주차장','용산구 용산동2가 11-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172070,'삼각지역공영주차장(구)',12,'PublicPark',37.53409224,126.9733629,'NW',1117012400,'공영주차장','용산구 한강로1가 231-42',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172077,'금호4가유수지(평면)(구)',90,'PublicPark',37.54569925,127.0251233,'NW',1120011200,'공영주차장','성동구 금호동4가 56-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172084,'도선동(지하)(구)',186,'PublicPark',37.565567,127.0316914,'NW',1120010300,'공영주차장','성동구 홍익동 369-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172089,'홍익동(건물)(구)',85,'PublicPark',37.56563909,127.033905,'NW',1120010300,'공영주차장','성동구 홍익동 252-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172097,'금호초등학교(건물)(구)',125,'PublicPark',37.55257521,127.0201586,'NW',1120011000,'공영주차장','성동구 금호동2가 511-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172118,'성수1가2동(평면) 공영주차장(구)',21,'PublicPark',37.55002966,127.0497667,'NW',1120011400,'공영주차장','성동구 성수동1가 13-22',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172120,'성수1가1동 공영주차장(구)',94,'PublicPark',37.53996228,127.0463849,'NW',1120011400,'공영주차장','성동구 성수동1가 656-260',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172130,'성수2가3동 (건물)(구)',196,'PublicPark',37.54913662,127.0551983,'NW',1120011500,'공영주차장','성동구 성수동2가 299-19',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172134,'성수2가1동 (건물)(구)',161,'PublicPark',37.53716718,127.0561968,'NW',1120011500,'공영주차장','성동구 성수동2가 571-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172144,'강변(건물)(구)',102,'PublicPark',37.53696583,127.0490425,'NW',1120011400,'공영주차장','성동구 성수동1가 366-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172184,'동서울 노외주차장(구)',25,'PublicPark',37.53352006,127.0913292,'NW',1121510300,'공영주차장','광진구 구의동 598-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172198,'구의1동 공영주차장(구)',172,'PublicPark',37.53828214,127.0878917,'NW',1121510300,'공영주차장','광진구 구의동 243-78',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172204,'능동공영주차장(구)',77,'PublicPark',37.55402858,127.0802703,'NW',1121510200,'공영주차장','광진구 능동 205-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172215,'화양동 공영(구)',44,'PublicPark',37.54530284,127.0712188,'NW',1121510700,'공영주차장','광진구 화양동 63-2',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172218,'자양4동 공영(구)',86,'PublicPark',37.53867795,127.0682434,'NW',1121510500,'공영주차장','광진구 자양동 5-5',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172228,'외대역주차빌딩 공영(구)',84,'PublicPark',37.59504107,127.0626248,'NW',1123011000,'공영주차장','동대문구 이문동 306-14',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172318,'용마폭포공원공영주차장(구)',72,'PublicPark',37.57337582,127.0911424,'NW',1126010100,'공영주차장','중랑구 면목동 1-4',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172382,'봉화산역(남)(시)',85,'PublicPark',37.61642995,127.0919719,'NW',1126010600,'공영주차장','중랑구 신내동 647-0',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172384,'동원시장공영주차장(구)',26,'PublicPark',37.58987969,127.0931487,'NW',1126010100,'공영주차장','중랑구 면목동 74-33',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172459,'시네마빌딩공영주차장(구)',99,'PublicPark',37.59916722,127.014741,'NW',1129010300,'공영주차장','성북구 돈암동 538-59',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172480,'마을공원(구)',98,'PublicPark',37.61717024,127.0533551,'NW',1129013800,'공영주차장','성북구 장위동 77-79',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172530,'대지시장길 공영주차장(구)',47,'PublicPark',37.62016376,127.0203164,'NW',1130510100,'공영주차장','강북구 미아동 703-8',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172550,'송중동 공영주차장(구)',53,'PublicPark',37.61165492,127.0336362,'NW',1130510100,'공영주차장','강북구 미아동 48-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172562,'시범 공영주차장(구)',45,'PublicPark',37.64005648,127.0259585,'NW',1130510300,'공영주차장','강북구 수유동 190-11',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172563,'오패산공영주차장(구)',76,'PublicPark',37.62216136,127.0311844,'NW',1130510100,'공영주차장','강북구 미아동 133-100',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172564,'냉천길 공영주차장(구)',103,'PublicPark',37.62400561,127.0195385,'NW',1130510100,'공영주차장','강북구 미아동 756-1',0);
+Insert into PARKING (PARK_ID,PARK_NAME,PARK_CAPACITY,OWNER_ID,LATITUDE,LONGITUDE,PARK_TYPE,EMD_CODE,CONTENT,DETAIL_ADDR,PARK_PUBLIC) values (172594,'교통광장 공영주차장(구)',56,'PublicPark',37.66224744,127.0088542,'NW',1130510400,'공영주차장','강북구 우이동 265-0',0);
+
+---------------------------------------------------
+--   END DATA FOR TABLE PARKING
+---------------------------------------------------
+
+---------------------------------------------------
+--   DATA FOR TABLE ZIPCODE
+--   FILTER = none used
+---------------------------------------------------
+REM INSERTING into ZIPCODE
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1120011200,'서울특별시','성동구','금호동4가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1120011000,'서울특별시','성동구','금호동2가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1120011100,'서울특별시','성동구','금호동3가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1120010100,'서울특별시','성동구','상왕십리동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1120010300,'서울특별시','성동구','홍익동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1120010500,'서울특별시','성동구','마장동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1120010700,'서울특별시','성동구','행당동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1120010600,'서울특별시','성동구','사근동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1120010400,'서울특별시','성동구','도선동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1120010200,'서울특별시','성동구','하왕십리동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1120011300,'서울특별시','성동구','옥수동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1120010900,'서울특별시','성동구','금호동1가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1120010800,'서울특별시','성동구','응봉동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1121510100,'서울특별시','광진구','중곡동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1121510900,'서울특별시','광진구','군자동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1121510200,'서울특별시','광진구','능동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1121510300,'서울특별시','광진구','구의동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1121510400,'서울특별시','광진구','광장동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1121510500,'서울특별시','광진구','자양동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1121510700,'서울특별시','광진구','화양동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1123010100,'서울특별시','동대문구','신설동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1123010200,'서울특별시','동대문구','용두동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1123010500,'서울특별시','동대문구','답십리동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1123010600,'서울특별시','동대문구','장안동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1123010400,'서울특별시','동대문구','전농동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1123010300,'서울특별시','동대문구','제기동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1123010900,'서울특별시','동대문구','휘경동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1123011000,'서울특별시','동대문구','이문동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1123010800,'서울특별시','동대문구','회기동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1123010700,'서울특별시','동대문구','청량리동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1126010100,'서울특별시','중랑구','면목동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1126010200,'서울특별시','중랑구','상봉동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1126010300,'서울특별시','중랑구','중화동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1126010400,'서울특별시','중랑구','묵동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1126010500,'서울특별시','중랑구','망우동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1126010600,'서울특별시','중랑구','신내동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1129012900,'서울특별시','성북구','보문동7가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1129012600,'서울특별시','성북구','보문동4가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1129012700,'서울특별시','성북구','보문동5가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1129013000,'서울특별시','성북구','보문동1가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1129013100,'서울특별시','성북구','보문동2가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1129011500,'서울특별시','성북구','삼선동5가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1129011400,'서울특별시','성북구','삼선동4가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1129011100,'서울특별시','성북구','삼선동1가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1129010200,'서울특별시','성북구','성북동1가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1129012400,'서울특별시','성북구','안암동4가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1129012500,'서울특별시','성북구','안암동5가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1129013500,'서울특별시','성북구','종암동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1129013600,'서울특별시','성북구','하월곡동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1129013900,'서울특별시','성북구','석관동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1129013800,'서울특별시','성북구','장위동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1129013400,'서울특별시','성북구','길음동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1129013300,'서울특별시','성북구','정릉동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1129013700,'서울특별시','성북구','상월곡동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1129010100,'서울특별시','성북구','성북동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1129010300,'서울특별시','성북구','돈암동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1129011900,'서울특별시','성북구','동선동4가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1129010500,'서울특별시','성북구','동소문동2가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1129010400,'서울특별시','성북구','동소문동1가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1129010700,'서울특별시','성북구','동소문동4가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1129010600,'서울특별시','성북구','동소문동3가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1129010900,'서울특별시','성북구','동소문동6가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1129010800,'서울특별시','성북구','동소문동5가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1129011600,'서울특별시','성북구','동선동1가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1129011200,'서울특별시','성북구','삼선동2가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1129011300,'서울특별시','성북구','삼선동3가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1129012000,'서울특별시','성북구','동선동5가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1129011000,'서울특별시','성북구','동소문동7가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1129012200,'서울특별시','성북구','안암동2가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1129012300,'서울특별시','성북구','안암동3가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1129011700,'서울특별시','성북구','동선동2가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1129011800,'서울특별시','성북구','동선동3가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1129012800,'서울특별시','성북구','보문동6가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1129012100,'서울특별시','성북구','안암동1가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1129013200,'서울특별시','성북구','보문동3가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1130510300,'서울특별시','강북구','수유동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1130510100,'서울특별시','강북구','미아동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1130510200,'서울특별시','강북구','번동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1130510400,'서울특별시','강북구','우이동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1132010700,'서울특별시','도봉구','창동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1132010500,'서울특별시','도봉구','쌍문동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1132010600,'서울특별시','도봉구','방학동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1132010800,'서울특별시','도봉구','도봉동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1135010300,'서울특별시','노원구','공릉동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1135010600,'서울특별시','노원구','중계동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1135010500,'서울특별시','노원구','상계동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1135010200,'서울특별시','노원구','월계동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1135010400,'서울특별시','노원구','하계동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1138011400,'서울특별시','은평구','진관동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1138010200,'서울특별시','은평구','녹번동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1138010800,'서울특별시','은평구','역촌동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1138010600,'서울특별시','은평구','대조동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1138010500,'서울특별시','은평구','구산동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1138010400,'서울특별시','은평구','갈현동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1138010700,'서울특별시','은평구','응암동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1138010300,'서울특별시','은평구','불광동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1138010900,'서울특별시','은평구','신사동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1138010100,'서울특별시','은평구','수색동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1138011000,'서울특별시','은평구','증산동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1141010400,'서울특별시','서대문구','미근동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1141010100,'서울특별시','서대문구','충정로2가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1141010500,'서울특별시','서대문구','냉천동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1141010600,'서울특별시','서대문구','천연동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1141010700,'서울특별시','서대문구','옥천동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1141010800,'서울특별시','서대문구','영천동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1141010900,'서울특별시','서대문구','현저동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1141011100,'서울특별시','서대문구','홍제동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1141011800,'서울특별시','서대문구','홍은동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1141010200,'서울특별시','서대문구','충정로3가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1141010300,'서울특별시','서대문구','합동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1141011700,'서울특별시','서대문구','연희동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1141012000,'서울특별시','서대문구','남가좌동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1141011900,'서울특별시','서대문구','북가좌동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1141011600,'서울특별시','서대문구','창천동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1141011200,'서울특별시','서대문구','대현동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1141011000,'서울특별시','서대문구','북아현동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1141011300,'서울특별시','서대문구','대신동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1141011400,'서울특별시','서대문구','신촌동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1141011500,'서울특별시','서대문구','봉원동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1144012700,'서울특별시','마포구','상암동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1144010700,'서울특별시','마포구','마포동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1144010400,'서울특별시','마포구','도화동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1144010200,'서울특별시','마포구','공덕동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1144010100,'서울특별시','마포구','아현동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1144011000,'서울특별시','마포구','노고산동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1144011100,'서울특별시','마포구','신수동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1144010800,'서울특별시','마포구','대흥동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1144010900,'서울특별시','마포구','염리동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1144012100,'서울특별시','마포구','동교동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1144012500,'서울특별시','마포구','성산동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1144010300,'서울특별시','마포구','신공덕동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1144012200,'서울특별시','마포구','합정동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1144012300,'서울특별시','마포구','망원동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1144012000,'서울특별시','마포구','서교동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1144012400,'서울특별시','마포구','연남동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1144011200,'서울특별시','마포구','현석동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1144010500,'서울특별시','마포구','용강동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1144011500,'서울특별시','마포구','상수동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1144011400,'서울특별시','마포구','창전동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1144011300,'서울특별시','마포구','구수동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1144011700,'서울특별시','마포구','신정동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1144012600,'서울특별시','마포구','중동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1144011800,'서울특별시','마포구','당인동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1144011600,'서울특별시','마포구','하중동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1144010600,'서울특별시','마포구','토정동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1147010300,'서울특별시','양천구','신월동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1147010200,'서울특별시','양천구','목동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1147010100,'서울특별시','양천구','신정동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1150010800,'서울특별시','강서구','공항동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1150010700,'서울특별시','강서구','외발산동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1150010500,'서울특별시','강서구','마곡동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1150010600,'서울특별시','강서구','내발산동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1150010200,'서울특별시','강서구','등촌동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1150010300,'서울특별시','강서구','화곡동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1150010100,'서울특별시','강서구','염창동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1150010900,'서울특별시','강서구','방화동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1150011000,'서울특별시','강서구','개화동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1150011300,'서울특별시','강서구','오쇠동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1150010400,'서울특별시','강서구','가양동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1150011200,'서울특별시','강서구','오곡동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1153010200,'서울특별시','구로구','구로동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1153010300,'서울특별시','구로구','가리봉동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1153010600,'서울특별시','구로구','고척동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1153011000,'서울특별시','구로구','온수동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1153010900,'서울특별시','구로구','궁동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1153010800,'서울특별시','구로구','오류동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1153011200,'서울특별시','구로구','항동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1153011100,'서울특별시','구로구','천왕동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1153010700,'서울특별시','구로구','개봉동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1153010100,'서울특별시','구로구','신도림동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1154510100,'서울특별시','금천구','가산동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1154510200,'서울특별시','금천구','독산동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1154510300,'서울특별시','금천구','시흥동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1156011400,'서울특별시','영등포구','당산동4가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1156011300,'서울특별시','영등포구','당산동3가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1156010900,'서울특별시','영등포구','영등포동8가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1156010800,'서울특별시','영등포구','영등포동7가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1156011000,'서울특별시','영등포구','여의도동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1156013300,'서울특별시','영등포구','대림동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1156013200,'서울특별시','영등포구','신길동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1156012000,'서울특별시','영등포구','문래동2가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1156011900,'서울특별시','영등포구','문래동1가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1156012100,'서울특별시','영등포구','문래동3가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1156010500,'서울특별시','영등포구','영등포동4가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1156010100,'서울특별시','영등포구','영등포동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1156010400,'서울특별시','영등포구','영등포동3가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1156010200,'서울특별시','영등포구','영등포동1가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1156012300,'서울특별시','영등포구','문래동5가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1156012500,'서울특별시','영등포구','양평동1가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1156012700,'서울특별시','영등포구','양평동3가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1156012800,'서울특별시','영등포구','양평동4가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1156011700,'서울특별시','영등포구','당산동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1156013100,'서울특별시','영등포구','양화동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1156011800,'서울특별시','영등포구','도림동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1156012200,'서울특별시','영등포구','문래동4가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1156011100,'서울특별시','영등포구','당산동1가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1156011200,'서울특별시','영등포구','당산동2가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1156011500,'서울특별시','영등포구','당산동5가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1156011600,'서울특별시','영등포구','당산동6가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1156012400,'서울특별시','영등포구','문래동6가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1156010300,'서울특별시','영등포구','영등포동2가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1156012600,'서울특별시','영등포구','양평동2가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1156010700,'서울특별시','영등포구','영등포동6가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1156010600,'서울특별시','영등포구','영등포동5가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1156012900,'서울특별시','영등포구','양평동5가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1156013400,'서울특별시','영등포구','양평동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1156013000,'서울특별시','영등포구','양평동6가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1159010700,'서울특별시','동작구','사당동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1159010600,'서울특별시','동작구','동작동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1159010900,'서울특별시','동작구','신대방동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1159010200,'서울특별시','동작구','상도동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1159010300,'서울특별시','동작구','상도1동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1159010800,'서울특별시','동작구','대방동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1159010100,'서울특별시','동작구','노량진동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1159010400,'서울특별시','동작구','본동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1159010500,'서울특별시','동작구','흑석동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1162010200,'서울특별시','관악구','신림동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1162010100,'서울특별시','관악구','봉천동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1162010300,'서울특별시','관악구','남현동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1165010100,'서울특별시','서초구','방배동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1165010800,'서울특별시','서초구','서초동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1165010200,'서울특별시','서초구','양재동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1165010700,'서울특별시','서초구','반포동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1165010600,'서울특별시','서초구','잠원동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1165011100,'서울특별시','서초구','신원동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1165010400,'서울특별시','서초구','원지동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1165011000,'서울특별시','서초구','염곡동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1165010900,'서울특별시','서초구','내곡동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1165010300,'서울특별시','서초구','우면동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1168011800,'서울특별시','강남구','도곡동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1168010600,'서울특별시','강남구','대치동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1168011400,'서울특별시','강남구','일원동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1168011500,'서울특별시','강남구','수서동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1168010300,'서울특별시','강남구','개포동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1168010100,'서울특별시','강남구','역삼동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1168010800,'서울특별시','강남구','논현동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1168010700,'서울특별시','강남구','신사동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1168010400,'서울특별시','강남구','청담동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1168010500,'서울특별시','강남구','삼성동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1168011100,'서울특별시','강남구','세곡동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1168011300,'서울특별시','강남구','율현동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1168011200,'서울특별시','강남구','자곡동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1168011000,'서울특별시','강남구','압구정동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1171010900,'서울특별시','송파구','장지동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1171011200,'서울특별시','송파구','오금동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1171011100,'서울특별시','송파구','방이동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1171010700,'서울특별시','송파구','가락동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1171010400,'서울특별시','송파구','송파동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1171010500,'서울특별시','송파구','석촌동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1171010100,'서울특별시','송파구','잠실동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1171010800,'서울특별시','송파구','문정동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1171011300,'서울특별시','송파구','거여동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1171011400,'서울특별시','송파구','마천동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1171010600,'서울특별시','송파구','삼전동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1171010200,'서울특별시','송파구','신천동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1171010300,'서울특별시','송파구','풍납동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1174010600,'서울특별시','강동구','둔촌동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1174010800,'서울특별시','강동구','성내동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1174010500,'서울특별시','강동구','길동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1174010900,'서울특별시','강동구','천호동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1174010100,'서울특별시','강동구','명일동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1174010300,'서울특별시','강동구','상일동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1174010200,'서울특별시','강동구','고덕동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1174010700,'서울특별시','강동구','암사동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1174011000,'서울특별시','강동구','강일동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1111012000,'서울특별시','종로구','신문로1가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1111011900,'서울특별시','종로구','세종로');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1111012300,'서울특별시','종로구','서린동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1111013500,'서울특별시','종로구','관철동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1111013600,'서울특별시','종로구','인사동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1111013700,'서울특별시','종로구','낙원동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1111013400,'서울특별시','종로구','경운동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1111013200,'서울특별시','종로구','운니동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1111011300,'서울특별시','종로구','필운동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1111011000,'서울특별시','종로구','누하동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1111011100,'서울특별시','종로구','옥인동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1111010800,'서울특별시','종로구','통인동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1111010200,'서울특별시','종로구','신교동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1111017600,'서울특별시','종로구','교남동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1111017800,'서울특별시','종로구','송월동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1111017900,'서울특별시','종로구','홍파동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1111018000,'서울특별시','종로구','교북동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1111018700,'서울특별시','종로구','무악동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1111016300,'서울특별시','종로구','종로5가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1111017500,'서울특별시','종로구','숭인동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1111017700,'서울특별시','종로구','평동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1111012100,'서울특별시','종로구','신문로2가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1111011700,'서울특별시','종로구','당주동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1111018500,'서울특별시','종로구','홍지동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1111015500,'서울특별시','종로구','관수동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1111013800,'서울특별시','종로구','종로2가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1111017400,'서울특별시','종로구','창신동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1111015800,'서울특별시','종로구','예지동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1111016100,'서울특별시','종로구','종로4가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1111015700,'서울특별시','종로구','인의동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1111015900,'서울특별시','종로구','원남동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1111016000,'서울특별시','종로구','연지동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1111017200,'서울특별시','종로구','명륜4가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1111017100,'서울특별시','종로구','명륜2가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1111016900,'서울특별시','종로구','혜화동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1111016800,'서울특별시','종로구','동숭동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1111016200,'서울특별시','종로구','효제동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1111016700,'서울특별시','종로구','충신동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1111016600,'서울특별시','종로구','연건동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1111015400,'서울특별시','종로구','장사동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1111015100,'서울특별시','종로구','묘동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1111015600,'서울특별시','종로구','종로3가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1111013000,'서울특별시','종로구','와룡동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1111014700,'서울특별시','종로구','재동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1111014600,'서울특별시','종로구','가회동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1111014300,'서울특별시','종로구','화동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1111014800,'서울특별시','종로구','계동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1111014900,'서울특별시','종로구','원서동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1111014000,'서울특별시','종로구','삼청동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1111018100,'서울특별시','종로구','행촌동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1111011500,'서울특별시','종로구','사직동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1111011400,'서울특별시','종로구','내자동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1111010700,'서울특별시','종로구','적선동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1111012200,'서울특별시','종로구','청진동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1111012400,'서울특별시','종로구','수송동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1111012700,'서울특별시','종로구','공평동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1111014400,'서울특별시','종로구','사간동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1111014200,'서울특별시','종로구','소격동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1111013900,'서울특별시','종로구','팔판동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1111017300,'서울특별시','종로구','명륜3가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1111017000,'서울특별시','종로구','명륜1가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1111012900,'서울특별시','종로구','견지동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1111012800,'서울특별시','종로구','관훈동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1111012500,'서울특별시','종로구','중학동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1111014100,'서울특별시','종로구','안국동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1111013100,'서울특별시','종로구','권농동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1111016500,'서울특별시','종로구','이화동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1111016400,'서울특별시','종로구','종로6가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1111018400,'서울특별시','종로구','부암동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1111011200,'서울특별시','종로구','체부동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1111010600,'서울특별시','종로구','통의동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1111010500,'서울특별시','종로구','창성동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1111010400,'서울특별시','종로구','효자동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1111010300,'서울특별시','종로구','궁정동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1111010100,'서울특별시','종로구','청운동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1111018600,'서울특별시','종로구','신영동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1111012600,'서울특별시','종로구','종로1가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1111015200,'서울특별시','종로구','봉익동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1111015000,'서울특별시','종로구','훈정동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1111018300,'서울특별시','종로구','평창동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1111018200,'서울특별시','종로구','구기동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1111011800,'서울특별시','종로구','내수동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1111015300,'서울특별시','종로구','돈의동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1111013300,'서울특별시','종로구','익선동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1111011600,'서울특별시','종로구','도렴동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1111010900,'서울특별시','종로구','누상동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1114011800,'서울특별시','중구','남대문로5가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1114012000,'서울특별시','중구','봉래동2가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1114011900,'서울특별시','중구','봉래동1가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1114011300,'서울특별시','중구','북창동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1114011400,'서울특별시','중구','태평로2가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1114016700,'서울특별시','중구','정동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1114010300,'서울특별시','중구','태평로1가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1114010100,'서울특별시','중구','무교동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1114013100,'서울특별시','중구','저동1가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1114010500,'서울특별시','중구','을지로2가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1114016900,'서울특별시','중구','의주로1가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1114016200,'서울특별시','중구','신당동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1114014400,'서울특별시','중구','장충동2가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1114014300,'서울특별시','중구','장충동1가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1114013600,'서울특별시','중구','묵정동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1114014700,'서울특별시','중구','쌍림동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1114015400,'서울특별시','중구','오장동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1114015100,'서울특별시','중구','을지로5가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1114015300,'서울특별시','중구','방산동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1114017000,'서울특별시','중구','충정로1가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1114012500,'서울특별시','중구','충무로2가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1114015800,'서울특별시','중구','충무로3가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1114016100,'서울특별시','중구','저동2가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1114015500,'서울특별시','중구','을지로3가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1114011000,'서울특별시','중구','수표동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1114013200,'서울특별시','중구','충무로4가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1114013500,'서울특별시','중구','예관동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1114013400,'서울특별시','중구','인현동2가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1114015000,'서울특별시','중구','을지로4가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1114015200,'서울특별시','중구','주교동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1114016300,'서울특별시','중구','흥인동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1114016500,'서울특별시','중구','황학동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1114017100,'서울특별시','중구','중림동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1114016800,'서울특별시','중구','순화동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1114016600,'서울특별시','중구','서소문동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1114010600,'서울특별시','중구','남대문로1가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1114010900,'서울특별시','중구','장교동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1114015600,'서울특별시','중구','입정동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1114015700,'서울특별시','중구','산림동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1114014800,'서울특별시','중구','을지로6가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1114011700,'서울특별시','중구','남대문로4가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1114011600,'서울특별시','중구','남대문로3가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1114011200,'서울특별시','중구','남창동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1114012100,'서울특별시','중구','회현동1가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1114011100,'서울특별시','중구','소공동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1114012700,'서울특별시','중구','명동2가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1114011500,'서울특별시','중구','남대문로2가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1114012600,'서울특별시','중구','명동1가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1114010400,'서울특별시','중구','을지로1가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1114010700,'서울특별시','중구','삼각동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1114015900,'서울특별시','중구','초동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1114016000,'서울특별시','중구','인현동1가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1114014500,'서울특별시','중구','광희동1가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1114014600,'서울특별시','중구','광희동2가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1114013300,'서울특별시','중구','충무로5가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1114013900,'서울특별시','중구','필동3가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1114012200,'서울특별시','중구','회현동2가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1114012400,'서울특별시','중구','충무로1가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1114014200,'서울특별시','중구','예장동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1114012900,'서울특별시','중구','남산동2가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1114013000,'서울특별시','중구','남산동3가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1114014900,'서울특별시','중구','을지로7가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1114013700,'서울특별시','중구','필동1가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1114017200,'서울특별시','중구','의주로2가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1114012300,'서울특별시','중구','회현동3가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1114012800,'서울특별시','중구','남산동1가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1114014100,'서울특별시','중구','주자동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1114013800,'서울특별시','중구','필동2가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1114016400,'서울특별시','중구','무학동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1114017400,'서울특별시','중구','만리동2가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1114017300,'서울특별시','중구','만리동1가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1114010200,'서울특별시','중구','다동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1114014000,'서울특별시','중구','남학동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1114010800,'서울특별시','중구','수하동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1117013500,'서울특별시','용산구','용산동6가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1117013000,'서울특별시','용산구','이태원동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1117010300,'서울특별시','용산구','용산동4가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1117010200,'서울특별시','용산구','용산동2가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1117012800,'서울특별시','용산구','한강로3가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1117012500,'서울특별시','용산구','한강로2가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1117012400,'서울특별시','용산구','한강로1가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1117010400,'서울특별시','용산구','갈월동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1117010500,'서울특별시','용산구','남영동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1117010700,'서울특별시','용산구','동자동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1117013100,'서울특별시','용산구','한남동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1117011900,'서울특별시','용산구','효창동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1117012100,'서울특별시','용산구','용문동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1117011300,'서울특별시','용산구','원효로2가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1117011200,'서울특별시','용산구','원효로1가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1117012300,'서울특별시','용산구','신계동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1117012200,'서울특별시','용산구','문배동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1117012000,'서울특별시','용산구','도원동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1117011800,'서울특별시','용산구','원효로4가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1117011500,'서울특별시','용산구','산천동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1117011600,'서울특별시','용산구','청암동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1117011400,'서울특별시','용산구','신창동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1117011100,'서울특별시','용산구','청파동3가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1117011000,'서울특별시','용산구','청파동2가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1117010800,'서울특별시','용산구','서계동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1117010100,'서울특별시','용산구','후암동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1117011700,'서울특별시','용산구','원효로3가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1117010900,'서울특별시','용산구','청파동1가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1117013600,'서울특별시','용산구','보광동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1117012700,'서울특별시','용산구','용산동5가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1117013300,'서울특별시','용산구','서빙고동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1117013200,'서울특별시','용산구','동빙고동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1117012900,'서울특별시','용산구','이촌동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1117012600,'서울특별시','용산구','용산동3가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1117010600,'서울특별시','용산구','용산동1가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1117013400,'서울특별시','용산구','주성동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1120012200,'서울특별시','성동구','용답동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1120011500,'서울특별시','성동구','성수동2가');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1120011800,'서울특별시','성동구','송정동');
+Insert into ZIPCODE (CODE,SIDO,GUGUN,STREET) values (1120011400,'서울특별시','성동구','성수동1가');
+
+---------------------------------------------------
+--   END DATA FOR TABLE ZIPCODE
+---------------------------------------------------
+
+---------------------------------------------------
+--   DATA FOR TABLE PARKING_DETAIL
+--   FILTER = none used
+---------------------------------------------------
+REM INSERTING into PARKING_DETAIL
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (350,0,3,null,null,'1','1','0',230,500,1,400,7000,1,'방범용 CCTV 2대');
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (361,0,3,null,null,'1','1','0',200,400,1,300,5000,1,'방범용 CCTV 1대');
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (0,0,3,null,null,'1','1','0',200,400,1,300,5000,0,'방범용 CCTV 1대');
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (321,0,3,null,null,'1','1','0',200,500,1,200,1000,1,'주변 CCTV 1대, 편의점, 식당 등');
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173877,1,3.5,0,0,'Y','N','N',60000,300,10,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173880,1,3.5,0,0,'Y','N','N',30000,300,30,300,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173885,1,3.5,0,0,'Y','N','N',180000,500,10,1500,24000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173891,1,3.5,0,0,'Y','N','N',60000,100,10,300,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (345,0,3,null,null,'1','1','1',350,300,1,500,10000,0,'방범용 CCTV 2대');
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173896,1,3.5,0,0,'Y','N','N',50000,200,10,600,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (781508,1,3.5,0,0,'Y','Y','Y',50000,50,5,300,2000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (781509,1,3.5,0,0,'Y','Y','Y',50000,50,5,300,2000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (781511,1,3.5,0,0,'Y','Y','Y',50000,50,5,300,2000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (781512,1,3.5,0,0,'Y','N','Y',80000,100,5,600,5000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (782904,1,3.5,0,0,'Y','N','N',0,100,10,300,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (789092,1,3.5,0,0,'Y','N','Y',70000,300,10,900,9000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (790441,1,3.5,0,0,'Y','N','N',170000,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (881056,1,3.5,0,0,'Y','N','Y',70000,150,5,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (892053,1,3.5,0,0,'Y','N','N',100000,300,10,900,35000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (911542,1,3.5,0,0,'Y','N','N',70000,100,5,600,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (968455,1,3.5,0,0,'Y','N','N',60000,150,5,900,10000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (968483,1,3.5,0,0,'Y','N','N',60000,150,5,900,10000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (968514,1,3.5,0,0,'Y','N','N',100000,200,5,1200,10000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (980509,1,3.5,0,0,'Y','N','N',100000,900,30,900,6000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (984617,1,3.5,0,0,'Y','N','N',70000,100,5,600,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (984688,1,3.5,0,0,'Y','N','N',112000,150,5,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1010089,1,3.5,0,0,'Y','N','N',0,0,0,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1012254,1,3.5,0,0,'Y','N','N',100000,150,5,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1013181,1,3.5,0,0,'Y','N','N',50000,50,5,300,10000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1025696,1,3.5,0,0,'Y','N','N',100000,150,5,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1025697,1,3.5,0,0,'Y','N','N',65000,50,5,300,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (75612,1,3.5,0,0,'Y','N','N',100000,200,5,1200,10000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (76357,1,3.5,0,0,'Y','N','N',100000,200,5,1200,10000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (77533,1,3.5,0,0,'Y','N','N',100000,200,5,1200,10000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (110855,1,3.5,0,0,'Y','N','Y',200000,1000,10,3000,20000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (346,0,3,null,null,'1','1','0',250,400,1,300,7000,0,'없음');
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (111189,1,3.5,0,0,'Y','N','Y',200000,1000,10,3000,20000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (111643,1,3.5,0,0,'Y','N','Y',200000,1000,10,3000,20000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (111804,1,4,0,0,'Y','N','Y',200000,1000,10,3000,20000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (112111,1,3.5,0,0,'Y','N','Y',200000,1000,10,3000,20000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (112411,1,3.5,0,0,'Y','N','Y',200000,1000,10,3000,20000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (112413,1,3.5,0,0,'Y','N','Y',200000,1000,10,3000,20000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (113205,1,3.5,0,0,'Y','N','N',50000,200,10,600,6000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (113229,1,3.5,0,0,'Y','N','N',50000,200,10,600,6000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (114486,1,3.5,0,0,'Y','N','N',50000,200,10,600,6000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (116070,1,3.5,0,0,'Y','N','Y',200000,1000,10,3000,20000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (116072,1,3.5,3,0,'Y','N','Y',0,150,5,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (116359,1,3.5,0,0,'Y','N','Y',200000,1000,10,3000,20000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (117301,1,3.5,0,0,'Y','N','Y',200000,1000,10,3000,20000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (117304,1,3.5,0,0,'Y','N','Y',200000,1000,10,3000,20000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (117849,1,3.5,0,0,'Y','N','N',200000,1000,10,3000,20000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (117856,1,3.5,0,0,'Y','N','Y',200000,1000,1,3000,20000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (118387,1,3.5,0,0,'Y','N','Y',200000,1000,10,3000,20000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (118477,1,3.5,0,0,'Y','N','Y',200000,1000,10,3000,20000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (118701,1,3.5,3,0,'Y','N','Y',0,350,5,2100,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (119300,1,3.5,0,0,'Y','N','N',100000,500,10,150,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (119528,1,3.5,0,0,'Y','N','N',100000,500,10,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (119538,1,3.5,0,0,'Y','N','N',100000,500,10,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (120258,1,3.5,0,0,'Y','N','Y',0,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (120343,1,3.5,0,0,'Y','N','Y',200000,1000,10,3000,20000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (120687,1,3.5,0,0,'Y','N','Y',100000,500,10,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (120736,1,3.5,3,0,'Y','N','Y',0,150,5,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (120789,1,3.5,0,0,'Y','N','N',50000,200,10,600,6000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (120935,1,3.5,0,0,'Y','N','N',50000,200,10,600,6000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (121146,1,3.5,0,0,'Y','N','Y',200000,1000,10,3000,20000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (121824,1,3.5,0,0,'Y','N','N',50000,200,10,600,6000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (121955,1,3.5,0,0,'Y','N','Y',200000,1000,100,3000,20000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (122011,1,3.5,0,0,'Y','N','Y',200000,1000,10,3000,20000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (122027,1,3.5,0,0,'Y','N','N',100000,500,10,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (122038,1,3.5,0,0,'Y','N','N',100000,500,10,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (122052,1,3.5,0,0,'Y','N','N',100000,500,10,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (122062,1,3.5,0,0,'Y','N','N',100000,500,10,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (348,0,3,null,null,'1','1','0',250,500,1,400,8000,1,'없음');
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (122602,1,3.5,0,0,'Y','N','N',100000,500,10,150,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (122610,1,3.5,0,0,'Y','N','N',100000,500,10,150,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (122621,1,3.5,0,0,'Y','N','N',100000,500,10,150,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (122652,1,3.5,0,0,'Y','N','N',80000,300,10,900,9000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (122662,1,3.5,0,0,'Y','N','Y',200000,1000,10,3000,20000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (122663,1,3.5,0,0,'Y','N','Y',200000,1000,10,3000,20000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (122669,1,3.5,0,0,'Y','N','N',100000,500,10,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (123621,1,3.5,0,0,'Y','N','Y',200000,1000,10,3000,20000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (124068,1,3.5,3,0,'Y','N','Y',0,150,5,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (124423,1,3.5,0,0,'Y','N','N',100000,500,10,150,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (124434,1,3.5,0,0,'Y','N','N',100000,500,10,150,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (124525,1,3.5,0,0,'Y','N','N',50000,200,10,600,6000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (124830,1,3.5,0,0,'Y','Y','Y',150000,350,5,168,30000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (125895,1,3.5,0,0,'Y','Y','Y',150000,350,5,168,30000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (126730,1,3.5,0,0,'Y','Y','Y',150000,350,5,168,30000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (126804,1,3.5,0,0,'Y','Y','Y',150000,350,5,168,30000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (127129,1,3.5,3,0,'Y','N','Y',0,100,5,600,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (127356,1,3.5,3,0,'Y','N','N',0,500,5,3000,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (129301,1,3.5,3,0,'Y','N','N',0,500,5,3000,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (129703,1,3.5,0,0,'Y','Y','Y',150000,350,5,168,30000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (130531,1,3.75,0,0,'Y','Y','Y',0,400,5,192,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (131151,1,3.5,0,0,'Y','Y','Y',0,350,5,168,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (132111,1,3.5,0,0,'Y','Y','Y',120000,250,5,120,24000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (132787,1,3.5,0,0,'Y','Y','Y',120000,250,5,120,24000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (132897,1,3.5,0,0,'Y','Y','Y',150000,350,5,168,30000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (135714,1,3.5,0,0,'Y','Y','Y',120000,250,5,120,24000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (135938,1,3.25,0,0,'Y','Y','Y',150000,350,5,168,30000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (136358,1,3.5,0,0,'Y','Y','Y',120000,250,5,120,24000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (140146,1,3.5,0,0,'Y','N','Y',0,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (144303,1,3.5,0,0,'Y','N','Y',0,500,10,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (144474,1,3.5,3,0,'Y','N','Y',0,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (146238,1,3.5,3,0,'Y','N','Y',40000,150,5,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (171924,1,3.5,0,0,'Y','N','Y',140000,150,5,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (171931,1,3.5,0,0,'Y','N','Y',240000,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (171932,1,3.5,0,0,'Y','N','Y',140000,150,5,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (171933,1,3.5,0,0,'Y','N','Y',240000,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (171939,1,3.5,0,0,'Y','N','Y',140000,150,5,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (171941,1,3.5,0,0,'Y','N','Y',140000,150,5,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (171944,1,3.5,0,0,'Y','Y','Y',140000,150,5,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (171945,1,3.5,0,0,'Y','N','Y',140000,150,5,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (171950,1,3.5,0,0,'Y','N','N',120000,1500,30,1500,10000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (171953,1,3.5,0,0,'Y','N','N',350000,400,5,2400,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (171956,1,3.5,0,0,'Y','N','Y',140000,150,5,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (171965,1,3.5,0,0,'Y','N','Y',240000,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (171971,1,3.5,0,0,'Y','N','Y',140000,150,5,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (171975,1,3.5,0,0,'Y','N','N',90000,150,5,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172005,1,3.5,0,0,'Y','N','N',140000,150,5,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172007,1,3.5,0,0,'Y','N','N',98000,150,5,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172015,1,3.5,0,0,'Y','N','N',130000,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173488,1,3.5,0,0,'Y','N','N',140000,500,10,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173498,1,3.5,0,0,'Y','N','N',120000,300,10,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173521,1,3.5,0,0,'Y','N','N',120000,300,10,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173522,1,3.5,0,0,'Y','N','N',120000,300,10,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173528,1,3.5,0,0,'Y','N','N',120000,300,10,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173530,1,3.5,0,0,'Y','N','N',110000,1500,30,1500,30000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173534,1,3.5,0,0,'Y','N','N',175000,200,5,1200,20000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173553,1,3.5,1,155,'Y','N','N',65000,100,5,600,28800,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173573,1,3.5,0,0,'Y','N','N',180000,500,10,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173578,1,4.25,0,0,'Y','N','N',0,300,30,300,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173590,1,3.5,0,0,'Y','N','N',120000,300,10,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173591,1,3.625,1,1338,'Y','N','N',70000,100,5,600,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173646,1,3.5,0,0,'Y','N','Y',110000,150,5,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173665,1,3.5,0,0,'Y','N','N',180000,500,10,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173673,1,3.5,0,0,'Y','N','N',98000,300,10,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173685,1,3.5,0,0,'Y','N','N',250000,800,10,2400,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173691,1,3.5,1,1967,'Y','N','N',98000,150,5,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173692,1,3.5,0,0,'Y','N','N',60000,100,10,300,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173696,1,3.5,0,0,'Y','N','N',120000,300,10,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173698,1,3.5,0,0,'Y','N','N',180000,500,10,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173701,1,3.5,0,0,'Y','N','N',120000,300,10,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173740,1,3.5,1,1137,'Y','N','N',80000,150,5,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173749,1,3.5,0,0,'Y','N','N',0,100,10,300,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173750,1,3.5,1,204,'Y','N','N',100000,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173754,1,3.5,0,0,'Y','N','N',168000,500,10,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173759,1,3.5,0,0,'Y','N','N',0,150,5,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173776,1,3.5,0,0,'Y','N','N',180000,500,10,1500,24000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173779,1,3.5,0,0,'Y','N','N',80000,150,5,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173810,1,3.5,0,0,'Y','N','N',70000,100,5,600,10000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173821,1,3.5,0,0,'Y','N','N',60000,100,10,300,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173828,1,3.5,0,0,'Y','N','N',180000,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173831,1,3.5,1,186,'Y','N','N',180000,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173867,1,3.5,1,565,'Y','N','N',50000,100,5,600,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173870,1,3.5,0,0,'Y','N','N',60000,100,10,300,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173874,1,3.5,1,686,'Y','N','N',90000,150,5,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173876,1,3.5,0,0,'Y','N','N',50000,200,10,600,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1169670,1,3.5,0,0,'Y','Y','Y',100000,500,10,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1268812,1,3.5,0,0,'Y','N','N',98000,150,5,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1169706,1,3.5,3,0,'Y','N','Y',0,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1169723,1,3.5,0,0,'Y','Y','Y',100000,500,10,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1169936,1,3.5,0,0,'Y','Y','Y',100000,500,10,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1169981,1,3.5,0,0,'Y','N','Y',120000,200,5,1200,10000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1170433,1,3.5,0,0,'Y','N','Y',120000,250,5,1500,10000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1172364,1,3.5,0,0,'Y','Y','Y',100000,1500,30,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1172612,1,3.5,0,0,'Y','Y','Y',100000,1500,30,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1172984,1,3.5,0,0,'Y','N','Y',0,250,5,1500,10000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1173072,1,3.5,0,0,'Y','N','Y',120000,250,5,1500,10000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1174223,1,3.5,0,0,'Y','N','Y',120000,250,5,1500,10000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1174233,1,3.5,0,0,'Y','N','Y',50000,100,5,600,5000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1175069,1,3.5,3,0,'Y','N','Y',0,150,5,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1175418,1,3.5,0,0,'Y','N','Y',120000,200,5,1200,10000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1177715,1,3.5,0,0,'Y','N','N',120000,250,5,1500,10000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1180082,1,3.5,0,0,'Y','Y','Y',100000,150,5,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1180193,1,3.5,0,0,'Y','N','Y',0,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1180642,1,3.5,0,0,'Y','Y','Y',120000,300,5,1800,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1180721,1,3.5,0,0,'Y','N','N',0,300,5,1800,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1180833,1,3.5,0,0,'Y','N','Y',150000,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1180914,1,3.5,0,0,'Y','Y','Y',120000,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1180915,1,3.5,0,0,'Y','N','Y',150000,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1184061,1,3.5,0,0,'Y','N','N',0,300,5,1800,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1184355,1,3.5,0,0,'Y','Y','Y',0,300,5,1800,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1189080,1,3.5,0,0,'Y','N','Y',0,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1190582,1,3.5,0,0,'Y','N','Y',120000,500,10,1500,36000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1191037,1,3.5,3,0,'Y','N','N',0,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1191239,1,3.5,0,0,'Y','N','Y',0,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1191352,1,3.5,0,0,'Y','N','Y',0,500,10,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1192697,1,3.5,0,0,'Y','N','Y',0,200,5,1200,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1193050,1,3.5,0,0,'Y','N','Y',100000,1500,30,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1193127,1,3.5,0,0,'Y','N','Y',120000,500,10,1500,36000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1195466,1,3.5,0,0,'Y','N','Y',0,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1197273,1,3.5,0,0,'Y','N','Y',80000,250,5,1500,10000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1199510,1,3.5,0,0,'Y','N','Y',0,500,5,3900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1199786,1,3.5,0,0,'Y','N','Y',80000,250,5,1500,10000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1201024,1,3.5,0,0,'Y','N','Y',80000,250,5,1500,10000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1203053,1,3.5,0,0,'Y','N','Y',0,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1203572,1,3.5,0,0,'Y','N','Y',180000,500,10,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1204439,1,3.5,0,0,'Y','N','Y',0,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1205225,1,3.5,0,0,'Y','N','Y',0,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1206059,1,3.5,0,0,'Y','N','Y',0,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1206133,1,3.5,0,0,'Y','N','Y',0,500,5,3900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1206362,1,3.5,0,0,'Y','N','Y',250000,1000,10,3000,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1206427,1,3.5,0,0,'Y','N','N',250000,1000,10,3000,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1206606,1,3.5,0,0,'Y','N','Y',0,500,5,3900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1207170,1,3.5,0,0,'Y','N','Y',0,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1207907,1,3.5,0,0,'Y','N','Y',250000,1000,10,3000,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1207934,1,3.5,0,0,'Y','N','Y',250000,1000,10,3000,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1208740,1,3.5,0,0,'Y','N','Y',0,500,5,3900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1208944,1,3.5,1,12,'Y','N','Y',0,500,5,3900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1209555,1,3.5,0,0,'Y','N','Y',250000,1000,10,3000,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1209617,1,3.5,0,0,'Y','N','Y',250000,1000,10,3000,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1210056,1,3.5,3,0,'Y','N','Y',0,500,5,3000,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1210451,1,3.5,1,12,'Y','N','Y',0,500,5,3900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1211476,1,3.5,0,0,'Y','N','Y',250000,1000,10,3000,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1211874,1,3.5,0,0,'Y','N','Y',0,500,5,3900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1216630,1,3.5,0,0,'Y','Y','Y',100000,500,10,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1219269,1,3.5,0,0,'Y','N','Y',0,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1219434,1,3.5,0,0,'Y','N','Y',120000,500,10,1500,36000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1219470,1,3.5,3,0,'Y','N','N',0,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1219530,1,3.5,0,0,'Y','N','Y',120000,500,10,1500,36000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1219995,1,3.5,0,0,'Y','N','Y',0,0,30,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1220136,1,3.5,0,0,'Y','N','N',0,300,5,1800,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1221864,1,3.5,0,0,'Y','N','Y',0,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1226038,1,3.5,0,0,'Y','N','N',100000,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1228189,1,3.5,0,0,'Y','N','N',100000,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1232331,1,3.5,0,0,'Y','N','Y',65000,100,5,600,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1232531,1,3.5,3,0,'Y','N','Y',65000,100,5,600,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1233443,1,3.5,3,0,'Y','N','Y',0,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1234228,1,3.5,3,0,'Y','N','Y',0,150,5,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1234251,1,3.5,0,0,'Y','N','Y',0,150,5,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1234393,1,3.5,0,0,'Y','N','Y',0,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1234449,1,3.5,0,0,'Y','N','Y',0,150,5,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1235178,1,3.5,0,0,'Y','N','Y',0,500,5,3900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1235414,1,3.5,0,0,'Y','N','Y',250000,500,5,3000,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1235434,1,3.5,1,8,'Y','N','Y',0,500,5,3900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1235457,1,3.5,0,0,'Y','N','Y',0,500,5,3900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1235467,1,3.5,3,0,'Y','N','Y',0,650,5,3900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1235505,1,3.5,0,0,'Y','N','Y',0,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1235668,1,3.5,3,0,'Y','N','Y',0,500,5,3900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1235696,1,3.5,0,0,'Y','N','Y',250000,500,5,3000,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1235715,1,3.5,1,11,'Y','N','Y',0,500,5,3900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1235721,1,3.5,3,0,'Y','N','Y',0,650,5,3900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1235875,1,3.5,0,0,'Y','N','Y',0,500,5,3900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1235943,1,3.5,0,0,'Y','N','Y',0,500,5,3900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1236067,1,3.5,0,0,'Y','N','Y',0,350,5,2100,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1236068,1,3.5,0,0,'Y','N','Y',0,350,5,2100,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1236088,1,3.5,1,9,'Y','N','Y',0,500,5,3900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1236120,1,3.5,0,0,'Y','N','Y',0,500,5,3900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1236139,1,3.5,3,0,'Y','N','Y',0,650,5,3900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1236165,1,3.5,3,0,'Y','N','Y',0,650,5,3900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1236213,1,3.5,0,0,'Y','N','Y',0,350,5,2100,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1236214,1,3.5,0,0,'Y','N','Y',0,350,5,2100,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1236215,1,3.5,0,0,'Y','N','Y',0,350,5,2100,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1236218,1,3.5,0,0,'Y','N','Y',0,350,5,2100,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1236219,1,3.5,0,0,'Y','N','Y',0,350,5,2100,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1236220,1,3.5,0,0,'Y','N','Y',0,350,5,2100,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1236221,1,3.5,0,0,'Y','N','Y',0,350,5,2100,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1236222,1,3.5,0,0,'Y','N','Y',0,350,5,2100,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1236223,1,3.5,0,0,'Y','N','Y',0,350,5,2100,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1236224,1,3.5,0,0,'Y','N','Y',0,350,5,2100,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1236225,1,3.5,0,0,'Y','N','Y',0,350,5,2100,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1236226,1,3.5,0,0,'Y','N','Y',0,350,5,2100,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1236227,1,3.5,0,0,'Y','N','Y',0,350,5,2100,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1236309,1,3.5,1,5,'Y','N','Y',0,500,5,3900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1236338,1,3.5,0,0,'Y','N','Y',0,500,5,3900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1236472,1,3.5,0,0,'Y','N','Y',250000,500,5,3000,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1236500,1,3.5,0,0,'Y','N','N',0,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1236545,1,3.5,0,0,'Y','N','Y',180000,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1236552,1,3.5,1,0,'N','Y','Y',0,0,0,0,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1236558,1,3.5,3,0,'Y','N','Y',0,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1236616,1,3.5,0,0,'Y','N','N',0,250,5,3000,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1236620,1,3.5,3,0,'Y','N','Y',0,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1236728,1,3.5,0,0,'Y','N','Y',250000,500,5,3000,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1236747,1,3.5,1,3,'N','Y','Y',0,0,0,0,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1237137,1,3.5,0,0,'Y','N','Y',180000,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1237146,1,3.5,0,0,'Y','N','Y',180000,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1237532,1,3.5,0,0,'Y','N','Y',250000,500,5,3000,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1237609,1,3.5,0,0,'Y','N','Y',250000,500,5,3000,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1237723,1,3.5,0,0,'Y','Y','Y',250000,500,5,3000,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1237813,1,3.5,0,0,'Y','N','Y',250000,500,5,3000,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1237987,1,3.5,0,0,'Y','N','Y',100000,150,5,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1238115,1,3.5,3,0,'Y','N','Y',0,150,5,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1238138,1,3.5,0,0,'Y','Y','Y',150000,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1238166,1,3.5,0,0,'Y','N','Y',100000,150,5,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1238209,1,3.5,0,0,'Y','N','Y',150000,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1238304,1,3.5,0,0,'Y','N','Y',150000,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1238356,1,3.5,0,0,'Y','N','Y',150000,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1238382,1,3.5,0,0,'Y','N','Y',0,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1238469,1,3.5,0,0,'Y','Y','Y',150000,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1238542,1,3.5,0,0,'Y','N','Y',150000,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1238565,1,3.5,0,0,'Y','N','Y',150000,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1238808,1,3.5,0,0,'Y','N','Y',150000,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1238846,1,3.5,0,0,'Y','N','Y',150000,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1238902,1,3.5,3,0,'Y','N','Y',0,150,5,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1238938,1,3.5,0,0,'Y','N','Y',150000,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1238941,1,3.5,0,0,'Y','N','Y',150000,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1240475,1,3.5,0,0,'Y','N','Y',150000,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1247636,1,3.5,0,0,'Y','N','N',50000,150,5,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1247641,1,3.5,0,0,'Y','N','N',0,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1247659,1,3.5,0,0,'Y','N','N',80000,800,60,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1247661,1,3.5,0,0,'Y','N','N',120000,500,10,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1247675,1,3.5,1,741,'Y','N','N',80000,150,5,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1247677,1,3.5,0,0,'Y','N','N',50000,100,5,600,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1247678,1,3.5,0,0,'Y','N','N',50000,100,5,600,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1247680,1,3.5,0,0,'Y','N','N',170000,500,10,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1247682,1,3.5,0,0,'Y','N','N',100000,1500,30,1500,10000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1247683,1,3.5,0,0,'Y','N','N',110000,1000,30,900,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1247684,1,3.5,0,0,'Y','N','Y',250000,1500,30,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1254863,1,3.5,0,0,'Y','N','N',120000,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1255517,1,3.5,0,0,'Y','N','Y',80000,150,5,900,10000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1262521,1,3.5,0,0,'Y','N','Y',0,0,0,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1264599,1,3.5,0,0,'Y','N','Y',0,0,0,2400,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1265250,1,3.5,0,0,'Y','N','Y',0,0,0,2400,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1265901,1,3.5,0,0,'Y','N','Y',0,500,10,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1266311,1,3.5,0,0,'Y','N','Y',0,0,0,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1267813,1,3.5,0,0,'Y','Y','Y',0,0,0,2400,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1268780,1,3.5,0,0,'Y','N','N',98000,150,5,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (383,0,3,null,null,'0','0','0',500,1000,1,500,1000,1,'주차장 관리인');
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1268813,1,3.5,0,0,'Y','N','N',130000,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1268816,1,3.5,0,0,'Y','N','N',140000,150,5,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1276799,1,3.5,0,0,'Y','N','N',60000,100,10,300,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1277144,1,3.5,1,88,'Y','N','N',80000,150,5,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1277145,1,3.5,1,44,'Y','N','N',100000,400,5,2400,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1277146,1,3.5,0,0,'Y','N','N',50000,100,5,600,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1277150,1,3.5,1,30,'Y','N','N',39000,50,5,300,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1277151,1,3.5,1,21,'Y','N','N',39000,50,5,300,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1277152,1,3.5,0,0,'Y','N','Y',50000,100,5,600,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1277157,1,3.5,3,0,'Y','N','N',100000,150,5,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1277158,1,3.5,0,0,'Y','N','Y',50000,100,5,600,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1277160,1,3.5,1,0,'Y','N','N',100000,150,5,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1277163,1,3.5,3,0,'Y','N','Y',180000,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1278470,1,3.5,0,0,'Y','N','Y',0,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1280770,1,3.5,0,0,'Y','N','Y',0,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1282112,1,3.5,0,0,'Y','N','N',0,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1418248,1,3.5,0,0,'Y','N','N',160000,500,10,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1421476,1,3.5,0,0,'Y','N','N',0,0,30,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1421499,1,3.5,0,0,'Y','N','N',100000,200,5,1200,10000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1421560,1,3.5,0,0,'Y','N','N',100000,200,5,1200,10000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1422117,1,3.5,0,0,'Y','N','Y',0,150,5,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1422436,1,3.5,0,0,'Y','N','Y',0,500,10,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1422437,1,3.5,0,0,'Y','N','Y',0,500,10,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1423412,1,3.5,0,0,'Y','Y','Y',0,400,5,192,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1423650,1,3.5,0,0,'Y','N','N',0,300,5,1800,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1423651,1,3.5,0,0,'Y','N','N',50000,150,5,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1423770,1,3.5,0,0,'Y','N','N',0,300,30,300,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1424206,1,3.5,0,0,'Y','N','N',140000,150,5,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1424463,1,3.5,1,3,'N','Y','Y',0,0,0,0,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1424465,1,3.5,0,0,'N','Y','Y',0,0,0,0,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1424585,1,3.5,0,0,'N','Y','Y',0,0,0,0,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1424603,1,3.5,1,3,'N','Y','Y',0,0,0,0,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1424640,1,3.5,0,0,'N','Y','Y',0,0,0,0,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1424675,1,3.5,0,0,'N','Y','Y',0,0,0,0,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1424677,1,3.5,0,0,'N','Y','Y',0,0,0,0,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1424692,1,3.5,0,0,'N','Y','Y',0,0,0,0,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1424710,1,3.5,0,0,'N','Y','Y',0,0,0,0,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1425391,1,3.5,0,0,'Y','Y','Y',84000,150,5,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1425816,1,3.5,0,0,'Y','N','Y',0,500,5,3000,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1427620,1,3.5,1,15,'N','Y','Y',0,0,0,0,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1427676,1,3.5,0,0,'Y','N','Y',250000,500,5,3000,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1427774,1,3.5,0,0,'N','Y','Y',0,0,0,0,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1429954,1,3.5,0,0,'N','Y','Y',0,0,0,0,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1430037,1,3.5,1,3,'N','Y','Y',0,0,0,0,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1430045,1,3.5,1,2,'N','Y','Y',0,0,0,0,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1430344,1,3.5,0,0,'Y','N','N',100000,150,5,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1430643,1,3.5,1,13,'N','Y','Y',0,0,0,0,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1430676,1,3.5,0,0,'N','Y','Y',0,0,0,0,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1430933,1,3.5,1,2,'Y','N','N',0,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1430941,1,3.5,0,0,'Y','N','N',70000,300,10,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1430967,1,3.5,0,0,'Y','N','Y',100000,300,10,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1431018,1,3.5,0,0,'Y','N','Y',70000,300,10,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1431644,1,3.5,0,0,'Y','N','N',180000,200,5,1200,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1431647,1,3.5,0,0,'Y','N','Y',200000,400,5,2400,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1431648,1,3.5,0,0,'Y','N','Y',200000,400,5,2400,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1431649,1,3.5,0,0,'Y','N','Y',200000,400,5,2400,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1431650,1,3.5,0,0,'Y','N','Y',200000,400,5,2400,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1431651,1,3.5,0,0,'Y','N','Y',200000,400,5,2400,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1431652,1,3.5,0,0,'Y','N','Y',200000,400,5,2400,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1431653,1,3.5,0,0,'Y','N','Y',200000,400,5,2400,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1431654,1,3.5,0,0,'Y','N','Y',200000,400,5,2400,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1431655,1,3.5,0,0,'Y','N','Y',200000,400,5,2400,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1431656,1,3.5,0,0,'Y','N','Y',200000,400,5,2400,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1431657,1,3.5,0,0,'Y','N','Y',200000,400,5,2400,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1431658,1,3.5,0,0,'Y','N','Y',200000,400,5,2400,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1431659,1,3.5,0,0,'Y','N','Y',200000,400,5,2400,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1431660,1,3.5,0,0,'Y','N','Y',200000,400,5,2400,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1431661,1,3.5,0,0,'Y','N','Y',200000,400,5,2400,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1431662,1,3.5,0,0,'Y','N','Y',200000,400,5,2400,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1431734,1,3.5,0,0,'Y','N','N',250000,500,5,3000,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1431739,1,3.5,0,0,'Y','N','N',0,1000,120,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1432333,1,3.5,1,0,'Y','N','N',0,2000,60,2100,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1432682,1,3.5,0,0,'Y','N','N',75000,100,5,600,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1433547,1,3.5,0,0,'Y','N','N',180000,250,5,1500,72000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1367460,1,3.5,0,0,'Y','N','Y',100000,150,5,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1395291,1,3.5,3,0,'Y','N','Y',90000,100,5,600,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (171966,1,3.5,0,0,'Y','N','Y',140000,150,5,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173499,1,3.5,0,0,'Y','Y','Y',175000,200,5,1200,20000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173582,1,3.5,0,0,'Y','N','N',120000,300,10,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173686,1,3.5,1,1283,'Y','N','N',90000,150,5,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173752,1,3.5,1,96,'Y','N','N',65000,100,5,600,28800,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173864,1,3.5,0,0,'Y','N','Y',140000,150,5,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173890,1,3.5,0,0,'Y','N','N',60000,100,10,300,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (788447,1,3.5,0,0,'Y','N','N',80000,200,5,1200,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (968503,1,3.5,0,0,'Y','N','N',100000,200,5,1200,10000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1025695,1,3.5,0,0,'Y','N','N',65000,50,5,300,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (111283,1,3.5,0,0,'Y','N','Y',200000,1000,10,3000,20000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (114389,1,3.5,0,0,'Y','N','N',50000,200,10,600,6000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (117851,1,3.5,0,0,'Y','N','Y',200000,1000,10,3000,20000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (119730,1,3.5,0,0,'Y','N','N',100000,500,10,150,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (121751,1,3.5,3,0,'Y','N','Y',0,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (122514,1,3.5,0,0,'Y','N','Y',0,500,5,3000,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (122758,1,3.5,0,0,'Y','N','N',100000,500,10,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (126607,1,3.5,0,0,'Y','Y','Y',150000,350,5,168,30000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (131640,1,3.5,0,0,'Y','Y','Y',120000,300,5,144,24000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (140610,1,3.5,0,0,'Y','N','N',0,300,10,900,9000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (171467,1,3.5,0,0,'Y','Y','Y',80000,150,5,72,16000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (171914,1,3.5,0,0,'Y','N','Y',200000,400,5,2400,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172065,1,3.5,1,92,'Y','N','N',180000,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172097,1,3.5,0,0,'Y','N','N',70000,100,5,600,10000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172198,1,3.5,0,0,'Y','N','N',80000,0,0,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172382,1,3.5,1,85,'Y','N','N',30000,50,5,300,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172563,1,3.5,0,0,'Y','N','N',60000,150,5,900,10000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172643,1,3.5,0,0,'Y','N','N',70000,100,5,600,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172703,1,3.5,0,0,'Y','N','N',70000,200,10,600,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172901,1,3.5,0,0,'Y','N','Y',100000,300,10,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172914,1,3.5,0,0,'Y','N','Y',70000,300,10,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172928,1,3.5,0,0,'Y','N','N',50000,100,10,300,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172945,1,3.5,0,0,'Y','N','Y',0,300,10,900,9000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172968,1,3.5,0,0,'Y','N','Y',50000,100,5,600,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172992,1,3.5,0,0,'Y','N','N',50000,100,10,300,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173019,1,3.5,0,0,'Y','Y','Y',50000,50,5,300,2000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173089,1,3.5,0,0,'Y','N','N',50000,50,5,300,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173139,1,3.5,0,0,'Y','N','N',60000,100,5,600,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173185,1,3.5,0,0,'Y','Y','Y',98000,150,5,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173229,1,3.5,0,0,'Y','Y','Y',65000,50,5,300,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173277,1,3.5,0,0,'Y','N','N',70000,100,5,600,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173350,1,3.5,0,0,'Y','Y','Y',175000,200,5,1200,20000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173437,1,3.5,0,0,'Y','N','N',70000,100,5,600,10000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1283042,1,3.5,0,0,'Y','N','Y',0,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1364466,1,3.5,0,0,'Y','N','N',175000,200,5,1200,20000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1366504,1,3.5,0,0,'Y','N','N',70000,100,5,600,10000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1366601,1,3.5,3,0,'Y','N','Y',30000,50,5,300,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1366791,1,3.5,0,0,'Y','N','N',60000,150,5,900,10000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1367264,1,3.5,1,19,'Y','N','N',0,500,5,3000,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1367579,1,3.5,3,0,'Y','N','Y',0,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1367883,1,3.5,0,0,'Y','N','Y',0,500,5,3900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1368446,1,3.5,0,0,'Y','N','Y',0,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1368540,1,3.5,0,0,'Y','N','N',100000,500,10,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1368548,1,3.5,0,0,'Y','N','N',100000,500,10,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1368559,1,3.5,0,0,'Y','N','N',100000,500,10,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1368626,1,3.5,0,0,'Y','N','N',50000,200,10,600,6000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1368782,1,3.5,0,0,'Y','N','N',100000,500,10,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1368937,1,3.5,0,0,'Y','Y','Y',250000,500,5,3000,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1369351,1,3.5,0,0,'Y','N','Y',200000,1000,10,3000,20000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1369928,1,3.5,0,0,'Y','N','Y',90000,400,10,1200,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1370240,1,3.5,0,0,'Y','N','Y',120000,500,10,1500,36000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1370858,1,3.5,0,0,'Y','N','Y',84000,500,10,1500,36000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1371575,1,3.5,0,0,'Y','N','Y',80000,250,5,1500,10000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1371776,1,3.5,0,0,'Y','Y','Y',100000,250,5,120,24000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1372289,1,3.5,0,0,'Y','N','N',70000,200,10,600,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1373954,1,3.5,0,0,'N','Y','Y',0,0,0,0,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1374090,1,3.5,1,13,'Y','N','N',65000,100,5,600,28800,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1374128,1,3.5,0,0,'N','Y','Y',0,0,0,0,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1374135,1,3.5,0,0,'N','Y','Y',0,0,0,0,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1374326,1,3.5,0,0,'N','Y','Y',0,0,0,0,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1377975,1,3.5,0,0,'Y','N','N',0,150,5,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1380766,1,3.5,0,0,'N','Y','Y',0,0,0,0,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1382971,1,3.5,0,0,'Y','N','Y',120000,250,5,1500,10000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1385304,1,3.5,0,0,'Y','N','Y',0,500,5,3900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1396128,1,3.5,0,0,'N','Y','Y',0,0,0,0,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1405476,1,3.5,0,0,'Y','N','Y',0,500,10,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1412893,1,3.5,0,0,'Y','N','N',0,500,10,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1025717,1,3.5,0,0,'Y','N','N',120000,1500,30,1500,20000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1040011,1,3.5,0,0,'Y','N','N',100000,150,5,900,10000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1040665,1,3.5,0,0,'Y','N','Y',70000,300,10,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1042410,1,3.5,0,0,'Y','N','N',120000,200,5,1200,57600,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1052741,1,3.5,0,0,'Y','N','N',240000,250,5,1500,10000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1140911,1,3.5,0,0,'Y','N','Y',90000,300,10,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1165319,1,3.5,0,0,'Y','N','Y',0,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1167439,1,3.5,0,0,'Y','Y','Y',100000,1500,30,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1167707,1,3.5,0,0,'Y','Y','Y',100000,1500,30,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1167832,1,3.5,0,0,'Y','Y','Y',100000,500,10,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1168852,1,3.5,0,0,'Y','Y','Y',100000,1500,30,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1169364,1,3.5,0,0,'Y','Y','Y',100000,500,10,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1169896,1,3.5,0,0,'Y','Y','Y',100000,500,10,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1174174,1,3.5,0,0,'Y','N','Y',60000,500,10,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1180535,1,3.5,0,0,'Y','N','N',120000,300,5,1800,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1188260,1,3.5,0,0,'Y','N','Y',120000,500,10,1500,36000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1193858,1,3.5,0,0,'Y','N','Y',100000,750,30,750,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1203624,1,3.5,3,0,'Y','N','Y',0,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1206688,1,3.5,0,0,'Y','N','Y',180000,500,10,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1210054,1,3.5,0,0,'Y','N','Y',250000,1000,10,3000,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1219453,1,3.5,0,0,'Y','N','Y',180000,500,10,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1230128,1,3.5,0,0,'Y','N','N',100000,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1235360,1,3.5,0,0,'Y','N','Y',0,500,5,3900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (343,1,3,null,null,'1','1','0',200,200,1,200,8000,1,'방범용 CCTV 1대');
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (349,0,3,null,null,'1','1','0',200,500,1,500,8000,0,'방범용 CCTV 1대');
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1284070,1,3.5,0,0,'Y','N','Y',0,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (150259,1,3.5,3,0,'Y','N','Y',40000,150,5,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (151725,1,3.5,0,0,'Y','N','Y',40000,100,10,300,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (167964,1,3.5,0,0,'Y','N','N',100000,200,5,1200,10000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (170995,1,3.5,0,0,'Y','Y','Y',150000,350,5,168,30000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (171721,1,3.5,1,105,'Y','N','N',180000,300,5,1800,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (171724,1,3.5,0,0,'Y','N','N',250000,800,10,2400,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (171730,1,3.5,1,172,'Y','N','N',185000,400,5,2400,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (171778,1,3.5,0,0,'Y','N','N',180000,1500,30,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (171802,1,3.5,0,0,'Y','N','N',0,2000,240,250,5000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (171830,1,3.5,0,0,'Y','N','N',350000,400,5,2400,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (171901,1,3.5,0,0,'Y','N','N',180000,400,5,2400,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172018,1,3.5,0,0,'Y','N','N',130000,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172021,1,3.5,0,0,'Y','N','N',130000,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172027,1,3.5,0,0,'Y','N','N',130000,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172041,1,3.5,0,0,'Y','N','N',120000,150,5,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172051,1,3.5,1,56,'Y','N','N',100000,150,5,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172052,1,3.5,0,0,'Y','N','N',70000,100,5,600,10000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172059,1,3.5,0,0,'Y','N','N',120000,1000,30,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172068,1,3.5,0,0,'Y','N','N',140000,150,5,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172070,1,3.5,0,0,'Y','N','Y',0,1500,30,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172077,1,3.5,0,0,'Y','N','N',120000,150,5,900,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172083,1,3.5,0,0,'Y','N','N',50000,50,5,300,10000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172084,1,3.5,0,0,'Y','N','N',70000,100,5,600,10000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172089,1,3.5,0,0,'Y','N','N',70000,100,5,600,10000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172118,1,3.5,0,0,'Y','N','N',50000,50,5,300,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172120,1,3.5,0,0,'Y','N','N',70000,100,5,600,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172130,1,3.5,0,0,'Y','N','N',70000,100,5,600,10000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172134,1,3.5,0,0,'Y','N','N',70000,100,5,600,10000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172144,1,3.5,0,0,'Y','N','N',70000,100,5,600,10000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172149,1,3.5,0,0,'Y','N','N',70000,100,5,600,10000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172184,1,3.5,0,0,'Y','N','Y',100000,0,30,1500,30000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172204,1,3.5,0,0,'Y','N','N',0,0,0,450,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172215,1,3.5,0,0,'Y','N','N',120000,0,30,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172218,1,3.5,0,0,'Y','N','N',100000,300,10,900,72000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172228,1,3.5,0,0,'Y','N','N',120000,500,10,1500,20000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172318,1,3.5,0,0,'Y','N','N',70000,100,5,600,3000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172321,1,3.5,0,0,'Y','N','N',0,100,5,600,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172384,1,3.5,0,0,'Y','N','N',0,100,5,600,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172459,1,3.5,0,0,'Y','N','N',86000,300,10,900,10000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172480,1,3.5,0,0,'Y','N','N',96000,150,5,900,10000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172530,1,3.5,0,0,'Y','N','N',100000,200,5,1200,10000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172540,1,3.5,0,0,'Y','N','N',0,300,10,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172550,1,3.5,0,0,'Y','N','N',100000,200,5,1200,10000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172562,1,3.5,0,0,'Y','N','N',150000,250,5,1500,20000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172564,1,3.5,0,0,'Y','N','N',100000,200,5,1200,10000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172580,1,3.5,0,0,'Y','N','N',100000,200,5,1200,10000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172594,1,3.5,0,0,'Y','N','N',100000,200,5,1200,10000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172602,1,3.5,0,0,'Y','N','N',0,100,5,600,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172605,1,3.5,0,0,'Y','N','N',60000,150,5,900,10000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172607,1,3.5,0,0,'Y','N','Y',50000,100,5,600,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172632,1,3.5,0,0,'Y','N','Y',100000,150,5,900,27000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172634,1,3.5,1,43,'Y','N','N',65000,100,5,600,28800,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172647,1,3.5,1,174,'Y','N','N',65000,100,5,600,28800,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172650,1,3.5,0,0,'Y','N','N',0,100,5,600,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172660,1,3.5,0,0,'Y','Y','Y',150000,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172683,1,3.5,0,0,'Y','N','N',0,200,10,600,10000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172695,1,3.5,0,0,'Y','N','N',150000,250,5,1500,10000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172696,1,3.5,0,0,'Y','N','N',150000,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172777,1,3.5,0,0,'Y','N','N',0,600,30,600,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172840,1,3.5,0,0,'Y','N','N',0,1000,60,500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172844,1,3.5,1,175,'Y','N','N',130000,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172874,1,3.5,0,0,'Y','N','Y',0,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172881,1,3.5,0,0,'Y','N','N',100000,200,5,1200,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172892,1,3.5,0,0,'Y','N','N',50000,100,10,300,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172900,1,3.5,0,0,'Y','N','Y',70000,300,10,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172902,1,3.5,0,0,'Y','N','Y',70000,300,10,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172903,1,3.5,0,0,'Y','N','N',100000,300,10,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172904,1,3.5,0,0,'Y','N','N',70000,300,10,900,10000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172907,1,3.5,0,0,'Y','N','N',0,1000,60,500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172908,1,3.5,0,0,'Y','N','N',50000,100,10,300,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172909,1,3.5,0,0,'Y','N','Y',100000,300,10,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172912,1,3.5,0,0,'Y','N','N',170000,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172916,1,3.5,0,0,'Y','N','N',50000,100,10,300,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172917,1,3.5,0,0,'Y','N','N',50000,100,10,300,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172918,1,3.5,0,0,'Y','N','N',50000,100,10,300,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172919,1,3.5,0,0,'Y','N','N',50000,100,10,300,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172921,1,3.5,0,0,'Y','N','N',50000,100,10,300,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172923,1,3.5,0,0,'Y','N','N',0,1000,60,500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172927,1,3.5,0,0,'Y','N','N',50000,100,10,300,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172934,1,3.5,0,0,'Y','N','Y',100000,300,10,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172935,1,3.5,0,0,'Y','N','N',100000,150,5,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172936,1,3.5,0,0,'Y','N','Y',100000,300,10,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172937,1,3.5,1,1,'Y','N','N',180000,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172941,1,3.5,0,0,'Y','N','N',50000,100,10,300,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172943,1,3.5,0,0,'Y','N','N',0,1000,60,500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172947,1,3.5,0,0,'Y','N','N',0,1000,60,500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172952,1,3.5,0,0,'Y','N','N',50000,100,10,300,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172956,1,3.5,3,0,'Y','N','Y',50000,100,5,600,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172957,1,3.5,0,0,'Y','Y','Y',5000,50,5,300,2000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172962,1,3.5,0,0,'Y','Y','Y',50000,50,5,300,2000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172965,1,3.5,0,0,'Y','N','N',50000,100,10,300,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172967,1,3.5,0,0,'Y','N','N',50000,100,10,300,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172969,1,3.5,0,0,'Y','N','N',50000,1000,30,300,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172970,1,3.5,1,18,'Y','N','N',50000,100,5,600,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172971,1,3.5,1,0,'Y','N','N',50000,100,5,600,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172972,1,3.5,0,0,'Y','N','N',50000,100,10,300,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172974,1,3.5,0,0,'Y','N','N',50000,100,10,300,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172979,1,3.5,1,70,'Y','N','N',50000,100,5,600,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172983,1,3.5,0,0,'Y','N','N',50000,100,10,300,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (172993,1,3.5,0,0,'Y','Y','Y',50000,50,5,300,2000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173001,1,3.5,0,0,'Y','N','Y',100000,150,5,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173005,1,3.5,1,6,'Y','N','Y',100000,150,5,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173009,1,3.5,0,0,'Y','Y','Y',50000,50,5,300,2000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173013,1,3.5,0,0,'Y','N','Y',70000,100,5,600,5000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173014,1,3.5,0,0,'Y','Y','Y',50000,50,5,300,2000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173018,1,3.5,0,0,'Y','Y','Y',50000,50,5,300,2000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173020,1,3.5,0,0,'Y','Y','Y',50000,50,5,300,2000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173021,1,3.5,0,0,'Y','Y','Y',50000,50,5,300,2000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173028,1,3.5,0,0,'Y','Y','Y',50000,50,5,300,2000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173047,1,3.5,1,79,'Y','N','N',100000,150,5,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173048,1,3.5,0,0,'Y','N','N',50000,100,10,300,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173073,1,3.5,0,0,'Y','N','N',60000,100,5,600,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173077,1,3.5,0,0,'Y','N','N',50000,50,5,300,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173091,1,3.5,0,0,'Y','N','N',50000,0,30,300,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173093,1,3.5,0,0,'Y','N','N',98000,150,5,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173104,1,3.5,0,0,'Y','N','N',60000,100,5,600,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173117,1,3.5,0,0,'Y','Y','Y',100000,300,10,900,9000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173123,1,3.5,0,0,'Y','N','N',50000,0,30,300,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173129,1,3.5,0,0,'Y','N','N',50000,0,30,300,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173141,1,3.5,0,0,'Y','N','N',50000,100,10,300,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173142,1,3.5,0,0,'Y','N','N',50000,0,30,300,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173150,1,3.5,0,0,'Y','Y','Y',70000,100,5,600,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173152,1,3.5,0,0,'Y','N','N',70000,100,5,600,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173153,1,3.5,0,0,'Y','N','N',50000,0,30,300,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173160,1,3.5,0,0,'Y','N','N',50000,0,30,300,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173184,1,3.5,0,0,'Y','Y','Y',100000,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173186,1,3.5,0,0,'Y','N','N',140000,150,5,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173187,1,3.5,0,0,'Y','N','N',70000,100,5,600,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173192,1,3.5,0,0,'Y','Y','Y',84000,100,5,600,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173193,1,3.5,0,0,'Y','N','N',70000,100,5,600,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173196,1,3.5,0,0,'Y','N','N',70000,100,5,600,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173208,1,3.5,0,0,'Y','Y','Y',140000,150,5,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173218,1,3.5,0,0,'Y','N','N',70000,100,5,600,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173235,1,3.5,0,0,'Y','Y','Y',65000,50,5,300,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173238,1,3.5,0,0,'Y','Y','Y',65000,20,5,120,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173245,1,3.5,0,0,'Y','N','N',65000,50,5,300,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173246,1,3.5,0,0,'Y','N','N',65000,50,5,300,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173250,1,3.5,0,0,'Y','N','N',70000,100,5,600,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173261,1,3.5,0,0,'Y','N','N',100000,300,10,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173262,1,3.5,0,0,'Y','Y','Y',65000,50,5,300,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173285,1,3.5,0,0,'Y','N','Y',90000,300,10,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173289,1,3.5,0,0,'Y','N','N',100000,300,10,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173291,1,3.5,0,0,'Y','N','N',100000,300,10,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173299,1,3.5,0,0,'Y','N','N',65000,50,5,300,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173317,1,3.5,1,0,'Y','N','N',0,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173329,1,3.25,0,0,'Y','N','N',50000,300,30,300,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173333,1,3.5,0,0,'Y','N','N',0,300,30,300,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173353,1,3.5,0,0,'Y','N','N',0,300,30,300,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173359,1,4.0625,0,0,'Y','N','N',120000,150,5,900,16000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173362,1,3.5,0,0,'Y','N','N',0,300,30,300,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173364,1,3.5,0,0,'Y','N','N',0,1500,30,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173389,1,3.5,0,0,'Y','Y','Y',70000,150,5,900,14000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173405,1,3.5,0,0,'Y','N','N',120000,300,10,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173424,1,3.5,1,8,'Y','N','Y',50000,100,5,600,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173440,1,3.25,0,0,'Y','Y','Y',120000,150,5,900,16000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173447,1,3.5,0,0,'Y','Y','Y',175000,200,5,1200,20000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173452,1,3.5,1,105,'Y','N','N',130000,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173468,1,3.5,0,0,'Y','N','N',70000,150,5,900,14000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173472,1,3.5,0,0,'Y','N','N',70000,100,5,600,10000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173474,1,3.5,0,0,'Y','Y','Y',70000,150,5,900,14000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (173485,1,3.5,0,0,'Y','N','N',120000,300,10,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1374036,1,3.5,0,0,'N','Y','Y',0,0,0,0,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1284245,1,3.5,0,0,'Y','N','Y',0,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1344768,1,3.5,0,0,'Y','N','Y',0,500,10,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1356076,1,3.5,0,0,'Y','N','N',0,100,10,300,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1359444,1,3.5,0,0,'Y','N','N',0,500,10,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1359629,1,3.5,0,0,'Y','N','N',0,300,10,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1362843,1,3.5,0,0,'Y','N','N',0,300,10,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1364468,1,3.5,0,0,'Y','N','N',70000,100,5,600,10000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1364472,1,3.5,0,0,'Y','N','N',70000,100,5,600,10000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1366393,1,3.5,0,0,'Y','N','N',70000,150,5,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1366394,1,4.4375,0,0,'Y','N','N',50000,50,5,300,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1366395,1,3.5,0,0,'Y','N','N',70000,100,5,600,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1366430,1,3.5,0,0,'Y','N','N',70000,300,10,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1366487,1,3.5,0,0,'Y','N','N',140000,500,10,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1366489,1,3.5,0,0,'Y','N','N',120000,300,10,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1366527,1,3.5,1,50,'Y','N','N',50000,100,5,600,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1366541,1,3.5,1,27,'Y','N','N',100000,150,5,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1366575,1,3.5,0,0,'Y','N','Y',50000,100,5,600,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1366576,1,3.5,1,43,'Y','N','N',65000,100,5,600,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1366590,1,3.5,1,39,'Y','N','N',120000,150,5,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1366593,1,3.5,0,0,'Y','N','N',0,600,30,600,12000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1366600,1,3.5,1,32,'Y','N','N',65000,100,5,600,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1366602,1,3.5,0,0,'Y','N','Y',50000,100,5,600,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1366720,1,3.5,0,0,'Y','N','N',0,100,5,600,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1366722,1,3.5,0,0,'Y','N','N',50000,200,10,600,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1366729,1,3.5,0,0,'Y','N','N',0,1800,30,1800,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1366731,1,3.5,0,0,'Y','N','N',0,1800,30,1800,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1366732,1,3.5,0,0,'Y','N','N',0,1800,30,1800,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1366757,1,3.5,0,0,'Y','N','Y',0,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1366792,1,3.5,0,0,'Y','N','N',100000,200,5,1200,10000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1366794,1,3.5,0,0,'Y','N','N',60000,150,5,900,10000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1366795,1,3.5,0,0,'Y','N','N',150000,250,5,1500,30000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1366869,1,3.5,0,0,'Y','N','N',50000,300,30,300,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1366894,1,3.5,0,0,'Y','N','Y',240000,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1366903,1,3.5,1,0,'Y','N','N',100000,150,5,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1367218,1,3.5,0,0,'Y','N','N',70000,300,10,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1367258,1,3.5,1,1,'Y','N','N',0,2000,60,2100,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1367347,1,3.5,1,8,'Y','N','Y',0,500,5,3900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1367534,1,3.5,0,0,'Y','N','Y',0,150,5,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1367625,1,3.5,3,0,'Y','N','Y',0,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1367666,1,3.5,3,0,'Y','N','N',0,150,5,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1367686,1,3.5,0,0,'Y','N','Y',0,150,5,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1367709,1,3.5,0,0,'Y','N','Y',0,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1367753,1,3.5,0,0,'Y','N','Y',0,100,5,600,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1367801,1,3.5,0,0,'Y','N','Y',0,100,5,600,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1367842,1,3.5,0,0,'Y','N','Y',0,500,5,3900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1368281,1,3.5,0,0,'Y','N','Y',0,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1368329,1,3.5,0,0,'Y','N','Y',0,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1368353,1,3.5,0,0,'Y','N','Y',0,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1368357,1,3.5,0,0,'Y','N','Y',0,500,10,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1368359,1,3.5,0,0,'Y','N','Y',0,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1368440,1,3.5,0,0,'Y','N','Y',0,500,10,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1368441,1,3.5,0,0,'Y','N','Y',0,500,10,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1368453,1,3.5,0,0,'Y','N','Y',0,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1368482,1,3.5,0,0,'Y','N','Y',150000,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1368504,1,3.5,0,0,'Y','N','N',0,100,5,600,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1368507,1,3.5,0,0,'Y','N','Y',0,0,30,3000,5000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1368516,1,3.5,0,0,'Y','N','N',100000,250,5,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1368529,1,3.5,0,0,'Y','N','N',100000,500,10,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1368534,1,3.5,0,0,'Y','N','N',100000,500,10,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1368541,1,3.5,0,0,'Y','N','N',100000,500,10,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1368542,1,3.5,0,0,'Y','N','N',100000,500,10,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1368543,1,3.5,0,0,'Y','N','N',100000,500,10,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1368544,1,3.5,0,0,'Y','N','N',100000,500,10,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1368545,1,3.5,0,0,'Y','N','N',100000,500,10,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1368546,1,3.5,0,0,'Y','N','N',100000,500,10,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1368547,1,3.5,0,0,'Y','N','N',100000,500,10,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1368549,1,3.5,0,0,'Y','N','N',100000,500,10,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1368550,1,3.5,0,0,'Y','N','N',100000,500,10,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1368551,1,3.5,0,0,'Y','N','N',100000,500,10,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1368552,1,3.5,0,0,'Y','N','N',100000,500,10,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1368553,1,3.5,0,0,'Y','N','N',100000,500,10,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1368554,1,3.5,0,0,'Y','N','N',100000,500,10,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1368557,1,3.5,0,0,'Y','N','N',100000,500,10,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1368558,1,3.5,0,0,'Y','N','N',100000,500,10,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1368568,1,3.5,0,0,'Y','N','N',100000,500,10,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1368570,1,3.5,0,0,'Y','N','N',100000,500,10,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1368572,1,3.5,0,0,'Y','N','N',100000,500,10,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1368573,1,3.5,0,0,'Y','N','N',100000,500,10,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1368575,1,3.5,0,0,'Y','N','N',100000,500,10,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1368576,1,3.5,0,0,'Y','N','N',100000,500,10,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1368577,1,3.5,0,0,'Y','N','N',100000,500,10,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1368658,1,3.5,0,0,'Y','N','Y',0,500,10,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1368670,1,3.5,0,0,'Y','N','Y',0,500,10,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1368688,1,3.5,0,0,'Y','N','Y',0,500,10,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1368698,1,3.5,0,0,'Y','N','N',100000,500,10,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1368701,1,3.5,0,0,'Y','N','Y',0,500,10,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1368745,1,3.5,0,0,'Y','N','N',100000,500,10,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1368749,1,3.5,0,0,'Y','N','N',140000,150,5,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1368765,1,3.5,0,0,'Y','N','N',100000,500,10,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1368816,1,3.5,0,0,'Y','N','Y',250000,600,5,3600,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1368833,1,3.5,0,0,'Y','N','N',100000,500,10,150,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1368838,1,3.5,0,0,'Y','N','N',100000,500,10,150,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1368841,1,3.5,0,0,'Y','N','N',50000,200,10,600,6000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1368849,1,3.5,0,0,'Y','N','N',50000,200,10,600,6000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1368870,1,3.5,0,0,'Y','N','Y',250000,500,5,3000,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1368885,1,3.5,0,0,'Y','N','Y',250000,500,5,3000,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1368948,1,3.5,0,0,'Y','N','Y',250000,500,5,3000,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1369035,1,3.5,0,0,'Y','N','Y',250000,500,5,3000,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1369044,1,3.5,0,0,'Y','N','N',0,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1369093,1,3.5,0,0,'Y','N','Y',200000,1000,10,3000,20000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1369233,1,3.5,0,0,'Y','N','Y',250000,500,5,3000,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1369246,1,3.5,0,0,'Y','N','Y',200000,1000,10,3000,20000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1369265,1,3.5,0,0,'Y','N','Y',200000,1000,10,3000,20000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1369380,1,3.5,0,0,'Y','N','Y',200000,1000,10,3000,20000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1369476,1,3.5,1,1,'N','Y','Y',0,0,0,0,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1369485,1,3.5,0,0,'N','Y','Y',0,0,0,0,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1369631,1,3.5,0,0,'Y','Y','Y',50000,200,10,600,6000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1369672,1,3.5,0,0,'Y','N','Y',250000,500,5,3000,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1369741,1,3.5,0,0,'Y','Y','Y',100000,500,10,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1369853,1,3.5,0,0,'Y','N','Y',130000,300,10,900,9000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1370000,1,3.5,0,0,'Y','N','Y',120000,200,5,1200,10000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1370001,1,3.5,0,0,'Y','N','N',40000,200,10,600,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1370023,1,3.5,0,0,'Y','N','N',100000,500,10,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1370056,1,3.5,0,0,'Y','N','N',0,500,10,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1370082,1,3.5,0,0,'Y','N','Y',70000,300,10,900,9000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1370100,1,3.5,1,1254,'Y','N','N',80000,150,5,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1370196,1,3.5,0,0,'Y','Y','Y',150000,350,5,168,30000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1370284,1,3.5,0,0,'Y','N','Y',120000,500,1,1500,36000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1370392,1,3.5,0,0,'Y','N','Y',120000,500,10,1500,36000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1370446,1,3.5,0,0,'Y','N','Y',120000,500,10,1500,36000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1370637,1,3.5,0,0,'Y','N','N',60000,150,5,900,10000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1370659,1,3.5,0,0,'Y','N','Y',50000,200,10,600,12000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1370767,1,3.5,0,0,'Y','N','Y',84000,500,10,1500,36000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1370819,1,3.5,0,0,'Y','N','Y',100000,500,10,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1370857,1,3.5,0,0,'Y','Y','Y',0,150,5,900,3000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1370919,1,3.5,0,0,'Y','N','Y',0,500,10,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1370975,1,3.5,0,0,'Y','N','Y',0,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1371037,1,3.5,0,0,'Y','N','Y',80000,250,5,1500,10000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1371281,1,3.5,0,0,'Y','N','N',60000,100,5,600,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1371306,1,3.75,0,0,'Y','Y','Y',120000,250,5,120,24000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1371375,1,3.5,0,0,'Y','N','Y',90000,400,10,1200,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1371454,1,3.5,0,0,'Y','N','Y',0,200,5,1200,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1371458,1,3.5,0,0,'Y','N','Y',80000,250,5,1500,10000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1371615,1,3.5,0,0,'Y','N','Y',80000,250,5,1500,10000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1371666,1,3.5,0,0,'Y','N','N',165000,2000,30,1500,25000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1371671,1,3.5,0,0,'Y','N','N',180000,2000,30,3000,20000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1371688,1,3.5,0,0,'Y','Y','Y',70000,300,10,900,9000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1371689,1,3.5,0,0,'Y','Y','Y',70000,300,10,9000,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1371690,1,3.5,0,0,'Y','Y','Y',70000,300,10,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1371733,1,3.5,0,0,'Y','N','Y',120000,500,10,1500,36000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1371916,1,3.5,0,0,'Y','N','Y',80000,250,5,1500,10000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1371992,1,3.5,0,0,'Y','N','N',0,100,10,300,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1372066,1,3.5,0,0,'Y','Y','Y',80000,150,5,72,16000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1372128,1,3.5,0,0,'Y','N','N',75000,200,10,600,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1372154,1,3.5,0,0,'Y','N','N',50000,200,10,600,18000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1372161,1,3.5,0,0,'Y','N','N',0,500,10,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1372243,1,3.5,0,0,'Y','N','N',0,500,10,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1372264,1,3.5,0,0,'Y','N','N',0,500,10,1500,24000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1372387,1,3.5,0,0,'Y','N','N',0,300,10,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1372454,1,3.5,0,0,'Y','N','N',100000,150,5,900,18000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1372518,1,3.5,0,0,'Y','N','N',0,300,10,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1372581,1,3.5,0,0,'Y','N','N',0,300,10,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1372649,1,3.5,0,0,'N','Y','Y',0,0,0,0,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1372691,1,3.5,0,0,'Y','N','Y',0,250,5,3000,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1372873,1,3.5,0,0,'Y','N','N',65000,100,5,600,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1373985,1,3.5,0,0,'N','Y','Y',0,0,0,0,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1373998,1,3.5,0,0,'N','Y','Y',0,0,0,0,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1374001,1,3.5,0,0,'N','Y','Y',0,0,0,0,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1374070,1,3.5,0,0,'N','Y','Y',0,0,0,0,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1374088,1,3.5,0,0,'N','Y','Y',0,0,0,0,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1169490,1,3.5,0,0,'Y','Y','Y',100000,500,10,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1374110,1,3.5,0,0,'N','Y','Y',0,0,0,0,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1374115,1,3.5,0,0,'N','Y','Y',0,0,0,0,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1374116,1,3.5,0,0,'N','Y','Y',0,0,0,0,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1374118,1,3.5,0,0,'N','Y','Y',0,0,0,0,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1374119,1,3.5,0,0,'N','Y','Y',0,0,0,0,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1374120,1,3.5,0,0,'N','Y','Y',0,0,0,0,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1374126,1,3.5,0,0,'N','Y','Y',0,0,0,0,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1374127,1,3.5,0,0,'N','Y','Y',0,0,0,0,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1374129,1,3.5,0,0,'N','Y','Y',0,0,0,0,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1374130,1,3.5,0,0,'N','Y','Y',0,0,0,0,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1374131,1,3.5,0,0,'N','Y','Y',0,0,0,0,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1374132,1,3.5,0,0,'N','Y','Y',0,0,0,0,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1374133,1,3.5,0,0,'N','Y','Y',0,0,0,0,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1374134,1,3.5,0,0,'N','Y','Y',0,0,0,0,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1374136,1,3.5,0,0,'N','Y','Y',0,0,0,0,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1374137,1,3.5,0,0,'N','Y','Y',0,0,0,0,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1374138,1,3.5,0,0,'N','Y','Y',0,0,0,0,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1374139,1,3.5,0,0,'N','Y','Y',0,0,0,0,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1374140,1,3.5,0,0,'N','Y','Y',0,0,0,0,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1374294,1,3.5,0,0,'N','Y','Y',0,0,0,0,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1374473,1,3.5,0,0,'N','Y','Y',0,0,0,0,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1375052,1,3.5,0,0,'Y','N','Y',80000,250,5,1500,10000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1376334,1,3.5,0,0,'Y','N','N',0,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1377117,1,3.5,1,6,'N','Y','Y',0,0,0,0,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1377393,1,3.5,0,0,'Y','N','Y',250000,1000,10,3000,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1377416,1,3.5,0,0,'Y','N','N',0,700,10,2100,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1380362,1,3.5,0,0,'N','Y','Y',0,0,0,0,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1380394,1,3.5,0,0,'N','Y','Y',0,0,0,0,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1380556,1,3.5,0,0,'N','Y','Y',0,0,0,0,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1380638,1,3.5,0,0,'N','Y','Y',0,0,0,0,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1380752,1,3.5,0,0,'N','Y','Y',0,0,0,0,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1380762,1,3.5,0,0,'N','Y','Y',0,0,0,0,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1380764,1,3.5,0,0,'N','Y','Y',0,0,0,0,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1380767,1,3.5,0,0,'N','Y','Y',0,0,0,0,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1380768,1,3.5,0,0,'N','Y','Y',0,0,0,0,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1380769,1,3.5,0,0,'N','Y','Y',0,0,0,0,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1380770,1,3.5,0,0,'N','Y','Y',0,0,0,0,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1380772,1,3.5,0,0,'N','Y','Y',0,0,0,0,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1382791,1,3.5,0,0,'Y','Y','Y',0,2,1,40,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1384005,1,3.5,0,0,'Y','N','Y',60000,500,10,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1384007,1,3.5,0,0,'Y','N','Y',60000,500,10,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1384008,1,3.5,0,0,'Y','N','Y',60000,500,10,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1384016,1,3.5,0,0,'Y','N','Y',60000,100,5,600,5000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1384198,1,3.5,1,891,'Y','N','N',180000,400,5,2400,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1384440,1,3.5,0,0,'N','Y','Y',0,0,0,0,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1384451,1,3.5,0,0,'N','Y','Y',0,0,0,0,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1385009,1,3.5,0,0,'Y','N','N',100000,200,5,1200,10000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1385457,1,3.5,0,0,'Y','N','N',150000,500,5,3000,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1385828,1,3.5,0,0,'Y','N','N',0,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1386536,1,3.5,0,0,'Y','Y','Y',200000,400,5,2400,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1387193,1,3.5,3,0,'Y','N','Y',0,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1392010,1,3.5,0,0,'Y','N','N',6,2,1,40,5,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1393591,1,3.5,1,10,'N','Y','Y',0,0,0,0,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1395163,1,3.5,0,0,'Y','N','Y',0,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1397591,1,3.5,0,0,'Y','N','N',100000,150,5,900,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1397945,1,3.5,0,0,'Y','N','Y',80000,250,5,1500,10000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1398740,1,3.5,0,0,'Y','N','N',60000,300,10,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1401516,1,3.5,0,0,'Y','N','Y',0,2000,30,3000,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1404649,1,3.5,0,0,'Y','N','N',60000,100,5,600,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1405474,1,3.5,0,0,'Y','N','Y',0,500,10,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1405477,1,3.5,0,0,'Y','N','Y',0,500,10,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1405614,1,3.5,0,0,'Y','N','Y',100000,1500,30,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1406805,1,3.5,0,0,'Y','Y','Y',100000,1500,30,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1407803,1,3.5,0,0,'Y','N','Y',250000,1000,10,3000,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1410226,1,3.5,0,0,'Y','N','N',0,1500,30,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1412826,1,3.5,0,0,'Y','N','N',70000,200,10,600,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1412862,1,3.5,0,0,'Y','N','N',0,300,10,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1413181,1,3.5,0,0,'Y','Y','Y',0,2000,60,1000,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1415250,1,3.5,0,0,'Y','N','N',0,150,5,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1415512,1,3.5,0,0,'Y','N','N',120000,500,10,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1415929,1,3.5,0,0,'Y','N','N',0,100,10,300,14400,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1416322,1,3.5,0,0,'Y','N','N',65000,50,10,150,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1416339,1,3.5,1,103,'Y','N','N',100000,150,5,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1028245,1,3.5,0,0,'Y','N','N',0,100,5,600,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1032247,1,3.5,0,0,'Y','N','N',120000,300,10,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1033590,1,3.5,0,0,'Y','N','N',0,300,30,300,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1033754,1,3.5,0,0,'Y','N','N',70000,150,5,900,14000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1034344,1,3.5,0,0,'Y','N','N',60000,150,5,900,10000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1034345,1,3.5,0,0,'Y','N','N',100000,200,5,1200,10000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1037569,1,3.5,0,0,'Y','N','N',70000,300,10,900,9000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1037932,1,3.5,1,43,'Y','N','N',65000,100,5,600,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1040225,1,3.5,0,0,'Y','Y','Y',70000,150,5,900,14000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1040346,1,3.5,0,0,'Y','N','Y',50000,300,10,900,9000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1040347,1,3.5,0,0,'Y','N','Y',70000,300,10,900,9000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1040348,1,3.5,0,0,'Y','N','Y',70000,300,10,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1040414,1,3.5,0,0,'Y','N','Y',40000,0,10,300,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1040508,1,3.5,0,0,'Y','N','Y',70000,300,10,900,9000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1040564,1,3.5,0,0,'Y','N','Y',70000,300,10,900,9000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1040712,1,3.5,0,0,'Y','N','Y',70000,300,10,900,9000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1041839,1,3.5,0,0,'Y','N','N',240000,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1041840,1,3.5,0,0,'Y','N','N',240000,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1041991,1,3.5,0,0,'Y','N','Y',100000,150,5,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1042402,1,3.5,0,0,'Y','N','N',175000,200,5,1200,20000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1042405,1,3.5,0,0,'Y','N','N',120000,150,5,900,16000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1042406,1,3.5,0,0,'Y','Y','Y',175000,400,5,2400,20000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1042421,1,3.5,0,0,'Y','N','N',70000,150,5,900,14000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1042423,1,3.5,0,0,'Y','Y','Y',70000,150,5,900,14000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1051018,1,3.5,0,0,'Y','N','N',0,200,10,600,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1051019,1,3.5,0,0,'Y','N','N',0,100,5,600,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1051043,1,3.5,1,49,'Y','N','N',65000,100,5,600,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1052723,1,3.5,0,0,'Y','N','N',50000,50,5,300,5000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1052725,1,3.5,0,0,'Y','N','N',70000,100,5,600,10000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1052737,1,3.5,0,0,'Y','N','N',70000,100,5,600,10000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1053712,1,3.5,0,0,'Y','N','Y',60000,100,5,600,5000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1056832,1,3.5,0,0,'Y','N','N',100000,300,10,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1056834,1,3.5,0,0,'Y','N','N',50000,200,10,300,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1059009,1,3.5,0,0,'Y','N','N',0,300,30,300,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1079122,1,3.5,0,0,'Y','N','N',120000,150,5,900,10000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1140909,1,3.5,0,0,'Y','N','N',120000,300,10,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1140910,1,3.5,0,0,'Y','N','N',120000,300,10,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1144569,1,3.5,0,0,'Y','N','N',0,2000,240,250,5000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1155460,1,3.5,0,0,'Y','N','Y',80000,150,5,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1155752,1,3.5,0,0,'Y','N','Y',120000,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1155759,1,3.5,0,0,'Y','N','N',0,1500,30,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1155939,1,3.5,0,0,'Y','N','N',100000,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1159004,1,3.5,0,0,'Y','N','N',0,150,5,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1163648,1,3.5,3,0,'Y','N','Y',0,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1165941,1,3.5,0,0,'Y','N','N',130000,3000,60,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1166037,1,3.5,0,0,'Y','N','Y',80000,300,10,900,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1167311,1,3.5,0,0,'Y','Y','Y',100000,500,10,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1167315,1,3.5,0,0,'Y','Y','Y',65000,200,10,600,10000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1167394,1,3.5,0,0,'Y','Y','Y',100000,1500,30,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1167437,1,3.5,0,0,'Y','Y','Y',100000,1500,30,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1167438,1,3.5,0,0,'Y','Y','Y',100000,1500,30,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1167440,1,3.5,0,0,'Y','Y','Y',100000,1500,30,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1167443,1,3.5,0,0,'Y','N','N',100000,500,10,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1167444,1,3.5,0,0,'Y','Y','Y',100000,500,10,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1167445,1,3.5,0,0,'Y','Y','Y',100000,500,10,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1167450,1,3.5,0,0,'Y','Y','Y',100000,500,10,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1167633,1,3.5,0,0,'Y','Y','Y',100000,1500,30,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1167691,1,3.5,0,0,'Y','Y','Y',100000,1500,30,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1167706,1,3.5,0,0,'Y','Y','Y',100000,1500,30,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1167708,1,3.5,0,0,'Y','Y','Y',100000,1500,30,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1167709,1,3.5,0,0,'Y','Y','Y',100000,1500,30,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1167710,1,3.5,0,0,'Y','Y','Y',100000,1500,30,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1167736,1,3.5,0,0,'Y','Y','Y',100000,500,10,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1167762,1,3.5,3,0,'Y','N','Y',0,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1167764,1,3.5,0,0,'Y','Y','Y',100000,500,10,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1167823,1,3.5,0,0,'Y','Y','Y',100000,500,10,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1167932,1,3.5,0,0,'Y','Y','Y',100000,500,10,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1167961,1,3.5,0,0,'Y','Y','Y',100000,500,10,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1168040,1,3.5,0,0,'Y','N','N',100000,500,10,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1168323,1,3.5,0,0,'Y','Y','Y',100000,500,10,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1168498,1,3.5,0,0,'Y','Y','Y',100000,1500,30,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1168606,1,3.5,0,0,'Y','Y','Y',100000,1500,30,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1168658,1,3.5,0,0,'Y','Y','Y',100000,500,10,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1168804,1,3.5,0,0,'Y','Y','Y',100000,1500,30,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1168928,1,3.5,0,0,'Y','N','N',100000,500,10,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1168986,1,3.5,0,0,'Y','Y','Y',100000,1500,30,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1169033,1,3.5,0,0,'Y','Y','Y',100000,500,10,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1169034,1,3.5,0,0,'Y','Y','Y',100000,1500,30,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1169081,1,3.5,0,0,'Y','Y','Y',100000,1500,30,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1169082,1,3.5,0,0,'Y','Y','Y',100000,1500,30,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1169256,1,3.5,0,0,'Y','Y','Y',100000,500,10,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1169370,1,3.5,0,0,'Y','N','Y',0,250,5,1500,0,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1169373,1,3.5,0,0,'Y','Y','Y',100000,500,10,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1169446,1,3.5,0,0,'Y','Y','Y',100000,1500,30,1500,15000,1,null);
+Insert into PARKING_DETAIL (PARK_ID,PARK_FLAG,PARK_AVGPOINT,GET_STATUS,CUR_PARKING,PAY_YN,SATUR_PAY_YN,HOLI_PAY_YN,FULLTIME_MONTHLY_PAY,PARK_RATE,PARK_TIME_RATE,ADD_PARK_RATE,DAY_MAX_PAY,PARK_VISIT,FACILITY) values (1169462,1,3.5,0,0,'Y','Y','Y',100000,500,10,1500,15000,1,null);
+
+---------------------------------------------------
+--   END DATA FOR TABLE PARKING_DETAIL
+---------------------------------------------------
+
+---------------------------------------------------
+--   DATA FOR TABLE PICTURE
+--   FILTER = none used
+---------------------------------------------------
+REM INSERTING into PICTURE
+
+---------------------------------------------------
+--   END DATA FOR TABLE PICTURE
+---------------------------------------------------
+
+---------------------------------------------------
+--   DATA FOR TABLE GRADE
+--   FILTER = none used
+---------------------------------------------------
+REM INSERTING into GRADE
+Insert into GRADE (GRADE_ID,GRADE_NAME,AVGPOINT,BENEFIT,PENALTY) values (0,'공용주차장',0,0,0);
+Insert into GRADE (GRADE_ID,GRADE_NAME,AVGPOINT,BENEFIT,PENALTY) values (1,'민영주차장',0,0,0);
+Insert into GRADE (GRADE_ID,GRADE_NAME,AVGPOINT,BENEFIT,PENALTY) values (2,'불량고객',2,0,10);
+Insert into GRADE (GRADE_ID,GRADE_NAME,AVGPOINT,BENEFIT,PENALTY) values (3,'일반고객',3,10,0);
+Insert into GRADE (GRADE_ID,GRADE_NAME,AVGPOINT,BENEFIT,PENALTY) values (4,'우수고객',4,20,0);
+Insert into GRADE (GRADE_ID,GRADE_NAME,AVGPOINT,BENEFIT,PENALTY) values (5,'최우수고객',5,30,0);
+
+---------------------------------------------------
+--   END DATA FOR TABLE GRADE
+---------------------------------------------------
+
+---------------------------------------------------
+--   DATA FOR TABLE MESSAGE
+--   FILTER = none used
+---------------------------------------------------
+REM INSERTING into MESSAGE
+Insert into MESSAGE (MSEQ,SEQ,RECEIVER_ID,MSG_FLAG,DELETE_SEND,DELETE_RECEI) values (199,628,'PublicPark',0,0,0);
+Insert into MESSAGE (MSEQ,SEQ,RECEIVER_ID,MSG_FLAG,DELETE_SEND,DELETE_RECEI) values (223,686,'PublicPark',0,0,0);
+Insert into MESSAGE (MSEQ,SEQ,RECEIVER_ID,MSG_FLAG,DELETE_SEND,DELETE_RECEI) values (301,781,'PublicPark',0,0,0);
+Insert into MESSAGE (MSEQ,SEQ,RECEIVER_ID,MSG_FLAG,DELETE_SEND,DELETE_RECEI) values (194,623,'RgPark',1,0,0);
+Insert into MESSAGE (MSEQ,SEQ,RECEIVER_ID,MSG_FLAG,DELETE_SEND,DELETE_RECEI) values (195,624,'IUGuest',1,0,1);
+Insert into MESSAGE (MSEQ,SEQ,RECEIVER_ID,MSG_FLAG,DELETE_SEND,DELETE_RECEI) values (93,213,'IUGuest',1,0,1);
+Insert into MESSAGE (MSEQ,SEQ,RECEIVER_ID,MSG_FLAG,DELETE_SEND,DELETE_RECEI) values (197,626,'didrl',1,1,0);
+Insert into MESSAGE (MSEQ,SEQ,RECEIVER_ID,MSG_FLAG,DELETE_SEND,DELETE_RECEI) values (200,629,'PublicPark',1,1,0);
+Insert into MESSAGE (MSEQ,SEQ,RECEIVER_ID,MSG_FLAG,DELETE_SEND,DELETE_RECEI) values (263,745,'PublicPark',1,0,0);
+Insert into MESSAGE (MSEQ,SEQ,RECEIVER_ID,MSG_FLAG,DELETE_SEND,DELETE_RECEI) values (302,786,'IUGuest',1,0,1);
+Insert into MESSAGE (MSEQ,SEQ,RECEIVER_ID,MSG_FLAG,DELETE_SEND,DELETE_RECEI) values (57,157,'didrl2',1,0,0);
+Insert into MESSAGE (MSEQ,SEQ,RECEIVER_ID,MSG_FLAG,DELETE_SEND,DELETE_RECEI) values (83,203,'RgPark',1,0,0);
+Insert into MESSAGE (MSEQ,SEQ,RECEIVER_ID,MSG_FLAG,DELETE_SEND,DELETE_RECEI) values (196,625,'didrl',1,1,0);
+Insert into MESSAGE (MSEQ,SEQ,RECEIVER_ID,MSG_FLAG,DELETE_SEND,DELETE_RECEI) values (187,615,'PublicPark',0,0,0);
+Insert into MESSAGE (MSEQ,SEQ,RECEIVER_ID,MSG_FLAG,DELETE_SEND,DELETE_RECEI) values (84,204,'RgPark',1,0,0);
+Insert into MESSAGE (MSEQ,SEQ,RECEIVER_ID,MSG_FLAG,DELETE_SEND,DELETE_RECEI) values (282,762,'봉',1,0,1);
+Insert into MESSAGE (MSEQ,SEQ,RECEIVER_ID,MSG_FLAG,DELETE_SEND,DELETE_RECEI) values (91,211,'RgPark',0,0,0);
+Insert into MESSAGE (MSEQ,SEQ,RECEIVER_ID,MSG_FLAG,DELETE_SEND,DELETE_RECEI) values (261,742,'RgPark',1,1,0);
+Insert into MESSAGE (MSEQ,SEQ,RECEIVER_ID,MSG_FLAG,DELETE_SEND,DELETE_RECEI) values (81,201,'RgPark',0,0,0);
+Insert into MESSAGE (MSEQ,SEQ,RECEIVER_ID,MSG_FLAG,DELETE_SEND,DELETE_RECEI) values (121,223,'PublicPark',1,1,0);
+Insert into MESSAGE (MSEQ,SEQ,RECEIVER_ID,MSG_FLAG,DELETE_SEND,DELETE_RECEI) values (181,0,'IUGuest',0,0,0);
+Insert into MESSAGE (MSEQ,SEQ,RECEIVER_ID,MSG_FLAG,DELETE_SEND,DELETE_RECEI) values (182,536,'PublicPark',1,0,0);
+Insert into MESSAGE (MSEQ,SEQ,RECEIVER_ID,MSG_FLAG,DELETE_SEND,DELETE_RECEI) values (322,823,'PublicPark',1,1,0);
+Insert into MESSAGE (MSEQ,SEQ,RECEIVER_ID,MSG_FLAG,DELETE_SEND,DELETE_RECEI) values (323,825,'PublicPark',0,1,0);
+Insert into MESSAGE (MSEQ,SEQ,RECEIVER_ID,MSG_FLAG,DELETE_SEND,DELETE_RECEI) values (361,864,'admin',0,0,0);
+
+---------------------------------------------------
+--   END DATA FOR TABLE MESSAGE
+---------------------------------------------------
+
+---------------------------------------------------
+--   DATA FOR TABLE FAQ
+--   FILTER = none used
+---------------------------------------------------
+REM INSERTING into FAQ
+
+---------------------------------------------------
+--   END DATA FOR TABLE FAQ
+---------------------------------------------------
+
+---------------------------------------------------
+--   DATA FOR TABLE CITIES
+--   FILTER = none used
+---------------------------------------------------
+REM INSERTING into CITIES
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11650,11650101,'서초구','방배동',37.4790075,126.9959106);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11560,11560116,'영등포구','당산동6가',37.5347504,126.9031696);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11350,11350105,'노원구','상계동',37.6664734,127.0723256);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110125,'종로구','중학동',37.575195,126.9799525);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110103,'종로구','궁정동',37.5849071,126.9724098);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11380,11380107,'은평구','응암동',37.5926842,126.9257987);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110158,'종로구','예지동',37.5695052,126.9984624);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110171,'종로구','명륜2가',37.5846181,126.9991755);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110134,'종로구','경운동',37.5752459,126.9864011);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110127,'종로구','공평동',37.5713261,126.9832337);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110122,'종로구','청진동',37.5715373,126.9802941);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11590,11590104,'동작구','본동',37.5124878,126.9551134);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110108,'종로구','통인동',37.5798178,126.9700653);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11320,11320107,'도봉구','창동',37.6463131,127.0433803);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11230,11230107,'동대문구','청량리동',37.5883148,127.0460902);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11230,11230104,'동대문구','전농동',37.5802851,127.0556712);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11230,11230110,'동대문구','이문동',37.5994013,127.0624711);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11230,11230109,'동대문구','휘경동',37.5881848,127.0643275);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11590,11590102,'동작구','상도동',37.4996854,126.9455507);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11545,11545102,'금천구','독산동',37.4663645,126.8975781);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11545,11545103,'금천구','시흥동',37.4497033,126.9106968);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11530,11530107,'구로구','개봉동',37.4946532,126.8517614);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11530,11530102,'구로구','구로동',37.4937929,126.8853184);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11140,11140162,'중구','신당동',37.556819,127.0154307);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11305,11305101,'강북구','미아동',37.6219876,127.023568);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110114,'종로구','내자동',37.575276,126.9718272);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11140,11140110,'중구','수표동',37.5674664,126.9894374);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11260,11260106,'중랑구','신내동',37.6102524,127.1011554);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11500,11500109,'강서구','방화동',37.5773667,126.8147523);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11620,11620102,'관악구','신림동',37.4630314,126.9347748);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11620,11620101,'관악구','봉천동',37.4750363,126.9490877);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110142,'종로구','소격동',37.5797855,126.9810122);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110109,'종로구','누상동',37.5802364,126.9623726);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110139,'종로구','팔판동',37.5827295,126.9805798);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110107,'종로구','적선동',37.5752845,126.9739372);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11680,11680108,'강남구','논현동',37.5138347,127.0317065);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110111,'종로구','옥인동',37.5835524,126.9641937);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11380,11380104,'은평구','갈현동',37.6210985,126.9132644);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110123,'종로구','서린동',37.569505,126.9803081);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110153,'종로구','돈의동',37.5720312,126.990647);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11500,11500111,'강서구','과해동',37.5662169,126.7883552);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11500,11500108,'강서구','공항동',37.5528356,126.8112165);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11590,11590108,'동작구','대방동',37.5067515,126.9277457);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110118,'종로구','내수동',37.5733668,126.9721018);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11590,11590105,'동작구','흑석동',37.5052783,126.9638235);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11320,11320105,'도봉구','쌍문동',37.6525541,127.027372);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11320,11320106,'도봉구','방학동',37.6646494,127.033485);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110105,'종로구','창성동',37.580573,126.9723678);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11320,11320108,'도봉구','도봉동',37.6852416,127.0298659);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11230,11230103,'동대문구','제기동',37.5847824,127.0368408);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11380,11380105,'은평구','구산동',37.6122006,126.9088195);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11230,11230105,'동대문구','답십리동',37.5699332,127.0551219);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11230,11230102,'동대문구','용두동',37.5762335,127.0348719);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110141,'종로구','안국동',37.5774765,126.9838448);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11230,11230108,'동대문구','회기동',37.594437,127.0521254);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11530,11530112,'구로구','항동',37.4810222,126.8236565);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110119,'종로구','세종로',37.5794898,126.9770088);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110121,'종로구','신문로2가',37.5710316,126.9692512);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110140,'종로구','삼청동',37.5898785,126.9813801);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11230,11230101,'동대문구','신설동',37.5748049,127.0255932);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110130,'종로구','와룡동',37.5809142,126.9927446);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110148,'종로구','계동',37.5829045,126.9868775);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110104,'종로구','효자동',37.5827038,126.9718984);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110126,'종로구','종로1가',37.5706982,126.9803342);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11230,11230106,'동대문구','장안동',37.5711171,127.0674268);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11590,11590107,'동작구','사당동',37.4851779,126.9717962);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11545,11545101,'금천구','가산동',37.4754693,126.884239);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11530,11530103,'구로구','가리봉동',37.4830168,126.8882519);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11140,11140137,'중구','필동1가',37.561147,126.9924131);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11530,11530106,'구로구','고척동',37.5024055,126.8586175);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11530,11530101,'구로구','신도림동',37.5105874,126.8830737);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11530,11530108,'구로구','오류동',37.4922507,126.8372032);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11260,11260104,'중랑구','묵동',37.6125348,127.0803391);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11380,11380102,'은평구','녹번동',37.6041196,126.9344915);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110115,'종로구','사직동',37.5753838,126.9658266);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11380,11380101,'은평구','수색동',37.5849864,126.8928479);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110101,'종로구','청운동',37.5890286,126.968516);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11380,11380103,'은평구','불광동',37.6191932,126.9351343);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110117,'종로구','당주동',37.5715788,126.9738254);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11380,11380108,'은평구','역촌동',37.60508,126.9121449);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11380,11380109,'은평구','신사동',37.5959208,126.9074635);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110112,'종로구','체부동',37.5778624,126.9710384);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11380,11380110,'은평구','증산동',37.583179,126.9061071);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11590,11590103,'동작구','상도1동',37.5032399,126.9498624);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11590,11590109,'동작구','신대방동',37.4921384,126.9166602);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11380,11380114,'은평구','진관동',37.6422519,126.9340853);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11140,11140163,'중구','흥인동',37.5676493,127.0160094);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110156,'종로구','종로3가',37.5703825,126.9923931);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11140,11140149,'중구','을지로7가',37.566416,127.0095184);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110159,'종로구','원남동',37.575484,126.9976457);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11140,11140164,'중구','무학동',37.5642292,127.0152231);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110135,'종로구','관철동',37.5691978,126.9859068);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11140,11140130,'중구','남산동3가',37.5600001,126.9873838);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110133,'종로구','익선동',37.574232,126.9897105);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110147,'종로구','재동',37.5781586,126.9852531);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11140,11140141,'중구','주자동',37.5606513,126.9893973);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11440,11440106,'마포구','토정동',37.5388869,126.9396829);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110155,'종로구','관수동',37.5690609,126.9904498);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110151,'종로구','묘동',37.5725522,126.9918441);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110154,'종로구','장사동',37.5692358,126.9942546);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11140,11140123,'중구','회현동3가',37.560059,126.9840944);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11140,11140133,'중구','충무로5가',37.5625808,126.999591);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110132,'종로구','운니동',37.576392,126.9883162);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11380,11380106,'은평구','대조동',37.6126506,126.9243915);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11530,11530110,'구로구','온수동',37.4936808,126.8204195);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110113,'종로구','필운동',37.5768799,126.9677042);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110173,'종로구','명륜3가',37.5873096,126.993071);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11260,11260102,'중랑구','상봉동',37.6001601,127.0832215);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11305,11305102,'강북구','번동',37.6292269,127.0363793);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11680,11680112,'강남구','자곡동',37.4766387,127.1001172);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110128,'종로구','관훈동',37.5741579,126.9847962);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110174,'종로구','창신동',37.5760033,127.0135248);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110175,'종로구','숭인동',37.5766752,127.0190654);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11140,11140153,'중구','방산동',37.5685483,127.0031306);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11140,11140140,'중구','남학동',37.5605244,126.9909108);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11140,11140158,'중구','충무로3가',37.5622482,126.9919615);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11140,11140109,'중구','장교동',37.5674834,126.9870581);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11260,11260101,'중랑구','면목동',37.5819253,127.0902098);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110162,'종로구','효제동',37.5733424,127.0034709);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11500,11500105,'강서구','마곡동',37.574112,126.8309814);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11500,11500112,'강서구','오곡동',37.5534112,126.7831645);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11350,11350103,'노원구','공릉동',37.6304774,127.0884819);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11290,11290103,'성북구','돈암동',37.5971818,127.0178327);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11140,11140152,'중구','주교동',37.5682735,126.9989423);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110106,'종로구','통의동',37.5779984,126.9727227);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110161,'종로구','종로4가',37.5706899,126.9979795);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110152,'종로구','봉익동',37.572373,126.9930164);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110144,'종로구','사간동',37.5772363,126.9805782);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11260,11260103,'중랑구','중화동',37.600464,127.078447);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11260,11260105,'중랑구','망우동',37.6003767,127.1056494);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11530,11530109,'구로구','궁동',37.5009522,126.8286616);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11530,11530111,'구로구','천왕동',37.4801779,126.8394455);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11500,11500103,'강서구','화곡동',37.5421699,126.8468434);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11140,11140157,'중구','산림동',37.5676122,126.9961712);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110176,'종로구','교남동',37.5684349,126.9644742);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11140,11140166,'중구','서소문동',37.5629167,126.9739585);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110166,'종로구','연건동',37.5784882,126.9996745);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110169,'종로구','혜화동',37.587822,127.0023231);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110160,'종로구','연지동',37.5737459,127.0001197);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11140,11140128,'중구','남산동1가',37.5591789,126.9847191);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11140,11140108,'중구','수하동',37.5674173,126.9846423);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11140,11140171,'중구','중림동',37.5591646,126.965563);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11680,11680101,'강남구','역삼동',37.4998676,127.0386903);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11440,11440104,'마포구','도화동',37.5395606,126.9506257);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11140,11140113,'중구','북창동',37.5624854,126.9782512);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110167,'종로구','충신동',37.574766,127.0059177);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110178,'종로구','송월동',37.5701811,126.9653069);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110164,'종로구','종로6가',37.5722418,127.0072742);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110165,'종로구','이화동',37.5773254,127.0054708);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11140,11140120,'중구','봉래동2가',37.5567475,126.9713415);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110129,'종로구','견지동',37.5737344,126.983095);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110137,'종로구','낙원동',37.5725546,126.9886249);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110138,'종로구','종로2가',37.5707645,126.9863064);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110131,'종로구','권농동',37.576109,126.9917567);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11140,11140139,'중구','필동3가',37.5577553,126.9973741);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11140,11140121,'중구','회현동1가',37.5571575,126.9816996);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110145,'종로구','송현동',37.5770464,126.9819272);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110163,'종로구','종로5가',37.5707296,127.0033505);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110177,'종로구','평동',37.5676735,126.9668356);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11140,11140111,'중구','소공동',37.5638976,126.9799894);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110170,'종로구','명륜1가',37.5889535,126.9974082);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110157,'종로구','인의동',37.5726289,126.9980207);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110143,'종로구','화동',37.5806863,126.9826104);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11140,11140126,'중구','명동1가',37.5644525,126.9844716);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11140,11140107,'중구','삼각동',37.5679302,126.9847935);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11140,11140112,'중구','남창동',37.5580671,126.9775971);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110183,'종로구','평창동',37.6139675,126.9743019);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11305,11305104,'강북구','우이동',37.6632405,126.9992184);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11740,11740102,'강동구','고덕동',37.5655385,127.1576826);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11140,11140136,'중구','묵정동',37.5614488,127.0005455);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110146,'종로구','가회동',37.5828064,126.984865);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110149,'종로구','원서동',37.5841834,126.9880869);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110136,'종로구','인사동',37.5720605,126.9859557);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110120,'종로구','신문로1가',37.5703732,126.9740725);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11140,11140156,'중구','입정동',37.5677264,126.9927713);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11140,11140119,'중구','봉래동1가',37.5589096,126.9729617);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11140,11140124,'중구','충무로1가',37.5610267,126.9826401);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11140,11140118,'중구','남대문로5가',37.5563671,126.9763019);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11140,11140135,'중구','예관동',37.5640814,126.998038);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110110,'종로구','누하동',37.5793623,126.9680058);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110124,'종로구','수송동',37.5738606,126.98058);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110150,'종로구','훈정동',37.5742191,126.994071);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110168,'종로구','동숭동',37.58161,127.0051706);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11140,11140106,'중구','남대문로1가',37.5675948,126.9831124);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11140,11140168,'중구','순화동',37.5623459,126.9708091);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11140,11140101,'중구','무교동',37.5680651,126.9788677);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11140,11140165,'중구','황학동',37.5685914,127.0204708);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11140,11140125,'중구','충무로2가',37.5617555,126.9877462);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11215,11215102,'광진구','능동',37.5511329,127.0818924);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11500,11500101,'강서구','염창동',37.5559718,126.8712411);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11140,11140161,'중구','저동2가',37.5643088,126.9899009);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11140,11140151,'중구','을지로5가',37.5668186,127.0021804);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11680,11680110,'강남구','압구정동',37.52883,127.0295048);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11140,11140173,'중구','만리동1가',37.5558883,126.9669835);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11140,11140122,'중구','회현동2가',37.5585169,126.9827614);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110172,'종로구','명륜4가',37.5823905,126.9998063);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11440,11440118,'마포구','당인동',37.5447269,126.9194339);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11680,11680106,'강남구','대치동',37.4989487,127.0646585);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11740,11740107,'강동구','암사동',37.5577912,127.1295094);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11215,11215109,'광진구','군자동',37.5532424,127.0734926);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11140,11140155,'중구','을지로3가',37.5665987,126.9924035);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11140,11140114,'중구','태평로2가',37.5632359,126.9764071);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11140,11140150,'중구','을지로4가',37.566393,126.9977072);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11140,11140169,'중구','의주로1가',37.5637065,126.9684918);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11140,11140148,'중구','을지로6가',37.567505,127.0070798);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11680,11680105,'강남구','삼성동',37.5147968,127.0550898);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11410,11410116,'서대문구','창천동',37.558812,126.9341472);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11140,11140172,'중구','의주로2가',37.5606655,126.9695135);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11680,11680113,'강남구','율현동',37.4717408,127.1114704);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11290,11290135,'성북구','종암동',37.596525,127.0332814);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11140,11140117,'중구','남대문로4가',37.5606911,126.9755028);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11440,11440116,'마포구','하중동',37.543806,126.927945);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11650,11650103,'서초구','우면동',37.4660631,127.0178631);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11680,11680104,'강남구','청담동',37.5255867,127.0522749);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11140,11140115,'중구','남대문로2가',37.5638636,126.98204);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11140,11140129,'중구','남산동2가',37.5583248,126.9858851);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11140,11140131,'중구','저동1가',37.5642498,126.9878916);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11140,11140145,'중구','광희동1가',37.5650378,127.0051839);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11140,11140146,'중구','광희동2가',37.5639442,127.0083469);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11140,11140143,'중구','장충동1가',37.5610374,127.0076401);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11740,11740110,'강동구','강일동',37.5676689,127.1720394);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11500,11500110,'강서구','개화동',37.5865739,126.8031384);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11500,11500104,'강서구','가양동',37.5679849,126.8444363);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11140,11140144,'중구','장충동2가',37.5552599,127.0003344);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11410,11410119,'서대문구','북가좌동',37.5791085,126.911718);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11140,11140102,'중구','다동',37.5678826,126.9811939);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11680,11680118,'강남구','도곡동',37.4881299,127.0440336);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11740,11740103,'강동구','상일동',37.5508013,127.1698692);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11410,11410115,'서대문구','봉원동',37.5726345,126.9472296);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110182,'종로구','구기동',37.6179518,126.9621627);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11140,11140138,'중구','필동2가',37.5577913,126.9949769);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11140,11140167,'중구','정동',37.5661453,126.9733065);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11140,11140132,'중구','충무로4가',37.5623108,126.9959752);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11740,11740106,'강동구','둔촌동',37.5289353,127.1469441);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11215,11215101,'광진구','중곡동',37.5630636,127.0883255);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11140,11140142,'중구','예장동',37.5551793,126.9897764);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110186,'종로구','신영동',37.6030533,126.9618057);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11680,11680103,'강남구','개포동',37.4824461,127.0627324);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11140,11140116,'중구','남대문로3가',37.5616684,126.9794388);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11500,11500107,'강서구','외발산동',37.5495179,126.8203069);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11305,11305103,'강북구','수유동',37.6371315,127.0075443);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110181,'종로구','행촌동',37.5744857,126.9626524);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11500,11500102,'강서구','등촌동',37.5519877,126.8527944);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11140,11140170,'중구','충정로1가',37.5668791,126.9680887);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11680,11680114,'강남구','일원동',37.487919,127.0852159);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11680,11680111,'강남구','세곡동',37.4644483,127.1066382);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11680,11680107,'강남구','신사동',37.522901,127.0246551);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11410,11410117,'서대문구','연희동',37.5725293,126.9312651);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11740,11740109,'강동구','천호동',37.5431857,127.1265646);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11440,11440109,'마포구','염리동',37.5492254,126.9472148);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11650,11650102,'서초구','양재동',37.468455,127.0362469);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11410,11410102,'서대문구','충정로3가',37.5622877,126.9621682);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11740,11740101,'강동구','명일동',37.5485893,127.1517553);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11440,11440125,'마포구','성산동',37.5662175,126.9039251);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110184,'종로구','부암동',37.5934957,126.9672855);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11410,11410111,'서대문구','홍제동',37.5873266,126.9472803);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11740,11740108,'강동구','성내동',37.5304064,127.1288445);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11440,11440115,'마포구','상수동',37.5470257,126.9243738);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11350,11350102,'노원구','월계동',37.6295557,127.0562535);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11440,11440102,'마포구','공덕동',37.5473874,126.9555578);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11680,11680115,'강남구','수서동',37.4855136,127.0984645);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11500,11500113,'강서구','오쇠동',37.5435569,126.7978766);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11140,11140104,'중구','을지로1가',37.5659055,126.980572);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11440,11440101,'마포구','아현동',37.554422,126.9559629);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11650,11650111,'서초구','신원동',37.4451504,127.0596524);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11410,11410118,'서대문구','홍은동',37.5933419,126.9395754);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11440,11440127,'마포구','상암동',37.5715459,126.8778772);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11410,11410105,'서대문구','냉천동',37.5674955,126.9620155);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11410,11410114,'서대문구','신촌동',37.5651557,126.9433454);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11410,11410120,'서대문구','남가좌동',37.5766943,126.9185077);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11440,11440120,'마포구','서교동',37.5536496,126.9200806);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11650,11650104,'서초구','원지동',37.4449934,127.0495943);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11140,11140147,'중구','쌍림동',37.5637681,127.0045499);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11140,11140105,'중구','을지로2가',37.5657158,126.9862633);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11140,11140160,'중구','인현동1가',37.5645365,126.9945524);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110185,'종로구','홍지동',37.6005798,126.9567853);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11440,11440108,'마포구','대흥동',37.5498968,126.9427936);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11140,11140103,'중구','태평로1가',37.5675677,126.9773829);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11410,11410101,'서대문구','충정로2가',37.5649689,126.9639848);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11140,11140159,'중구','초동',37.564601,126.992348);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11620,11620103,'관악구','남현동',37.4630565,126.9776247);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11140,11140127,'중구','명동2가',37.5630105,126.9852883);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110179,'종로구','홍파동',37.5711594,126.9641517);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11410,11410112,'서대문구','대현동',37.5613992,126.9453107);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11140,11140174,'중구','만리동2가',37.5542553,126.9643234);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11650,11650107,'서초구','반포동',37.5045831,127.002177);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11440,11440124,'마포구','연남동',37.5626693,126.9223736);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11650,11650108,'서초구','서초동',37.4885178,127.0171251);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11290,11290106,'성북구','동소문동3가',37.5903924,127.0116172);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11290,11290127,'성북구','보문동5가',37.5824037,127.0201561);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11710,11710112,'송파구','오금동',37.5037347,127.1339178);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11440,11440117,'마포구','신정동',37.5432645,126.9306675);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11200,11200122,'성동구','용답동',37.5624296,127.0550854);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11290,11290114,'성북구','삼선동4가',37.5898185,127.0133533);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11290,11290129,'성북구','보문동7가',37.5796096,127.0223215);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11290,11290109,'성북구','동소문동6가',37.5936325,127.0140289);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11290,11290138,'성북구','장위동',37.6160358,127.0503368);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11560,11560131,'영등포구','양화동',37.5489947,126.8900755);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11470,11470101,'양천구','신정동',37.5163358,126.853025);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11470,11470102,'양천구','목동',37.5367323,126.8764168);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11290,11290105,'성북구','동소문동2가',37.5888166,127.0081301);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11560,11560114,'영등포구','당산동4가',37.5291366,126.8991346);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11440,11440103,'마포구','신공덕동',37.5443996,126.9556066);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11290,11290124,'성북구','안암동4가',37.5805404,127.0246074);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11440,11440126,'마포구','중동',37.5716735,126.9067459);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11410,11410109,'서대문구','현저동',37.5741171,126.954731);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11410,11410107,'서대문구','옥천동',37.5692019,126.9591259);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11290,11290132,'성북구','보문동3가',37.584334,127.0165173);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11290,11290102,'성북구','성북동1가',37.5895393,127.004033);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11290,11290123,'성북구','안암동3가',37.5839528,127.0236731);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11290,11290117,'성북구','동선동2가',37.5900467,127.0197109);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11440,11440113,'마포구','구수동',37.5460069,126.9323383);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11650,11650110,'서초구','염곡동',37.4631455,127.0527371);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11140,11140134,'중구','인현동2가',37.5641432,126.9962714);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11740,11740105,'강동구','길동',37.5397058,127.1470069);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11350,11350104,'노원구','하계동',37.638495,127.0715073);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11440,11440112,'마포구','현석동',37.5422601,126.9345409);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11410,11410106,'서대문구','천연동',37.5678141,126.9597567);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11170,11170135,'용산구','용산동6가',37.5168611,126.9842131);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11350,11350106,'노원구','중계동',37.6508772,127.0775079);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11440,11440114,'마포구','창전동',37.5498986,126.9290711);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110187,'종로구','무악동',37.5767914,126.9582278);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11410,11410113,'서대문구','대신동',37.5646453,126.9439075);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11215,11215103,'광진구','구의동',37.5436014,127.093166);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11200,11200102,'성동구','하왕십리동',37.5643661,127.0285936);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11290,11290133,'성북구','정릉동',37.6167753,126.9983572);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11710,11710109,'송파구','장지동',37.4785724,127.1320172);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11560,11560132,'영등포구','신길동',37.5058261,126.9126517);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11560,11560134,'영등포구','양평동',37.5326108,126.8899611);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11560,11560117,'영등포구','당산동',37.534892,126.9024682);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11290,11290126,'성북구','보문동4가',37.5829039,127.0213823);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11290,11290118,'성북구','동선동3가',37.5941547,127.0204851);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11290,11290131,'성북구','보문동2가',37.5858495,127.018301);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11710,11710104,'송파구','송파동',37.5049182,127.1138537);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11290,11290104,'성북구','동소문동1가',37.5901376,127.0072562);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11200,11200113,'성동구','옥수동',37.5420259,127.0219998);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11200,11200105,'성동구','마장동',37.5670762,127.0407448);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11290,11290130,'성북구','보문동1가',37.5864995,127.0196092);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11560,11560118,'영등포구','도림동',37.5082421,126.90154);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11170,11170110,'용산구','청파동2가',37.5462385,126.9666853);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11170,11170118,'용산구','원효로4가',37.532933,126.9506459);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11560,11560101,'영등포구','영등포동',37.5134157,126.9067838);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11170,11170119,'용산구','효창동',37.543576,126.9607224);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11170,11170101,'용산구','후암동',37.5503851,126.9805052);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11440,11440122,'마포구','합정동',37.5478042,126.9079932);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11710,11710113,'송파구','거여동',37.4893748,127.147023);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11290,11290139,'성북구','석관동',37.6079392,127.0611742);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11170,11170130,'용산구','이태원동',37.5388621,126.9922784);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11170,11170128,'용산구','한강로3가',37.5280447,126.9632302);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11200,11200109,'성동구','금호동1가',37.5530419,127.0213785);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11200,11200115,'성동구','성수동2가',37.5407489,127.0571066);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11440,11440110,'마포구','노고산동',37.5540256,126.938245);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11200,11200107,'성동구','행당동',37.5591737,127.03525);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11710,11710108,'송파구','문정동',37.4856663,127.1237435);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11440,11440123,'마포구','망원동',37.5559402,126.8999197);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11560,11560127,'영등포구','양평동3가',37.5296813,126.8897891);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11170,11170109,'용산구','청파동1가',37.5488937,126.9671724);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11170,11170125,'용산구','한강로2가',37.5312807,126.9686038);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11170,11170102,'용산구','용산동2가',37.5430767,126.9858634);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11560,11560111,'영등포구','당산동1가',37.5214443,126.8985373);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11170,11170111,'용산구','청파동3가',37.5433004,126.9666029);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11200,11200110,'성동구','금호동2가',37.5525166,127.0217887);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11710,11710111,'송파구','방이동',37.5163579,127.1260691);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11215,11215104,'광진구','광장동',37.5477291,127.1042144);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11710,11710107,'송파구','가락동',37.4942803,127.1176314);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11560,11560130,'영등포구','양평동6가',37.5427197,126.889431);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11200,11200106,'성동구','사근동',37.5589469,127.0467523);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11290,11290134,'성북구','길음동',37.6084879,127.0223926);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11470,11470103,'양천구','신월동',37.5290519,126.837064);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11170,11170129,'용산구','이촌동',37.5188354,126.9651355);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11170,11170136,'용산구','보광동',37.526885,127.0017006);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11170,11170131,'용산구','한남동',37.5374384,127.0060974);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11290,11290120,'성북구','동선동5가',37.5963264,127.0168846);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11290,11290128,'성북구','보문동6가',37.5806329,127.0192952);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11710,11710103,'송파구','풍납동',37.5335451,127.1132244);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11710,11710101,'송파구','잠실동',37.5111559,127.0858095);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11290,11290110,'성북구','동소문동7가',37.5963137,127.0142975);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11200,11200111,'성동구','금호동3가',37.5499287,127.0195555);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11650,11650106,'서초구','잠원동',37.5153035,127.0093895);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11170,11170124,'용산구','한강로1가',37.5358426,126.9730994);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11215,11215107,'광진구','화양동',37.5435023,127.0736984);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11200,11200104,'성동구','도선동',37.5634228,127.0332234);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11560,11560115,'영등포구','당산동5가',37.5321286,126.9010103);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11710,11710105,'송파구','석촌동',37.502828,127.1041072);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11560,11560104,'영등포구','영등포동3가',37.5181304,126.9084001);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11560,11560108,'영등포구','영등포동7가',37.5242607,126.9071887);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11170,11170120,'용산구','도원동',37.538784,126.9562612);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11440,11440111,'마포구','신수동',37.5480088,126.9372621);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11410,11410108,'서대문구','영천동',37.5701581,126.9583202);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11290,11290108,'성북구','동소문동5가',37.5915119,127.0150678);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11440,11440105,'마포구','용강동',37.5412913,126.9404517);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11560,11560112,'영등포구','당산동2가',37.5224645,126.8938154);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11290,11290115,'성북구','삼선동5가',37.5885476,127.0160023);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11290,11290113,'성북구','삼선동3가',37.5867502,127.0134422);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11290,11290107,'성북구','동소문동4가',37.5918678,127.0106032);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11170,11170107,'용산구','동자동',37.5515203,126.9729157);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11170,11170121,'용산구','용문동',37.5377219,126.9597101);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11560,11560109,'영등포구','영등포동8가',37.5290851,126.9050152);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11560,11560125,'영등포구','양평동1가',37.5231837,126.8886738);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11560,11560106,'영등포구','영등포동5가',37.5210399,126.9068178);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11170,11170112,'용산구','원효로1가',37.5399032,126.967552);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11200,11200103,'성동구','홍익동',37.5671038,127.0327206);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11170,11170105,'용산구','남영동',37.5428503,126.9733902);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11710,11710106,'송파구','삼전동',37.5018103,127.0897701);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11560,11560123,'영등포구','문래동5가',37.5163676,126.88352);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11440,11440107,'마포구','마포동',37.536882,126.9436223);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11410,11410103,'서대문구','합동',37.5613616,126.9662488);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11410,11410104,'서대문구','미근동',37.5635697,126.9673975);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11440,11440121,'마포구','동교동',37.5580953,126.9258052);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11170,11170117,'용산구','원효로3가',37.5343201,126.9577325);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11170,11170132,'용산구','동빙고동',37.5235803,126.9951773);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11290,11290119,'성북구','동선동4가',37.5951321,127.018831);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11290,11290137,'성북구','상월곡동',37.6060556,127.0475391);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11290,11290125,'성북구','안암동5가',37.5884384,127.0295871);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11200,11200112,'성동구','금호동4가',37.5452026,127.0229979);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11170,11170104,'용산구','갈월동',37.5449357,126.9730567);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11650,11650109,'서초구','내곡동',37.4583407,127.0770854);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11410,11410110,'서대문구','북아현동',37.5636974,126.9549005);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11290,11290136,'성북구','하월곡동',37.6041679,127.0378888);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11200,11200114,'성동구','성수동1가',37.5431193,127.0416557);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11215,11215105,'광진구','자양동',37.5323755,127.0744813);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11290,11290101,'성북구','성북동',37.5963213,126.9925434);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11170,11170106,'용산구','용산동1가',37.5402662,126.9769712);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11170,11170115,'용산구','산천동',37.5357088,126.9515063);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11170,11170113,'용산구','원효로2가',37.5363505,126.9634641);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11560,11560124,'영등포구','문래동6가',37.5200428,126.8841715);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11290,11290111,'성북구','삼선동1가',37.5843841,127.0075168);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11560,11560113,'영등포구','당산동3가',37.526241,126.8974286);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11170,11170114,'용산구','신창동',37.5358397,126.9549629);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11560,11560102,'영등포구','영등포동1가',37.517729,126.912671);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11290,11290121,'성북구','안암동1가',37.5887176,127.02229);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11290,11290122,'성북구','안암동2가',37.5868415,127.0232698);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11560,11560122,'영등포구','문래동4가',37.5144685,126.890154);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11560,11560126,'영등포구','양평동2가',37.5233387,126.8839348);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11560,11560120,'영등포구','문래동2가',37.5127162,126.8935378);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11200,11200101,'성동구','상왕십리동',37.5684665,127.0255502);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11560,11560107,'영등포구','영등포동6가',37.5222528,126.9030391);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11290,11290112,'성북구','삼선동2가',37.5848587,127.0118859);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11710,11710102,'송파구','신천동',37.5250784,127.0921993);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11560,11560105,'영등포구','영등포동4가',37.517862,126.9038988);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11170,11170127,'용산구','용산동5가',37.5256032,126.9740052);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11560,11560129,'영등포구','양평동5가',37.5389197,126.8929397);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11560,11560119,'영등포구','문래동1가',37.5118742,126.8975741);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11560,11560110,'영등포구','여의도동',37.5284328,126.9273756);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11560,11560128,'영등포구','양평동4가',37.536431,126.8962335);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11200,11200108,'성동구','응봉동',37.5505366,127.0348589);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11710,11710114,'송파구','마천동',37.497466,127.1515613);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11200,11200118,'성동구','송정동',37.5541037,127.0621617);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11170,11170123,'용산구','신계동',37.535453,126.9646997);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11170,11170133,'용산구','서빙고동',37.5191265,126.9914013);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110102,'종로구','신교동',37.584442,126.9676999);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110116,'종로구','도렴동',37.5727248,126.9746765);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11590,11590101,'동작구','노량진동',37.5115,126.9415121);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11590,11590106,'동작구','동작동',37.4999089,126.973677);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11140,11140154,'중구','오장동',37.5644435,127.0010471);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11110,11110180,'종로구','교북동',37.5714262,126.9613044);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11500,11500106,'강서구','내발산동',37.5536081,126.8346846);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11170,11170134,'용산구','주성동',37.5215716,127.0002871);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11170,11170122,'용산구','문배동',37.5371288,126.9690036);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11170,11170103,'용산구','용산동4가',37.5305892,126.9858837);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11560,11560133,'영등포구','대림동',37.4970578,126.9009238);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11290,11290116,'성북구','동선동1가',37.5924569,127.0182089);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11170,11170126,'용산구','용산동3가',37.5321655,126.97629);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11170,11170116,'용산구','청암동',37.5342588,126.9468781);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11560,11560103,'영등포구','영등포동2가',37.5208906,126.91267);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11560,11560121,'영등포구','문래동3가',37.5171092,126.8959578);
+Insert into CITIES (SGG_CODE,EMD_CODE,SGG_NAME,EMD_NAME,LAT,LNG) values (11170,11170108,'용산구','서계동',37.5526054,126.9665242);
+
+---------------------------------------------------
+--   END DATA FOR TABLE CITIES
+---------------------------------------------------
+
+---------------------------------------------------
+--   DATA FOR TABLE FAVORITE
+--   FILTER = none used
+---------------------------------------------------
+REM INSERTING into FAVORITE
+Insert into FAVORITE (PARK_ID,USER_ID) values (111283,'IUGuest');
+Insert into FAVORITE (PARK_ID,USER_ID) values (172607,'SZGuest');
+Insert into FAVORITE (PARK_ID,USER_ID) values (172634,'SZGuest');
+Insert into FAVORITE (PARK_ID,USER_ID) values (171721,'TopGuest');
+Insert into FAVORITE (PARK_ID,USER_ID) values (167964,'TopGuest');
+Insert into FAVORITE (PARK_ID,USER_ID) values (124830,'GdGuest');
+Insert into FAVORITE (PARK_ID,USER_ID) values (172647,'GdGuest');
+Insert into FAVORITE (PARK_ID,USER_ID) values (1163648,'IUGuest');
+Insert into FAVORITE (PARK_ID,USER_ID) values (1366393,'IUGuest');
+Insert into FAVORITE (PARK_ID,USER_ID) values (173139,'봉');
+Insert into FAVORITE (PARK_ID,USER_ID) values (173005,'IUGuest');
+Insert into FAVORITE (PARK_ID,USER_ID) values (136358,'IUGuest');
+Insert into FAVORITE (PARK_ID,USER_ID) values (781512,'봉');
+Insert into FAVORITE (PARK_ID,USER_ID) values (1366593,'봉');
+Insert into FAVORITE (PARK_ID,USER_ID) values (173553,'참치회');
+Insert into FAVORITE (PARK_ID,USER_ID) values (173359,'봉');
+Insert into FAVORITE (PARK_ID,USER_ID) values (1247675,'IUGuest');
+Insert into FAVORITE (PARK_ID,USER_ID) values (1371666,'IUGuest');
+Insert into FAVORITE (PARK_ID,USER_ID) values (1366394,'봉');
+Insert into FAVORITE (PARK_ID,USER_ID) values (1368516,'suk');
+Insert into FAVORITE (PARK_ID,USER_ID) values (173691,'봉');
+Insert into FAVORITE (PARK_ID,USER_ID) values (111804,'IUGuest');
+Insert into FAVORITE (PARK_ID,USER_ID) values (1371306,'PublicPark');
+Insert into FAVORITE (PARK_ID,USER_ID) values (132897,'봉');
+Insert into FAVORITE (PARK_ID,USER_ID) values (173447,'PublicPark');
+Insert into FAVORITE (PARK_ID,USER_ID) values (1371306,'매너좋은놈');
+Insert into FAVORITE (PARK_ID,USER_ID) values (173359,'PublicPark');
+Insert into FAVORITE (PARK_ID,USER_ID) values (1366394,'PublicPark');
+Insert into FAVORITE (PARK_ID,USER_ID) values (1366729,'IUGuest');
+Insert into FAVORITE (PARK_ID,USER_ID) values (1371306,'IUGuest');
+Insert into FAVORITE (PARK_ID,USER_ID) values (173468,'IUGuest');
+Insert into FAVORITE (PARK_ID,USER_ID) values (173359,'IUGuest');
+Insert into FAVORITE (PARK_ID,USER_ID) values (173447,'Jennifer200');
+Insert into FAVORITE (PARK_ID,USER_ID) values (1247675,'Jennifer200');
+Insert into FAVORITE (PARK_ID,USER_ID) values (1232331,'참치회');
+
+---------------------------------------------------
+--   END DATA FOR TABLE FAVORITE
+---------------------------------------------------
+
+---------------------------------------------------
+--   DATA FOR TABLE COIN
+--   FILTER = none used
+---------------------------------------------------
+REM INSERTING into COIN
+Insert into COIN (USER_ID,CDATE,COIN,CFLAG,CID,RESER_ID) values ('GdHost',to_timestamp('16/06/09 08:17:26.000000000','RR/MM/DD HH24:MI:SS.FF'),100,2,12345,null);
+Insert into COIN (USER_ID,CDATE,COIN,CFLAG,CID,RESER_ID) values ('IUGuest',to_timestamp('16/06/10 04:05:46.000000000','RR/MM/DD HH24:MI:SS.FF'),50,2,40,null);
+Insert into COIN (USER_ID,CDATE,COIN,CFLAG,CID,RESER_ID) values ('IUGuest',to_timestamp('16/06/10 04:09:51.000000000','RR/MM/DD HH24:MI:SS.FF'),50,2,41,null);
+Insert into COIN (USER_ID,CDATE,COIN,CFLAG,CID,RESER_ID) values ('IUGuest',to_timestamp('16/06/10 04:10:34.000000000','RR/MM/DD HH24:MI:SS.FF'),100,2,42,null);
+Insert into COIN (USER_ID,CDATE,COIN,CFLAG,CID,RESER_ID) values ('IUGuest',to_timestamp('16/06/10 05:57:39.000000000','RR/MM/DD HH24:MI:SS.FF'),50,2,62,null);
+Insert into COIN (USER_ID,CDATE,COIN,CFLAG,CID,RESER_ID) values ('IUGuest',to_timestamp('16/06/10 05:57:54.000000000','RR/MM/DD HH24:MI:SS.FF'),50,2,63,null);
+Insert into COIN (USER_ID,CDATE,COIN,CFLAG,CID,RESER_ID) values ('IUGuest',to_timestamp('16/06/10 05:58:19.000000000','RR/MM/DD HH24:MI:SS.FF'),50,2,64,null);
+Insert into COIN (USER_ID,CDATE,COIN,CFLAG,CID,RESER_ID) values ('봉',to_timestamp('16/06/10 05:59:01.000000000','RR/MM/DD HH24:MI:SS.FF'),100,2,65,null);
+Insert into COIN (USER_ID,CDATE,COIN,CFLAG,CID,RESER_ID) values ('RgPark',to_timestamp('16/06/10 06:59:53.000000000','RR/MM/DD HH24:MI:SS.FF'),50,2,67,null);
+Insert into COIN (USER_ID,CDATE,COIN,CFLAG,CID,RESER_ID) values ('참치회',to_timestamp('16/06/15 08:04:25.000000000','RR/MM/DD HH24:MI:SS.FF'),100,2,102,null);
+Insert into COIN (USER_ID,CDATE,COIN,CFLAG,CID,RESER_ID) values ('IUGuest',to_timestamp('16/06/24 11:08:15.000000000','RR/MM/DD HH24:MI:SS.FF'),50,2,218,null);
+Insert into COIN (USER_ID,CDATE,COIN,CFLAG,CID,RESER_ID) values ('PublicPark',to_timestamp('16/06/24 10:43:52.000000000','RR/MM/DD HH24:MI:SS.FF'),18,1,207,'20160624104352931');
+Insert into COIN (USER_ID,CDATE,COIN,CFLAG,CID,RESER_ID) values ('PublicPark',to_timestamp('16/06/24 10:44:47.000000000','RR/MM/DD HH24:MI:SS.FF'),300,1,208,'20160624104447961');
+Insert into COIN (USER_ID,CDATE,COIN,CFLAG,CID,RESER_ID) values ('IUGuest',to_timestamp('16/06/10 00:23:49.000000000','RR/MM/DD HH24:MI:SS.FF'),50,2,34,null);
+Insert into COIN (USER_ID,CDATE,COIN,CFLAG,CID,RESER_ID) values ('IUGuest',to_timestamp('16/06/10 03:56:36.000000000','RR/MM/DD HH24:MI:SS.FF'),50,2,35,null);
+Insert into COIN (USER_ID,CDATE,COIN,CFLAG,CID,RESER_ID) values ('IUGuest',to_timestamp('16/06/10 03:58:59.000000000','RR/MM/DD HH24:MI:SS.FF'),100,2,36,null);
+Insert into COIN (USER_ID,CDATE,COIN,CFLAG,CID,RESER_ID) values ('IUGuest',to_timestamp('16/06/10 03:59:56.000000000','RR/MM/DD HH24:MI:SS.FF'),100,2,37,null);
+Insert into COIN (USER_ID,CDATE,COIN,CFLAG,CID,RESER_ID) values ('IUGuest',to_timestamp('16/06/10 04:00:34.000000000','RR/MM/DD HH24:MI:SS.FF'),100,2,38,null);
+Insert into COIN (USER_ID,CDATE,COIN,CFLAG,CID,RESER_ID) values ('IUGuest',to_timestamp('16/06/10 07:25:50.000000000','RR/MM/DD HH24:MI:SS.FF'),50,2,68,null);
+Insert into COIN (USER_ID,CDATE,COIN,CFLAG,CID,RESER_ID) values ('IUGuest',to_timestamp('16/06/13 13:37:20.000000000','RR/MM/DD HH24:MI:SS.FF'),50,2,81,null);
+Insert into COIN (USER_ID,CDATE,COIN,CFLAG,CID,RESER_ID) values ('IUGuest',to_timestamp('16/06/17 07:57:44.000000000','RR/MM/DD HH24:MI:SS.FF'),50,2,122,null);
+Insert into COIN (USER_ID,CDATE,COIN,CFLAG,CID,RESER_ID) values ('IUGuest',to_timestamp('16/06/21 13:59:52.000000000','RR/MM/DD HH24:MI:SS.FF'),480,1,184,'20160621135952579');
+Insert into COIN (USER_ID,CDATE,COIN,CFLAG,CID,RESER_ID) values ('PublicPark',to_timestamp('16/06/24 10:11:37.000000000','RR/MM/DD HH24:MI:SS.FF'),50,2,203,null);
+Insert into COIN (USER_ID,CDATE,COIN,CFLAG,CID,RESER_ID) values ('IUGuest',to_timestamp('16/06/24 11:05:53.000000000','RR/MM/DD HH24:MI:SS.FF'),50,2,217,null);
+Insert into COIN (USER_ID,CDATE,COIN,CFLAG,CID,RESER_ID) values ('IUGuest',to_timestamp('16/06/09 19:12:58.000000000','RR/MM/DD HH24:MI:SS.FF'),50,2,2,null);
+Insert into COIN (USER_ID,CDATE,COIN,CFLAG,CID,RESER_ID) values ('IUGuest',to_timestamp('16/06/09 19:13:55.000000000','RR/MM/DD HH24:MI:SS.FF'),50,2,3,null);
+Insert into COIN (USER_ID,CDATE,COIN,CFLAG,CID,RESER_ID) values ('IUGuest',to_timestamp('16/06/09 19:17:43.000000000','RR/MM/DD HH24:MI:SS.FF'),50,2,4,null);
+Insert into COIN (USER_ID,CDATE,COIN,CFLAG,CID,RESER_ID) values ('IUGuest',to_timestamp('16/06/09 19:19:26.000000000','RR/MM/DD HH24:MI:SS.FF'),50,2,5,null);
+Insert into COIN (USER_ID,CDATE,COIN,CFLAG,CID,RESER_ID) values ('IUGuest',to_timestamp('16/06/09 19:19:54.000000000','RR/MM/DD HH24:MI:SS.FF'),50,2,6,null);
+Insert into COIN (USER_ID,CDATE,COIN,CFLAG,CID,RESER_ID) values ('IUGuest',to_timestamp('16/06/09 19:19:58.000000000','RR/MM/DD HH24:MI:SS.FF'),50,2,7,null);
+Insert into COIN (USER_ID,CDATE,COIN,CFLAG,CID,RESER_ID) values ('IUGuest',to_timestamp('16/06/09 19:20:09.000000000','RR/MM/DD HH24:MI:SS.FF'),50,2,8,null);
+Insert into COIN (USER_ID,CDATE,COIN,CFLAG,CID,RESER_ID) values ('IUGuest',to_timestamp('16/06/09 19:20:22.000000000','RR/MM/DD HH24:MI:SS.FF'),50,2,9,null);
+Insert into COIN (USER_ID,CDATE,COIN,CFLAG,CID,RESER_ID) values ('IUGuest',to_timestamp('16/06/09 19:20:38.000000000','RR/MM/DD HH24:MI:SS.FF'),50,2,10,null);
+Insert into COIN (USER_ID,CDATE,COIN,CFLAG,CID,RESER_ID) values ('IUGuest',to_timestamp('16/06/09 19:20:55.000000000','RR/MM/DD HH24:MI:SS.FF'),50,2,11,null);
+Insert into COIN (USER_ID,CDATE,COIN,CFLAG,CID,RESER_ID) values ('IUGuest',to_timestamp('16/06/09 19:21:35.000000000','RR/MM/DD HH24:MI:SS.FF'),50,2,12,null);
+Insert into COIN (USER_ID,CDATE,COIN,CFLAG,CID,RESER_ID) values ('IUGuest',to_timestamp('16/06/09 19:22:07.000000000','RR/MM/DD HH24:MI:SS.FF'),50,2,13,null);
+Insert into COIN (USER_ID,CDATE,COIN,CFLAG,CID,RESER_ID) values ('IUGuest',to_timestamp('16/06/09 19:23:13.000000000','RR/MM/DD HH24:MI:SS.FF'),50,2,14,null);
+Insert into COIN (USER_ID,CDATE,COIN,CFLAG,CID,RESER_ID) values ('IUGuest',to_timestamp('16/06/09 19:24:46.000000000','RR/MM/DD HH24:MI:SS.FF'),50,2,15,null);
+Insert into COIN (USER_ID,CDATE,COIN,CFLAG,CID,RESER_ID) values ('IUGuest',to_timestamp('16/06/09 19:25:43.000000000','RR/MM/DD HH24:MI:SS.FF'),50,2,16,null);
+Insert into COIN (USER_ID,CDATE,COIN,CFLAG,CID,RESER_ID) values ('IUGuest',to_timestamp('16/06/09 19:25:58.000000000','RR/MM/DD HH24:MI:SS.FF'),50,2,17,null);
+Insert into COIN (USER_ID,CDATE,COIN,CFLAG,CID,RESER_ID) values ('IUGuest',to_timestamp('16/06/09 19:26:12.000000000','RR/MM/DD HH24:MI:SS.FF'),50,2,18,null);
+Insert into COIN (USER_ID,CDATE,COIN,CFLAG,CID,RESER_ID) values ('IUGuest',to_timestamp('16/06/09 19:27:01.000000000','RR/MM/DD HH24:MI:SS.FF'),50,2,19,null);
+Insert into COIN (USER_ID,CDATE,COIN,CFLAG,CID,RESER_ID) values ('IUGuest',to_timestamp('16/06/09 19:27:21.000000000','RR/MM/DD HH24:MI:SS.FF'),50,2,20,null);
+Insert into COIN (USER_ID,CDATE,COIN,CFLAG,CID,RESER_ID) values ('IUGuest',to_timestamp('16/06/09 19:27:44.000000000','RR/MM/DD HH24:MI:SS.FF'),50,2,21,null);
+Insert into COIN (USER_ID,CDATE,COIN,CFLAG,CID,RESER_ID) values ('IUGuest',to_timestamp('16/06/09 19:27:59.000000000','RR/MM/DD HH24:MI:SS.FF'),50,2,22,null);
+Insert into COIN (USER_ID,CDATE,COIN,CFLAG,CID,RESER_ID) values ('IUGuest',to_timestamp('16/06/09 19:30:36.000000000','RR/MM/DD HH24:MI:SS.FF'),50,2,23,null);
+Insert into COIN (USER_ID,CDATE,COIN,CFLAG,CID,RESER_ID) values ('IUGuest',to_timestamp('16/06/10 04:01:26.000000000','RR/MM/DD HH24:MI:SS.FF'),50,2,39,null);
+Insert into COIN (USER_ID,CDATE,COIN,CFLAG,CID,RESER_ID) values ('IUGuest',to_timestamp('16/06/10 05:01:59.000000000','RR/MM/DD HH24:MI:SS.FF'),100,2,43,null);
+Insert into COIN (USER_ID,CDATE,COIN,CFLAG,CID,RESER_ID) values ('IUGuest',to_timestamp('16/06/10 05:45:37.000000000','RR/MM/DD HH24:MI:SS.FF'),50,2,61,null);
+Insert into COIN (USER_ID,CDATE,COIN,CFLAG,CID,RESER_ID) values ('190175867',to_timestamp('16/06/17 06:23:19.000000000','RR/MM/DD HH24:MI:SS.FF'),50,2,121,null);
+Insert into COIN (USER_ID,CDATE,COIN,CFLAG,CID,RESER_ID) values ('IUGuest',to_timestamp('16/06/20 18:33:47.000000000','RR/MM/DD HH24:MI:SS.FF'),1680,1,161,null);
+Insert into COIN (USER_ID,CDATE,COIN,CFLAG,CID,RESER_ID) values ('IUGuest',to_timestamp('16/06/21 12:48:07.000000000','RR/MM/DD HH24:MI:SS.FF'),18,1,181,'20160621124808007');
+Insert into COIN (USER_ID,CDATE,COIN,CFLAG,CID,RESER_ID) values ('봉',to_timestamp('16/06/21 23:58:21.000000000','RR/MM/DD HH24:MI:SS.FF'),960,1,185,'20160621235821175');
+Insert into COIN (USER_ID,CDATE,COIN,CFLAG,CID,RESER_ID) values ('IUGuest',to_timestamp('16/06/24 09:27:11.000000000','RR/MM/DD HH24:MI:SS.FF'),50,2,201,null);
+Insert into COIN (USER_ID,CDATE,COIN,CFLAG,CID,RESER_ID) values ('IUGuest',to_timestamp('16/06/24 09:28:14.000000000','RR/MM/DD HH24:MI:SS.FF'),90,2,202,null);
+Insert into COIN (USER_ID,CDATE,COIN,CFLAG,CID,RESER_ID) values ('PublicPark',to_timestamp('16/06/24 10:41:50.000000000','RR/MM/DD HH24:MI:SS.FF'),18,1,206,'20160624104151235');
+Insert into COIN (USER_ID,CDATE,COIN,CFLAG,CID,RESER_ID) values ('IUGuest',to_timestamp('16/06/24 11:01:17.000000000','RR/MM/DD HH24:MI:SS.FF'),50,2,215,null);
+Insert into COIN (USER_ID,CDATE,COIN,CFLAG,CID,RESER_ID) values ('IUGuest',to_timestamp('16/06/24 11:02:59.000000000','RR/MM/DD HH24:MI:SS.FF'),50,2,216,null);
+Insert into COIN (USER_ID,CDATE,COIN,CFLAG,CID,RESER_ID) values ('IUGuest',to_timestamp('16/06/09 18:59:06.000000000','RR/MM/DD HH24:MI:SS.FF'),50,2,1,null);
+Insert into COIN (USER_ID,CDATE,COIN,CFLAG,CID,RESER_ID) values ('IUGuest',to_timestamp('16/06/09 19:54:22.000000000','RR/MM/DD HH24:MI:SS.FF'),50,2,24,null);
+Insert into COIN (USER_ID,CDATE,COIN,CFLAG,CID,RESER_ID) values ('IUGuest',to_timestamp('16/06/09 19:56:11.000000000','RR/MM/DD HH24:MI:SS.FF'),50,2,25,null);
+Insert into COIN (USER_ID,CDATE,COIN,CFLAG,CID,RESER_ID) values ('IUGuest',to_timestamp('16/06/09 19:57:00.000000000','RR/MM/DD HH24:MI:SS.FF'),50,2,26,null);
+Insert into COIN (USER_ID,CDATE,COIN,CFLAG,CID,RESER_ID) values ('IUGuest',to_timestamp('16/06/09 19:59:11.000000000','RR/MM/DD HH24:MI:SS.FF'),50,2,27,null);
+Insert into COIN (USER_ID,CDATE,COIN,CFLAG,CID,RESER_ID) values ('IUGuest',to_timestamp('16/06/09 19:59:17.000000000','RR/MM/DD HH24:MI:SS.FF'),90,2,28,null);
+Insert into COIN (USER_ID,CDATE,COIN,CFLAG,CID,RESER_ID) values ('IUGuest',to_timestamp('16/06/09 19:59:23.000000000','RR/MM/DD HH24:MI:SS.FF'),50,2,29,null);
+Insert into COIN (USER_ID,CDATE,COIN,CFLAG,CID,RESER_ID) values ('IUGuest',to_timestamp('16/06/09 20:05:44.000000000','RR/MM/DD HH24:MI:SS.FF'),50,2,30,null);
+Insert into COIN (USER_ID,CDATE,COIN,CFLAG,CID,RESER_ID) values ('IUGuest',to_timestamp('16/06/09 20:07:19.000000000','RR/MM/DD HH24:MI:SS.FF'),100,2,31,null);
+Insert into COIN (USER_ID,CDATE,COIN,CFLAG,CID,RESER_ID) values ('IUGuest',to_timestamp('16/06/09 20:08:51.000000000','RR/MM/DD HH24:MI:SS.FF'),50,2,32,null);
+Insert into COIN (USER_ID,CDATE,COIN,CFLAG,CID,RESER_ID) values ('IUGuest',to_timestamp('16/06/09 20:12:51.000000000','RR/MM/DD HH24:MI:SS.FF'),50,2,33,null);
+Insert into COIN (USER_ID,CDATE,COIN,CFLAG,CID,RESER_ID) values ('IUGuest',to_timestamp('16/06/21 12:48:07.000000000','RR/MM/DD HH24:MI:SS.FF'),18,1,182,'20160621124808128');
+Insert into COIN (USER_ID,CDATE,COIN,CFLAG,CID,RESER_ID) values ('IUGuest',to_timestamp('16/06/10 06:07:51.000000000','RR/MM/DD HH24:MI:SS.FF'),50,2,66,null);
+Insert into COIN (USER_ID,CDATE,COIN,CFLAG,CID,RESER_ID) values ('참치회',to_timestamp('16/06/15 02:07:30.000000000','RR/MM/DD HH24:MI:SS.FF'),100,2,101,null);
+Insert into COIN (USER_ID,CDATE,COIN,CFLAG,CID,RESER_ID) values ('봉',to_timestamp('16/06/20 15:54:40.000000000','RR/MM/DD HH24:MI:SS.FF'),100,2,141,null);
+Insert into COIN (USER_ID,CDATE,COIN,CFLAG,CID,RESER_ID) values ('봉',to_timestamp('16/06/20 15:55:40.000000000','RR/MM/DD HH24:MI:SS.FF'),100,2,142,null);
+Insert into COIN (USER_ID,CDATE,COIN,CFLAG,CID,RESER_ID) values ('IUGuest',to_timestamp('16/06/21 12:48:07.000000000','RR/MM/DD HH24:MI:SS.FF'),18,1,183,'20160621124808181');
+Insert into COIN (USER_ID,CDATE,COIN,CFLAG,CID,RESER_ID) values ('IUGuest',to_timestamp('16/06/24 10:25:59.000000000','RR/MM/DD HH24:MI:SS.FF'),50,2,204,null);
+Insert into COIN (USER_ID,CDATE,COIN,CFLAG,CID,RESER_ID) values ('PublicPark',to_timestamp('16/06/24 10:47:03.000000000','RR/MM/DD HH24:MI:SS.FF'),50,2,209,null);
+Insert into COIN (USER_ID,CDATE,COIN,CFLAG,CID,RESER_ID) values ('PublicPark',to_timestamp('16/06/24 10:47:08.000000000','RR/MM/DD HH24:MI:SS.FF'),100,2,210,null);
+Insert into COIN (USER_ID,CDATE,COIN,CFLAG,CID,RESER_ID) values ('PublicPark',to_timestamp('16/06/24 10:47:42.000000000','RR/MM/DD HH24:MI:SS.FF'),100,2,211,null);
+Insert into COIN (USER_ID,CDATE,COIN,CFLAG,CID,RESER_ID) values ('PublicPark',to_timestamp('16/06/24 10:48:15.000000000','RR/MM/DD HH24:MI:SS.FF'),50,2,212,null);
+Insert into COIN (USER_ID,CDATE,COIN,CFLAG,CID,RESER_ID) values ('PublicPark',to_timestamp('16/06/24 10:48:19.000000000','RR/MM/DD HH24:MI:SS.FF'),100,2,213,null);
+Insert into COIN (USER_ID,CDATE,COIN,CFLAG,CID,RESER_ID) values ('PublicPark',to_timestamp('16/06/24 10:49:35.000000000','RR/MM/DD HH24:MI:SS.FF'),18,1,214,'20160624104935930');
+
+---------------------------------------------------
+--   END DATA FOR TABLE COIN
+---------------------------------------------------
+
+---------------------------------------------------
+--   DATA FOR TABLE RESERVATION
+--   FILTER = none used
+---------------------------------------------------
+REM INSERTING into RESERVATION
+Insert into RESERVATION (RESER_ID,PARK_ID,USER_ID,START_DATE,END_DATE,PAY,RDATE) values ('20160624104352931',1366394,'PublicPark',to_timestamp('16/06/25 00:00:00.000000000','RR/MM/DD HH24:MI:SS.FF'),to_timestamp('16/06/26 00:00:00.000000000','RR/MM/DD HH24:MI:SS.FF'),18,to_timestamp('16/06/24 10:43:52.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into RESERVATION (RESER_ID,PARK_ID,USER_ID,START_DATE,END_DATE,PAY,RDATE) values ('20160624104447961',126607,'PublicPark',to_timestamp('16/06/25 00:00:00.000000000','RR/MM/DD HH24:MI:SS.FF'),to_timestamp('16/06/26 00:00:00.000000000','RR/MM/DD HH24:MI:SS.FF'),300,to_timestamp('16/06/24 10:44:47.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into RESERVATION (RESER_ID,PARK_ID,USER_ID,START_DATE,END_DATE,PAY,RDATE) values ('20160621135952579',1371306,'IUGuest',to_timestamp('16/06/22 00:00:00.000000000','RR/MM/DD HH24:MI:SS.FF'),to_timestamp('16/06/24 00:00:00.000000000','RR/MM/DD HH24:MI:SS.FF'),480,to_timestamp('16/06/21 13:59:52.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into RESERVATION (RESER_ID,PARK_ID,USER_ID,START_DATE,END_DATE,PAY,RDATE) values ('20160624104151235',1366394,'PublicPark',to_timestamp('16/07/07 00:00:00.000000000','RR/MM/DD HH24:MI:SS.FF'),to_timestamp('16/07/08 00:00:00.000000000','RR/MM/DD HH24:MI:SS.FF'),18,to_timestamp('16/06/24 10:41:50.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into RESERVATION (RESER_ID,PARK_ID,USER_ID,START_DATE,END_DATE,PAY,RDATE) values ('20160621124808007',173333,'IUGuest',to_timestamp('16/06/22 00:00:00.000000000','RR/MM/DD HH24:MI:SS.FF'),to_timestamp('16/06/24 00:00:00.000000000','RR/MM/DD HH24:MI:SS.FF'),18,to_timestamp('16/06/21 12:48:07.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into RESERVATION (RESER_ID,PARK_ID,USER_ID,START_DATE,END_DATE,PAY,RDATE) values ('20160621235821175',1371306,'봉',to_timestamp('16/07/02 00:00:00.000000000','RR/MM/DD HH24:MI:SS.FF'),to_timestamp('16/07/06 00:00:00.000000000','RR/MM/DD HH24:MI:SS.FF'),960,to_timestamp('16/06/21 23:58:21.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into RESERVATION (RESER_ID,PARK_ID,USER_ID,START_DATE,END_DATE,PAY,RDATE) values ('20160621124808128',173333,'IUGuest',to_timestamp('16/06/22 00:00:00.000000000','RR/MM/DD HH24:MI:SS.FF'),to_timestamp('16/06/24 00:00:00.000000000','RR/MM/DD HH24:MI:SS.FF'),18,to_timestamp('16/06/21 12:48:07.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into RESERVATION (RESER_ID,PARK_ID,USER_ID,START_DATE,END_DATE,PAY,RDATE) values ('20160601151532682172634',171721,'TopGuest',to_timestamp('16/05/29 03:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'),to_timestamp('16/05/31 03:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'),150,to_timestamp('16/05/29 15:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into RESERVATION (RESER_ID,PARK_ID,USER_ID,START_DATE,END_DATE,PAY,RDATE) values ('20160601151532687172634',167964,'TopGuest',to_timestamp('16/05/24 03:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'),to_timestamp('16/05/26 03:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'),150,to_timestamp('16/05/24 15:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into RESERVATION (RESER_ID,PARK_ID,USER_ID,START_DATE,END_DATE,PAY,RDATE) values ('20160601151532692172904',167964,'TopGuest',to_timestamp('16/05/20 03:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'),to_timestamp('16/05/21 03:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'),150,to_timestamp('16/05/20 15:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into RESERVATION (RESER_ID,PARK_ID,USER_ID,START_DATE,END_DATE,PAY,RDATE) values ('20160601151532690172904',167964,'TopGuest',to_timestamp('16/05/08 03:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'),to_timestamp('16/05/09 03:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'),150,to_timestamp('16/05/08 15:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into RESERVATION (RESER_ID,PARK_ID,USER_ID,START_DATE,END_DATE,PAY,RDATE) values ('20160601151532691127356',167964,'TopGuest',to_timestamp('16/04/30 03:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'),to_timestamp('16/05/02 03:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'),150,to_timestamp('16/04/30 15:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into RESERVATION (RESER_ID,PARK_ID,USER_ID,START_DATE,END_DATE,PAY,RDATE) values ('20160601151532706127356',144474,'TopGuest',to_timestamp('16/05/05 03:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'),to_timestamp('16/05/06 03:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'),150,to_timestamp('16/05/05 15:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into RESERVATION (RESER_ID,PARK_ID,USER_ID,START_DATE,END_DATE,PAY,RDATE) values ('201606100500481491366394',1366394,'IUGuest',to_timestamp('16/06/10 00:00:00.000000000','RR/MM/DD HH24:MI:SS.FF'),to_timestamp('16/06/11 00:00:00.000000000','RR/MM/DD HH24:MI:SS.FF'),18,to_timestamp('16/06/10 05:00:48.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into RESERVATION (RESER_ID,PARK_ID,USER_ID,START_DATE,END_DATE,PAY,RDATE) values ('201606100545294581371306',1371306,'IUGuest',to_timestamp('16/06/16 00:00:00.000000000','RR/MM/DD HH24:MI:SS.FF'),to_timestamp('16/06/17 00:00:00.000000000','RR/MM/DD HH24:MI:SS.FF'),240,to_timestamp('16/06/10 05:45:29.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into RESERVATION (RESER_ID,PARK_ID,USER_ID,START_DATE,END_DATE,PAY,RDATE) values ('20160615011548407173591',173591,'봉',to_timestamp('16/06/15 00:00:00.000000000','RR/MM/DD HH24:MI:SS.FF'),to_timestamp('16/06/17 00:00:00.000000000','RR/MM/DD HH24:MI:SS.FF'),36,to_timestamp('16/06/15 01:15:48.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into RESERVATION (RESER_ID,PARK_ID,USER_ID,START_DATE,END_DATE,PAY,RDATE) values ('201606100027105821366794',1366794,'suk',to_timestamp('16/06/10 00:00:00.000000000','RR/MM/DD HH24:MI:SS.FF'),to_timestamp('16/06/11 00:00:00.000000000','RR/MM/DD HH24:MI:SS.FF'),100,to_timestamp('16/06/10 00:27:10.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into RESERVATION (RESER_ID,PARK_ID,USER_ID,START_DATE,END_DATE,PAY,RDATE) values ('20160610044759469173691',173691,'봉',to_timestamp('16/06/10 00:00:00.000000000','RR/MM/DD HH24:MI:SS.FF'),to_timestamp('16/06/11 00:00:00.000000000','RR/MM/DD HH24:MI:SS.FF'),54,to_timestamp('16/06/10 04:47:59.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into RESERVATION (RESER_ID,PARK_ID,USER_ID,START_DATE,END_DATE,PAY,RDATE) values ('201606161704278731371306',1371306,'매너좋은놈',to_timestamp('16/06/17 00:00:00.000000000','RR/MM/DD HH24:MI:SS.FF'),to_timestamp('16/06/18 00:00:00.000000000','RR/MM/DD HH24:MI:SS.FF'),240,to_timestamp('16/06/16 17:04:27.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into RESERVATION (RESER_ID,PARK_ID,USER_ID,START_DATE,END_DATE,PAY,RDATE) values ('201606201833470641371306',1371306,'IUGuest',to_timestamp('16/06/22 00:00:00.000000000','RR/MM/DD HH24:MI:SS.FF'),to_timestamp('16/06/29 00:00:00.000000000','RR/MM/DD HH24:MI:SS.FF'),1680,to_timestamp('16/06/20 18:33:47.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into RESERVATION (RESER_ID,PARK_ID,USER_ID,START_DATE,END_DATE,PAY,RDATE) values ('20160615021357936173329',173329,'참치회',to_timestamp('16/06/17 00:00:00.000000000','RR/MM/DD HH24:MI:SS.FF'),to_timestamp('16/06/18 00:00:00.000000000','RR/MM/DD HH24:MI:SS.FF'),18,to_timestamp('16/06/15 02:13:57.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into RESERVATION (RESER_ID,PARK_ID,USER_ID,START_DATE,END_DATE,PAY,RDATE) values ('20160609162448657173447',173447,'Jennifer200',to_timestamp('16/06/10 00:00:00.000000000','RR/MM/DD HH24:MI:SS.FF'),to_timestamp('16/06/13 00:00:00.000000000','RR/MM/DD HH24:MI:SS.FF'),600,to_timestamp('16/06/09 16:24:48.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into RESERVATION (RESER_ID,PARK_ID,USER_ID,START_DATE,END_DATE,PAY,RDATE) values ('20160609162631146173359',173359,'Jennifer200',to_timestamp('16/06/19 00:00:00.000000000','RR/MM/DD HH24:MI:SS.FF'),to_timestamp('16/06/20 00:00:00.000000000','RR/MM/DD HH24:MI:SS.FF'),160,to_timestamp('16/06/09 16:26:31.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into RESERVATION (RESER_ID,PARK_ID,USER_ID,START_DATE,END_DATE,PAY,RDATE) values ('201606091638070651370100',1370100,'Jennifer200',to_timestamp('16/06/29 00:00:00.000000000','RR/MM/DD HH24:MI:SS.FF'),to_timestamp('16/06/30 00:00:00.000000000','RR/MM/DD HH24:MI:SS.FF'),54,to_timestamp('16/06/09 16:38:07.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into RESERVATION (RESER_ID,PARK_ID,USER_ID,START_DATE,END_DATE,PAY,RDATE) values ('201606091638428511247675',1247675,'Jennifer200',to_timestamp('16/06/24 00:00:00.000000000','RR/MM/DD HH24:MI:SS.FF'),to_timestamp('16/06/26 00:00:00.000000000','RR/MM/DD HH24:MI:SS.FF'),54,to_timestamp('16/06/09 16:38:42.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into RESERVATION (RESER_ID,PARK_ID,USER_ID,START_DATE,END_DATE,PAY,RDATE) values ('20160621124808181',173333,'IUGuest',to_timestamp('16/06/22 00:00:00.000000000','RR/MM/DD HH24:MI:SS.FF'),to_timestamp('16/06/24 00:00:00.000000000','RR/MM/DD HH24:MI:SS.FF'),18,to_timestamp('16/06/21 12:48:07.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into RESERVATION (RESER_ID,PARK_ID,USER_ID,START_DATE,END_DATE,PAY,RDATE) values ('20160624104935930',1366394,'PublicPark',to_timestamp('16/06/26 00:00:00.000000000','RR/MM/DD HH24:MI:SS.FF'),to_timestamp('16/06/27 00:00:00.000000000','RR/MM/DD HH24:MI:SS.FF'),18,to_timestamp('16/06/24 10:49:35.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into RESERVATION (RESER_ID,PARK_ID,USER_ID,START_DATE,END_DATE,PAY,RDATE) values ('20160609161343985781512',781512,'봉',to_timestamp('16/06/13 00:00:00.000000000','RR/MM/DD HH24:MI:SS.FF'),to_timestamp('16/06/14 00:00:00.000000000','RR/MM/DD HH24:MI:SS.FF'),50,to_timestamp('16/06/09 16:13:43.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into RESERVATION (RESER_ID,PARK_ID,USER_ID,START_DATE,END_DATE,PAY,RDATE) values ('201606091448218601174233',1174233,'봉',to_timestamp('16/06/16 00:00:00.000000000','RR/MM/DD HH24:MI:SS.FF'),to_timestamp('16/06/17 00:00:00.000000000','RR/MM/DD HH24:MI:SS.FF'),50,to_timestamp('16/06/09 14:48:21.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into RESERVATION (RESER_ID,PARK_ID,USER_ID,START_DATE,END_DATE,PAY,RDATE) values ('20160609144901357781512',781512,'봉',to_timestamp('16/06/09 00:00:00.000000000','RR/MM/DD HH24:MI:SS.FF'),to_timestamp('16/06/10 00:00:00.000000000','RR/MM/DD HH24:MI:SS.FF'),50,to_timestamp('16/06/09 14:49:01.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into RESERVATION (RESER_ID,PARK_ID,USER_ID,START_DATE,END_DATE,PAY,RDATE) values ('201606100719040591371306',1371306,'IUGuest',to_timestamp('16/06/15 00:00:00.000000000','RR/MM/DD HH24:MI:SS.FF'),to_timestamp('16/06/22 00:00:00.000000000','RR/MM/DD HH24:MI:SS.FF'),1698,to_timestamp('16/06/10 07:19:04.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into RESERVATION (RESER_ID,PARK_ID,USER_ID,START_DATE,END_DATE,PAY,RDATE) values ('20160615080543480173333',173333,'참치회',to_timestamp('16/06/15 00:00:00.000000000','RR/MM/DD HH24:MI:SS.FF'),to_timestamp('16/06/16 00:00:00.000000000','RR/MM/DD HH24:MI:SS.FF'),18,to_timestamp('16/06/15 08:05:43.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into RESERVATION (RESER_ID,PARK_ID,USER_ID,START_DATE,END_DATE,PAY,RDATE) values ('20160617052530970173359',173359,'IUGuest',to_timestamp('16/06/17 00:00:00.000000000','RR/MM/DD HH24:MI:SS.FF'),to_timestamp('16/06/18 00:00:00.000000000','RR/MM/DD HH24:MI:SS.FF'),160,to_timestamp('16/06/17 05:25:30.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into RESERVATION (RESER_ID,PARK_ID,USER_ID,START_DATE,END_DATE,PAY,RDATE) values ('201606170809351481247675',1247675,'IUGuest',to_timestamp('16/06/21 00:00:00.000000000','RR/MM/DD HH24:MI:SS.FF'),to_timestamp('16/06/23 00:00:00.000000000','RR/MM/DD HH24:MI:SS.FF'),54,to_timestamp('16/06/17 08:09:35.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into RESERVATION (RESER_ID,PARK_ID,USER_ID,START_DATE,END_DATE,PAY,RDATE) values ('20160619142010614173359',173359,'봉',to_timestamp('16/06/30 00:00:00.000000000','RR/MM/DD HH24:MI:SS.FF'),to_timestamp('16/07/02 00:00:00.000000000','RR/MM/DD HH24:MI:SS.FF'),320,to_timestamp('16/06/19 14:20:10.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into RESERVATION (RESER_ID,PARK_ID,USER_ID,START_DATE,END_DATE,PAY,RDATE) values ('20160610061101453173468',173468,'IUGuest',to_timestamp('16/06/11 00:00:00.000000000','RR/MM/DD HH24:MI:SS.FF'),to_timestamp('16/06/12 00:00:00.000000000','RR/MM/DD HH24:MI:SS.FF'),140,to_timestamp('16/06/10 06:11:01.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into RESERVATION (RESER_ID,PARK_ID,USER_ID,START_DATE,END_DATE,PAY,RDATE) values ('20160615102227101173333',173333,'참치회',to_timestamp('16/06/16 00:00:00.000000000','RR/MM/DD HH24:MI:SS.FF'),to_timestamp('16/06/17 00:00:00.000000000','RR/MM/DD HH24:MI:SS.FF'),18,to_timestamp('16/06/15 10:22:27.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into RESERVATION (RESER_ID,PARK_ID,USER_ID,START_DATE,END_DATE,PAY,RDATE) values ('201606191346417111247675',1247675,'IUGuest',to_timestamp('16/06/30 00:00:00.000000000','RR/MM/DD HH24:MI:SS.FF'),to_timestamp('16/07/02 00:00:00.000000000','RR/MM/DD HH24:MI:SS.FF'),54,to_timestamp('16/06/19 13:46:41.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into RESERVATION (RESER_ID,PARK_ID,USER_ID,START_DATE,END_DATE,PAY,RDATE) values ('201606090804288181371666',1371666,'봉',to_timestamp('16/06/10 00:00:00.000000000','RR/MM/DD HH24:MI:SS.FF'),to_timestamp('16/06/11 00:00:00.000000000','RR/MM/DD HH24:MI:SS.FF'),25,to_timestamp('16/06/09 08:04:28.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into RESERVATION (RESER_ID,PARK_ID,USER_ID,START_DATE,END_DATE,PAY,RDATE) values ('201606090956053621366593',1366593,'봉',to_timestamp('16/06/09 00:00:00.000000000','RR/MM/DD HH24:MI:SS.FF'),to_timestamp('16/06/10 00:00:00.000000000','RR/MM/DD HH24:MI:SS.FF'),120,to_timestamp('16/06/09 09:56:05.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into RESERVATION (RESER_ID,PARK_ID,USER_ID,START_DATE,END_DATE,PAY,RDATE) values ('20160601151528475111804',111804,'IUGuest',to_timestamp('16/05/17 03:15:28.000000000','RR/MM/DD HH24:MI:SS.FF'),to_timestamp('16/05/18 03:15:28.000000000','RR/MM/DD HH24:MI:SS.FF'),150,to_timestamp('16/05/17 15:15:28.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into RESERVATION (RESER_ID,PARK_ID,USER_ID,START_DATE,END_DATE,PAY,RDATE) values ('20160601151528444111804',111804,'IUGuest',to_timestamp('16/05/12 03:15:28.000000000','RR/MM/DD HH24:MI:SS.FF'),to_timestamp('16/05/13 03:15:28.000000000','RR/MM/DD HH24:MI:SS.FF'),150,to_timestamp('16/05/12 15:15:28.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into RESERVATION (RESER_ID,PARK_ID,USER_ID,START_DATE,END_DATE,PAY,RDATE) values ('20160601151528473111804',111804,'IUGuest',to_timestamp('16/05/22 03:15:28.000000000','RR/MM/DD HH24:MI:SS.FF'),to_timestamp('16/05/23 03:15:28.000000000','RR/MM/DD HH24:MI:SS.FF'),150,to_timestamp('16/05/22 15:15:28.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into RESERVATION (RESER_ID,PARK_ID,USER_ID,START_DATE,END_DATE,PAY,RDATE) values ('20160601151528478111804',111804,'IUGuest',to_timestamp('16/05/14 03:15:28.000000000','RR/MM/DD HH24:MI:SS.FF'),to_timestamp('16/05/15 03:15:28.000000000','RR/MM/DD HH24:MI:SS.FF'),150,to_timestamp('16/05/12 15:15:28.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into RESERVATION (RESER_ID,PARK_ID,USER_ID,START_DATE,END_DATE,PAY,RDATE) values ('20160601151528495112411',112411,'IUGuest',to_timestamp('16/05/21 03:15:28.000000000','RR/MM/DD HH24:MI:SS.FF'),to_timestamp('16/05/23 03:15:28.000000000','RR/MM/DD HH24:MI:SS.FF'),150,to_timestamp('16/05/21 15:15:28.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into RESERVATION (RESER_ID,PARK_ID,USER_ID,START_DATE,END_DATE,PAY,RDATE) values ('20160601151532457111283',111283,'IUGuest',to_timestamp('16/05/08 03:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'),to_timestamp('16/05/10 03:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'),150,to_timestamp('16/05/08 15:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into RESERVATION (RESER_ID,PARK_ID,USER_ID,START_DATE,END_DATE,PAY,RDATE) values ('20160601151532460111283',111283,'IUGuest',to_timestamp('16/05/02 03:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'),to_timestamp('16/05/06 03:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'),150,to_timestamp('16/05/02 15:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into RESERVATION (RESER_ID,PARK_ID,USER_ID,START_DATE,END_DATE,PAY,RDATE) values ('20160601151532478111283',111283,'IUGuest',to_timestamp('16/05/10 03:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'),to_timestamp('16/05/11 03:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'),150,to_timestamp('16/05/10 15:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into RESERVATION (RESER_ID,PARK_ID,USER_ID,START_DATE,END_DATE,PAY,RDATE) values ('20160601151532488172607',172607,'SZGuest',to_timestamp('16/05/12 03:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'),to_timestamp('16/05/13 03:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'),150,to_timestamp('16/05/12 15:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into RESERVATION (RESER_ID,PARK_ID,USER_ID,START_DATE,END_DATE,PAY,RDATE) values ('20160601151532506172607',172607,'SZGuest',to_timestamp('16/05/12 03:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'),to_timestamp('16/05/23 03:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'),150,to_timestamp('16/05/22 15:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into RESERVATION (RESER_ID,PARK_ID,USER_ID,START_DATE,END_DATE,PAY,RDATE) values ('20160601151532510172634',172634,'SZGuest',to_timestamp('16/05/17 03:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'),to_timestamp('16/05/18 03:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'),150,to_timestamp('16/05/17 15:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into RESERVATION (RESER_ID,PARK_ID,USER_ID,START_DATE,END_DATE,PAY,RDATE) values ('20160601151532530172634',172634,'SZGuest',to_timestamp('16/05/29 03:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'),to_timestamp('16/05/31 03:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'),150,to_timestamp('16/05/29 15:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into RESERVATION (RESER_ID,PARK_ID,USER_ID,START_DATE,END_DATE,PAY,RDATE) values ('20160601151532533172634',172634,'SZGuest',to_timestamp('16/05/24 03:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'),to_timestamp('16/05/26 03:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'),150,to_timestamp('16/05/24 15:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into RESERVATION (RESER_ID,PARK_ID,USER_ID,START_DATE,END_DATE,PAY,RDATE) values ('20160601151532536172904',172904,'SZGuest',to_timestamp('16/05/20 03:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'),to_timestamp('16/05/21 03:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'),150,to_timestamp('16/05/20 15:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into RESERVATION (RESER_ID,PARK_ID,USER_ID,START_DATE,END_DATE,PAY,RDATE) values ('20160601151532533172904',172904,'SZGuest',to_timestamp('16/05/08 03:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'),to_timestamp('16/05/09 03:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'),150,to_timestamp('16/05/08 15:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into RESERVATION (RESER_ID,PARK_ID,USER_ID,START_DATE,END_DATE,PAY,RDATE) values ('20160601151532532127356',127356,'SZGuest',to_timestamp('16/04/30 03:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'),to_timestamp('16/05/02 03:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'),150,to_timestamp('16/04/30 15:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into RESERVATION (RESER_ID,PARK_ID,USER_ID,START_DATE,END_DATE,PAY,RDATE) values ('20160601151532550127356',127356,'SZGuest',to_timestamp('16/05/05 03:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'),to_timestamp('16/05/06 03:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'),150,to_timestamp('16/05/05 15:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into RESERVATION (RESER_ID,PARK_ID,USER_ID,START_DATE,END_DATE,PAY,RDATE) values ('20160601151532564111804',172580,'GdGuest',to_timestamp('16/05/12 03:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'),to_timestamp('16/05/13 03:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'),150,to_timestamp('16/05/12 15:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into RESERVATION (RESER_ID,PARK_ID,USER_ID,START_DATE,END_DATE,PAY,RDATE) values ('20160601151532582111804',172580,'GdGuest',to_timestamp('16/05/22 03:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'),to_timestamp('16/05/23 03:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'),150,to_timestamp('16/05/22 15:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into RESERVATION (RESER_ID,PARK_ID,USER_ID,START_DATE,END_DATE,PAY,RDATE) values ('20160601151532585111804',172647,'GdGuest',to_timestamp('16/05/17 03:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'),to_timestamp('16/05/18 03:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'),150,to_timestamp('16/05/17 15:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into RESERVATION (RESER_ID,PARK_ID,USER_ID,START_DATE,END_DATE,PAY,RDATE) values ('20160601151532588111804',172647,'GdGuest',to_timestamp('16/05/14 03:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'),to_timestamp('16/05/15 03:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'),150,to_timestamp('16/05/12 15:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into RESERVATION (RESER_ID,PARK_ID,USER_ID,START_DATE,END_DATE,PAY,RDATE) values ('20160601151532605112411',172647,'GdGuest',to_timestamp('16/05/21 03:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'),to_timestamp('16/05/23 03:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'),150,to_timestamp('16/05/21 15:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into RESERVATION (RESER_ID,PARK_ID,USER_ID,START_DATE,END_DATE,PAY,RDATE) values ('20160601151532619112411',124830,'GdGuest',to_timestamp('16/05/27 03:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'),to_timestamp('16/05/30 03:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'),150,to_timestamp('16/05/27 15:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into RESERVATION (RESER_ID,PARK_ID,USER_ID,START_DATE,END_DATE,PAY,RDATE) values ('20160601151532608111283',124830,'GdGuest',to_timestamp('16/05/08 03:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'),to_timestamp('16/05/10 03:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'),150,to_timestamp('16/05/08 15:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into RESERVATION (RESER_ID,PARK_ID,USER_ID,START_DATE,END_DATE,PAY,RDATE) values ('20160601151532610111283',126607,'GdGuest',to_timestamp('16/05/02 03:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'),to_timestamp('16/05/06 03:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'),150,to_timestamp('16/05/02 15:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into RESERVATION (RESER_ID,PARK_ID,USER_ID,START_DATE,END_DATE,PAY,RDATE) values ('20160601151532626111283',126607,'GdGuest',to_timestamp('16/05/10 03:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'),to_timestamp('16/05/11 03:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'),150,to_timestamp('16/05/10 15:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into RESERVATION (RESER_ID,PARK_ID,USER_ID,START_DATE,END_DATE,PAY,RDATE) values ('20160601151532636172607',171721,'TopGuest',to_timestamp('16/05/12 03:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'),to_timestamp('16/05/13 03:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'),150,to_timestamp('16/05/12 15:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into RESERVATION (RESER_ID,PARK_ID,USER_ID,START_DATE,END_DATE,PAY,RDATE) values ('20160601151532654172607',171721,'TopGuest',to_timestamp('16/05/22 03:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'),to_timestamp('16/05/23 03:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'),150,to_timestamp('16/05/22 15:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into RESERVATION (RESER_ID,PARK_ID,USER_ID,START_DATE,END_DATE,PAY,RDATE) values ('20160601151532657172634',171721,'TopGuest',to_timestamp('16/05/17 03:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'),to_timestamp('16/05/18 03:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'),150,to_timestamp('16/05/17 15:15:32.000000000','RR/MM/DD HH24:MI:SS.FF'));
+
+---------------------------------------------------
+--   END DATA FOR TABLE RESERVATION
+---------------------------------------------------
+
+---------------------------------------------------
+--   DATA FOR TABLE MEMBER
+--   FILTER = none used
+---------------------------------------------------
+REM INSERTING into MEMBER
+Insert into MEMBER (USER_ID,USER_PASS,GRADE_ID,LOGIN_KEY,HOST_FLAG,COIN,USER_AVGPOINT,PENALTY,USER_FLAG,USER_NAME,EMAIL,TEL,PROFILE_IMAGE,LOGTIME) values ('suk','123',3,null,0,900,3,0,0,'슥','kitri@kitri.com',100001234,null,to_timestamp('16/06/04 08:31:50.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into MEMBER (USER_ID,USER_PASS,GRADE_ID,LOGIN_KEY,HOST_FLAG,COIN,USER_AVGPOINT,PENALTY,USER_FLAG,USER_NAME,EMAIL,TEL,PROFILE_IMAGE,LOGTIME) values ('매너좋은놈','123123',3,null,0,60,3,0,0,'안녕','zs@sdfm.com',100001234,null,to_timestamp('16/05/31 08:31:26.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into MEMBER (USER_ID,USER_PASS,GRADE_ID,LOGIN_KEY,HOST_FLAG,COIN,USER_AVGPOINT,PENALTY,USER_FLAG,USER_NAME,EMAIL,TEL,PROFILE_IMAGE,LOGTIME) values ('내친구는너','123123',3,null,0,300,3,0,0,'참치회','asd@asd.com',100001234,null,to_timestamp('16/05/31 08:31:26.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into MEMBER (USER_ID,USER_PASS,GRADE_ID,LOGIN_KEY,HOST_FLAG,COIN,USER_AVGPOINT,PENALTY,USER_FLAG,USER_NAME,EMAIL,TEL,PROFILE_IMAGE,LOGTIME) values ('didrl','didrl',3,null,0,300,3,0,0,'양기','sefef',100001234,null,to_timestamp('16/05/18 08:29:10.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into MEMBER (USER_ID,USER_PASS,GRADE_ID,LOGIN_KEY,HOST_FLAG,COIN,USER_AVGPOINT,PENALTY,USER_FLAG,USER_NAME,EMAIL,TEL,PROFILE_IMAGE,LOGTIME) values ('임재범임','1111',3,null,0,300,3,0,0,'정민석','kk@naver.com',100001234,null,to_timestamp('16/05/18 08:29:10.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into MEMBER (USER_ID,USER_PASS,GRADE_ID,LOGIN_KEY,HOST_FLAG,COIN,USER_AVGPOINT,PENALTY,USER_FLAG,USER_NAME,EMAIL,TEL,PROFILE_IMAGE,LOGTIME) values ('SemsungPark','spark',1,null,0,300,3,0,1,'샘성주차장','kitri@kitri.com',100001234,null,to_timestamp('16/05/18 08:29:10.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into MEMBER (USER_ID,USER_PASS,GRADE_ID,LOGIN_KEY,HOST_FLAG,COIN,USER_AVGPOINT,PENALTY,USER_FLAG,USER_NAME,EMAIL,TEL,PROFILE_IMAGE,LOGTIME) values ('RgPark','rgpark',1,null,0,5000,3,0,1,'알지주차장','rgpark@rg.park',11111,null,to_timestamp('16/05/26 08:30:56.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into MEMBER (USER_ID,USER_PASS,GRADE_ID,LOGIN_KEY,HOST_FLAG,COIN,USER_AVGPOINT,PENALTY,USER_FLAG,USER_NAME,EMAIL,TEL,PROFILE_IMAGE,LOGTIME) values ('RottePark','rotpark',1,null,0,300,3,0,1,'럿데주차장','rottepark@rotte.park',21116312,null,to_timestamp('16/05/26 08:30:56.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into MEMBER (USER_ID,USER_PASS,GRADE_ID,LOGIN_KEY,HOST_FLAG,COIN,USER_AVGPOINT,PENALTY,USER_FLAG,USER_NAME,EMAIL,TEL,PROFILE_IMAGE,LOGTIME) values ('GdHost','ghost',4,null,1,1600,4.2,0,0,'주인지용','hostgd@host.gd',1022223333,null,to_timestamp('16/05/26 08:30:56.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into MEMBER (USER_ID,USER_PASS,GRADE_ID,LOGIN_KEY,HOST_FLAG,COIN,USER_AVGPOINT,PENALTY,USER_FLAG,USER_NAME,EMAIL,TEL,PROFILE_IMAGE,LOGTIME) values ('TopHost','thost',2,null,1,100,2.2,4,0,'주인탑','hosttop@host.top',1032141234,null,to_timestamp('16/05/26 08:30:56.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into MEMBER (USER_ID,USER_PASS,GRADE_ID,LOGIN_KEY,HOST_FLAG,COIN,USER_AVGPOINT,PENALTY,USER_FLAG,USER_NAME,EMAIL,TEL,PROFILE_IMAGE,LOGTIME) values ('IUHost','iuhost',4,null,1,700,4.3,0,0,'주인아이유','hostiu@host.iu',1025869874,null,to_timestamp('16/05/26 08:30:56.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into MEMBER (USER_ID,USER_PASS,GRADE_ID,LOGIN_KEY,HOST_FLAG,COIN,USER_AVGPOINT,PENALTY,USER_FLAG,USER_NAME,EMAIL,TEL,PROFILE_IMAGE,LOGTIME) values ('SZHost','szhost',3,null,1,500,3.2,1,0,'주인수지','hostsz@host.sz',1022228789,null,to_timestamp('16/05/26 08:30:56.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into MEMBER (USER_ID,USER_PASS,GRADE_ID,LOGIN_KEY,HOST_FLAG,COIN,USER_AVGPOINT,PENALTY,USER_FLAG,USER_NAME,EMAIL,TEL,PROFILE_IMAGE,LOGTIME) values ('GdGuest','gguest',3,null,0,300,3.4,1,0,'손님지용','guestgd@guest.gd',1055653321,null,to_timestamp('16/05/26 08:30:56.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into MEMBER (USER_ID,USER_PASS,GRADE_ID,LOGIN_KEY,HOST_FLAG,COIN,USER_AVGPOINT,PENALTY,USER_FLAG,USER_NAME,EMAIL,TEL,PROFILE_IMAGE,LOGTIME) values ('TopGuest','tguest',3,null,0,100,3.2,1,0,'손님탑','guesttop@guest.top',102221133,null,to_timestamp('16/05/26 08:30:56.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into MEMBER (USER_ID,USER_PASS,GRADE_ID,LOGIN_KEY,HOST_FLAG,COIN,USER_AVGPOINT,PENALTY,USER_FLAG,USER_NAME,EMAIL,TEL,PROFILE_IMAGE,LOGTIME) values ('IUGuest','iuguest',5,null,0,2130,5,0,0,'손님아이유','IUGuest@IUGuest.com',1011444411,null,to_timestamp('16/05/26 08:30:56.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into MEMBER (USER_ID,USER_PASS,GRADE_ID,LOGIN_KEY,HOST_FLAG,COIN,USER_AVGPOINT,PENALTY,USER_FLAG,USER_NAME,EMAIL,TEL,PROFILE_IMAGE,LOGTIME) values ('SZGuest','szguest',2,null,0,100,2.5,3,0,'손님수지','guestsz@guest.sz',108798789,null,to_timestamp('16/05/26 08:30:56.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into MEMBER (USER_ID,USER_PASS,GRADE_ID,LOGIN_KEY,HOST_FLAG,COIN,USER_AVGPOINT,PENALTY,USER_FLAG,USER_NAME,EMAIL,TEL,PROFILE_IMAGE,LOGTIME) values ('kangnam17','kangnam17',1,null,1,300,4.8,0,1,'강남대치17','kangnam12@kangnam.com',29802345,null,to_timestamp('16/05/26 08:30:56.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into MEMBER (USER_ID,USER_PASS,GRADE_ID,LOGIN_KEY,HOST_FLAG,COIN,USER_AVGPOINT,PENALTY,USER_FLAG,USER_NAME,EMAIL,TEL,PROFILE_IMAGE,LOGTIME) values ('gogo','jjum90@hamail.net',3,null,0,300,3,0,0,'정수민','CPark@kitri.com',100001234,null,to_timestamp('16/05/18 08:29:10.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into MEMBER (USER_ID,USER_PASS,GRADE_ID,LOGIN_KEY,HOST_FLAG,COIN,USER_AVGPOINT,PENALTY,USER_FLAG,USER_NAME,EMAIL,TEL,PROFILE_IMAGE,LOGTIME) values ('chun','chun@naver.com',3,null,0,300,3,0,0,'춘향이','CPark@kitri.com',100001234,null,to_timestamp('16/05/18 08:29:10.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into MEMBER (USER_ID,USER_PASS,GRADE_ID,LOGIN_KEY,HOST_FLAG,COIN,USER_AVGPOINT,PENALTY,USER_FLAG,USER_NAME,EMAIL,TEL,PROFILE_IMAGE,LOGTIME) values ('mong','mong@naver.com',3,null,0,300,3,0,0,'몽룡이','CPark@kitri.com',100001234,null,to_timestamp('16/05/18 08:29:10.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into MEMBER (USER_ID,USER_PASS,GRADE_ID,LOGIN_KEY,HOST_FLAG,COIN,USER_AVGPOINT,PENALTY,USER_FLAG,USER_NAME,EMAIL,TEL,PROFILE_IMAGE,LOGTIME) values ('ung','ung@naver.com',3,null,0,300,3,0,0,'영웅','CPark@kitri.com',100001234,null,to_timestamp('16/05/18 08:29:10.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into MEMBER (USER_ID,USER_PASS,GRADE_ID,LOGIN_KEY,HOST_FLAG,COIN,USER_AVGPOINT,PENALTY,USER_FLAG,USER_NAME,EMAIL,TEL,PROFILE_IMAGE,LOGTIME) values ('didrl2','didrl',3,null,0,300,3,0,0,'didrl2','sdfsdfs@fsfesf',100001234,null,to_timestamp('16/05/18 08:29:10.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into MEMBER (USER_ID,USER_PASS,GRADE_ID,LOGIN_KEY,HOST_FLAG,COIN,USER_AVGPOINT,PENALTY,USER_FLAG,USER_NAME,EMAIL,TEL,PROFILE_IMAGE,LOGTIME) values ('3조','123',3,null,0,300,3,0,0,'3조','3조@naver.com',100001234,null,to_timestamp('16/06/04 08:31:50.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into MEMBER (USER_ID,USER_PASS,GRADE_ID,LOGIN_KEY,HOST_FLAG,COIN,USER_AVGPOINT,PENALTY,USER_FLAG,USER_NAME,EMAIL,TEL,PROFILE_IMAGE,LOGTIME) values ('jjum90','123',3,null,0,300,3,0,0,'민석','jjum90@naver.com',100001234,null,to_timestamp('16/06/04 08:31:50.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into MEMBER (USER_ID,USER_PASS,GRADE_ID,LOGIN_KEY,HOST_FLAG,COIN,USER_AVGPOINT,PENALTY,USER_FLAG,USER_NAME,EMAIL,TEL,PROFILE_IMAGE,LOGTIME) values ('catlove','asdf',3,null,0,300,3,0,0,'참치회','asdf',100001234,null,to_timestamp('16/05/18 08:29:10.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into MEMBER (USER_ID,USER_PASS,GRADE_ID,LOGIN_KEY,HOST_FLAG,COIN,USER_AVGPOINT,PENALTY,USER_FLAG,USER_NAME,EMAIL,TEL,PROFILE_IMAGE,LOGTIME) values ('gogok12','123',3,null,0,0,3,0,0,'dfd','CPark@kitri.com',100001234,null,to_timestamp('16/06/07 16:16:27.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into MEMBER (USER_ID,USER_PASS,GRADE_ID,LOGIN_KEY,HOST_FLAG,COIN,USER_AVGPOINT,PENALTY,USER_FLAG,USER_NAME,EMAIL,TEL,PROFILE_IMAGE,LOGTIME) values ('doglove','123',3,null,0,0,3,0,0,'dfdf11','CarPark@kitri.com',100001234,null,to_timestamp('16/06/07 16:16:27.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into MEMBER (USER_ID,USER_PASS,GRADE_ID,LOGIN_KEY,HOST_FLAG,COIN,USER_AVGPOINT,PENALTY,USER_FLAG,USER_NAME,EMAIL,TEL,PROFILE_IMAGE,LOGTIME) values ('mongyong','123',3,null,0,0,3,0,0,'이몽룡','123@naver.com',100001234,null,to_timestamp('16/06/07 16:16:27.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into MEMBER (USER_ID,USER_PASS,GRADE_ID,LOGIN_KEY,HOST_FLAG,COIN,USER_AVGPOINT,PENALTY,USER_FLAG,USER_NAME,EMAIL,TEL,PROFILE_IMAGE,LOGTIME) values ('hyang','123',3,null,0,0,3,0,0,'향뎐','jms@nate.com',100001234,null,to_timestamp('16/06/07 16:16:27.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into MEMBER (USER_ID,USER_PASS,GRADE_ID,LOGIN_KEY,HOST_FLAG,COIN,USER_AVGPOINT,PENALTY,USER_FLAG,USER_NAME,EMAIL,TEL,PROFILE_IMAGE,LOGTIME) values ('gong','123',3,null,0,0,3,0,0,'공','CPark@kitri.com',100001234,null,to_timestamp('16/06/07 16:16:27.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into MEMBER (USER_ID,USER_PASS,GRADE_ID,LOGIN_KEY,HOST_FLAG,COIN,USER_AVGPOINT,PENALTY,USER_FLAG,USER_NAME,EMAIL,TEL,PROFILE_IMAGE,LOGTIME) values ('우히히','123123',3,null,0,150,0,0,0,'울랄라','adll@dllle@net',null,null,to_timestamp('16/06/17 00:22:03.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into MEMBER (USER_ID,USER_PASS,GRADE_ID,LOGIN_KEY,HOST_FLAG,COIN,USER_AVGPOINT,PENALTY,USER_FLAG,USER_NAME,EMAIL,TEL,PROFILE_IMAGE,LOGTIME) values ('nameME','123123',3,null,0,150,0,0,0,'이름','zms0529@naver.com',null,null,to_timestamp('16/06/17 00:22:34.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into MEMBER (USER_ID,USER_PASS,GRADE_ID,LOGIN_KEY,HOST_FLAG,COIN,USER_AVGPOINT,PENALTY,USER_FLAG,USER_NAME,EMAIL,TEL,PROFILE_IMAGE,LOGTIME) values ('191980464','P191980464',3,null,0,150,0,0,0,'kakao이현택','Kakao@email.com',10111111,null,to_timestamp('16/06/17 06:04:35.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into MEMBER (USER_ID,USER_PASS,GRADE_ID,LOGIN_KEY,HOST_FLAG,COIN,USER_AVGPOINT,PENALTY,USER_FLAG,USER_NAME,EMAIL,TEL,PROFILE_IMAGE,LOGTIME) values ('Steven100','100100aa',3,null,0,300,3,0,0,'Steven','SKING@kcompany.com',151234567,null,to_timestamp('16/05/21 08:30:14.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into MEMBER (USER_ID,USER_PASS,GRADE_ID,LOGIN_KEY,HOST_FLAG,COIN,USER_AVGPOINT,PENALTY,USER_FLAG,USER_NAME,EMAIL,TEL,PROFILE_IMAGE,LOGTIME) values ('Neena101','100100aa',3,null,0,300,3,0,0,'Neena','NKOCHHAR@kcompany.com',151234568,null,to_timestamp('16/05/21 08:30:14.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into MEMBER (USER_ID,USER_PASS,GRADE_ID,LOGIN_KEY,HOST_FLAG,COIN,USER_AVGPOINT,PENALTY,USER_FLAG,USER_NAME,EMAIL,TEL,PROFILE_IMAGE,LOGTIME) values ('Lex102','100100aa',3,null,0,300,3,0,0,'Lex','LDEHAAN@kcompany.com',151234569,null,to_timestamp('16/05/21 08:30:14.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into MEMBER (USER_ID,USER_PASS,GRADE_ID,LOGIN_KEY,HOST_FLAG,COIN,USER_AVGPOINT,PENALTY,USER_FLAG,USER_NAME,EMAIL,TEL,PROFILE_IMAGE,LOGTIME) values ('Alexander103','100100aa',3,null,0,300,3,0,0,'Alexander','AHUNOLD@kcompany.com',904234567,null,to_timestamp('16/05/21 08:30:14.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into MEMBER (USER_ID,USER_PASS,GRADE_ID,LOGIN_KEY,HOST_FLAG,COIN,USER_AVGPOINT,PENALTY,USER_FLAG,USER_NAME,EMAIL,TEL,PROFILE_IMAGE,LOGTIME) values ('Bruce104','100100aa',3,null,0,300,3,0,0,'Bruce','BERNST@kcompany.com',904234568,null,to_timestamp('16/05/21 08:30:14.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into MEMBER (USER_ID,USER_PASS,GRADE_ID,LOGIN_KEY,HOST_FLAG,COIN,USER_AVGPOINT,PENALTY,USER_FLAG,USER_NAME,EMAIL,TEL,PROFILE_IMAGE,LOGTIME) values ('Diana107','100100aa',3,null,0,300,3,0,0,'Diana','DLORENTZ@kcompany.com',904235567,null,to_timestamp('16/05/21 08:30:14.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into MEMBER (USER_ID,USER_PASS,GRADE_ID,LOGIN_KEY,HOST_FLAG,COIN,USER_AVGPOINT,PENALTY,USER_FLAG,USER_NAME,EMAIL,TEL,PROFILE_IMAGE,LOGTIME) values ('Kevin124','100100aa',3,null,0,300,3,0,0,'Kevin','KMOURGOS@kcompany.com',501235234,null,to_timestamp('16/05/21 08:30:14.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into MEMBER (USER_ID,USER_PASS,GRADE_ID,LOGIN_KEY,HOST_FLAG,COIN,USER_AVGPOINT,PENALTY,USER_FLAG,USER_NAME,EMAIL,TEL,PROFILE_IMAGE,LOGTIME) values ('Trenna141','100100aa',3,null,0,300,3,0,0,'Trenna','TRAJS@kcompany.com',501218009,null,to_timestamp('16/05/21 08:30:14.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into MEMBER (USER_ID,USER_PASS,GRADE_ID,LOGIN_KEY,HOST_FLAG,COIN,USER_AVGPOINT,PENALTY,USER_FLAG,USER_NAME,EMAIL,TEL,PROFILE_IMAGE,LOGTIME) values ('Curtis142','100100aa',3,null,0,300,3,0,0,'Curtis','CDAVIES@kcompany.com',501212994,null,to_timestamp('16/05/21 08:30:14.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into MEMBER (USER_ID,USER_PASS,GRADE_ID,LOGIN_KEY,HOST_FLAG,COIN,USER_AVGPOINT,PENALTY,USER_FLAG,USER_NAME,EMAIL,TEL,PROFILE_IMAGE,LOGTIME) values ('Randall143','100100aa',3,null,0,300,3,0,0,'Randall','RMATOS@kcompany.com',501212874,null,to_timestamp('16/05/21 08:30:14.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into MEMBER (USER_ID,USER_PASS,GRADE_ID,LOGIN_KEY,HOST_FLAG,COIN,USER_AVGPOINT,PENALTY,USER_FLAG,USER_NAME,EMAIL,TEL,PROFILE_IMAGE,LOGTIME) values ('Peter144','100100aa',3,null,0,300,3,0,0,'Peter','PVARGAS@kcompany.com',501212004,null,to_timestamp('16/05/21 08:30:14.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into MEMBER (USER_ID,USER_PASS,GRADE_ID,LOGIN_KEY,HOST_FLAG,COIN,USER_AVGPOINT,PENALTY,USER_FLAG,USER_NAME,EMAIL,TEL,PROFILE_IMAGE,LOGTIME) values ('Eleni149','100100aa',3,null,0,300,3,0,0,'Eleni','EZLOTKEY@kcompany.com',114413444,null,to_timestamp('16/05/21 08:30:14.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into MEMBER (USER_ID,USER_PASS,GRADE_ID,LOGIN_KEY,HOST_FLAG,COIN,USER_AVGPOINT,PENALTY,USER_FLAG,USER_NAME,EMAIL,TEL,PROFILE_IMAGE,LOGTIME) values ('Ellen174','100100aa',3,null,0,300,3,0,0,'Ellen','EABEL@kcompany.com',114416444,null,to_timestamp('16/05/21 08:30:14.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into MEMBER (USER_ID,USER_PASS,GRADE_ID,LOGIN_KEY,HOST_FLAG,COIN,USER_AVGPOINT,PENALTY,USER_FLAG,USER_NAME,EMAIL,TEL,PROFILE_IMAGE,LOGTIME) values ('Jonathon176','100100aa',3,null,0,300,3,0,0,'Jonathon','JTAYLOR@kcompany.com',111649265,null,to_timestamp('16/05/21 08:30:14.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into MEMBER (USER_ID,USER_PASS,GRADE_ID,LOGIN_KEY,HOST_FLAG,COIN,USER_AVGPOINT,PENALTY,USER_FLAG,USER_NAME,EMAIL,TEL,PROFILE_IMAGE,LOGTIME) values ('Kimberely178','100100aa',3,null,0,300,3,0,0,'Kimberely','KGRANT@kcompany.com',164290263,null,to_timestamp('16/05/21 08:30:14.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into MEMBER (USER_ID,USER_PASS,GRADE_ID,LOGIN_KEY,HOST_FLAG,COIN,USER_AVGPOINT,PENALTY,USER_FLAG,USER_NAME,EMAIL,TEL,PROFILE_IMAGE,LOGTIME) values ('Jennifer200','100100aa',3,null,0,1378,3,0,0,'Jennifer','JWHALEN@kcompany.com',151234444,null,to_timestamp('16/05/21 08:30:14.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into MEMBER (USER_ID,USER_PASS,GRADE_ID,LOGIN_KEY,HOST_FLAG,COIN,USER_AVGPOINT,PENALTY,USER_FLAG,USER_NAME,EMAIL,TEL,PROFILE_IMAGE,LOGTIME) values ('Michael201','100100aa',3,null,0,300,3,0,0,'Michael','MHARTSTE@kcompany.com',151235555,null,to_timestamp('16/05/21 08:30:14.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into MEMBER (USER_ID,USER_PASS,GRADE_ID,LOGIN_KEY,HOST_FLAG,COIN,USER_AVGPOINT,PENALTY,USER_FLAG,USER_NAME,EMAIL,TEL,PROFILE_IMAGE,LOGTIME) values ('Pat202','100100aa',3,null,0,300,3,0,0,'Pat','PFAY@kcompany.com',31236666,null,to_timestamp('16/05/21 08:30:14.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into MEMBER (USER_ID,USER_PASS,GRADE_ID,LOGIN_KEY,HOST_FLAG,COIN,USER_AVGPOINT,PENALTY,USER_FLAG,USER_NAME,EMAIL,TEL,PROFILE_IMAGE,LOGTIME) values ('Shelley205','100100aa',3,null,0,300,3,0,0,'Shelley','SHIGGINS@kcompany.com',151238080,null,to_timestamp('16/05/21 08:30:14.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into MEMBER (USER_ID,USER_PASS,GRADE_ID,LOGIN_KEY,HOST_FLAG,COIN,USER_AVGPOINT,PENALTY,USER_FLAG,USER_NAME,EMAIL,TEL,PROFILE_IMAGE,LOGTIME) values ('William206','100100aa',3,null,0,300,3,0,0,'William','WGIETZ@kcompany.com',151238181,null,to_timestamp('16/05/21 08:30:14.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into MEMBER (USER_ID,USER_PASS,GRADE_ID,LOGIN_KEY,HOST_FLAG,COIN,USER_AVGPOINT,PENALTY,USER_FLAG,USER_NAME,EMAIL,TEL,PROFILE_IMAGE,LOGTIME) values ('MSKIM207','100100aa',3,null,0,300,3,0,0,'MS','MSKIM@kcompany.com',151232345,null,to_timestamp('16/05/21 08:30:14.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into MEMBER (USER_ID,USER_PASS,GRADE_ID,LOGIN_KEY,HOST_FLAG,COIN,USER_AVGPOINT,PENALTY,USER_FLAG,USER_NAME,EMAIL,TEL,PROFILE_IMAGE,LOGTIME) values ('admin','admin',3,null,0,300,3,0,10,'마스터관리자','parkingc16@gmail.com',100001234,null,to_timestamp('16/05/18 08:29:10.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into MEMBER (USER_ID,USER_PASS,GRADE_ID,LOGIN_KEY,HOST_FLAG,COIN,USER_AVGPOINT,PENALTY,USER_FLAG,USER_NAME,EMAIL,TEL,PROFILE_IMAGE,LOGTIME) values ('seokseok','1234',3,null,0,300,3,0,0,'슥이','jjum90@hamail.net',100001234,null,to_timestamp('16/05/18 08:29:10.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into MEMBER (USER_ID,USER_PASS,GRADE_ID,LOGIN_KEY,HOST_FLAG,COIN,USER_AVGPOINT,PENALTY,USER_FLAG,USER_NAME,EMAIL,TEL,PROFILE_IMAGE,LOGTIME) values ('catTower','123',3,null,0,300,3,0,0,'adf','asd@asd.com',100001234,null,to_timestamp('16/06/04 08:31:50.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into MEMBER (USER_ID,USER_PASS,GRADE_ID,LOGIN_KEY,HOST_FLAG,COIN,USER_AVGPOINT,PENALTY,USER_FLAG,USER_NAME,EMAIL,TEL,PROFILE_IMAGE,LOGTIME) values ('190175867','111',3,null,0,200,0,0,0,'kakao','Kakao@email.com',10111111,null,to_timestamp('16/06/17 02:22:38.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into MEMBER (USER_ID,USER_PASS,GRADE_ID,LOGIN_KEY,HOST_FLAG,COIN,USER_AVGPOINT,PENALTY,USER_FLAG,USER_NAME,EMAIL,TEL,PROFILE_IMAGE,LOGTIME) values ('191545104','P191545104',3,null,0,150,0,0,0,'kakao오시영 OhAh','Kakao@email.com',10111111,'http://mud-kage.kakao.co.kr/14/dn/btqdgO1wHBk/5qfqMNW4ZQN6iFc5AbRkb0/o.jpg',to_timestamp('16/06/17 07:14:28.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into MEMBER (USER_ID,USER_PASS,GRADE_ID,LOGIN_KEY,HOST_FLAG,COIN,USER_AVGPOINT,PENALTY,USER_FLAG,USER_NAME,EMAIL,TEL,PROFILE_IMAGE,LOGTIME) values ('192171079','P192171079',3,null,0,150,0,0,0,'kakao기범','Kakao@email.com',10111111,'http://mud-kage.kakao.co.kr/14/dn/btqdmWqDvAO/DT8HXXXh09hqc5Qa7BNHx1/o.jpg',to_timestamp('16/06/17 07:15:03.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into MEMBER (USER_ID,USER_PASS,GRADE_ID,LOGIN_KEY,HOST_FLAG,COIN,USER_AVGPOINT,PENALTY,USER_FLAG,USER_NAME,EMAIL,TEL,PROFILE_IMAGE,LOGTIME) values ('PublicPark','ppark',5,null,0,56,3,0,2,'공영주차장','kitri@kitri.com',100001234,null,to_timestamp('16/05/18 08:29:10.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into MEMBER (USER_ID,USER_PASS,GRADE_ID,LOGIN_KEY,HOST_FLAG,COIN,USER_AVGPOINT,PENALTY,USER_FLAG,USER_NAME,EMAIL,TEL,PROFILE_IMAGE,LOGTIME) values ('봉','456',3,null,0,4130,3,0,0,'봉','bong@naver.com',100001234,null,to_timestamp('16/05/18 08:29:10.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into MEMBER (USER_ID,USER_PASS,GRADE_ID,LOGIN_KEY,HOST_FLAG,COIN,USER_AVGPOINT,PENALTY,USER_FLAG,USER_NAME,EMAIL,TEL,PROFILE_IMAGE,LOGTIME) values ('dddd','ddd',3,null,0,300,3,0,0,'ddd','123123',100001234,null,to_timestamp('16/05/18 08:29:10.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into MEMBER (USER_ID,USER_PASS,GRADE_ID,LOGIN_KEY,HOST_FLAG,COIN,USER_AVGPOINT,PENALTY,USER_FLAG,USER_NAME,EMAIL,TEL,PROFILE_IMAGE,LOGTIME) values ('참치회','123123',3,null,0,1622,3,0,0,'참치회','참@참참.참',100001234,null,to_timestamp('16/06/15 04:00:39.000000000','RR/MM/DD HH24:MI:SS.FF'));
+
+---------------------------------------------------
+--   END DATA FOR TABLE MEMBER
+---------------------------------------------------
+
+---------------------------------------------------
+--   DATA FOR TABLE PENALTY
+--   FILTER = none used
+---------------------------------------------------
+REM INSERTING into PENALTY
+Insert into PENALTY (PENALTY_NUM,USER_ID,PENALTY_CODE,PENALTY_DATE,PENALTY_MEMO,SEQ) values (21,'PublicPark',20,to_timestamp('16/06/15 15:12:38.000000000','RR/MM/DD HH24:MI:SS.FF'),'청소필요',630);
+Insert into PENALTY (PENALTY_NUM,USER_ID,PENALTY_CODE,PENALTY_DATE,PENALTY_MEMO,SEQ) values (41,'PublicPark',20,to_timestamp('16/06/16 15:55:33.000000000','RR/MM/DD HH24:MI:SS.FF'),'시설관리미흡',621);
+
+---------------------------------------------------
+--   END DATA FOR TABLE PENALTY
+---------------------------------------------------
+
+---------------------------------------------------
+--   DATA FOR TABLE BOARD
+--   FILTER = none used
+---------------------------------------------------
+REM INSERTING into BOARD
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (1,0,'IUGuest','감사합니다^^ 깨끗하게 잘 이용했어요','평소 주차장 찾기가 힘든데 미리 예약하고 가니 편하네요',to_timestamp('16/05/06 14:10:46.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (629,2,'IUGuest','주말에 주차장 요금문의','얼마에요>?',to_timestamp('16/06/10 07:17:12.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (521,1,'IUGuest','천호역쪽 제보 드립니다','주차비 싸고 주위에 먹을 것도 많습니다.',to_timestamp('16/06/09 09:12:18.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (781,2,'PublicPark','저희 주차장을 이용해주셔서 감사합니다^^','앞으로 더 좋은 서비스로 보답하겠습니다.<br><br>감사합니다.',to_timestamp('16/06/19 13:37:00.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (142,0,'봉','아랫분이 다녀간 후에 정비했나봐요','저는 마음에 들어요. 다음에 또 이용하겠습니다!',to_timestamp('16/06/15 01:39:36.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (144,0,'봉','여기 굿인듯?','만족만족
+
+다음에 또 올게요',to_timestamp('16/06/15 01:52:17.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (213,2,'RgPark','잘 이용했어요','잘 이용했어요',to_timestamp('16/06/01 17:44:30.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (45,0,'SZGuest','여기 마음에 들어요','굿굿',to_timestamp('16/06/05 02:12:26.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (524,1,'IUGuest','성내동','제보주차장',to_timestamp('16/06/09 09:14:09.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (83,0,'봉','여기 마음에 들어요','나쁘지 않네요
+
+다음에 기회되면 다시 이용할게요!',to_timestamp('16/06/09 15:03:08.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (143,0,'봉','아랫분이 다시 이용해보세요','사장님이 다시 정비하신거같아요',to_timestamp('16/06/15 01:42:13.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (619,3,'IUGuest','주차장이 너무 더러워요','청소좀 하세요',to_timestamp('16/06/10 06:05:26.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (623,2,'IUGuest','오늘 주차장 사용할 수 있나요?','주차장 관련 문의합니다!',to_timestamp('16/06/10 06:23:23.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (332,2,'IUGuest','감사합니다^^','덕분에 잘 이용했어요. 다음에 또 이용할게요!',to_timestamp('16/06/06 12:54:04.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (624,2,'RgPark','금일 주차장 이용 문의','혹시 사용 가능한가요? 답변 부탁드립니다^^',to_timestamp('16/06/10 06:24:18.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (626,2,'IUGuest','하하하','하하하',to_timestamp('16/06/10 06:51:08.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (628,2,'RgPark','여기주차장 별루네요','주차장 시설 관리좀 부탁드립니다.',to_timestamp('16/06/10 06:58:17.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (630,3,'IUGuest','주차장 더러워요','더러워',to_timestamp('16/06/10 07:17:34.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (103,0,'IUGuest','감사합니다^^ ','고생해서 찾았는데 좁고 더럽고 마음에 안드네요^^',to_timestamp('16/06/10 07:18:01.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (147,0,'참치회','오 나쁘지 않아요','굿굿!',to_timestamp('16/06/15 05:57:24.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (148,0,'봉','여기 어떤가요?','답글좀!',to_timestamp('16/06/15 06:07:58.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (149,0,'봉','좋아요!','굿굿!',to_timestamp('16/06/15 06:12:38.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (685,1,'IUGuest','강남역 근처 제보','여기 개꿀임',to_timestamp('16/06/15 07:58:30.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (686,2,'참치회','수서역북 환승주차장(시)      강남구 수서동 735-0','여기 쓸만해요?',to_timestamp('16/06/15 08:03:51.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (161,0,'IUGuest','우리집이랑 가까워요','다음에 또 올게요!',to_timestamp('16/06/17 05:24:35.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (745,2,'IUGuest','여기 이용했는데','코인좀 줘요',to_timestamp('16/06/17 05:24:52.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (786,2,'RgPark','24일부터 이용 가능합니다!','감사합니다.',to_timestamp('16/06/19 13:54:45.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (202,0,'IUGuest','좋은 위치 주차장!','회사랑 가까워서 정기권 끊을 예정입니다!',to_timestamp('16/06/20 16:32:04.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (25,0,'Trenna141','갑자기 미팅잡혀서 부랴부랴 차 가지고 갔는데','강남은 주차하기 힘들어서 차 안가지고 다니는데, 갑자기 미팅이 잡혀서 할 수 없이 차 가지고 갔어요. 저번에 페이스북 친구가 소개해줘서 이 서비스를 알고는 있었거든요.바로 예약하니까 되네요. 이 주차장은 무인에 실시간 시스템이라 결제한 정보 바로 뜨더라구요. 편해요.',to_timestamp('16/05/26 17:01:37.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (157,2,'didrl2','잘 이용했어요 굿굿 ㅋㅋㅋ','잘 이용했어요 친구들한테도 추천할게요!',to_timestamp('16/05/28 13:04:57.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (203,2,'RgPark','받아랏','이히히히',to_timestamp('16/05/31 07:42:54.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (621,3,'IUGuest','여기 냄새납니다','주차장 시설관리가 개판입니다.',to_timestamp('16/06/10 06:13:07.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (615,2,'IUGuest','방가워용','잘쓸게용',to_timestamp('16/06/10 04:57:33.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (625,2,'IUGuest','배고프다','배고파',to_timestamp('16/06/10 06:37:38.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (183,1,'RgPark','고고주차장제보','신사역 근처에 널널해서 제보합니다!!.',to_timestamp('16/05/30 06:42:54.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (762,2,'IUGuest','안녕하세요','반가워요',to_timestamp('16/06/17 07:54:11.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (184,1,'RgPark','강남역 근처 주차장','강남 근처인데 싸서 제보합니다!!.',to_timestamp('16/05/30 06:43:42.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (204,2,'RgPark','아니아니','싫은데?',to_timestamp('16/05/31 07:43:18.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (211,2,'jjum90','고고고고씽','123123',to_timestamp('16/06/01 17:28:57.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (46,0,'SZGuest','여기 마음에 들어요','굿굿!
+
+다음에 또 올게요!',to_timestamp('16/06/05 02:13:23.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (47,0,'SZGuest','다른분들 고민하지 마세요!ㅋㅋ','여기는 제가 보증합니다! 예약해서 사용해보세요!',to_timestamp('16/06/05 02:13:31.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (48,0,'SZGuest','여기 마음에 들어요','내꺼내거',to_timestamp('16/06/05 02:16:34.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (306,0,'IUGuest','잘 이용했어요 굿굿 ㅋㅋㅋ','이히히히',to_timestamp('16/06/06 04:25:52.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (309,0,'IUGuest','여기 추천해요!','여기는 제가 보증합니다! 깨끗하고 주차공간도 넓어요',to_timestamp('16/06/06 05:48:51.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (84,0,'IUGuest','초교라서 개꿀','주차장깔끔하고 괜춘해요',to_timestamp('16/06/09 15:09:42.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (121,0,'IUGuest','굿굿!','또 올게요',to_timestamp('16/06/14 10:42:56.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (582,1,'IUGuest','제보해요!','여기 꿀임ㅋ',to_timestamp('16/06/10 04:28:31.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (141,0,'봉','여기 추천해요!','제가 다녀왔을 때에는 좋았어요',to_timestamp('16/06/15 01:31:47.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (150,0,'봉','좋아요?','대답좀!',to_timestamp('16/06/15 06:15:35.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (151,0,'봉','좋아요 여기 ㅋㅋㅋ','다음에 또 올게요!',to_timestamp('16/06/15 06:16:02.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (152,0,'봉','미리 찜!','찜뽕!',to_timestamp('16/06/15 06:19:20.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (742,2,'190175867','주차장 요금문의','한달 정기권이 얼마나 합니까? 할인도 합니까?',to_timestamp('16/06/17 03:55:39.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (13,0,'Alexander103','한국에 놀러왔어요 주차장 좋아요.',' 나 영국 살아요. 한국인 친구 이야기했어요. 서울에 차 많아요. 주차장 없어요. 하지만 나 미리 여행 전에 예약했어요. 나 주차했어요. 나 기뻤어요.',to_timestamp('16/05/07 16:07:45.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (14,0,'Steven100','강남올때마다 이곳에 와요 ','미리 예약하면 할인혜택 제공이 너무 좋아요.',to_timestamp('16/05/06 16:31:44.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (15,0,'SZGuest','초보운전이라 주차가 무서운데','주차공간이 넓어서 좋아요. 골목길에 주차하느라 긴장할 필요도 없어요. 대치동에서는 여기에 주차!',to_timestamp('16/05/07 16:32:27.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (16,0,'GdHost','주차공간이 넓네요','주차장 찾기도 쉽고 공간이 넓어요.즐겨찾기 추가해두었습니다!',to_timestamp('16/05/11 16:32:32.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (17,0,'TopGuest','여자친구와 데이트 할때 사용했어요','맛집과 가까워서 좋네요. 미리 예약해서 주차장 찾으러 길 헤멜 필요도 없고 ',to_timestamp('16/05/26 16:32:37.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (18,0,'IUGuest','오늘 정기권 구매했어요','회사가 근처라 월 정기권 구매했어요. 할인혜택이 쏠쏠하네요. 일일권보다',to_timestamp('16/05/26 16:32:41.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (19,0,'Neena101','더이상 골목길 주차안해도 되네요','강남 올 때면 주차장 찾느라 몇십분 소비할 때도 있었는데, 인제 그럴 필요 없네요. 주말에 가도 미리 예약만해놓으면 되니까. 여긴 따로 또 주차권 뽑을 필요도 없네요. 자동화된 주차장이라.',to_timestamp('16/05/16 16:57:25.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (20,0,'Diana107','누가 차 긁어놓을까 걱정안해도 됨','전에 어쩔 수 없이 골목 주차했다가 차 누가 긁어놓고 가서 속상했는데, 여긴 관리 깔끔하게 되어있네요.',to_timestamp('16/05/16 16:57:25.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (22,0,'Ellen174','너무 좋아요.','자동화된 주차장 시스템! 애용할듯',to_timestamp('16/05/26 16:57:29.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (23,0,'Bruce104','다른데 정기주차권보다 저렴해요','지금 이벤트 중이라 여기서 예약하면 할인혜택 준다고 해서 써봤어요.회사건물 주차권보다 저렴해요.',to_timestamp('16/05/26 16:57:29.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (24,0,'Curtis142','관리 잘 되어있음 깔끔','음식점이랑 놀 곳이 바로 옆이라 위치 좋아요. ',to_timestamp('16/05/26 16:57:29.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (182,1,'RgPark','정말 개꿀임','울집 회사 근처인데 널널해서 제보합니다!!.',to_timestamp('16/05/30 06:41:32.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (185,1,'RgPark','여기 개꿀임','울집 주차장 근처인데 싸고 괜찮아서 제보합니다!!.',to_timestamp('16/05/30 08:09:17.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (843,0,'봉','잘 이용했습니다^^','공간도 넓고 찾아가기 좋네요^^
+
+다음에 또 이용할게요!
+
+감사합니다.',to_timestamp('16/06/23 13:33:29.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (101,0,'IUGuest','여기 별로네요..','한참 찾아서 겨우 들어갔는데 공간도 좁고 좀 별로..',to_timestamp('16/06/10 06:15:26.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (181,1,'RgPark','여기 개꿀임','울집 주차장 근처인데 싸고 괜찮아서 제보합니다!!.',to_timestamp('16/05/30 06:38:31.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (847,3,'IUGuest','주차장 관리가 잘 안되어있는 것 같습니다.','주차장 관리가 미흡합니다.<br><br>그리고 찾아가기도 힘들던데 그에따른 안내사항도 제공되어있지 않네요.<br><br>다른 사람들도 피해를 받을 것 같아 신고합니다.',to_timestamp('16/06/23 14:23:42.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (223,2,'IUGuest','여기주차장 개꿀?','가격? 시간당 얼마?',to_timestamp('16/06/02 16:34:29.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (89,0,'봉','여기 내꺼!!','다른분들도 이용해보세요!ㅋㅋ',to_timestamp('16/06/10 04:47:42.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (826,1,'봉','강동 깔끔한 주차장 추천합니다.','주택가 근처에 깔끔한 주차장입니다^^
+
+주변이 조용하고 CCTV도 보입니다',to_timestamp('16/06/22 01:01:34.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (146,0,'IUGuest','여기 내꺼!','자주 이용하는데 이용할 때마다 만족합니다 ㅋㅋ
+
+평점은 인간적으로 4.5점 드립니다!',to_timestamp('16/06/15 03:36:04.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (81,0,'IUGuest','개꿀이네요!~','여기 가성비 개꿀!~',to_timestamp('16/06/09 14:19:38.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (201,2,'RgPark','snsnsnsn','sssss',to_timestamp('16/05/31 05:53:28.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (41,0,'Curtis142','뭐죠?','잘 이용했어요요요.',to_timestamp('16/06/05 00:30:22.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (42,0,'SZGuest','깔끔하네요 추천드립니다.','다음에도 또 오고 싶네요',to_timestamp('16/06/05 02:04:06.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (43,0,'SZGuest','공간이 넓네요.','여자가 주차하기 좋아요',to_timestamp('16/06/05 02:04:10.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (44,0,'SZGuest','굿굿!~','주차장 중에 최고네요!~',to_timestamp('16/06/05 02:09:44.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (82,0,'IUGuest','그냥그냥 이용할만 하네요','무난무난한 주차장인것 같아요.',to_timestamp('16/06/09 14:20:17.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (88,0,'suk','평범하네요','그냥그냥 쓸만한정도?',to_timestamp('16/06/10 00:27:35.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (320,0,'IUGuest','잘 이용했어요 굿굿 ㅋㅋㅋ','이히히히',to_timestamp('16/06/06 08:50:33.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (575,1,'IUGuest','좋은곳 있어서 추천합니다!','여기 좋은데 없네요!
+
+제가 제보해요!
+
+칭찬좀!',to_timestamp('16/06/10 04:26:26.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (102,0,'IUGuest','여기구려요','우우우우우 구려',to_timestamp('16/06/10 06:15:36.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (153,0,'봉','굿?','굿?',to_timestamp('16/06/15 06:19:56.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (154,0,'IUGuest','논현 괜찮네요','깔끔하고 공간이 넓아서 좋네요 !~',to_timestamp('16/06/15 07:30:40.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (688,1,'IUGuest','방이동 주차장 제보','여기 한번 제보해봅니다.',to_timestamp('16/06/15 16:29:08.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (0,2,'admin','주차장제보에 감사드립니다.!~','이번 제보에 감사드립니다. 감사의 선물로 3000코인을 선물로 드리겠습니다.',to_timestamp('16/06/09 08:34:35.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (620,3,'IUGuest','요금이 너무 비싸요','요금좀 낮춰주세요',to_timestamp('16/06/10 06:07:29.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (536,2,'IUGuest','주차권 팝니다!~','3200원 딜?',to_timestamp('16/06/09 09:21:31.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (641,1,'IUGuest','구로역 코오롱 주차장 제보','구로쪽 코오롱사이언스 1차 주차장 제보입니다.',to_timestamp('16/06/13 13:33:43.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (145,0,'참치회','그냥그냥','평범평범
+
+나쁘지 않아요',to_timestamp('16/06/15 02:14:20.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (817,0,'봉','후기가 좋은 내용이 많네요!','저도 잘 이용했어요!',to_timestamp('16/06/20 17:28:02.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (813,0,'봉','안더럽고 좋던데','다음에 또 올게요!',to_timestamp('16/06/20 17:27:09.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (815,0,'봉','안더럽고 좋던데','다음에 또 올게요!',to_timestamp('16/06/20 17:27:19.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (827,1,'RgPark','제2 롯데월드 주차장','주차공간 넓고 관리도 잘 되고있어요!',to_timestamp('16/06/22 01:07:23.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (61,0,'IUGuest','좋은거같은데','다른분들은 어때요?',to_timestamp('16/06/07 01:47:51.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (823,2,'IUGuest','주차장 정기권 문의','1년동안 주차장 정기권을 끊으려고 하는데 요금 할인은 따로 없을까요?',to_timestamp('16/06/22 00:11:47.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (825,2,'IUGuest','주차장 정기권 문의','1년동안 주차장 정기권을 끊으려고 하는데 요금 할인은 따로 없을까요?',to_timestamp('16/06/22 00:20:09.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (86,0,'Jennifer200','여기 곧 이용할건데','괜찮은가요?
+
+이용해본 분들 어떤가요?',to_timestamp('16/06/09 16:27:05.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (87,0,'Jennifer200','그냥그냥 이용할만 하네요','무난무난한 주차장인것 같아요.',to_timestamp('16/06/09 16:27:05.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (85,0,'Jennifer200','찾기도 쉽고 공간도 넓네요!','자주 이용하게 될 것 같아요!
+
+한적한걸보니 다른사람들은 아직 모르나봐요ㅋㅋㅋ',to_timestamp('16/06/09 16:25:45.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (828,1,'IUGuest','송파 잠실쪽 주차비 싼 곳 입니다','주차장이 넓고 송파구쪽 치고는 싼편입니다.',to_timestamp('16/06/22 01:17:16.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (864,2,'PublicPark','불량고객 신고합니다','사용자: GdPark <br><br>신고내역: <br>주차장에서 차도 안빼고 다른 사용자에게 시비 걸어서 혼났네요. 다시는 예약받고 싶지 않네요',to_timestamp('16/06/24 10:46:30.000000000','RR/MM/DD HH24:MI:SS.FF'));
+Insert into BOARD (SEQ,BCODE,USER_ID,SUBJECT,CONTENTS,LOGTIME) values (866,0,'PublicPark','주차장 할인이벤트','주차장 할인이벤트있어서 좋네요~',to_timestamp('16/06/24 10:50:02.000000000','RR/MM/DD HH24:MI:SS.FF'));
+
+---------------------------------------------------
+--   END DATA FOR TABLE BOARD
+---------------------------------------------------
+
+---------------------------------------------------
+--   DATA FOR TABLE CAR_INFO
+--   FILTER = none used
+---------------------------------------------------
+REM INSERTING into CAR_INFO
+Insert into CAR_INFO (CAR_ID,MAKER,MODEL) values ('sm_001','현대자동차','엑센트');
+Insert into CAR_INFO (CAR_ID,MAKER,MODEL) values ('sm_002','쉐보레','트랙스');
+Insert into CAR_INFO (CAR_ID,MAKER,MODEL) values ('sm_003','쉐보레','스파크');
+Insert into CAR_INFO (CAR_ID,MAKER,MODEL) values ('md_001','현대자동차','쏘나타');
+Insert into CAR_INFO (CAR_ID,MAKER,MODEL) values ('md_002','현대자동차','투싼');
+Insert into CAR_INFO (CAR_ID,MAKER,MODEL) values ('md_003','현대자동차','아반떼');
+Insert into CAR_INFO (CAR_ID,MAKER,MODEL) values ('md_004','쉐보레','말리부');
+Insert into CAR_INFO (CAR_ID,MAKER,MODEL) values ('bg_001','현대자동차','그랜저');
+Insert into CAR_INFO (CAR_ID,MAKER,MODEL) values ('bg_002','현대자동차','제네시스');
+Insert into CAR_INFO (CAR_ID,MAKER,MODEL) values ('bg_003','JEEP','레니게이드');
+Insert into CAR_INFO (CAR_ID,MAKER,MODEL) values ('bg_004','JEEP','컴패스');
+Insert into CAR_INFO (CAR_ID,MAKER,MODEL) values ('sp_001','현대자동차','레토나');
+Insert into CAR_INFO (CAR_ID,MAKER,MODEL) values ('sp_002','현대자동차','닷지');
+Insert into CAR_INFO (CAR_ID,MAKER,MODEL) values ('sp_003','현대자동차','육공');
+Insert into CAR_INFO (CAR_ID,MAKER,MODEL) values ('tr_001','현대자동차','쏠라티');
+Insert into CAR_INFO (CAR_ID,MAKER,MODEL) values ('tr_002','현대자동차','포터2');
+Insert into CAR_INFO (CAR_ID,MAKER,MODEL) values ('tr_003','현대자동차','봉고3');
+Insert into CAR_INFO (CAR_ID,MAKER,MODEL) values ('tr_004','현대자동차','엑시언트');
+
+---------------------------------------------------
+--   END DATA FOR TABLE CAR_INFO
+---------------------------------------------------
+
+---------------------------------------------------
+--   DATA FOR TABLE BOARDTYPE
+--   FILTER = none used
+---------------------------------------------------
+REM INSERTING into BOARDTYPE
+Insert into BOARDTYPE (BCODE,BNAME) values (0,'review');
+Insert into BOARDTYPE (BCODE,BNAME) values (1,'call');
+Insert into BOARDTYPE (BCODE,BNAME) values (2,'message');
+Insert into BOARDTYPE (BCODE,BNAME) values (3,'report');
+
+---------------------------------------------------
+--   END DATA FOR TABLE BOARDTYPE
+---------------------------------------------------
+
+---------------------------------------------------
+--   DATA FOR TABLE REVIEW
+--   FILTER = none used
+---------------------------------------------------
+REM INSERTING into REVIEW
+Insert into REVIEW (RSEQ,SEQ,AVAL_CODE,GET_POINT,AVALED_ID,HOST_FLAG) values (65,45,0,3.5,'PublicPark',0);
+Insert into REVIEW (RSEQ,SEQ,AVAL_CODE,GET_POINT,AVALED_ID,HOST_FLAG) values (103,83,0,4,'PublicPark',0);
+Insert into REVIEW (RSEQ,SEQ,AVAL_CODE,GET_POINT,AVALED_ID,HOST_FLAG) values (123,103,0,1.5,'PublicPark',0);
+Insert into REVIEW (RSEQ,SEQ,AVAL_CODE,GET_POINT,AVALED_ID,HOST_FLAG) values (162,142,0,3.75,'PublicPark',0);
+Insert into REVIEW (RSEQ,SEQ,AVAL_CODE,GET_POINT,AVALED_ID,HOST_FLAG) values (163,143,0,4.25,'PublicPark',0);
+Insert into REVIEW (RSEQ,SEQ,AVAL_CODE,GET_POINT,AVALED_ID,HOST_FLAG) values (164,144,0,5,'PublicPark',0);
+Insert into REVIEW (RSEQ,SEQ,AVAL_CODE,GET_POINT,AVALED_ID,HOST_FLAG) values (167,147,0,3.5,'PublicPark',0);
+Insert into REVIEW (RSEQ,SEQ,AVAL_CODE,GET_POINT,AVALED_ID,HOST_FLAG) values (168,148,0,3.5,'PublicPark',0);
+Insert into REVIEW (RSEQ,SEQ,AVAL_CODE,GET_POINT,AVALED_ID,HOST_FLAG) values (169,149,0,4,'PublicPark',0);
+Insert into REVIEW (RSEQ,SEQ,AVAL_CODE,GET_POINT,AVALED_ID,HOST_FLAG) values (181,161,0,4,'PublicPark',0);
+Insert into REVIEW (RSEQ,SEQ,AVAL_CODE,GET_POINT,AVALED_ID,HOST_FLAG) values (222,202,0,4.5,'PublicPark',0);
+Insert into REVIEW (RSEQ,SEQ,AVAL_CODE,GET_POINT,AVALED_ID,HOST_FLAG) values (42,25,0,4,'kangnam17',0);
+Insert into REVIEW (RSEQ,SEQ,AVAL_CODE,GET_POINT,AVALED_ID,HOST_FLAG) values (66,46,0,3.5,'PublicPark',0);
+Insert into REVIEW (RSEQ,SEQ,AVAL_CODE,GET_POINT,AVALED_ID,HOST_FLAG) values (67,47,0,3.5,'PublicPark',0);
+Insert into REVIEW (RSEQ,SEQ,AVAL_CODE,GET_POINT,AVALED_ID,HOST_FLAG) values (68,48,0,4,'PublicPark',0);
+Insert into REVIEW (RSEQ,SEQ,AVAL_CODE,GET_POINT,AVALED_ID,HOST_FLAG) values (104,84,0,2.5,'PublicPark',0);
+Insert into REVIEW (RSEQ,SEQ,AVAL_CODE,GET_POINT,AVALED_ID,HOST_FLAG) values (141,121,0,4,'PublicPark',0);
+Insert into REVIEW (RSEQ,SEQ,AVAL_CODE,GET_POINT,AVALED_ID,HOST_FLAG) values (161,141,0,4.25,'PublicPark',0);
+Insert into REVIEW (RSEQ,SEQ,AVAL_CODE,GET_POINT,AVALED_ID,HOST_FLAG) values (170,150,0,3.5,'PublicPark',0);
+Insert into REVIEW (RSEQ,SEQ,AVAL_CODE,GET_POINT,AVALED_ID,HOST_FLAG) values (171,151,0,3,'PublicPark',0);
+Insert into REVIEW (RSEQ,SEQ,AVAL_CODE,GET_POINT,AVALED_ID,HOST_FLAG) values (172,152,0,4,'PublicPark',0);
+Insert into REVIEW (RSEQ,SEQ,AVAL_CODE,GET_POINT,AVALED_ID,HOST_FLAG) values (30,13,0,5,'kangnam17',0);
+Insert into REVIEW (RSEQ,SEQ,AVAL_CODE,GET_POINT,AVALED_ID,HOST_FLAG) values (31,14,0,4,'PublicPark',0);
+Insert into REVIEW (RSEQ,SEQ,AVAL_CODE,GET_POINT,AVALED_ID,HOST_FLAG) values (32,15,0,4,'kangnam17',0);
+Insert into REVIEW (RSEQ,SEQ,AVAL_CODE,GET_POINT,AVALED_ID,HOST_FLAG) values (33,16,0,4,'kangnam17',0);
+Insert into REVIEW (RSEQ,SEQ,AVAL_CODE,GET_POINT,AVALED_ID,HOST_FLAG) values (34,17,0,4,'kangnam17',0);
+Insert into REVIEW (RSEQ,SEQ,AVAL_CODE,GET_POINT,AVALED_ID,HOST_FLAG) values (35,18,0,5,'kangnam17',0);
+Insert into REVIEW (RSEQ,SEQ,AVAL_CODE,GET_POINT,AVALED_ID,HOST_FLAG) values (36,19,0,5,'kangnam17',0);
+Insert into REVIEW (RSEQ,SEQ,AVAL_CODE,GET_POINT,AVALED_ID,HOST_FLAG) values (37,20,0,4,'kangnam17',0);
+Insert into REVIEW (RSEQ,SEQ,AVAL_CODE,GET_POINT,AVALED_ID,HOST_FLAG) values (39,22,0,5,'kangnam17',0);
+Insert into REVIEW (RSEQ,SEQ,AVAL_CODE,GET_POINT,AVALED_ID,HOST_FLAG) values (40,23,0,5,'kangnam17',0);
+Insert into REVIEW (RSEQ,SEQ,AVAL_CODE,GET_POINT,AVALED_ID,HOST_FLAG) values (41,24,0,5,'kangnam17',0);
+Insert into REVIEW (RSEQ,SEQ,AVAL_CODE,GET_POINT,AVALED_ID,HOST_FLAG) values (61,41,0,5,'kangnam17',0);
+Insert into REVIEW (RSEQ,SEQ,AVAL_CODE,GET_POINT,AVALED_ID,HOST_FLAG) values (62,42,0,4,'kangnam17',0);
+Insert into REVIEW (RSEQ,SEQ,AVAL_CODE,GET_POINT,AVALED_ID,HOST_FLAG) values (63,43,0,4,'kangnam17',0);
+Insert into REVIEW (RSEQ,SEQ,AVAL_CODE,GET_POINT,AVALED_ID,HOST_FLAG) values (64,44,0,4,'kangnam17',0);
+Insert into REVIEW (RSEQ,SEQ,AVAL_CODE,GET_POINT,AVALED_ID,HOST_FLAG) values (101,81,0,3,'PublicPark',0);
+Insert into REVIEW (RSEQ,SEQ,AVAL_CODE,GET_POINT,AVALED_ID,HOST_FLAG) values (102,82,0,3.5,'PublicPark',0);
+Insert into REVIEW (RSEQ,SEQ,AVAL_CODE,GET_POINT,AVALED_ID,HOST_FLAG) values (108,88,0,3,'PublicPark',0);
+Insert into REVIEW (RSEQ,SEQ,AVAL_CODE,GET_POINT,AVALED_ID,HOST_FLAG) values (109,89,0,4,'PublicPark',0);
+Insert into REVIEW (RSEQ,SEQ,AVAL_CODE,GET_POINT,AVALED_ID,HOST_FLAG) values (121,101,0,3,'PublicPark',0);
+Insert into REVIEW (RSEQ,SEQ,AVAL_CODE,GET_POINT,AVALED_ID,HOST_FLAG) values (122,102,0,3,'PublicPark',0);
+Insert into REVIEW (RSEQ,SEQ,AVAL_CODE,GET_POINT,AVALED_ID,HOST_FLAG) values (166,146,0,4.5,'PublicPark',0);
+Insert into REVIEW (RSEQ,SEQ,AVAL_CODE,GET_POINT,AVALED_ID,HOST_FLAG) values (173,153,0,3.5,'PublicPark',0);
+Insert into REVIEW (RSEQ,SEQ,AVAL_CODE,GET_POINT,AVALED_ID,HOST_FLAG) values (174,154,0,3,'PublicPark',0);
+Insert into REVIEW (RSEQ,SEQ,AVAL_CODE,GET_POINT,AVALED_ID,HOST_FLAG) values (241,843,0,4,'PublicPark',0);
+Insert into REVIEW (RSEQ,SEQ,AVAL_CODE,GET_POINT,AVALED_ID,HOST_FLAG) values (81,61,0,3.5,'PublicPark',0);
+Insert into REVIEW (RSEQ,SEQ,AVAL_CODE,GET_POINT,AVALED_ID,HOST_FLAG) values (165,145,0,3,'PublicPark',0);
+Insert into REVIEW (RSEQ,SEQ,AVAL_CODE,GET_POINT,AVALED_ID,HOST_FLAG) values (223,813,0,4,'PublicPark',0);
+Insert into REVIEW (RSEQ,SEQ,AVAL_CODE,GET_POINT,AVALED_ID,HOST_FLAG) values (224,815,0,4,'PublicPark',0);
+Insert into REVIEW (RSEQ,SEQ,AVAL_CODE,GET_POINT,AVALED_ID,HOST_FLAG) values (225,817,0,4,'PublicPark',0);
+Insert into REVIEW (RSEQ,SEQ,AVAL_CODE,GET_POINT,AVALED_ID,HOST_FLAG) values (105,85,0,4,'PublicPark',0);
+Insert into REVIEW (RSEQ,SEQ,AVAL_CODE,GET_POINT,AVALED_ID,HOST_FLAG) values (106,86,0,3,'PublicPark',0);
+Insert into REVIEW (RSEQ,SEQ,AVAL_CODE,GET_POINT,AVALED_ID,HOST_FLAG) values (107,87,0,3,'PublicPark',0);
+Insert into REVIEW (RSEQ,SEQ,AVAL_CODE,GET_POINT,AVALED_ID,HOST_FLAG) values (261,866,0,5,'PublicPark',0);
+
+---------------------------------------------------
+--   END DATA FOR TABLE REVIEW
+---------------------------------------------------
+--------------------------------------------------------
+--  Constraints for Table AVGPOINT
+--------------------------------------------------------
+
+  ALTER TABLE "AVGPOINT" ADD CONSTRAINT "PK_AVGPOINT" PRIMARY KEY ("RSEQ") USING INDEX  ENABLE
+  ALTER TABLE "AVGPOINT" MODIFY ("RSEQ" NOT NULL ENABLE)
+--------------------------------------------------------
+--  Constraints for Table BOARD
+--------------------------------------------------------
+
+  ALTER TABLE "BOARD" ADD CONSTRAINT "PK_BOARD" PRIMARY KEY ("SEQ") USING INDEX  ENABLE
+  ALTER TABLE "BOARD" MODIFY ("BCODE" NOT NULL ENABLE)
+  ALTER TABLE "BOARD" MODIFY ("SEQ" NOT NULL ENABLE)
+--------------------------------------------------------
+--  Constraints for Table BOARDTYPE
+--------------------------------------------------------
+
+  ALTER TABLE "BOARDTYPE" ADD CONSTRAINT "PK_BOARDTYPE" PRIMARY KEY ("BCODE") USING INDEX  ENABLE
+  ALTER TABLE "BOARDTYPE" MODIFY ("BCODE" NOT NULL ENABLE)
+--------------------------------------------------------
+--  Constraints for Table CALL
+--------------------------------------------------------
+
+  ALTER TABLE "CALL" ADD CONSTRAINT "PK_CALL" PRIMARY KEY ("PCSEQ") USING INDEX  ENABLE
+  ALTER TABLE "CALL" MODIFY ("PCSEQ" NOT NULL ENABLE)
+  ALTER TABLE "CALL" MODIFY ("PCALL_ID" NOT NULL ENABLE)
+--------------------------------------------------------
+--  Constraints for Table CAR_INFO
+--------------------------------------------------------
+
+  ALTER TABLE "CAR_INFO" ADD CONSTRAINT "PK_CAR_INFO" PRIMARY KEY ("CAR_ID") USING INDEX  ENABLE
+  ALTER TABLE "CAR_INFO" MODIFY ("CAR_ID" NOT NULL ENABLE)
+--------------------------------------------------------
+--  Constraints for Table CITIES
+--------------------------------------------------------
+
+  ALTER TABLE "CITIES" ADD CONSTRAINT "PK_CITIES" PRIMARY KEY ("EMD_CODE") USING INDEX  ENABLE
+  ALTER TABLE "CITIES" MODIFY ("EMD_CODE" NOT NULL ENABLE)
+  ALTER TABLE "CITIES" MODIFY ("SGG_CODE" NOT NULL ENABLE)
+
+--------------------------------------------------------
+--  Constraints for Table EVALUATION
+--------------------------------------------------------
+
+  ALTER TABLE "EVALUATION" ADD CONSTRAINT "EVALUATION_PENALTY_CODE_PK" PRIMARY KEY ("PENALTY_CODE") USING INDEX  ENABLE
+--------------------------------------------------------
+--  Constraints for Table FAQ
+--------------------------------------------------------
+
+  ALTER TABLE "FAQ" MODIFY ("FSEQ" NOT NULL ENABLE)
+--------------------------------------------------------
+--  Constraints for Table FAVORITE
+--------------------------------------------------------
+
+  ALTER TABLE "FAVORITE" MODIFY ("USER_ID" NOT NULL ENABLE)
+  ALTER TABLE "FAVORITE" MODIFY ("PARK_ID" NOT NULL ENABLE)
+--------------------------------------------------------
+--  Constraints for Table GRADE
+--------------------------------------------------------
+
+  ALTER TABLE "GRADE" ADD CONSTRAINT "PK_GRADE" PRIMARY KEY ("GRADE_ID") USING INDEX  ENABLE
+  ALTER TABLE "GRADE" MODIFY ("GRADE_ID" NOT NULL ENABLE)
+--------------------------------------------------------
+--  Constraints for Table MEMBER
+--------------------------------------------------------
+
+  ALTER TABLE "MEMBER" ADD CONSTRAINT "PK_MEMBER" PRIMARY KEY ("USER_ID") USING INDEX  ENABLE
+  ALTER TABLE "MEMBER" MODIFY ("GRADE_ID" NOT NULL DISABLE)
+  ALTER TABLE "MEMBER" MODIFY ("USER_PASS" NOT NULL DISABLE)
+  ALTER TABLE "MEMBER" MODIFY ("USER_ID" NOT NULL DISABLE)
+--------------------------------------------------------
+--  Constraints for Table MEMBER_CAR
+--------------------------------------------------------
+
+  ALTER TABLE "MEMBER_CAR" ADD CONSTRAINT "MEMBER_CAR_PK" PRIMARY KEY ("REG_NUM") USING INDEX  ENABLE
+--------------------------------------------------------
+--  Constraints for Table MESSAGE
+--------------------------------------------------------
+
+  ALTER TABLE "MESSAGE" ADD CONSTRAINT "PK_MESSAGE" PRIMARY KEY ("MSEQ") USING INDEX  ENABLE
+  ALTER TABLE "MESSAGE" MODIFY ("SEQ" NOT NULL ENABLE)
+  ALTER TABLE "MESSAGE" MODIFY ("MSEQ" NOT NULL ENABLE)
+--------------------------------------------------------
+--  Constraints for Table PARKING
+--------------------------------------------------------
+
+  ALTER TABLE "PARKING" MODIFY ("PARK_ID" NOT NULL ENABLE)
+  ALTER TABLE "PARKING" ADD CONSTRAINT "PK_PARKING" PRIMARY KEY ("PARK_ID") USING INDEX  ENABLE
+--------------------------------------------------------
+--  Constraints for Table PARKING_DETAIL
+--------------------------------------------------------
+
+  ALTER TABLE "PARKING_DETAIL" MODIFY ("PARK_ID" NOT NULL ENABLE)
+--------------------------------------------------------
+--  Constraints for Table PENALTY
+--------------------------------------------------------
+
+  ALTER TABLE "PENALTY" ADD CONSTRAINT "PENALTY_PENALTY_NUM_PK" PRIMARY KEY ("PENALTY_NUM") USING INDEX  ENABLE
+--------------------------------------------------------
+--  Constraints for Table PICTURE
+--------------------------------------------------------
+
+  ALTER TABLE "PICTURE" ADD CONSTRAINT "PICTURE_PIC_SEQ_PK" PRIMARY KEY ("PIC_SEQ") USING INDEX  ENABLE
+--------------------------------------------------------
+--  Constraints for Table REPORT
+--------------------------------------------------------
+
+  ALTER TABLE "REPORT" ADD CONSTRAINT "PK_REPORT" PRIMARY KEY ("CSEQ") USING INDEX  ENABLE
+  ALTER TABLE "REPORT" MODIFY ("PARK_ID" NOT NULL ENABLE)
+  ALTER TABLE "REPORT" MODIFY ("CSEQ" NOT NULL ENABLE)
+  ALTER TABLE "REPORT" MODIFY ("SEQ" NOT NULL ENABLE)
+--------------------------------------------------------
+--  Constraints for Table RESERVATION
+--------------------------------------------------------
+
+  ALTER TABLE "RESERVATION" ADD CONSTRAINT "PK_RESERVATION" PRIMARY KEY ("RESER_ID") USING INDEX  ENABLE
+  ALTER TABLE "RESERVATION" MODIFY ("USER_ID" NOT NULL ENABLE)
+  ALTER TABLE "RESERVATION" MODIFY ("PARK_ID" NOT NULL ENABLE)
+  ALTER TABLE "RESERVATION" MODIFY ("RESER_ID" NOT NULL ENABLE)
+--------------------------------------------------------
+--  Constraints for Table REVIEW
+--------------------------------------------------------
+
+  ALTER TABLE "REVIEW" ADD CONSTRAINT "PK_REVIEW" PRIMARY KEY ("RSEQ") USING INDEX  ENABLE
+  ALTER TABLE "REVIEW" MODIFY ("SEQ" NOT NULL ENABLE)
+  ALTER TABLE "REVIEW" MODIFY ("RSEQ" NOT NULL ENABLE)
+
+--------------------------------------------------------
+--  Ref Constraints for Table AVGPOINT
+--------------------------------------------------------
+
+  ALTER TABLE "AVGPOINT" ADD CONSTRAINT "FK_REVIEW_TO_AVGPOINT" FOREIGN KEY ("RSEQ") REFERENCES "REVIEW" ("RSEQ") ENABLE
+--------------------------------------------------------
+--  Ref Constraints for Table BOARD
+--------------------------------------------------------
+
+  ALTER TABLE "BOARD" ADD CONSTRAINT "FK_BOARDTYPE_TO_BOARD" FOREIGN KEY ("BCODE") REFERENCES "BOARDTYPE" ("BCODE") ENABLE
+  ALTER TABLE "BOARD" ADD CONSTRAINT "FK_MEMBER_TO_BOARD" FOREIGN KEY ("USER_ID") REFERENCES "MEMBER" ("USER_ID") ENABLE
+
+--------------------------------------------------------
+--  Ref Constraints for Table CALL
+--------------------------------------------------------
+
+  ALTER TABLE "CALL" ADD CONSTRAINT "FK_BOARD_TO_CALL" FOREIGN KEY ("PCALL_ID") REFERENCES "BOARD" ("SEQ") ENABLE
+
+
+--------------------------------------------------------
+--  Ref Constraints for Table COIN
+--------------------------------------------------------
+
+  ALTER TABLE "COIN" ADD CONSTRAINT "FK_MEMBER_TO_COIN" FOREIGN KEY ("USER_ID") REFERENCES "MEMBER" ("USER_ID") ENABLE
+  ALTER TABLE "COIN" ADD CONSTRAINT "FK_RESERVATION_TO_COIN" FOREIGN KEY ("RESER_ID") REFERENCES "RESERVATION" ("RESER_ID") ENABLE
+
+
+--------------------------------------------------------
+--  Ref Constraints for Table FAVORITE
+--------------------------------------------------------
+
+  ALTER TABLE "FAVORITE" ADD CONSTRAINT "FK_MEMBER_TO_FAVORITE" FOREIGN KEY ("USER_ID") REFERENCES "MEMBER" ("USER_ID") ENABLE
+
+--------------------------------------------------------
+--  Ref Constraints for Table MEMBER
+--------------------------------------------------------
+
+  ALTER TABLE "MEMBER" ADD CONSTRAINT "FK_GRADE_TO_MEMBER" FOREIGN KEY ("GRADE_ID") REFERENCES "GRADE" ("GRADE_ID") DISABLE
+--------------------------------------------------------
+--  Ref Constraints for Table MEMBER_CAR
+--------------------------------------------------------
+
+  ALTER TABLE "MEMBER_CAR" ADD CONSTRAINT "FK_CAR_INFO_TO_MEMBER_CAR" FOREIGN KEY ("CAR_ID") REFERENCES "CAR_INFO" ("CAR_ID") ENABLE
+  ALTER TABLE "MEMBER_CAR" ADD CONSTRAINT "FK_MEMBER_TO_MEMBER_CAR" FOREIGN KEY ("USER_ID") REFERENCES "MEMBER" ("USER_ID") ENABLE
+--------------------------------------------------------
+--  Ref Constraints for Table MESSAGE
+--------------------------------------------------------
+
+  ALTER TABLE "MESSAGE" ADD CONSTRAINT "FK_BOARD_TO_MESSAGE" FOREIGN KEY ("SEQ") REFERENCES "BOARD" ("SEQ") ENABLE
+  ALTER TABLE "MESSAGE" ADD CONSTRAINT "FK_MEMBER_TO_MESSAGE" FOREIGN KEY ("RECEIVER_ID") REFERENCES "MEMBER" ("USER_ID") ENABLE
+--------------------------------------------------------
+--  Ref Constraints for Table PARKING
+--------------------------------------------------------
+
+  ALTER TABLE "PARKING" ADD CONSTRAINT "FK_MEMBER_TO_PARKING" FOREIGN KEY ("OWNER_ID") REFERENCES "MEMBER" ("USER_ID") ENABLE
+
+--------------------------------------------------------
+--  Ref Constraints for Table PENALTY
+--------------------------------------------------------
+
+  ALTER TABLE "PENALTY" ADD CONSTRAINT "PENALTY_PENALTY_CODE_FK" FOREIGN KEY ("PENALTY_CODE") REFERENCES "EVALUATION" ("PENALTY_CODE") ENABLE
+  ALTER TABLE "PENALTY" ADD CONSTRAINT "PENALTY_SEQ_FK" FOREIGN KEY ("SEQ") REFERENCES "BOARD" ("SEQ") ENABLE
+  ALTER TABLE "PENALTY" ADD CONSTRAINT "PENALTY_USER_ID_FK" FOREIGN KEY ("USER_ID") REFERENCES "MEMBER" ("USER_ID") ENABLE
+--------------------------------------------------------
+--  Ref Constraints for Table PICTURE
+--------------------------------------------------------
+
+  ALTER TABLE "PICTURE" ADD CONSTRAINT "FK_board_TO_picture" FOREIGN KEY ("SEQ") REFERENCES "BOARD" ("SEQ") ENABLE
+  ALTER TABLE "PICTURE" ADD CONSTRAINT "FK_member_TO_picture" FOREIGN KEY ("USER_ID") REFERENCES "MEMBER" ("USER_ID") ENABLE
+  ALTER TABLE "PICTURE" ADD CONSTRAINT "FK_parking_to_picture" FOREIGN KEY ("PARK_ID") REFERENCES "PARKING" ("PARK_ID") ENABLE
+--------------------------------------------------------
+--  Ref Constraints for Table REPORT
+--------------------------------------------------------
+
+  ALTER TABLE "REPORT" ADD CONSTRAINT "FK_BOARD_TO_REPORT" FOREIGN KEY ("SEQ") REFERENCES "BOARD" ("SEQ") ENABLE
+--------------------------------------------------------
+--  Ref Constraints for Table RESERVATION
+--------------------------------------------------------
+
+  ALTER TABLE "RESERVATION" ADD CONSTRAINT "FK_MEMBER_TO_RESERVATION" FOREIGN KEY ("USER_ID") REFERENCES "MEMBER" ("USER_ID") ENABLE
+--------------------------------------------------------
+--  Ref Constraints for Table REVIEW
+--------------------------------------------------------
+
+  ALTER TABLE "REVIEW" ADD CONSTRAINT "FK_BOARD_TO_REVIEW" FOREIGN KEY ("SEQ") REFERENCES "BOARD" ("SEQ") ENABLE
+

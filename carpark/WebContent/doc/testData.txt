@@ -11,4 +11,9 @@
  *주차장 이름   : 대치동 507-3(구)
  
  
+ *DB접속*
+ *~/WebContent/META-INF/context.xml
+ *url:jdbc:oracle:thin:@YOUR_DB:1521:orcl"
+ *id:carpark
+ *pwd:carpark
  
