@@ -1,16 +1,14 @@
 /*****시연용 데이터*****/ 
 *아이디* 
-* 카카오톡 실제 아이디
-* 사용자1 (id/pwd): IUGuest/iuguest
-* 사용자2 (id/pwd) : PublicPark /ppark
-* 관리자(id/pwd): admin/admin
-* 페이팔 아이디(소비자) IUGuest@IUGuest.com / iuguest
+* 사용자 (id/pwd): IUGuest/iuguest
+* 호스트 (id/pwd): PublicPark /ppark 
+* 관리자 (id/pwd): admin/admin
+* 페이팔 결제용 아이디(소비자) IUGuest@IUGuest.com / iuguest
+* 카카오계정 로그인, 실제 카카오 아이디 사용
 
 *데이터 검색*
  *주차장 검색어 : 대치   
  *주차장 이름   : 대치동 507-3(구)
  
-*주차장 등록*
-*주차장 등록 주소 : 서울시 구로구 구로동 / 187-10 코오롱싸이언스밸리1차
  
  
