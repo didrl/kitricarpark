@@ -19,8 +19,9 @@ import com.carpark.util.PageMove;
 @WebServlet("/admin")
 public class AdminController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-             
+          
         
+	
     	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     		String root = request.getContextPath();
     		String act = Encoder.utfUrl(request.getParameter("act"));
